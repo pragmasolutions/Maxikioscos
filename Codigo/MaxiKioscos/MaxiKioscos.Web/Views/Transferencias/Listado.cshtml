@@ -1,0 +1,32 @@
+﻿@using MaxiKioscos.Web.Helpers
+@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.TransferenciasListadoModel
+@Html.PaginaTitulo("Transferencias", "fa-exchange")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="btn btn-default btn-transferencia-crear" href="@Url.Action("Crear")"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Crear Transferencia</a>
+            </div>
+            <div class="panel-body">
+                <div class="spacer"></div>
+                @Html.Partial("_Filtros", Model.Filtros)
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                @Html.Partial("_Listado", Model)
+                <div class="spacer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="TransferenciasModalContrainer">
+</div>
+@Html.Modal("AgregarRubroModal",ModalSize.Normal)
+@Html.Modal("AgregarMarcaModal",ModalSize.Normal)
+
+<style>
+    #TransferenciasModal .modal-content {
+        width: 1100px;
+    }
+</style>

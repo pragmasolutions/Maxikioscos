@@ -1,0 +1,52 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<MaxiKioscos.Entidades.Exportacion>
+@Html.PaginaTitulo("Log de Exportaciones","fa-cloud-download")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="btn btn-default btn-exportacion-crear" href="@Url.Action("Exportar")"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Exportar datos desincronizados</a>
+                @*<a class="btn btn-default" href="@Url.Action("Descargar")"><span class="glyphicon glyphicon-print"></span>&nbsp;&nbsp;Imprimir</a>*@
+                <a class="btn btn-default btn-exportacion-descargar" href="@Url.Action("Descargar")"><span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;Descargar</a>
+                @*<a class="btn btn-default btn-exportacion-descargar" href="@Url.Action("ForzarSincronizacion")"><span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;Forzar Sincronizacion</a>*@
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="TableExportacion">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Secuencia</th>
+                                <th>Nombre</th>
+                                <th style="width: 60px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var exp in Model)
+                            {
+                                <tr>
+                                    <td>@exp.Fecha.ToShortDateString()</td>
+                                    <td>@exp.Secuencia</td>
+                                    <td>@exp.Nombre</td>
+                                    <td class="text-center">
+                                        <a target="_blank" class="btn btn-default btn-exportacion-detalle" href="/Sincronizacion/Detalle?secuencia=@exp.Secuencia"><span class="glyphicon glyphicon-list"></span></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                                        { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded}
+                                         , new AjaxOptions() { UpdateTargetId = "AdminContainer",
+                                                                HttpMethod = "Get",
+                                                                InsertionMode = InsertionMode.Replace,
+                                                                OnBegin = "maxikioscoSpinner.startSpin",
+                                                                OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                OnFailure = "maxikioscoSpinner.stopSpin" }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

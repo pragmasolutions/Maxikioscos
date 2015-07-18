@@ -1,0 +1,15 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model string
+@Html.PopupTitulo("Eliminar Usuario")
+<div class="modal-body">
+    <div class="row">
+        <div>
+            <div class="alert alert-warning">
+                @Model
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+</div>

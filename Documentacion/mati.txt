@@ -1,0 +1,9 @@
+Ventas
+stock
+
+cada 8 horas se hace un cierre de caja
+scanner de codigos de barra
+
+rubros mas caros a la noche (automatico)
+comandos para agilizar
+la base de datos tiene que ser local (sincronizacion)

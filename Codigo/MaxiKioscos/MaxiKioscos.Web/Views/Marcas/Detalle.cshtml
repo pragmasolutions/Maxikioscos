@@ -1,0 +1,14 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Marca
+
+@Html.PopupTitulo("Detalle de Marca")
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            @{Html.RenderPartial("_CamposMarcaDetalle"); }
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Aceptar</button>
+</div>

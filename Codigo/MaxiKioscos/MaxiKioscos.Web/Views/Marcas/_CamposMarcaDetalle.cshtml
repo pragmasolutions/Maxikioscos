@@ -1,0 +1,18 @@
+﻿@model MaxiKioscos.Entidades.Marca
+@Html.HiddenFor(model => model.MarcaId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.CuentaId)
+
+<div class="col-lg-6">        
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        @Html.DisplayFor(model => model.Descripcion)
+        
+        <br/>
+        @Html.ValidationMessage("ProductosAsociados")
+    </div>
+</div>
+
+

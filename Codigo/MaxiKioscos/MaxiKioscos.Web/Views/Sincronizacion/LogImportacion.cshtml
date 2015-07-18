@@ -1,0 +1,69 @@
+﻿@model MaxiKioscos.Web.Models.LogImportacionesListadoModel
+@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Log de Importaciones";
+}
+@Html.PaginaTitulo("Log de Importaciones","fa-cloud-upload")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="btn btn-default btn-importar" href="@Url.Action("Importar")"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Importar datos de kiosco</a>
+            </div>
+            <div class="panel-body">
+                 <div class="spacer"></div>
+                @Html.Partial("_LogImportacionesFiltros", Model.Filtros)
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="TableImportacion">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Maxikiosco</th>
+                                <th>Nombre Archivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var imp in Model.PagedList)
+                            {
+                                <tr>
+                                    <td>@imp.Fecha.ToShortDateString()</td>
+                                    <td>@imp.MaxiKiosco.Nombre</td>
+                                    <td>@imp.Nombre</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model.PagedList, page => Url.Action("LogImportacion", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions()
+                        { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded}
+                                                                                                                                                          , new AjaxOptions() { UpdateTargetId = "AdminContainer",
+                                                                                                                                                              HttpMethod = "Get",
+                                                                                                                                                              InsertionMode = InsertionMode.Replace,
+                                                                                                                                                              OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                                              OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                                              OnFailure = "maxikioscoSpinner.stopSpin" }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("ErrorImportacionDialog")
+@Html.Modal("ImportacionModal")
+@Html.Partial("ErrorDialog")
+@Html.Modal("SincronizacionModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-importacion.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-importacion.js")
+}

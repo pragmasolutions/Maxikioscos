@@ -1,0 +1,52 @@
+﻿@using MaxiKioscos.Web.Helpers
+@model MaxiKioscos.Web.Models.ExcepcionesFiltrosModel
+<div>
+    @using (Ajax.BeginForm("Listado", null,
+                                           new AjaxOptions()
+                                               {
+                                                   UpdateTargetId = "ListadoContainer",
+                                                   HttpMethod = "GET",
+                                                   InsertionMode = InsertionMode.Replace,
+                                                   OnBegin = "maxikioscoSpinner.startSpin",
+                                                   OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                   OnFailure = "maxikioscoSpinner.stopSpin"
+                                               },
+                                           new { @class = "form-inline" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Desde, new { @class = "label-inline" })
+                    <div class="form-group date-container">
+                        @Html.EditorFor(model => model.Desde)
+                        @if (!IsAjax)
+                        {
+                            <text>
+                            @section scripts
+                            {
+                                @Html.SetFocusTo(model => model.Desde)
+                            }
+                            </text>
+                        }
+                        else
+                        {
+                            @Html.SetFocusTo(model => model.Desde)
+                        }
+                    </div>
+                    @Html.LabelFor(model => model.Hasta, new { @class = "label-inline" })
+                    <div class="form-group date-container">
+                        @Html.EditorFor(model => model.Hasta)
+                    </div>
+                </td>
+                <td style="padding-left: 25px;">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.MaxiKioscoId)
+                    </div>
+                </td>
+                <td style="padding-left: 25px;">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+                </td>
+            </tr>
+        </table>
+    }
+</div>

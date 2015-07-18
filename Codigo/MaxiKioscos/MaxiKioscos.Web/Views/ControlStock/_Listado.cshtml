@@ -1,0 +1,52 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.ControlStockListadoModel
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableControlStock">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>MaxiKiosco</th>
+                <th>Nro Control</th>
+                <th>Rubro</th>
+                <th>Proveedor</th>
+                <th>Estado</th>
+                <th style="width: 110px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var control in Model.List)
+            {
+                <tr>
+                    <td>@control.FechaCreacion.ToShortDateString()</td>
+                    <td>@control.MaxiKiosco.Nombre</td>
+                    <td>@control.NroControlFormateado</td>
+                    <td>@control.RubroDescripcion</td>
+                    <td>@control.ProveedorNombre</td>
+                    <td>@control.Estado</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-controlStock-detalle" 
+                           href="@Url.Action("Detalle", new { id = control.ControlStockId })"
+                           data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin"
+                           data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin"
+                           data-ajax-update="#AdminContainer"><span class="glyphicon glyphicon-list"></span></a>
+                        @if (!control.Cerrado)
+                        {
+                            <a class="btn btn-default btn-controlStrock-eliminar" href="@Url.Action("Eliminar", new { id = control.ControlStockId })"><span class="glyphicon glyphicon-trash"></span></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                                                                                                                                            , new AjaxOptions()
+                                                                                                                                                                  {
+                                                                                                                                                                      UpdateTargetId = "AdminContainer",
+                                                                                                                                                                      HttpMethod = "Get",
+                                                                                                                                                                      InsertionMode = InsertionMode.Replace,
+                                                                                                                                                                      OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                                                      OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                                                      OnFailure = "maxikioscoSpinner.stopSpin"
+                                                                                                                                                                  }))
+</div>

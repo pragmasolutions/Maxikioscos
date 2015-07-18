@@ -1,0 +1,19 @@
+﻿@model bool?
+<div class="radio-inline" style="padding-top: 18px;">
+    <label>
+        @Html.RadioButton("",true)
+        Nececita
+    </label>
+</div>
+<div class="radio-inline" style="padding-top: 18px;">
+    <label>
+        @Html.RadioButton("",false)
+        No necesita
+    </label>
+</div>
+<div class="radio-inline" style="padding-top: 18px;">
+    <label>
+         @Html.RadioButton("",string.Empty)
+        Todos
+    </label>
+</div>

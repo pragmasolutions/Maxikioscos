@@ -1,0 +1,160 @@
+﻿@model MaxiKioscos.Entidades.Producto
+@Html.HiddenFor(model => model.ProductoId)
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Descripcion)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RubroId)
+            @Html.DisplayFor(model => model.Rubro.Descripcion)
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioConIVA)
+            @Html.DisplayFor(model => model.PrecioConIVA)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioSinIVA)
+            @Html.DisplayFor(model => model.PrecioSinIVA)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#TabCodigos" role="tab" data-toggle="tab">Codigos</a></li>
+            <li><a href="#TabCostos" role="tab" data-toggle="tab">Costos</a></li>
+            <li><a href="#TabProductos" role="tab" data-toggle="tab">Productos</a></li>
+            <li><a href="#TabStock" role="tab" data-toggle="tab">Stock en kioscos</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div id="ProductosTabControl" class="tab-content">
+            <div class="tab-pane active" id="TabCodigos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul id="CodigosList" class="list-group">
+                            @foreach (var codigo in Model.CodigosProductos)
+                            {
+                                <li class="list-group-item">
+                                    @Html.DisplayTextFor(model => codigo.Codigo)
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabCostos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Proveedor
+                                    </th>
+                                    <th>Costo con IVA
+                                    </th>
+                                    <th>Costo sin IVA
+                                    </th>
+                                    <th>Porcentaje Gcía.
+                                    </th>
+                                    <th>Fecha</th>
+                                </tr>
+                                </thead>
+                                <tbody id="CostosList">
+
+                                @foreach (var costoProveedor in Model.Costos)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayTextFor(modal => costoProveedor.Proveedor.Nombre)
+                                        </td>
+                                        <td>@costoProveedor.CostoConIVA.ToString("c2")</td>
+                                        <td>@costoProveedor.CostoSinIVA.ToString("c2")</td>
+                                        <td>@((costoProveedor.PorcentajeGanancia/100).ToString("p2"))</td>
+                                        <td>@(costoProveedor.FechaUltimoCambioCosto == null ? string.Empty : costoProveedor.FechaUltimoCambioCosto.GetValueOrDefault().ToShortDateString())</td>
+                                    </tr>
+                                }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabProductos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Unidades
+                                    </th>
+                                    <th>
+                                        Proveedor
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="PromocionesList">
+
+                                @foreach (var promoItem in Model.PromocionesHijos.Where(p => !p.Eliminado))
+                                {
+                                    <tr>
+                                        <td>@promoItem.Unidades</td>
+                                        <td>
+                                            @Html.DisplayTextFor(modal => promoItem.Hijo.Descripcion)
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabStock">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            MaxiKiosco
+                                        </th>
+                                        <th>
+                                            Stock
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="StockList">
+
+                                    @foreach (var maxi in Model.PromocionMaxikioscos)
+                                    {
+                                        <tr>
+                                            <td>@maxi.MaxiKioscoNombre</td>
+                                            <td>
+                                                @maxi.StockActual
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

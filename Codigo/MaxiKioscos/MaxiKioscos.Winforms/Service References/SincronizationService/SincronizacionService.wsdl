@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SincronizacionService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:51557/SincronizacionService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:51557/SincronizacionService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:51557/SincronizacionService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MaxiKioscos.Services.Contracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISincronizacionService_ObtenerDatos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatos" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ObtenerDatos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ObtenerDatosSecuencial_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosSecuencial" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ObtenerDatosSecuencial_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosSecuencialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ActualizarDatos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatos" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ActualizarDatos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_AcusarExportacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcusarExportacion" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_AcusarExportacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcusarExportacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_InicializarKiosco_InputMessage">
+    <wsdl:part name="parameters" element="tns:InicializarKiosco" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_InicializarKiosco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InicializarKioscoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_MarcarKioscoComoAsignado_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarcarKioscoComoAsignado" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_MarcarKioscoComoAsignado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarcarKioscoComoAsignadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ObtenerUltimaSecuenciaAcusada_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUltimaSecuenciaAcusada" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_ObtenerUltimaSecuenciaAcusada_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUltimaSecuenciaAcusadaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISincronizacionService">
+    <wsdl:operation name="ObtenerDatos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerDatos" message="tns:ISincronizacionService_ObtenerDatos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerDatosResponse" message="tns:ISincronizacionService_ObtenerDatos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosSecuencial">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerDatosSecuencial" message="tns:ISincronizacionService_ObtenerDatosSecuencial_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerDatosSecuencialResponse" message="tns:ISincronizacionService_ObtenerDatosSecuencial_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ActualizarDatos" message="tns:ISincronizacionService_ActualizarDatos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ActualizarDatosResponse" message="tns:ISincronizacionService_ActualizarDatos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcusarExportacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/AcusarExportacion" message="tns:ISincronizacionService_AcusarExportacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/AcusarExportacionResponse" message="tns:ISincronizacionService_AcusarExportacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InicializarKiosco">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/InicializarKiosco" message="tns:ISincronizacionService_InicializarKiosco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/InicializarKioscoResponse" message="tns:ISincronizacionService_InicializarKiosco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarcarKioscoComoAsignado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignado" message="tns:ISincronizacionService_MarcarKioscoComoAsignado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignadoResponse" message="tns:ISincronizacionService_MarcarKioscoComoAsignado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUltimaSecuenciaAcusada">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada" message="tns:ISincronizacionService_ObtenerUltimaSecuenciaAcusada_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusadaResponse" message="tns:ISincronizacionService_ObtenerUltimaSecuenciaAcusada_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISincronizacionService" type="tns:ISincronizacionService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerDatos">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ObtenerDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosSecuencial">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ObtenerDatosSecuencial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDatos">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ActualizarDatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcusarExportacion">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/AcusarExportacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InicializarKiosco">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/InicializarKiosco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarcarKioscoComoAsignado">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUltimaSecuenciaAcusada">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SincronizacionService">
+    <wsdl:port name="BasicHttpBinding_ISincronizacionService" binding="tns:BasicHttpBinding_ISincronizacionService">
+      <soap:address location="http://localhost:51557/SincronizacionService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

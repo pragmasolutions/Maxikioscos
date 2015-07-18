@@ -1,0 +1,21 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.UsuariosListadoModel
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+@Html.Partial("Listado")
+@Html.Modal("UsuariosModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-usuarios.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-usuarios.js")
+}

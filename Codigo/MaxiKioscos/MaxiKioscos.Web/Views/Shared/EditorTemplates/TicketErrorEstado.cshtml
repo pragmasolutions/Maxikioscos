@@ -1,0 +1,13 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.EstadosTicket.Listado()
+                               .ToSelectListItem(Model, e => (int)e.EstadoTicketId, e => e.Descripcion,
+                               e => ((int)e.EstadoTicketId).ToString());
+}
+
+@Html.DropDownList("", selectList,"Todos los estados", new { @class = "form-control" })

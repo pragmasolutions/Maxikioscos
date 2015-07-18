@@ -1,0 +1,16 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Transferencia
+
+<div id="TransferenciasModal" class="modal fade" role="dialog" aria-labelledby="TransferenciasModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @Html.PopupTitulo("Detalle Transferencia")
+                <div class="modal-body">
+                    @{Html.RenderPartial("_CamposTransferenciaDetalle"); }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+                </div>
+        </div>
+    </div>
+</div>

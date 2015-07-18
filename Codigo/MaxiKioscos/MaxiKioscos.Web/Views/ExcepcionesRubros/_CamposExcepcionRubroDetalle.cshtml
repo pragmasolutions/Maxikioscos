@@ -1,0 +1,51 @@
+﻿@model MaxiKioscos.Entidades.ExcepcionRubro
+@Html.HiddenFor(model => model.ExcepcionRubroId)
+@Html.HiddenFor(model => model.Identifier)
+
+<div class="form-group">
+    @Html.Label("MaxiKiosco")
+    @Html.DisplayFor(model => model.MaxiKiosco.Nombre)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.RubroId)
+    @Html.DisplayFor(model => model.Rubro.Descripcion)
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Desde)
+            @Html.DisplayFor(model => model.Desde)
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hasta)
+            @Html.DisplayFor(model => model.Hasta)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+        <label class="control-label">
+            @Html.DisplayNameFor(model => model.RecargoPorcentaje)
+        </label>
+    </div>
+    <div class="col-xs-8">
+        <div class="form-group">
+            @Html.DisplayFor(model => model.RecargoPorcentaje)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+        <label class="control-label">
+            @Html.DisplayNameFor(model => model.RecargoAbsoluto)
+        </label>
+    </div>
+    <div class="col-xs-8">
+        <div class="form-group">
+            @Html.DisplayFor(model => model.RecargoAbsoluto)
+        </div>
+    </div>
+</div>
+

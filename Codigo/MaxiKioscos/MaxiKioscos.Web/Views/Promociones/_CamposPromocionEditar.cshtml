@@ -1,0 +1,161 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Producto
+@Html.HiddenFor(model => model.ProductoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+@Html.HiddenFor(model => model.MarcaId)
+@{
+    var primerCodigo = Model.CodigosProductos.FirstOrDefault();
+}
+<div class="row">
+    <div class="col-lg-6">
+        @Html.LabelFor(model => model.Descripcion)
+        <div class="form-group ">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion)
+        </div>
+        @Html.LabelFor(model => model.RubroId)
+        <div class="form-group">
+            @Html.EditorFor(model => model.RubroId)
+            <a class="agregar-rubro" href="@Url.Action("Crear","Rubros")">Crear</a>
+            @Html.ValidationMessageFor(model => model.RubroId, null, new { style = "display:block" })
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioConIVA)
+            @Html.EditorFor(model => model.PrecioConIVA)
+            @Html.ValidationMessageFor(model => model.PrecioConIVA)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioSinIVA)
+            @Html.EditorFor(model => model.PrecioSinIVA)
+            @Html.ValidationMessageFor(model => model.PrecioSinIVA)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#TabCodigos" role="tab" data-toggle="tab">Codigos</a></li>
+            <li><a href="#TabCostos" role="tab" data-toggle="tab">Costos</a></li>
+            <li><a href="#TabProductos" role="tab" data-toggle="tab">Productos</a></li>
+            <li><a href="#TabMaxikioscos" role="tab" data-toggle="tab">Asignar a kioscos</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div id="ProductosTabControl" class="tab-content">
+            <div class="tab-pane active" id="TabCodigos">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="btn btn-default btn-agregar-codigo" href="@Url.Action("CodigoProducto", new { productoId = Model.ProductoId })"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Codigo</a>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="CodigosList" class="list-group">
+                            <li class="list-group-item">
+                                @using (Html.BeginCollectionItem("CodigosProductos"))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            @Html.Partial("_Codigo", primerCodigo) 
+                                        </div>
+                                    </div>
+                                }
+                            </li>
+                            @foreach (var codigo in Model.CodigosProductos.Where(c => c != primerCodigo && !c.Eliminado).ToList())
+                            {
+                                Html.RenderPartial("CodigoProducto", codigo);
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabCostos">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="btn btn-default btn-agregar-costo" href="@Url.Action("CostoProducto", new {productoId = Model.ProductoId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Costo</a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Proveedor</th>
+                                    <th>Costo con IVA</th>
+                                    <th>Costo sin IVA</th>
+                                    <th>Porcentaje Gcía.</th>
+                                    <th>Fecha</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody id="CostosList">
+                                @foreach (var costoProveedor in Model.Costos.Where(c => !c.Eliminado))
+                                {
+                                    Html.RenderPartial("CostoProducto", costoProveedor);
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabProductos">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="btn btn-default btn-agregar-promocion" href="@Url.Action("PromocionProducto", new {productoId = Model.ProductoId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Producto</a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Unidades</th>
+                                    <th>Producto</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody id="PromocionesList">
+                                @foreach (var promo in Model.PromocionesHijos.Where(p => !p.Eliminado))
+                                {
+                                    Html.RenderPartial("PromocionProducto", promo);
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabMaxikioscos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Maxikiosco</th>
+                                        <th>Stock Actual</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="MaxikioscosList">
+                                    @foreach (var maxi in Model.PromocionMaxikioscos)
+                                    {
+                                        Html.RenderPartial("PromocionMaxikiosco", maxi);
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@Scripts.Render("~/Scripts/app/maxikiosco-promociones-editar.js")
+
+
+
+
+

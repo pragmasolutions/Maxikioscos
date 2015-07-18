@@ -1,0 +1,267 @@
+﻿@using MaxiKioscos.Web.Helpers
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+
+            <li>
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+            <li>
+                <a href="#"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Artículos<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>@Html.MenuLateralItem("/Productos/Index", "fa fa-barcode", "Productos")</li>
+                    <li>@Html.MenuLateralItem("/Marcas/Index", "fa fa-copyright", "Marcas")</li>
+                    <li>@Html.MenuLateralItem("/Rubros/Index", "fa fa-sitemap", "Rubros")</li>
+                    <li>@Html.MenuLateralItem("/Promociones/Index", "fa fa-gift", "Promociones")</li>
+                    <li>@Html.MenuLateralItem("/Stocks/Index", "fa fa-calculator", "Stock")</li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>@Html.MenuLateralItem("/Compras/Index", "fa fa-shopping-cart", "Compras")</li>
+            <li>@Html.MenuLateralItem("/Transferencias/Index", "fa fa-exchange", "Transferencias")</li>
+            <li>@Html.MenuLateralItem("/ControlStock/Index", "fa fa-check-circle-o", "Control de Stock")</li>
+            <li>@Html.MenuLateralItem("/Facturas/Index", "fa fa-file-text-o", "Facturas")</li>
+            <li>@Html.MenuLateralItem("/Excepciones/Index", "fa fa-asterisk", "Excepciones")</li>
+            <li>@Html.MenuLateralItem("/Proveedores/Index", "fa fa-truck", "Proveedores")</li>
+            <li>@Html.MenuLateralItem("/Maxikioscos/Index", "glyphicon glyphicon-home", "Maxikioscos")</li>
+            <li>@Html.MenuLateralItem("/ExcepcionesRubros/Index", "fa fa-star-half-o", "Excepciones por Rubro")</li>
+            <li>@Html.MenuLateralItem("/Usuarios/Index", "fa fa-users", "Usuarios")</li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Reportes<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">&nbsp;Ventas<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Ajax.ActionLink("Por Cierre de Caja", "VentasPorCierreCaja", "Reportes",
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Por Maxikiosco", "VentasPorMaxikioscos", "Reportes",
+                                         new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
+                                         new AjaxOptions()
+                                             {
+                                                 UpdateTargetId = "AdminContainer",
+                                                 HttpMethod = "Get",
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 OnBegin = "maxikioscoSpinner.startSpin",
+                                                 OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                 OnFailure = "maxikioscoSpinner.stopSpin"
+                                             })
+
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Por Producto", "VentasPorProductos", "Reportes",
+                                         new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
+                                         new AjaxOptions()
+                                             {
+                                                 UpdateTargetId = "AdminContainer",
+                                                 HttpMethod = "Get",
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 OnBegin = "maxikioscoSpinner.startSpin",
+                                                 OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                 OnFailure = "maxikioscoSpinner.stopSpin"
+                                             })
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;Cierres de Caja<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Ajax.ActionLink("General", "CierresDeCaja", "Reportes",
+                                    new {Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString()},
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Detalle", "CierresDeCajaDetalle", "Reportes",
+                                    new {Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString()},
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;Stock<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Ajax.ActionLink("Stock General", "Stock", "Reportes",
+                            new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
+                            new AjaxOptions()
+                            {
+                                UpdateTargetId = "AdminContainer",
+                                HttpMethod = "Get",
+                                InsertionMode = InsertionMode.Replace,
+                                OnBegin = "maxikioscoSpinner.startSpin",
+                                OnSuccess = "maxikioscoSpinner.stopSpin",
+                                OnFailure = "maxikioscoSpinner.stopSpin"
+                            })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Productos para reponer", "ProductosParaReponer", "Reportes",
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Valorizado", "StockValorizado", "Reportes",
+                                         new AjaxOptions()
+                                             {
+                                                 UpdateTargetId = "AdminContainer",
+                                                 HttpMethod = "Get",
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 OnBegin = "maxikioscoSpinner.startSpin",
+                                                 OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                 OnFailure = "maxikioscoSpinner.stopSpin"
+                                             })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Valorizado Detallado", "StockValorizadoDetallado", "Reportes",
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                             <li>
+                                @Ajax.ActionLink("Transferencia por Producto", "TransferenciasPorProducto", "Reportes",
+                                         new AjaxOptions()
+                                             {
+                                                 UpdateTargetId = "AdminContainer",
+                                                 HttpMethod = "Get",
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 OnBegin = "maxikioscoSpinner.startSpin",
+                                                 OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                 OnFailure = "maxikioscoSpinner.stopSpin"
+                                             })
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;Indicadores Especiales<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Ajax.ActionLink("Compras por Proveedor", "ComprasPorProveedor", "Reportes",
+                                    new {Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString()},
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Dinero Actual en Caja", "DineroPorMaxikiosco", "Reportes",
+                                    null,
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Dinero Sobrante/Faltante", "DineroSobranteFaltante", "Reportes",
+                                    null,
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Ganacia Adicional por Excepciones en Rubros", "GanaciaAdicionalExcepcionRubro", "Reportes",
+                                        new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
+                                         new AjaxOptions()
+                                             {
+                                                 UpdateTargetId = "AdminContainer",
+                                                 HttpMethod = "Get",
+                                                 InsertionMode = InsertionMode.Replace,
+                                                 OnBegin = "maxikioscoSpinner.startSpin",
+                                                 OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                 OnFailure = "maxikioscoSpinner.stopSpin"
+                                             })
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;Auditoría<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                @Ajax.ActionLink("Productos", "AuditoriaProductos", "Reportes",
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="glyphicon glyphicon-resize-small"></i>&nbsp;&nbsp;Sincronización<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>@Html.MenuLateralItem("/Sincronizacion/EstadoKioscos", "fa fa-power-off", "Estado de kioscos")</li>
+                    <li>@Html.MenuLateralItem("/Sincronizacion/Index", "fa fa-cloud-download", "Log de Exportaciones")</li>
+                    <li>@Html.MenuLateralItem("/Sincronizacion/LogImportacion", "fa fa-cloud-upload", "Log de Importaciones")</li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                @Html.MenuLateralItem("/Feedback/Index", "fa fa-ticket", "Tickets");
+            </li>
+        </ul>
+        <!-- /#side-menu -->
+    </div>
+    <!-- /.sidebar-collapse -->
+</nav>
+<!-- /.navbar-static-side -->

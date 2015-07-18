@@ -1,0 +1,16 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.Proveedores.Listado()
+                               .Where(p => p.CuentaId == UsuarioActual.CuentaId)
+                               .OrderBy(p => p.Nombre)
+                               .ToSelectListItem(Model, p => p.ProveedorId, p => p.Nombre,
+                               p => p.ProveedorId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione un Proveedor", new { @data_searchable = "true",@class = "form-control form-dropdown" , data_val_unique = "El proveedor debe ser unico.!!", data_val_unique_uniquesufix="ProveedorId"})

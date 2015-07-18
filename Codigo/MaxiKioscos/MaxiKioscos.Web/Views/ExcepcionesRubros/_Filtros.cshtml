@@ -1,0 +1,46 @@
+﻿@using MaxiKioscos.Web.Helpers
+@model MaxiKioscos.Web.Models.ExcepcionRubrosFiltrosModel
+<div>
+    @using (Ajax.BeginForm("Listado", null,
+                                           new AjaxOptions()
+                                               {
+                                                   UpdateTargetId = "ListadoContainer",
+                                                   HttpMethod = "GET",
+                                                   InsertionMode = InsertionMode.Replace,
+                                                   OnBegin = "maxikioscoSpinner.startSpin",
+                                                   OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                   OnFailure = "maxikioscoSpinner.stopSpin"
+                                               },
+                                           new { @class = "form-inline" }))
+    {
+       
+        <div class="form-group margin-right-20">
+            @Html.TextBoxFor(model => model.Rubro,
+            new
+            {
+                @class = "form-control auto-submit-input",
+                placeholder = "Rubro"
+            })
+            @if (!IsAjax)
+            {
+                <text>
+                @section scripts
+                            {
+                    @Html.SetFocusTo(model => model.Rubro)
+                }
+                </text>
+            }
+            else
+            {
+                @Html.SetFocusTo(model => model.Rubro)
+            }
+
+        </div>
+       
+        <div class="form-group margin-right-20">
+            @Html.EditorFor(model => model.MaxiKioscoId)
+        </div>
+       
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+    }
+</div>

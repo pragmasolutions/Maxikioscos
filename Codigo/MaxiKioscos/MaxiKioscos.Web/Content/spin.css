@@ -1,0 +1,44 @@
+﻿#loading
+/*,#LoadingReport*/
+{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,228,100,0.3);
+    z-index: 1100;
+}
+
+#loadingcontent
+/*,#LoadingReportContent*/
+{
+    display: table;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loadingspinner
+/*,#LoadingReportSpiner*/
+{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+    padding-top: 80px;
+    color: #750000;
+}
+
+#LoadingReport
+{
+    float: left;
+    display: none;
+    position: relative;
+    left: 450px;
+    top: 250px;
+}

@@ -1,0 +1,14 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Producto
+
+@Html.PopupTitulo("Crear Promocion")
+@using (Html.BeginForm("Crear", "Promociones"))
+{
+    <div class="modal-body">
+        @{Html.RenderPartial("_CamposPromocionEditar"); }
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;Crear</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+    </div>
+}

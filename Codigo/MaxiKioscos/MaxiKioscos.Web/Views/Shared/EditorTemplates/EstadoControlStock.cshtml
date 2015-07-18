@@ -1,0 +1,16 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var estados = new List<SelectListItem>
+                      {
+                          new SelectListItem {Text = "Cerrado", Value = "1"},
+                          new SelectListItem {Text = "Abierto", Value = "0", Selected = true}
+                      };
+
+}
+
+@Html.DropDownList("", estados,"Todos los estados", new { @class = "form-control" })

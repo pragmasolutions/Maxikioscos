@@ -1,0 +1,59 @@
+﻿@model MaxiKioscos.Web.Models.StockModel
+@Html.HiddenFor(model => model.Stock.StockId)
+@Html.HiddenFor(model => model.Stock.Identifier)
+@Html.HiddenFor(model => model.Stock.MaxiKioscoId)
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.HiddenFor(model => model.Stock.MaxiKioscoId)
+            @Html.LabelFor(model => model.Stock.MaxiKiosco.Nombre)
+            @Html.TextBoxFor(model => model.Stock.MaxiKiosco.Nombre, new { disabled = true, @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Stock.MaxiKiosco.Nombre)
+        </div>
+        
+        <div class="form-group">
+            @Html.HiddenFor(model => model.Stock.ProductoId)
+            @Html.LabelFor(model => model.Stock.ProductoId)
+            @Html.TextBoxFor(model => model.Stock.Producto.Descripcion, new { disabled = true, @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Stock.Producto.Descripcion)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioConIVA)
+            @Html.EditorFor(model => model.PrecioConIVA)
+            @Html.ValidationMessageFor(model => model.PrecioConIVA)
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.StockActual)
+            @Html.TextBoxFor(model => model.StockActual, new { @class = "form-control autonumeric", data_a_sep = "", data_a_dec = ",", @disabled = "disabled",  data_v_min="-999999999.99", data_v_max ="999999999.99"  })
+            @Html.ValidationMessageFor(model => model.StockActual)
+        </div>
+        
+        @if (Model.Stock.Producto.AceptaCantidadesDecimales)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Diferencia)
+                @Html.TextBoxFor(model => model.Diferencia, new { @class = "form-control autonumeric", data_a_sep = "", data_a_dec = ",", data_v_min="0", data_v_max ="999999999.99"  })
+                @Html.ValidationMessageFor(model => model.Diferencia)
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Diferencia)
+                @Html.TextBoxFor(model => model.Diferencia, new { @class = "form-control autonumeric input-integer", data_a_sep = "", data_m_dec = "0", data_v_min="0", data_v_max ="999999999" })
+                @Html.ValidationMessageFor(model => model.Diferencia)
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MotivoCorreccionId)
+            @Html.EditorFor(model => model.MotivoCorreccionId)
+            @Html.ValidationMessageFor(model => model.MotivoCorreccionId)
+        </div>
+    </div>
+</div>

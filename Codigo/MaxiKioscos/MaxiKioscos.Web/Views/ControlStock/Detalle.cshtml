@@ -1,0 +1,23 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.ControlStockDetalleListadoModel
+@{
+    ViewBag.Title = "Control de Stock";
+}
+
+@Html.Partial("ListadoDetalle")
+@Html.Modal("ControlStockDetalleModal", ModalSize.Small)
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+       @Scripts.Render("~/Scripts/app/plugins/jquery-contains.js")
+       @Scripts.Render("~/Scripts/app/maxikiosco-controlStockDetalle.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/plugins/jquery-contains.js")
+    @Scripts.Render("~/Scripts/app/maxikiosco-controlStockDetalle.js")
+}

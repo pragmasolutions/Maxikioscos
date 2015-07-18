@@ -1,0 +1,28 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model IEnumerable<MaxiKioscos.Entidades.Producto>
+<div class="table-responsive">
+    <table class="table table-condensed table-striped table-bordered table-hover" id="TableSeleccionarProductos">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model)
+            {
+                <tr>
+                    <td>@producto.CodigosListado</td>
+                    <td>@producto.Descripcion</td>
+                    <td>@producto.Marca.Descripcion</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-seleccionar-producto" data-dismiss="modal" href="#" data-productoid="@producto.ProductoId">Seleccionar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

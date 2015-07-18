@@ -1,0 +1,22 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.TicketErrorListadoModel
+@Html.PaginaTitulo("Tickets","fa-ticket")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            @*<div class="panel-heading">
+                <a class="btn btn-default btn-ticket-crear" href="@Url.Action("Crear")"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Crear Ticket</a>
+            </div>*@
+            <div class="panel-body">
+                <div class="spacer"></div>
+                @Html.Partial("_Filtros", Model.Filtros)
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                @Html.Partial("_Listado", Model)
+                <div class="spacer"></div>
+            </div>
+        </div>
+    </div>
+</div>

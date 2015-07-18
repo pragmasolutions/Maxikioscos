@@ -1,0 +1,46 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.ProveedoresListadoModel
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableProveedores">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Dirección</th>
+                <th>Localidad</th>
+                <th>Tipo Cuit</th>
+                <th>Cuit Nro</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var proveedor in Model.List)
+            {
+                <tr>
+                    <td>@proveedor.Nombre</td>
+                    <td>@proveedor.Contacto</td>
+                    <td>@proveedor.Direccion</td>
+                    <td>@Html.DisplayTextFor(modal => proveedor.Localidad.Descripcion)</td>
+                    <td>@Html.DisplayTextFor(modal => proveedor.TipoCuit.Descripcion)</td>
+                    <td>@proveedor.CuitNro</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-proveedor-detalle" href="@Url.Action("Detalle", new { id = proveedor.ProveedorId })"><span class="glyphicon glyphicon-list"></span></a>
+                        <a class="btn btn-default btn-proveedor-editar" href="@Url.Action("Editar", new { id = proveedor.ProveedorId })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-default btn-proveedor-eliminar" href="@Url.Action("Eliminar", new { id = proveedor.ProveedorId })"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                                                                                                                 , new AjaxOptions()
+                                                                                                                                       {
+                                                                                                                                           UpdateTargetId = "AdminContainer",
+                                                                                                                                           HttpMethod = "Get",
+                                                                                                                                           InsertionMode = InsertionMode.Replace,
+                                                                                                                                           OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                           OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                           OnFailure = "maxikioscoSpinner.stopSpin"
+                                                                                                                                       }))
+</div>

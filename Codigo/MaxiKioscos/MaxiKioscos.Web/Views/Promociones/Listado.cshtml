@@ -1,0 +1,24 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.PromocionesListadoModel
+
+@Html.PaginaTitulo("Promociones","fa-gift")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="btn btn-default btn-producto-crear" href="@Url.Action("Crear")"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Crear Promoción</a>
+            </div>
+            <div class="panel-body">
+                <div class="spacer"></div>
+                @Html.Partial("_Filtros", Model.Filtros)
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                @Html.Partial("_Listado",Model)
+                <div class="spacer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Modal("ProductosModal",ModalSize.Large)
+@Html.Modal("ProductoErrorModal",ModalSize.Normal)
+@Html.Modal("AgregarRubroModal",ModalSize.Normal)

@@ -1,0 +1,7 @@
+﻿@model bool?
+@{
+    string text = Model.HasValue ? (Model.GetValueOrDefault() ? "SI" : "NO") : "";
+}
+
+@Html.TextBox("", text, new { @class = "form-control", @readonly = true, @style= "width: 200px;" })
+

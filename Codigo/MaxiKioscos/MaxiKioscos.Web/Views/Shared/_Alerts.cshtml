@@ -1,0 +1,19 @@
+﻿@using MaxiKioscos.Web.Infrastructure.Alerts
+@if (Session.GetAlerts().Any())
+{
+    <script type="text/javascript">
+        $(function() {
+            @foreach (var alert in Session.GetAlerts())
+            {
+                <text>
+				window.alerts.showAlert({
+					message: '@alert.Message.Replace("'", "\\'")',
+					alertClass: '@alert.AlertClass'
+				});
+				</text>
+            }
+        });
+    </script>
+    
+    Session.GetAlerts().Clear();
+}

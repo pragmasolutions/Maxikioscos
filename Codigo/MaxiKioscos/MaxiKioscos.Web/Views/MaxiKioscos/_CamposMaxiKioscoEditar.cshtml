@@ -1,0 +1,57 @@
+﻿@model MaxiKioscos.Entidades.MaxiKiosco
+@Html.HiddenFor(model => model.MaxiKioscoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+@{
+    var primerTurno = Model.MaxiKioscoTurnos.First();
+}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre)
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Abreviacion)
+            @Html.TextBoxFor(model => model.Abreviacion, new { @maxlength = "4", @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Abreviacion)
+        </div>
+         <div class="form-group">
+            @Html.LabelFor(model => model.EstaOnLine)<br/>
+            @Html.EditorFor(model => model.EstaOnLine)
+            @Html.ValidationMessageFor(model => model.EstaOnLine)
+        </div>
+    </div>
+    <div class="col-lg-6">
+         <div class="form-group">
+            @Html.LabelFor(model => model.Direccion)
+            @Html.EditorFor(model => model.Direccion)
+            @Html.ValidationMessageFor(model => model.Direccion)
+        </div>       
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefono)
+            @Html.EditorFor(model => model.Telefono)
+            @Html.ValidationMessageFor(model => model.Telefono)
+        </div>
+       
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Html.DisplayNameFor(modal => primerTurno.MontoMaximoVentaConTickets)
+            </div>
+            <div class="panel-body">
+                <ul id="TurnosList" class="list-group">
+                    @foreach (var turno in Model.MaxiKioscoTurnos)
+                    {
+                        Html.RenderPartial("MaxiKioscoTurnos", turno);
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

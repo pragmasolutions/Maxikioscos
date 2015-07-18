@@ -1,0 +1,16 @@
+﻿@model MaxiKioscos.Entidades.Stock
+@Html.HiddenFor(model => model.StockId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.MaxiKioscoId)
+<div class="form-group">
+    @Html.LabelFor(model => model.ProductoId)
+    @Html.DisplayFor(model => model.Producto.Descripcion)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.MaxiKioscoId)
+    @Html.DisplayFor(model => model.MaxiKiosco.Nombre)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.StockActual)
+    @Html.DisplayFor(model => model.StockActual)
+</div>

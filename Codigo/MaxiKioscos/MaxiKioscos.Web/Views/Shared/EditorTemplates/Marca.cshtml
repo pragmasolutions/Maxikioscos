@@ -1,0 +1,14 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.Marcas.Listado()
+                               .OrderBy(r => r.Descripcion)
+                               .ToSelectListItem(Model, c => c.MarcaId, c => c.Descripcion,
+                               c => c.MarcaId.ToString());
+}
+
+@Html.DropDownList("", selectList, "Seleccione una Marca", new { @data_searchable = "true", @data_placeholder = "Seleccione Marca", @class = "form-dropdown" })

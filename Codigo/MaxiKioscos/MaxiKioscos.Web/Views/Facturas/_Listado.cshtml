@@ -1,0 +1,60 @@
+﻿@using MaxiKioscos.Entidades
+@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.FacturasListadoModel
+@helper  GetTieneCompraClass(Factura factura)
+{
+    if (factura.TieneCompra)
+    {
+    @:class="factura-tiene-compra"
+    }
+}
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableFacturas">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Factura Nro</th>
+                <th>AutoNúmero</th>
+                <th>Proveedor</th>
+                <th>Importe Total</th>
+                <th>MaxiKiosco</th>
+                <th>Tiene Compra</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var factura in Model.List)
+            {
+                <tr @GetTieneCompraClass(factura)>
+                    <td>@factura.Fecha.ToShortDateString()</td>
+                    <td>@factura.FacturaNro</td>
+                    <td>@factura.AutoNumero</td>
+                    <td>@factura.Proveedor.Nombre</td>
+                    <td>$@factura.ImporteTotal.ToString("n2")</td>
+                    <td>@factura.MaxiKiosco.Nombre</td>
+                    <td>@(factura.TieneCompra ? "SI" : "NO")</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-factura-detalle" href="@Url.Action("Detalle", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-list"></span></a>
+                        @if (!factura.TieneCompra)
+                        {
+                            <a class="btn btn-default btn-factura-editar" href="@Url.Action("Editar", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a class="btn btn-default btn-factura-eliminar" href="@Url.Action("Eliminar", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-trash"></span></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                         , new AjaxOptions()
+                                         {
+                                             UpdateTargetId = "AdminContainer",
+                                             HttpMethod = "Get",
+                                             InsertionMode = InsertionMode.Replace,
+                                             OnBegin = "maxikioscoSpinner.startSpin",
+                                             OnSuccess = "maxikioscoSpinner.stopSpin",
+                                             OnFailure = "maxikioscoSpinner.stopSpin"
+                                         }))
+</div>

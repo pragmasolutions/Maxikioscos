@@ -1,0 +1,28 @@
+﻿@model MaxiKioscos.Web.Models.PromocionesListadoModel
+<script>
+    var $currentRow = $('#TableProductos tbody tr[id=' + '@Model.Filtros.CurrentRowId' + ']');
+    
+    var options = {
+        currentRow: $currentRow,
+        actions: [{
+                shortcut: 'e', handler: function (e) {
+                    var $row = $(e.currentRow);
+                    $row.find('a.btn-producto-editar').trigger('click');
+                },
+            },
+            {
+                shortcut: 'd', handler: function (e) {
+                    var $row = $(e.currentRow);
+                    $row.find('a.btn-producto-detalle').trigger('click');
+                },
+            },
+            {
+                shortcut: 'del', handler: function (e) {
+                    var $row = $(e.currentRow);
+                    $row.find('a.btn-producto-eliminar').trigger('click');
+                },
+            }]
+    };
+
+    $('#TableProductos').cursortable(options);
+</script>

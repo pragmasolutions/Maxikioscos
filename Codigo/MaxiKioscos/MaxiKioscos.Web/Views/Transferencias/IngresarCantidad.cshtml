@@ -1,0 +1,32 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model int?
+<div id="IngresarCantidadModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="IngresarCantidadModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            @Html.PopupTitulo("Ingrese Cantidad")
+            <form id="FrmIngresarCantidad" method="POST" action="#">
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("Cantidad", "Cantidad")
+
+                        @Html.TextBox("CantidadIngresada", string.Empty,
+                        new
+                        {
+                            @class = "form-control autonumeric",
+                            data_a_sep = "",
+                            data_a_dec = ",",
+                            data_val = "true",
+                            data_val_required = "Debe ingresar una cantidad"
+                        })
+
+                        @Html.ValidationMessage("CantidadIngresada")
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Ingresar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

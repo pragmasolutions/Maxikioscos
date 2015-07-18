@@ -1,0 +1,28 @@
+﻿@model MaxiKioscos.Entidades.Factura
+
+@Html.HiddenFor(model => model.FacturaId)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.Identifier)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Fecha)
+    @Html.DisplayFor(model => model.Fecha)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.FacturaNro)
+    @Html.DisplayFor(model => model.FacturaNro)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ProveedorId)
+    @Html.DisplayFor(model => model.Proveedor.Nombre)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.ImporteTotal)
+    @Html.DisplayFor(model => model.ImporteTotal)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.MaxiKioscoId)
+    @Html.DisplayFor(model => model.MaxiKiosco.Nombre)
+</div>
+

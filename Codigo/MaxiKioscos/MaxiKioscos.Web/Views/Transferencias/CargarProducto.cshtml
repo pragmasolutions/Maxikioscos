@@ -1,0 +1,36 @@
+﻿@model MaxiKioscos.Entidades.TransferenciaProducto
+<tr>
+    @using (Html.BeginCollectionItem("TransferenciaProductos"))
+    {
+        <td>
+            @Html.HiddenFor(model => model.TransferenciaProductoId)
+            @Html.HiddenFor(model => model.ProductoId)
+            @Html.HiddenFor(model => model.Cantidad)
+            @Html.HiddenFor(model => model.Costo)
+            @Html.HiddenFor(model => model.PrecioVenta)
+            <span class="cell-text-content">@Model.Cantidad</span>
+        </td>
+        <td class="col-codigo">
+            @Model.PrimerCodigoProducto
+        </td>
+        <td>
+            @Model.Producto.Descripcion
+        </td>
+        <td class="text-right">
+            @Html.HiddenFor(model => model.PrecioVentaFormateado)
+            <span class="cell-text-content"> @Model.PrecioVentaFormateado</span>  
+        </td>
+        <td class="text-right">
+            @Html.HiddenFor(model => model.StockOrigen)
+            <span class="cell-text-content">@Model.StockOrigen</span>
+        </td>
+        <td class="text-right">
+            @Html.HiddenFor(model => model.StockDestino)
+            <span class="cell-text-content">@Model.StockDestino</span>
+        </td>
+        <td class="text-center">
+            <a class="btn btn-default btn-transferencia-producto-eliminar" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+    }
+</tr>
+

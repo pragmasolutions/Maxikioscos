@@ -1,0 +1,101 @@
+﻿@using MaxiKioscos.Reportes.Enumeraciones
+@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.GanaciaAdicionalExcepcionRubroFiltrosModel
+@{
+    ViewBag.Title = "Ganancia adicional por excepciones por rubro";
+}
+@Html.PaginaTitulo("Reporte de Ganancia adicional por excepciones por rubro", "fa-bar-chart-o")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div id="ButtonsPanel" class="panel-heading">
+                <a class="btn btn-default download-report" target="_blank" href="@Url.Action("GenerarGanaciaAdicionalExcepcionRubro", new
+                                                                                     {
+                                                                                         desde = Model.Desde.HasValue ? Model.Desde.Value.ToShortDateString() : null,
+                                                                                         hasta = Model.Hasta.HasValue ? Model.Hasta.Value.ToShortDateString() : null,
+                                                                                         rubroId = Model.RubroId,
+                                                                                         maxiKioscoId = Model.MaxiKioscoId,
+                                                                                         ReporteTipo = ReporteTipoEnum.Pdf
+                                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/adobe-acrobat.png")" /></a>
+                <a class="btn btn-default download-report" href="@Url.Action("GenerarGanaciaAdicionalExcepcionRubro", new
+                                                                     {
+                                                                         desde = Model.Desde.HasValue ? Model.Desde.Value.ToShortDateString() : null,
+                                                                         hasta = Model.Hasta.HasValue ? Model.Hasta.Value.ToShortDateString() : null,
+                                                                         rubroId = Model.RubroId,
+                                                                         maxiKioscoId = Model.MaxiKioscoId,
+                                                                         ReporteTipo = ReporteTipoEnum.Word
+                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/microsoft-word.png")" /></a>
+                <a class="btn btn-default download-report" href="@Url.Action("GenerarGanaciaAdicionalExcepcionRubro", new
+                                                                     {
+                                                                         desde = Model.Desde.HasValue ? Model.Desde.Value.ToShortDateString() : null,
+                                                                         hasta = Model.Hasta.HasValue ? Model.Hasta.Value.ToShortDateString() : null,
+                                                                         rubroId = Model.RubroId,
+                                                                         maxiKioscoId = Model.MaxiKioscoId,
+                                                                         ReporteTipo = ReporteTipoEnum.Excel
+                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/microsoft-excel.png")" /></a>
+            </div>
+            <div class="panel-body">
+                <!-- Area de filtros -->
+                <div>
+                    @using (Ajax.BeginForm("GanaciaAdicionalExcepcionRubro", null,
+                        new AjaxOptions()
+                        {
+                            UpdateTargetId = "AdminContainer",
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace,
+                            OnBegin = "maxikioscoSpinner.startSpin",
+                            OnSuccess = "maxikioscoSpinner.stopSpin",
+                            OnFailure = "maxikioscoSpinner.stopSpin"
+                        },
+                        new {@class = "form-inline", id = "FrmActualizarReporte"}))
+                    {
+                        @Html.Hidden("ReporteTipo", ReporteTipoEnum.PNG)
+                        @Html.LabelFor(model => model.Desde, new {@class = "label-inline"})
+                        <div class="form-group date-container">
+                            @Html.EditorFor(model => model.Desde)
+                        </div>
+                        @Html.LabelFor(model => model.Hasta, new {@class = "label-inline"})
+                        <div class="form-group date-container">
+                            @Html.EditorFor(model => model.Hasta)
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.RubroId)
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.MaxiKioscoId)
+                        </div>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+                    }
+                </div>
+                @Html.Partial("_ReportLoading")
+                <!-- Area de reporte -->
+                <div id="ReportContainer">
+                    <iframe id="ReporteIframe" onload="window.parent.hideLoading();" style="width: 1000px; height: 400px; margin-top: 10px;display:none"  src="@Url.Action("GenerarGanaciaAdicionalExcepcionRubro", new
+                                                  {
+                                                      desde = Model.Desde.HasValue ? Model.Desde.Value.ToShortDateString() : null,
+                                                      hasta = Model.Hasta.HasValue ? Model.Hasta.Value.ToShortDateString() : null,
+                                                      rubroId = Model.RubroId,
+                                                      maxiKioscoId = Model.MaxiKioscoId,
+                                                      ReporteTipo = ReporteTipoEnum.Pdf
+                                                  })"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-reportes.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-reportes.js")
+}

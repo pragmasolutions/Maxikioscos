@@ -1,0 +1,49 @@
+PRODUCTOS
+*ponerse de acuerdo con las teclas de acceso directo
+*en desktop: cambiar columna de costos a todo junto en la misma columna
+*em web y desktop: mostrar tanto la ultima fecha de modicacion de costo como la ultima compra (las dos al final)
+
+FACTURAS
+*Agregar campo autonumerico a la grilla de facturas
+
+VENTAS
+*La grilla del buscador de productos tiene que ser responsive
+
+CONTROL DE STOCK
+*Cuando se agrega una planilla no se refresca la grilla
+*POner impresorita a la grilla, y un boton de imprimir en el detalle
+*En la web, queda la pantalla Articulos -> Stock, pero vuela a la mierda la tabla CorreccionStock
+*Motivo "Perdida" no va mas
+*En web: sacar cabecera de botones
+
+
+Stock(Web)
+*Mostrar motivo (Por defecto: retiro)
+*Agregar filtro de proveedor
+
+COMPRAS
+*Cuando agregamos un nuevo producto desde el popup, que se copie la descripcion y se refresque la busqueda
+
+
+PANTALLA DE ESTADO DE KIOSCOS
+*El estado siempre queda rojo
+
+PRODUCTO DESKTOP
+*Cuando se cambia el porcentaje de ganancia no se actualiza el precio SIN iva
+
+
+POPUPS EN GENERAL (DESKTOP)
+*Checkear los TabIndex de todos los controles
+
+PROVEEDOR
+*Separar en el popup el label PercepcionDGR por "Percepcion DGR"
+*percepcion lleva acento en la o
+
+COMPRAS (Web)
+*Achicar todas las lineas menos la del TOTAL
+*Las dos percepciones estan descontando en vez de sumar
+*Percepcion IVA no hace nada (queda en  0%)
+*Se seleccionaron dos filas (probar cosas locas)
+
+CONFIGURACION
+*Al editar, refrescar la pagina para que se reflejen los valores recien editados

@@ -1,0 +1,87 @@
+﻿@model MaxiKioscos.Web.Models.IngresarCostoPrecioModel
+<hr />
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.CostoSinIVA)
+            <div class="input-group input-group-currency">
+                <span class="input-group-addon">$</span>
+                @Html.TextBoxFor(m => m.CostoSinIVA, new
+                                                 {
+                                                     @class = "form-control autonumeric",
+                                                     data_a_sep = "",
+                                                     data_a_dec = ",",
+                                                     data_val = "true",
+                                                     data_val_required = "Debe ingresar el costo"
+                                                 })
+            </div>
+            @Html.ValidationMessageFor(m => m.CostoSinIVA)
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.CostoConIVA)
+            <div class="input-group input-group-currency">
+                <span class="input-group-addon">$</span>
+                @Html.TextBoxFor(m => m.CostoConIVA, new
+                                    {
+                                        @class = "form-control autonumeric",
+                                        data_a_sep = "",
+                                        data_a_dec = ",",
+                                        data_val = "true",
+                                        data_val_required = "Debe ingresar el costo"
+                                    })
+            </div>
+            @Html.ValidationMessageFor(m => m.CostoConIVA)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        @Html.Label("PorcentajeGanancia", "Porcentaje Ganancia")
+        @Html.Editor("PorcentajeGanancia", "Percentage")
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.PrecioSinIVA)
+            <div class="input-group input-group-currency">
+                <span class="input-group-addon">$</span>
+                @Html.TextBoxFor(m => m.PrecioSinIVA, new
+                                {
+                                    @class = "form-control autonumeric",
+                                    data_a_sep = "",
+                                    data_a_dec = ",",
+                                    data_val = "true",
+                                    data_val_required = "Debe ingresar el precio"
+                                })
+            </div>
+
+            @Html.ValidationMessageFor(m => m.PrecioSinIVA)
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.PrecioConIVA)
+            <div class="input-group input-group-currency">
+                <span class="input-group-addon">$</span>
+                @Html.TextBoxFor(m => m.PrecioConIVA, new
+                                {
+                                    @class = "form-control autonumeric",
+                                    data_a_sep = "",
+                                    data_a_dec = ",",
+                                    data_val = "true",
+                                    data_val_required = "Debe ingresar el precio"
+                                })
+            </div>
+
+            @Html.ValidationMessageFor(m => m.PrecioConIVA)
+        </div>
+    </div>
+</div>

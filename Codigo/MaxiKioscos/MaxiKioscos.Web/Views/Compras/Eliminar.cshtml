@@ -1,0 +1,23 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Producto
+
+@Html.PopupTitulo("Eliminar Compra")
+@using (Html.BeginForm("Eliminar", "Compras"))
+{
+    <div class="modal-body">
+        <div class="row">
+            <div>
+                <div class="alert alert-warning">
+                    ¿Esta seguro que desea eliminar la siguiente compra?
+                </div>
+            </div>
+            <div class="col-lg-6">
+                @{Html.RenderPartial("_CamposCompraDetalle"); }
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+    </div>
+}

@@ -1,0 +1,13 @@
+﻿@model bool
+<div class="radio-inline">
+    <label>
+        @Html.RadioButton("", true, Model)
+        Por Descripci&oacute;n
+    </label>
+</div>
+<div class="radio-inline">
+    <label>
+        @Html.RadioButton("", false, !Model)
+        Por C&oacute;digo
+    </label>
+</div>

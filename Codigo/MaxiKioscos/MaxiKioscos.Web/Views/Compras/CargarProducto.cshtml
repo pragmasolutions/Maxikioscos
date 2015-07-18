@@ -1,0 +1,63 @@
+﻿@model MaxiKioscos.Entidades.CompraProducto
+<tr>
+    @using (Html.BeginCollectionItem("ComprasProductos"))
+    {
+        var costoSinIvaForHidden = Model.CostoSinIVA.HasValue 
+            ? Model.CostoSinIVA.Value.ToString("N2") : string.Empty;
+        var costoActualForHidden = Model.CostoActual.ToString("N2");
+        var costoActualizadoForHidden = Model.CostoActualizado.HasValue
+            ? Model.CostoActualizado.Value.ToString("N2") : string.Empty;
+        var precioActualForHidden = Model.PrecioActual.ToString("N2");
+        var precioActualizadoForHidden = Model.PrecioActualizado.HasValue
+            ? Model.PrecioActualizado.Value.ToString("N2") : string.Empty;
+
+        var stockAnteriorForHidden = Model.StockAnterior.ToString("N2");
+        <td>
+            @Html.HiddenFor(model => model.ProductoId)
+            @Html.HiddenFor(model => model.Cantidad)
+            <span class="cell-text-content">@Model.Cantidad</span>
+        </td>
+        <td class="col-codigo">
+            @Model.PrimerCodigoProducto
+        </td>
+        <td class="col-compra-producto-descripcion">
+            @Model.Producto.Descripcion
+        </td>
+        <td class="text-right">
+            @Html.Hidden("CostoSinIVA", costoActualForHidden)
+            <span class="cell-text-content">@Model.CostoSinIVAFormateado</span>
+        </td>
+        <td class="text-right">
+            @Html.Hidden("CostoActual", costoActualForHidden)
+            @Html.Hidden("CostoActualizado", costoActualizadoForHidden)
+            <span class="cell-text-content">@Model.CostoActualizadoFormateado</span>
+        </td>
+        <td class="text-right">
+            @Html.Hidden("PrecioActual", precioActualForHidden)
+            @Html.Hidden("PrecioActualizado", precioActualizadoForHidden)
+            <span class="cell-text-content">@Model.PrecioActualizadoFormateado</span>
+        </td>
+        <td class="text-right">
+            <span class="cell-text-content ganancia">@Model.GananciaFormateada</span>
+        </td>
+        <td class="text-right">
+            @Html.Hidden("TotalSinIVA", costoSinIvaForHidden)
+            <span class="cell-text-content">@Model.CostoSinIVAFormateado</span>
+        </td>
+        <td class="text-right">
+            @Html.Hidden("TotalConIVA", costoActualizadoForHidden)
+            <span class="cell-text-content">@Model.CostoActualizadoFormateado</span>
+        </td>
+        <td class="text-right">
+            @Html.Hidden("StockAnterior", stockAnteriorForHidden)
+            @Model.StockAnterior
+        </td>
+        <td class="stock-actual text-right">
+            @Model.StockActual
+        </td>
+        <td class="text-center">
+            <a class="btn btn-default btn-compra-producto-eliminar" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+    }
+</tr>
+

@@ -1,0 +1,22 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.TransferenciasListadoModel
+@{
+    ViewBag.Title = "Transferencias";
+}
+
+@Html.Partial("Listado")
+
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-transferencias.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-transferencias.js")
+
+}

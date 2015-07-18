@@ -1,0 +1,33 @@
+﻿@model MaxiKioscos.Web.Models.TransferirStockModel
+@Html.HiddenFor(model => model.Stock.StockId)
+@Html.HiddenFor(model => model.Stock.Identifier)
+@Html.HiddenFor(model => model.Stock.MaxiKioscoId)
+<div class="form-group">
+    @Html.HiddenFor(model => model.Stock.MaxiKioscoId)
+    @Html.Label("Maxikiosco Origen")
+    @Html.TextBoxFor(model => model.Stock.MaxiKiosco.Nombre, new { disabled = true, @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Stock.MaxiKiosco.Nombre)
+</div>
+<div class="form-group">
+    @Html.HiddenFor(model => model.Stock.ProductoId)
+    @Html.LabelFor(model => model.Stock.ProductoId)
+    @Html.TextBoxFor(model => model.Stock.Producto.Descripcion, new { disabled = true, @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Stock.Producto.Descripcion)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Stock.StockActual)
+    @Html.TextBoxFor(model => model.Stock.StockActual, new { disabled = true, @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Stock.StockActual)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.DestinoId)
+    @Html.EditorFor(model => model.DestinoId)
+    @Html.ValidationMessageFor(model => model.DestinoId)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Unidades)
+    @Html.TextBoxFor(model => model.Unidades, new { @class = "form-control autonumeric input-integer", data_a_sep = "", data_m_dec = "0" })
+    @Html.ValidationMessageFor(model => model.Unidades)
+</div>
+
+

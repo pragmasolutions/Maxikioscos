@@ -1,0 +1,14 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.TiposDeCuit.Listado()
+                               .OrderBy(r => r.Descripcion)
+                               .ToSelectListItem(Model, tp => tp.TipoCuitId, tp => tp.Descripcion,
+                               tp => tp.TipoCuitId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione Tipo Cuit", new { @class = "form-control" })

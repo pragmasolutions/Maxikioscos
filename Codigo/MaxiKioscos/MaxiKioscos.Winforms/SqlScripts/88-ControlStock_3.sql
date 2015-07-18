@@ -1,0 +1,11 @@
+
+ALTER TABLE ControlStock
+ALTER COLUMN MasVendidos BIT NOT NULL
+
+
+ALTER TABLE ControlStock
+ALTER COLUMN LimiteInferior INT NOT NULL
+
+
+ALTER TABLE ControlStock
+ALTER COLUMN LimiteSuperior INT NOT NULL

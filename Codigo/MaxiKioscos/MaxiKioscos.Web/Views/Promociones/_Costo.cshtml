@@ -1,0 +1,16 @@
+﻿@model MaxiKioscos.Entidades.ProveedorProducto
+@Html.HiddenFor(model => model.ProveedorProductoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.ProductoId)
+<div class="form-inline">
+    <div class="form-group">
+        @Html.EditorFor(modal => modal.ProveedorId):
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(model => model.CostoConIVA)
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(model => model.CostoSinIVA)
+    </div>
+</div>
+

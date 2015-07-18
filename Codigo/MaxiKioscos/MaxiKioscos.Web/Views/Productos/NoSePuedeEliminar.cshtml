@@ -1,0 +1,17 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Producto
+
+@Html.PopupTitulo("Eliminar Producto")
+
+<div class="modal-body">
+    <div class="row">
+        <div>
+            <div class="alert alert-warning">
+                No se puede eliminar el producto existen compras asociadas
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+</div>

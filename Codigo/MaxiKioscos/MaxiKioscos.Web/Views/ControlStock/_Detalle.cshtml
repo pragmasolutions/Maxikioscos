@@ -1,0 +1,46 @@
+﻿@model MaxiKioscos.Entidades.ControlStock
+@{
+    ViewBag.Title = "_Detalle";
+}
+
+
+<div class="col-lg-3">
+    <div class="form-group">
+        @Html.LabelFor(model => model.NroControlFormateado)
+        @Html.DisplayFor(model => model.NroControlFormateado)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaCreacion)
+        @Html.DisplayFor(model => model.FechaCreacion)
+    </div>
+</div>
+
+<div class="col-lg-3">
+    <div class="form-group">
+        @Html.Label("MaxiKiosco")
+        @Html.DisplayFor(model => model.MaxiKiosco.Nombre)
+    </div>
+    <div class="form-group">
+        @Html.Label("Proveedor")
+        @Html.DisplayFor(model => model.Proveedor.Nombre)
+    </div>
+</div>
+
+<div class="col-lg-3">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Estado)
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+    <div class="form-group">
+        @Html.Label("Rubro")
+        @Html.DisplayFor(model => model.Rubro.Descripcion)
+    </div>
+</div>
+
+<div class="col-lg-3">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Usuario)
+        @Html.DisplayFor(model => model.Usuario.NombreUsuario)
+    </div>
+</div>
+<div style="clear: both;"></div>

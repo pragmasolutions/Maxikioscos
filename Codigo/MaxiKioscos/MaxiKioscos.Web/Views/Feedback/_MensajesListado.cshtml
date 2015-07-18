@@ -1,0 +1,52 @@
+﻿@using MaxiKioscos.Entidades
+@model List<MaxiKioscos.Entidades.MensajeTicketError>
+
+<style>
+	.respuesta {
+		margin-bottom: 18px;
+		padding: 19px;
+		width: 90%;
+        border-radius: 6px;
+	}
+    .mensaje-usuario {
+	    background-color: plum;
+	    float: left;
+    }
+    .mensaje-admin {
+	    background-color: yellowgreen;
+	    float: right;
+    }
+    .respuesta-header {
+	    width: 100%;
+	    display: table;
+    }
+    .respuesta-header .header-fecha {
+	    float: right;
+        font-weight: bold;
+        font-size: 85%;
+    }
+    .respuesta-header .header-recipiente {
+	    float: left;
+        font-weight: bold;
+        font-size: 80%;
+    }
+    .respuesta-contenido {
+	    clear: both;
+	    margin-top: 10px;
+    }
+
+</style>
+
+@foreach (var mensaje in Model.OrderBy(m => m.Fecha).ToList())
+{
+    var clase = mensaje.EsDeAdmin ? "mensaje-usuario" : "mensaje-admin";
+    <div class="respuesta @clase">
+        <div class="respuesta-header">
+            <div class="header-recipiente">@(mensaje.EsDeAdmin ? "Admin" : String.Format("{0} {1}", mensaje.Usuario.Nombre, mensaje.Usuario.Apellido)) dice:</div>
+            <div class="header-fecha">@mensaje.Fecha</div>
+        </div>
+        <div class="respuesta-contenido">
+            @mensaje.Texto
+        </div>
+    </div>
+}

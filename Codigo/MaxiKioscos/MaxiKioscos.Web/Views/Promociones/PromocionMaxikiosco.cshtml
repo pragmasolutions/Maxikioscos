@@ -1,0 +1,12 @@
+﻿@model MaxiKioscos.Entidades.PromocionMaxikiosco
+<tr>
+    @using (Html.BeginCollectionItem("PromocionMaxikioscos"))
+    {
+        <td>
+            @Html.HiddenFor(model => model.MaxiKioscoId)
+            @Html.HiddenFor(model => model.StockAnterior)
+            @Html.DisplayFor(model => model.MaxiKioscoNombre)
+        </td>
+        <td>@Html.EditorFor(model => model.StockActual)</td>
+    }
+</tr>

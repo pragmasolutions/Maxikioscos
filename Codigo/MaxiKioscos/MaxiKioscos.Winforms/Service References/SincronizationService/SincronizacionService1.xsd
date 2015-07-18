@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/MaxiKioscos.Services.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MaxiKioscos.Services.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:51557/SincronizacionService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ObtenerDatosRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxiKioscoIdentifier" type="ser:guid" />
+      <xs:element minOccurs="0" name="UltimaSecuenciaExportacion" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UsuarioIdentifier" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObtenerDatosRequest" nillable="true" type="tns:ObtenerDatosRequest" />
+  <xs:complexType name="ObtenerDatosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exportaciones" nillable="true" type="tns:ArrayOfExportacionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObtenerDatosResponse" nillable="true" type="tns:ObtenerDatosResponse" />
+  <xs:complexType name="ArrayOfExportacionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExportacionData" nillable="true" type="tns:ExportacionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExportacionData" nillable="true" type="tns:ArrayOfExportacionData" />
+  <xs:complexType name="ExportacionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Archivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Secuencia" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExportacionData" nillable="true" type="tns:ExportacionData" />
+  <xs:complexType name="ObtenerDatosSecuencialResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArchivosRestantes" type="xs:int" />
+      <xs:element minOccurs="0" name="Exportacion" nillable="true" type="tns:ExportacionData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObtenerDatosSecuencialResponse" nillable="true" type="tns:ObtenerDatosSecuencialResponse" />
+  <xs:complexType name="ActualizarDatosRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exportaciones" nillable="true" type="tns:ArrayOfExportacionData" />
+      <xs:element minOccurs="0" name="MaxiKioscoIdentifier" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActualizarDatosRequest" nillable="true" type="tns:ActualizarDatosRequest" />
+  <xs:complexType name="ActualizarDatosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exito" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MensageError" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UltimaSecuenciaExitosa" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ActualizarDatosResponse" nillable="true" type="tns:ActualizarDatosResponse" />
+  <xs:complexType name="AcusarExportacionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HoraLocalISO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaxiKioscoIdentifier" type="ser:guid" />
+      <xs:element minOccurs="0" name="UltimaSecuenciaExportacion" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AcusarExportacionRequest" nillable="true" type="tns:AcusarExportacionRequest" />
+  <xs:complexType name="InicializarKioscoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Kioscos" nillable="true" type="tns:ArrayOfMaxiKioscoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InicializarKioscoResponse" nillable="true" type="tns:InicializarKioscoResponse" />
+  <xs:complexType name="ArrayOfMaxiKioscoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MaxiKioscoData" nillable="true" type="tns:MaxiKioscoData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMaxiKioscoData" nillable="true" type="tns:ArrayOfMaxiKioscoData" />
+  <xs:complexType name="MaxiKioscoData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Asignado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Guid" type="ser:guid" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaxiKioscoData" nillable="true" type="tns:MaxiKioscoData" />
+  <xs:complexType name="KioscoAsignadoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Abreviacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Identifier" type="ser:guid" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KioscoAsignadoResponse" nillable="true" type="tns:KioscoAsignadoResponse" />
+</xs:schema>

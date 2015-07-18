@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3e788f020c74d67af103fd64f7eddc6" Name="Diagram1" ZoomLevel="123">
+        <EntityTypeShape EntityType="MaxiKioscosModel.CierreCaja" Width="1.5" PointX="13.5" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.CodigoProducto" Width="1.5" PointX="10" PointY="83.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Cuenta" Width="1.5" PointX="3" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ExcepcionRubro" Width="1.5" PointX="10.5" PointY="67.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Factura" Width="1.5" PointX="23.75" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Localidad" Width="1.5" PointX="3" PointY="59" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Marca" Width="1.5" PointX="5.25" PointY="60.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.MaxiKiosco" Width="1.5" PointX="5.25" PointY="64.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.MotivoOperacionCaja" Width="1.5" PointX="17.5" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.OperacionCaja" Width="2.375" PointX="19.75" PointY="52.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Producto" Width="2.125" PointX="7.5" PointY="60.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Proveedor" Width="1.5" PointX="5.25" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Provincia" Width="1.5" PointX="0.75" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Rubro" Width="1.5" PointX="5.25" PointY="71.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.TipoCuit" Width="1.5" PointX="3" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Usuario" Width="1.5" PointX="8.25" PointY="52.375" IsExpanded="true" FillColor="Green" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Venta" Width="1.5" PointX="15.75" PointY="67.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.VentaProducto" Width="1.5" PointX="18" PointY="64.875" IsExpanded="true" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CierreCaja_MaxiKiosco" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_OperacionCaja_CierreCaja" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CodigoProducto_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Marca_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_MaxiKiosco_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Producto_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Proveedor_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Rubro_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Usuario_Cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ExcepcionRubro_Rubro" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Factura_MaxiKiosco" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Factura_Proveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Localidad_Provincia" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Proveedor_Localidad" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Producto_Marca" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_OperacionCaja_MotivoOperacionCaja" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Producto_Rubro" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_VentaProducto_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Proveedor_TipoCuit" ManuallyRouted="false" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_VentaProducto_Venta" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Role" Width="1.5" PointX="6" PointY="49.125" FillColor="Teal" />
+        <AssociationConnector Association="MaxiKioscosModel.webpages_UsersInRoles" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Exportacion" Width="1.5" PointX="13.5" PointY="49.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Exportacion_Cuenta" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Exportacion_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ExportacionArchivo" Width="1.75" PointX="15.75" PointY="46.125" />
+        <AssociationConnector Association="MaxiKioscosModel.ExportacionExportacionArchivo" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.UsuarioProveedor" Width="1.5" PointX="10.5" PointY="50.625" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Venta_CierreCaja" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_UsuarioProveedor_Proveedor" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_UsuarioProveedor_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Stock" Width="1.5" PointX="10" PointY="72.25" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProductoMaxiKiosco_MaxiKiosco" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProductoMaxiKiosco_Producto" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Excepcion" Width="1.5" PointX="15.75" PointY="71" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Excepcion_CierreCaja" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CierreCaja_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Compra" Width="1.5" PointX="26" PointY="59.125" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.CompraProducto" Width="1.875" PointX="13" PointY="69.75" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.StockTransaccion" Width="2" PointX="12.25" PointY="74.375" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Compra_Factura" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CompraProducto_Compra" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CompraProducto_Producto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_StockTransaccion_Stock" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Compra_Cuenta" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_OperacionCaja_UsuarioCreador" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_OperacionCaja_UsuarioModificador" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Compra_MaxiKiosco" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ExcepcionRubro_MaxiKiosco" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Turno" Width="1.5" PointX="5.25" PointY="76.625" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.CorreccionStock" Width="1.5" PointX="11" PointY="54.375" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.MotivoCorreccion" Width="1.5" PointX="0.75" PointY="53.75" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.StockTransaccionTipo" Width="1.5" PointX="10" PointY="77.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CorreccionStock_MotivoCorreccion" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CorreccionStock_Producto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_StockTransaccion_StockTransaccionTipo" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.MaxiKioscoTurno" Width="1.5" PointX="7.5" PointY="67.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_MaxiKioscoTurno_MaxiKiosco" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_MaxiKioscoTurno_Turno" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_CorreccionStock_MaxiKiosco" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Factura_CierreCaja" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ProveedorProducto" Width="2" PointX="19" PointY="57.5" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProveedorProducto_Producto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProveedorProducto_Proveedor" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Importacion" Width="1.5" PointX="7.5" PointY="71" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Importacion_MaxiKiosco" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Billete" Width="1.5" PointX="13.5" PointY="46.75" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.RecuentoBillete" Width="1.5" PointX="15.75" PointY="49.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_RecuentoBillete_Billete" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_RecuentoBillete_CierreCaja" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.EstadoTicket" Width="1.5" PointX="14.25" PointY="43.125" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.TicketError" Width="2" PointX="16.5" PointY="53.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_TicketError_EstadoTicket" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_TicketError_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.MensajeTicketError" Width="1.875" PointX="23.25" PointY="53.625" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_MensajeTicketError_TicketError" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_MensajeTicketError_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ControlStock" Width="1.5" PointX="13.5" PointY="64" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ControlStockDetalle" Width="2" PointX="15.75" PointY="59.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStock_MaxiKiosco" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStock_Proveedor" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStock_Rubro" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStock_Usuario" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStockDetalle_ControlStock" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStockDetalle_Stock" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStockDetalle_MotivoCorreccion" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Factura_Usuario" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ControlStockDetalle_ControlStockPrevio" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Cuenta_MotivoCorreccion" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ConfiguracionLocal" Width="2.125" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Transferencia" Width="1.75" PointX="10.25" PointY="59.75" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Transferencia_Destino" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Transferencia_Origen" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Transferencia_Usuario" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.TransferenciaProducto" Width="2" PointX="20.75" PointY="62.5" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_TransferenciaProducto_Producto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_TransferenciaProducto_Transferencia" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ProductoPromocion" Width="1.875" PointX="10" PointY="46.375" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProductoPromocion_ProductoHijo" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

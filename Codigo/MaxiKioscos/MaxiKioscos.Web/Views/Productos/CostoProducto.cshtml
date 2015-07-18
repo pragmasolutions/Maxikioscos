@@ -1,0 +1,17 @@
+﻿@model MaxiKioscos.Entidades.ProveedorProducto
+<tr>
+    @using (Html.BeginCollectionItem("ProveedorProductos"))
+    {
+        <td>
+            @Html.HiddenFor(model => model.ProveedorProductoId)
+            @Html.HiddenFor(model => model.Identifier)
+            @Html.HiddenFor(model => model.ProductoId)
+            @Html.EditorFor(modal => modal.ProveedorId)
+        </td>
+        <td>@Html.EditorFor(model => model.CostoConIVA)</td>
+        <td>@Html.EditorFor(model => model.CostoSinIVA)</td>
+        <td>@Html.Editor("PorcentajeGanancia","Percentage")</td>
+        <td>@(Model.FechaUltimoCambioCosto == null ? string.Empty : Model.FechaUltimoCambioCosto.GetValueOrDefault().ToShortDateString())</td>
+        <td><a class="btn btn-default btn-eliminar-costo" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+    }
+</tr>

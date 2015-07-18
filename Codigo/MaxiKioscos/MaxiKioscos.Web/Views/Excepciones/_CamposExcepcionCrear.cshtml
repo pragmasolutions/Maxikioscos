@@ -1,0 +1,49 @@
+﻿@using System.Collections.Specialized
+@using MaxiKioscos.Entidades
+@using iTextSharp.text
+@model MaxiKioscos.Web.Models.ExcepcionModel
+@Html.HiddenFor(model => model.Excepcion.ExcepcionId)
+@Html.HiddenFor(model => model.Excepcion.Identifier)
+@Html.HiddenFor(model => model.Excepcion.Desincronizado)
+@Html.HiddenFor(model => model.Excepcion.Eliminado)
+@Html.HiddenFor(model => model.Excepcion.FechaCarga)
+
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaxikioscoId)
+        @Html.EditorFor(model => model.MaxikioscoId)
+        @Html.ValidationMessageFor(model => model.MaxikioscoId)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha)
+        @Html.EditorFor(model => model.Fecha)
+        @Html.ValidationMessageFor(model => model.Fecha)
+    </div>
+            
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excepcion.CierreCajaId)
+        @Html.DropDownListFor(model => model.Excepcion.CierreCajaId, new SelectList(ViewBag.CierresCaja as List<CierreCaja>, "CierreCajaId", "CierreCajaDetalle"), "Seleccione Cierre Caja", new { @class = "form-control" })
+        @*@Html.EditorFor(model => model.Excepcion.CierreCajaId)*@
+        @Html.ValidationMessageFor(model => model.Excepcion.CierreCajaId)
+    </div>
+</div>
+
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excepcion.Importe)
+        @Html.EditorFor(model => model.Excepcion.Importe)
+        @Html.ValidationMessageFor(model => model.Excepcion.Importe)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excepcion.Descripcion)
+        @Html.TextAreaFor(model => model.Excepcion.Descripcion, new { @class = "form-control", @style = "height: 108px;"})
+        @Html.ValidationMessageFor(model => model.Excepcion.Descripcion)
+    </div>
+</div>
+
+
+

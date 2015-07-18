@@ -1,0 +1,26 @@
+﻿@model MaxiKioscos.Web.Models.TicketErrorModel
+<div class="col-lg-12">
+    <div class="panel panel-default">   
+        <div class="panel-heading">Respuestas</div>
+        <div class="panel-body">
+            <div class="mensajes-container" >
+                @{ Html.RenderAction("MensajesListado", "Feedback"); }
+            </div>
+            
+            @if(Model.Ticket.FechaCierre == null)
+            {
+                using (Html.BeginForm("EnviarMensaje", "Feedback", new { id = "formEnviar"}))
+                {
+                    <div class="nuevo-mensaje form-group" style="clear: both;">
+                        @Html.LabelFor(model => model.NuevoMensaje)
+                        @Html.TextAreaFor(model => model.NuevoMensaje, new { @class = "form-control", @rows = "3"})    
+                        @Html.ValidationMessageFor(model => model.NuevoMensaje)         
+                    </div>
+                    <div style="width: 100%;">
+                        <button type="submit" class="btn btn-default" style="float: right;" ><span class="glyphicon glyphicon-circle-arrow-right"></span>&nbsp;&nbsp;Enviar</button>
+                    </div>
+                } 
+            }
+        </div>
+    </div>
+</div>

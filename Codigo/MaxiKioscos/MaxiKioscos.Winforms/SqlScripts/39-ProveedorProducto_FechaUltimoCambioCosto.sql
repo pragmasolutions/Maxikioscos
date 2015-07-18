@@ -1,0 +1,2 @@
+ALTER TABLE ProveedorProducto
+ADD FechaUltimoCambioCosto datetime NULL

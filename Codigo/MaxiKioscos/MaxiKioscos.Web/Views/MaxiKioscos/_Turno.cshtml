@@ -1,0 +1,9 @@
+﻿@model MaxiKioscos.Entidades.MaxiKioscoTurno
+@Html.HiddenFor(model => model.MaxiKioscoTurnoId)
+@Html.HiddenFor(model => model.MaxiKioscoId)
+@Html.HiddenFor(model => model.TurnoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.DisplayTextFor(modal => modal.Turno.Descripcion):
+@Html.EditorFor(model => model.MontoMaximoVentaConTickets)
+@Html.ValidationMessageFor(model => model.MontoMaximoVentaConTickets)
+

@@ -1,0 +1,16 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model bool?
+@{
+    var items = new List<SelectListItem>
+                {
+                    new SelectListItem() {Text = "(Todas)"},
+                    new SelectListItem() {Text = "Pendientes", Value = "false"},
+                    new SelectListItem() {Text = "Aprobadas", Value = "true"},
+                };
+}
+
+@Html.DropDownList("", new SelectList(items, "Value", "Text"), new { @class = "form-control", @style = "width: 156px" })

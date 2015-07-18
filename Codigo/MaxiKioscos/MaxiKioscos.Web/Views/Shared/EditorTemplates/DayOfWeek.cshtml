@@ -1,0 +1,11 @@
+﻿@using System.Globalization
+@using Dely.Core.Web.Utils
+@model DayOfWeek?
+@{
+
+    var selectList = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>()
+        .Select(d => new { id = (byte)d, name = d.ToString() })
+        .ToSelectListItem((byte?)Model, d => d.id, d => d.name, d => d.id.ToString(CultureInfo.CurrentCulture));
+}
+
+@Html.DropDownList("", selectList, new { @class = "form-control" })

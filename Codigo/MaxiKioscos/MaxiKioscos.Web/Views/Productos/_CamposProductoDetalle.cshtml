@@ -1,0 +1,104 @@
+﻿@model MaxiKioscos.Entidades.Producto
+@Html.HiddenFor(model => model.ProductoId)
+<div class="row">
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Descripcion)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RubroId)
+            @Html.DisplayFor(model => model.Rubro.Descripcion)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MarcaId)
+            @Html.DisplayFor(model => model.Marca.Descripcion)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AceptaCantidadesDecimales)
+            <input class="form-control" id="AceptaCantidadesDecimales" name="AceptaCantidadesDecimales" readonly="readonly" type="text" value="@(Model.AceptaCantidadesDecimales ? "Si" : "No")">
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioConIVA)
+            @Html.DisplayFor(model => model.PrecioConIVA)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrecioSinIVA)
+            @Html.DisplayFor(model => model.PrecioSinIVA)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StockReposicion)
+            @Html.DisplayFor(model => model.StockReposicion)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#TabCodigos" role="tab" data-toggle="tab">Codigos</a></li>
+            <li><a href="#TabCostos" role="tab" data-toggle="tab">Costos</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div id="ProductosTabControl" class="tab-content">
+            <div class="tab-pane active" id="TabCodigos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul id="CodigosList" class="list-group">
+                            @foreach (var codigo in Model.CodigosProductos)
+                            {
+                                <li class="list-group-item">
+                                    @Html.DisplayTextFor(model => codigo.Codigo)
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="TabCostos">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Proveedor 
+                                        </th>
+                                        <th>Costo con IVA 
+                                        </th>
+                                        <th>Costo sin IVA  
+                                        </th>
+                                        <th>Porcentaje Gcía.
+                                        </th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="CostosList">
+
+                                    @foreach (var costoProveedor in Model.Costos)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayTextFor(modal => costoProveedor.Proveedor.Nombre)
+                                            </td>
+                                            <td>@costoProveedor.CostoConIVA.ToString("c2")</td>
+                                            <td>@costoProveedor.CostoSinIVA.ToString("c2")</td>
+                                            <td>@((costoProveedor.PorcentajeGanancia / 100).ToString("p2"))</td>
+                                            <td>@(costoProveedor.FechaUltimoCambioCosto == null ? string.Empty : costoProveedor.FechaUltimoCambioCosto.GetValueOrDefault().ToShortDateString())</td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

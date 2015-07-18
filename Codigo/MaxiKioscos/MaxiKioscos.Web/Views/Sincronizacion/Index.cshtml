@@ -1,0 +1,22 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model PagedList.IPagedList<MaxiKioscos.Entidades.Exportacion>
+@{
+    ViewBag.Title = "Log de Exportaciones";
+}
+
+@Html.Partial("Listado")
+@Html.Partial("ErrorDialog")
+@Html.Modal("SincronizacionModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-exportacion.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-exportacion.js")
+}

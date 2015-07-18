@@ -1,0 +1,17 @@
+﻿@model MaxiKioscos.Entidades.CodigoProducto
+<li class="list-group-item">
+    @using (Html.BeginCollectionItem("CodigosProductos"))
+    {
+    
+        <div class="row">
+            <div class="col-md-8">
+                @Html.Partial("_Codigo",Model)
+                @Html.ValidationMessage("CodigoDuplicado","Codigo Duplicado")
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-default btn-eliminar-codigo" href="#"><span class="glyphicon glyphicon-trash"></span></a>
+            </div>
+        </div>
+  
+    }
+</li>

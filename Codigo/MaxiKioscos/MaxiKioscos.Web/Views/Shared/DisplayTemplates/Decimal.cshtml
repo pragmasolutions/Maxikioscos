@@ -1,0 +1,5 @@
+﻿@model decimal?
+@{
+    var number = Model == null ? string.Empty : Model.GetValueOrDefault().ToString("G29");
+}
+@Html.TextBox("", number, new { @class = "form-control", @readonly = true })

@@ -1,0 +1,15 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Comun.Extensiones
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.Localidades.Listado()
+                               .OrderBy(r => r.Descripcion)
+                               .ToSelectListItem(Model, l => l.LocalidadId, l => l.Descripcion,
+                               l => l.LocalidadId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione Localidad", new { @class = "form-control" })

@@ -1,0 +1,64 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.ProductosListadoModel
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableProductos">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Marca</th>
+                <th>Costos</th>
+                <th>Precio</th>
+                <th style="width: 80px;">Stock Reposición</th>
+                <th style="width: 100px;">Modificación Costo</th>
+                <th>Última compra</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model.List)
+            {
+                <tr id="@(producto.Identifier)">
+                    <td>@producto.CodigosListado</td>
+                    <td>@producto.Descripcion</td>
+                    <td>@producto.Marca.Descripcion</td>
+                    <td>@producto.CostosResumen</td>
+                    <td class="text-right">@producto.PrecioConIVA.ToString("C2")</td>
+                    <td>@producto.StockReposicion</td>
+                    <td class="text-center">@(producto.UltimaModificacionCosto.HasValue ? producto.UltimaModificacionCosto.Value.ToShortDateString() : string.Empty)</td>
+                    <td class="text-center">@(producto.UltimaCompraCosto.HasValue ? producto.UltimaCompraCosto.Value.ToShortDateString() : string.Empty)</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-producto-detalle" href="@Url.Action("Detalle", new { id = producto.ProductoId })"><span class="glyphicon glyphicon-list"></span></a>
+                        <a class="btn btn-default btn-producto-editar" href="@Url.Action("Editar", new { id = producto.ProductoId })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-default btn-producto-eliminar" href="@Url.Action("Eliminar", new { id = producto.ProductoId })"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                                                                                                                                            , new AjaxOptions()
+                                                                                                                                                                {
+                                                                                                                                                                    UpdateTargetId = "AdminContainer",
+                                                                                                                                                                    HttpMethod = "Get",
+                                                                                                                                                                    InsertionMode = InsertionMode.Replace,
+                                                                                                                                                                    OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                                                    OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                                                    OnFailure = "maxikioscoSpinner.stopSpin"
+                                                                                                                                                                }))
+</div>
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @{Html.RenderPartial("_InicializarCursorTable");}
+    }
+    </text>
+}
+else
+{
+    Html.RenderPartial("_InicializarCursorTable");
+}
+

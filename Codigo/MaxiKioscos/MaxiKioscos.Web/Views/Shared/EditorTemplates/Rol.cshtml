@@ -1,0 +1,17 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var roles = uow.Usuarios.RolesListado().ToList();
+    roles.RemoveAt(3);
+
+    var selectList = roles.OrderBy(r => r.RoleName)
+                               .ToSelectListItem(Model, r => r.RoleId, r => r.RoleName,
+                               r => r.RoleId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione un Rol", new { @class = "form-control" })

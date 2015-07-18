@@ -1,0 +1,49 @@
+﻿@using System.Collections.Specialized
+@using MaxiKioscos.Entidades
+@using iTextSharp.text
+@model MaxiKioscos.Web.Models.ExcepcionModel
+
+@Html.HiddenFor(model => model.Excepcion.ExcepcionId)
+@Html.HiddenFor(model => model.Excepcion.Identifier)
+@Html.HiddenFor(model => model.Excepcion.Desincronizado)
+@Html.HiddenFor(model => model.Excepcion.Eliminado)
+@Html.HiddenFor(model => model.Excepcion.FechaCarga)
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaxikioscoId)
+        @Html.DisplayFor(model => model.Excepcion.CierreCaja.MaxiKiosco.Nombre)
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Cierre Caja Inicio")
+        @Html.TextBox("Inicio", Model.Excepcion.CierreCaja.FechaInicioFormateada, new { @class = "form-control", @readonly = "true"})
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Cierre Caja Fin")
+        @Html.TextBox("Fin", Model.Excepcion.CierreCaja.FechaFinFormateada, new { @class = "form-control", @readonly = "true"})
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Cierre Caja Usuario")
+        @Html.TextBox("CajaUsuario", Model.Excepcion.CierreCaja.Usuario.NombreUsuario, new { @class = "form-control", @readonly = "true"})
+    </div>
+</div>
+
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excepcion.Importe)
+        @Html.DisplayFor(model => model.Excepcion.Importe)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Excepcion.Descripcion)
+        @Html.TextAreaFor(model => model.Excepcion.Descripcion, new { @class = "form-control", @style = "height: 108px;", @readonly = "true"})
+    </div>
+</div>
+
+
+
+

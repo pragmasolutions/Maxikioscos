@@ -1,0 +1,59 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using MaxiKioscos.Web.Models
+@model EditarProductoModel
+
+<div id="EditarCompraProductoModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="EditarCompraProductoModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @Html.PopupTitulo("Editar Producto en Compra")
+            @using (Html.BeginForm("EditarProducto", "Compras", FormMethod.Post, new { id = "FrmEditarCompraProducto" }))
+            { 
+                <div class="modal-body">
+                    <h4><strong class="nombre-producto"></strong>/ <strong class="nombre-proveedor"></strong></h4>
+                    <div id="IngresarCantidadContainer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group" style="width: 200px;">
+                                    @Html.Label("Cantidad", "Cantidad")
+
+                                    @Html.TextBox("CantidadIngresada", string.Empty,
+                                        new
+                                        {
+                                            @class = "form-control autonumeric",
+                                            data_a_sep = "",
+                                            data_a_dec = ",",
+                                            data_val = "true",
+                                            data_val_required = "Debe ingresar una cantidad"
+                                        })
+
+                                    @Html.ValidationMessage("CantidadIngresada")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Total Sin Iva:</label>
+                                    @Html.Editor("TotalSinIVA", "Currency")
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Total Con Iva:</label>
+                                    @Html.Editor("TotalConIVA", "Currency")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @Html.Partial("CamposCostoYPrecio", Model.IngresarCostoPrecioModel)
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Ingresar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/Scripts/app/maxikiosco-compra-producto-editar.js")

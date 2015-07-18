@@ -1,0 +1,13 @@
+﻿@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model bool?
+
+@{
+    var items = new List<SelectListItem>
+                     {
+                         new SelectListItem() {Value = "true", Text = "Si"},
+                         new SelectListItem() {Value = "false", Text = "No"}
+                     };
+}
+@Html.DropDownList("", new SelectList(items, "Value", "Text", Model), "", new { @class = "form-dropdown", style = "height: 34px; width: 200px;" })

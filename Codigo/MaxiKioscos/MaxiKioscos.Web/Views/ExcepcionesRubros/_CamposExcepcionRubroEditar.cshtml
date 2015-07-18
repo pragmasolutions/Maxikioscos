@@ -1,0 +1,64 @@
+﻿@using MaxiKioscos.Web.Configuration
+@model MaxiKioscos.Entidades.ExcepcionRubro
+@Html.HiddenFor(model => model.ExcepcionRubroId)
+@Html.HiddenFor(model => model.Identifier)
+<div class="form-group">
+    @Html.ValidationMessage("PeriodosSolapados")
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.MaxiKioscoId)
+    @Html.EditorFor(model => model.MaxiKioscoId)
+    @Html.ValidationMessageFor(model => model.MaxiKioscoId)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.RubroId)
+    @Html.EditorFor(model => model.RubroId)
+    @Html.ValidationMessageFor(model => model.RubroId)
+</div>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Desde)
+            @Html.EditorFor(model => model.Desde)
+            @Html.ValidationMessageFor(model => model.Desde)
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Hasta)
+            @Html.EditorFor(model => model.Hasta)
+            @Html.ValidationMessageFor(model => model.Hasta)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+        <label class="control-label">
+            <input type="radio" name="TipoRecargo" value="Porcentaje" @(Model.RecargoPorcentaje.HasValue ?" checked=\"checked\"":null)>
+            @Html.DisplayNameFor(model => model.RecargoPorcentaje)
+        </label>
+    </div>
+    <div class="col-xs-8">
+        <div class="form-group">
+            @Html.EditorFor(model => model.RecargoPorcentaje)
+            @Html.ValidationMessageFor(model => model.RecargoPorcentaje)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4">
+        <label class="control-label">
+            <input type="radio" name="TipoRecargo" value="Absoluto" @(Model.RecargoAbsoluto.HasValue ?" checked=\"checked\"":null)>
+            @Html.DisplayNameFor(model => model.RecargoAbsoluto)
+        </label>
+    </div>
+    <div class="col-xs-8">
+        <div class="form-group">
+            @Html.EditorFor(model => model.RecargoAbsoluto)
+            @Html.ValidationMessageFor(model => model.RecargoAbsoluto)
+        </div>
+    </div>
+</div>
+
+
+

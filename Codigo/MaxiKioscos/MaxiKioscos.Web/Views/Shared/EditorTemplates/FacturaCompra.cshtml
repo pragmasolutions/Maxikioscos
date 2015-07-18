@@ -1,0 +1,23 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.UsuarioCreador)
+                               .Where(f => f.MaxiKiosco.CuentaId == UsuarioActual.CuentaId
+                                      && !f.Compras.Any())
+                               .OrderByDescending(f => f.Fecha)
+                               .ToSelectListItem(Model, f => f.FacturaId,
+                               f => f.NombreCompleto,
+                               f => f.FacturaId.ToString());
+}
+
+@Html.DropDownList("", selectList, "Seleccione una Factura", new
+{
+    @data_searchable = "true",
+    @data_placeholder = "Seleccione Factura",
+    @class = "form-dropdown"
+})

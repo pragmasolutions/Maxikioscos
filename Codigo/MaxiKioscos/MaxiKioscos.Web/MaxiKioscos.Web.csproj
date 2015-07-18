@@ -1,0 +1,1050 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AD9979F2-35B1-4A46-8911-FBD42A5D4389}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MaxiKioscos.Web</RootNamespace>
+    <AssemblyName>MaxiKioscos.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BeginCollectionItem">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Mandrill">
+      <HintPath>..\packages\Mandrill.1.0.90\lib\net40\Mandrill.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.0.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Configuration\AppSettings.cs" />
+    <Compile Include="Configuration\UsuarioActual.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
+    <Compile Include="Controllers\TransferenciasController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\ControlStockController.cs" />
+    <Compile Include="Controllers\ControlStockDetalleController.cs" />
+    <Compile Include="Controllers\ExcepcionesController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
+    <Compile Include="Controllers\RubrosController.cs" />
+    <Compile Include="Controllers\MarcasController.cs" />
+    <Compile Include="Controllers\SincronizacionController.cs" />
+    <Compile Include="Controllers\ExcepcionesRubrosController.cs" />
+    <Compile Include="Controllers\MaxikioscosController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\FacturasController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Hubs\ConnectionMapping.cs" />
+    <Compile Include="Hubs\ForzarSincronizacionAppServer.cs" />
+    <Compile Include="Hubs\ForzarSincronizacionHub.cs" />
+    <Compile Include="Infrastructure\Alerts\Alert.cs" />
+    <Compile Include="Infrastructure\Alerts\AlertDecoratorResult.cs" />
+    <Compile Include="Infrastructure\Alerts\AlertExtensions.cs" />
+    <Compile Include="Ioc\NinjectControllerFactory.cs" />
+    <Compile Include="Ioc\NinjectDependencyResolver.cs" />
+    <Compile Include="Ioc\NinjectServiceHelper.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ExcepcionModel.cs" />
+    <Compile Include="Models\Filtros\PromocionesFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\TransferenciasFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ComprasFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ExcepcionesFiltrosModel.cs" />
+    <Compile Include="Models\Listado\PromocionesListadoModel.cs" />
+    <Compile Include="Models\Listado\TransferenciasListadoModel.cs" />
+    <Compile Include="Models\Listado\ComprasListadoModel.cs" />
+    <Compile Include="Models\Listado\ExcepcionesListadoModel.cs" />
+    <Compile Include="Models\StockModel.cs" />
+    <Compile Include="Models\DTO\ArchivoKioscoDTO.cs" />
+    <Compile Include="Models\CargarProductoModel.cs" />
+    <Compile Include="Models\EstadoKioscosModel.cs" />
+    <Compile Include="Models\Filtros\ControlStockFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ControlStockDetalleFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\TicketErrorFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\UsuariosFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ExcepcionRubrosFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\RubrosFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\MarcasFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\StockFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\FilterBaseModel.cs" />
+    <Compile Include="Models\Filtros\LogImportacionesFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ProveedoresFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\FacturasFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\ProductosFiltrosModel.cs" />
+    <Compile Include="Models\ImportacionModel.cs" />
+    <Compile Include="Models\IngresarCostoPrecioModel.cs" />
+    <Compile Include="Models\Listado\ControlStockListadoModel.cs" />
+    <Compile Include="Models\Listado\ControlStockDetalleListadoModel.cs" />
+    <Compile Include="Models\Listado\TicketErrorListadoModel.cs" />
+    <Compile Include="Models\Listado\UsuariosListadoModel.cs" />
+    <Compile Include="Models\Listado\ExcepcionRubrosListadoModel.cs" />
+    <Compile Include="Models\Listado\RubrosListadoModel.cs" />
+    <Compile Include="Models\Listado\MarcasListadoModel.cs" />
+    <Compile Include="Models\Listado\LogImportacionesListadoModel.cs" />
+    <Compile Include="Models\Listado\ProveedoresListadoModel.cs" />
+    <Compile Include="Models\Listado\FacturasListadoModel.cs" />
+    <Compile Include="Models\Filtros\IFilter.cs" />
+    <Compile Include="Models\Listado\ListadoModel.cs" />
+    <Compile Include="Models\Listado\ProductosListadoModel.cs" />
+    <Compile Include="Models\MensajeModel.cs" />
+    <Compile Include="Models\ProductoModel.cs" />
+    <Compile Include="Models\ProductoSeleccionarModel.cs" />
+    <Compile Include="Models\Dictionary.cs" />
+    <Compile Include="Models\ReporteModel.cs" />
+    <Compile Include="Models\ReporteVentasFiltrosModel.cs" />
+    <Compile Include="Models\DTO\ImportacionDTO.cs" />
+    <Compile Include="Models\DTO\XmlDTO.cs" />
+    <Compile Include="Models\Listado\StockListadoModel.cs" />
+    <Compile Include="Models\ExportacionDescargaModel.cs" />
+    <Compile Include="Models\TicketErrorModel.cs" />
+    <Compile Include="Models\TransferirStockModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ForzarSincronizacionService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\MaxiKioscos.Email\EmailsTemplates\ReportarError.html">
+      <Link>EmailsTemplates\ReportarError.html</Link>
+    </Content>
+    <Content Include="Content\admin\css\dataTables.bootstrap.css" />
+    <Content Include="Content\admin\css\morris-0.4.3.min.css" />
+    <Content Include="Content\admin\css\sb-admin.css" />
+    <Content Include="Content\admin\css\social-buttons.css" />
+    <Content Include="Content\admin\css\timeline.css" />
+    <Content Include="Content\admin\css\font-awesome.css" />
+    <Content Include="Content\admin\css\font-awesome.min.css" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\admin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap\css\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-multiselect.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-timepicker.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\css\select2-bootstrap.css" />
+    <Content Include="Content\bootstrap\css\select2-spinner.gif" />
+    <Content Include="Content\bootstrap\css\select2.css" />
+    <Content Include="Content\bootstrap\css\select2.png" />
+    <Content Include="Content\bootstrap\css\select2x2.png" />
+    <Content Include="Content\bootstrap\css\typeaheadjs.css" />
+    <Content Include="Content\imagenes\favicon.ico" />
+    <Content Include="Content\imagenes\loading.gif" />
+    <Content Include="Content\imagenes\loading100X100.gif" />
+    <Content Include="Content\imagenes\rar.png" />
+    <Content Include="Content\maxikiosco-table.css" />
+    <Content Include="Content\imagenes\adobe-acrobat.png" />
+    <Content Include="Content\imagenes\microsoft-excel.png" />
+    <Content Include="Content\imagenes\microsoft-word.png" />
+    <Content Include="Content\maxikiosco-form.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\spin.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\admin\fonts\FontAwesome.otf" />
+    <Content Include="Content\admin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\admin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\app\bootstrapAlerts.js" />
+    <Content Include="Scripts\app\maxikiosco-promociones-editar.js" />
+    <Content Include="Scripts\app\maxikiosco-promociones.js" />
+    <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
+    <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
+    <Content Include="Scripts\app\maxikiosco-transferencias.js" />
+    <Content Include="Scripts\app\maxikiosco-transferencias-editar.js" />
+    <Content Include="Scripts\app\maxikiosco-compras-editar.remove.js" />
+    <Content Include="Scripts\app\maxikiosco-compra-producto-editar.js" />
+    <Content Include="Scripts\app\maxikiosco-productos-eliminar.js" />
+    <Content Include="Scripts\app\maxikiosco-reportes-ventasporcierre.js" />
+    <Content Include="Scripts\app\dataservices\maxikiosco.dataservice.excepciones.js" />
+    <Content Include="Scripts\app\maxikiosco-excepciones.js" />
+    <Content Include="Scripts\app\maxikiosco-productos.remove.js" />
+    <Content Include="Scripts\app\maxikiosco-productos-editar.js" />
+    <Content Include="Scripts\app\maxikiosco-controlStockDetalle.js" />
+    <Content Include="Scripts\app\maxikiosco-controlStock.js" />
+    <Content Include="Scripts\app\maxikiosco-tickets.js" />
+    <Content Include="Scripts\app\maxikiosco-ticket-detalle.js" />
+    <Content Include="Scripts\app\maxikiosco-reportar-error.js" />
+    <Content Include="Scripts\app\maxikiosco-importacion.js" />
+    <Content Include="Scripts\app\maxikiosco-seleccionar-producto.js" />
+    <Content Include="Scripts\app\maxikiosco-compras-editar.js" />
+    <Content Include="Scripts\app\maxikiosco-compras.js" />
+    <Content Include="Scripts\app\maxikiosco-reportes.js" />
+    <Content Include="Scripts\app\maxikiosco-sincronizacion.js" />
+    <Content Include="Scripts\app\maxikiosco-stocks.js" />
+    <Content Include="Scripts\app\maxikiosco-configuracion.js" />
+    <Content Include="Scripts\app\maxikiosco-rubros.js" />
+    <Content Include="Scripts\app\maxikiosco-marcas.js" />
+    <Content Include="Scripts\app\dataservices\maxikiosco.dataservice.sincronizacion.js" />
+    <Content Include="Scripts\app\maxikiosco-exportacion.js" />
+    <Content Include="Scripts\app\maxikiosco-excepciones-rubros.js" />
+    <Content Include="Scripts\app\maxikiosco-usuarios.js" />
+    <Content Include="Scripts\app\dataservices\maxikiosco.dataservice.usuarios.js" />
+    <Content Include="Reportes\VentasPorMaxikiosco.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\VentasPorProducto.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\CierresDeCaja.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\CierresDeCajaDetalle.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\Stock.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\admin\less\bordered-pulled.less" />
+    <Content Include="Content\admin\less\core.less" />
+    <Content Include="Content\admin\less\fixed-width.less" />
+    <Content Include="Content\admin\less\font-awesome.less" />
+    <Content Include="Content\admin\less\icons.less" />
+    <Content Include="Content\admin\less\larger.less" />
+    <Content Include="Content\admin\less\list.less" />
+    <Content Include="Content\admin\less\mixins.less" />
+    <Content Include="Content\admin\less\path.less" />
+    <Content Include="Content\admin\less\rotated-flipped.less" />
+    <Content Include="Content\admin\less\spinning.less" />
+    <Content Include="Content\admin\less\stacked.less" />
+    <Content Include="Content\admin\less\variables.less" />
+    <Content Include="Content\admin\scss\font-awesome.scss" />
+    <Content Include="Content\admin\scss\_bordered-pulled.scss" />
+    <Content Include="Content\admin\scss\_core.scss" />
+    <Content Include="Content\admin\scss\_fixed-width.scss" />
+    <Content Include="Content\admin\scss\_icons.scss" />
+    <Content Include="Content\admin\scss\_larger.scss" />
+    <Content Include="Content\admin\scss\_list.scss" />
+    <Content Include="Content\admin\scss\_mixins.scss" />
+    <Content Include="Content\admin\scss\_path.scss" />
+    <Content Include="Content\admin\scss\_rotated-flipped.scss" />
+    <Content Include="Content\admin\scss\_spinning.scss" />
+    <Content Include="Content\admin\scss\_stacked.scss" />
+    <Content Include="Content\admin\scss\_variables.scss" />
+    <None Include="Properties\PublishProfiles\DEV.pubxml" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\Produccion.pubxml" />
+    <Content Include="Reportes\DineroEnCajasPorMaxikiosco.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\DineroSobranteFaltante.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\GanaciaAdicionalExcepcionRubro.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ReponerStock.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\VentasPorCierreCaja.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\StockValorizadoDetallado.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\TransferenciaComprobante.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\VentasPorProductoTotalGeneral.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ComprasPorProveedor.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\StockValorizado.rdl" />
+    <Content Include="Reportes\StockValorizadoGeneral.rdl" />
+    <Content Include="Reportes\TransferenciaPorProducto.rdl" />
+    <Content Include="Reportes\TransferenciaPorProductoTotalGeneral.rdl" />
+    <Content Include="Reportes\AuditoriaProductos.rdl" />
+    <Content Include="Reportes\StockValorizadoDetalladoGeneral.rdl" />
+    <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\app\maxikiosco-maxikioscos.js" />
+    <Content Include="Scripts\app\maxikiosco-proveedores.js" />
+    <Content Include="Scripts\app\maxikiosco.unobtrusive.js" />
+    <Content Include="Scripts\app\maxikiosco-facturas.js" />
+    <Content Include="Scripts\app\maxikiosco-productos.js" />
+    <Content Include="Scripts\app\maxikiosco-util.js" />
+    <Content Include="Scripts\app\maxikisocos-iva.js" />
+    <Content Include="Scripts\app\plugins\jquery-contains.js" />
+    <Content Include="Scripts\app\sb-admin.js" />
+    <Content Include="Scripts\app\maxikiosco-spinner.js" />
+    <Content Include="Scripts\lib\bloodhound.js" />
+    <Content Include="Scripts\lib\bootstrap3-typeahead.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.custom.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.extensions.js" />
+    <Content Include="Scripts\lib\jquery.signalR-2.0.3.js" />
+    <Content Include="Scripts\lib\jquery.signalR-2.0.3.min.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\demo-ie8.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\demo.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\jquery.fileupload-noscript.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\jquery.fileupload-ui.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\jquery.fileupload.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\css\style.css" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\img\loading.gif" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\img\progressbar.gif" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\app.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-image.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-process.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload-video.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.fileupload.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\jquery.iframe-transport.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\main.js" />
+    <Content Include="Scripts\lib\jQuery-File-Upload-9.5.7\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\lib\jquery.hotkeys.js" />
+    <Content Include="Scripts\lib\jsrender.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-bootbox.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-datepicker.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-timepicker.js" />
+    <Content Include="Scripts\lib\globalize\globalize.culture.es-AR.js" />
+    <Content Include="Scripts\lib\globalize\globalize.init.js" />
+    <Content Include="Scripts\lib\globalize\globalize.js" />
+    <Content Include="Scripts\lib\maxikiosco-util.js" />
+    <Content Include="Scripts\lib\javascript.object.extension.js" />
+    <Content Include="Scripts\lib\jquery.validate.fixes.js" />
+    <Content Include="Scripts\lib\plugins\autoNumeric.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\jquery-2.1.0.js" />
+    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\lib\jquery.cursortable.js" />
+    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\modernizr-2.7.2.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\css\bootstrap-2.3.2.min.css" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\css\bootstrap-3.1.1.min.css" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\css\bootstrap-multiselect.css" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\css\prettify.css" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\index-2-3.html" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\index.html" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\js\bootstrap-2.3.2.min.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\js\bootstrap-3.1.1.min.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\js\bootstrap-multiselect.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\js\prettify.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-paginator.min.js" />
+    <Content Include="Scripts\lib\plugins\dataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\lib\plugins\dataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\lib\plugins\datepicker\css\datepicker.css" />
+    <Content Include="Scripts\lib\plugins\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\lib\plugins\flot\excanvas.min.js" />
+    <Content Include="Scripts\lib\plugins\flot\jquery.flot.js" />
+    <Content Include="Scripts\lib\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\lib\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\lib\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="Scripts\lib\plugins\highlight.js" />
+    <Content Include="Scripts\lib\jquery.confirm.js" />
+    <Content Include="Scripts\lib\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Scripts\lib\plugins\microevent.js" />
+    <Content Include="Scripts\lib\plugins\morris\morris.js" />
+    <Content Include="Scripts\lib\plugins\morris\raphael-2.1.0.min.js" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\select2.js" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\select2.min.js" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\select2_locale_es.js" />
+    <Content Include="Scripts\lib\plugins\spin.js" />
+    <Content Include="Scripts\lib\plugins\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\lib\plugins\shortcut.js" />
+    <Content Include="Scripts\lib\typeahead.bundle.js" />
+    <Content Include="Service References\ForzarSincronizacionService\ForzarSincronizacionService.disco" />
+    <Content Include="Service References\ForzarSincronizacionService\configuration91.svcinfo" />
+    <Content Include="Service References\ForzarSincronizacionService\configuration.svcinfo" />
+    <Content Include="Service References\ForzarSincronizacionService\MaxiKioscos.Web.ForzarSincronizacionService.ObtenerDatosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ForzarSincronizacionService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MenuLateral.cshtml" />
+    <Content Include="Views\Shared\_MenuSuperior.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Productos\Listado.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DayOfWeek.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Productos\Crear.cshtml" />
+    <Content Include="Views\Productos\_CamposProductoEditar.cshtml" />
+    <Content Include="Views\Productos\Editar.cshtml" />
+    <Content Include="Views\Productos\_CamposProductoDetalle.cshtml" />
+    <Content Include="Views\Productos\Detalle.cshtml" />
+    <Content Include="Views\Productos\Eliminar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rubro.cshtml" />
+    <Content Include="Views\Facturas\_CamposFacturaDetalle.cshtml" />
+    <Content Include="Views\Facturas\_CamposFacturaEditar.cshtml" />
+    <Content Include="Views\Facturas\Crear.cshtml" />
+    <Content Include="Views\Facturas\Detalle.cshtml" />
+    <Content Include="Views\Facturas\Editar.cshtml" />
+    <Content Include="Views\Facturas\Eliminar.cshtml" />
+    <Content Include="Views\Facturas\Index.cshtml" />
+    <Content Include="Views\Facturas\Listado.cshtml" />
+    <Content Include="Views\Facturas\Modales.cshtml" />
+    <Content Include="Scripts\lib\plugins\datepicker\less\datepicker.less" />
+    <Content Include="Views\Shared\EditorTemplates\Marca.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Url.cshtml" />
+    <Content Include="Views\Proveedores\_CamposProveedorDetalle.cshtml" />
+    <Content Include="Views\Proveedores\_CamposProveedorEditar.cshtml" />
+    <Content Include="Views\Proveedores\Crear.cshtml" />
+    <Content Include="Views\Proveedores\Detalle.cshtml" />
+    <Content Include="Views\Proveedores\Editar.cshtml" />
+    <Content Include="Views\Proveedores\Eliminar.cshtml" />
+    <Content Include="Views\Proveedores\Index.cshtml" />
+    <Content Include="Views\Proveedores\Listado.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Localidad.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TipoCuit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\MaxiKioscos\_CamposMaxiKioscoDetalle.cshtml" />
+    <Content Include="Views\MaxiKioscos\_CamposMaxiKioscoEditar.cshtml" />
+    <Content Include="Views\MaxiKioscos\Crear.cshtml" />
+    <Content Include="Views\MaxiKioscos\Detalle.cshtml" />
+    <Content Include="Views\MaxiKioscos\Editar.cshtml" />
+    <Content Include="Views\MaxiKioscos\Index.cshtml" />
+    <Content Include="Views\MaxiKioscos\Listado.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\_CamposExcepcionRubroDetalle.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\_CamposExcepcionRubroEditar.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Crear.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Detalle.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Editar.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Eliminar.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Index.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\Listado.cshtml" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\bower.json" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\LICENSE" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\README.md" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\release.sh" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\select2.jquery.json" />
+    <Content Include="Scripts\lib\plugins\select2-3.4.5\select2_locale_en.js.template" />
+    <Content Include="Views\Usuarios\_CamposUsuarioDetalle.cshtml" />
+    <Content Include="Views\Usuarios\_CamposUsuarioEditar.cshtml" />
+    <Content Include="Views\Usuarios\Crear.cshtml" />
+    <Content Include="Views\Usuarios\Detalle.cshtml" />
+    <Content Include="Views\Usuarios\Editar.cshtml" />
+    <Content Include="Views\Usuarios\Eliminar.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Listado.cshtml" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\.gitignore" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\bower.json" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\less\bootstrap-multiselect.less" />
+    <Content Include="Scripts\lib\plugins\bootstrap-multiselect\README.md" />
+    <Content Include="Views\Usuarios\_CamposUsuarioCrear.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Percentage.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Percentage.cshtml" />
+    <Content Include="Views\Stocks\_CamposStockDetalle.cshtml" />
+    <Content Include="Views\Stocks\_CamposStockEditar.cshtml" />
+    <Content Include="Views\Stocks\Crear.cshtml" />
+    <Content Include="Views\Stocks\Detalle.cshtml" />
+    <Content Include="Views\Stocks\Editar.cshtml" />
+    <Content Include="Views\Stocks\Eliminar.cshtml" />
+    <Content Include="Views\Stocks\Index.cshtml" />
+    <Content Include="Views\Stocks\Listado.cshtml" />
+    <Content Include="Views\Stocks\Modales.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MaxiKiosco.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NecesitaReposicion.cshtml" />
+    <Content Include="Views\Sincronizacion\Index.cshtml" />
+    <Content Include="Views\Sincronizacion\Listado.cshtml" />
+    <Content Include="Views\Sincronizacion\ErrorDialog.cshtml" />
+    <Content Include="Views\Sincronizacion\Descargar.cshtml" />
+    <Content Include="Views\Sincronizacion\_CamposExportacionDescargar.cshtml" />
+    <Content Include="Views\Marcas\_CamposMarcaCrear.cshtml" />
+    <Content Include="Views\Marcas\_CamposMarcaDetalle.cshtml" />
+    <Content Include="Views\Marcas\Crear.cshtml" />
+    <Content Include="Views\Marcas\Detalle.cshtml" />
+    <Content Include="Views\Marcas\Editar.cshtml" />
+    <Content Include="Views\Marcas\Eliminar.cshtml" />
+    <Content Include="Views\Marcas\Index.cshtml" />
+    <Content Include="Views\Marcas\Listado.cshtml" />
+    <Content Include="Views\Rubros\_CamposRubroCrear.cshtml" />
+    <Content Include="Views\Rubros\_CamposRubroDetalle.cshtml" />
+    <Content Include="Views\Rubros\Crear.cshtml" />
+    <Content Include="Views\Rubros\Detalle.cshtml" />
+    <Content Include="Views\Rubros\Editar.cshtml" />
+    <Content Include="Views\Rubros\Eliminar.cshtml" />
+    <Content Include="Views\Rubros\Index.cshtml" />
+    <Content Include="Views\Rubros\Listado.cshtml" />
+    <Content Include="Views\Cuenta\Index.cshtml" />
+    <Content Include="Views\Cuenta\Editar.cshtml" />
+    <Content Include="Views\Cuenta\_CamposCuentaEditar.cshtml" />
+    <Content Include="Views\Reportes\VentasPorMaxikioscos.cshtml" />
+    <Content Include="Views\Reportes\VentasPorProductos.cshtml" />
+    <Content Include="Views\Reportes\CierresDeCaja.cshtml" />
+    <Content Include="Views\Compras\_CamposCompraDetalle.cshtml" />
+    <Content Include="Views\Compras\_CamposCompraEditar.cshtml" />
+    <Content Include="Views\Compras\Crear.cshtml" />
+    <Content Include="Views\Compras\Detalle.cshtml" />
+    <Content Include="Views\Compras\Editar.cshtml" />
+    <Content Include="Views\Compras\Eliminar.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Compras\Listado.cshtml" />
+    <Content Include="Views\Compras\CargarProducto.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Factura.cshtml" />
+    <Content Include="Views\Productos\ListadoParaSeleccionar.cshtml" />
+    <Content Include="Views\Productos\Seleccionar.cshtml" />
+    <Content Include="Views\Compras\IngresarCantidad.cshtml" />
+    <Content Include="Views\Compras\IngresarCostoPrecio.cshtml" />
+    <Content Include="Views\Productos\CodigoProducto.cshtml" />
+    <Content Include="Views\Productos\_Codigo.cshtml" />
+    <Content Include="Views\Productos\NoSePuedeEliminar.cshtml" />
+    <Content Include="Views\Usuarios\EliminarError.cshtml" />
+    <Content Include="Views\MaxiKioscos\_Turno.cshtml" />
+    <Content Include="Views\MaxiKioscos\MaxiKioscoTurnos.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NegativeCurrency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NegativePercentage.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\NegativePercentage.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\NegativeCurrency.cshtml" />
+    <Content Include="Views\Reportes\Stock.cshtml" />
+    <Content Include="Views\Reportes\CierresDeCajaDetalle.cshtml" />
+    <Content Include="Views\Productos\_Listado.cshtml" />
+    <Content Include="Views\Productos\_Filtros.cshtml" />
+    <Content Include="Views\Facturas\_Listado.cshtml" />
+    <Content Include="Views\Facturas\_Filtros.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Proveedor.cshtml" />
+    <Content Include="Views\Proveedores\_Listado.cshtml" />
+    <Content Include="Views\Proveedores\_Filtros.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TieneCompra.cshtml" />
+    <Content Include="Service References\ForzarSincronizacionService\ForzarSincronizacionService.wsdl" />
+    <None Include="Service References\ForzarSincronizacionService\ForzarSincronizacionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ForzarSincronizacionService\ForzarSincronizacionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ForzarSincronizacionService\ForzarSincronizacionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Views\Sincronizacion\EstadoKioscos.cshtml" />
+    <Content Include="Views\Sincronizacion\ErrorImportacionDialog.cshtml" />
+    <Content Include="Views\Sincronizacion\LogImportacion.cshtml" />
+    <Content Include="Views\Sincronizacion\_LogImportacionesFiltros.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BooleanSiNo.cshtml" />
+    <Content Include="Views\Marcas\_Filtros.cshtml" />
+    <Content Include="Views\Rubros\_Filtros.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\_Filtros.cshtml" />
+    <Content Include="Views\ExcepcionesRubros\_Listado.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Rol.cshtml" />
+    <Content Include="Views\Usuarios\_Filtros.cshtml" />
+    <Content Include="Views\Usuarios\_Listado.cshtml" />
+    <Content Include="Views\Marcas\_Listado.cshtml" />
+    <Content Include="Views\Stocks\_Filtros.cshtml" />
+    <Content Include="Views\Sincronizacion\Importar.cshtml" />
+    <Content Include="Views\Stocks\Transferir.cshtml" />
+    <Content Include="Views\Stocks\_CamposStockTransferir.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FacturaCompra.cshtml" />
+    <Content Include="Views\Productos\CostoProducto.cshtml" />
+    <Content Include="Views\Productos\_Costo.cshtml" />
+    <Content Include="Views\Productos\EditorTemplates\Proveedor.cshtml" />
+    <Content Include="Views\Feedback\ReportarError.cshtml" />
+    <Content Include="Views\Feedback\ReportarErrorFail.cshtml" />
+    <Content Include="Views\Feedback\ReportarErrorSuccess.cshtml" />
+    <Content Include="Views\Feedback\Ticket.cshtml" />
+    <Content Include="Views\Feedback\_Mensajes.cshtml" />
+    <Content Include="Views\Feedback\_MensajesListado.cshtml" />
+    <Content Include="Views\Feedback\Listado.cshtml" />
+    <Content Include="Views\Feedback\Modales.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
+    <Content Include="Views\Feedback\_Listado.cshtml" />
+    <Content Include="Views\Feedback\_Filtros.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TicketErrorEstado.cshtml" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Productos\CodigoDuplicadoPopup.cshtml" />
+    <Content Include="Views\ControlStock\_Filtros.cshtml" />
+    <Content Include="Views\ControlStock\_Listado.cshtml" />
+    <Content Include="Views\ControlStock\Index.cshtml" />
+    <Content Include="Views\ControlStock\Listado.cshtml" />
+    <Content Include="Views\ControlStock\Detalle.cshtml" />
+    <Content Include="Views\ControlStock\ListadoDetalle.cshtml" />
+    <Content Include="Views\ControlStock\_ListadoDetalle.cshtml" />
+    <Content Include="Views\ControlStock\_FiltrosDetalle.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EstadoControlStock.cshtml" />
+    <Content Include="Views\ControlStock\_Detalle.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CompleteDate.cshtml" />
+    <Content Include="Views\ControlStockDetalle\Corregir.cshtml" />
+    <Content Include="Views\ControlStockDetalle\_CamposCorregir.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MotivoCorreccion.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PositiveDecimal.cshtml" />
+    <Content Include="Views\Reportes\DineroPorMaxikiosco.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ControlStockDetalle.cshtml" />
+    <Content Include="Views\Productos\_InicializarCursorTable.cshtml" />
+    <Content Include="Views\Reportes\DineroSobranteFaltante.cshtml" />
+    <Content Include="Views\Reportes\GanaciaAdicionalExcepcionRubro.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Producto.cshtml" />
+    <Content Include="Views\Reportes\ProductosParaReponer.cshtml" />
+    <Content Include="Views\Compras\_Listado.cshtml" />
+    <Content Include="Views\Compras\_Filtros.cshtml" />
+    <Content Include="Views\Excepciones\_CamposExcepcionCrear.cshtml" />
+    <Content Include="Views\Excepciones\_CamposExcepcionDetalle.cshtml" />
+    <Content Include="Views\Excepciones\_Filtros.cshtml" />
+    <Content Include="Views\Excepciones\_Listado.cshtml" />
+    <Content Include="Views\Excepciones\Crear.cshtml" />
+    <Content Include="Views\Excepciones\Detalle.cshtml" />
+    <Content Include="Views\Excepciones\Editar.cshtml" />
+    <Content Include="Views\Excepciones\Eliminar.cshtml" />
+    <Content Include="Views\Excepciones\Index.cshtml" />
+    <Content Include="Views\Excepciones\Listado.cshtml" />
+    <Content Include="Views\Reportes\VentasPorCierreCaja.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Usuario.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TipoBusquedaProducto.cshtml" />
+    <Content Include="Views\Transferencias\_CamposTransferenciaDetalle.cshtml" />
+    <Content Include="Views\Transferencias\_CamposTransferenciaEditar.cshtml" />
+    <Content Include="Views\Transferencias\_Filtros.cshtml" />
+    <Content Include="Views\Transferencias\_Listado.cshtml" />
+    <Content Include="Views\Transferencias\CargarProducto.cshtml" />
+    <Content Include="Views\Transferencias\Crear.cshtml" />
+    <Content Include="Views\Transferencias\Detalle.cshtml" />
+    <Content Include="Views\Transferencias\Editar.cshtml" />
+    <Content Include="Views\Transferencias\Eliminar.cshtml" />
+    <Content Include="Views\Transferencias\Index.cshtml" />
+    <Content Include="Views\Transferencias\IngresarCantidad.cshtml" />
+    <Content Include="Views\Transferencias\Listado.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TransferenciaEstado.cshtml" />
+    <Content Include="Views\Compras\CamposCostoYPrecio.cshtml" />
+    <Content Include="Views\Compras\EditarProducto.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NumeroFactura.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MaxiKioscoIdentifier.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MaxiKioscoIdentifier.cshtml" />
+    <Content Include="Views\ControlStock\Eliminar.cshtml" />
+    <Content Include="Views\MaxiKioscos\Eliminar.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Reportes\StockValorizadoDetallado.cshtml" />
+    <Content Include="Views\Reportes\_ReportLoading.cshtml" />
+    <Content Include="Views\Reportes\ComprasPorProveedor.cshtml" />
+    <Content Include="Views\Reportes\StockValorizado.cshtml" />
+    <Content Include="Views\Reportes\TransferenciasPorProducto.cshtml" />
+    <Content Include="Views\Reportes\AuditoriaProductos.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BooleanSiNo.cshtml" />
+    <Content Include="Views\Promociones\_CamposPromocionDetalle.cshtml" />
+    <Content Include="Views\Promociones\_CamposPromocionEditar.cshtml" />
+    <Content Include="Views\Promociones\_Codigo.cshtml" />
+    <Content Include="Views\Promociones\_Costo.cshtml" />
+    <Content Include="Views\Promociones\_Filtros.cshtml" />
+    <Content Include="Views\Promociones\_InicializarCursorTable.cshtml" />
+    <Content Include="Views\Promociones\_Listado.cshtml" />
+    <Content Include="Views\Promociones\CodigoDuplicadoPopup.cshtml" />
+    <Content Include="Views\Promociones\CodigoProducto.cshtml" />
+    <Content Include="Views\Promociones\CostoProducto.cshtml" />
+    <Content Include="Views\Promociones\Crear.cshtml" />
+    <Content Include="Views\Promociones\Detalle.cshtml" />
+    <Content Include="Views\Promociones\Editar.cshtml" />
+    <Content Include="Views\Promociones\EditorTemplates\Proveedor.cshtml" />
+    <Content Include="Views\Promociones\Eliminar.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
+    <Content Include="Views\Promociones\Listado.cshtml" />
+    <Content Include="Views\Promociones\ListadoParaSeleccionar.cshtml" />
+    <Content Include="Views\Promociones\NoSePuedeEliminar.cshtml" />
+    <Content Include="Views\Promociones\Seleccionar.cshtml" />
+    <Content Include="Views\Promociones\PromocionProducto.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ProductoSinPromociones.cshtml" />
+    <Content Include="Views\Promociones\PromocionMaxikiosco.cshtml" />
+    <None Include="Web.ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Emails\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaxiKiosco.Seguridad.WebSecurity\MaxiKiosco.Seguridad.WebSecurity.csproj">
+      <Project>{68110e34-c47a-4299-b9fd-388ef354c434}</Project>
+      <Name>MaxiKiosco.Seguridad.WebSecurity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maxikioscos.Comun\Maxikioscos.Comun.csproj">
+      <Project>{a0460b78-fcaf-49f7-aec1-8856c3f65ad3}</Project>
+      <Name>Maxikioscos.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Datos\MaxiKioscos.Datos.csproj">
+      <Project>{fa0797c2-b5e3-4d5e-a401-a7d6ea896293}</Project>
+      <Name>MaxiKioscos.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Email\MaxiKioscos.Email.csproj">
+      <Project>{72918c73-f0a4-434b-836f-e06e75d59f86}</Project>
+      <Name>MaxiKioscos.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Entidades\MaxiKioscos.Entidades.csproj">
+      <Project>{28b83eab-becf-46b3-908f-b787bd10d367}</Project>
+      <Name>MaxiKioscos.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.IoC\MaxiKioscos.IoC.csproj">
+      <Project>{934febe9-9f45-49f5-bb0a-4bde02f3b68b}</Project>
+      <Name>MaxiKioscos.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Negocio\MaxiKioscos.Negocio.csproj">
+      <Project>{0e3617f2-a0d0-4509-b16d-14d4652cf6f0}</Project>
+      <Name>MaxiKioscos.Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Reportes\MaxiKioscos.Reportes.csproj">
+      <Project>{B2478518-303E-49F4-9409-19B1C01D7CB7}</Project>
+      <Name>MaxiKioscos.Reportes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Seguridad\MaxiKioscos.Seguridad.csproj">
+      <Project>{4cff7c06-39a8-42b2-933e-9114746c2148}</Project>
+      <Name>MaxiKioscos.Seguridad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Web.Comun\MaxiKioscos.Web.Comun.csproj">
+      <Project>{c75fc4d0-a024-4361-a824-3fe7ca653afb}</Project>
+      <Name>MaxiKioscos.Web.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\MaxiKiosco.Win.Util.csproj">
+      <Project>{ea2fb179-2c13-45c6-882d-a9c61b442cc4}</Project>
+      <Name>MaxiKiosco.Win.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ForzarSincronizacionService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55234</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52609/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

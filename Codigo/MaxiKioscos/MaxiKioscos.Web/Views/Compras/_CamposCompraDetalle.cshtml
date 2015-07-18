@@ -1,0 +1,138 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using MaxiKioscos.Web.Configuration
+@model MaxiKioscos.Entidades.Compra
+@Html.HiddenFor(model => model.CompraId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+<div class="row">
+    <fieldset class="group">
+        <legend>Información de Compra</legend>
+        <div class="col-lg-3">
+            <div class="form-group input-group-sm">
+                @Html.LabelFor(model => model.Numero)
+                @Html.DisplayFor(model => model.Numero)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fecha)
+                @Html.DisplayFor(model => model.Fecha)
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FacturaId)
+                <div>
+                    @Html.DisplayFor(model => model.Factura.NombreCompleto)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Importe Total")
+                @Html.TextBox("ImporteTotal",
+                Model.Factura != null ? Model.Factura.ImporteTotal.ToString("C2") : string.Empty,
+                new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.Label("Proveedor")
+                @Html.Hidden("ProveedorId", Model.Factura != null ? Model.Factura.ProveedorId : 0)
+                @Html.TextBox("ProveedorNombre",
+                Model.Factura != null && Model.Factura.Proveedor != null ? Model.Factura.Proveedor.Nombre : string.Empty,
+                new { @class = "form-control", @readonly = true })
+            </div>
+            <div class="form-group">
+                @Html.Label("MaxiKiosco")
+                @Html.HiddenFor(model => model.MaxiKioscoId)
+                @Html.TextBox("MaxiKioscoNombre",
+                Model.Factura != null && Model.MaxiKiosco != null ? Model.MaxiKiosco.Nombre : string.Empty,
+                new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="TableComprasProductos">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Código</th>
+                            <th style="width: 250px;">Descripción</th>
+                            <th style="width: 170px;">Marca</th>
+                            <th>Costo s/IVA</th>
+                            <th>Costo c/IVA</th>
+                            <th>Precio</th>
+                            <th>Ganancia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var compraProd in Model.ComprasProductos)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="cell-text-content">@compraProd.Cantidad</span>
+                                </td>
+                                <td>TODO</td>
+                                <td>
+                                    @compraProd.Producto.Descripcion
+                                </td>
+                                <td>
+                                    @compraProd.Producto.Marca.Descripcion
+                                </td>
+                                <td class="text-right">
+                                    <span class="cell-text-content">@compraProd.CostoSinIVAFormateado</span>
+                                </td>
+                                <td class="text-right">
+                                    <span class="cell-text-content">@compraProd.CostoActualizadoFormateado</span>
+                                </td>
+                                <td class="text-right">
+                                    <span class="cell-text-content">@compraProd.PrecioActualizadoFormateado</span>
+                                </td>
+                                <td class="text-right">
+                                    <span class="cell-text-content">@compraProd.GananciaFormateada</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Total Compra</td>
+                            <td class="total-footer text-right">@Model.Total.ToString("C2")</td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Descuento </td>
+                            <td class="total-footer text-right">@Model.Descuento.ToString("C2")</td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Total con Descuento</td>
+                            <td class="total-footer text-right">@Model.TotalConDescuento.ToString("C2")</td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Percepción DGR</td>
+                            <td class="total-footer text-right">
+                                @Model.PercepcionDGR.ToString("C2")
+                            </td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Percepción IVA</td>
+                            <td class="total-footer text-right">
+                                @Model.PercepcionIVA.ToString("C2")
+                            </td>
+                            <td colspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="total-footer-label text-right">Total General</td>
+                            <td class="total-footer text-right">@Model.TotalGeneral.ToString("C2")</td>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

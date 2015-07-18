@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Content/bootstrap/css/styles")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/admin/css/styles")
+    @Scripts.Render("~/Scripts/lib/modernizr")
+
+</head>
+<body>
+   
+    <div class="container">
+       @RenderBody()
+    </div>
+
+    @Scripts.Render("~/Scripts/lib/jquery",
+                    "~/Scripts/lib/bootstrap",
+                    "~/Scripts/lib/globalize/js",
+                    "~/Scripts/lib/bootstrap/plugins",
+                    "~/Scripts/app/admin")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

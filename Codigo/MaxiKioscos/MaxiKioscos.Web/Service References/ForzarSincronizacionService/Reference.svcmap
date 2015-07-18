@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="189156df-7f38-492e-8318-b50cf5e21941" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/ForzarSincronizacionService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ForzarSincronizacionService.xsd" MetadataType="Schema" ID="7087c708-c784-439c-96f6-13ca5c43868c" SourceId="1" SourceUrl="http://localhost:8080/ForzarSincronizacionService?xsd=xsd0" />
+    <MetadataFile FileName="ForzarSincronizacionService1.xsd" MetadataType="Schema" ID="dbfe5bdf-3870-42c8-ba6a-6bc134f30214" SourceId="1" SourceUrl="http://localhost:8080/ForzarSincronizacionService?xsd=xsd2" />
+    <MetadataFile FileName="ForzarSincronizacionService2.xsd" MetadataType="Schema" ID="d461d5ce-c432-4673-b2fe-9651ce37c482" SourceId="1" SourceUrl="http://localhost:8080/ForzarSincronizacionService?xsd=xsd1" />
+    <MetadataFile FileName="ForzarSincronizacionService.disco" MetadataType="Disco" ID="a7ba622a-a2fb-4ae3-9872-ba5c780d2894" SourceId="1" SourceUrl="http://localhost:8080/ForzarSincronizacionService?disco" />
+    <MetadataFile FileName="ForzarSincronizacionService.wsdl" MetadataType="Wsdl" ID="f0330ea2-055b-4bbe-b8bc-8e9b0f35fc19" SourceId="1" SourceUrl="http://localhost:8080/ForzarSincronizacionService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

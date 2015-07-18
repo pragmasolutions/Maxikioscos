@@ -1,0 +1,59 @@
+﻿@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Comun.Extensiones;
+@model MaxiKioscos.Web.Models.UsuarioConPasswordOpcionalModel
+@Html.HiddenFor(model => model.Usuario.UsuarioId)
+@Html.HiddenFor(model => model.Usuario.Identifier)
+@Html.HiddenFor(model => model.Usuario.Desincronizado)
+@Html.HiddenFor(model => model.Usuario.Eliminado)
+@Html.HiddenFor(model => model.Usuario.CuentaId)
+
+<div class="col-lg-6">        
+    <div class="form-group">
+        @Html.LabelFor(model => model.Usuario.NombreUsuario)
+        @Html.EditorFor(model => model.Usuario.NombreUsuario)
+        @Html.ValidationMessageFor(model => model.Usuario.NombreUsuario)
+        @Html.ValidationMessage("NombreUsuario")
+        
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Usuario.Apellido)
+        @Html.EditorFor(model => model.Usuario.Apellido)
+        @Html.ValidationMessageFor(model => model.Usuario.Apellido)
+        
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Usuario.Nombre)
+        @Html.EditorFor(model => model.Usuario.Nombre)
+        @Html.ValidationMessageFor(model => model.Usuario.Nombre)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoleId)<br />
+        @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList, new { @data_searchable = "true", @data_placeholder = "Seleccione Rol", @class = "form-dropdown"})
+        @Html.ValidationMessageFor(model => model.RoleId)
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword)
+        @Html.PasswordFor(model => model.ConfirmPassword,  new { @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+   
+    <div class="form-group usuario-proveedor" style="display: none;">
+        @Html.LabelFor(model => model.ProveedoresIds)<br />
+        @Html.MultiSelect("ProveedoresIds", new SelectList(Model.Proveedores, "Value", "Text"), Model.ProveedoresIds, new { @data_multi = "true", @data_sercheable = "true", @data_nonselectedtext = "Seleccione proveedores", @class = "form-dropdown"})<br/>
+        @Html.ValidationMessageFor(model => model.ProveedoresIds)
+    </div>
+</div>
+
+
+<style>
+    .multiselect-search {
+        text-transform: capitalize;
+    }
+</style>

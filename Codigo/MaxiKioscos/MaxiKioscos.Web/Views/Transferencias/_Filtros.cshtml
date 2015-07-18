@@ -1,0 +1,102 @@
+﻿@using MaxiKioscos.Web.Helpers
+@model MaxiKioscos.Web.Models.TransferenciasFiltrosModel
+<div>
+    @using (Ajax.BeginForm("Listado", null,
+                                           new AjaxOptions()
+                                               {
+                                                   UpdateTargetId = "ListadoContainer",
+                                                   HttpMethod = "GET",
+                                                   InsertionMode = InsertionMode.Replace,
+                                                   OnBegin = "maxikioscoSpinner.startSpin",
+                                                   OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                   OnFailure = "maxikioscoSpinner.stopSpin"
+                                               },
+                                           new { @class = "form-inline" }))
+    {
+        <table style="width: 100%;" id="tablaFiltros">
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.OrigenId, new { @class = "label-inline" })
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.OrigenId)
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Nro, new { @class = "label-inline" })
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.TextBoxFor(model => model.Nro,
+                            new
+                            {
+                                @class = "form-control auto-submit-input",
+                                placeholder = "",
+                                @style = "width: 156px;"
+                            })
+                        @if (!IsAjax)
+                        {
+                            <text>
+                                @section scripts
+                                {
+                                    @Html.SetFocusTo(model => model.Nro)
+                                }
+                            </text>
+                        }
+                        else
+                        {
+                            @Html.SetFocusTo(model => model.Nro)
+                        }
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Aprobadas, new { @class = "label-inline" })
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Aprobadas)
+                    </div>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.DestinoId, new { @class = "label-inline" })
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.DestinoId)
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Desde, new { @class = "label-inline" })
+                </td>
+                <td>
+                    <div class="form-group date-container">
+                        @Html.EditorFor(model => model.Desde)
+                    </div>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Hasta, new {@class = "label-inline"})
+                </td>
+                <td>
+                    <div class="form-group date-container">
+                        @Html.EditorFor(model => model.Hasta)
+                    </div>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+
+<style>
+    #tablaFiltros tr td{
+        padding: 4px 1px;
+    }
+</style>

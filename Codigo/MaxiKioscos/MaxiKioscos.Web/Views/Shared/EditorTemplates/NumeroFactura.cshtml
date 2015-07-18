@@ -1,0 +1,13 @@
+﻿@model string
+
+@Html.TextBox("", Model,
+new
+{
+    autocomplete = "off",
+    @class = "form-control typeahead",
+    data_provide = "typeahead",
+    data_url = Url.Action("GetNumeroFacturas", "Compras"),
+    data_get_factura_url = Url.Action("GetFactura", "Compras"),
+    data_display_key = "AutoNumero",
+    data_value_key = "FacturaId"
+})

@@ -1,0 +1,68 @@
+﻿@model MaxiKioscos.Entidades.Proveedor
+@Html.HiddenFor(model => model.ProveedorId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contacto)
+        @Html.DisplayFor(model => model.Contacto)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Direccion)
+        @Html.DisplayFor(model => model.Direccion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocalidadId)
+        @Html.DisplayFor(model => model.Localidad.Descripcion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono)
+        @Html.DisplayFor(model => model.Telefono)
+    </div>
+     <div class="form-group">
+        @Html.LabelFor(model => model.PercepcionDGR)
+        @Html.DisplayFor(model => model.PercepcionDGR)
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoCuitId)
+        @Html.DisplayFor(model => model.TipoCuit.Descripcion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CuitNro)
+        @Html.DisplayFor(model => model.CuitNro)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.DisplayFor(model => model.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaginaWeb)
+        @Html.DisplayFor(model => model.PaginaWeb)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Celular)
+        @Html.DisplayFor(model => model.Celular)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.DisplayFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.DisplayFor(model => model.NoReflejarFacturaEnCaja) @Html.DisplayNameFor(model => model.NoReflejarFacturaEnCaja)
+        </label>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observaciones)
+        @Html.DisplayFor(model => model.Observaciones)
+    </div>
+</div>

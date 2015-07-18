@@ -1,0 +1,45 @@
+﻿@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.ExcepcionesListadoModel
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableMarcas">
+        <thead>
+            <tr>
+                <th>Maxikiosco</th>
+                <th>Cierre Caja</th>
+                <th>Caja Final</th>
+                <th>Caja Esperada</th>
+                <th>Fecha Excepción</th>
+                <th>Importe</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var excepcion in Model.List)
+            {
+                <tr>
+                    <td>@excepcion.CierreCaja.MaxiKiosco.Nombre</td>
+                    <td>@excepcion.CierreCajaDetalle</td>
+                    <td>@(excepcion.CierreCaja.CajaFinal == null ? string.Empty : "$" + excepcion.CierreCaja.CajaFinal.GetValueOrDefault().ToString("N2"))</td>
+                    <td>@(excepcion.CierreCaja.CajaEsperada == null ? string.Empty : "$" + excepcion.CierreCaja.CajaEsperada.GetValueOrDefault().ToString("N2"))</td>
+                    <td>@excepcion.FechaCarga.ToShortDateString()</td>
+                    <td>$@excepcion.Importe.ToString("N2")</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-excepcion-detalle" href="@Url.Action("Detalle", new { id = excepcion.ExcepcionId })"><span class="glyphicon glyphicon-list"></span></a>
+                        <a class="btn btn-default btn-excepcion-editar" href="@Url.Action("Editar", new { id = excepcion.ExcepcionId })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-default btn-excepcion-eliminar" href="@Url.Action("Eliminar", new { id = excepcion.ExcepcionId})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                                                                                                                                 , new AjaxOptions()
+                                                                                                                                                 {
+                                                                                                                                                     UpdateTargetId = "AdminContainer",
+                                                                                                                                                     HttpMethod = "Get",
+                                                                                                                                                     InsertionMode = InsertionMode.Replace,
+                                                                                                                                                     OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                                     OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                                     OnFailure = "maxikioscoSpinner.stopSpin"
+                                                                                                                                                 }))
+</div>

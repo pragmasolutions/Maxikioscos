@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Stock";
+}
+
+@Html.Partial("Listado")
+@Html.Partial("Modales")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-stocks.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-stocks.js")
+}

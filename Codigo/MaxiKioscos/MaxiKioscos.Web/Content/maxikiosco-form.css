@@ -1,0 +1,83 @@
+﻿label.label-inline
+{
+    float: left;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+div#s2id_FacturaId
+{
+    /*height: 34px;*/
+}
+
+div.form-group-date
+{
+    width: 150px;
+}
+
+div.date-container
+{
+    float: left;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+div.spacer
+{
+    height: 10px;
+}
+
+.datepicker
+{
+    z-index: 1151 !important;
+}
+
+fieldset.group
+{
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1.25em;
+    padding: .125em;
+    border: 1px #000 solid;
+}
+
+    fieldset.group legend
+    {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 100%;
+        color: black;
+        border: none;
+        width: auto;
+    }
+
+
+a.btn-eliminar-codigo
+{
+    margin-top: 18px !important;
+}
+
+input.input-large
+{
+    width: 300px !important;
+}
+
+div.input-group-currency
+{
+    width: 200px;
+}
+
+div.input-group-currency input.autonumeric {
+    text-align: right;
+}
+
+div.input-group-small input{
+    width: 200px !important;
+}
+
+
+.select2-container a.select2-choice {
+    /*overflow: visible;*/
+}

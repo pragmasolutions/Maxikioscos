@@ -1,0 +1,7 @@
+﻿@model MaxiKioscos.Entidades.MaxiKioscoTurno
+<li class="list-group-item">
+    @using (Html.BeginCollectionItem("MaxiKioscoTurnos"))
+    {
+        @Html.Partial("_Turno", Model)
+    }
+</li>

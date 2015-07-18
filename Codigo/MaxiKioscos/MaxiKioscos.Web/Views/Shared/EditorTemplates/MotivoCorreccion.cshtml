@@ -1,0 +1,14 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.MotivosCorreccion.Listado()
+                               .Where(mc => mc.MostrarEnDropdown)
+                               .OrderBy(r => r.Descripcion)
+                               .ToSelectListItem(Model, c => c.MotivoCorreccionId, c => c.Descripcion,
+                               c => c.MotivoCorreccionId.ToString());
+}
+@Html.DropDownList("", selectList,"Seleccione un Motivo", new { @data_placeholder = "Seleccione Motivo", @class = "form-dropdown", style = "height: 34px" })

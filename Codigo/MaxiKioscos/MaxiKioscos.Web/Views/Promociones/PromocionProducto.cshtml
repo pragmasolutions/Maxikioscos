@@ -1,0 +1,16 @@
+﻿@model MaxiKioscos.Entidades.ProductoPromocion
+<tr>
+    @using (Html.BeginCollectionItem("PromocionesHijos"))
+    {
+        <td>
+            @Html.HiddenFor(model => model.ProductoPromocionId)
+            @Html.HiddenFor(model => model.Identifier)
+            @Html.HiddenFor(model => model.PadreId)
+            @Html.HiddenFor(model => model.Eliminado)
+            @Html.EditorFor(model => model.Unidades)
+        </td>
+        <td>@Html.EditorFor(model => model.HijoId)</td>
+        
+        <td><a class="btn btn-default btn-eliminar-promocion" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+    }
+</tr>

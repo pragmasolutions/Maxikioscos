@@ -1,0 +1,95 @@
+﻿.table tbody tr.highlight td {
+    background-color: #2A6496;
+    color: white;
+}
+
+.table tbody > tr > td {
+    vertical-align: middle;
+}
+
+/*td.total-compra-footer,.total-compra-label {
+    font-weight: bold;
+    font-size: 1.3em;
+}*/
+
+.total-footer, .total-footer-label {
+    font-weight: bold;
+}
+
+tr.factura-tiene-compra td {
+    background-color: #7AB47C !important;
+    color: white !important;
+}
+
+#CostosList tr td div.input-group.input-group-currency {
+    width: 120px;
+}col-codigo
+
+.width-5 {
+    width: 5%;
+}
+
+.width-10 {
+    width: 10%;
+}
+
+.width-15 {
+    width: 15%;
+}
+
+.width-20 {
+    width: 20%;
+}
+
+.width-25 {
+    width: 25%;
+}
+
+.width-30 {
+    width: 30%;
+}
+
+.width-35 {
+    width: 35%;
+}
+
+.width-40 {
+    width: 40%;
+}
+
+.width-45 {
+    width: 45%;
+}
+
+.width-50 {
+    width: 50%;
+}
+.width-60 {
+    width: 60%;
+}
+
+/* Compras */
+
+.compra-percepcion-dgr-footer .checkbox,
+.compra-percepcion-iva-footer .checkbox {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+    .compra-percepcion-dgr-footer .checkbox input[type=checkbox],
+    .compra-percepcion-iva-footer .checkbox input[type=checkbox] {
+        margin-top: 10px;
+    }
+
+td.compra-percepcion-dgr-footer div.input-group-currency,
+td.compra-percepcion-iva-footer div.input-group-currency {
+    width: 120px;
+}
+
+tbody tr td.col-codigo {
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 120px;
+}

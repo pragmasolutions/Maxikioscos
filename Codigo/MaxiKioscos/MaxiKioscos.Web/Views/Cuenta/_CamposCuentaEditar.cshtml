@@ -1,0 +1,62 @@
+﻿@model MaxiKioscos.Entidades.Cuenta
+@Html.HiddenFor(model => model.CuentaId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.CuentaId)
+@Html.HiddenFor(model => model.Titular)
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.MargenImporteFactura)
+        @Html.EditorFor(model => model.MargenImporteFactura)
+        @Html.ValidationMessageFor(model => model.MargenImporteFactura)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PorcentajePercepcionIVA)
+        @Html.EditorFor(model => model.PorcentajePercepcionIVA)
+        @Html.ValidationMessageFor(model => model.PorcentajePercepcionIVA)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AplicarPercepcionIVADesde)
+        @Html.EditorFor(model => model.AplicarPercepcionIVADesde)
+        @Html.ValidationMessageFor(model => model.AplicarPercepcionIVADesde)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SincronizarAutomaticamente)
+        @Html.EditorFor(model => model.SincronizarAutomaticamente)
+        @Html.ValidationMessageFor(model => model.SincronizarAutomaticamente)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IntervaloSincronizacion)
+        @Html.EditorFor(model => model.IntervaloSincronizacion)
+        @Html.ValidationMessageFor(model => model.IntervaloSincronizacion)
+    </div>
+</div>
+
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.MargenInferiorCierreCajaAceptable)
+        @Html.EditorFor(model => model.MargenInferiorCierreCajaAceptable)
+        @Html.ValidationMessageFor(model => model.MargenInferiorCierreCajaAceptable)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MargenSuperiorCierreCajaAceptable)
+        @Html.EditorFor(model => model.MargenSuperiorCierreCajaAceptable)
+        @Html.ValidationMessageFor(model => model.MargenSuperiorCierreCajaAceptable)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaxiKioscoIdentifierPredeterminadoTransferencias)
+        @Html.EditorFor(model => model.MaxiKioscoIdentifierPredeterminadoTransferencias)
+        @Html.ValidationMessageFor(model => model.MaxiKioscoIdentifierPredeterminadoTransferencias)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MotivoCorreccionPorDefecto)
+        @Html.EditorFor(model => model.MotivoCorreccionPorDefecto)
+        @Html.ValidationMessageFor(model => model.MotivoCorreccionPorDefecto)
+    </div>
+</div>
+
+
+

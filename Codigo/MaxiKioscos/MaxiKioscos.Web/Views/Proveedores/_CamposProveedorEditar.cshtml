@@ -1,0 +1,82 @@
+﻿@model MaxiKioscos.Entidades.Proveedor
+@Html.HiddenFor(model => model.ProveedorId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.EditorFor(model => model.Nombre)
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contacto)
+        @Html.EditorFor(model => model.Contacto)
+        @Html.ValidationMessageFor(model => model.Contacto)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Direccion)
+        @Html.EditorFor(model => model.Direccion)
+        @Html.ValidationMessageFor(model => model.Direccion)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocalidadId)
+        @Html.EditorFor(model => model.LocalidadId)
+        @Html.ValidationMessageFor(model => model.LocalidadId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telefono)
+        @Html.EditorFor(model => model.Telefono)
+        @Html.ValidationMessageFor(model => model.Telefono)
+    </div>
+     <div class="form-group">
+        @Html.LabelFor(model => model.PercepcionDGR)
+        @Html.EditorFor(model => model.PercepcionDGR)
+        @Html.ValidationMessageFor(model => model.PercepcionDGR)
+    </div>
+</div>
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoCuitId)
+        @Html.EditorFor(model => model.TipoCuitId)
+        @Html.ValidationMessageFor(model => model.TipoCuitId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CuitNro)
+        @Html.EditorFor(model => model.CuitNro)
+        @Html.ValidationMessageFor(model => model.CuitNro)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaginaWeb)
+        @Html.EditorFor(model => model.PaginaWeb)
+        @Html.ValidationMessageFor(model => model.PaginaWeb)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Celular)
+        @Html.EditorFor(model => model.Celular)
+        @Html.ValidationMessageFor(model => model.Celular)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
+        </label>
+        @Html.ValidationMessageFor(model => model.AplicaPercepcionIVA)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(model => model.NoReflejarFacturaEnCaja) @Html.DisplayNameFor(model => model.NoReflejarFacturaEnCaja)
+        </label>
+        @Html.ValidationMessageFor(model => model.NoReflejarFacturaEnCaja)
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observaciones)
+        @Html.EditorFor(model => model.Observaciones)
+        @Html.ValidationMessageFor(model => model.Observaciones)
+    </div>
+</div>

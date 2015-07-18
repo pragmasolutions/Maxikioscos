@@ -1,0 +1,12 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model Guid?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var maxikisco = uow.MaxiKioscos.Obtener(m => m.Identifier == Model);
+    var maxikioscoNombre = maxikisco != null ? maxikisco.Nombre : string.Empty;
+}
+@Html.TextBox("", maxikioscoNombre, new { @class = "form-control", @readonly = true })

@@ -1,0 +1,1361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FF1E4DA-9DB0-479B-8555-2640B23A0521}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MaxiKioscos.Winforms</RootNamespace>
+    <AssemblyName>MaxiKioscos.Winforms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\juanrossiq\Desktop\maxikioscos.desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://ganciokioscos-001-site1.smarterasp.net/Installer/</InstallUrl>
+    <UpdateUrl>http://ganciokioscos-001-site1.smarterasp.net/Installer/</UpdateUrl>
+    <MinimumRequiredVersion>1.1.0.16</MinimumRequiredVersion>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MaxiKioscos.Winforms.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E82715AC2A989750246679BA794888BDE83E7543</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MaxiKioscos.Winforms_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>m.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DESNEA.UI.Controles.Grilla.Buscar">
+      <HintPath>App\Referencias\DESNEA.UI.Controles.Grilla.Buscar.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MdiTabStrip">
+      <HintPath>App\Referencias\MdiTabStrip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2012.2.912.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias Comunes\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2012.2.912.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias Comunes\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2012.2.912.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikCommon, Version=2012.2.912.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="ToolBar">
+      <HintPath>App\Referencias\ToolBar.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CierreCajas\CierreCajaDetalleCompleto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreCajas\CierreCajaDetalleCompleto.Designer.cs">
+      <DependentUpon>CierreCajaDetalleCompleto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CierreCajas\CierreCajaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreCajas\CierreCajaDetalle.Designer.cs">
+      <DependentUpon>CierreCajaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CierreCajas\CerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreCajas\CerrarCaja.Designer.cs">
+      <DependentUpon>CerrarCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CierreCajas\CierreCajaActual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreCajas\CierreCajaActual.Designer.cs">
+      <DependentUpon>CierreCajaActual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\DataGridViewDisableButtonCell.cs" />
+    <Compile Include="Clases\DataGridViewDisableButtonColumn.cs" />
+    <Compile Include="Clases\Filtros.cs" />
+    <Compile Include="Clases\Mensajes.cs" />
+    <Compile Include="Clases\Setting.cs" />
+    <Compile Include="Configuracion\EventosFlags.cs" />
+    <Compile Include="Configuracion\frmConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion\frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\frmSeleccionarMaxikiosco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuracion\frmSeleccionarMaxikiosco.Designer.cs">
+      <DependentUpon>frmSeleccionarMaxikiosco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\UsuarioActual.cs" />
+    <Compile Include="Configuracion\AppSettings.cs" />
+    <Compile Include="Configuracion\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlStock\DTO\ControlStockDTO.cs" />
+    <Compile Include="ControlStock\frmControlStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlStock\frmControlStock.Designer.cs">
+      <DependentUpon>frmControlStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlStock\frmCrearControlStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlStock\frmCrearControlStock.Designer.cs">
+      <DependentUpon>frmCrearControlStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlStock\frmDetalleControlStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlStock\frmDetalleControlStock.Designer.cs">
+      <DependentUpon>frmDetalleControlStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlStock\frmImprimirPlanilla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlStock\frmImprimirPlanilla.Designer.cs">
+      <DependentUpon>frmImprimirPlanilla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmDetalleCorreccionStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmDetalleCorreccionStock.Designer.cs">
+      <DependentUpon>frmDetalleCorreccionStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmEditarCorreccionStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmEditarCorreccionStock.Designer.cs">
+      <DependentUpon>frmEditarCorreccionStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmGestionCorreccionStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CorreccionesStock\frmGestionCorreccionStock.Designer.cs">
+      <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataStruct\ArchivoPrincipalStruct.cs" />
+    <Compile Include="DataStruct\ControlStockDetalleGridStruct.cs" />
+    <Compile Include="DataStruct\MaxiKioscoGridStruct.cs" />
+    <Compile Include="DataStruct\ProductoGridStruct.cs" />
+    <Compile Include="DataStruct\VentaGridStruct.cs" />
+    <Compile Include="Excepciones\frmABMExcepciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Excepciones\frmABMExcepciones.Designer.cs">
+      <DependentUpon>frmABMExcepciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Excepciones\frmDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Excepciones\frmDetalle.Designer.cs">
+      <DependentUpon>frmDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Excepciones\frmGestionExcepciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Excepciones\frmGestionExcepciones.Designer.cs">
+      <DependentUpon>frmGestionExcepciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exportacion\frmExportar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exportacion\frmExportar.Designer.cs">
+      <DependentUpon>frmExportar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exportacion\frmSincronizacionFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exportacion\frmSincronizacionFeedback.Designer.cs">
+      <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ActualizacionPantallasHelper.cs" />
+    <Compile Include="Helpers\SeguridadHelper.cs" />
+    <Compile Include="Interfaces\IBuscadorParent.cs" />
+    <Compile Include="OperacionesCaja\OperacionCajaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesCaja\OperacionCajaDetalle.Designer.cs">
+      <DependentUpon>OperacionCajaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesCaja\OperacionCajaEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesCaja\OperacionCajaEditar.Designer.cs">
+      <DependentUpon>OperacionCajaEditar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesCaja\OperacionCajaEliminar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesCaja\OperacionCajaEliminar.Designer.cs">
+      <DependentUpon>OperacionCajaEliminar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal\abxAcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal\abxAcercaDe.designer.cs">
+      <DependentUpon>abxAcercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmBuscador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmBuscador.Designer.cs">
+      <DependentUpon>frmBuscador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmCrearProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmCrearProducto.Designer.cs">
+      <DependentUpon>frmCrearProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmEditarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmEditarProducto.Designer.cs">
+      <DependentUpon>frmEditarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmDetalleEliminarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmDetalleEliminarProducto.Designer.cs">
+      <DependentUpon>frmDetalleEliminarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas\frmEditarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturas\frmEditarFactura.Designer.cs">
+      <DependentUpon>frmEditarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas\frmDetalleEliminarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturas\frmDetalleEliminarFactura.Designer.cs">
+      <DependentUpon>frmDetalleEliminarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas\frmGestionFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturas\frmGestionFacturas.Designer.cs">
+      <DependentUpon>frmGestionFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\ApplicationModule.cs" />
+    <Compile Include="IoC\CompositionRoot.cs" />
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmProductos.Designer.cs">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas\frmDetalleMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marcas\frmDetalleMarca.Designer.cs">
+      <DependentUpon>frmDetalleMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marcas\frmGestionMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marcas\frmGestionMarcas.Designer.cs">
+      <DependentUpon>frmGestionMarcas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\MembershipProvider.cs" />
+    <Compile Include="CierreCajas\CajaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreCajas\CajaInicial.Designer.cs">
+      <DependentUpon>CajaInicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\Modulos\CrearCodigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\Modulos\CrearCodigo.Designer.cs">
+      <DependentUpon>CrearCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarCosto.Designer.cs">
+      <DependentUpon>IngresarCosto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportarError\frmReportarError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportarError\frmReportarError.Designer.cs">
+      <DependentUpon>frmReportarError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmBuscadorProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmBuscadorProveedor.Designer.cs">
+      <DependentUpon>frmBuscadorProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmReponerStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReponerStock.Designer.cs">
+      <DependentUpon>frmReponerStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\NotificationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SincronizationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Sincronizacion\IForzarSincronizacionHandler.cs" />
+    <Compile Include="Sincronizacion\ISincronizacionManager.cs" />
+    <Compile Include="Sincronizacion\ForzarSincronizacionHandler.cs" />
+    <Compile Include="Sincronizacion\SincronizacionManager.cs" />
+    <Compile Include="Usuarios\frmCambiarPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\frmCambiarPassword.Designer.cs">
+      <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmConfirmarVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmConfirmarVenta.Designer.cs">
+      <DependentUpon>frmConfirmarVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmDetalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmDetalleVenta.Designer.cs">
+      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarPrecioCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarPrecioCosto.Designer.cs">
+      <DependentUpon>IngresarPrecioCosto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal\mdiPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal\mdiPrincipal.Designer.cs">
+      <DependentUpon>mdiPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\Modulos\BuscadorCompleto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\Modulos\BuscadorCompleto.Designer.cs">
+      <DependentUpon>BuscadorCompleto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\frmAMCodigoProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\frmAMCodigoProducto.Designer.cs">
+      <DependentUpon>frmAMCodigoProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\IngresoProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compras\IngresoProductos.Designer.cs">
+      <DependentUpon>IngresoProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarUnidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Productos\Modulos\IngresarUnidades.Designer.cs">
+      <DependentUpon>IngresarUnidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rubros\frmDetalleRubro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rubros\frmDetalleRubro.Designer.cs">
+      <DependentUpon>frmDetalleRubro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedores\frmDetalleProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedores\frmDetalleProveedor.Designer.cs">
+      <DependentUpon>frmDetalleProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedores\frmProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedores\frmProveedores.Designer.cs">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rubros\frmGestionRubros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rubros\frmGestionRubros.Designer.cs">
+      <DependentUpon>frmGestionRubros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\ConfirmationForm.Designer.cs">
+      <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmModificarCantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmModificarCantidad.Designer.cs">
+      <DependentUpon>frmModificarCantidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\Ventas.Designer.cs">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </Compile>
+    <Content Include="SqlScripts\10-Sync_ControlesStockDetalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\11-Sync_CorreccionesStock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\12-Sync_Cuentas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\13-Sync_Excepciones.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\14-Sync_ExcepcionesRubros.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\15-Sync_Facturas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\16-Sync_Marcas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\17-Sync_MaxiKioscos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\18-Sync_MaxiKioscosTurnos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\19-Sync_Membership.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\79-Sync_ProductoPromociones.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\86-ControlStock_1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\87-ControlStock_2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\88-ControlStock_3.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\89-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\92-Exportacion_NuevoXmlKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\91-Factura_ObtenerAbiertasPorUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\90-Sync_ControlesStock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\85-ControlStock_VistaPrevia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\84-Proveedor_ObtenerRubros.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\83-CierreCaja_Detalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\82-Sync_Productos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\81-Producto_ObtenerProductoPorCodigo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\80-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\78-Producto_MarcaNULL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\20-Sync_OperacionesCaja.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\21-Sync_Productos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\22-Sync_Proveedores.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\23-Sync_ProveedorProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\24-Sync_RecuentoBilletes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\25-Sync_Rubros.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\26-Sync_Stock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\27-Sync_StockTransacciones.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\28-Sync_UsuarioMaxiKioscos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\29-Sync_UsuarioProveedores.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\3-Sincronizacion_ActualizarPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\30-Sync_Usuarios.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\31-Sync_UsuariosRoles.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\32-Sync_Ventas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\33-Sync_VentasProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\47-TransferenciaProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\46-Sync_Cuentas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\45-Cuenta_MaxiKioscoIdentifierPredeterminadoTransferencias.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\44-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\43-StockTransaccionTipo_Transferencia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\42-TransferenciaProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\41-Transferencia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\40-Sync_ProveedorProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\39-ProveedorProducto_FechaUltimoCambioCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\38-Sync_Facturas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\37-Exportacion_NuevoXmlKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\36-Exportacion_NuevoXmlPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\4-Stock_Actualizar.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\48-EliminarTablaUsuarioMaxikioscos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\49-Exportacion_NuevoXmlPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\5-Sync_CierresCaja.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\50-Exportacion_PuedeExportarPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\51-Exportacion_Resetear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\52-Usuario_InsertarDependencias.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\53-Drop-Sync_UsuarioMaxiKioscos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\77-SyncProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\76-Producto_EsPromocion_NotNull.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\75-Producto_EsPromocion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\74-PromocionProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\73-Sync_Cuentas.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\72-Cuenta_SyncAutomatica.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\71-Funcion_UltimosCostos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\58-Maxikioscos_UltimaSincExitosa.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\57-Transferencia_Detalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\56-Funcion_UltimosCostos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\55-Transferencia_StockOrigenDestino.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\54-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\6-Sync_CodigosProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\59-Rpt_VentasPorProducto_TotalGeneral.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\60-Rpt_CierresDeCajaDetalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\61-Rpt_ComprasPorProveedor.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\62-Rpt_ComprasPorProveedorTop5.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\63-Rpt_TransferenciaPorProducto_TotalGeneral.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\70-UltimoCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\69-TransferenciaDetalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\68-UltimoCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\67-TransferenciaProducto_UpdateCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\66-TransferenciaProducto_Orden.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\65-Sincronizacion_ActualizarPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\64-Rpt_TransferenciaPorProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\7-Sync_Compras.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\8-Sync_ComprasProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\9-Sync_ControlesStock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\34-Borrar_AlertaStock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\35-Producto_ListadoCompleto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="CierreCajas\CierreCajaDetalleCompleto.resx">
+      <DependentUpon>CierreCajaDetalleCompleto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CierreCajas\CierreCajaDetalle.resx">
+      <DependentUpon>CierreCajaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CierreCajas\CerrarCaja.resx">
+      <DependentUpon>CerrarCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CierreCajas\CierreCajaActual.resx">
+      <DependentUpon>CierreCajaActual.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\frmSeleccionarMaxikiosco.resx">
+      <DependentUpon>frmSeleccionarMaxikiosco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStock\frmControlStock.resx">
+      <DependentUpon>frmControlStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStock\frmCrearControlStock.resx">
+      <DependentUpon>frmCrearControlStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStock\frmDetalleControlStock.resx">
+      <DependentUpon>frmDetalleControlStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStock\frmImprimirPlanilla.resx">
+      <DependentUpon>frmImprimirPlanilla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorreccionesStock\frmDetalleCorreccionStock.resx">
+      <DependentUpon>frmDetalleCorreccionStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorreccionesStock\frmEditarCorreccionStock.resx">
+      <DependentUpon>frmEditarCorreccionStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorreccionesStock\frmGestionCorreccionStock.resx">
+      <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Excepciones\frmABMExcepciones.resx">
+      <DependentUpon>frmABMExcepciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Excepciones\frmDetalle.resx">
+      <DependentUpon>frmDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Excepciones\frmGestionExcepciones.resx">
+      <DependentUpon>frmGestionExcepciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exportacion\frmExportar.resx">
+      <DependentUpon>frmExportar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exportacion\frmSincronizacionFeedback.resx">
+      <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesCaja\OperacionCajaDetalle.resx">
+      <DependentUpon>OperacionCajaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesCaja\OperacionCajaEditar.resx">
+      <DependentUpon>OperacionCajaEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesCaja\OperacionCajaEliminar.resx">
+      <DependentUpon>OperacionCajaEliminar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal\abxAcercaDe.resx">
+      <DependentUpon>abxAcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmBuscador.resx">
+      <DependentUpon>frmBuscador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmCrearProducto.resx">
+      <DependentUpon>frmCrearProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmEditarProducto.resx">
+      <DependentUpon>frmEditarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmDetalleEliminarProducto.resx">
+      <DependentUpon>frmDetalleEliminarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\frmEditarFactura.resx">
+      <DependentUpon>frmEditarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\frmDetalleEliminarFactura.resx">
+      <DependentUpon>frmDetalleEliminarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\frmGestionFacturas.resx">
+      <DependentUpon>frmGestionFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmProductos.resx">
+      <DependentUpon>frmProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marcas\frmDetalleMarca.resx">
+      <DependentUpon>frmDetalleMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marcas\frmGestionMarcas.resx">
+      <DependentUpon>frmGestionMarcas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CierreCajas\CajaInicial.resx">
+      <DependentUpon>CajaInicial.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\Modulos\CrearCodigo.resx">
+      <DependentUpon>CrearCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\Modulos\IngresarCosto.resx">
+      <DependentUpon>IngresarCosto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportarError\frmReportarError.resx">
+      <DependentUpon>frmReportarError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frmBuscadorProveedor.resx">
+      <DependentUpon>frmBuscadorProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frmReponerStock.resx">
+      <DependentUpon>frmReponerStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\frmCambiarPassword.resx">
+      <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmConfirmarVenta.resx">
+      <DependentUpon>frmConfirmarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmDetalleVenta.resx">
+      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\Modulos\IngresarPrecioCosto.resx">
+      <DependentUpon>IngresarPrecioCosto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal\mdiPrincipal.resx">
+      <DependentUpon>mdiPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\Modulos\BuscadorCompleto.resx">
+      <DependentUpon>BuscadorCompleto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\frmAMCodigoProducto.resx">
+      <DependentUpon>frmAMCodigoProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compras\IngresoProductos.resx">
+      <DependentUpon>IngresoProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos\Modulos\IngresarUnidades.resx">
+      <DependentUpon>IngresarUnidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Rubros\frmDetalleRubro.resx">
+      <DependentUpon>frmDetalleRubro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedores\frmDetalleProveedor.resx">
+      <DependentUpon>frmDetalleProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedores\frmProveedores.resx">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rubros\frmGestionRubros.resx">
+      <DependentUpon>frmGestionRubros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ConfirmationForm.resx">
+      <DependentUpon>ConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmModificarCantidad.resx">
+      <DependentUpon>frmModificarCantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\Ventas.resx">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.CodigoProducto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.CompraProducto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ControlStock.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ControlStockDetalle.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Excepcion.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ExcepcionMetadata.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ExcepcionRubro.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Marca.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.OperacionCaja.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Producto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ProductoCompleto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ProductoHorario.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Proveedor.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.ProveedorProducto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Rubro.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.RubroCompleto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.Venta.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Entidades.VentaProducto.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Services.Contracts.ObtenerDatosResponse.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.ProductoGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.VentaGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.ControlStockDetalleGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoStruct.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="RDLS\CierreCajaDetalle.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RDLS\ControlStock.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RDLS\ReponerStock.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="RDLS\ControlStockVistaPrevia.rdl" />
+    <None Include="Service References\NotificationService\NotificacionService.wsdl" />
+    <None Include="Service References\NotificationService\NotificacionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NotificationService\NotificacionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NotificationService\NotificacionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SincronizationService\MaxiKioscos.Winforms.SincronizationService.ActualizarDatosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SincronizationService\MaxiKioscos.Winforms.SincronizationService.InicializarKioscoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SincronizationService\MaxiKioscos.Winforms.SincronizationService.KioscoAsignadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SincronizationService\MaxiKioscos.Winforms.SincronizationService.ObtenerDatosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SincronizationService\MaxiKioscos.Winforms.SincronizationService.ObtenerDatosSecuencialResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SincronizationService\SincronizacionService.wsdl" />
+    <None Include="Service References\SincronizationService\SincronizacionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SincronizationService\SincronizacionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SincronizationService\SincronizacionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaxiKiosco.Seguridad.WebSecurity\MaxiKiosco.Seguridad.WebSecurity.csproj">
+      <Project>{68110E34-C47A-4299-B9FD-388EF354C434}</Project>
+      <Name>MaxiKiosco.Seguridad.WebSecurity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maxikioscos.Comun\Maxikioscos.Comun.csproj">
+      <Project>{a0460b78-fcaf-49f7-aec1-8856c3f65ad3}</Project>
+      <Name>Maxikioscos.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Datos\MaxiKioscos.Datos.csproj">
+      <Project>{fa0797c2-b5e3-4d5e-a401-a7d6ea896293}</Project>
+      <Name>MaxiKioscos.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Entidades\MaxiKioscos.Entidades.csproj">
+      <Project>{28b83eab-becf-46b3-908f-b787bd10d367}</Project>
+      <Name>MaxiKioscos.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Seguridad\MaxiKioscos.Seguridad.csproj">
+      <Project>{4CFF7C06-39A8-42B2-933E-9114746C2148}</Project>
+      <Name>MaxiKioscos.Seguridad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\MaxiKiosco.Win.Util.csproj">
+      <Project>{ea2fb179-2c13-45c6-882d-a9c61b442cc4}</Project>
+      <Name>MaxiKiosco.Win.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Host\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="m.ico" />
+    <None Include="Service References\NotificationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\NotificationService\configuration.svcinfo" />
+    <None Include="Service References\NotificationService\configuration91.svcinfo" />
+    <None Include="Service References\NotificationService\NotificacionService.disco" />
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\correcto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenCircle.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_actualizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_Buscar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_Imprimir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_modificar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedCircle.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\aceptar.png" />
+    <Content Include="Resources\add.ico" />
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\ajax-loader.gif" />
+    <Content Include="Resources\blue-folder.png" />
+    <Content Include="Resources\Caja.png" />
+    <Content Include="Resources\cancelar.png" />
+    <Content Include="Resources\cash.png" />
+    <Content Include="Resources\control-stock.png" />
+    <Content Include="Resources\delete_icon.ico" />
+    <Content Include="Resources\details_icon.ico" />
+    <Content Include="Resources\eye.ico" />
+    <Content Include="Resources\m.ico" />
+    <Content Include="Resources\ico_edit.ico" />
+    <Content Include="Resources\lupa_chica.png" />
+    <Content Include="Resources\print_icon.ico" />
+    <Content Include="Resources\productos.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\refresh_small.png" />
+    <None Include="Service References\SincronizationService\SincronizacionService.disco" />
+    <None Include="Service References\SincronizationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SincronizationService\configuration.svcinfo" />
+    <None Include="Service References\SincronizationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\NotificationService\" />
+    <WCFMetadataStorage Include="Service References\SincronizationService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="MaxiKioscos.Winforms.pdb">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.AspNet.SignalR.Client">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.Web.Infrastructure">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Newtonsoft.Json">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.Helpers">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.Mvc">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.Razor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages.Deployment">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="System.Web.WebPages.Razor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.Themes.Windows7">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.UI">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="TelerikCommon">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="WebMatrix.Data">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="WebMatrix.WebData">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

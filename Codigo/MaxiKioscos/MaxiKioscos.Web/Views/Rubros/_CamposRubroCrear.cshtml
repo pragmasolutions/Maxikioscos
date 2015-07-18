@@ -1,0 +1,22 @@
+﻿@model MaxiKioscos.Entidades.Rubro
+@Html.HiddenFor(model => model.RubroId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.CuentaId)
+
+<div class="col-lg-6">        
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        @Html.EditorFor(model => model.Descripcion)
+        @Html.ValidationMessageFor(model => model.Descripcion)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoFacturar) <br/>
+        @Html.EditorFor(model => model.NoFacturar)
+        @Html.ValidationMessageFor(model => model.NoFacturar)
+    </div>
+</div>
+
+

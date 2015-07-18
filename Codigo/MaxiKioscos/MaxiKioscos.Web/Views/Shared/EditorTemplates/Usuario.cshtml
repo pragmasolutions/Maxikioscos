@@ -1,0 +1,16 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.Usuarios.Listado()
+                               .Where(u => u.CuentaId == UsuarioActual.CuentaId)
+                               .OrderBy(u => u.NombreUsuario)
+                               .ToSelectListItem(Model, u => u.UsuarioId, u => u.NombreUsuario,
+                               u => u.UsuarioId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione Usuario", new { @class = "form-control" })

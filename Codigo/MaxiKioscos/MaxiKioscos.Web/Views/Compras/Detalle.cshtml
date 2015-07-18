@@ -1,0 +1,15 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Compra
+<div id="ComprasModal" class="modal fade" role="dialog" aria-labelledby="ComprasModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @Html.PopupTitulo("Detalle Compra")
+                <div class="modal-body">
+                    @{Html.RenderPartial("_CamposCompraDetalle"); }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+                </div>
+        </div>
+    </div>
+</div>

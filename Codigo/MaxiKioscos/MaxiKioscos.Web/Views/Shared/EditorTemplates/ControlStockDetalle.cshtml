@@ -1,0 +1,47 @@
+﻿@model MaxiKioscos.Entidades.ControlStockDetalle
+
+<tr data-id="@Model.ControlStockDetalleId">
+    <td><a data-productoid="@Model.Stock.ProductoId" class="btn-producto" href="#">@Model.Stock.Producto.Descripcion</a></td>
+    <td>@Model.Cantidad.ToString("G29")</td>
+    <td>@(Model.Correccion == null ? string.Empty : Model.Correccion.GetValueOrDefault().ToString("G29")) </td>
+    <td>@Model.MotivoCorreccionNombre</td>
+    <td class="text-center">
+        @if (!Model.ControlStock.Cerrado)
+        {
+            if (Model.HabilitadoParaCorregir)
+            {
+                <text>
+                    <a class="btn btn-default btn-controlStockDetalle-editar" href="@Url.Action("Corregir", "ControlStockDetalle", new { id = Model.ControlStockDetalleId })"
+                        data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin" 
+                        data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin" 
+                        data-ajax-update="#AdminContainer"><span class="glyphicon glyphicon-edit"></span></a>
+                            
+                    <a class="btn btn-default btn-controlStockDetalle-eliminar" href="#" style="display: none;" data-id="@Model.ControlStockDetalleId"><span class="glyphicon glyphicon-trash"></span></a>
+                </text>
+            }
+            else
+            {
+                <text>
+                    Ir a <a href="@Url.Action("Detalle", "ControlStock", new { id = Model.ControlStockPrevioId })"
+                        data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin" 
+                        data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin" 
+                        data-ajax-update="#AdminContainer">@Model.ControlStockPrevio.NroControlFormateado</a>
+                </text>
+            }
+            
+        }
+        @Html.HiddenFor(model => model.Cantidad)
+        @Html.HiddenFor(model => model.ControlStockDetalleId)
+        @Html.HiddenFor(model => model.ControlStockId)
+        @Html.HiddenFor(model => model.Correccion)
+        @Html.HiddenFor(model => model.Desincronizado)
+        @Html.HiddenFor(model => model.Eliminado)
+        @Html.HiddenFor(model => model.FechaUltimaModificacion)
+        @Html.HiddenFor(model => model.HabilitadoParaCorregir)
+        @Html.HiddenFor(model => model.Identifier)
+        @Html.HiddenFor(model => model.MotivoCorreccionId)
+        @Html.HiddenFor(model => model.Precio)
+        @Html.HiddenFor(model => model.StockId)
+        @Html.HiddenFor(model => model.ControlStockPrevioId)
+    </td>
+</tr>

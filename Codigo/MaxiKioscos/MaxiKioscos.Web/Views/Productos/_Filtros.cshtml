@@ -1,0 +1,59 @@
+﻿@using MaxiKioscos.Web.Helpers
+@model MaxiKioscos.Web.Models.ProductosFiltrosModel
+<div>
+    @using (Ajax.BeginForm("Listado", null,
+                           new AjaxOptions()
+                               {
+                                   UpdateTargetId = "ListadoContainer",
+                                   HttpMethod = "GET",
+                                   InsertionMode = InsertionMode.Replace,
+                                   OnBegin = "maxikioscoSpinner.startSpin",
+                                   OnSuccess = "maxikioscoSpinner.stopSpin",
+                                   OnFailure = "maxikioscoSpinner.stopSpin"
+                               },
+                           new { id = "FormularioFiltrosProductos" }))
+    {
+        <div class="row">
+            @Html.HiddenFor(model => model.CurrentRowId)
+            @Html.HiddenFor(model => model.Page)
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Descripcion,
+                                 new
+                                     {
+                                         @class = "form-control auto-submit-input",
+                                         placeholder = "Descripción"
+                                     })
+                
+                
+            </div>
+
+            <div class="form-group col-sm-4">
+                @Html.EditorFor(model => model.RubroId)
+            </div>
+
+            <div class="form-group col-sm-4">
+                @Html.EditorFor(model => model.MarcaId)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Codigo,
+                                 new
+                                     {
+                                         @class = "form-control auto-submit-input",
+                                         placeholder = "Código"
+                                     })
+            </div>
+
+            <div class="form-group col-sm-4">
+                @Html.EditorFor(model => model.ProveedorId)
+            </div>
+            
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+            </div>
+
+        </div>
+    }
+</div>

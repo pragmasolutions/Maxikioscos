@@ -1,0 +1,22 @@
+﻿@using MaxiKioscos.Web.Helpers
+@model MaxiKioscos.Web.Models.RubrosFiltrosModel
+<div>
+   @using (Ajax.BeginForm("Index", null,
+                                new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    },
+                                new { @class = "form-inline" , id = "FrmActualizarStock"}))
+    {
+        <div class="form-group">
+            @Html.EditorFor(model => model.Descripcion)
+            </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Buscar</button>
+    }
+</div>
+<div class="spacer"></div>

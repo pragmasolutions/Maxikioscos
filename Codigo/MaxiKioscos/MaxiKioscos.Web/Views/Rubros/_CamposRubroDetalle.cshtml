@@ -1,0 +1,24 @@
+﻿@model MaxiKioscos.Entidades.Rubro
+@Html.HiddenFor(model => model.RubroId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.CuentaId)
+
+<div class="col-lg-6">        
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        @Html.DisplayFor(model => model.Descripcion)
+        
+        <br/>
+        @Html.ValidationMessage("ProductosAsociados")
+    </div>
+    <div class="form-group">
+        @Html.Label("Facturar")
+        <input class="form-control" id="NoFacturar" name="NoFacturar" readonly="readonly"  type="text" value="@(Model.NoFacturar ? "No" : "Si")" />
+        <br/>
+        @Html.ValidationMessageFor(model => model.NoFacturar)
+    </div>
+</div>
+
+

@@ -1,0 +1,87 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Transferencia
+@Html.HiddenFor(model => model.TransferenciaId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(m => m.FechaCreacion)
+@Html.HiddenFor(m => m.UsuarioId)
+
+<div class="row">
+    <fieldset class="group">
+        <legend>Información de Transferencia</legend>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group input-group-sm">
+                        @Html.LabelFor(model => model.TransferenciaId)
+                        @Html.DisplayFor(model => model.TransferenciaId)
+                        @Html.ValidationMessageFor(model => model.TransferenciaId)
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group input-group-sm">
+                        @Html.LabelFor(model => model.FechaCreacion)
+                        @Html.DisplayFor(model => model.FechaCreacion)
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div>
+                        @Html.LabelFor(model => model.OrigenId)
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.OrigenId)
+                        </div>
+                        @Html.ValidationMessageFor(model => model.OrigenId)
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div>
+                        @Html.LabelFor(model => model.DestinoId)
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.DestinoId)
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DestinoId)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button id="AgregarProducto" type="button" disabled="disabled"
+                    class="btn btn-default btn-agregar-producto" data-toggle="modal"
+                    data-target="#SeleccionarProductoModal">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Producto
+            </button>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="TableTransferenciasProductos">
+                    <thead>
+                        <tr>
+                            <th class="width-5">Cantidad</th>
+                            <th class="width-20">Código</th>
+                            <th class="width-40">Descripción</th>
+                            <th class="width-10">Precio</th>
+                            <th class="width-10">Stock Origen</th>
+                            <th class="width-10">Stock Destino</th>
+                            <th class="width-5"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var transferenciaProd in Model.TransferenciaProductos)
+                        {
+                            Html.RenderPartial("CargarProducto", transferenciaProd);
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button type="button" class="btn btn-default btn-asterisco">*</button>
+    <button type="button" class="btn btn-default btn-mas">+</button>
+    <button type="button" class="btn btn-default btn-suprimir">Sup</button>
+</div>
+@Scripts.Render("~/Scripts/app/maxikiosco-transferencias-editar.js")

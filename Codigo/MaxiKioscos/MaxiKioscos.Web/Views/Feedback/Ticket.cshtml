@@ -1,0 +1,88 @@
+﻿@using MaxiKioscos.Entidades
+@using MaxiKioscos.Web.Comun.Extensiones
+@using MaxiKioscos.Web.Configuration
+@model MaxiKioscos.Web.Models.TicketErrorModel
+@{
+    ViewBag.Title = "Ticket";
+}
+<style>
+	.td-title {
+		padding-right: 10px;
+		font-weight: bold;
+	}
+</style>
+
+@Html.PaginaTitulo("Ticket","fa-ticket")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @if (UsuarioActual.EsRol("SuperAdministrador"))
+                {
+                    <a class="btn btn-default btn-ticket-abrir" href="@Url.Action("AbrirTicket")" @(Model.Ticket.EstadoTicketId != EstadoTicketEnum.EnProgreso ? "" : "disabled")><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;Abrir Ticket</a>
+                    <a class="btn btn-default btn-ticket-cerrar" href="@Url.Action("CerrarTicket")"  @(Model.Ticket.FechaCierre != null ? "disabled" : "")><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Cerrar Ticket</a>
+                }
+                <a class="btn btn-default btn-ticket-eliminar" href="@Url.Action("EliminarTicket")"  @(Model.Ticket.EstadoTicketId == EstadoTicketEnum.Eliminado ? "disabled" : "")><span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Eliminar Ticket</a>
+            </div>
+            <div class="panel-body">
+                <div class="spacer"></div>
+                @Html.HiddenFor(model => model.Ticket.TicketErrorId)
+                <h4>Ticket: @Model.Ticket.TicketErrorId - @Model.Ticket.Titulo</h4>
+                <table style="width: 100%;">
+                    <colgroup>
+                        <col style="width: 8%;"/>
+                        <col style="width: 28%;"/>
+                        <col style="width: 8%;"/>
+                        <col style="width: 56%;"/>
+                    </colgroup>
+                    <tr>
+                        <td class="td-title">Fecha</td>
+                        <td>@Model.Ticket.Fecha.ToShortDateString() @Model.Ticket.Fecha.ToShortTimeString()</td>
+                        <td class="td-title">Origen</td>
+                        <td>@Model.Ticket.Origen.ToString()</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Estado</td>
+                        <td class="estado-td">@Model.Ticket.EstadoTicket.Descripcion</td>
+                        <td class="td-title">Usuario</td>
+                        <td>@Model.Ticket.Usuario.NombreCompleto</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="td-title">Mensaje</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            @Model.Ticket.Mensaje
+                        </td>
+                    </tr>
+                </table>
+                <div class="spacer"></div>
+                <div class="spacer"></div>
+                
+                <div class="mensajes">
+                    @Html.Partial("_Mensajes", Model)
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Modal("TicketModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-ticket-detalle.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-ticket-detalle.js")
+}

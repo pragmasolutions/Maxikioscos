@@ -1,0 +1,21 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.ProductosListadoModel
+@{
+    ViewBag.Title = "Productos";
+}
+
+@Html.Partial("Listado")
+
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+       @Scripts.Render("~/Scripts/app/maxikiosco-productos.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-productos.js")
+}

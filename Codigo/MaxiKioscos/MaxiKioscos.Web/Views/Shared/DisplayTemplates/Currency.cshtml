@@ -1,0 +1,9 @@
+﻿@model decimal?
+@{
+    var currency = (Model ?? 0).ToString("n2");
+    Html.EnableClientValidation(false);
+}
+<div class="input-group input-group-currency">
+    <span class="input-group-addon">$</span>
+    @Html.TextBox("", currency, new { @class = "form-control", @readonly = true, data_a_sep = "", data_a_dec = "," })
+</div>

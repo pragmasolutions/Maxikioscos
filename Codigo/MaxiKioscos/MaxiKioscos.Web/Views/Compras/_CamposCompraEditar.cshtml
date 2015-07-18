@@ -1,0 +1,194 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Compra
+@Html.HiddenFor(model => model.CompraId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.CuentaId)
+
+<div class="row">
+    <fieldset class="group">
+        <legend>Información de Compra</legend>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group input-group-sm">
+                        @Html.LabelFor(model => model.Numero)
+                        @Html.EditorFor(model => model.Numero)
+                        @Html.ValidationMessageFor(model => model.Numero)
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div>
+                        @Html.LabelFor(model => model.FacturaId)
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.FacturaId)
+                        </div>
+                        @Html.ValidationMessageFor(model => model.FacturaId)
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.Label("Proveedor")
+                        @Html.Hidden("ProveedorId", Model.Factura != null ? Model.Factura.ProveedorId : 0)
+                        @Html.TextBox("ProveedorNombre",
+                                      Model.Factura != null && Model.Factura.Proveedor != null ? Model.Factura.Proveedor.Nombre : string.Empty,
+                                      new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fecha)
+                        @Html.EditorFor(model => model.Fecha)
+                        @Html.ValidationMessageFor(model => model.Fecha)
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.Factura.FacturaNro)
+                        @Html.Label("Importe Total")
+                        @Html.DisplayFor(modal => Model.Factura.ImporteTotal)
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.Label("MaxiKiosco")
+                        @Html.HiddenFor(model => model.MaxiKioscoId)
+                        @Html.TextBox("MaxiKioscoNombre",
+                              Model.Factura != null && Model.MaxiKiosco != null ? Model.MaxiKiosco.Nombre : string.Empty,
+                              new { @class = "form-control", @readonly = true })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
+    <fieldset class="group">
+        <legend>Descuentos</legend>
+        <div class="col-lg-3">
+            <label class="control-label">
+                <input type="radio" name="TipoDescuento" value="DescuentoPorcentaje" checked="checked">
+                @Html.DisplayNameFor(model => model.Factura.DescuentoPorcentaje)
+            </label>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.EditorFor(model => model.Factura.DescuentoPorcentaje)
+                @Html.ValidationMessageFor(model => model.Factura.DescuentoPorcentaje)
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <label class="control-label">
+                <input type="radio" name="TipoDescuento" value="DescuentoEnPesos">
+                @Html.DisplayNameFor(model => model.Factura.DescuentoEnPesos)
+            </label>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.EditorFor(model => model.Factura.DescuentoEnPesos)
+                @Html.ValidationMessageFor(model => model.Factura.DescuentoEnPesos)
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button id="AgregarProducto" type="button" disabled="disabled"
+                    class="btn btn-default btn-agregar-producto" data-toggle="modal"
+                    data-target="#SeleccionarProductoModal">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Producto
+            </button>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="TableComprasProductos">
+                    <thead>
+                        <tr>
+                            <th class="width-5">Cantidad</th>
+                            <th class="width-10">Código</th>
+                            <th class="width-20">Descripción</th>
+                            <th class="width-10">Costo s/IVA</th>
+                            <th class="width-10">Costo c/IVA</th>
+                            <th class="width-10">Precio</th>
+                            <th class="width-10">Ganancia</th>
+                            <th class="width-10">Total s/IVA</th>
+                            <th class="width-10">Total c/IVA</th>
+                            <th class="width-10">Stock Ant.</th>
+                            <th class="width-10">Stock Actual</th>
+                            <th class="width-5"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var compraProd in Model.ComprasProductos)
+                        {
+                            Html.RenderPartial("CargarProducto", compraProd);
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="total-footer-label text-right">Total Compra</td>
+                            <td class="total-footer total-compra-footer text-right">@Model.Total.ToString("C2")</td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="total-footer-label compra-descuento text-right">Descuento </td>
+                            <td class="total-footer compra-descuento-footer text-right"></td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="total-footer-label text-right">Total con Descuento</td>
+                            <td class="total-footer total-compra-condescuento-footer text-right"></td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="total-footer-label text-right">Percepción DGR (<span id="PercepcionDGRProcentaje">% 0,00</span>)</td>
+                            <td class="total-footer compra-percepcion-dgr-footer text-right">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBox("PercepcionDGRManual")
+                                        @Html.EditorFor(model => model.PercepcionDGR)
+                                    </label>
+                                </div>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="total-footer-label text-right">Percepción IVA (<span id="PercepcionIVAProcentaje">% 0,00</span>)</td>
+                            <td class="total-footer compra-percepcion-iva-footer text-right">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBox("PercepcionIVAManual")
+                                        @Html.EditorFor(model => model.PercepcionIVA) 
+                                    </label>
+                                </div>
+                            </td>
+                            <td colspan="5"></td>
+                        </tr>
+                        <tr style="font-size: 1.3em;">
+                            <td colspan="5" class="total-footer-label text-right">Total General</td>
+                            <td class="total-footer total-compra-total-general-footer text-right"></td>
+                            <td colspan="5"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.HiddenFor(model => model.ImporteFactura)
+@Html.HiddenFor(model => model.Descuento)
+@Html.HiddenFor(model => model.ImporteFinal)
+@Html.HiddenFor(model => model.TotalCompra)
+<div class="row">
+    <button type="button" class="btn btn-default btn-asterisco">*</button>
+    <button type="button" class="btn btn-default btn-barra">/</button>
+    @*    <button type="button" class="btn btn-default btn-f5">F5</button>
+    <button type="button" class="btn btn-default btn-f6">F6</button>
+    <button type="button" class="btn btn-default btn-f7">F7</button>*@
+    <button type="button" class="btn btn-default btn-mas">+</button>
+    <button type="button" class="btn btn-default btn-suprimir">Sup</button>
+</div>
+
+@Scripts.Render("~/Scripts/app/maxikiosco-compras-editar.js")
