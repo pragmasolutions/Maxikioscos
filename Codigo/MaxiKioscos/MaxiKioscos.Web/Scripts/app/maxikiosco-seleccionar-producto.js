@@ -7,6 +7,7 @@
         $modalCrearProductoError = $('#ProductoErrorModal'),
         $modalCrearProductoErrorContent = $('#ProductoErrorModal .modal-content'),
         dirtySearch = false,
+        _agregandoProducto = false,
         init = function () {
 
             $('.btn-producto-crear').click(crear);
@@ -103,12 +104,16 @@
                 }
                 else {
                     if ($currentRow) {
+                        if (!_agregandoProducto) {
+                            _agregandoProducto = true;
+                            var $btnSeleccionar = $currentRow.find('.btn-seleccionar-producto');
+                            var productoId = $btnSeleccionar.data('productoid');
+                            onProductoSeleccionado(productoId);
+                            $modal.modal('hide');
 
-                        var $btnSeleccionar = $currentRow.find('.btn-seleccionar-producto');
-                        var productoId = $btnSeleccionar.data('productoid');
-                        onProductoSeleccionado(productoId);
-                        $modal.modal('hide');
-                        return false;
+                            setTimeout(function() { _agregandoProducto = false; }, 1500);
+                            return false;
+                        }
                     }
                 }
             }
