@@ -115,9 +115,13 @@ namespace MaxiKioscos.Winforms.Productos
         
         public void Aceptar(string codigo)
         {
+            if (!string.IsNullOrEmpty(codigo))
+            {
+                codigo = codigo.ToLower();
+            }
             if (dgvListado.Rows.Count == 0)
             {
-                ProductoSeleccionado = Productos.FirstOrDefault(p => p.Codigo.Split(',').Any(c => c == codigo));
+                ProductoSeleccionado = Productos.FirstOrDefault(p => p.Codigo.Split(',').Any(c => c.ToLower() == codigo));
                 if (ProductoSeleccionado != null)
                 {
                     CambioEvent(ProductoSeleccionado);
@@ -128,7 +132,7 @@ namespace MaxiKioscos.Winforms.Productos
             {
                 var productoId = Convert.ToInt32(dgvListado.SelectedRows[0].Cells["productoId"].Value.ToString());
                 var prod = Productos.FirstOrDefault(p => p.ProductoId == productoId);
-                if (!_esVenta || prod.Codigos.Any(c => c == codigo) || _criterioBusqueda != ProductoCriterioBusqueda.Codigo)
+                if (!_esVenta || prod.Codigos.Any(c => c.ToLower() == codigo) || _criterioBusqueda != ProductoCriterioBusqueda.Codigo)
                 {
                     ProductoSeleccionado = prod;
                     CambioEvent(ProductoSeleccionado);
