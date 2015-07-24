@@ -50,6 +50,7 @@
     <Compile Include="Request\AcusarExportacionRequest.cs" />
     <Compile Include="Request\ObtenerDatosRequest.cs" />
     <Compile Include="Request\ReportarErrorRequest.cs" />
+    <Compile Include="Response\ObtenerUltimasSecuenciasResponse.cs" />
     <Compile Include="Response\KioscoAsignadoResponse.cs" />
     <Compile Include="Response\InicializarKioscoResponse.cs" />
     <Compile Include="Response\ActualizarDatosResponse.cs" />

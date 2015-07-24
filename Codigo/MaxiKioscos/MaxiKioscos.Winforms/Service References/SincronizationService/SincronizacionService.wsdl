@@ -43,11 +43,11 @@
   <wsdl:message name="ISincronizacionService_MarcarKioscoComoAsignado_OutputMessage">
     <wsdl:part name="parameters" element="tns:MarcarKioscoComoAsignadoResponse" />
   </wsdl:message>
-  <wsdl:message name="ISincronizacionService_ObtenerUltimaSecuenciaAcusada_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerUltimaSecuenciaAcusada" />
+  <wsdl:message name="ISincronizacionService_ObtenerSecuencias_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSecuencias" />
   </wsdl:message>
-  <wsdl:message name="ISincronizacionService_ObtenerUltimaSecuenciaAcusada_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerUltimaSecuenciaAcusadaResponse" />
+  <wsdl:message name="ISincronizacionService_ObtenerSecuencias_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSecuenciasResponse" />
   </wsdl:message>
   <wsdl:portType name="ISincronizacionService">
     <wsdl:operation name="ObtenerDatos">
@@ -74,9 +74,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignado" message="tns:ISincronizacionService_MarcarKioscoComoAsignado_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignadoResponse" message="tns:ISincronizacionService_MarcarKioscoComoAsignado_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ObtenerUltimaSecuenciaAcusada">
-      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada" message="tns:ISincronizacionService_ObtenerUltimaSecuenciaAcusada_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusadaResponse" message="tns:ISincronizacionService_ObtenerUltimaSecuenciaAcusada_OutputMessage" />
+    <wsdl:operation name="ObtenerSecuencias">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerSecuencias" message="tns:ISincronizacionService_ObtenerSecuencias_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerSecuenciasResponse" message="tns:ISincronizacionService_ObtenerSecuencias_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISincronizacionService" type="tns:ISincronizacionService">
@@ -135,8 +135,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ObtenerUltimaSecuenciaAcusada">
-      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada" style="document" />
+    <wsdl:operation name="ObtenerSecuencias">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ObtenerSecuencias" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

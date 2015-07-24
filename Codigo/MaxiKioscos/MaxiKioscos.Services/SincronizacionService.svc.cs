@@ -67,8 +67,6 @@ namespace MaxiKioscos.Services
         public ActualizarDatosResponse ActualizarDatos(ActualizarDatosRequest request)
         {
             LogManager.GetLogger("errors").Error("Entra " + DateTime.Now);
-
-            int ultimaSecuenciaExitosa = 0;
             try
             {
                 var maxi = Uow.MaxiKioscos.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
@@ -76,7 +74,6 @@ namespace MaxiKioscos.Services
 
                 foreach (var exportacion in request.Exportaciones)
                 {
-                    ultimaSecuenciaExitosa = exportacion.Secuencia - 1;
                     if (exportacion.Secuencia > maxi.UltimaSecuenciaAcusada.GetValueOrDefault())
                     {
                         Uow.Exportaciones.ActualizarPrincipal(exportacion.Archivo, request.MaxiKioscoIdentifier, exportacion.Secuencia, null);
@@ -93,7 +90,7 @@ namespace MaxiKioscos.Services
                                  });
 
                 }
-                return new ActualizarDatosResponse() { Exito = true, UltimaSecuenciaExitosa = actualizo ? ultimaSecuenciaExitosa + 1 : -1 };
+                return new ActualizarDatosResponse() { Exito = true };
             }
             catch (Exception ex)
             {
@@ -101,8 +98,7 @@ namespace MaxiKioscos.Services
                 return new ActualizarDatosResponse
                        {
                            MensageError = ExceptionHelper.GetInnerException(ex).Message,
-                           Exito = false,
-                           UltimaSecuenciaExitosa = ultimaSecuenciaExitosa
+                           Exito = false
                        };
             }
             //Actualizamos la base de datos principal con los datos del kiosco
@@ -205,11 +201,15 @@ namespace MaxiKioscos.Services
         }
 
 
-        public int ObtenerUltimaSecuenciaAcusada(string identifier)
+        public ObtenerSecuenciasResponse ObtenerSecuencias(string identifier)
         {
             var id = Guid.Parse(identifier);
             var maxi = Uow.MaxiKioscos.Listado().FirstOrDefault(m => m.Identifier == id);
-            return maxi.UltimaSecuenciaAcusada.GetValueOrDefault();
+            return new ObtenerSecuenciasResponse()
+            {
+                UltimaSecuenciaAcusada = maxi.UltimaSecuenciaAcusada.GetValueOrDefault(),
+                UltimaSecuenciaExportacion = maxi.UltimaSecuenciaExportacion.GetValueOrDefault()
+            };
         }
     }
 }

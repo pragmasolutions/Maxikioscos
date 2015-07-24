@@ -584,6 +584,8 @@ namespace MaxiKioscos.Web.Controllers
 
                         var trans = new StockTransaccion()
                         {
+                            Desincronizado = true,
+                            Identifier = Guid.NewGuid(),
                             Cantidad = diferencia,
                             StockId = stock.StockId,
                             StockTransaccionTipoId = 3

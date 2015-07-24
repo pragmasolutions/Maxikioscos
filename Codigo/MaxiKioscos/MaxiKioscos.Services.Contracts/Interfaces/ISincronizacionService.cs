@@ -25,7 +25,7 @@ namespace MaxiKioscos.Services.Contracts
         KioscoAsignadoResponse MarcarKioscoComoAsignado(string identifier);
 
         [OperationContract]
-        int ObtenerUltimaSecuenciaAcusada(string identifier);
+        ObtenerSecuenciasResponse ObtenerSecuencias(string identifier);
 
     }
 }

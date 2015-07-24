@@ -73,6 +73,7 @@ namespace MaxiKioscos.Datos.Repositorio
             entity.FechaUltimaModificacion = DateTime.Now;
             entity.Desincronizado = true;
             entity.Eliminado = false;
+            
             DbEntityEntry dbEntityEntry = DbContext.Entry(entity);
             if (dbEntityEntry.State != EntityState.Detached)
             {

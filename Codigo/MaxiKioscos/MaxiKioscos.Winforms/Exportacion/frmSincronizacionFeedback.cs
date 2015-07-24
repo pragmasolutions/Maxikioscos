@@ -177,10 +177,10 @@ namespace MaxiKioscos.Winforms.Exportacion
             {
                 //Obtener datos a actualizar desde la base de datos local
                 this.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando base de datos principal...");
-                var ultimaSecuenciaAcusada = _sincronizacionService.ObtenerUltimaSecuenciaAcusada(AppSettings.MaxiKioscoIdentifier.ToString());
+                var secuencias = _sincronizacionService.ObtenerSecuencias(AppSettings.MaxiKioscoIdentifier.ToString());
                 var exportacionesLocales = SincronizacionHelper.ObtenerDatosSinExportar(AppSettings.MaxiKioscoIdentifier,
                                                                                        UsuarioActual.UsuarioId,
-                                                                                       ultimaSecuenciaAcusada);
+                                                                                       secuencias.UltimaSecuenciaAcusada);
 
                 var count = 1;
                 foreach (var exportacion in exportacionesLocales)
@@ -215,23 +215,12 @@ namespace MaxiKioscos.Winforms.Exportacion
                     int ultimaSecuencia = 0;
 
                     this.Invoke(new RefrescarProgresoDelegate(RefrescarProgreso), 25);
-
-                    //Actualizo el estado de kiosco
-                    if (exportacionesLocales.Count > 0)
-                    {
-                        var ultima = exportacionesLocales.Last();
-                        var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == AppSettings.MaxiKioscoIdentifier);
-                        kiosco.UltimaSecuenciaAcusada = ultima.Secuencia;
-                        Uow.Commit();
-                    }
-
-
                     this.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Obteniendo datos de servidor...");
                     var request = new ObtenerDatosRequest
                     {
                         MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
                         UsuarioIdentifier = UsuarioActual.Usuario.Identifier,
-                        UltimaSecuenciaExportacion = AppSettings.Maxikiosco == null ? null : AppSettings.Maxikiosco.UltimaSecuenciaExportacion
+                        UltimaSecuenciaExportacion = secuencias.UltimaSecuenciaExportacion
                     };
 
                     //Esperar respuesta del server.
@@ -293,6 +282,7 @@ namespace MaxiKioscos.Winforms.Exportacion
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            AppSettings.RefreshSettings();
             btnAceptar.Enabled = true;
             this.Invoke(new FinalizarProgresoDelegate(FinalizarProgreso));
             UsuarioActual.ResetearValoresCacheados();

@@ -81,17 +81,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ObtenerUltimaSecuenciaAcusada">
+  <xs:element name="ObtenerSecuencias">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="identifier" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ObtenerUltimaSecuenciaAcusadaResponse">
+  <xs:element name="ObtenerSecuenciasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ObtenerUltimaSecuenciaAcusadaResult" type="xs:int" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/MaxiKioscos.Services.Contracts" minOccurs="0" name="ObtenerSecuenciasResult" nillable="true" type="q10:ObtenerSecuenciasResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

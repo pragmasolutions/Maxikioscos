@@ -131,10 +131,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 //Obtener datos a actualizar desde la base de datos local
                 CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando base de datos principal...");
 
-                var ultimaSecuenciaAcusada = _sincronizacionService.ObtenerUltimaSecuenciaAcusada(AppSettings.MaxiKioscoIdentifier.ToString());
+                var secuencias = _sincronizacionService.ObtenerSecuencias(AppSettings.MaxiKioscoIdentifier.ToString());
                 var exportacionesLocales = SincronizacionHelper.ObtenerDatosSinExportar(AppSettings.MaxiKioscoIdentifier,
                                                                                        UsuarioActual.UsuarioId,
-                                                                                       ultimaSecuenciaAcusada);
+                                                                                       secuencias.UltimaSecuenciaAcusada);
                 var actualizarDatosRequest = new ActualizarDatosRequest
                 {
                     Exportaciones = exportacionesLocales.Select(exp => new ExportacionData
@@ -148,20 +148,11 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 var actualizarResponse = _sincronizacionService.ActualizarDatos(actualizarDatosRequest);
                 if (!actualizarResponse.Exito)
                 {
-                    ActualizarSecuenciaLocal(actualizarResponse.UltimaSecuenciaExitosa);
-                    AppSettings.RefreshSettings();
                     _huboError = true;
                     MessageBox.Show(actualizarResponse.MensageError);
                 }
                 else
                 {
-
-                    //Actualizo el estado de kiosco
-                    if (actualizarResponse.UltimaSecuenciaExitosa != -1)
-                    {
-                        ActualizarSecuenciaLocal(actualizarResponse.UltimaSecuenciaExitosa);
-                    }
-
                     AppSettings.RefreshSettings();
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Obteniendo datos de servidor...");
                     var request = new ObtenerDatosRequest
@@ -179,11 +170,8 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando datos de kiosco...");
 
                     AppSettings.RefreshSettings();
-                    var secuenciaActual = AppSettings.Maxikiosco != null
-                                              ? AppSettings.Maxikiosco.UltimaSecuenciaExportacion.GetValueOrDefault()
-                                              : 0;
-
-                    var pendientes = response.Exportaciones.Where(e => e.Secuencia > secuenciaActual).ToList();
+                    
+                    var pendientes = response.Exportaciones.Where(e => e.Secuencia > secuencias.UltimaSecuenciaExportacion).ToList();
                     for (var i = 0; i < pendientes.Count(); i++)
                     {
                         CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje),
@@ -225,15 +213,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 _huboError = true;
             }
         }
-
-        private void ActualizarSecuenciaLocal(int secuencia)
-        {
-            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == AppSettings.MaxiKioscoIdentifier);
-            kiosco.UltimaSecuenciaAcusada = secuencia;
-            Uow.MaxiKioscos.Modificar(kiosco);
-            Uow.Commit();
-        }
-
+        
         private void WorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
         {
             AppSettings.RefreshSettings();

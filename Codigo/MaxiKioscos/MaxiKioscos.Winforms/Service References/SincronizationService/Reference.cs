@@ -703,6 +703,67 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ObtenerSecuenciasResponse", Namespace="http://schemas.datacontract.org/2004/07/MaxiKioscos.Services.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class ObtenerSecuenciasResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UltimaSecuenciaAcusadaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UltimaSecuenciaExportacionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UltimaSecuenciaAcusada {
+            get {
+                return this.UltimaSecuenciaAcusadaField;
+            }
+            set {
+                if ((this.UltimaSecuenciaAcusadaField.Equals(value) != true)) {
+                    this.UltimaSecuenciaAcusadaField = value;
+                    this.RaisePropertyChanged("UltimaSecuenciaAcusada");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UltimaSecuenciaExportacion {
+            get {
+                return this.UltimaSecuenciaExportacionField;
+            }
+            set {
+                if ((this.UltimaSecuenciaExportacionField.Equals(value) != true)) {
+                    this.UltimaSecuenciaExportacionField = value;
+                    this.RaisePropertyChanged("UltimaSecuenciaExportacion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SincronizationService.ISincronizacionService")]
     public interface ISincronizacionService {
@@ -743,11 +804,11 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignado", ReplyAction="http://tempuri.org/ISincronizacionService/MarcarKioscoComoAsignadoResponse")]
         System.Threading.Tasks.Task<MaxiKioscos.Winforms.SincronizationService.KioscoAsignadoResponse> MarcarKioscoComoAsignadoAsync(string identifier);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada", ReplyAction="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusadaResponse")]
-        int ObtenerUltimaSecuenciaAcusada(string identifier);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ObtenerSecuencias", ReplyAction="http://tempuri.org/ISincronizacionService/ObtenerSecuenciasResponse")]
+        MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse ObtenerSecuencias(string identifier);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusada", ReplyAction="http://tempuri.org/ISincronizacionService/ObtenerUltimaSecuenciaAcusadaResponse")]
-        System.Threading.Tasks.Task<int> ObtenerUltimaSecuenciaAcusadaAsync(string identifier);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ObtenerSecuencias", ReplyAction="http://tempuri.org/ISincronizacionService/ObtenerSecuenciasResponse")]
+        System.Threading.Tasks.Task<MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse> ObtenerSecuenciasAsync(string identifier);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -825,12 +886,12 @@ namespace MaxiKioscos.Winforms.SincronizationService {
             return base.Channel.MarcarKioscoComoAsignadoAsync(identifier);
         }
         
-        public int ObtenerUltimaSecuenciaAcusada(string identifier) {
-            return base.Channel.ObtenerUltimaSecuenciaAcusada(identifier);
+        public MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse ObtenerSecuencias(string identifier) {
+            return base.Channel.ObtenerSecuencias(identifier);
         }
         
-        public System.Threading.Tasks.Task<int> ObtenerUltimaSecuenciaAcusadaAsync(string identifier) {
-            return base.Channel.ObtenerUltimaSecuenciaAcusadaAsync(identifier);
+        public System.Threading.Tasks.Task<MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse> ObtenerSecuenciasAsync(string identifier) {
+            return base.Channel.ObtenerSecuenciasAsync(identifier);
         }
     }
 }
