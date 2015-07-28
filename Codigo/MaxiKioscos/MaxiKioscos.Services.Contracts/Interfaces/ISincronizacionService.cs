@@ -27,5 +27,8 @@ namespace MaxiKioscos.Services.Contracts
         [OperationContract]
         ObtenerSecuenciasResponse ObtenerSecuencias(string identifier);
 
+        [OperationContract]
+        void ForzarArmadoDeArchivoExportacion(Guid usuarioIdentifier);
+
     }
 }

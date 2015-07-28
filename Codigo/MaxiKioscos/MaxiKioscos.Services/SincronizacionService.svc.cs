@@ -211,5 +211,20 @@ namespace MaxiKioscos.Services
                 UltimaSecuenciaExportacion = maxi.UltimaSecuenciaExportacion.GetValueOrDefault()
             };
         }
+
+
+        public void ForzarArmadoDeArchivoExportacion(Guid usuarioIdentifier)
+        {
+            var usuario = Uow.Usuarios.Obtener(u => u.Identifier == usuarioIdentifier);
+
+            if (usuario == null)
+                throw new ApplicationException("No se encontro el usuario");
+
+            var puedeExportar = Uow.Exportaciones.PuedeExportarPrincipal();
+            if (puedeExportar)
+            {
+                Uow.Exportaciones.ExportarPrincipal(usuario.UsuarioId);
+            }
+        }
     }
 }

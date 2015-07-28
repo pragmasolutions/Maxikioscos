@@ -809,6 +809,14 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ObtenerSecuencias", ReplyAction="http://tempuri.org/ISincronizacionService/ObtenerSecuenciasResponse")]
         System.Threading.Tasks.Task<MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse> ObtenerSecuenciasAsync(string identifier);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacion", ReplyAction="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacionRespons" +
+            "e")]
+        void ForzarArmadoDeArchivoExportacion(System.Guid usuarioIdentifier);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacion", ReplyAction="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacionRespons" +
+            "e")]
+        System.Threading.Tasks.Task ForzarArmadoDeArchivoExportacionAsync(System.Guid usuarioIdentifier);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -892,6 +900,14 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         
         public System.Threading.Tasks.Task<MaxiKioscos.Winforms.SincronizationService.ObtenerSecuenciasResponse> ObtenerSecuenciasAsync(string identifier) {
             return base.Channel.ObtenerSecuenciasAsync(identifier);
+        }
+        
+        public void ForzarArmadoDeArchivoExportacion(System.Guid usuarioIdentifier) {
+            base.Channel.ForzarArmadoDeArchivoExportacion(usuarioIdentifier);
+        }
+        
+        public System.Threading.Tasks.Task ForzarArmadoDeArchivoExportacionAsync(System.Guid usuarioIdentifier) {
+            return base.Channel.ForzarArmadoDeArchivoExportacionAsync(usuarioIdentifier);
         }
     }
 }

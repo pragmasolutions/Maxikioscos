@@ -74,6 +74,7 @@
             this.tssEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssConeccionForzarSincronizacion = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssUltimaSyncExitosa = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssProgreso = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.openFileDialogSincronizacion = new System.Windows.Forms.OpenFileDialog();
@@ -84,7 +85,6 @@
             this.tsbControlStock = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.tssUltimaSyncExitosa = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -351,6 +351,7 @@
             this.tssSecuencial.ShowShortcutKeys = false;
             this.tssSecuencial.Size = new System.Drawing.Size(297, 24);
             this.tssSecuencial.Text = "Sincronización Secuencial";
+            this.tssSecuencial.Visible = false;
             this.tssSecuencial.Click += new System.EventHandler(this.sincronizacionSecuencialStripMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -439,10 +440,15 @@
             this.tssUsuario.Size = new System.Drawing.Size(59, 20);
             this.tssUsuario.Text = "Usuario";
             // 
+            // tssUltimaSyncExitosa
+            // 
+            this.tssUltimaSyncExitosa.Name = "tssUltimaSyncExitosa";
+            this.tssUltimaSyncExitosa.Size = new System.Drawing.Size(0, 20);
+            // 
             // tssProgreso
             // 
             this.tssProgreso.Name = "tssProgreso";
-            this.tssProgreso.Size = new System.Drawing.Size(1006, 20);
+            this.tssProgreso.Size = new System.Drawing.Size(1045, 20);
             this.tssProgreso.Spring = true;
             this.tssProgreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -546,11 +552,6 @@
             this.mdiTabStrip2.TabIndex = 8;
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
-            // 
-            // tssUltimaSyncExitosa
-            // 
-            this.tssUltimaSyncExitosa.Name = "tssUltimaSyncExitosa";
-            this.tssUltimaSyncExitosa.Size = new System.Drawing.Size(0, 20);
             // 
             // mdiPrincipal
             // 
