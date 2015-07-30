@@ -65,6 +65,8 @@ namespace MaxiKioscos.Winforms.Principal
 
         private static Timer _connectionTimer { get; set; }
 
+        private static Timer ExportTimer { get; set; }
+
         public mdiPrincipal()
         {
             InitializeComponent();
@@ -76,6 +78,21 @@ namespace MaxiKioscos.Winforms.Principal
 
             CheckearNuevoKiosco();
             ActualizarEsquema();
+
+            IniciarTimerExportacion();
+        }
+
+        private void IniciarTimerExportacion()
+        {
+            ExportTimer = new Timer();
+            ExportTimer.Interval = 15*60*1000;
+            ExportTimer.Tick += ExportTimer_Tick;
+            ExportTimer.Start();
+        }
+
+        void ExportTimer_Tick(object sender, EventArgs e)
+        {
+            _sincronizacionManager.ExportarDatosDesincronizados();
         }
 
         private void ActualizarUltimaSyncExitosa()

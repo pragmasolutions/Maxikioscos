@@ -22,5 +22,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         Task InicializarKiosco();
 
         event SincronizacionManager.SyncExitosaEventHandler SyncExitosa;
+
+        void ExportarDatosDesincronizados();
     }
 }

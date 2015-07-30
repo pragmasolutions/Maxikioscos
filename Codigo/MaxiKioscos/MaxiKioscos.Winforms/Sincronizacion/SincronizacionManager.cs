@@ -18,6 +18,7 @@ using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Datos.Helpers;
+using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Winforms.Helpers;
 using MaxiKioscos.Winforms.Principal;
 
@@ -360,7 +361,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             }
             Sincronizando = false;
 
-            Timer = new Timer {Interval = 3000};
+            Timer = new Timer {Interval = 5000};
             Timer.Tick += TimerOnTick;
             Timer.Start();
         }
@@ -377,5 +378,17 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         }
 
         #endregion
+
+
+        public void ExportarDatosDesincronizados()
+        {
+            var repository = new ExportacionRepository();
+            var puedeExportar = repository.PuedeExportarKiosco();
+            if (puedeExportar)
+            {
+                //Generamos la exportacion para usuario que realizo la solicitud.
+                repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
+            }
+        }
     }
 }
