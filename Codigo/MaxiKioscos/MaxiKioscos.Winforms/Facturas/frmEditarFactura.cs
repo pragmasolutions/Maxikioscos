@@ -11,6 +11,7 @@ using MaxiKiosco.Win.Util;
 using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Configuracion;
+using MaxiKioscos.Winforms.SincronizationService;
 using Util;
 
 namespace MaxiKioscos.Winforms.Facturas
@@ -40,6 +41,7 @@ namespace MaxiKioscos.Winforms.Facturas
             }
         }
 
+        
         #region Constructores
         public frmEditarFactura()
         {
@@ -177,6 +179,7 @@ namespace MaxiKioscos.Winforms.Facturas
                         //Factura.UsuarioId = UsuarioActual.UsuarioId;
                         FacturaRepository.Modificar(Factura);
                         FacturaRepository.Commit();
+                        ExportarKiosco();
                     }
                 }
                 else
@@ -205,6 +208,8 @@ namespace MaxiKioscos.Winforms.Facturas
                         };
                         FacturaRepository.Agregar(Factura);
                         FacturaRepository.Commit();
+
+                        ExportarKiosco();
                     }
                 }
             }
@@ -214,6 +219,12 @@ namespace MaxiKioscos.Winforms.Facturas
             }
         }
         #endregion
+
+        private void ExportarKiosco()
+        {
+            var exportacion = new ExportacionRepository();
+            exportacion.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
+        }
 
         private void frmEditarFactura_Shown(object sender, EventArgs e)
         {

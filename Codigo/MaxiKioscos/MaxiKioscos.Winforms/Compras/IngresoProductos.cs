@@ -569,7 +569,9 @@ namespace MaxiKioscos.Winforms.Compras
 
         private void ScrollearHastaElFinal()
         {
-            dvgCompraProducto.FirstDisplayedScrollingRowIndex = dvgCompraProducto.RowCount - 1;
+            int rowCount = dvgCompraProducto.Rows.Count;
+            if (rowCount > 0)
+                dvgCompraProducto.FirstDisplayedScrollingRowIndex = dvgCompraProducto.RowCount - 1;
         }
 
         private void AgregarProductoAColeccion(ProductoCompleto producto)

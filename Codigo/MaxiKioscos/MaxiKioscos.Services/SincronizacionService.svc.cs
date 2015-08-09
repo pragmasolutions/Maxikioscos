@@ -66,7 +66,6 @@ namespace MaxiKioscos.Services
         /// <param name="request"></param>
         public ActualizarDatosResponse ActualizarDatos(ActualizarDatosRequest request)
         {
-            LogManager.GetLogger("errors").Error("Entra " + DateTime.Now);
             try
             {
                 var maxi = Uow.MaxiKioscos.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
