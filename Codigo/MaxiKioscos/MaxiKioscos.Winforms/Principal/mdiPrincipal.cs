@@ -61,7 +61,6 @@ namespace MaxiKioscos.Winforms.Principal
         }
 
         private readonly ISincronizacionManager _sincronizacionManager;
-        private readonly IForzarSincronizacionHandler _forzarSincronizacionHandler;
 
         private static Timer _connectionTimer { get; set; }
 
@@ -73,8 +72,6 @@ namespace MaxiKioscos.Winforms.Principal
 
             _sincronizacionManager = CompositionRoot.Resolve<ISincronizacionManager>();
             _sincronizacionManager.SyncExitosa += ActualizarUltimaSyncExitosa;
-            _forzarSincronizacionHandler = CompositionRoot.Resolve<IForzarSincronizacionHandler>();
-            _forzarSincronizacionHandler.Disconnected += (sender, args) => ToggleForzarSincronizacionEstado();
 
             CheckearNuevoKiosco();
             ActualizarEsquema();
@@ -248,7 +245,7 @@ namespace MaxiKioscos.Winforms.Principal
 
         void _connectionTimer_Tick(object sender, EventArgs e)
         {
-            _forzarSincronizacionHandler.AutoConnect();
+            _sincronizacionManager.PingServer();
             ToggleForzarSincronizacionEstado();
         }
 
@@ -351,7 +348,7 @@ namespace MaxiKioscos.Winforms.Principal
 
         private void ToggleForzarSincronizacionEstado()
         {
-            if (_forzarSincronizacionHandler.IsConnected)
+            if (_sincronizacionManager.IsConnected)
             {
                 tssConeccionForzarSincronizacion.Text = "Forzar Sincronización: Conectado";
             }
@@ -656,9 +653,9 @@ namespace MaxiKioscos.Winforms.Principal
 
         private void reconectarForzarSincronizaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!_forzarSincronizacionHandler.IsConnected)
+            if (!_sincronizacionManager.IsConnected)
             {
-                _forzarSincronizacionHandler.Connect();
+                _sincronizacionManager.PingServer();
             }
             else
             {

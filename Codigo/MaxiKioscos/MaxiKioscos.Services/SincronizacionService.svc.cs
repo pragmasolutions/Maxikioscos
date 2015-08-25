@@ -210,8 +210,7 @@ namespace MaxiKioscos.Services
                 UltimaSecuenciaExportacion = maxi.UltimaSecuenciaExportacion.GetValueOrDefault()
             };
         }
-
-
+        
         public void ForzarArmadoDeArchivoExportacion(Guid usuarioIdentifier)
         {
             var usuario = Uow.Usuarios.Obtener(u => u.Identifier == usuarioIdentifier);
@@ -223,6 +222,22 @@ namespace MaxiKioscos.Services
             if (puedeExportar)
             {
                 Uow.Exportaciones.ExportarPrincipal(usuario.UsuarioId);
+            }
+        }
+
+        public bool AcusarEstadoConexion(Guid maxikioscoIdentifier)
+        {
+            //Actualizo el estado de kiosco
+            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxikioscoIdentifier);
+            kiosco.UltimaConexion = DateTime.Now;
+            try
+            {
+                Uow.Commit();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

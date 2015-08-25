@@ -289,6 +289,7 @@
           <Property Name="Abreviacion" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
+          <Property Name="UltimaConexion" Type="datetime" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -2798,6 +2799,7 @@
           <NavigationProperty Name="Transferencias" Relationship="MaxiKioscosModel.FK_Transferencia_Destino" FromRole="MaxiKiosco" ToRole="Transferencia" />
           <NavigationProperty Name="Transferencias1" Relationship="MaxiKioscosModel.FK_Transferencia_Origen" FromRole="MaxiKiosco" ToRole="Transferencia" />
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
+          <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -3882,8 +3884,9 @@
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="UltimaSecuenciaExportacion" Nullable="true" />
           <Property Type="Int32" Name="ExportacionId" Nullable="true" />
-          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
           <Property Type="Guid" Name="Identifier" Nullable="false" />
+          <Property Type="DateTime" Name="UltimaConexion" Nullable="true" Precision="23" />
         </ComplexType>
         <EntityType Name="ProveedorProducto">
           <Key>
@@ -4675,6 +4678,7 @@
           <EntitySetMapping Name="MaxiKioscoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.MaxiKiosco">
               <MappingFragment StoreEntitySet="MaxiKiosco">
+                <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="UltimoScriptCorrido" ColumnName="UltimoScriptCorrido" />
                 <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
@@ -5228,6 +5232,7 @@
                 <ScalarProperty Name="ExportacionId" ColumnName="ExportacionId" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

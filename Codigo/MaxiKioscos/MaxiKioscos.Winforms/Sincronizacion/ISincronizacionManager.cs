@@ -13,6 +13,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 {
     public interface ISincronizacionManager
     {
+        bool IsConnected { get; }
+
+        Task PingServer();
+
         Task SincronizacionSecuencial();
 
         Task SincronizarEnSegundoPlano(mdiPrincipal form, BackgroundWorker worker, ToolStripStatusLabel label);
@@ -24,5 +28,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         event SincronizacionManager.SyncExitosaEventHandler SyncExitosa;
 
         void ExportarDatosDesincronizados();
+
+
     }
 }

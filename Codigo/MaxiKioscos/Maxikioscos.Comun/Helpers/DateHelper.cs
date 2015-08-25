@@ -30,5 +30,11 @@ namespace Maxikioscos.Comun.Helpers
             }
             return null;
         }
+
+        public static double DifferenceInMinutes(DateTime greater, DateTime smaller)
+        {
+            var diff = greater.Subtract(smaller);
+            return diff.TotalMinutes;
+        }
     }
 }

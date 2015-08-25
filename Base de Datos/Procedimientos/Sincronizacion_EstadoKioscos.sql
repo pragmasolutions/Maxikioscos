@@ -15,7 +15,8 @@ BEGIN
 		   M.Nombre,
 		   M.UltimaSecuenciaExportacion,
 		   E.ExportacionId,
-		   Fecha = M.UltimaSincronizacionExitosa
+		   Fecha = M.UltimaSincronizacionExitosa,
+		   M.UltimaConexion
 	FROM MaxiKiosco M
 		LEFT JOIN (SELECT ExportacionId, Fecha, Secuencia FROM Exportacion) E
 			ON M.UltimaSecuenciaExportacion = E.Secuencia

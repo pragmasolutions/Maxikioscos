@@ -55,6 +55,12 @@
   <wsdl:message name="ISincronizacionService_ForzarArmadoDeArchivoExportacion_OutputMessage">
     <wsdl:part name="parameters" element="tns:ForzarArmadoDeArchivoExportacionResponse" />
   </wsdl:message>
+  <wsdl:message name="ISincronizacionService_AcusarEstadoConexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcusarEstadoConexion" />
+  </wsdl:message>
+  <wsdl:message name="ISincronizacionService_AcusarEstadoConexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcusarEstadoConexionResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISincronizacionService">
     <wsdl:operation name="ObtenerDatos">
       <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ObtenerDatos" message="tns:ISincronizacionService_ObtenerDatos_InputMessage" />
@@ -87,6 +93,10 @@
     <wsdl:operation name="ForzarArmadoDeArchivoExportacion">
       <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacion" message="tns:ISincronizacionService_ForzarArmadoDeArchivoExportacion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacionResponse" message="tns:ISincronizacionService_ForzarArmadoDeArchivoExportacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcusarEstadoConexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISincronizacionService/AcusarEstadoConexion" message="tns:ISincronizacionService_AcusarEstadoConexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISincronizacionService/AcusarEstadoConexionResponse" message="tns:ISincronizacionService_AcusarEstadoConexion_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISincronizacionService" type="tns:ISincronizacionService">
@@ -156,6 +166,15 @@
     </wsdl:operation>
     <wsdl:operation name="ForzarArmadoDeArchivoExportacion">
       <soap:operation soapAction="http://tempuri.org/ISincronizacionService/ForzarArmadoDeArchivoExportacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcusarEstadoConexion">
+      <soap:operation soapAction="http://tempuri.org/ISincronizacionService/AcusarEstadoConexion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -421,9 +421,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Sincronizacion\IForzarSincronizacionHandler.cs" />
     <Compile Include="Sincronizacion\ISincronizacionManager.cs" />
-    <Compile Include="Sincronizacion\ForzarSincronizacionHandler.cs" />
     <Compile Include="Sincronizacion\SincronizacionManager.cs" />
     <Compile Include="Usuarios\frmCambiarPassword.cs">
       <SubType>Form</SubType>
@@ -566,6 +564,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\89-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\93-Maxikiosco_ColumnaUltimaConexion.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\92-Exportacion_NuevoXmlKiosco.sql">

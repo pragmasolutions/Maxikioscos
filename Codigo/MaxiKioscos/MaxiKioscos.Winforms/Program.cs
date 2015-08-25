@@ -54,10 +54,7 @@ namespace MaxiKioscos.Winforms
         private static void StartApp()
         {
             CompositionRoot.Wire(new ApplicationModule());
-
-            IForzarSincronizacionHandler handler = CompositionRoot.Resolve<IForzarSincronizacionHandler>();
-            handler.Init();
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -71,8 +68,6 @@ namespace MaxiKioscos.Winforms
 #endif
 
             Application.Run(CompositionRoot.Resolve<mdiPrincipal>());
-
-            handler.Disconect();
         }
 
         private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)

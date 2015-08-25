@@ -390,5 +390,19 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
             }
         }
+
+        public static bool _isConnected = false;
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+        }
+
+        public async Task PingServer()
+        {
+            if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
+            {
+                _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier);
+            }
+        }
     }
 }

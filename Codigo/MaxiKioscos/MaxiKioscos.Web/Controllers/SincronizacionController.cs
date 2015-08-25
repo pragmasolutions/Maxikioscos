@@ -10,10 +10,8 @@ using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
-using MaxiKioscos.Web.Hubs;
 using MaxiKioscos.Web.Models;
 using MaxiKioscos.Web.Models.DTO;
-using Microsoft.AspNet.SignalR;
 
 namespace MaxiKioscos.Web.Controllers
 {
@@ -132,10 +130,6 @@ namespace MaxiKioscos.Web.Controllers
         {
             var estados = Uow.MaxiKioscos.EstadoMaxiKioscos(UsuarioActual.CuentaId).ToList();
 
-            estados.ForEach(es => es.EstaConectado = 
-                ForzarSincronizacionHub.Connections.GetConnections(es.Identifier.ToString())
-                .Any());
-
             var exportaciones = Uow.Exportaciones.ListadoPorCuenta(UsuarioActual.CuentaId).OrderByDescending(e => e.Fecha).ToList();
             var secuencia = exportaciones.Any() ? exportaciones.Last().Secuencia : 0;
 
@@ -221,15 +215,7 @@ namespace MaxiKioscos.Web.Controllers
             var listaXmls = exportaciones.Select(e => new KeyValuePair<string, string>(e.Nombre, e.ExportacionArchivo.Archivo)).ToList();
             return ZipHelper.ZipResult(listaXmls, model.FileName);
         }
-
-        [HttpPost]
-        public ActionResult ForzarSincronizacion()
-        {
-            var context = GlobalHost.ConnectionManager.GetHubContext<ForzarSincronizacionHub>();
-            context.Clients.All.ForzarSincronizacionReceived();
-            return Json(new { exito = true });
-        }
-
+        
         public ActionResult ResetearArchivosDeExportacion()
         {
             var ultimaExportacion = Uow.Exportaciones.Listado().OrderByDescending(e => e.Secuencia).FirstOrDefault();

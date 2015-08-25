@@ -18,7 +18,6 @@ namespace MaxiKioscos.Winforms.IoC
             Bind<IMaxiKioscosUow>().To<MaxiKioscosUow>();
             Bind<IAuthService>().To<WebSecurityAuthService>();
             Bind<ISincronizacionManager>().To<SincronizacionManager>().InSingletonScope();
-            Bind<IForzarSincronizacionHandler>().To<ForzarSincronizacionHandler>().InSingletonScope();
             Bind<ISincronizacionService>().To<SincronizacionServiceClient>();
         }
     }

@@ -19,5 +19,6 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> ExportacionId { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public System.Guid Identifier { get; set; }
+        public Nullable<System.DateTime> UltimaConexion { get; set; }
     }
 }
