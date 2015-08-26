@@ -910,6 +910,7 @@
     <Content Include="Views\Promociones\PromocionProducto.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ProductoSinPromociones.cshtml" />
     <Content Include="Views\Promociones\PromocionMaxikiosco.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TipoComprobante.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

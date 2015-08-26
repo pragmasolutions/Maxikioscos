@@ -1,0 +1,16 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model string
+@{
+    var list = new List<SelectListItem>
+    {
+        new SelectListItem() {Value = "A"},
+        new SelectListItem() {Value = "X"}
+    };
+
+    var selectList = new SelectList(list, "Value", "Value", Model);
+}
+
+@Html.DropDownList("", selectList,"Seleccione Tipo Comprobante", new { @class = "form-control" })

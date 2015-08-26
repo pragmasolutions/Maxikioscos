@@ -408,6 +408,7 @@
           <Property Name="PercepcionDGR" Type="decimal" Precision="5" Scale="2" />
           <Property Name="AplicaPercepcionIVA" Type="bit" Nullable="false" />
           <Property Name="NoReflejarFacturaEnCaja" Type="bit" Nullable="false" />
+          <Property Name="TipoComprobante" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="ProveedorProducto">
           <Key>
@@ -2896,6 +2897,7 @@
           <Property Name="AplicaPercepcionIVA" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ControlesStock" Relationship="MaxiKioscosModel.FK_ControlStock_Proveedor" FromRole="Proveedor" ToRole="ControlStock" />
           <Property Name="NoReflejarFacturaEnCaja" Type="Boolean" Nullable="false" />
+          <Property Name="TipoComprobante" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -4751,6 +4753,7 @@
           <EntitySetMapping Name="Proveedors">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
                 <ScalarProperty Name="NoReflejarFacturaEnCaja" ColumnName="NoReflejarFacturaEnCaja" />
                 <ScalarProperty Name="AplicaPercepcionIVA" ColumnName="AplicaPercepcionIVA" />
                 <ScalarProperty Name="PercepcionDGR" ColumnName="PercepcionDGR" />

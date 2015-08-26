@@ -137,14 +137,14 @@ namespace MaxiKioscos.Winforms.CierreCajas
                         new OperacionCajaDetalle(operacionCajaId).ShowDialog();
                         break;
                     case 13:
-                        var user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() {"SuperAdministrador", "Administrador", "Encargado"});
+                        var user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() {"SuperAdministrador", "Administrador"});
                         if (user != 0)
                         {
                             EditarOperacion(operacionCajaId, UsuarioActual.UsuarioId, tipo);
                         }
                         break;
                     case 14:
-                        user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() {"SuperAdministrador", "Administrador", "Encargado"});
+                        user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() {"SuperAdministrador", "Administrador"});
                         if (user != 0)
                         {
                             EliminarOperacion(operacionCajaId, UsuarioActual.UsuarioId);

@@ -23,9 +23,14 @@
         @Html.LabelFor(model => model.Telefono)
         @Html.DisplayFor(model => model.Telefono)
     </div>
-     <div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(model => model.PercepcionDGR)
         @Html.DisplayFor(model => model.PercepcionDGR)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.DisplayFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
+        </label>
     </div>
 </div>
 <div class="col-lg-6">
@@ -49,10 +54,9 @@
         @Html.LabelFor(model => model.Celular)
         @Html.DisplayFor(model => model.Celular)
     </div>
-    <div class="checkbox">
-        <label>
-            @Html.DisplayFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
-        </label>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoComprobante)
+        @Html.DisplayFor(model => model.TipoComprobante)
     </div>
     <div class="checkbox">
         <label>

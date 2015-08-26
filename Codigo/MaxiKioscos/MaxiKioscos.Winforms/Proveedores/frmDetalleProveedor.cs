@@ -72,6 +72,12 @@ namespace MaxiKioscos.Winforms.Proveedores
             set { ucTextBoxGrisCelular.Texto = value; }
         }
 
+        public string TipoComprobante
+        {
+            get { return txtTipoComprobante.Texto; }
+            set { txtTipoComprobante.Texto = value; }
+        }
+
         public string TipoCuit
         {
             get { return ucTextBoxGrisTipoCuit.Texto; }
@@ -158,7 +164,7 @@ namespace MaxiKioscos.Winforms.Proveedores
             TipoCuit = Proveedor.TipoCuitString;
             Telefono = Proveedor.Telefono;
             Celular = Proveedor.Celular;
-            
+            TipoComprobante = Proveedor.TipoComprobante;
             CuitNro = Proveedor.CuitNro;
             Email = Proveedor.Email;
             PaginaWeb = Proveedor.PaginaWeb;

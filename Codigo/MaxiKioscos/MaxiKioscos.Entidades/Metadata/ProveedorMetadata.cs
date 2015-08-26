@@ -106,5 +106,9 @@ namespace MaxiKioscos.Entidades
 
         [Display(Name = "No reflejar facturas en caja")]
         public bool NoReflejarFacturaEnCaja { get; set; }
+
+        [Display(Name = "Tipo de Comprobante")]
+        [UIHint("TipoComprobante")]
+        public string TipoComprobante { get; set; }
     }
 }

@@ -35,6 +35,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtNoReflejarFacturaEnCaja = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.ucTextBoxGrisCelular = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
             this.ucTextBoxGrisWeb = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
@@ -73,8 +75,8 @@
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.proveedorProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtNoReflejarFacturaEnCaja = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.txtTipoComprobante = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.label27 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -93,7 +95,7 @@
             this.label14.ForeColor = System.Drawing.Color.DimGray;
             this.label14.Location = new System.Drawing.Point(12, 8);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(196, 29);
+            this.label14.Size = new System.Drawing.Size(248, 35);
             this.label14.TabIndex = 0;
             this.label14.Text = "Detalle de Proveedor";
             // 
@@ -119,6 +121,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtTipoComprobante);
+            this.tabPage1.Controls.Add(this.label27);
             this.tabPage1.Controls.Add(this.txtNoReflejarFacturaEnCaja);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.txtObservaciones);
@@ -143,13 +147,33 @@
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(509, 521);
+            this.tabPage1.Size = new System.Drawing.Size(509, 518);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Detalle";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtNoReflejarFacturaEnCaja
+            // 
+            this.txtNoReflejarFacturaEnCaja.Location = new System.Drawing.Point(29, 362);
+            this.txtNoReflejarFacturaEnCaja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNoReflejarFacturaEnCaja.Name = "txtNoReflejarFacturaEnCaja";
+            this.txtNoReflejarFacturaEnCaja.Size = new System.Drawing.Size(203, 26);
+            this.txtNoReflejarFacturaEnCaja.TabIndex = 35;
+            this.txtNoReflejarFacturaEnCaja.Texto = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(25, 340);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(214, 23);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "Esconder Facturas en Caja";
             // 
             // txtObservaciones
             // 
@@ -167,6 +191,7 @@
             // ucTextBoxGrisCelular
             // 
             this.ucTextBoxGrisCelular.Location = new System.Drawing.Point(280, 298);
+            this.ucTextBoxGrisCelular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisCelular.Name = "ucTextBoxGrisCelular";
             this.ucTextBoxGrisCelular.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisCelular.TabIndex = 32;
@@ -175,6 +200,7 @@
             // ucTextBoxGrisWeb
             // 
             this.ucTextBoxGrisWeb.Location = new System.Drawing.Point(280, 235);
+            this.ucTextBoxGrisWeb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisWeb.Name = "ucTextBoxGrisWeb";
             this.ucTextBoxGrisWeb.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisWeb.TabIndex = 30;
@@ -183,6 +209,7 @@
             // ucTextBoxGrisEmail
             // 
             this.ucTextBoxGrisEmail.Location = new System.Drawing.Point(280, 172);
+            this.ucTextBoxGrisEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisEmail.Name = "ucTextBoxGrisEmail";
             this.ucTextBoxGrisEmail.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisEmail.TabIndex = 28;
@@ -191,6 +218,7 @@
             // ucTextBoxGrisNroCuit
             // 
             this.ucTextBoxGrisNroCuit.Location = new System.Drawing.Point(280, 109);
+            this.ucTextBoxGrisNroCuit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisNroCuit.Name = "ucTextBoxGrisNroCuit";
             this.ucTextBoxGrisNroCuit.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisNroCuit.TabIndex = 26;
@@ -199,6 +227,7 @@
             // ucTextBoxGrisTipoCuit
             // 
             this.ucTextBoxGrisTipoCuit.Location = new System.Drawing.Point(280, 46);
+            this.ucTextBoxGrisTipoCuit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisTipoCuit.Name = "ucTextBoxGrisTipoCuit";
             this.ucTextBoxGrisTipoCuit.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisTipoCuit.TabIndex = 24;
@@ -207,6 +236,7 @@
             // ucTextBoxGrisTelefono
             // 
             this.ucTextBoxGrisTelefono.Location = new System.Drawing.Point(29, 298);
+            this.ucTextBoxGrisTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisTelefono.Name = "ucTextBoxGrisTelefono";
             this.ucTextBoxGrisTelefono.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisTelefono.TabIndex = 31;
@@ -215,6 +245,7 @@
             // ucTextBoxGrisLocalidad
             // 
             this.ucTextBoxGrisLocalidad.Location = new System.Drawing.Point(29, 235);
+            this.ucTextBoxGrisLocalidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisLocalidad.Name = "ucTextBoxGrisLocalidad";
             this.ucTextBoxGrisLocalidad.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisLocalidad.TabIndex = 29;
@@ -223,6 +254,7 @@
             // ucTextBoxGrisDomicilio
             // 
             this.ucTextBoxGrisDomicilio.Location = new System.Drawing.Point(29, 172);
+            this.ucTextBoxGrisDomicilio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisDomicilio.Name = "ucTextBoxGrisDomicilio";
             this.ucTextBoxGrisDomicilio.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisDomicilio.TabIndex = 27;
@@ -231,6 +263,7 @@
             // ucTextBoxGrisContacto
             // 
             this.ucTextBoxGrisContacto.Location = new System.Drawing.Point(29, 109);
+            this.ucTextBoxGrisContacto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisContacto.Name = "ucTextBoxGrisContacto";
             this.ucTextBoxGrisContacto.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisContacto.TabIndex = 25;
@@ -239,6 +272,7 @@
             // ucTextBoxGrisNombre
             // 
             this.ucTextBoxGrisNombre.Location = new System.Drawing.Point(29, 46);
+            this.ucTextBoxGrisNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucTextBoxGrisNombre.Name = "ucTextBoxGrisNombre";
             this.ucTextBoxGrisNombre.Size = new System.Drawing.Size(203, 26);
             this.ucTextBoxGrisNombre.TabIndex = 23;
@@ -251,7 +285,7 @@
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(25, 23);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(57, 20);
+            this.label26.Size = new System.Drawing.Size(70, 23);
             this.label26.TabIndex = 21;
             this.label26.Text = "Nombre";
             // 
@@ -262,7 +296,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(25, 86);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(64, 20);
+            this.label25.Size = new System.Drawing.Size(79, 23);
             this.label25.TabIndex = 20;
             this.label25.Text = "Contacto";
             // 
@@ -273,7 +307,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(25, 212);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(70, 20);
+            this.label24.Size = new System.Drawing.Size(85, 23);
             this.label24.TabIndex = 19;
             this.label24.Text = "Localidad";
             // 
@@ -284,7 +318,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(25, 275);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(63, 20);
+            this.label23.Size = new System.Drawing.Size(77, 23);
             this.label23.TabIndex = 18;
             this.label23.Text = "Telefono";
             // 
@@ -295,7 +329,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(25, 403);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(101, 20);
+            this.label22.Size = new System.Drawing.Size(125, 23);
             this.label22.TabIndex = 17;
             this.label22.Text = "Observaciones";
             // 
@@ -306,7 +340,7 @@
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(276, 23);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(83, 20);
+            this.label21.Size = new System.Drawing.Size(101, 23);
             this.label21.TabIndex = 16;
             this.label21.Text = "Tipo de Cuit";
             // 
@@ -317,7 +351,7 @@
             this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(276, 275);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 20);
+            this.label20.Size = new System.Drawing.Size(63, 23);
             this.label20.TabIndex = 15;
             this.label20.Text = "Celular";
             // 
@@ -328,7 +362,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(276, 86);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(59, 20);
+            this.label19.Size = new System.Drawing.Size(71, 23);
             this.label19.TabIndex = 14;
             this.label19.Text = "Nro Cuit";
             // 
@@ -339,7 +373,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(276, 149);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(43, 20);
+            this.label18.Size = new System.Drawing.Size(51, 23);
             this.label18.TabIndex = 13;
             this.label18.Text = "Email";
             // 
@@ -350,7 +384,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(25, 149);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 20);
+            this.label17.Size = new System.Drawing.Size(80, 23);
             this.label17.TabIndex = 22;
             this.label17.Text = "Domicilio";
             // 
@@ -361,17 +395,17 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(279, 212);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(80, 20);
+            this.label16.Size = new System.Drawing.Size(100, 23);
             this.label16.TabIndex = 12;
             this.label16.Text = "Página Web";
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgvListado);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(509, 452);
+            this.tabPage2.Size = new System.Drawing.Size(509, 518);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Productos";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -402,7 +436,7 @@
             this.dgvListado.ReadOnly = true;
             this.dgvListado.RowHeadersVisible = false;
             this.dgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListado.Size = new System.Drawing.Size(503, 446);
+            this.dgvListado.Size = new System.Drawing.Size(503, 512);
             this.dgvListado.TabIndex = 0;
             // 
             // productoIdDataGridViewTextBoxColumn
@@ -505,24 +539,25 @@
             // 
             this.proveedorProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.ProveedorProducto);
             // 
-            // label15
+            // txtTipoComprobante
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(25, 340);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(171, 20);
-            this.label15.TabIndex = 34;
-            this.label15.Text = "Esconder Facturas en Caja";
+            this.txtTipoComprobante.Location = new System.Drawing.Point(280, 363);
+            this.txtTipoComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTipoComprobante.Name = "txtTipoComprobante";
+            this.txtTipoComprobante.Size = new System.Drawing.Size(203, 26);
+            this.txtTipoComprobante.TabIndex = 37;
+            this.txtTipoComprobante.Texto = "";
             // 
-            // txtNoReflejarFacturaEnCaja
+            // label27
             // 
-            this.txtNoReflejarFacturaEnCaja.Location = new System.Drawing.Point(29, 362);
-            this.txtNoReflejarFacturaEnCaja.Name = "txtNoReflejarFacturaEnCaja";
-            this.txtNoReflejarFacturaEnCaja.Size = new System.Drawing.Size(203, 26);
-            this.txtNoReflejarFacturaEnCaja.TabIndex = 35;
-            this.txtNoReflejarFacturaEnCaja.Texto = "";
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(276, 340);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(175, 23);
+            this.label27.TabIndex = 36;
+            this.label27.Text = "Tipo de Comprobante";
             // 
             // frmDetalleProveedor
             // 
@@ -613,6 +648,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ultimaSecuenciaExportacionDataGridViewTextBoxColumn;
         private MaxiKiosco.Win.Util.Controles.ucTextBoxGris txtNoReflejarFacturaEnCaja;
         private System.Windows.Forms.Label label15;
+        private MaxiKiosco.Win.Util.Controles.ucTextBoxGris txtTipoComprobante;
+        private System.Windows.Forms.Label label27;
         
         
     }

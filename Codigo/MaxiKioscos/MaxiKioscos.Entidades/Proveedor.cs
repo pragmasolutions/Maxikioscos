@@ -42,6 +42,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<decimal> PercepcionDGR { get; set; }
         public bool AplicaPercepcionIVA { get; set; }
         public bool NoReflejarFacturaEnCaja { get; set; }
+        public string TipoComprobante { get; set; }
     
         public virtual Cuenta Cuenta { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }

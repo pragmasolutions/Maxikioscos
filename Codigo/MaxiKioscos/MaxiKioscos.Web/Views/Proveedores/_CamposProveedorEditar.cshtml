@@ -28,10 +28,16 @@
         @Html.EditorFor(model => model.Telefono)
         @Html.ValidationMessageFor(model => model.Telefono)
     </div>
-     <div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(model => model.PercepcionDGR)
         @Html.EditorFor(model => model.PercepcionDGR)
         @Html.ValidationMessageFor(model => model.PercepcionDGR)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
+        </label>
+        @Html.ValidationMessageFor(model => model.AplicaPercepcionIVA)
     </div>
 </div>
 <div class="col-lg-6">
@@ -60,11 +66,10 @@
         @Html.EditorFor(model => model.Celular)
         @Html.ValidationMessageFor(model => model.Celular)
     </div>
-    <div class="checkbox">
-        <label>
-            @Html.EditorFor(model => model.AplicaPercepcionIVA) @Html.DisplayNameFor(model => model.AplicaPercepcionIVA)
-        </label>
-        @Html.ValidationMessageFor(model => model.AplicaPercepcionIVA)
+    <div class="form-group">
+        @Html.LabelFor(model => model.TipoComprobante)
+        @Html.EditorFor(model => model.TipoComprobante)
+        @Html.ValidationMessageFor(model => model.TipoComprobante)
     </div>
     <div class="checkbox">
         <label>

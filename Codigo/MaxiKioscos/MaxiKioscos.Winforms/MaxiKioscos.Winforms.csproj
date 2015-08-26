@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://ganciokioscos-001-site1.smarterasp.net/Installer/</InstallUrl>
     <UpdateUrl>http://ganciokioscos-001-site1.smarterasp.net/Installer/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.24</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.25</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>25</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -564,6 +564,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\89-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\95-Sync_Proveedores.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\94-Proveedor_TipoComprobante.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\93-Maxikiosco_ColumnaUltimaConexion.sql">
