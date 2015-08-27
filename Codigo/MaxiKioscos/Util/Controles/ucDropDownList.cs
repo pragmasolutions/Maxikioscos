@@ -271,5 +271,11 @@ namespace Util.Controles
             if (Char.IsLetter(e.KeyChar))
                 e.KeyChar = Char.ToUpper(e.KeyChar);
         }
+
+        public string Texto
+        {
+            get { return combo.Text; }
+            set { combo.Text = value; }
+        }
     }
 }

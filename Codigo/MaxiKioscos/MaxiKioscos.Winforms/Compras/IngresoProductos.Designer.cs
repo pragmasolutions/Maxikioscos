@@ -34,9 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,6 +49,14 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dvgCompraProducto = new System.Windows.Forms.DataGridView();
+            this.CantidadFormateada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostoSinIVAFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioActualizadoFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockAnteriorFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockActualFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostoSinIVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockAnterior = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompraProductoEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -75,27 +83,22 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtDGR = new Util.Controles.ucDinero();
             this.txtTotalConDescuento = new Util.Controles.ucDinero();
             this.txtDescuento = new Util.Controles.ucDinero();
             this.txtTotalCompra = new Util.Controles.ucDinero();
             this.txtIVA = new Util.Controles.ucDinero();
+            this.ddlTipoComprobante = new Util.Controles.ucDropDownList();
             this.txtImporteTotal = new Util.Controles.ucDinero();
             this.txtDescuentoImporte = new Util.Controles.ucDinero();
             this.txtDescuentoPorcentaje = new Util.Controles.ucSoloNumero();
-            this.ddlFacturas = new Util.Controles.ucDropDownList();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.compraProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.compraProductoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadFormateada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.primerCodigoProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productoDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostoSinIVAFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoActualizadoFormateadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioActualizadoFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gananciaFormateadaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockAnteriorFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockActualFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.compraIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoActualDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,13 +115,12 @@
             this.costoActualFormateadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioActualizadoFormateadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioActualFormateadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostoSinIVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costoActualizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioActualizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockAnterior = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockActualDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CompraProductoEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.compraProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ddlFacturas = new Util.Controles.ucDropDownList();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgCompraProducto)).BeginInit();
             this.panel1.SuspendLayout();
@@ -317,6 +319,82 @@
             this.dvgCompraProducto.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dvgCompraProducto_CellPainting);
             this.dvgCompraProducto.Click += new System.EventHandler(this.dvgCompraProducto_Click);
             // 
+            // CantidadFormateada
+            // 
+            this.CantidadFormateada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CantidadFormateada.DataPropertyName = "CantidadFormateada";
+            this.CantidadFormateada.HeaderText = "Cant";
+            this.CantidadFormateada.Name = "CantidadFormateada";
+            this.CantidadFormateada.ReadOnly = true;
+            this.CantidadFormateada.Width = 40;
+            // 
+            // CostoSinIVAFormateado
+            // 
+            this.CostoSinIVAFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CostoSinIVAFormateado.DataPropertyName = "CostoSinIVAFormateado";
+            this.CostoSinIVAFormateado.HeaderText = "Costo s/IVA";
+            this.CostoSinIVAFormateado.Name = "CostoSinIVAFormateado";
+            this.CostoSinIVAFormateado.ReadOnly = true;
+            this.CostoSinIVAFormateado.Width = 70;
+            // 
+            // PrecioActualizadoFormateado
+            // 
+            this.PrecioActualizadoFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PrecioActualizadoFormateado.DataPropertyName = "PrecioActualizadoFormateado";
+            this.PrecioActualizadoFormateado.HeaderText = "Precio";
+            this.PrecioActualizadoFormateado.Name = "PrecioActualizadoFormateado";
+            this.PrecioActualizadoFormateado.ReadOnly = true;
+            this.PrecioActualizadoFormateado.Width = 70;
+            // 
+            // StockAnteriorFormateado
+            // 
+            this.StockAnteriorFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.StockAnteriorFormateado.DataPropertyName = "StockAnteriorFormateado";
+            this.StockAnteriorFormateado.HeaderText = "Stock Ant.";
+            this.StockAnteriorFormateado.Name = "StockAnteriorFormateado";
+            this.StockAnteriorFormateado.ReadOnly = true;
+            this.StockAnteriorFormateado.Width = 70;
+            // 
+            // StockActualFormateado
+            // 
+            this.StockActualFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.StockActualFormateado.DataPropertyName = "StockActualFormateado";
+            this.StockActualFormateado.HeaderText = "Stock Actual";
+            this.StockActualFormateado.Name = "StockActualFormateado";
+            this.StockActualFormateado.ReadOnly = true;
+            this.StockActualFormateado.Width = 70;
+            // 
+            // CostoSinIVA
+            // 
+            this.CostoSinIVA.DataPropertyName = "CostoSinIVA";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.CostoSinIVA.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CostoSinIVA.HeaderText = "Costo s/IVA";
+            this.CostoSinIVA.Name = "CostoSinIVA";
+            this.CostoSinIVA.ReadOnly = true;
+            this.CostoSinIVA.Visible = false;
+            // 
+            // StockAnterior
+            // 
+            this.StockAnterior.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.StockAnterior.DataPropertyName = "StockAnterior";
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.StockAnterior.DefaultCellStyle = dataGridViewCellStyle6;
+            this.StockAnterior.HeaderText = "Stock Ant.";
+            this.StockAnterior.Name = "StockAnterior";
+            this.StockAnterior.ReadOnly = true;
+            this.StockAnterior.Visible = false;
+            this.StockAnterior.Width = 80;
+            // 
+            // CompraProductoEliminar
+            // 
+            this.CompraProductoEliminar.HeaderText = "";
+            this.CompraProductoEliminar.Name = "CompraProductoEliminar";
+            this.CompraProductoEliminar.ReadOnly = true;
+            this.CompraProductoEliminar.Width = 22;
+            // 
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -460,6 +538,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ddlTipoComprobante);
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.radDescuentoImporte);
             this.groupBox2.Controls.Add(this.radDescuentoPorcentaje);
             this.groupBox2.Controls.Add(this.txtImporteTotal);
@@ -472,7 +552,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(400, 170);
+            this.groupBox2.Size = new System.Drawing.Size(400, 219);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "FACTURA";
@@ -593,11 +673,11 @@
             this.groupBox3.Controls.Add(this.txtTotalCompra);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtIVA);
-            this.groupBox3.Location = new System.Drawing.Point(1204, 193);
+            this.groupBox3.Location = new System.Drawing.Point(1204, 243);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(400, 481);
+            this.groupBox3.Size = new System.Drawing.Size(400, 431);
             this.groupBox3.TabIndex = 62;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "COMPRA FINAL";
@@ -609,7 +689,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblCosto, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 330);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(29, 305);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
@@ -704,6 +784,25 @@
             this.label4.Size = new System.Drawing.Size(135, 24);
             this.label4.TabIndex = 62;
             this.label4.Text = "Total Compra";
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            this.dataGridViewButtonColumn1.Width = 22;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(21, 171);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(184, 24);
+            this.label7.TabIndex = 62;
+            this.label7.Text = "Tipo Comprobante";
             // 
             // txtDGR
             // 
@@ -842,6 +941,28 @@
             this.txtIVA.Valor = null;
             this.txtIVA.Cambio += new Util.Controles.ucDinero.CambioEventHandler(this.txtIVA_Cambio);
             // 
+            // ddlTipoComprobante
+            // 
+            this.ddlTipoComprobante.Alto = 34;
+            this.ddlTipoComprobante.Ancho = 123;
+            this.ddlTipoComprobante.DataSource = null;
+            this.ddlTipoComprobante.Disabled = true;
+            this.ddlTipoComprobante.DisplayMember = "";
+            this.ddlTipoComprobante.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlTipoComprobante.ErrorMessage = "";
+            this.ddlTipoComprobante.EsObligatorio = true;
+            this.ddlTipoComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ddlTipoComprobante.InvalidateChar = null;
+            this.ddlTipoComprobante.Location = new System.Drawing.Point(252, 169);
+            this.ddlTipoComprobante.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.ddlTipoComprobante.Name = "ddlTipoComprobante";
+            this.ddlTipoComprobante.Referencia = null;
+            this.ddlTipoComprobante.Size = new System.Drawing.Size(123, 34);
+            this.ddlTipoComprobante.TabIndex = 63;
+            this.ddlTipoComprobante.Texto = "";
+            this.ddlTipoComprobante.Valor = 0;
+            this.ddlTipoComprobante.ValueMember = "";
+            // 
             // txtImporteTotal
             // 
             this.txtImporteTotal.Disabled = true;
@@ -920,39 +1041,6 @@
             this.txtDescuentoPorcentaje.ValorDecimal = null;
             this.txtDescuentoPorcentaje.Cambio += new Util.Controles.ucSoloNumero.CambioEventHandler(this.txtDescuentoPorcentaje_Cambio);
             // 
-            // ddlFacturas
-            // 
-            this.ddlFacturas.Alto = 34;
-            this.ddlFacturas.Ancho = 291;
-            this.ddlFacturas.DataSource = null;
-            this.ddlFacturas.Disabled = false;
-            this.ddlFacturas.DisplayMember = "";
-            this.ddlFacturas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlFacturas.ErrorMessage = "";
-            this.ddlFacturas.EsObligatorio = true;
-            this.ddlFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ddlFacturas.InvalidateChar = null;
-            this.ddlFacturas.Location = new System.Drawing.Point(553, 36);
-            this.ddlFacturas.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ddlFacturas.Name = "ddlFacturas";
-            this.ddlFacturas.Referencia = null;
-            this.ddlFacturas.Size = new System.Drawing.Size(291, 34);
-            this.ddlFacturas.TabIndex = 2;
-            this.ddlFacturas.Valor = 0;
-            this.ddlFacturas.ValueMember = "";
-            this.ddlFacturas.ComboSelectedIndexChanged += new System.EventHandler(this.ddlFacturas_ComboSelectedIndexChanged);
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.HeaderText = "";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.ReadOnly = true;
-            this.dataGridViewButtonColumn1.Width = 22;
-            // 
-            // compraProductoBindingSource
-            // 
-            this.compraProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CompraProducto);
-            // 
             // compraProductoIdDataGridViewTextBoxColumn
             // 
             this.compraProductoIdDataGridViewTextBoxColumn.DataPropertyName = "CompraProductoId";
@@ -960,15 +1048,6 @@
             this.compraProductoIdDataGridViewTextBoxColumn.Name = "compraProductoIdDataGridViewTextBoxColumn";
             this.compraProductoIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.compraProductoIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // CantidadFormateada
-            // 
-            this.CantidadFormateada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CantidadFormateada.DataPropertyName = "CantidadFormateada";
-            this.CantidadFormateada.HeaderText = "Cant";
-            this.CantidadFormateada.Name = "CantidadFormateada";
-            this.CantidadFormateada.ReadOnly = true;
-            this.CantidadFormateada.Width = 40;
             // 
             // primerCodigoProductoDataGridViewTextBoxColumn
             // 
@@ -987,15 +1066,6 @@
             this.productoDescripcionDataGridViewTextBoxColumn.Name = "productoDescripcionDataGridViewTextBoxColumn";
             this.productoDescripcionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // CostoSinIVAFormateado
-            // 
-            this.CostoSinIVAFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.CostoSinIVAFormateado.DataPropertyName = "CostoSinIVAFormateado";
-            this.CostoSinIVAFormateado.HeaderText = "Costo s/IVA";
-            this.CostoSinIVAFormateado.Name = "CostoSinIVAFormateado";
-            this.CostoSinIVAFormateado.ReadOnly = true;
-            this.CostoSinIVAFormateado.Width = 70;
-            // 
             // costoActualizadoFormateadoDataGridViewTextBoxColumn
             // 
             this.costoActualizadoFormateadoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1005,15 +1075,6 @@
             this.costoActualizadoFormateadoDataGridViewTextBoxColumn.ReadOnly = true;
             this.costoActualizadoFormateadoDataGridViewTextBoxColumn.Width = 70;
             // 
-            // PrecioActualizadoFormateado
-            // 
-            this.PrecioActualizadoFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PrecioActualizadoFormateado.DataPropertyName = "PrecioActualizadoFormateado";
-            this.PrecioActualizadoFormateado.HeaderText = "Precio";
-            this.PrecioActualizadoFormateado.Name = "PrecioActualizadoFormateado";
-            this.PrecioActualizadoFormateado.ReadOnly = true;
-            this.PrecioActualizadoFormateado.Width = 70;
-            // 
             // gananciaFormateadaDataGridViewTextBoxColumn
             // 
             this.gananciaFormateadaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1022,24 +1083,6 @@
             this.gananciaFormateadaDataGridViewTextBoxColumn.Name = "gananciaFormateadaDataGridViewTextBoxColumn";
             this.gananciaFormateadaDataGridViewTextBoxColumn.ReadOnly = true;
             this.gananciaFormateadaDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // StockAnteriorFormateado
-            // 
-            this.StockAnteriorFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.StockAnteriorFormateado.DataPropertyName = "StockAnteriorFormateado";
-            this.StockAnteriorFormateado.HeaderText = "Stock Ant.";
-            this.StockAnteriorFormateado.Name = "StockAnteriorFormateado";
-            this.StockAnteriorFormateado.ReadOnly = true;
-            this.StockAnteriorFormateado.Width = 70;
-            // 
-            // StockActualFormateado
-            // 
-            this.StockActualFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.StockActualFormateado.DataPropertyName = "StockActualFormateado";
-            this.StockActualFormateado.HeaderText = "Stock Actual";
-            this.StockActualFormateado.Name = "StockActualFormateado";
-            this.StockActualFormateado.ReadOnly = true;
-            this.StockActualFormateado.Width = 70;
             // 
             // compraIdDataGridViewTextBoxColumn
             // 
@@ -1169,17 +1212,6 @@
             this.precioActualFormateadoDataGridViewTextBoxColumn.ReadOnly = true;
             this.precioActualFormateadoDataGridViewTextBoxColumn.Visible = false;
             // 
-            // CostoSinIVA
-            // 
-            this.CostoSinIVA.DataPropertyName = "CostoSinIVA";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.CostoSinIVA.DefaultCellStyle = dataGridViewCellStyle3;
-            this.CostoSinIVA.HeaderText = "Costo s/IVA";
-            this.CostoSinIVA.Name = "CostoSinIVA";
-            this.CostoSinIVA.ReadOnly = true;
-            this.CostoSinIVA.Visible = false;
-            // 
             // costoActualizadoDataGridViewTextBoxColumn
             // 
             this.costoActualizadoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -1205,19 +1237,6 @@
             this.precioActualizadoDataGridViewTextBoxColumn.ReadOnly = true;
             this.precioActualizadoDataGridViewTextBoxColumn.Visible = false;
             this.precioActualizadoDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // StockAnterior
-            // 
-            this.StockAnterior.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.StockAnterior.DataPropertyName = "StockAnterior";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.StockAnterior.DefaultCellStyle = dataGridViewCellStyle6;
-            this.StockAnterior.HeaderText = "Stock Ant.";
-            this.StockAnterior.Name = "StockAnterior";
-            this.StockAnterior.ReadOnly = true;
-            this.StockAnterior.Visible = false;
-            this.StockAnterior.Width = 80;
             // 
             // stockActualDataGridViewTextBoxColumn
             // 
@@ -1245,12 +1264,32 @@
             this.cantidadDataGridViewTextBoxColumn.Visible = false;
             this.cantidadDataGridViewTextBoxColumn.Width = 50;
             // 
-            // CompraProductoEliminar
+            // compraProductoBindingSource
             // 
-            this.CompraProductoEliminar.HeaderText = "";
-            this.CompraProductoEliminar.Name = "CompraProductoEliminar";
-            this.CompraProductoEliminar.ReadOnly = true;
-            this.CompraProductoEliminar.Width = 22;
+            this.compraProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CompraProducto);
+            // 
+            // ddlFacturas
+            // 
+            this.ddlFacturas.Alto = 34;
+            this.ddlFacturas.Ancho = 291;
+            this.ddlFacturas.DataSource = null;
+            this.ddlFacturas.Disabled = false;
+            this.ddlFacturas.DisplayMember = "";
+            this.ddlFacturas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlFacturas.ErrorMessage = "";
+            this.ddlFacturas.EsObligatorio = true;
+            this.ddlFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ddlFacturas.InvalidateChar = null;
+            this.ddlFacturas.Location = new System.Drawing.Point(553, 36);
+            this.ddlFacturas.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.ddlFacturas.Name = "ddlFacturas";
+            this.ddlFacturas.Referencia = null;
+            this.ddlFacturas.Size = new System.Drawing.Size(291, 34);
+            this.ddlFacturas.TabIndex = 2;
+            this.ddlFacturas.Texto = "";
+            this.ddlFacturas.Valor = 0;
+            this.ddlFacturas.ValueMember = "";
+            this.ddlFacturas.ComboSelectedIndexChanged += new System.EventHandler(this.ddlFacturas_ComboSelectedIndexChanged);
             // 
             // IngresoProductos
             // 
@@ -1369,5 +1408,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stockActualDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn CompraProductoEliminar;
+        private Util.Controles.ucDropDownList ddlTipoComprobante;
+        private System.Windows.Forms.Label label7;
     }
 }

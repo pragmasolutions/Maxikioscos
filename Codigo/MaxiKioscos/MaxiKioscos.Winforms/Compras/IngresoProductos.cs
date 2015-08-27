@@ -211,6 +211,13 @@ namespace MaxiKioscos.Winforms.Compras
                 btnBottomBuscar.Enabled = true;
                 btnBottomNuevoProducto.Enabled = true;
 
+                ddlTipoComprobante.Disabled = false;
+                if (!string.IsNullOrEmpty(Factura.Proveedor.TipoComprobante))
+                {
+                    ddlTipoComprobante.Texto = Factura.Proveedor.TipoComprobante;
+                }
+                
+
                 ComprasProducto = new List<CompraProducto>();
                 RefrescarGrilla();
                 txtCodigo.Focus();
@@ -226,6 +233,7 @@ namespace MaxiKioscos.Winforms.Compras
                 txtDGR.Valor = 0;
                 txtDescuentoImporte.Disabled = true;
                 txtDescuentoPorcentaje.Disabled = true;
+                ddlTipoComprobante.Disabled = true;
 
                 chxIVA.Enabled = false;
                 chxDGR.Enabled = false;
@@ -950,7 +958,8 @@ namespace MaxiKioscos.Winforms.Compras
                                          ImporteFinal = ImporteFinal,
                                          PercepcionDGR = txtDGR.Valor.GetValueOrDefault(),
                                          PercepcionIVA = txtIVA.Valor.GetValueOrDefault(),
-                                         TotalCompra = txtTotalCompra.Valor.GetValueOrDefault()
+                                         TotalCompra = txtTotalCompra.Valor.GetValueOrDefault(),
+                                         TipoComprobante = ddlTipoComprobante.Texto
                                      };
                     
                     
@@ -1283,6 +1292,12 @@ namespace MaxiKioscos.Winforms.Compras
                 radDescuentoImporte.Enabled = true;
                 radDescuentoPorcentaje.Enabled = true;
             }
+            CargarTipoComprobantes();
+        }
+
+        private void CargarTipoComprobantes()
+        {
+            ddlTipoComprobante.DataSource = new List<string> {"X", "A"};
         }
 
         private void btnMostrarTodos_Click(object sender, EventArgs e)

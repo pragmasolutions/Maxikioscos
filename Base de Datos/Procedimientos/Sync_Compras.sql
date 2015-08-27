@@ -58,7 +58,7 @@ BEGIN
 					   TotalCompra money '../../../TotalCompra',
 					   Descuento money '../../../Descuento',
 					   ImporteFinal money '../../../ImporteFinal',
-					   TipoComprobante money '../../../TipoComprobante',
+					   TipoComprobante varchar(3) '../../../TipoComprobante',
 					   FacturaIdentifier UNIQUEIDENTIFIER '../../FacturaIdentifier',
 					   CuentaIdentifier UNIQUEIDENTIFIER '../CuentaIdentifier',
 					   MaxiKioscoIdentifier UNIQUEIDENTIFIER 'MaxiKioscoIdentifier')
