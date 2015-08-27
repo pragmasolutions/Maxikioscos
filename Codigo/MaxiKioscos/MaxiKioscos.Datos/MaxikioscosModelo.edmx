@@ -62,6 +62,7 @@
           <Property Name="TotalCompra" Type="money" Nullable="false" />
           <Property Name="Descuento" Type="money" Nullable="false" />
           <Property Name="ImporteFinal" Type="money" Nullable="false" />
+          <Property Name="TipoComprobante" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="CompraProducto">
           <Key>
@@ -3518,6 +3519,7 @@
           <Property Name="TotalCompra" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Descuento" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="ImporteFinal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TipoComprobante" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CompraProducto">
           <Key>
@@ -5006,6 +5008,7 @@
           <EntitySetMapping Name="Compras">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Compra">
               <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
                 <ScalarProperty Name="ImporteFinal" ColumnName="ImporteFinal" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="TotalCompra" ColumnName="TotalCompra" />

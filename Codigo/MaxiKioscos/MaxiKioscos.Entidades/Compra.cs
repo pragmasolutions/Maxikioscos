@@ -35,6 +35,7 @@ namespace MaxiKioscos.Entidades
         public decimal TotalCompra { get; set; }
         public decimal Descuento { get; set; }
         public decimal ImporteFinal { get; set; }
+        public string TipoComprobante { get; set; }
     
         public virtual Factura Factura { get; set; }
         public virtual ICollection<CompraProducto> ComprasProductos { get; set; }

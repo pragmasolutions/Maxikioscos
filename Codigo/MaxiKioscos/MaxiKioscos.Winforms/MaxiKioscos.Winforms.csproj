@@ -566,6 +566,12 @@
     <Content Include="SqlScripts\89-ControlStock_Crear.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\97-Sync_Compras.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\96-Compra_TipoComprobante.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\95-Sync_Proveedores.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
