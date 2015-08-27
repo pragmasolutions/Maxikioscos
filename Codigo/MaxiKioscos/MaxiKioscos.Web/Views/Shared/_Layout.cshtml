@@ -80,6 +80,10 @@
             
         maxikiosco.usuarioActual = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario));
         maxikiosco.cuenta = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario.Cuenta));       
+
+        $(window).bind('beforeunload', function(){
+            return 'Al abandonar la página perderán los datos que no hayan sido guardados';
+        });
         
     </script>
 
