@@ -576,6 +576,7 @@
                 $("#Factura_FacturaNro", $modal).val(factura.facturaNro);
                 $('#Numero', $modal).val(factura.autoNumero);
                 $('#ImporteFactura', $modal).val(factura.importeTotal);
+                $('#TipoComprobante', $modal).val(factura.tipoComprobante);
 
                 $('#PercepcionIVAProcentaje', $modal).text(Globalize.format(maxikiosco.cuenta.porcentajePercepcionIVA / 100, 'p2'));
                 $('#PercepcionDGRProcentaje', $modal).text(Globalize.format(factura.percepcionDGR / 100, 'p2'));

@@ -16,22 +16,27 @@
                         @Html.ValidationMessageFor(model => model.Numero)
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-3">
                     <div>
                         @Html.LabelFor(model => model.FacturaId)
-                        <div class="form-group">
-                            @Html.EditorFor(model => model.FacturaId)
-                        </div>
+                        @Html.EditorFor(model => model.FacturaId)
                         @Html.ValidationMessageFor(model => model.FacturaId)
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="form-group">
                         @Html.Label("Proveedor")
                         @Html.Hidden("ProveedorId", Model.Factura != null ? Model.Factura.ProveedorId : 0)
                         @Html.TextBox("ProveedorNombre",
-                                      Model.Factura != null && Model.Factura.Proveedor != null ? Model.Factura.Proveedor.Nombre : string.Empty,
-                                      new { @class = "form-control", @readonly = true })
+                            Model.Factura != null && Model.Factura.Proveedor != null ? Model.Factura.Proveedor.Nombre : string.Empty,
+                            new {@class = "form-control", @readonly = true})
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        @Html.Label("Tipo de Comprobante")
+                        @Html.EditorFor(model => model.TipoComprobante)
+                        @Html.ValidationMessageFor(model => model.TipoComprobante)
                     </div>
                 </div>
             </div>
@@ -43,14 +48,14 @@
                         @Html.ValidationMessageFor(model => model.Fecha)
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-3">
                     <div class="form-group">
                         @Html.HiddenFor(model => model.Factura.FacturaNro)
                         @Html.Label("Importe Total")
                         @Html.DisplayFor(modal => Model.Factura.ImporteTotal)
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="form-group">
                         @Html.Label("MaxiKiosco")
                         @Html.HiddenFor(model => model.MaxiKioscoId)

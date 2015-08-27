@@ -200,7 +200,8 @@ namespace MaxiKioscos.Web.Controllers
                     maxikiosco = factura.MaxiKiosco.Nombre,
                     percepcionDGR = proveedor.PercepcionDGR,
                     aplicaPercepcionIVA = proveedor.AplicaPercepcionIVA,
-                    autoNumero = factura.AutoNumero
+                    autoNumero = factura.AutoNumero,
+                    tipoComprobante = factura.Proveedor.TipoComprobante
                 });
         }
     }

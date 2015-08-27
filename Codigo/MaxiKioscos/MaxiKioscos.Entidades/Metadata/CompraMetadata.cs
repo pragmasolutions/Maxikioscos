@@ -48,5 +48,9 @@ namespace MaxiKioscos.Entidades
         [Display(Name = "Percepción DGR")]
         [DataType(DataType.Currency)]
         public decimal PercepcionDGR { get; set; }
+
+        [UIHint("TipoComprobante")]
+        [Required(ErrorMessage = "Debe ingresar el tipo de comprobante")]
+        public string TipoComprobante { get; set; }
     }
 }
