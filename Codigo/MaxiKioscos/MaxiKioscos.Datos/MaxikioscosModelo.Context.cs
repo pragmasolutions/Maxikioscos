@@ -844,5 +844,14 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ControlStockVistaPreviaRow>("ControlStockVistaPrevia", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, masVendidosParameter, cantidadFilasParameter);
         }
+    
+        public virtual ObjectResult<ProductoStock> ProductoStock(Nullable<int> productoId)
+        {
+            var productoIdParameter = productoId.HasValue ?
+                new ObjectParameter("ProductoId", productoId) :
+                new ObjectParameter("ProductoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoStock>("ProductoStock", productoIdParameter);
+        }
     }
 }

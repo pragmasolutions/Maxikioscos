@@ -350,6 +350,7 @@
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\app\bootstrapAlerts.js" />
+    <Content Include="Scripts\app\maxikiosco-productos-stock.js" />
     <Content Include="Scripts\app\maxikiosco-promociones-editar.js" />
     <Content Include="Scripts\app\maxikiosco-promociones.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
@@ -911,6 +912,7 @@
     <Content Include="Views\Shared\EditorTemplates\ProductoSinPromociones.cshtml" />
     <Content Include="Views\Promociones\PromocionMaxikiosco.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TipoComprobante.cshtml" />
+    <Content Include="Views\Productos\Stock.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

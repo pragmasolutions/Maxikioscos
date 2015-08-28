@@ -5,10 +5,24 @@
 @using (Html.BeginForm("Editar", "Productos"))
 {
     <div class="modal-body">
-        @{Html.RenderPartial("_CamposProductoEditar"); }
+        <div class="fields-container">
+            @{Html.RenderPartial("_CamposProductoEditar"); }
+        </div>
+        <div class="stock-container"></div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;Editar</button>
+        <button type="button" class="btn btn-default btn-stock"><span class="fa fa-calculator"></span>Stock</button>
+        <button type="button" class="btn btn-default btn-volver" style="display: none;"><span class="glyphicon glyphicon-arrow-left"></span>Volver</button>
+        &nbsp;
+        <button type="submit" class="btn btn-default btn-editar-producto"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;Editar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
     </div>
 }
+
+<script type="text/javascript" src="/Scripts/app/maxikiosco-productos-stock.js"></script>
+<script>
+    $(function () {
+        inicializarStock('@Model.ProductoId');
+    })
+</script>
+

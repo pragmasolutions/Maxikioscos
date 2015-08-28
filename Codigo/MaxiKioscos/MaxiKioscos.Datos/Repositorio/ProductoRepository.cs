@@ -72,5 +72,10 @@ namespace MaxiKioscos.Datos.Repositorio
         {
             return this.MaxiKioscosEntities.ProductoParaTransferencia(origenId, destinoId, productoId).FirstOrDefault();
         }
+
+        public List<ProductoStock> ObtenerStock(int productoId)
+        {
+            return this.MaxiKioscosEntities.ProductoStock(productoId).ToList();
+        }
     }
 }

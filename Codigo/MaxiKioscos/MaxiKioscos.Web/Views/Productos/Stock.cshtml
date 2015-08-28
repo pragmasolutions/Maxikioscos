@@ -1,0 +1,34 @@
+﻿@model List<MaxiKioscos.Entidades.ProductoStock>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Maxikiosco
+                        </th>
+                        <th>
+                            Stock Actual
+                        </th>
+                        <th>
+                            Vendido en últimos 30 días
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var stock in Model)
+                    {
+                        <tr>
+                            <td>@stock.MaxiKiosco</td>
+                            <td>@stock.StockActual.GetValueOrDefault().ToString("N2")</td>
+                            <td>@stock.Vendido.GetValueOrDefault().ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

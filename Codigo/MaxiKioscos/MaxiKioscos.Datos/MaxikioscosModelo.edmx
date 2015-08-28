@@ -1574,6 +1574,9 @@
           <Parameter Name="DestinoId" Type="int" Mode="In" />
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Producto_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Proveedor_ObtenerRubros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
         </Function>
@@ -2630,6 +2633,9 @@
             <Parameter Name="RubroId" Mode="In" Type="Int32" />
             <Parameter Name="MasVendidos" Mode="In" Type="Boolean" />
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoStock" ReturnType="Collection(MaxiKioscosModel.ProductoStock)">
+            <Parameter Name="ProductoId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -4560,6 +4566,11 @@
           <Property Type="String" Name="Motivo" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="Diferencia" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="ProductoStock">
+          <Property Type="String" Name="MaxiKiosco" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Vendido" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5660,6 +5671,15 @@
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Motivo" ColumnName="Motivo" />
                 <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoStock" FunctionName="MaxiKioscosModel.Store.Producto_Stock">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoStock">
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="Vendido" ColumnName="Vendido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

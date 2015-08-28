@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
@@ -285,6 +286,12 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult CodigoDuplicadoPopup()
         {
             return PartialView();
+        }
+
+        public ActionResult Stock(int id)
+        {
+            var list = Uow.Productos.ObtenerStock(id);
+            return PartialView(list);
         }
 
         #region Helpers
