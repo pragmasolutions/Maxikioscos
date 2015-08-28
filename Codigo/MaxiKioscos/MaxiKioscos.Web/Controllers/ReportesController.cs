@@ -450,12 +450,6 @@ namespace MaxiKioscos.Web.Controllers
                                       {"Top5", top5DataSource }
                                   };
 
-            var parameters = new Dictionary<string, string>
-                                  {
-                                      {"ProveedorId", model.ProveedorId.GetValueOrDefault().ToString()},
-                                      {"CuentaId", UsuarioActual.CuentaId.ToString()}
-                                  };
-
             var proveedor = Uow.Proveedores.Obtener(m => m.ProveedorId == model.ProveedorId);
             var proveedorNombre = proveedor != null ? proveedor.Nombre : TodosText;
 
@@ -463,9 +457,10 @@ namespace MaxiKioscos.Web.Controllers
                 .SetParametro("Desde", model.Desde.ToShortDateString(null))
                 .SetParametro("Hasta", model.Hasta.ToShortDateString(null))
                 .SetParametro("ProveedorNombre", proveedorNombre)
+                .SetParametro("ProveedorId", model.ProveedorId.GetValueOrDefault().ToString())
+                .SetParametro("CuentaId", UsuarioActual.CuentaId.ToString())
                 .SetPathCompleto(Server.MapPath("~/Reportes/ComprasPorProveedor.rdl"))
-                .SetDataSource(datasources)
-                .SetParametro(parameters);
+                .SetDataSource(datasources);
 
             byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
 

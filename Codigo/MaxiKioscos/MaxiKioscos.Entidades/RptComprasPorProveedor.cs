@@ -13,8 +13,11 @@ namespace MaxiKioscos.Entidades
     
     public partial class RptComprasPorProveedor
     {
-        public decimal ImporteTotal { get; set; }
         public string Proveedor { get; set; }
-        public decimal DescuentoTotal { get; set; }
+        public Nullable<decimal> DescuentoTotal { get; set; }
+        public Nullable<decimal> DRG { get; set; }
+        public Nullable<decimal> IVA { get; set; }
+        public decimal ImportaA { get; set; }
+        public decimal ImporteX { get; set; }
     }
 }

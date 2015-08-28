@@ -4457,9 +4457,12 @@
           <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         <ComplexType Name="RptComprasPorProveedor">
-          <Property Type="Decimal" Name="ImporteTotal" Nullable="false" Precision="19" />
           <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="DescuentoTotal" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="DescuentoTotal" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="DRG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="ImportaA" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="ImporteX" Nullable="false" Precision="19" />
         </ComplexType>
         <ComplexType Name="StockValorizadoRow">
           <Property Type="String" Name="Maxikiosco" Nullable="false" MaxLength="100" />
@@ -5550,9 +5553,12 @@
           <FunctionImportMapping FunctionImportName="RptComprasPorProveedor" FunctionName="MaxiKioscosModel.Store.Rpt_ComprasPorProveedor">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.RptComprasPorProveedor">
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
                 <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
                 <ScalarProperty Name="DescuentoTotal" ColumnName="DescuentoTotal" />
+                <ScalarProperty Name="DRG" ColumnName="DRG" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="ImportaA" ColumnName="ImportaA" />
+                <ScalarProperty Name="ImporteX" ColumnName="ImporteX" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
