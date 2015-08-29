@@ -4,12 +4,11 @@
         init = function () {
 
             $('.btn-excepcion-rubro-crear').click(crear);
-            $("#TableExcepcionesRubros").on('click', 'a.btn-excepcion-rubro-editar', editar);
-            $("#TableExcepcionesRubros").on('click', 'a.btn-excepcion-rubro-detalle', detalle);
-            $("#TableExcepcionesRubros").on('click', 'a.btn-excepcion-rubro-eliminar', eliminar);
-
-            $modal.on('click', 'input[name="TipoRecargo"]', toggleRadioTipoRecargo);
+            $("#ListadoContainer").on('click', 'a.btn-excepcion-rubro-editar', editar);
+            $("#ListadoContainer").on('click', 'a.btn-excepcion-rubro-detalle', detalle);
+            $("#ListadoContainer").on('click', 'a.btn-excepcion-rubro-eliminar', eliminar);
             $modal.on('submit', 'form', submit);
+            $modal.on('click', 'input[name="TipoRecargo"]', toggleRadioTipoRecargo);
         },
         crear = function () {
             var url = $(this).attr('href');
@@ -35,7 +34,6 @@
 
         },
         submit = function () {
-
             var $form = $(this);
             var url = $form.attr('action');
             var data = $form.serialize();
@@ -49,7 +47,6 @@
             return false;
         },
         submitExito = function (result) {
-            
             if (result.exito) {
                 $modal.modal('hide').on('hidden.bs.modal', function () {
                     //Refresh the list.

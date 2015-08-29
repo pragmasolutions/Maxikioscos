@@ -147,7 +147,6 @@ informal pre V1.0 commit counter: 63 */
 	}
 
 	function dbgBreak(val) {
-		debugger; // Insert breakpoint for debugging JsRender or JsViews.
 		// Consider https://github.com/BorisMoore/jsrender/issues/239:
 		// Usage examples: {{dbg:...}}, {{:~dbg(...)}}, {{for ... onAfterLink=~dbg}}, {{dbg .../}} etc.
 		return this.base ? this.baseApply(arguments) : val;

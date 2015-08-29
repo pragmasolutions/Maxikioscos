@@ -156,8 +156,14 @@ namespace MaxiKioscos.Web.Controllers
             producto.Descripcion = producto.Descripcion.ToUpper();
             Uow.Productos.Agregar(producto);;
             Uow.Commit();
+            
 
-            return Json(new { exito = true, codigo = producto.CodigosProductos.First().Codigo });
+            return Json(new
+            {
+                exito = true, 
+                codigo = producto.CodigosProductos.First().Codigo,
+                descripcion = producto.Descripcion.ToUpper()
+            });
         }
 
         public ActionResult Editar(int id)

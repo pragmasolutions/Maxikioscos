@@ -9,7 +9,6 @@
         dirtySearch = false,
         _agregandoProducto = false,
         init = function () {
-
             $('.btn-producto-crear').click(crear);
 
             $modalCrearProductos.on('maxikiosco.productoSubmitCompleted', productoSubmitCompleted);
@@ -75,9 +74,9 @@
         productoSubmitCompleted = function (e, response) {
             if (response.exito) {
                 $modalCrearProductos.modal('hide').on('hidden.bs.modal', modalHiddenAfterSuccess);
-                $modal.find('.auto-submit-input').val(response.codigo);
-                $modal.find('#BuscarPorDescripcion[value="False"]').prop('checked', true);
-                $modal.find('.auto-submit-input').keyup();
+                $modal.find('.search-textbox').val(response.descripcion);
+                $modal.find('#BuscarPorDescripcion[value="True"]').prop('checked', true);
+                $modal.find('form').submit();
             }
             else {
 

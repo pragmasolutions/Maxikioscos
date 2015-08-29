@@ -15,7 +15,6 @@
 
             //Parse auto-submit-input
             controles.parse('#AdminContainer');
-            
             $formFiltros.submit(function() {
                 
                 var $currentRow = $('#TableProductos tbody tr.highlight');
@@ -24,6 +23,7 @@
                 $('#TableProductos').cursortable('remove');
 
             });
+            
             util.focusPrimerElemento('#AdminContainer');
         },
         crear = function() {

@@ -292,7 +292,6 @@
         },
         
         formProductosSubmit = function () {
-            debugger;
             var $form = $(this);
 
             var isFistTabWithErrorsActive = false;

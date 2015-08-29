@@ -3,13 +3,38 @@
         $modalContent = $("#ComprasModalContrainer"),
         init = function () {
             $('.btn-compra-crear').click(crear);
-            $("#TableCompras").on('click', 'a.btn-compra-editar', editar);
-            $("#TableCompras").on('click', 'a.btn-compra-detalle', detalle);
-            $("#TableCompras").on('click', 'a.btn-compra-eliminar', eliminar);
+            $("#ListadoContainer").on('click', 'a.btn-compra-editar', editar);
+            $("#ListadoContainer").on('click', 'a.btn-compra-detalle', detalle);
+            $("#ListadoContainer").on('click', 'a.btn-compra-eliminar', eliminar);
 
             $(document).off('maxikiosco.comprasaved');
             $(document).on('maxikiosco.comprasaved', compraSaved);
+            //$modal.on('submit', 'form', submit);
+        },
+        submit = function () {
+            var $form = $(this);
+            var url = $form.attr('action');
+            var data = $form.serialize();
+            //Post
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data
+            }).done(submitExito);
 
+            return false;
+        },
+        submitExito = function (result) {
+            if (result.exito) {
+                $modal.modal('hide').on('hidden.bs.modal', function () {
+                    //Refresh the list.
+                    refreshList();
+                });
+            } else {
+                $modalContent.html(result);
+                validacion.parse('#ComprasModal');
+                controles.parse('#ComprasModal');
+            }
         },
         crear = function () {
             var url = $(this).attr('href');

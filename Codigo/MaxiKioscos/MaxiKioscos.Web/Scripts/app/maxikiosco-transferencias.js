@@ -3,8 +3,9 @@
         $modalContent = $("#TransferenciasModalContrainer"),
         init = function () {
             $('.btn-transferencia-crear').click(crear);
-            $("#TableTransferencias").on('click', 'a.btn-transferencia-editar', editar);
+            $("#z").on('click', 'a.btn-transferencia-editar', editar);
             $("#TableTransferencias").on('click', 'a.btn-transferencia-detalle', detalle);
+            $("#TableTransferencias").on('click', 'a.btn-transferencia-editar', editar);
             $("#TableTransferencias").on('click', 'a.btn-transferencia-eliminar', eliminar);
             $("#TableTransferencias").on('click', 'a.btn-transferencia-aprobar', aprobar);
             

@@ -30,7 +30,6 @@
                     type: "GET",
                     url: url
                 }).done(function (data) {
-                    debugger;
                     if (data.factura) {
                         var facturaId = data.factura.FacturaId;
                         $("#FacturaId", $modal).val(facturaId).trigger('change');

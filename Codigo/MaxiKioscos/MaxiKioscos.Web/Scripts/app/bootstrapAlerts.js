@@ -23,7 +23,6 @@
 		"</div>");
 
 	function showAlert(alert) {
-	    debugger;
 	    var alertElement = $(template.render(alert));
 		alertContainer.empty().append(alertElement);
 

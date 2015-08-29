@@ -1,17 +1,17 @@
 ﻿@using MaxiKioscos.Web.Helpers
 @model MaxiKioscos.Web.Models.ExcepcionRubrosFiltrosModel
 <div>
-    @using (Ajax.BeginForm("Listado", null,
-                                           new AjaxOptions()
-                                               {
-                                                   UpdateTargetId = "ListadoContainer",
-                                                   HttpMethod = "GET",
-                                                   InsertionMode = InsertionMode.Replace,
-                                                   OnBegin = "maxikioscoSpinner.startSpin",
-                                                   OnSuccess = "maxikioscoSpinner.stopSpin",
-                                                   OnFailure = "maxikioscoSpinner.stopSpin"
-                                               },
-                                           new { @class = "form-inline" }))
+    @using (Ajax.BeginForm("Index", null,
+                                new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    },
+                                new { @class = "form-inline", id = "FormularioFiltrosExcepcionesRubros" }))
     {
        
         <div class="form-group margin-right-20">
