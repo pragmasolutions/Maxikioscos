@@ -71,10 +71,10 @@ namespace MaxiKioscos.Winforms.Compras
             }
         }
 
-        private EFRepository<Stock> _stockRepository;
-        public EFRepository<Stock> StockRepository
+        private StockRepository _stockRepository;
+        public StockRepository StockRepository
         {
-            get { return _stockRepository ?? (_stockRepository = new EFRepository<Stock>()); }
+            get { return _stockRepository ?? (_stockRepository = new StockRepository()); }
         }
 
 
@@ -1010,6 +1010,9 @@ namespace MaxiKioscos.Winforms.Compras
 
                     CompraRepository.Agregar(compra);
                     CompraRepository.Commit();
+
+                    StockRepository.Actualizar(null, AppSettings.MaxiKioscoIdentifier);
+
                     MessageBox.Show(Resources.CompraExitosa);
                     this.Close();
                 }

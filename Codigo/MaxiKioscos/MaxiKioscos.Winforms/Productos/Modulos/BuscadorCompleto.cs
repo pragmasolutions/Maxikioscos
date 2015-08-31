@@ -74,7 +74,7 @@ namespace MaxiKioscos.Winforms.Productos
         {
             var text = Texto.Trim().ToLower();
             var lista = DataSource.Where(p => (chxBuscarPorNombre.Checked && p.Descripcion.ToLower().Contains(text)
-                                              || (chxBuscarPorMarca.Checked && p.Marca.ToLower().Contains(text))
+                                              || (chxBuscarPorMarca.Checked && p.Marca != null && p.Marca.ToLower().Contains(text))
                                               || (!string.IsNullOrEmpty(p.Codigo) && chxBuscarPorCodigo.Checked &&
                                                     p.Codigos.Any(c => c.ToLower().StartsWith(text))))).ToArray();
 
