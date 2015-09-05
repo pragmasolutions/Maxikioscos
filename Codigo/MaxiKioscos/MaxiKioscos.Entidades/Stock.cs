@@ -28,6 +28,8 @@ namespace MaxiKioscos.Entidades
         public bool Desincronizado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public bool Eliminado { get; set; }
+        public string OperacionCreacion { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
     
         public virtual MaxiKiosco MaxiKiosco { get; set; }
         public virtual Producto Producto { get; set; }

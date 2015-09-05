@@ -39,6 +39,12 @@ namespace MaxiKioscos.Web.Controllers
                 .OrderByDescending(f => f.Fecha)
                 .ToList();
 
+            facturas =
+                facturas.Where(
+                    f =>
+                        string.IsNullOrEmpty(model.Filtros.FacturaNro) ||
+                        (f.NroFormateado.StartsWith(model.Filtros.FacturaNro) ||
+                         f.AutoNumero.StartsWith(model.Filtros.FacturaNro))).ToList();
             var pageNumber = page ?? 1;
             var pageSize = 6;// AppSettings.DefaultPageSize;
             IPagedList<Factura> lista = facturas.ToPagedList(pageNumber, pageSize);
@@ -58,6 +64,14 @@ namespace MaxiKioscos.Web.Controllers
                 .Where(filtros.GetFilterExpression())
                 .OrderByDescending(f => f.Fecha)
                 .ToList();
+
+            facturas =
+               facturas.Where(
+                   f =>
+                       string.IsNullOrEmpty(filtros.FacturaNro) ||
+                       (f.NroFormateado.StartsWith(filtros.FacturaNro) ||
+                        f.AutoNumero.StartsWith(filtros.FacturaNro))).ToList();
+
 
             var lista = PagedListHelper<Factura>.Crear(facturas, 6, page);// AppSettings.DefaultPageSize, page);
             var listadoModel = new FacturasListadoModel

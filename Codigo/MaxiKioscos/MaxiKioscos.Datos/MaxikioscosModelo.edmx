@@ -474,6 +474,8 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="OperacionCreacion" Type="varchar" MaxLength="1000" />
+          <Property Name="FechaCreacion" Type="datetime" />
         </EntityType>
         <EntityType Name="StockTransaccion">
           <Key>
@@ -1710,8 +1712,8 @@
           <Parameter Name="CuentaId" Type="int" Mode="In" />
         </Function>
         <Function Name="Stock_Actualizar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="StockId" Type="int" Mode="In" />
           <Parameter Name="MaxikioscoIdentifier" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
         <Function Name="Transferencia_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TransferenciaId" Type="int" Mode="In" />
@@ -2402,8 +2404,8 @@
             <Parameter Name="Secuencia" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="StockActualizar" ReturnType="Collection(Int32)">
-            <Parameter Name="StockId" Mode="In" Type="Int32" />
-            <Parameter Name="MaxikioscoIdentifier" Mode="In" Type="Guid" />
+          <Parameter Name="MaxikioscoIdentifier" Mode="In" Type="Guid" />
+            <Parameter Name="ProductoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ExportacionPuedeExportarPrincipal" ReturnType="Collection(Int32)" />
           <FunctionImport Name="ExportacionPuedeExportarKiosco" ReturnType="Collection(Int32)" />
@@ -2635,7 +2637,7 @@
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProductoStock" ReturnType="Collection(MaxiKioscosModel.ProductoStock)">
-            <Parameter Name="ProductoId" Mode="In" Type="Int32" />
+          <Parameter Name="ProductoId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -3385,6 +3387,8 @@
           <NavigationProperty Name="Producto" Relationship="MaxiKioscosModel.FK_ProductoMaxiKiosco_Producto" FromRole="Stock" ToRole="Producto" />
           <NavigationProperty Name="StockTransacciones" Relationship="MaxiKioscosModel.FK_StockTransaccion_Stock" FromRole="Stock" ToRole="StockTransaccion" />
           <NavigationProperty Name="ControlStockDetalles" Relationship="MaxiKioscosModel.FK_ControlStockDetalle_Stock" FromRole="Stock" ToRole="ControlStockDetalle" />
+          <Property Name="OperacionCreacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_ProductoMaxiKiosco_MaxiKiosco">
           <End Type="MaxiKioscosModel.MaxiKiosco" Role="MaxiKiosco" Multiplicity="1" />
@@ -4933,6 +4937,8 @@
           <EntitySetMapping Name="Stocks">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="OperacionCreacion" ColumnName="OperacionCreacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />

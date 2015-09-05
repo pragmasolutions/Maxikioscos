@@ -61,6 +61,8 @@ namespace MaxiKioscos.Web.Controllers
                 stock.ProductoId = productoId;
                 stock.MaxiKiosco = maxiKiosco;
                 stock.Producto = producto;
+                stock.FechaCreacion = DateTime.Now;
+                stock.OperacionCreacion = "Edición en web";
             }
 
             var model = new StockModel()
@@ -115,6 +117,9 @@ namespace MaxiKioscos.Web.Controllers
                 stock.ProductoId = productoId;
                 stock.MaxiKiosco = maxiKiosco;
                 stock.Producto = producto;
+                stock.FechaCreacion = DateTime.Now;
+                stock.OperacionCreacion = "Transferencia manual en web";
+                stock.Identifier = Guid.NewGuid();
             }
 
             stock.StockActual = stock.StockTransacciones

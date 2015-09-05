@@ -22,9 +22,9 @@ namespace MaxiKioscos.Datos.Repositorio
                 .FirstOrDefault(s => s.ProductoId == productoId && s.MaxiKioscoId == maxiKioscoId);
         }
 
-       public bool Actualizar(int? stockId, Guid? maxikioscoIdentifier)
+       public bool Actualizar(Guid? maxikioscoIdentifier = null, int? productoId = null)
        {
-           return MaxiKioscosEntities.StockActualizar(stockId, maxikioscoIdentifier).FirstOrDefault() == 1;
+           return MaxiKioscosEntities.StockActualizar(maxikioscoIdentifier, productoId).FirstOrDefault() == 1;
        }
 
         public List<Rubro> Listado(string descripcion)

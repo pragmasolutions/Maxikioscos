@@ -8,7 +8,7 @@ namespace MaxiKioscos.Datos.Interfaces
     {
         Stock ObtenerByProducto(int productoId, int maxiKisocoId);
 
-        bool Actualizar(int? stockId, Guid? maxikioscoIdentifier);
+        bool Actualizar(Guid? maxikioscoIdentifier = null, int? productoId = null);
 
         List<Rubro> Listado(string descripcion);
     }

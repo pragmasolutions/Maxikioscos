@@ -397,17 +397,17 @@ namespace MaxiKioscos.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("SincronizacionActualizarKiosco", xMLParameter, maxikioscoIdentifierParameter, secuenciaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> StockActualizar(Nullable<int> stockId, Nullable<System.Guid> maxikioscoIdentifier)
+        public virtual ObjectResult<Nullable<int>> StockActualizar(Nullable<System.Guid> maxikioscoIdentifier, Nullable<int> productoId)
         {
-            var stockIdParameter = stockId.HasValue ?
-                new ObjectParameter("StockId", stockId) :
-                new ObjectParameter("StockId", typeof(int));
-    
             var maxikioscoIdentifierParameter = maxikioscoIdentifier.HasValue ?
                 new ObjectParameter("MaxikioscoIdentifier", maxikioscoIdentifier) :
                 new ObjectParameter("MaxikioscoIdentifier", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("StockActualizar", stockIdParameter, maxikioscoIdentifierParameter);
+            var productoIdParameter = productoId.HasValue ?
+                new ObjectParameter("ProductoId", productoId) :
+                new ObjectParameter("ProductoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("StockActualizar", maxikioscoIdentifierParameter, productoIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> ExportacionPuedeExportarPrincipal()

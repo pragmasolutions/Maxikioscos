@@ -162,6 +162,8 @@ namespace MaxiKioscos.Negocio
                                        MaxiKioscoId = destinoId,
                                        ProductoId = stockOrigen.ProductoId,
                                        StockActual = unidades,
+                                       OperacionCreacion = "Recibido desde transferencia",
+                                       FechaCreacion = DateTime.Now,
                                        StockTransacciones = new Collection<StockTransaccion> { transDestino }
                                    };
                 Uow.Stocks.Agregar(stockDestino);

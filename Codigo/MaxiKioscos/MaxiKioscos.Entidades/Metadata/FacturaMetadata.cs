@@ -27,8 +27,7 @@ namespace MaxiKioscos.Entidades
                 return Proveedor.Nombre;
             }
         }
-
-
+        
         public bool TieneCompra
         {
             get { return this.Compras.Any(); }
@@ -43,10 +42,18 @@ namespace MaxiKioscos.Entidades
                 return UsuarioCreador.NombreUsuario;
             }
         }
-
         
         public decimal? DescuentoPorcentaje { get; set; }
+
         public decimal? DescuentoEnPesos { get; set; }
+
+        public string NroFormateado
+        {
+            get
+            {
+                return FacturaNro.TrimStart('0');
+            }
+        }
     }
 
     public class FacturaMetadata

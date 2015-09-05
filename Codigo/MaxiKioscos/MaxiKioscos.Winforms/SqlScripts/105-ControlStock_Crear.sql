@@ -1,9 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[ControlStock_Crear]    Script Date: 04/16/2015 16:23:10 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ControlStock_Crear]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[ControlStock_Crear]
-GO
-
-CREATE PROCEDURE [dbo].[ControlStock_Crear]
+ALTER PROCEDURE [dbo].[ControlStock_Crear]
 	@MaxiKioscoId int, 
 	@ProveedorId int = NULL,
 	@RubroId int = NULL,
@@ -249,8 +244,3 @@ BEGIN
 				
 	SELECT @ControlStockId as ControlStockId
 END
-
-
-GO
-
-

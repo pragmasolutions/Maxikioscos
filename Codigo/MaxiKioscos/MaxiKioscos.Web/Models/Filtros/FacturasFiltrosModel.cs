@@ -42,7 +42,6 @@ namespace MaxiKioscos.Web.Models
             return f => (!this.Desde.HasValue || this.Desde.Value <= f.Fecha)
                         && (!this.Hasta.HasValue || this.Hasta.Value >= f.Fecha)
                         && (!this.ProveedorId.HasValue || this.ProveedorId.Value == f.ProveedorId)
-                        && (string.IsNullOrEmpty(this.FacturaNro) || (f.FacturaNro.StartsWith(this.FacturaNro) || f.AutoNumero.StartsWith(this.FacturaNro)))
                         && (!this.MaxiKioscoId.HasValue || this.MaxiKioscoId == f.MaxiKioscoId)
                         && (!this.TieneCompra.HasValue || this.TieneCompra == f.Compras.Any());
         }

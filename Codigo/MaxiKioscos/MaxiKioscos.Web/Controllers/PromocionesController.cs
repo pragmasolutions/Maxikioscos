@@ -179,7 +179,7 @@ namespace MaxiKioscos.Web.Controllers
             Uow.Productos.Agregar(producto);
             Uow.Commit();
 
-            ActualizarStock(producto);
+            ActualizarStock(producto, "Creación");
             return Json(new { exito = true, codigo = producto.CodigosProductos.First().Codigo });
         }
 
@@ -239,7 +239,7 @@ namespace MaxiKioscos.Web.Controllers
             try
             {
                 Uow.Commit();
-                ActualizarStock(producto);
+                ActualizarStock(producto, "Edición");
             }
             catch (Exception ex)
             {
@@ -544,7 +544,7 @@ namespace MaxiKioscos.Web.Controllers
             producto.PromocionesHijos.Clear();
         }
 
-        private void ActualizarStock(Producto producto)
+        private void ActualizarStock(Producto producto, string operacion)
         {
             var seActualizo = false;
             foreach (var promo in producto.PromocionMaxikioscos)
@@ -563,6 +563,8 @@ namespace MaxiKioscos.Web.Controllers
                             StockActual = promo.StockActual,
                             Identifier = Guid.NewGuid(),
                             Desincronizado = true,
+                            OperacionCreacion = operacion + " desde promociones web",
+                            FechaCreacion = DateTime.Now,
                             StockTransacciones = new List<StockTransaccion>()
                             {
                                 new StockTransaccion()

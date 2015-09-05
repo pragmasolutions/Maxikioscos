@@ -28,6 +28,12 @@ namespace MaxiKioscos.Winforms.ControlStock
             get { return _controlStockRepository ?? (_controlStockRepository = new ControlStockRepository()); }
         }
 
+        private StockRepository _stockRepository;
+        public StockRepository StockRepository
+        {
+            get { return _stockRepository ?? (_stockRepository = new StockRepository()); }
+        }
+
         private EFRepository<Proveedor> _proveedorRepository;
         public EFRepository<Proveedor> ProveedorRepository
         {
@@ -58,6 +64,7 @@ namespace MaxiKioscos.Winforms.ControlStock
         public frmCrearControlStock(int rubroId, int proveedorId)
         {
             InitializeComponent();
+            StockRepository.Actualizar();
             CargarControles();
 
             if (proveedorId != 0)

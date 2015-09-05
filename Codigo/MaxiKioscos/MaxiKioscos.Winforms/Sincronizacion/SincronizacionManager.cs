@@ -225,7 +225,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     }
 
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
-                    Uow.Stocks.Actualizar(null, null);
+                    Uow.Stocks.Actualizar();
                 }
             }
             catch (Exception ex)
@@ -316,7 +316,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 
 
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
-                    Uow.Stocks.Actualizar(null, null);
+                    Uow.Stocks.Actualizar();
 
 
                 }

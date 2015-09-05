@@ -296,6 +296,7 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Stock(int id)
         {
+            Uow.Stocks.Actualizar(null, id);
             var list = Uow.Productos.ObtenerStock(id);
             return PartialView(list);
         }

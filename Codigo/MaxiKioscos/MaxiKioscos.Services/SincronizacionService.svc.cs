@@ -85,7 +85,7 @@ namespace MaxiKioscos.Services
                 {
                     Task.Run(() =>
                                  {
-                                     Uow.Stocks.Actualizar(null,request.MaxiKioscoIdentifier);
+                                     Uow.Stocks.Actualizar(request.MaxiKioscoIdentifier);
                                  });
 
                 }

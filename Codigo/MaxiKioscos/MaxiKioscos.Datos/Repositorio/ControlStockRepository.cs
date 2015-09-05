@@ -34,7 +34,7 @@ namespace MaxiKioscos.Datos.Repositorio
            try
            {
                var maxi = MaxiKioscosEntities.MaxiKioscoes.FirstOrDefault(m => m.MaxiKioscoId == maxiKioscoId);
-               MaxiKioscosEntities.StockActualizar(null, maxi.Identifier);
+               MaxiKioscosEntities.StockActualizar(maxi.Identifier, null);
 
                MaxiKioscosEntities.ControlStockCrear(maxiKioscoId, proveedorId, rubroId, usuarioId, masVendidos,
                                                 cantidadFilas, limiteInferior, limiteSuperior);

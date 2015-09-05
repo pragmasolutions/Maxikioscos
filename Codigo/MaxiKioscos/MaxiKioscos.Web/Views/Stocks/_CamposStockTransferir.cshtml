@@ -2,6 +2,8 @@
 @Html.HiddenFor(model => model.Stock.StockId)
 @Html.HiddenFor(model => model.Stock.Identifier)
 @Html.HiddenFor(model => model.Stock.MaxiKioscoId)
+@Html.HiddenFor(model => model.Stock.OperacionCreacion)
+@Html.HiddenFor(model => model.Stock.FechaCreacion)
 <div class="form-group">
     @Html.HiddenFor(model => model.Stock.MaxiKioscoId)
     @Html.Label("Maxikiosco Origen")

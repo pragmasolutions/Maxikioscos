@@ -1,10 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Stock_Actualizar]    Script Date: 02/12/2015 05:24:29 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Stock_Actualizar]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Stock_Actualizar]
-GO
-
-
-CREATE PROCEDURE [dbo].[Stock_Actualizar] 
+ALTER PROCEDURE [dbo].[Stock_Actualizar] 
 	@MaxikioscoIdentifier uniqueidentifier = NULL,
 	@ProductoId int = NULL
 AS
@@ -37,6 +31,3 @@ BEGIN
 		
 	SELECT 1 as Result
 END
-GO
-
-

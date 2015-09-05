@@ -48,6 +48,12 @@ namespace MaxiKioscos.Winforms.Ventas
             get { return new EFRepository<ExcepcionRubro>(); }
         }
 
+        private StockRepository _stockRepository;
+        public StockRepository StockRepository
+        {
+            get { return _stockRepository ?? (_stockRepository = new StockRepository()); }
+        }
+
         #endregion
 
         public bool ForzarSincronizacion { get; set; }
@@ -72,6 +78,7 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void Ventas_Load(object sender, EventArgs e)
         {
+            StockRepository.Actualizar();
             ForzarSincronizacion = true;
             ReiniciarVenta();
             this.WindowState = FormWindowState.Maximized;
@@ -414,7 +421,9 @@ namespace MaxiKioscos.Winforms.Ventas
                                     Identifier = Guid.NewGuid(),
                                     MaxiKioscoId = AppSettings.MaxiKioscoId,
                                     ProductoId = line.ProductoId,
-                                    StockActual = line.Cantidad,
+                                    StockActual = -line.Cantidad,
+                                    OperacionCreacion = "Venta en DESKTOP",
+                                    FechaCreacion = DateTime.Now,
                                     StockTransacciones = new List<StockTransaccion> { stockSt }
                                 };
                                 stockRepository.Agregar(stock);

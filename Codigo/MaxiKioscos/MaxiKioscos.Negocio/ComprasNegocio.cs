@@ -52,7 +52,9 @@ namespace MaxiKioscos.Negocio
                                 {
                                     Identifier = Guid.NewGuid(),
                                     MaxiKioscoId = factura.MaxiKioscoId,
-                                    ProductoId = compraProd.ProductoId
+                                    ProductoId = compraProd.ProductoId,
+                                    OperacionCreacion = "Compra en web",
+                                    FechaCreacion = DateTime.Now
                                 };
                     Uow.Stocks.Agregar(stock);
                 }

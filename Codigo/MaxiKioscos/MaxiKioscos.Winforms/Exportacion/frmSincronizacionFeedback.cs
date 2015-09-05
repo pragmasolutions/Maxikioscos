@@ -168,7 +168,7 @@ namespace MaxiKioscos.Winforms.Exportacion
             }
 
             this.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
-            Uow.Stocks.Actualizar(null,null);
+            Uow.Stocks.Actualizar();
         }
         
         private void SincronizacionSecuencial()
@@ -269,7 +269,7 @@ namespace MaxiKioscos.Winforms.Exportacion
 
                     this.Invoke(new RefrescarProgresoDelegate(RefrescarProgreso), 85);
                     this.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
-                    Uow.Stocks.Actualizar(null, null);
+                    Uow.Stocks.Actualizar();
                 } 
             }
             catch (Exception ex)

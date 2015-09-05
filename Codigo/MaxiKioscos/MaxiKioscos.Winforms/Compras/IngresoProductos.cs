@@ -166,6 +166,8 @@ namespace MaxiKioscos.Winforms.Compras
                                                 u => u.Roles);
             Cuenta = CuentaRepository.Obtener(Usuario.CuentaId);
 
+            StockRepository.Actualizar();
+
             var facturas = FacturaRepository.MaxiKioscosEntities.FacturaObtenerAbiertasPorUsuario(usuarioId, AppSettings.MaxiKioscoId).ToList();
             facturas.Insert(0, new FacturaCompleta());
 
@@ -299,8 +301,7 @@ namespace MaxiKioscos.Winforms.Compras
             txtCodigo.Text = string.Empty;
             txtCodigo.Focus();
         }
-
-
+        
         private void FrmOnTeclaApretada(Keys key)
         {
             var texto = txtCodigo.Text;
@@ -987,7 +988,9 @@ namespace MaxiKioscos.Winforms.Compras
                                                         Eliminado = false,
                                                         Desincronizado = true,
                                                         Identifier = Guid.NewGuid(),
-                                                        FechaUltimaModificacion = DateTime.Now
+                                                        FechaUltimaModificacion = DateTime.Now,
+                                                        FechaCreacion = DateTime.Now,
+                                                        OperacionCreacion = "Compra desde desktop"
                                                     };
                             StockRepository.Agregar(stock);
                             StockRepository.Commit();
@@ -1011,7 +1014,7 @@ namespace MaxiKioscos.Winforms.Compras
                     CompraRepository.Agregar(compra);
                     CompraRepository.Commit();
 
-                    StockRepository.Actualizar(null, AppSettings.MaxiKioscoIdentifier);
+                    StockRepository.Actualizar(AppSettings.MaxiKioscoIdentifier);
 
                     MessageBox.Show(Resources.CompraExitosa);
                     this.Close();

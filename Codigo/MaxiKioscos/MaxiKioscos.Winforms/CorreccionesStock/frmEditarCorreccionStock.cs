@@ -35,13 +35,13 @@ namespace MaxiKioscos.Winforms.CorreccionesStock
         }
 
 
-        private EFRepository<Stock> _stockRepository;
-        public EFRepository<Stock> StockRepository
+        private StockRepository _stockRepository;
+        public StockRepository StockRepository
         {
             get
             {
                 if (_stockRepository == null)
-                    _stockRepository = new EFRepository<Stock>();
+                    _stockRepository = new StockRepository();
                 return _stockRepository;
             }
         }
@@ -89,11 +89,12 @@ namespace MaxiKioscos.Winforms.CorreccionesStock
                 return _motivoRepository;
             }
         }
-    #endregion
+
+        #endregion
         
         #region propiedades
 
-       public string Descripcion
+        public string Descripcion
         {
             get { return txtProductoNombre.Valor; }
             set { txtProductoNombre.Valor = value; }
@@ -137,6 +138,7 @@ namespace MaxiKioscos.Winforms.CorreccionesStock
         public frmEditarCorreccionStock()
         {
             InitializeComponent();
+            StockRepository.Actualizar();
             DeshabilitarEdicion();
             txtCodigo.Focus();
         }
@@ -344,7 +346,9 @@ namespace MaxiKioscos.Winforms.CorreccionesStock
                                 StockActual = stockactual,
                                 Desincronizado = true,
                                 FechaUltimaModificacion = DateTime.Now,
-                                Eliminado = false
+                                Eliminado = false,
+                                OperacionCreacion = "Correccion de stock DESKTOP",
+                                FechaCreacion = DateTime.Now
                             };
             StockRepository.Agregar(stock);
             StockRepository.Commit();

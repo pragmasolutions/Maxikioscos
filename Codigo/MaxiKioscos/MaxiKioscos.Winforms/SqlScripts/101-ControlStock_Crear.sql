@@ -1,9 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[ControlStock_Crear]    Script Date: 04/16/2015 16:23:10 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ControlStock_Crear]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[ControlStock_Crear]
-GO
-
-CREATE PROCEDURE [dbo].[ControlStock_Crear]
+ALTER PROCEDURE [dbo].[ControlStock_Crear]
 	@MaxiKioscoId int, 
 	@ProveedorId int = NULL,
 	@RubroId int = NULL,
@@ -89,7 +84,7 @@ BEGIN
 	)
 
 	INSERT INTO @Intermedia
-	SELECT DISTINCT P.Fila,
+	SELECT P.Fila,
 			P.ProductoId,
 		   Codigo = (SELECT SUBSTRING(
 			 (SELECT ',' + Codigo
@@ -198,33 +193,6 @@ BEGIN
     /*-----------------------------------------------------------------------------------
 	----------------------- REGISTRO LAS CANTIDADES EN STOCK ----------------------------
 	-----------------------------------------------------------------------------------*/
-	DECLARE @Stock TABLE
-	(
-		StockId int, 
-		ProductoId int, 
-		MaxikioscoId int,  
-		StockActual decimal(18, 2)
-	);
-	
-	WITH CTE(StockId, ProductoId, MaxikioscoId, Fila)
-	AS
-	(
-		SELECT StockId, 
-				ProductoId, 
-				MaxiKioscoId,
-				ROW_NUMBER() OVER(PARTITION BY ProductoId, MaxikioscoId ORDER BY ProductoId ASC)
-		FROM Stock 
-	)
-	INSERT INTO @Stock
-	SELECT ST.StockId, 
-			ST.ProductoId,
-			ST.MaxiKioscoId,			
-			ST.StockActual
-	FROM CTE
-		INNER JOIN Stock ST
-			ON CTE.StockId = ST.StockId
-	WHERE CTE.Fila = 1 
-	
 	INSERT INTO [ControlStockDetalle]
            ([ControlStockId]
            ,[StockId]
@@ -243,14 +211,10 @@ BEGIN
            ,NEWID()
            ,1
 	FROM @Temp P
-		INNER JOIN @Stock S
+		INNER JOIN Stock S
 			ON P.ProductoId = S.ProductoId
 				AND S.MaxiKioscoId = @MaxiKioscoId
 				
 	SELECT @ControlStockId as ControlStockId
 END
-
-
-GO
-
 

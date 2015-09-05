@@ -67,7 +67,9 @@ namespace MaxiKioscos.Negocio
                 {
                     Identifier = Guid.NewGuid(),
                     MaxiKioscoId = maxikioscoId,
-                    ProductoId = transferenciaProd.ProductoId
+                    ProductoId = transferenciaProd.ProductoId,
+                    OperacionCreacion = "Aprobar transferencia desde web",
+                    FechaCreacion = DateTime.Now
                 };
                 Uow.Stocks.Agregar(stock);
             }
