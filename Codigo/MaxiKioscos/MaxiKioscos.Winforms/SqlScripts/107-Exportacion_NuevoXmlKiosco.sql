@@ -1,11 +1,4 @@
-
-/****** Object:  StoredProcedure [dbo].[Exportacion_NuevoXmlKiosco]    Script Date: 10/08/2014 18:09:29 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Exportacion_NuevoXmlKiosco]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Exportacion_NuevoXmlKiosco]
-GO
-
-
-CREATE PROCEDURE [dbo].[Exportacion_NuevoXmlKiosco]
+ALTER PROCEDURE [dbo].[Exportacion_NuevoXmlKiosco]
 	@MaxiKioscoIdentifier uniqueidentifier,
 	@UsuarioId int
 AS
@@ -207,15 +200,3 @@ END CATCH
 	
 	
 END
-
-
-
-
-
-
-
-
-
-GO
-
-
