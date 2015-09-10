@@ -1,5 +1,5 @@
 DECLARE @PrimerFecha datetime
-SET @PrimerFecha = (SELECT CAST('2015-04-14' as datetime))
+SET @PrimerFecha = (SELECT CAST('14/04/2015' as datetime))
 
 
 UPDATE CierreCaja
