@@ -47,7 +47,7 @@ namespace MaxiKioscos.Winforms.Facturas
         {
             InitializeComponent();
             CargarProveedores();
-            CargarAutonumerico();
+            txtAutonumerico.Text = GenerarAutonumerico();
             
             lblTitulo.Text = "Crear Factura";
             this.Text = "Crear Factura";
@@ -107,19 +107,18 @@ namespace MaxiKioscos.Winforms.Facturas
 
         #region Metodos
 
-        private void CargarAutonumerico()
+        private string GenerarAutonumerico()
         {
             var abreviacion = AppSettings.Maxikiosco.Abreviacion;
-            var facturas = FacturaRepository.Listado()
+            var ultima = FacturaRepository.Listado()
                             .Where(f => f.MaxiKioscoId == AppSettings.MaxiKioscoId
-                                    && f.AutoNumero.StartsWith(abreviacion)).OrderByDescending(f=> f.FacturaId).ToList();
+                                    && f.AutoNumero.StartsWith(abreviacion)).OrderByDescending(f=> f.FacturaId).FirstOrDefault();
             var numero = 0;
-            if (facturas.Any())
+            if (ultima != null)
             {
-                var factura = facturas.First();
-                numero = Convert.ToInt32(factura.AutoNumero.Replace(abreviacion, ""));
+                numero = Convert.ToInt32(ultima.AutoNumero.Replace(abreviacion, ""));
             }
-            txtAutonumerico.Text = String.Format("{0}{1}", abreviacion, numero + 1);
+            return String.Format("{0}{1}", abreviacion, numero + 1);
         }
         
         private void CargarProveedores()
@@ -202,7 +201,7 @@ namespace MaxiKioscos.Winforms.Facturas
                             ProveedorId = ProveedorId,
                             MaxiKioscoId = AppSettings.MaxiKioscoId,
                             Fecha = Fecha,
-                            AutoNumero = txtAutonumerico.Text,
+                            AutoNumero = GenerarAutonumerico(),
                             UsuarioId = UsuarioActual.UsuarioId,
                             FechaCreacion = DateTime.Now
                         };
