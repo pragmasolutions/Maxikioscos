@@ -37,7 +37,7 @@
   <xs:element name="ObtenerDatosSecuencialResponse" nillable="true" type="tns:ObtenerDatosSecuencialResponse" />
   <xs:complexType name="ActualizarDatosRequest">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Exportaciones" nillable="true" type="tns:ArrayOfExportacionData" />
+      <xs:element minOccurs="0" name="Exportacion" nillable="true" type="tns:ExportacionData" />
       <xs:element minOccurs="0" name="MaxiKioscoIdentifier" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>

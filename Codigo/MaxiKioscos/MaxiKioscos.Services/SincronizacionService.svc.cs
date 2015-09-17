@@ -71,17 +71,26 @@ namespace MaxiKioscos.Services
                 var maxi = Uow.MaxiKioscos.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
                 var actualizo = false;
 
-                foreach (var exportacion in request.Exportaciones)
+                if (request.Exportacion != null)
                 {
-                    if (exportacion.Secuencia > maxi.UltimaSecuenciaAcusada.GetValueOrDefault())
+                    var secuenciaActual = request.Exportacion.Secuencia;
+                    var ultimaAcusada = maxi.UltimaSecuenciaAcusada.GetValueOrDefault();
+                    if (secuenciaActual > ultimaAcusada)
                     {
-                        Uow.Exportaciones.ActualizarPrincipal(exportacion.Archivo, request.MaxiKioscoIdentifier, exportacion.Secuencia, null);
-                        
+                        if (secuenciaActual - ultimaAcusada > 1)
+                        {
+                            return new ActualizarDatosResponse()
+                            {
+                                Exito = false,
+                                MensageError = "Se está intentendo procesar un archivo con mayor secuencia al esperado"
+                            };
+                        }
+                        Uow.Exportaciones.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
                         actualizo = true;
                     }
                 }
 
-                if (request.Exportaciones.Any() && actualizo)
+                if (request.Exportacion != null && actualizo)
                 {
                     Task.Run(() =>
                                  {

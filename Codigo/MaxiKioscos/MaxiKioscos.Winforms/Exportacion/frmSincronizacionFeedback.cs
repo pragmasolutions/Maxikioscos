@@ -189,13 +189,11 @@ namespace MaxiKioscos.Winforms.Exportacion
                         String.Format("Actualizando Servidor ({0} de {1} archivos)", count, exportacionesLocales.Count));
                     var actualizarDatosRequest = new ActualizarDatosRequest
                     {
-                        Exportaciones = new List<ExportacionData> { 
-                            new ExportacionData
-                            {
-                                Archivo = exportacion.ExportacionArchivo.Archivo,
-                                Secuencia = exportacion.Secuencia
-                            }
-                        }.ToArray(),
+                        Exportacion = new ExportacionData
+                        {
+                            Archivo = exportacion.ExportacionArchivo.Archivo,
+                            Secuencia = exportacion.Secuencia
+                        },
                         MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier
                     };
                     var actualizarResponse = _sincronizacionService.ActualizarDatos(actualizarDatosRequest);

@@ -10,15 +10,6 @@ namespace MaxiKioscos.Datos.Helpers
 {
     public static class SincronizacionHelper
     {
-        public static int? ObtenerUltimaSecuenciaAcusada()
-        {
-            var repository = new ExportacionRepository();
-            var exportaciones = repository.Listado().Where(e => e.Acusada).OrderByDescending(e => e.ExportacionId).ToList();
-            if (exportaciones.Any())
-                return exportaciones.FirstOrDefault().Secuencia;
-            return null;
-        }
-
         public static List<Exportacion> ObtenerDatosSinExportar(Guid maxikioscoIdentifier, int usuarioId, int ultimaSecuenciaAcusada)
         {
             var repository = new ExportacionRepository();

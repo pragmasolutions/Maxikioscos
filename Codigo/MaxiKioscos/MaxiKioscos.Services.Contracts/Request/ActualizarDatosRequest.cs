@@ -10,6 +10,6 @@ namespace MaxiKioscos.Services.Contracts
         public Guid MaxiKioscoIdentifier { get; set; }
 
         [DataMember]
-        public ExportacionData[] Exportaciones { get; set; }
+        public ExportacionData Exportacion { get; set; }
     }
 }

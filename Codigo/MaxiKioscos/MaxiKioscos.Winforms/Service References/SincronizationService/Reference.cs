@@ -267,7 +267,7 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private MaxiKioscos.Winforms.SincronizationService.ExportacionData[] ExportacionesField;
+        private MaxiKioscos.Winforms.SincronizationService.ExportacionData ExportacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid MaxiKioscoIdentifierField;
@@ -283,14 +283,14 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MaxiKioscos.Winforms.SincronizationService.ExportacionData[] Exportaciones {
+        public MaxiKioscos.Winforms.SincronizationService.ExportacionData Exportacion {
             get {
-                return this.ExportacionesField;
+                return this.ExportacionField;
             }
             set {
-                if ((object.ReferenceEquals(this.ExportacionesField, value) != true)) {
-                    this.ExportacionesField = value;
-                    this.RaisePropertyChanged("Exportaciones");
+                if ((object.ReferenceEquals(this.ExportacionField, value) != true)) {
+                    this.ExportacionField = value;
+                    this.RaisePropertyChanged("Exportacion");
                 }
             }
         }

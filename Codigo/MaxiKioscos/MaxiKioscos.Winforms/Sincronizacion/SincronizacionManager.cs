@@ -115,8 +115,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     worker.RunWorkerAsync();
                 }
             }
-            else
-                MessageBox.Show(CurrentForm, "Debe esperar a que finalice el proceso actual de sincronización");
         }
 
         delegate void ActualizarMensajeDelegate(string mensaje);
@@ -143,19 +141,18 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                                                                                        secuencias.UltimaSecuenciaAcusada);
 
                 var count = 1;
-                foreach (var exportacion in exportacionesLocales)
+                var orderedList = exportacionesLocales.OrderBy(x => x.Secuencia).ToList();
+                foreach (var exportacion in orderedList)
                 {
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje),
-                        String.Format("Actualizando Servidor ({0} de {1} archivos)", count, exportacionesLocales.Count));
+                        String.Format("Actualizando Servidor ({0} de {1} archivos)", count, orderedList.Count));
                     var actualizarDatosRequest = new ActualizarDatosRequest
                     {
-                        Exportaciones = new List<ExportacionData> { 
-                            new ExportacionData
-                            {
-                                Archivo = exportacion.ExportacionArchivo.Archivo,
-                                Secuencia = exportacion.Secuencia
-                            }
-                        }.ToArray(),
+                        Exportacion = new ExportacionData
+                        {
+                            Archivo = exportacion.ExportacionArchivo.Archivo,
+                            Secuencia = exportacion.Secuencia
+                        },
                         MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier
                     };
                     var actualizarResponse = _sincronizacionService.ActualizarDatos(actualizarDatosRequest);
@@ -236,98 +233,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             }
         }
 
-        private void WorkActualizacionMasiva()
-        {
-            try
-            {
-                _huboError = false;
-                //Obtener datos a actualizar desde la base de datos local
-                CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando base de datos principal...");
-
-                var secuencias = _sincronizacionService.ObtenerSecuencias(AppSettings.MaxiKioscoIdentifier.ToString());
-                var exportacionesLocales = SincronizacionHelper.ObtenerDatosSinExportar(AppSettings.MaxiKioscoIdentifier,
-                                                                                       UsuarioActual.UsuarioId,
-                                                                                       secuencias.UltimaSecuenciaAcusada);
-                var actualizarDatosRequest = new ActualizarDatosRequest
-                {
-                    Exportaciones = exportacionesLocales.Select(exp => new ExportacionData
-                    {
-                        Archivo = exp.ExportacionArchivo.Archivo,
-                        Secuencia = exp.Secuencia
-                    }).ToArray(),
-                    MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier
-                };
-                //actualizarDatosRequest.Exportaciones = new[] {actualizarDatosRequest.Exportaciones.First()};
-                var actualizarResponse = _sincronizacionService.ActualizarDatos(actualizarDatosRequest);
-                if (!actualizarResponse.Exito)
-                {
-                    _huboError = true;
-                    MessageBox.Show(CurrentForm, actualizarResponse.MensageError);
-                }
-                else
-                {
-                    AppSettings.RefreshSettings();
-                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Obteniendo datos de servidor...");
-                    var request = new ObtenerDatosRequest
-                    {
-                        MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
-                        UsuarioIdentifier = UsuarioActual.Usuario.Identifier,
-                        UltimaSecuenciaExportacion = AppSettings.Maxikiosco == null ? null : AppSettings.Maxikiosco.UltimaSecuenciaExportacion
-                    };
-
-                    //Esperar respuesta del server.
-
-                    var response = _sincronizacionService.ObtenerDatos(request);
-
-                    //Actualizar base de datos local.
-                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando datos de kiosco...");
-
-                    AppSettings.RefreshSettings();
-
-                    var pendientes = response.Exportaciones.Where(e => e.Secuencia > secuencias.UltimaSecuenciaExportacion).ToList();
-                    for (var i = 0; i < pendientes.Count(); i++)
-                    {
-                        CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje),
-                            String.Format("Actualizando datos de kiosco  [{0} de {1}]", i + 1, pendientes.Count()));
-                        var exportacion = pendientes[i];
-                        var result = Uow.Exportaciones.ActualizarKiosco(exportacion.Archivo, AppSettings.MaxiKioscoIdentifier, exportacion.Secuencia);
-                        if (!result)
-                        {
-                            _huboError = true;
-                            AppSettings.RefreshSettings();
-                            return;
-                        }
-                    }
-
-                    if (response.Exportaciones.Any())
-                    {
-                        CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Informando al servidor...");
-                        var acuseRequest = new AcusarExportacionRequest()
-                        {
-                            MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
-                            UltimaSecuenciaExportacion = response.Exportaciones.Last().Secuencia,
-                            HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
-                        };
-                        _sincronizacionService.AcusarExportacion(acuseRequest);
-
-                        if (SyncExitosaEvent != null)
-                            SyncExitosaEvent();
-                    }
-
-
-                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
-                    Uow.Stocks.Actualizar();
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHelper.LogWithFormat(ex);
-                MessageBox.Show(CurrentForm, ExceptionHelper.GetInnerException(ex).Message);
-                _huboError = true;
-            }
-        }
         
         private void WorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
         {
@@ -382,13 +287,19 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 
         public void ExportarDatosDesincronizados()
         {
-            var repository = new ExportacionRepository();
-            var puedeExportar = repository.PuedeExportarKiosco();
-            if (puedeExportar)
+            if (!Sincronizando)
             {
-                //Generamos la exportacion para usuario que realizo la solicitud.
-                repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
+                Sincronizando = true;
+                var repository = new ExportacionRepository();
+                var puedeExportar = repository.PuedeExportarKiosco();
+                if (puedeExportar)
+                {
+                    //Generamos la exportacion para usuario que realizo la solicitud.
+                    repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
+                }
+                Sincronizando = false;
             }
+            
         }
 
         public static bool _isConnected = false;
