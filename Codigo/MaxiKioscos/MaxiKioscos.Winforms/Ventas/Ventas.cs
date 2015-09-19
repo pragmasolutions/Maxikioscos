@@ -309,7 +309,13 @@ namespace MaxiKioscos.Winforms.Ventas
         private string StringPrice(decimal number)
         {
             string precio = (number % 1) == 0
-                            ? number.ToString().Replace(",00000", "").Replace(",0000", "").Replace(".00", "").Replace(",00", "")
+                            ? number.ToString()
+                                    .Replace(",0000000", "")
+                                    .Replace(",000000", "")
+                                    .Replace(",00000", "")
+                                    .Replace(",0000", "")
+                                    .Replace(".00", "")
+                                    .Replace(",00", "")
                             : number.ToString("N2");
             return String.Format("${0}", precio);
         }
