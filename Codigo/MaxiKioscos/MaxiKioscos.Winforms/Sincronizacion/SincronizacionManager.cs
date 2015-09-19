@@ -32,6 +32,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         private mdiPrincipal CurrentForm { get; set; }
         private ToolStripStatusLabel TssProgreso { get; set; }
         private bool _huboError = false;
+        private bool _secuenciaDesfasada = false;
         private static Timer Timer { get; set; }
         private static Timer SyncTimer { get; set; }
 
@@ -133,6 +134,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             try
             {
                 _huboError = false;
+                _secuenciaDesfasada = false;
 
                 CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando base de datos principal...");
                 var secuencias = _sincronizacionService.ObtenerSecuencias(AppSettings.MaxiKioscoIdentifier.ToString());
@@ -160,7 +162,14 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     {
                         AppSettings.RefreshSettings();
                         _huboError = true;
-                        MessageBox.Show(actualizarResponse.MensageError);
+                        if (actualizarResponse.MensageError == "SECUENCIA DESFASADA")
+                        {
+                            _secuenciaDesfasada = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show(actualizarResponse.MensageError);
+                        }
                         break;
                     }
                     count++;
@@ -238,17 +247,25 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             AppSettings.RefreshSettings();
             UsuarioActual.ResetearValoresCacheados();
-            if (_huboError)
+
+            if (_secuenciaDesfasada)
             {
-                CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Sincronización finalizada con errores");
+                CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Reanudando sincronización en pocos segundos..");
             }
             else
             {
-                CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Sincronización finalizada");
-                ActualizacionPantallasHelper.ActualizarPantallaVentas();
+                if (_huboError)
+                {
+                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Sincronización finalizada con errores");
+                }
+                else
+                {
+                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Sincronización finalizada");
+                    ActualizacionPantallasHelper.ActualizarPantallaVentas();
 
-                if (SyncExitosaEvent != null)
-                    SyncExitosaEvent();
+                    if (SyncExitosaEvent != null)
+                        SyncExitosaEvent();
+                }
             }
 
             if (SyncTimer != null)
@@ -261,7 +278,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 
             if (UsuarioActual.Cuenta.SincronizarAutomaticamente.GetValueOrDefault())
             {
-                SyncTimer.Interval = UsuarioActual.Cuenta.IntervaloSincronizacion.GetValueOrDefault() * 60000;
+                var interval = _secuenciaDesfasada 
+                                    ? 10 * 1000
+                                    : UsuarioActual.Cuenta.IntervaloSincronizacion.GetValueOrDefault() * 360000;
+                SyncTimer.Interval = interval;
                 SyncTimer.Start();
             }
             Sincronizando = false;

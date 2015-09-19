@@ -82,7 +82,7 @@ namespace MaxiKioscos.Services
                             return new ActualizarDatosResponse()
                             {
                                 Exito = false,
-                                MensageError = "Se está intentendo procesar un archivo con mayor secuencia al esperado"
+                                MensageError = "SECUENCIA DESFASADA"
                             };
                         }
                         Uow.Exportaciones.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
