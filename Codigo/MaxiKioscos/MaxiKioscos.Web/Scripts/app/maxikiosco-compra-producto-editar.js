@@ -339,9 +339,9 @@
         },
 
         editarCompraProducto = function (e, args) {
+            cargarCantidadYTotales(args.producto);
 
             if (args.editarCantidad) {
-                cargarCantidadYTotales(args.producto);
                 $ingresarCantidadContainer.show();
             } else {
                 $ingresarCantidadContainer.hide();
@@ -411,7 +411,7 @@
         },
 
         editarCompraProductoSubmit = function (e) {
-
+             
             if (!$(this).valid()) {
                 return false;
             }

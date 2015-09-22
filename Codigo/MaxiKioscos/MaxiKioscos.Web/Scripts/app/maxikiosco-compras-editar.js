@@ -430,6 +430,7 @@
         },
 
         compraProductoEditado = function (e, producto) {
+            
             if (producto.cantidad) {
                 actualizarCantidadFilaActual(producto.cantidad);
             }
@@ -678,6 +679,7 @@
         },
 
         actualizarTotalCompra = function () {
+            ;
             var totCompra = totalCompra();
             $('#TotalCompra').val(totCompra.toString().replace('.', ','));
             $tableCompraProductos.find('.total-compra-footer').text(Globalize.format(totCompra, 'c2'));
