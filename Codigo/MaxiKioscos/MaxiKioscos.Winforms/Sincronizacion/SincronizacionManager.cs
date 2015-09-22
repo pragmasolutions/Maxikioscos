@@ -279,8 +279,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             if (UsuarioActual.Cuenta.SincronizarAutomaticamente.GetValueOrDefault())
             {
                 var interval = _secuenciaDesfasada 
-                                    ? 10 * 1000
-                                    : UsuarioActual.Cuenta.IntervaloSincronizacion.GetValueOrDefault() * 360000;
+                                    ? 10 * 1000 //10 segundos
+                                    : (_huboError 
+                                        ? 5 * 60 * 1000 //5 minutos
+                                        : UsuarioActual.Cuenta.IntervaloSincronizacion.GetValueOrDefault() * 360000); //confiuracion
                 SyncTimer.Interval = interval;
                 SyncTimer.Start();
             }
