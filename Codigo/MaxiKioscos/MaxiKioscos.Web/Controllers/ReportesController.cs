@@ -27,6 +27,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(model);
         }
 
+        public ActionResult VentasPorTicket(ReporteVentasCierreCajaFiltrosModel model)
+        {
+            return PartialOrView(model);
+        }
+
         public ActionResult VentasPorMaxikioscos(ReporteVentasFiltrosModel reporteVentasFiltrosModel)
         {
             return PartialOrView(reporteVentasFiltrosModel);
@@ -124,6 +129,46 @@ namespace MaxiKioscos.Web.Controllers
                         .SetDataSource("VentasPorProductoDataSet", ventasPorProductoDataSource)
                         .SetDataSource("VentasPorProductoRankingDataSet", ventasPorProductoRankingDataSource)
                         .SetParametro(parameters); ;
+
+                    byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+                    return File(archivo, reporteFactory.MimeType);
+
+                }
+                catch (Exception ex)
+                {
+                    EventLogger.Log(ex);
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        public ActionResult GenerarVentasPorTicket(ReporteVentasCierreCajaFiltrosModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    var ventasPorTicketDataSource = Uow.Reportes.VentasPorTicket(model.CierreCajaId).ToList();
+
+                    var reporteFactory = new ReporteFactory();
+
+                    var cierreCaja = Uow.CierresDeCaja.Obtener(c => c.CierreCajaId == model.CierreCajaId,
+                                                                c => c.Usuario, c => c.MaxiKiosco);
+                    var parameters = new Dictionary<string, string>
+                                  {
+                                      {"CierreCajaId", model.CierreCajaId.ToString()},
+                                      {"Desde", cierreCaja.FechaInicioFormateada},
+                                      {"Hasta", string.IsNullOrEmpty(cierreCaja.FechaFinFormateada) ? "TODAVIA ABIERTA" : cierreCaja.FechaFinFormateada},
+                                      {"Usuario", cierreCaja.Usuario.NombreUsuario},
+                                      {"Maxikiosco", cierreCaja.MaxiKiosco.Nombre}
+                                  };
+
+                    reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/VentasPorTicket.rdl"))
+                        .SetDataSource("VentasPorTicketDataSet", ventasPorTicketDataSource)
+                        .SetParametro(parameters);
 
                     byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
 

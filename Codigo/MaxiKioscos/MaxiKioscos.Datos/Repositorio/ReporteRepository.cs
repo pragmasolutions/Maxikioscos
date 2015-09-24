@@ -128,5 +128,11 @@ namespace MaxiKioscos.Datos.Repositorio
         {
             return MaxiKioscosEntities.RptAuditoriaProductos().AsQueryable();
         }
+
+
+        public IQueryable<RptVentaPorTicketRow> VentasPorTicket(int cierreCajaId)
+        {
+            return MaxiKioscosEntities.RptVentasPorTicket(cierreCajaId).AsQueryable();
+        }
     }
 }

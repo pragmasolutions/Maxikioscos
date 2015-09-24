@@ -853,5 +853,14 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoStock>("ProductoStock", productoIdParameter);
         }
+    
+        public virtual ObjectResult<RptVentaPorTicketRow> RptVentasPorTicket(Nullable<int> cierreCajaId)
+        {
+            var cierreCajaIdParameter = cierreCajaId.HasValue ?
+                new ObjectParameter("CierreCajaId", cierreCajaId) :
+                new ObjectParameter("CierreCajaId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptVentaPorTicketRow>("RptVentasPorTicket", cierreCajaIdParameter);
+        }
     }
 }

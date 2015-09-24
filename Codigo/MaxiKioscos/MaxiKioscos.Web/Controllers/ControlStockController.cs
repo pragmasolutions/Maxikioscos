@@ -47,7 +47,7 @@ namespace MaxiKioscos.Web.Controllers
             var pageNumber = page ?? 1;
             var pageSize = AppSettings.DefaultPageSize;
 
-            IPagedList<ControlStock> lista = controles.OrderBy(cs => cs.FechaCreacion).ToPagedList(pageNumber, pageSize);
+            IPagedList<ControlStock> lista = controles.OrderByDescending(cs => cs.FechaCreacion).ToPagedList(pageNumber, pageSize);
 
             var listadoModel = new ControlStockListadoModel
                                    {

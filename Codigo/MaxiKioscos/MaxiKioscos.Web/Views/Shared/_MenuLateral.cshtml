@@ -45,6 +45,18 @@
                                     })
                             </li>
                             <li>
+                                @Ajax.ActionLink("Por Ticket", "VentasPorTicket", "Reportes",
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
                                 @Ajax.ActionLink("Por Maxikiosco", "VentasPorMaxikioscos", "Reportes",
                                          new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
                                          new AjaxOptions()

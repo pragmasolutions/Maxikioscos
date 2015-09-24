@@ -41,6 +41,7 @@
 
                 $modal.modal();
                 refrescarCamposPopup(url);
+                util.focusEnControl($modalContent, 'Correccion');
                 return false;
             });
             return false;
@@ -72,7 +73,7 @@
                     callback();
                 }
                 $modal.modal();
-                util.focusPrimerElemento($modalContent);
+                util.focusEnControl($modalContent, 'Correccion');
                 return false;
             });
         },

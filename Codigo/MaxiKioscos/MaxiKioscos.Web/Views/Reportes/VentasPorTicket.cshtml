@@ -1,0 +1,97 @@
+﻿@using MaxiKioscos.Entidades
+@using MaxiKioscos.Reportes.Enumeraciones
+@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.ReporteVentasCierreCajaFiltrosModel
+@{
+    ViewBag.Title = "Ventas por Ticket";
+}
+@Html.PaginaTitulo("Reporte de Ventas por Ticket", "fa-bar-chart-o")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div id="ButtonsPanel" class="panel-heading">
+                <a class="btn btn-default download-report" target="_blank" href="@Url.Action("GenerarVentasPorTicket", new
+                                                                                     {
+                                                                                         ReporteTipo = ReporteTipoEnum.Pdf
+                                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/adobe-acrobat.png")" /></a>
+                <a class="btn btn-default download-report" href="@Url.Action("GenerarVentasPorTicket", new
+                                                                     {
+                                                                         ReporteTipo = ReporteTipoEnum.Word
+                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/microsoft-word.png")" /></a>
+                <a class="btn btn-default download-report" href="@Url.Action("GenerarVentasPorTicket", new
+                                                                     {
+                                                                         ReporteTipo = ReporteTipoEnum.Excel
+                                                                     })">
+                    <img src="@Url.Content("~/Content/imagenes/microsoft-excel.png")" /></a>
+            </div>
+            <div class="panel-body">
+                <!-- Area de filtros -->
+                <div>
+                    @using (Ajax.BeginForm("GenerarVentasPorTicket", null,
+                        new AjaxOptions()
+                        {
+                            UpdateTargetId = "AdminContainer",
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace,
+                            OnBegin = "maxikioscoSpinner.startSpin",
+                            OnSuccess = "maxikioscoSpinner.stopSpin",
+                            OnFailure = "maxikioscoSpinner.stopSpin"
+                        },
+                        new { @class = "form-inline", id = "FrmActualizarReporte" }))
+                    {
+                        @Html.Hidden("ReporteTipo", ReporteTipoEnum.Pdf)
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.MaxikioscoId, new { @class = "label-inline" })
+                                    <div class="form-group" style="margin-left: 10px;">
+                                        @Html.EditorFor(model => model.MaxikioscoId)
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.LabelFor(model => model.Fecha, new { @class = "label-inline" })
+                                    <div class="form-group date-container">
+                                        @Html.EditorFor(model => model.Fecha)
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.LabelFor(model => model.CierreCajaId, new { @class = "label-inline" })
+                                    <div class="form-group date-container">
+                                        @Html.DropDownListFor(model => model.CierreCajaId, new SelectList(new List<CierreCaja>(), "CierreCajaId", "CierreCajaDetalle"), "Seleccione Cierre Caja", new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </div>
+
+                @*@Html.Partial("_ReportLoading")*@
+
+                <!-- Area de reporte -->
+                <div id="ReportContainer">
+                    <iframe id="ReporteIframe" style="width: 1000px; height: 400px; margin-top: 10px;" data-donotloadatstart="true" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-reportes.js")
+        @Scripts.Render("~/Scripts/app/maxikiosco-reportes-ventasporticket.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-reportes.js")
+    @Scripts.Render("~/Scripts/app/maxikiosco-reportes-ventasporticket.js")
+}

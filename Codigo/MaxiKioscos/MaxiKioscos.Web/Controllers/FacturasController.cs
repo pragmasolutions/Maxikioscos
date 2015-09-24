@@ -46,7 +46,7 @@ namespace MaxiKioscos.Web.Controllers
                         (f.NroFormateado.StartsWith(model.Filtros.FacturaNro) ||
                          f.AutoNumero.StartsWith(model.Filtros.FacturaNro))).ToList();
             var pageNumber = page ?? 1;
-            var pageSize = 6;// AppSettings.DefaultPageSize;
+            var pageSize = AppSettings.DefaultPageSize;
             IPagedList<Factura> lista = facturas.ToPagedList(pageNumber, pageSize);
 
             var listadoModel = new FacturasListadoModel
@@ -73,7 +73,7 @@ namespace MaxiKioscos.Web.Controllers
                         f.AutoNumero.StartsWith(filtros.FacturaNro))).ToList();
 
 
-            var lista = PagedListHelper<Factura>.Crear(facturas, 6, page);// AppSettings.DefaultPageSize, page);
+            var lista = PagedListHelper<Factura>.Crear(facturas, AppSettings.DefaultPageSize, page);
             var listadoModel = new FacturasListadoModel
             {
                 List = lista,

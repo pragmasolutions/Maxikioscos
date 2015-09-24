@@ -4,10 +4,17 @@
         setTimeout(function() {
             $(container).find('input[type!="hidden"]:eq(0)').focus();
         }, 300);
+    },
+    focusEnControl = function (container, id) {
+
+        setTimeout(function () {
+            $(container).find('#' + id).focus();
+        }, 300);
     };
 
     return {
-        focusPrimerElemento: focusPrimerElemento
+        focusPrimerElemento: focusPrimerElemento,
+        focusEnControl: focusEnControl
     };
 }();
 

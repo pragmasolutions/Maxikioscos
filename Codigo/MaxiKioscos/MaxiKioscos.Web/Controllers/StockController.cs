@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
+using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
 using MaxiKioscos.Web.Configuration;
@@ -45,6 +46,9 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Editar(int productoId, int maxiKioscoId)
         {
+            var repo = new EFRepository<Entidades.MaxiKiosco>();
+            var maxi = repo.Obtener(maxiKioscoId);
+            repo.MaxiKioscosEntities.StockActualizar(maxi.Identifier, productoId);
             Stock stock = Uow.Stocks.Obtener(s => s.ProductoId == productoId
                 && s.MaxiKioscoId == maxiKioscoId,
                 s => s.MaxiKiosco, s => s.Producto,
@@ -70,7 +74,7 @@ namespace MaxiKioscos.Web.Controllers
                 MaxiKiosco = stock.MaxiKiosco.Nombre,
                 MotivoCorreccionId = UsuarioActual.Cuenta.MotivoCorreccionPorDefecto,
                 Producto = stock.Producto.Descripcion,
-                StockActual = stock.StockTransacciones.Select(st => st.Cantidad).DefaultIfEmpty(0).Sum(),
+                StockActual = stock.StockActual,
                 PrecioConIVA = stock.Producto.PrecioConIVA,
                 Stock = stock
             };

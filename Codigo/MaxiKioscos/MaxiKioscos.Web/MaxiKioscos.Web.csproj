@@ -355,6 +355,7 @@
     <Content Include="Scripts\app\maxikiosco-promociones.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
+    <Content Include="Scripts\app\maxikiosco-reportes-ventasporticket.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias-editar.js" />
     <Content Include="Scripts\app\maxikiosco-compras-editar.remove.js" />
@@ -462,6 +463,9 @@
     <Content Include="Reportes\TransferenciaPorProductoTotalGeneral.rdl" />
     <Content Include="Reportes\AuditoriaProductos.rdl" />
     <Content Include="Reportes\StockValorizadoDetalladoGeneral.rdl" />
+    <Content Include="Reportes\VentasPorTicket.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\app\maxikiosco-maxikioscos.js" />
     <Content Include="Scripts\app\maxikiosco-proveedores.js" />
@@ -913,6 +917,7 @@
     <Content Include="Views\Promociones\PromocionMaxikiosco.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TipoComprobante.cshtml" />
     <Content Include="Views\Productos\Stock.cshtml" />
+    <Content Include="Views\Reportes\VentasPorTicket.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

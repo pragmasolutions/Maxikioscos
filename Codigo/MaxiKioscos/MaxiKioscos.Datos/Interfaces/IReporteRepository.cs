@@ -57,5 +57,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IQueryable<StockValorizadoDetalladoGeneralRow> StockValorizadoDetalladoGeneral(int? rubroId);
 
         IQueryable<RptAuditoriaProductosRow> AuditoriaProductos();
+
+        IQueryable<RptVentaPorTicketRow> VentasPorTicket(int cierreCajaId);
     }
 }
