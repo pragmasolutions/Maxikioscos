@@ -1,10 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Sincronizacion_ActualizarPrincipal]    Script Date: 02/11/2015 08:42:46 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sincronizacion_ActualizarPrincipal]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Sincronizacion_ActualizarPrincipal]
-GO
-
-
-CREATE PROCEDURE [dbo].[Sincronizacion_ActualizarPrincipal]
+ALTER PROCEDURE [dbo].[Sincronizacion_ActualizarPrincipal]
 	@XML XML,
 	@MaxikioscoIdentifier uniqueidentifier,
 	@Secuencia int,
@@ -98,11 +92,4 @@ BEGIN
 END
 SELECT @Result as Result
 END
-
-
-
-
-
-GO
-
 

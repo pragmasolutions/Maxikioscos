@@ -1,10 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Exportacion_PuedeExportarKiosco]    Script Date: 09/22/2014 23:30:46 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Exportacion_PuedeExportarKiosco]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Exportacion_PuedeExportarKiosco]
-GO
-
-
-CREATE PROCEDURE [dbo].[Exportacion_PuedeExportarKiosco]	
+ALTER PROCEDURE [dbo].[Exportacion_PuedeExportarKiosco]	
 AS
 BEGIN
 	DECLARE @DesincronizadosCount int
@@ -33,8 +27,4 @@ BEGIN
 		
 	SELECT @DesincronizadosCount AS Cuenta
 END
-
-
-GO
-
 

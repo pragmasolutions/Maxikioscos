@@ -1,11 +1,4 @@
-
-/****** Object:  StoredProcedure [dbo].[Sincronizacion_ActualizarKiosco]    Script Date: 10/04/2014 13:00:00 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sincronizacion_ActualizarKiosco]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
-GO
-
-
-CREATE PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
+ALTER PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
 	@XML XML,
 	@MaxikioscoIdentifier uniqueidentifier,
 	@Secuencia int
@@ -92,6 +85,5 @@ END
 SELECT @Result as Result
 END
 
-GO
 
 

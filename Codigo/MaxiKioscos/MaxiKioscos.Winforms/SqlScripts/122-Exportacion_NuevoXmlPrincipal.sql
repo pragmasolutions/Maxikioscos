@@ -1,10 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Exportacion_NuevoXmlPrincipal]    Script Date: 04/14/2015 23:53:28 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Exportacion_NuevoXmlPrincipal]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
-GO
-
-
-CREATE PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
+ALTER PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
 	@UsuarioId int,
 	@Secuencia int = NULL
 AS
@@ -213,15 +207,3 @@ END CATCH
 	
 	
 END
-
-
-
-
-
-
-
-
-
-GO
-
-
