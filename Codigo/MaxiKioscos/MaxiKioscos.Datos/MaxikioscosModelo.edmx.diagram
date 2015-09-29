@@ -123,6 +123,15 @@
         <EntityTypeShape EntityType="MaxiKioscosModel.ProductoPromocion" Width="1.875" PointX="10" PointY="46.375" />
         <AssociationConnector Association="MaxiKioscosModel.FK_ProductoPromocion_ProductoHijo" />
         <AssociationConnector Association="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.CategoriaCosto" Width="1.5" PointX="16.5" PointY="38.5" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Costo" Width="1.5" PointX="18.75" PointY="47.875" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.RetiroPersonal" Width="1.5" PointX="15.75" PointY="75.625" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.RetiroPersonalProducto" Width="1.5" PointX="18" PointY="70.125" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Costo_CategoriaCosto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Costo_CierreCaja" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_RetiroPersonal_CierreCaja" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_RetiroPersonalProducto_RetiroPersonal" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -55,6 +55,9 @@
     <Compile Include="Billete.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoriaCosto.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="CierreCaja.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
@@ -86,6 +89,9 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="CorreccionStock.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Costo.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Cuenta.cs">
@@ -150,8 +156,12 @@
     <Compile Include="MensajeTicketError.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\RetiroPersonalProductoMetadata.cs" />
+    <Compile Include="Metadata\RetiroPersonalMetadata.cs" />
+    <Compile Include="Metadata\CostoMetadata.cs" />
     <Compile Include="Metadata\CierreCajaMetadata.cs" />
     <Compile Include="Metadata\CodigoProductoMetadata.cs" />
+    <Compile Include="Metadata\CategoriaCostoMetadata.cs" />
     <Compile Include="Metadata\PromocionMaxikioscoMetadata.cs" />
     <Compile Include="Metadata\ProductoPromocionMetadata.cs" />
     <Compile Include="Metadata\TransferenciaMetadata.cs" />
@@ -231,6 +241,12 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ReponerStock.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetiroPersonal.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RetiroPersonalProducto.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">

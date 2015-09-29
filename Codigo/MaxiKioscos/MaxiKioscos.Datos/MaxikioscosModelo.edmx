@@ -12,6 +12,17 @@
           <Property Name="BilleteId" Type="int" Nullable="false" />
           <Property Name="Monto" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CategoriaCosto">
+          <Key>
+            <PropertyRef Name="CategoriaCostoId" />
+          </Key>
+          <Property Name="CategoriaCostoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+        </EntityType>
         <EntityType Name="CierreCaja">
           <Key>
             <PropertyRef Name="CierreCajaId" />
@@ -144,6 +155,23 @@
           <Property Name="MaxiKioscoId" Type="int" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Costo">
+          <Key>
+            <PropertyRef Name="CostoId" />
+          </Key>
+          <Property Name="CostoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CierreCajaId" Type="int" Nullable="false" />
+          <Property Name="CategoriaCostoId" Type="int" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="5000" />
+          <Property Name="NroComprobante" Type="varchar" MaxLength="50" />
+          <Property Name="Monto" Type="money" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Aprobado" Type="bit" Nullable="false" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+        </EntityType>
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="CuentaId" />
@@ -163,6 +191,7 @@
           <Property Name="MaxiKioscoIdentifierPredeterminadoTransferencias" Type="uniqueidentifier" />
           <Property Name="SincronizarAutomaticamente" Type="bit" />
           <Property Name="IntervaloSincronizacion" Type="int" />
+          <Property Name="LimiteMaximoRetiroPersonal" Type="money" />
         </EntityType>
         <EntityType Name="EstadoTicket">
           <Key>
@@ -448,6 +477,36 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RetiroPersonal">
+          <Key>
+            <PropertyRef Name="RetiroPersonalId" />
+          </Key>
+          <Property Name="RetiroPersonalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CierreCajaId" Type="int" Nullable="false" />
+          <Property Name="CostoTotal" Type="money" Nullable="false" />
+          <Property Name="ImporteTotal" Type="money" Nullable="false" />
+          <Property Name="FechaRetiroPersonal" Type="datetime" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="RetiroPersonalProducto">
+          <Key>
+            <PropertyRef Name="RetiroPersonalProductoId" />
+          </Key>
+          <Property Name="RetiroPersonalProductoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RetiroPersonalId" Type="int" Nullable="false" />
+          <Property Name="ProductoId" Type="int" Nullable="false" />
+          <Property Name="Costo" Type="money" Nullable="false" />
+          <Property Name="Precio" Type="money" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="AdicionalPorExcepcion" Type="money" />
         </EntityType>
         <EntityType Name="Rubro">
           <Key>
@@ -860,6 +919,30 @@
             </Principal>
             <Dependent Role="CorreccionStock">
               <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_CategoriaCosto">
+          <End Role="CategoriaCosto" Type="Self.CategoriaCosto" Multiplicity="1" />
+          <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_CierreCaja">
+          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="1" />
+          <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreCaja">
+              <PropertyRef Name="CierreCajaId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="CierreCajaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1292,6 +1375,42 @@
             </Principal>
             <Dependent Role="RecuentoBillete">
               <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonal_CierreCaja">
+          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="1" />
+          <End Role="RetiroPersonal" Type="Self.RetiroPersonal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreCaja">
+              <PropertyRef Name="CierreCajaId" />
+            </Principal>
+            <Dependent Role="RetiroPersonal">
+              <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonalProducto_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="RetiroPersonalProducto" Type="Self.RetiroPersonalProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="RetiroPersonalProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonalProducto_RetiroPersonal">
+          <End Role="RetiroPersonal" Type="Self.RetiroPersonal" Multiplicity="1" />
+          <End Role="RetiroPersonalProducto" Type="Self.RetiroPersonalProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetiroPersonal">
+              <PropertyRef Name="RetiroPersonalId" />
+            </Principal>
+            <Dependent Role="RetiroPersonalProducto">
+              <PropertyRef Name="RetiroPersonalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1739,6 +1858,7 @@
         </Function>
         <EntityContainer Name="MaxiKioscosModelStoreContainer">
           <EntitySet Name="Billete" EntityType="Self.Billete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriaCosto" EntityType="Self.CategoriaCosto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CierreCaja" EntityType="Self.CierreCaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodigoProducto" EntityType="Self.CodigoProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
@@ -1747,6 +1867,7 @@
           <EntitySet Name="ControlStock" EntityType="Self.ControlStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ControlStockDetalle" EntityType="Self.ControlStockDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CorreccionStock" EntityType="Self.CorreccionStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Costo" EntityType="Self.Costo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstadoTicket" EntityType="Self.EstadoTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Excepcion" EntityType="Self.Excepcion" Schema="dbo" store:Type="Tables" />
@@ -1768,6 +1889,8 @@
           <EntitySet Name="ProveedorProducto" EntityType="Self.ProveedorProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecuentoBillete" EntityType="Self.RecuentoBillete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RetiroPersonal" EntityType="Self.RetiroPersonal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RetiroPersonalProducto" EntityType="Self.RetiroPersonalProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StockTransaccion" EntityType="Self.StockTransaccion" Schema="dbo" store:Type="Tables" />
@@ -1858,6 +1981,14 @@
           <AssociationSet Name="FK_CorreccionStock_Producto" Association="Self.FK_CorreccionStock_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="CorreccionStock" EntitySet="CorreccionStock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Costo_CategoriaCosto" Association="Self.FK_Costo_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriaCosto" />
+            <End Role="Costo" EntitySet="Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Costo_CierreCaja" Association="Self.FK_Costo_CierreCaja">
+            <End Role="CierreCaja" EntitySet="CierreCaja" />
+            <End Role="Costo" EntitySet="Costo" />
           </AssociationSet>
           <AssociationSet Name="FK_Cuenta_MotivoCorreccion" Association="Self.FK_Cuenta_MotivoCorreccion">
             <End Role="MotivoCorreccion" EntitySet="MotivoCorreccion" />
@@ -2002,6 +2133,18 @@
           <AssociationSet Name="FK_RecuentoBillete_CierreCaja" Association="Self.FK_RecuentoBillete_CierreCaja">
             <End Role="CierreCaja" EntitySet="CierreCaja" />
             <End Role="RecuentoBillete" EntitySet="RecuentoBillete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonal_CierreCaja" Association="Self.FK_RetiroPersonal_CierreCaja">
+            <End Role="CierreCaja" EntitySet="CierreCaja" />
+            <End Role="RetiroPersonal" EntitySet="RetiroPersonal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonalProducto_Producto" Association="Self.FK_RetiroPersonalProducto_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonalProducto_RetiroPersonal" Association="Self.FK_RetiroPersonalProducto_RetiroPersonal">
+            <End Role="RetiroPersonal" EntitySet="RetiroPersonal" />
+            <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProducto" />
           </AssociationSet>
           <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
@@ -2643,8 +2786,32 @@
           <Parameter Name="ProductoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptVentasPorTicket" ReturnType="Collection(MaxiKioscosModel.RptVentaPorTicketRow)">
-            <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
+          <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CategoriasCostos" EntityType="MaxiKioscosModel.CategoriaCosto" />
+          <EntitySet Name="Costos" EntityType="MaxiKioscosModel.Costo" />
+          <EntitySet Name="RetirosPersonales" EntityType="MaxiKioscosModel.RetiroPersonal" />
+          <EntitySet Name="RetiroPersonalProductos" EntityType="MaxiKioscosModel.RetiroPersonalProducto" />
+          <AssociationSet Name="FK_Costo_CategoriaCosto" Association="MaxiKioscosModel.FK_Costo_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriasCostos" />
+            <End Role="Costo" EntitySet="Costos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Costo_CierreCaja" Association="MaxiKioscosModel.FK_Costo_CierreCaja">
+            <End Role="CierreCaja" EntitySet="CierreCajas" />
+            <End Role="Costo" EntitySet="Costos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonal_CierreCaja" Association="MaxiKioscosModel.FK_RetiroPersonal_CierreCaja">
+            <End Role="CierreCaja" EntitySet="CierreCajas" />
+            <End Role="RetiroPersonal" EntitySet="RetirosPersonales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonalProducto_Producto" Association="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto">
+            <End Role="Producto" EntitySet="Productoes" />
+            <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RetiroPersonalProducto_RetiroPersonal" Association="MaxiKioscosModel.FK_RetiroPersonalProducto_RetiroPersonal">
+            <End Role="RetiroPersonal" EntitySet="RetirosPersonales" />
+            <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProductos" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -2670,6 +2837,8 @@
           <NavigationProperty Name="Usuario" Relationship="MaxiKioscosModel.FK_CierreCaja_Usuario" FromRole="CierreCaja" ToRole="Usuario" />
           <NavigationProperty Name="Facturas" Relationship="MaxiKioscosModel.FK_Factura_CierreCaja" FromRole="CierreCaja" ToRole="Factura" />
           <NavigationProperty Name="RecuentoBilletes" Relationship="MaxiKioscosModel.FK_RecuentoBillete_CierreCaja" FromRole="CierreCaja" ToRole="RecuentoBillete" />
+          <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_CierreCaja" FromRole="CierreCaja" ToRole="Costo" />
+          <NavigationProperty Name="RetiroPersonals" Relationship="MaxiKioscosModel.FK_RetiroPersonal_CierreCaja" FromRole="CierreCaja" ToRole="RetiroPersonal" />
         </EntityType>
         <EntityType Name="CodigoProducto">
           <Key>
@@ -2712,6 +2881,7 @@
           <Property Name="MaxiKioscoIdentifierPredeterminadoTransferencias" Type="Guid" />
           <Property Name="SincronizarAutomaticamente" Type="Boolean" />
           <Property Name="IntervaloSincronizacion" Type="Int32" />
+          <Property Name="LimiteMaximoRetiroPersonal" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="ExcepcionRubro">
           <Key>
@@ -2880,6 +3050,7 @@
           <Property Name="EsPromocion" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PromocionesPadres" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoHijo" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="PromocionesHijos" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" FromRole="Producto" ToRole="ProductoPromocion" />
+          <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -4592,6 +4763,131 @@
           <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <EntityType Name="CategoriaCosto">
+          <Key>
+            <PropertyRef Name="CategoriaCostoId" />
+          </Key>
+          <Property Name="CategoriaCostoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Costos" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="CategoriaCosto" ToRole="Costo" />
+        </EntityType>
+        <EntityType Name="Costo">
+          <Key>
+            <PropertyRef Name="CostoId" />
+          </Key>
+          <Property Name="CostoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CierreCajaId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaCostoId" Type="Int32" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="NroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aprobado" Type="Boolean" Nullable="false" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CategoriaCosto" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="Costo" ToRole="CategoriaCosto" />
+          <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Costo_CierreCaja" FromRole="Costo" ToRole="CierreCaja" />
+        </EntityType>
+        <EntityType Name="RetiroPersonal">
+          <Key>
+            <PropertyRef Name="RetiroPersonalId" />
+          </Key>
+          <Property Name="RetiroPersonalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="CierreCajaId" Type="Int32" Nullable="false" />
+          <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ImporteTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FechaRetiroPersonal" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_RetiroPersonal_CierreCaja" FromRole="RetiroPersonal" ToRole="CierreCaja" />
+          <NavigationProperty Name="RetiroPersonalProductos" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_RetiroPersonal" FromRole="RetiroPersonal" ToRole="RetiroPersonalProducto" />
+        </EntityType>
+        <EntityType Name="RetiroPersonalProducto">
+          <Key>
+            <PropertyRef Name="RetiroPersonalProductoId" />
+          </Key>
+          <Property Name="RetiroPersonalProductoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="RetiroPersonalId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="Costo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="AdicionalPorExcepcion" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Producto" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="RetiroPersonalProducto" ToRole="Producto" />
+          <NavigationProperty Name="RetiroPersonal" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_RetiroPersonal" FromRole="RetiroPersonalProducto" ToRole="RetiroPersonal" />
+        </EntityType>
+        <Association Name="FK_Costo_CategoriaCosto">
+          <End Type="MaxiKioscosModel.CategoriaCosto" Role="CategoriaCosto" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_CierreCaja">
+          <End Type="MaxiKioscosModel.CierreCaja" Role="CierreCaja" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreCaja">
+              <PropertyRef Name="CierreCajaId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonal_CierreCaja">
+          <End Type="MaxiKioscosModel.CierreCaja" Role="CierreCaja" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.RetiroPersonal" Role="RetiroPersonal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CierreCaja">
+              <PropertyRef Name="CierreCajaId" />
+            </Principal>
+            <Dependent Role="RetiroPersonal">
+              <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonalProducto_Producto">
+          <End Type="MaxiKioscosModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.RetiroPersonalProducto" Role="RetiroPersonalProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="ProductoId" />
+            </Principal>
+            <Dependent Role="RetiroPersonalProducto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RetiroPersonalProducto_RetiroPersonal">
+          <End Type="MaxiKioscosModel.RetiroPersonal" Role="RetiroPersonal" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.RetiroPersonalProducto" Role="RetiroPersonalProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetiroPersonal">
+              <PropertyRef Name="RetiroPersonalId" />
+            </Principal>
+            <Dependent Role="RetiroPersonalProducto">
+              <PropertyRef Name="RetiroPersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4633,6 +4929,7 @@
           <EntitySetMapping Name="Cuentas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="LimiteMaximoRetiroPersonal" ColumnName="LimiteMaximoRetiroPersonal" />
                 <ScalarProperty Name="IntervaloSincronizacion" ColumnName="IntervaloSincronizacion" />
                 <ScalarProperty Name="SincronizarAutomaticamente" ColumnName="SincronizarAutomaticamente" />
                 <ScalarProperty Name="MaxiKioscoIdentifierPredeterminadoTransferencias" ColumnName="MaxiKioscoIdentifierPredeterminadoTransferencias" />
@@ -5721,6 +6018,68 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CategoriasCostos">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.CategoriaCosto">
+              <MappingFragment StoreEntitySet="CategoriaCosto">
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CategoriaCostoId" ColumnName="CategoriaCostoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Costos">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.Costo">
+              <MappingFragment StoreEntitySet="Costo">
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Aprobado" ColumnName="Aprobado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="CategoriaCostoId" ColumnName="CategoriaCostoId" />
+                <ScalarProperty Name="CierreCajaId" ColumnName="CierreCajaId" />
+                <ScalarProperty Name="CostoId" ColumnName="CostoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetirosPersonales">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.RetiroPersonal">
+              <MappingFragment StoreEntitySet="RetiroPersonal">
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaRetiroPersonal" ColumnName="FechaRetiroPersonal" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="CierreCajaId" ColumnName="CierreCajaId" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="RetiroPersonalId" ColumnName="RetiroPersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetiroPersonalProductos">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.RetiroPersonalProducto">
+              <MappingFragment StoreEntitySet="RetiroPersonalProducto">
+                <ScalarProperty Name="AdicionalPorExcepcion" ColumnName="AdicionalPorExcepcion" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="RetiroPersonalId" ColumnName="RetiroPersonalId" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="RetiroPersonalProductoId" ColumnName="RetiroPersonalProductoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,35 @@
+﻿@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.CategoriasCostosListadoModel
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableCategoriasCostos">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var categoria in Model.List)
+            {
+                <tr>
+                    <td>@categoria.Descripcion</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-categoriacosto-detalle" href="@Url.Action("Detalle", new { id = categoria.CategoriaCostoId})"><span class="glyphicon glyphicon-list"></span></a>
+                        <a class="btn btn-default btn-categoriacosto-editar" href="@Url.Action("Editar", new { id = categoria.CategoriaCostoId })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-default btn-categoriacosto-eliminar" href="@Url.Action("Eliminar", new { id = categoria.CategoriaCostoId })"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                                                                                                                                 , new AjaxOptions()
+                                                                                                                                                 {
+                                                                                                                                                     UpdateTargetId = "AdminContainer",
+                                                                                                                                                     HttpMethod = "Get",
+                                                                                                                                                     InsertionMode = InsertionMode.Replace,
+                                                                                                                                                     OnBegin = "maxikioscoSpinner.startSpin",
+                                                                                                                                                     OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                                                                                                                     OnFailure = "maxikioscoSpinner.stopSpin"
+                                                                                                                                                 }))
+</div>

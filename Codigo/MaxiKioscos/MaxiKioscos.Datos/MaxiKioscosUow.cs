@@ -75,6 +75,10 @@ namespace MaxiKioscos.Datos
         public IRepository<Transferencia> Transferencias { get { return GetStandardRepo<Transferencia>(); } }
         public IRepository<TransferenciaProducto> TransferenciaProductos { get { return GetStandardRepo<TransferenciaProducto>(); } }
         public IRepository<ProductoPromocion> ProductoPromociones { get { return GetStandardRepo<ProductoPromocion>(); } }
+        public IRepository<CategoriaCosto> CategoriasCostos { get { return GetStandardRepo<CategoriaCosto>(); } }
+        public IRepository<Costo> Costos { get { return GetStandardRepo<Costo>(); } }
+        public IRepository<RetiroPersonal> RetirosPersonales { get { return GetStandardRepo<RetiroPersonal>(); } }
+        public IRepository<RetiroPersonalProducto> RetiroPersonalProductos { get { return GetStandardRepo<RetiroPersonalProducto>(); } }
         /// <summary>
         /// Save pending changes to the database
         /// </summary>
@@ -141,5 +145,8 @@ namespace MaxiKioscos.Datos
         }
 
         #endregion
+
+
+        
     }
 }

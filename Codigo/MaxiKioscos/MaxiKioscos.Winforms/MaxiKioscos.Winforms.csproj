@@ -527,6 +527,12 @@
     <Content Include="SqlScripts\125-Sincronizacion_ActualizarKiosco.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\129-Sync_CategoriasCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\128-CategoriaCosto_DropColumnMaximoBisemanal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\127-ControlStocl_Crear.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
