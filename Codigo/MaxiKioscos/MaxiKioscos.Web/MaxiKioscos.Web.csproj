@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriasCostosController.cs" />
+    <Compile Include="Controllers\CostosController.cs" />
     <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\TransferenciasController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
@@ -239,11 +240,13 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ExcepcionModel.cs" />
     <Compile Include="Models\Filtros\CategoriasCostosFiltrosModel.cs" />
+    <Compile Include="Models\Filtros\CostosFiltrosModel.cs" />
     <Compile Include="Models\Filtros\PromocionesFiltrosModel.cs" />
     <Compile Include="Models\Filtros\TransferenciasFiltrosModel.cs" />
     <Compile Include="Models\Filtros\ComprasFiltrosModel.cs" />
     <Compile Include="Models\Filtros\ExcepcionesFiltrosModel.cs" />
     <Compile Include="Models\Listado\CategoriasCostosListadoModel.cs" />
+    <Compile Include="Models\Listado\CostosListadoModel.cs" />
     <Compile Include="Models\Listado\PromocionesListadoModel.cs" />
     <Compile Include="Models\Listado\TransferenciasListadoModel.cs" />
     <Compile Include="Models\Listado\ComprasListadoModel.cs" />
@@ -354,6 +357,7 @@
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\app\bootstrapAlerts.js" />
     <Content Include="Scripts\app\maxikiosco-categoriascostos.js" />
+    <Content Include="Scripts\app\maxikiosco-costos.js" />
     <Content Include="Scripts\app\maxikiosco-productos-stock.js" />
     <Content Include="Scripts\app\maxikiosco-promociones-editar.js" />
     <Content Include="Scripts\app\maxikiosco-promociones.js" />
@@ -932,6 +936,16 @@
     <Content Include="Views\CategoriasCostos\Eliminar.cshtml" />
     <Content Include="Views\CategoriasCostos\Index.cshtml" />
     <Content Include="Views\CategoriasCostos\Listado.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CostoEstado.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CategoriaCostoId.cshtml" />
+    <Content Include="Views\Costos\_CamposCostoDetalle.cshtml" />
+    <Content Include="Views\Costos\_Filtros.cshtml" />
+    <Content Include="Views\Costos\_Listado.cshtml" />
+    <Content Include="Views\Costos\Detalle.cshtml" />
+    <Content Include="Views\Costos\Eliminar.cshtml" />
+    <Content Include="Views\Costos\Index.cshtml" />
+    <Content Include="Views\Costos\Listado.cshtml" />
+    <Content Include="Views\Costos\Modales.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

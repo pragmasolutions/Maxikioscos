@@ -320,5 +320,18 @@ namespace MaxiKioscos.Winforms.Costos
                 txtBuscar.Text = "";
             }
         }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Actualizar(null, null);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Actualizar(null, null);
+        }
     }
 }

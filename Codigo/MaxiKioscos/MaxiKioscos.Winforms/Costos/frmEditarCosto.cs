@@ -22,7 +22,7 @@ namespace MaxiKioscos.Winforms.Costos
         }
 
         private EFSimpleRepository<CategoriaCosto> _categoriaRepository;
-        public EFSimpleRepository<CategoriaCosto> CateforiaRepository
+        public EFSimpleRepository<CategoriaCosto> CategoriaRepository
         {
             get { return _categoriaRepository ?? (_categoriaRepository = new EFSimpleRepository<CategoriaCosto>()); }
         }
@@ -33,7 +33,7 @@ namespace MaxiKioscos.Winforms.Costos
         {
             InitializeComponent();
 
-            var categorias = CateforiaRepository.Listado().OrderBy(c => c.Descripcion).ToList();
+            var categorias = CategoriaRepository.Listado().Where(c => !c.Eliminado).OrderBy(c => c.Descripcion).ToList();
             ddlCategorias.DataSource = categorias;
             ddlCategorias.ValueMember = "CategoriaCostoId";
             ddlCategorias.DisplayMember = "Descripcion";

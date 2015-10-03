@@ -47,7 +47,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var excepciones = Listado(filtros);
             var pageSize = 30;
-            var lista = PagedListHelper<Excepcion>.Crear(excepciones, pageSize, page);
+            var lista = excepciones.ToPagedList(page ?? 1, pageSize);
 
             var listadoModel = new ExcepcionesListadoModel
             {
@@ -61,13 +61,13 @@ namespace MaxiKioscos.Web.Controllers
             return PartialView("_Listado", listadoModel);
         }
 
-        private List<Excepcion> Listado(ExcepcionesFiltrosModel filtros)
+        private IQueryable<Excepcion> Listado(ExcepcionesFiltrosModel filtros)
         {
             var cuentaId = UsuarioActual.CuentaId;
             return Uow.Excepciones.Listado(c => c.CierreCaja, c => c.CierreCaja.MaxiKiosco, c => c.CierreCaja.Usuario)
                 .Where(m => m.CierreCaja.MaxiKiosco.CuentaId == cuentaId)
                 .Where(filtros.GetFilterExpression())
-                .OrderBy(m => m.CierreCaja.FechaInicio).ToList(); 
+                .OrderBy(m => m.CierreCaja.FechaInicio); 
         }
 
         public ActionResult Detalle(int id)

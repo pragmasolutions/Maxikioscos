@@ -1,0 +1,13 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var selectList = uow.CategoriasCostos.Listado()
+                               .OrderBy(r => r.Descripcion)
+                               .ToSelectListItem(Model, c => c.CategoriaCostoId, c => c.Descripcion,
+                               c => c.CategoriaCostoId.ToString());
+}
+@Html.DropDownList("", selectList, "Seleccione Categoría", new { @data_placeholder = "Seleccione Categoría", @class = "form-dropdown", style = "height: 34px" })

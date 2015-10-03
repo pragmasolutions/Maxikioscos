@@ -61,19 +61,18 @@ namespace MaxiKioscos.Web.Controllers
         {
             var facturas = Uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.Compras)
                 .Where(f => f.MaxiKiosco.CuentaId == UsuarioActual.CuentaId)
-                .Where(filtros.GetFilterExpression())
-                .OrderByDescending(f => f.Fecha)
-                .ToList();
+                .Where(filtros.GetFilterExpression()).ToList();
 
             facturas =
                facturas.Where(
                    f =>
                        string.IsNullOrEmpty(filtros.FacturaNro) ||
                        (f.NroFormateado.StartsWith(filtros.FacturaNro) ||
-                        f.AutoNumero.StartsWith(filtros.FacturaNro))).ToList();
+                        f.AutoNumero.StartsWith(filtros.FacturaNro)))
+                .OrderByDescending(f => f.Fecha).ToList();
 
 
-            var lista = PagedListHelper<Factura>.Crear(facturas, AppSettings.DefaultPageSize, page);
+            var lista = facturas.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new FacturasListadoModel
             {
                 List = lista,
