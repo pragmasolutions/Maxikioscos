@@ -250,6 +250,13 @@
     <Compile Include="Costos\frmDetalleEliminarCosto.Designer.cs">
       <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataStruct\RetiroPersonalGridStruct.cs" />
+    <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.Designer.cs">
+      <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Costos\frmEditarCosto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,11 +302,11 @@
     <Compile Include="Helpers\ActualizacionPantallasHelper.cs" />
     <Compile Include="Helpers\SeguridadHelper.cs" />
     <Compile Include="Interfaces\IBuscadorParent.cs" />
-    <Compile Include="Costos\frmCostos.cs">
+    <Compile Include="RetirosPersonales\frmRetirosPersonales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Costos\frmCostos.Designer.cs">
-      <DependentUpon>frmCostos.cs</DependentUpon>
+    <Compile Include="RetirosPersonales\frmRetirosPersonales.Designer.cs">
+      <DependentUpon>frmRetirosPersonales.cs</DependentUpon>
     </Compile>
     <Compile Include="OperacionesCaja\OperacionCajaDetalle.cs">
       <SubType>Form</SubType>
@@ -430,6 +437,12 @@
     <Compile Include="Reportes\frmReponerStock.Designer.cs">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Costos\frmCostos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmCostos.Designer.cs">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service References\NotificationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -447,6 +460,18 @@
     </Compile>
     <Compile Include="Usuarios\frmCambiarPassword.Designer.cs">
       <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmConfirmarRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmConfirmarRetiroPersonal.Designer.cs">
+      <DependentUpon>frmConfirmarRetiroPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmNuevoRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmNuevoRetiroPersonal.Designer.cs">
+      <DependentUpon>frmNuevoRetiroPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\frmConfirmarVenta.cs">
       <SubType>Form</SubType>
@@ -544,6 +569,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\125-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\131-RetiroPersonal_GenerarNumero.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\130-Sync_Costos.sql">
@@ -968,6 +996,9 @@
     <EmbeddedResource Include="Costos\frmDetalleEliminarCosto.resx">
       <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmDetalleRetiroPersonal.resx">
+      <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Costos\frmEditarCosto.resx">
       <DependentUpon>frmEditarCosto.cs</DependentUpon>
     </EmbeddedResource>
@@ -986,8 +1017,8 @@
     <EmbeddedResource Include="Exportacion\frmSincronizacionFeedback.resx">
       <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Costos\frmCostos.resx">
-      <DependentUpon>frmCostos.cs</DependentUpon>
+    <EmbeddedResource Include="RetirosPersonales\frmRetirosPersonales.resx">
+      <DependentUpon>frmRetirosPersonales.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesCaja\OperacionCajaDetalle.resx">
@@ -1055,8 +1086,18 @@
     <EmbeddedResource Include="Reportes\frmReponerStock.resx">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmCostos.resx">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmCambiarPassword.resx">
       <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmConfirmarRetiroPersonal.resx">
+      <DependentUpon>frmConfirmarRetiroPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmNuevoRetiroPersonal.resx">
+      <DependentUpon>frmNuevoRetiroPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\frmConfirmarVenta.resx">
       <DependentUpon>frmConfirmarVenta.cs</DependentUpon>

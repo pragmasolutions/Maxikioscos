@@ -30,17 +30,6 @@ namespace MaxiKioscos.Datos.Repositorio
                 .Where(v => cuentaId==v.CuentaId).ToList();
         }
 
-        public static void EliminarODeshabilitar(int ventaId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool Guardar(Venta venta)
-        {
-            throw new NotImplementedException();
-            return true;
-        }
-
         public int GenerarNroVenta(int maxikioscoId)
         {
             return MaxiKioscosEntities.VentaGenerarNumero(maxikioscoId).FirstOrDefault().GetValueOrDefault();

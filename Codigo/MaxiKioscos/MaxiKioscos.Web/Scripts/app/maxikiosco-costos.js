@@ -10,6 +10,11 @@
             //Parse auto-submit-input
             controles.parse('#AdminContainer');
         },
+        crear = function () {
+            var url = $(this).attr('href');
+            cargarVista(url);
+            return false;
+        },
         submit = function () {
             var $form = $(this);
             var url = $form.attr('action');

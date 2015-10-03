@@ -84,6 +84,7 @@
     <Compile Include="Repositorio\ExcepcionRepository.cs" />
     <Compile Include="Repositorio\ProductoRepository.cs" />
     <Compile Include="Repositorio\StockRepository.cs" />
+    <Compile Include="Repositorio\RetiroPersonalRepository.cs" />
     <Compile Include="Repositorio\VentasRepository.cs" />
     <Compile Include="Repositorio\EFBaseRepository.cs" />
     <Compile Include="Repositorio\ReporteRepository.cs" />

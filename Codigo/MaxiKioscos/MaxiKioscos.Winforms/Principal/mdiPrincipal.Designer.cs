@@ -57,6 +57,7 @@
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmGestionDeMercaderias = new System.Windows.Forms.ToolStripMenuItem();
             this.gesiónDeFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCostos = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGestionProveedores = new System.Windows.Forms.ToolStripMenuItem();
             this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +86,7 @@
             this.tsbControlStock = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.tsmCostos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRetiroPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -292,6 +293,7 @@
             this.comprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmGestionDeMercaderias,
             this.gesiónDeFacturasToolStripMenuItem,
+            this.tsmRetiroPersonal,
             this.tsmCostos});
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
             this.comprasToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
@@ -310,6 +312,13 @@
             this.gesiónDeFacturasToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
             this.gesiónDeFacturasToolStripMenuItem.Text = "Gestión de Facturas";
             this.gesiónDeFacturasToolStripMenuItem.Click += new System.EventHandler(this.gesiónDeFacturasToolStripMenuItem_Click);
+            // 
+            // tsmCostos
+            // 
+            this.tsmCostos.Name = "tsmCostos";
+            this.tsmCostos.Size = new System.Drawing.Size(227, 24);
+            this.tsmCostos.Text = "Costos";
+            this.tsmCostos.Click += new System.EventHandler(this.tsmCostos_Click);
             // 
             // proveedoresToolStripMenuItem
             // 
@@ -555,12 +564,12 @@
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
             // 
-            // tsmCostos
+            // tsmRetiroPersonal
             // 
-            this.tsmCostos.Name = "tsmCostos";
-            this.tsmCostos.Size = new System.Drawing.Size(227, 24);
-            this.tsmCostos.Text = "Costos";
-            this.tsmCostos.Click += new System.EventHandler(this.tsmCostos_Click);
+            this.tsmRetiroPersonal.Name = "tsmRetiroPersonal";
+            this.tsmRetiroPersonal.Size = new System.Drawing.Size(227, 24);
+            this.tsmRetiroPersonal.Text = "Retiro Personal";
+            this.tsmRetiroPersonal.Click += new System.EventHandler(this.tsmRetiroPersonal_Click);
             // 
             // mdiPrincipal
             // 
@@ -653,6 +662,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsbAcercaDe;
         private System.Windows.Forms.ToolStripStatusLabel tssUltimaSyncExitosa;
         private System.Windows.Forms.ToolStripMenuItem tsmCostos;
+        private System.Windows.Forms.ToolStripMenuItem tsmRetiroPersonal;
     }
 }
 

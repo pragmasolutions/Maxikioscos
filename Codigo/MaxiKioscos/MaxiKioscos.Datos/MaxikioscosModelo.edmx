@@ -1701,6 +1701,9 @@
         <Function Name="Proveedor_ObtenerRubros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
         </Function>
+        <Function Name="RetiroPersonal_GenerarNumero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_AuditoriaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Rpt_CierresDeCaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Desde" Type="datetime2" Mode="In" />
@@ -2812,6 +2815,9 @@
             <End Role="RetiroPersonal" EntitySet="RetirosPersonales" />
             <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProductos" />
           </AssociationSet>
+          <FunctionImport Name="RetiroPersonalGenerarNumero" ReturnType="Collection(Int32)">
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -6080,6 +6086,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RetiroPersonalGenerarNumero" FunctionName="MaxiKioscosModel.Store.RetiroPersonal_GenerarNumero" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -53,5 +53,9 @@ namespace MaxiKioscos.Entidades
         [DisplayName("Intervalo de Sincronización (en minutos)")]
         [Range(60, int.MaxValue, ErrorMessage = "El intervalo debe ser mayor o igual a 60")]
         public int? IntervaloSincronizacion { get; set; }
+
+        [DisplayName("Límite máximo de retiro de personal")]
+        [Range(1, int.MaxValue, ErrorMessage = "El límite debe ser mayor o igual a 1")]
+        public decimal? LimiteMaximoRetiroPersonal { get; set; }
     }
 }

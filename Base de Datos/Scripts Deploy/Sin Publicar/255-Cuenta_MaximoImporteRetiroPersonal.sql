@@ -1,0 +1,2 @@
+ALTER TABLE Cuenta
+ADD MaximoImporteRetiroPersonal money NULL
