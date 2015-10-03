@@ -37,6 +37,7 @@ using MaxiKioscos.Winforms.Rubros;
 using MaxiKioscos.Winforms.Facturas;
 using System.IO;
 using Maxikioscos.Comun.Helpers;
+using MaxiKioscos.Winforms.Costos;
 
 namespace MaxiKioscos.Winforms.Principal
 {
@@ -729,6 +730,11 @@ namespace MaxiKioscos.Winforms.Principal
         {
             var about = new abxAcercaDe();
             about.Show();
+        }
+
+        private void tsmCostos_Click(object sender, EventArgs e)
+        {
+            AbrirTab(new frmCostos());
         }
     }
 }

@@ -244,7 +244,20 @@
     <Compile Include="CorreccionesStock\frmGestionCorreccionStock.Designer.cs">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Costos\frmDetalleEliminarCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmDetalleEliminarCosto.Designer.cs">
+      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\frmEditarCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmEditarCosto.Designer.cs">
+      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataStruct\ArchivoPrincipalStruct.cs" />
+    <Compile Include="DataStruct\CostoGridStruct.cs" />
     <Compile Include="DataStruct\ControlStockDetalleGridStruct.cs" />
     <Compile Include="DataStruct\MaxiKioscoGridStruct.cs" />
     <Compile Include="DataStruct\ProductoGridStruct.cs" />
@@ -282,6 +295,12 @@
     <Compile Include="Helpers\ActualizacionPantallasHelper.cs" />
     <Compile Include="Helpers\SeguridadHelper.cs" />
     <Compile Include="Interfaces\IBuscadorParent.cs" />
+    <Compile Include="Costos\frmCostos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmCostos.Designer.cs">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperacionesCaja\OperacionCajaDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -525,6 +544,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\125-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\130-Sync_Costos.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\129-Sync_CategoriasCosto.sql">
@@ -943,6 +965,12 @@
     <EmbeddedResource Include="CorreccionesStock\frmGestionCorreccionStock.resx">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmDetalleEliminarCosto.resx">
+      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmEditarCosto.resx">
+      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Excepciones\frmABMExcepciones.resx">
       <DependentUpon>frmABMExcepciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -957,6 +985,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Exportacion\frmSincronizacionFeedback.resx">
       <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmCostos.resx">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesCaja\OperacionCajaDetalle.resx">
       <DependentUpon>OperacionCajaDetalle.cs</DependentUpon>
@@ -1105,6 +1137,7 @@
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.ProductoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.VentaGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.ControlStockDetalleGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.CostoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoStruct.datasource" />
     <None Include="Properties\Settings.settings">

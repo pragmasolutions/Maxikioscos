@@ -85,6 +85,7 @@
             this.tsbControlStock = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.tsmCostos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -290,10 +291,11 @@
             // 
             this.comprasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmGestionDeMercaderias,
-            this.gesiónDeFacturasToolStripMenuItem});
+            this.gesiónDeFacturasToolStripMenuItem,
+            this.tsmCostos});
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.comprasToolStripMenuItem.Text = "Compras";
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.comprasToolStripMenuItem.Text = "Egresos";
             // 
             // tsmGestionDeMercaderias
             // 
@@ -553,6 +555,13 @@
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
             // 
+            // tsmCostos
+            // 
+            this.tsmCostos.Name = "tsmCostos";
+            this.tsmCostos.Size = new System.Drawing.Size(227, 24);
+            this.tsmCostos.Text = "Costos";
+            this.tsmCostos.Click += new System.EventHandler(this.tsmCostos_Click);
+            // 
             // mdiPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -643,6 +652,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmSegundoPlano;
         private System.Windows.Forms.ToolStripMenuItem tsbAcercaDe;
         private System.Windows.Forms.ToolStripStatusLabel tssUltimaSyncExitosa;
+        private System.Windows.Forms.ToolStripMenuItem tsmCostos;
     }
 }
 
