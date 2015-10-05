@@ -1,10 +1,4 @@
-
-/****** Object:  StoredProcedure [dbo].[CierreCaja_Cerrar]    Script Date: 08/09/2014 15:47:23 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CierreCaja_Cerrar]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[CierreCaja_Cerrar]
-GO
-
-CREATE PROCEDURE [dbo].[CierreCaja_Cerrar]
+ALTER PROCEDURE [dbo].[CierreCaja_Cerrar]
 	@MaxiKioscoId int,
 	@CajaFinal money
 AS
@@ -55,8 +49,3 @@ BEGIN
 	SELECT @CierreCajaId as CierreCajaId
 	
 END
-
-
-GO
-
-

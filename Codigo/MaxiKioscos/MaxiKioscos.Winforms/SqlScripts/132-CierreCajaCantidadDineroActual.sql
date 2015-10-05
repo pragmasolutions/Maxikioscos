@@ -1,8 +1,4 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CierreCajaCantidadDineroActual]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
-DROP FUNCTION [dbo].[CierreCajaCantidadDineroActual]
-GO
-
-CREATE FUNCTION [dbo].[CierreCajaCantidadDineroActual]
+ALTER FUNCTION [dbo].[CierreCajaCantidadDineroActual]
 (	
 	@CierreCajaId int
 )
@@ -43,7 +39,4 @@ RETURN
 							)
 						) 
 )
-
-GO
-
 

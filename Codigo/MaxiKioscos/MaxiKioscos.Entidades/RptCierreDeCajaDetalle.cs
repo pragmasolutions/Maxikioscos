@@ -26,5 +26,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<decimal> Excepciones { get; set; }
         public string Caja { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }
+        public Nullable<decimal> Costos { get; set; }
+        public Nullable<decimal> RetirosPersonales { get; set; }
     }
 }

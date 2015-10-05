@@ -2816,7 +2816,7 @@
             <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProductos" />
           </AssociationSet>
           <FunctionImport Name="RetiroPersonalGenerarNumero" ReturnType="Collection(Int32)">
-            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+          <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -3640,7 +3640,7 @@
         <ComplexType Name="CierreCajaDetalleRow">
           <Property Type="String" Name="Concepto" Nullable="false" MaxLength="200" />
           <Property Type="Decimal" Name="Importe" Nullable="true" Precision="19" />
-          <Property Type="String" Name="Observaciones" Nullable="false" MaxLength="2000" />
+          <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="2000" />
           <Property Type="Int32" Name="Orden" Nullable="false" />
         </ComplexType>
         <Association Name="FK_CierreCaja_Usuario">
@@ -4034,6 +4034,8 @@
           <Property Type="Decimal" Name="Excepciones" Nullable="true" Precision="19" />
           <Property Type="String" Name="Caja" Nullable="true" MaxLength="100" />
           <Property Type="DateTime" Name="FechaInicio" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Costos" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="RetirosPersonales" Nullable="true" Precision="19" />
         </ComplexType>
         <ComplexType Name="RptStock">
           <Property Type="String" Name="MaxiKiosco" Nullable="false" MaxLength="100" />
@@ -5544,6 +5546,8 @@
                 <ScalarProperty Name="Excepciones" ColumnName="Excepciones" />
                 <ScalarProperty Name="Caja" ColumnName="Caja" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Costos" ColumnName="Costos" />
+                <ScalarProperty Name="RetirosPersonales" ColumnName="RetirosPersonales" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -571,6 +571,15 @@
     <Content Include="SqlScripts\125-Sincronizacion_ActualizarKiosco.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\134-CierreCaja_Cerrar.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\133-CierreCaja_Detalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\132-CierreCajaCantidadDineroActual.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\131-RetiroPersonal_GenerarNumero.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
