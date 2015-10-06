@@ -1,20 +1,17 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CierreCajaCantidadDineroActual]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
-DROP FUNCTION [dbo].[CierreCajaCantidadDineroActual]
+/****** Object:  StoredProcedure [dbo].[CierreCaja_CantidadDineroActual]    Script Date: 02/05/2015 18:23:51 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[CierreCaja_CantidadDineroActual]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[CierreCaja_CantidadDineroActual]
 GO
 
-CREATE FUNCTION [dbo].[CierreCajaCantidadDineroActual]
-(	
+
+CREATE PROCEDURE [dbo].[CierreCaja_CantidadDineroActual]
 	@CierreCajaId int
-)
-RETURNS TABLE 
 AS
-RETURN 
-(
+BEGIN
 	SELECT DineroActualEnCaja = (
 							(SELECT CajaInicial 
 							 FROM CierreCaja
-							 WHERE CierreCajaId = @CierreCajaId
-							 AND Eliminado = 0)
+							 WHERE CierreCajaId = @CierreCajaId)
 							 
 							+ (SELECT ISNULL(SUM(Monto), 0)
 							 FROM OperacionCaja
@@ -22,9 +19,12 @@ RETURN
 							 AND Eliminado = 0
 							)
 							- (SELECT ISNULL(SUM(ImporteTotal), 0)
-							 FROM Factura
+							 FROM Factura F
+								INNER JOIN Proveedor P
+									ON F.ProveedorId = P.ProveedorId
 							 WHERE CierreCajaId = @CierreCajaId
-							 AND Eliminado = 0
+								 AND P.NoReflejarFacturaEnCaja = 0
+								 AND F.Eliminado = 0
 							)
 							+ (SELECT ISNULL(SUM(ImporteTotal), 0)
 							 FROM Venta
@@ -34,15 +34,13 @@ RETURN
 							- (SELECT ISNULL(SUM(Monto), 0)
 							 FROM Costo
 							 WHERE CierreCajaId = @CierreCajaId
-							 AND Eliminado = 0
-							)
-							- (SELECT ISNULL(SUM(ImporteTotal), 0)
-							 FROM RetiroPersonal
-							 WHERE CierreCajaId = @CierreCajaId
-							 AND Eliminado = 0
+								AND Eliminado = 0
+								
 							)
 						) 
-)
+	
+END
+
 
 GO
 

@@ -421,7 +421,7 @@ namespace MaxiKioscos.Winforms.Principal
         private void tsbCaja_Click(object sender, EventArgs e)
         {
             if (EventosFlags.CierreCajaEstado == CierreCajaEstadoEnum.Abierto)
-                AbrirTab(new CierreCajaActual());
+                AbrirTab(new CierreCajaActual(this));
             else
                 MessageBox.Show("Debe abrir una caja primero.");
         }
@@ -500,7 +500,7 @@ namespace MaxiKioscos.Winforms.Principal
             var user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() { "SuperAdministrador", "Administrador" });
             if (user != 0)
             {
-                var ventanaDetalleCompleto = new CierreCajaDetalleCompleto();
+                var ventanaDetalleCompleto = new CierreCajaDetalleCompleto(this);
                 AbrirTab(ventanaDetalleCompleto);
             }
         }

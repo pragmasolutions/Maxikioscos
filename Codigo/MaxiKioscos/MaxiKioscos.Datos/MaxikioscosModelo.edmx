@@ -1747,6 +1747,11 @@
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_RetirosPersonales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime" Mode="In" />
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Desde" Type="datetime2" Mode="In" />
           <Parameter Name="Hasta" Type="datetime2" Mode="In" />
@@ -2817,6 +2822,11 @@
           </AssociationSet>
           <FunctionImport Name="RetiroPersonalGenerarNumero" ReturnType="Collection(Int32)">
           <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptRetirosPersonales" ReturnType="Collection(MaxiKioscosModel.RptRetirosPersonalesRow)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -4896,6 +4906,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="RptRetirosPersonalesRow">
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="ImporteTotal" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Diferencia" Nullable="true" Precision="19" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6091,6 +6108,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="RetiroPersonalGenerarNumero" FunctionName="MaxiKioscosModel.Store.RetiroPersonal_GenerarNumero" />
+          <FunctionImportMapping FunctionImportName="RptRetirosPersonales" FunctionName="MaxiKioscosModel.Store.Rpt_RetirosPersonales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptRetirosPersonalesRow">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

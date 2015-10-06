@@ -228,6 +228,19 @@
                             </li>
                             <li>
                                 @Ajax.ActionLink("Ganacia Adicional por Excepciones en Rubros", "GanaciaAdicionalExcepcionRubro", "Reportes",
+                                    new {Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString()},
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                            <li>
+                                @Ajax.ActionLink("Retiros Personales", "RetirosPersonales", "Reportes",
                                         new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
                                          new AjaxOptions()
                                              {

@@ -41,10 +41,6 @@ BEGIN
 							 FROM Venta
 							 WHERE CierreCajaId = @CierreCajaId
 							)
-							- (SELECT ISNULL(SUM(ImporteTotal), 0)
-							 FROM RetiroPersonal
-							 WHERE CierreCajaId = @CierreCajaId
-							)
 							- (SELECT ISNULL(SUM(Monto), 0)
 							 FROM Costo
 							 WHERE CierreCajaId = @CierreCajaId

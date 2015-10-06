@@ -32,11 +32,6 @@ RETURN
 							 WHERE CierreCajaId = @CierreCajaId
 							 AND Eliminado = 0
 							)
-							- (SELECT ISNULL(SUM(ImporteTotal), 0)
-							 FROM RetiroPersonal
-							 WHERE CierreCajaId = @CierreCajaId
-							 AND Eliminado = 0
-							)
 						) 
 )
 
