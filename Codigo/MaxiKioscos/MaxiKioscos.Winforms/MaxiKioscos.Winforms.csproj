@@ -244,7 +244,27 @@
     <Compile Include="CorreccionesStock\frmGestionCorreccionStock.Designer.cs">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Costos\frmDetalleEliminarCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmDetalleEliminarCosto.Designer.cs">
+      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataStruct\RetiroPersonalGridStruct.cs" />
+    <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.Designer.cs">
+      <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\frmEditarCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmEditarCosto.Designer.cs">
+      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataStruct\ArchivoPrincipalStruct.cs" />
+    <Compile Include="DataStruct\CostoGridStruct.cs" />
     <Compile Include="DataStruct\ControlStockDetalleGridStruct.cs" />
     <Compile Include="DataStruct\MaxiKioscoGridStruct.cs" />
     <Compile Include="DataStruct\ProductoGridStruct.cs" />
@@ -282,6 +302,12 @@
     <Compile Include="Helpers\ActualizacionPantallasHelper.cs" />
     <Compile Include="Helpers\SeguridadHelper.cs" />
     <Compile Include="Interfaces\IBuscadorParent.cs" />
+    <Compile Include="RetirosPersonales\frmRetirosPersonales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmRetirosPersonales.Designer.cs">
+      <DependentUpon>frmRetirosPersonales.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperacionesCaja\OperacionCajaDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +437,12 @@
     <Compile Include="Reportes\frmReponerStock.Designer.cs">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Costos\frmCostos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Costos\frmCostos.Designer.cs">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service References\NotificationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -428,6 +460,18 @@
     </Compile>
     <Compile Include="Usuarios\frmCambiarPassword.Designer.cs">
       <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmConfirmarRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmConfirmarRetiroPersonal.Designer.cs">
+      <DependentUpon>frmConfirmarRetiroPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmNuevoRetiroPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirosPersonales\frmNuevoRetiroPersonal.Designer.cs">
+      <DependentUpon>frmNuevoRetiroPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\frmConfirmarVenta.cs">
       <SubType>Form</SubType>
@@ -525,6 +569,30 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\125-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\132-CierreCaja_CantidadDineroActual.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\135-CierreCajaCantidadDineroActual.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\134-CierreCaja_Cerrar.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\133-CierreCaja_Detalle.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\131-RetiroPersonal_GenerarNumero.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\130-Sync_Costos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\129-Sync_CategoriasCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\128-CategoriaCosto_DropColumnMaximoBisemanal.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\127-ControlStocl_Crear.sql">
@@ -937,6 +1005,15 @@
     <EmbeddedResource Include="CorreccionesStock\frmGestionCorreccionStock.resx">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmDetalleEliminarCosto.resx">
+      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmDetalleRetiroPersonal.resx">
+      <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmEditarCosto.resx">
+      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Excepciones\frmABMExcepciones.resx">
       <DependentUpon>frmABMExcepciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -951,6 +1028,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Exportacion\frmSincronizacionFeedback.resx">
       <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmRetirosPersonales.resx">
+      <DependentUpon>frmRetirosPersonales.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesCaja\OperacionCajaDetalle.resx">
       <DependentUpon>OperacionCajaDetalle.cs</DependentUpon>
@@ -1017,8 +1098,18 @@
     <EmbeddedResource Include="Reportes\frmReponerStock.resx">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Costos\frmCostos.resx">
+      <DependentUpon>frmCostos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmCambiarPassword.resx">
       <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmConfirmarRetiroPersonal.resx">
+      <DependentUpon>frmConfirmarRetiroPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RetirosPersonales\frmNuevoRetiroPersonal.resx">
+      <DependentUpon>frmNuevoRetiroPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\frmConfirmarVenta.resx">
       <DependentUpon>frmConfirmarVenta.cs</DependentUpon>
@@ -1099,6 +1190,7 @@
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.ProductoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataGridStruct.VentaGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.ControlStockDetalleGridStruct.datasource" />
+    <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.CostoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoGridStruct.datasource" />
     <None Include="Properties\DataSources\MaxiKioscos.Winforms.DataStruct.MaxiKioscoStruct.datasource" />
     <None Include="Properties\Settings.settings">

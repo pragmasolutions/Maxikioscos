@@ -57,6 +57,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(reporteCierresDeCajaFiltrosModel);
         }
 
+        public ActionResult RetirosPersonales(ReporteRetirosPersonalesFiltrosModel reporteRetirosPersonalesFiltrosModel)
+        {
+            return PartialOrView(reporteRetirosPersonalesFiltrosModel);
+        }
+
         public ActionResult CierresDeCajaDetalle(ReporteCierresDeCajaFiltrosModel reporteCierresDeCajaDetalleFiltrosModel)
         {
             return PartialOrView(reporteCierresDeCajaDetalleFiltrosModel);
@@ -682,6 +687,34 @@ namespace MaxiKioscos.Web.Controllers
                 .SetParametro(parameters);
 
             byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+            return File(archivo, reporteFactory.MimeType);
+        }
+
+        public ActionResult GenerarRetirosPersonales(ReporteRetirosPersonalesFiltrosModel reporteRetirosPersonalesFiltrosModel)
+        {
+            DateTime? hasta = reporteRetirosPersonalesFiltrosModel.Hasta == null
+                                    ? (DateTime?)null
+                                    : reporteRetirosPersonalesFiltrosModel.Hasta.GetValueOrDefault().AddDays(1);
+
+            var cierreDeCajaDataSource = Uow.Reportes.RetirosPersonales(reporteRetirosPersonalesFiltrosModel.Desde,
+                                                                         hasta,
+                                                                         reporteRetirosPersonalesFiltrosModel.UsuarioId);
+
+            var usuarioNombre = (reporteRetirosPersonalesFiltrosModel.UsuarioId == null)
+                                   ? TodosText
+                                   : Uow.Usuarios.Obtener(reporteRetirosPersonalesFiltrosModel.UsuarioId.GetValueOrDefault()).NombreUsuario;
+            
+            var reporteFactory = new ReporteFactory();
+
+            reporteFactory
+                .SetParametro("Desde", reporteRetirosPersonalesFiltrosModel.Desde.ToShortDateString(null))
+                .SetParametro("Hasta", reporteRetirosPersonalesFiltrosModel.Hasta.ToShortDateString(null))
+                .SetParametro("UsuarioNombre", usuarioNombre)
+                .SetPathCompleto(Server.MapPath("~/Reportes/RetirosPersonales.rdl"))
+                .SetDataSource("RetirosPersonalesDataSet", cierreDeCajaDataSource);
+
+            byte[] archivo = reporteFactory.Renderizar(reporteRetirosPersonalesFiltrosModel.ReporteTipo);
 
             return File(archivo, reporteFactory.MimeType);
         }

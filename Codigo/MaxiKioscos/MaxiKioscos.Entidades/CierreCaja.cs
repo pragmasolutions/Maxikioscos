@@ -21,6 +21,8 @@ namespace MaxiKioscos.Entidades
             this.Excepcions = new HashSet<Excepcion>();
             this.Facturas = new HashSet<Factura>();
             this.RecuentoBilletes = new HashSet<RecuentoBillete>();
+            this.Costoes = new HashSet<Costo>();
+            this.RetiroPersonals = new HashSet<RetiroPersonal>();
         }
     
         public int CierreCajaId { get; set; }
@@ -44,5 +46,7 @@ namespace MaxiKioscos.Entidades
         public virtual Usuario Usuario { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }
         public virtual ICollection<RecuentoBillete> RecuentoBilletes { get; set; }
+        public virtual ICollection<Costo> Costoes { get; set; }
+        public virtual ICollection<RetiroPersonal> RetiroPersonals { get; set; }
     }
 }

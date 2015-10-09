@@ -56,10 +56,9 @@ namespace MaxiKioscos.Web.Controllers
         {
             var usuarios = Uow.Usuarios.ListadoPorCuenta(UsuarioActual.CuentaId, u => u.Roles)
                 .Where(u => !u.Eliminado)
-                .Where(filtros.GetFilterExpression())
-                .ToList();
+                .Where(filtros.GetFilterExpression());
 
-            var lista = PagedListHelper<Usuario>.Crear(usuarios, AppSettings.DefaultPageSize, page);
+            var lista = usuarios.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new UsuariosListadoModel
             {
                 List = lista,

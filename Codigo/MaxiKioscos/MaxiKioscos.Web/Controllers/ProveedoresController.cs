@@ -44,11 +44,10 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Listado(ProveedoresFiltrosModel filtros, int? page)
         {
             var proveedores = Uow.Proveedores.Listado(p => p.Localidad, p => p.TipoCuit)
-                 .Where(p => p.CuentaId == UsuarioActual.CuentaId)
-                 .Where(filtros.GetFilterExpression())
-                 .ToList();
+                .Where(p => p.CuentaId == UsuarioActual.CuentaId)
+                .Where(filtros.GetFilterExpression());
 
-            var lista = PagedListHelper<Proveedor>.Crear(proveedores, AppSettings.DefaultPageSize, page);
+            var lista = proveedores.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new ProveedoresListadoModel
             {
                 List = lista,

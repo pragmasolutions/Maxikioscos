@@ -59,9 +59,9 @@ namespace MaxiKioscos.Web.Controllers
                 c => c.ComprasProductos)
                 .Where(c => c.CuentaId == UsuarioActual.CuentaId)
                 .Where(filtros.GetFilterExpression())
-                .OrderByDescending(c => c.Fecha).ToList();
+                .OrderByDescending(c => c.Fecha);
 
-            var lista = PagedListHelper<Compra>.Crear(compras, AppSettings.DefaultPageSize, page);
+            var lista = compras.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new ComprasListadoModel
             {
                 List = lista,

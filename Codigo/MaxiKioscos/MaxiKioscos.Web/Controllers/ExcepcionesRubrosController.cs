@@ -42,10 +42,9 @@ namespace MaxiKioscos.Web.Controllers
         {
             var excepcionesRubros = Uow.ExcepcionesRubros.Listado(e => e.Rubro, e => e.MaxiKiosco)
                 .Where(e => e.MaxiKiosco.CuentaId == UsuarioActual.CuentaId)
-                .Where(filtros.GetFilterExpression())
-                .ToList();
+                .Where(filtros.GetFilterExpression());
 
-            var lista = PagedListHelper<ExcepcionRubro>.Crear(excepcionesRubros, AppSettings.DefaultPageSize, page);
+            var lista = excepcionesRubros.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new ExcepcionRubrosListadoModel
             {
                 List = lista,

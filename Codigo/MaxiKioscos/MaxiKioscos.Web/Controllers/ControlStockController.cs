@@ -42,7 +42,7 @@ namespace MaxiKioscos.Web.Controllers
                                                             Estado = 0
                                                         };
 
-            List<ControlStock> controles = Listado(model.Filtros);
+            IQueryable<ControlStock> controles = Listado(model.Filtros);
 
             var pageNumber = page ?? 1;
             var pageSize = AppSettings.DefaultPageSize;
@@ -62,7 +62,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var controles = Listado(filtros);
 
-            var lista = PagedListHelper<ControlStock>.Crear(controles, AppSettings.DefaultPageSize, page);
+            var lista = controles.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new ControlStockListadoModel
             {
                 List = lista,
@@ -79,7 +79,7 @@ namespace MaxiKioscos.Web.Controllers
             return PartialView("_Listado", listadoModel);
         }
 
-        private List<ControlStock> Listado(ControlStockFiltrosModel filtros)
+        private IQueryable<ControlStock> Listado(ControlStockFiltrosModel filtros)
         {
             if (string.IsNullOrEmpty(filtros.NroControl))
             {
@@ -87,8 +87,7 @@ namespace MaxiKioscos.Web.Controllers
                     .Listado(p => p.Rubro, p => p.Proveedor, p => p.MaxiKiosco, p => p.Usuario)
                     .Where(filtros.GetFilterExpression())
                     .Where(cs => !cs.Eliminado)
-                    .OrderBy(p => p.FechaCreacion)
-                    .ToList();
+                    .OrderBy(p => p.FechaCreacion);
             }
 
             var digits = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -97,11 +96,10 @@ namespace MaxiKioscos.Web.Controllers
             var prefriltrados = Uow.ControlesStock
                 .Listado(cs => cs.Rubro, cs => cs.Proveedor, cs => cs.MaxiKiosco, cs => cs.Usuario)
                 .Where(cs => cs.MaxiKiosco.Abreviacion.Equals(abrev, StringComparison.InvariantCultureIgnoreCase))
-                .Where(cs => !cs.Eliminado)
-                .ToList();
+                .Where(cs => !cs.Eliminado);
 
             return prefriltrados.Where(
-                    cs => cs.NroControlFormateado.Equals(filtros.NroControl, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                    cs => cs.NroControlFormateado.Equals(filtros.NroControl, StringComparison.InvariantCultureIgnoreCase));
         }
 
         public ActionResult Detalle(int id, ControlStockDetalleListadoModel model, int? page)

@@ -1,0 +1,15 @@
+﻿@model MaxiKioscos.Entidades.CategoriaCosto
+@Html.HiddenFor(model => model.CategoriaCostoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+
+<div class="col-lg-6">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        @Html.EditorFor(model => model.Descripcion)
+        @Html.ValidationMessageFor(model => model.Descripcion)
+    </div>
+</div>
+
+

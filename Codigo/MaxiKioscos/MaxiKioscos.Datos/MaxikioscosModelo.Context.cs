@@ -72,6 +72,10 @@ namespace MaxiKioscos.Entidades
         public virtual DbSet<Transferencia> Transferencias { get; set; }
         public virtual DbSet<TransferenciaProducto> TransferenciaProductos { get; set; }
         public virtual DbSet<ProductoPromocion> ProductoPromocions { get; set; }
+        public virtual DbSet<CategoriaCosto> CategoriasCostos { get; set; }
+        public virtual DbSet<Costo> Costos { get; set; }
+        public virtual DbSet<RetiroPersonal> RetirosPersonales { get; set; }
+        public virtual DbSet<RetiroPersonalProducto> RetiroPersonalProductos { get; set; }
     
         public virtual ObjectResult<Nullable<int>> UsuarioInsertarDependencias(Nullable<int> usuarioId, Nullable<int> roleId, string proveedoresIds)
         {
@@ -861,6 +865,32 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("CierreCajaId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptVentaPorTicketRow>("RptVentasPorTicket", cierreCajaIdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> RetiroPersonalGenerarNumero(Nullable<int> maxikioscoId)
+        {
+            var maxikioscoIdParameter = maxikioscoId.HasValue ?
+                new ObjectParameter("MaxikioscoId", maxikioscoId) :
+                new ObjectParameter("MaxikioscoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("RetiroPersonalGenerarNumero", maxikioscoIdParameter);
+        }
+    
+        public virtual ObjectResult<RptRetirosPersonalesRow> RptRetirosPersonales(Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta, Nullable<int> usuarioId)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            var usuarioIdParameter = usuarioId.HasValue ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptRetirosPersonalesRow>("RptRetirosPersonales", desdeParameter, hastaParameter, usuarioIdParameter);
         }
     }
 }

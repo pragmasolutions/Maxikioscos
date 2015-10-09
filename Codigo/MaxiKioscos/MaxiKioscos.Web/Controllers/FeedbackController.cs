@@ -64,10 +64,9 @@ namespace MaxiKioscos.Web.Controllers
         {
             var tickets = Uow.TicketErrores.Listado(t => t.Usuario, f => f.MensajeTicketErrores)
                 .Where(filtros.GetFilterExpression())
-                .OrderByDescending(f => f.Fecha)
-                .ToList();
+                .OrderByDescending(f => f.Fecha);
 
-            var lista = PagedListHelper<TicketError>.Crear(tickets, AppSettings.DefaultPageSize, page);
+            var lista = tickets.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new TicketErrorListadoModel
             {
                 List = lista,

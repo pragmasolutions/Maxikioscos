@@ -15,7 +15,7 @@ namespace MaxiKioscos.Winforms.Productos
     public partial class frmProductos : Form
     {
         #region properties
-        public List<Producto> Productos { get; set; }
+        public IQueryable<Producto> Productos { get; set; }
 
         private ProductoRepository _repository;
         public ProductoRepository Repository
@@ -45,7 +45,7 @@ namespace MaxiKioscos.Winforms.Productos
             Productos = Repository.Listado(p => p.CodigosProductos, p => p.Marca, p => p.Rubro,
                             p => p.ProveedorProductos, p => p.ProveedorProductos.Select(pp => pp.Proveedor),
                             p => p.ComprasProductos)
-                .Where(m => m.CuentaId == UsuarioActual.CuentaId && !m.EsPromocion).OrderBy(p => p.Descripcion).ToList();
+                            .Where(m => m.CuentaId == UsuarioActual.CuentaId && !m.EsPromocion).OrderBy(p => p.Descripcion);
         }
 
         private void dgvListado_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -139,7 +139,7 @@ namespace MaxiKioscos.Winforms.Productos
             Productos = Repository.Listado(p => p.CodigosProductos, p => p.Marca, p => p.Rubro,
                             p => p.ProveedorProductos, p => p.ProveedorProductos.Select(pp => pp.Proveedor),
                             p => p.ComprasProductos)
-                .Where(m => m.CuentaId == UsuarioActual.CuentaId).OrderBy(p => p.Descripcion).ToList();
+                .Where(m => m.CuentaId == UsuarioActual.CuentaId).OrderBy(p => p.Descripcion);
             Buscar();
             //Actualizar(null, null);
         }
@@ -250,10 +250,9 @@ namespace MaxiKioscos.Winforms.Productos
             var productos = Productos.Where(p => (string.IsNullOrEmpty(text) || text == "(INGRESE DESCRIPCION)"
                             || p.Descripcion.ToLower().Contains(text.ToLower())
                             || p.CodigosProductos.Any(c => c.Codigo.StartsWith(text)))
-                            && (ddlProveedor.Valor == 0 || p.ProveedorProductos.Any(pp => pp.ProveedorId == ddlProveedor.Valor))).ToList();
-            totalRecords = productos.Count;
-            productos = productos.Skip(ucPaginador.PageSize * (ucPaginador.CurrentPage - 1)).Take(ucPaginador.PageSize).ToList();
-            return productos;
+                            && (ddlProveedor.Valor == 0 || p.ProveedorProductos.Any(pp => pp.ProveedorId == ddlProveedor.Valor)));
+            totalRecords = productos.Count();
+            return productos.Skip(ucPaginador.PageSize * (ucPaginador.CurrentPage - 1)).Take(ucPaginador.PageSize).ToList();
         }
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)

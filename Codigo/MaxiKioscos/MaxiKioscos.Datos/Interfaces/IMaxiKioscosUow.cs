@@ -50,5 +50,9 @@ namespace MaxiKioscos.Datos.Interfaces
         IRepository<Transferencia> Transferencias { get; }
         IRepository<TransferenciaProducto> TransferenciaProductos { get; }
         IRepository<ProductoPromocion> ProductoPromociones { get; }
+        IRepository<CategoriaCosto> CategoriasCostos { get; }
+        IRepository<Costo> Costos { get; }
+        IRepository<RetiroPersonal> RetirosPersonales { get; }
+        IRepository<RetiroPersonalProducto> RetiroPersonalProductos { get; }
     }
 }

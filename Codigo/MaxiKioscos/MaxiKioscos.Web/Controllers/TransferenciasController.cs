@@ -65,9 +65,9 @@ namespace MaxiKioscos.Web.Controllers
                                                             c => c.Destino,
                                                             c => c.Usuario)
                 .Where(filtros.GetFilterExpression())
-                .OrderByDescending(c => c.TransferenciaId).ToList();
+                .OrderByDescending(c => c.TransferenciaId);
 
-            var lista = PagedListHelper<Transferencia>.Crear(transferencias, AppSettings.DefaultPageSize, page);
+            var lista = transferencias.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new TransferenciasListadoModel
             {
                 List = lista,

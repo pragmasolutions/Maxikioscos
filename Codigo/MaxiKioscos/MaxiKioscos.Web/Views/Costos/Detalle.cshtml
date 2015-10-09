@@ -1,0 +1,19 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Entidades.Costo
+
+@Html.PopupTitulo("Detalle de Costo")
+@using (Html.BeginForm("Aprobar", "Costos", new RouteValueDictionary(new { id = Model.CostoId})))
+{
+    <div class="modal-body">
+        <div class="row">
+            @{Html.RenderPartial("_CamposCostoDetalle"); }
+        </div>
+    </div>
+    <div class="modal-footer">
+        @if (!Model.Aprobado)
+        {
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Aprobar</button>
+        }
+        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+    </div>
+}

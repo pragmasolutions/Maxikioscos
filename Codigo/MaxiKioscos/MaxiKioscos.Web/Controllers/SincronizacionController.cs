@@ -12,6 +12,7 @@ using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Models;
 using MaxiKioscos.Web.Models.DTO;
+using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
@@ -24,8 +25,8 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Index(int? page)
         {
-            var exportaciones = Uow.Exportaciones.ListadoPorCuenta(UsuarioActual.CuentaId).OrderByDescending(e => e.Fecha).ToList();
-            var lista = PagedListHelper<Exportacion>.Crear(exportaciones, AppSettings.DefaultPageSize, page);
+            var exportaciones = Uow.Exportaciones.ListadoPorCuenta(UsuarioActual.CuentaId).OrderByDescending(e => e.Fecha);
+            var lista = exportaciones.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             return PartialOrView(lista);
         }
 
@@ -33,9 +34,9 @@ namespace MaxiKioscos.Web.Controllers
         {
             var importaciones = Uow.Importaciones.Listado(i => i.MaxiKiosco)
                                                  .Where(filtros.GetFilterExpression())
-                                                 .OrderByDescending(e => e.Fecha).ToList();
+                                                 .OrderByDescending(e => e.Fecha);
 
-            var lista = PagedListHelper<Importacion>.Crear(importaciones, AppSettings.DefaultPageSize, page);
+            var lista = importaciones.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
 
             LogImportacionesListadoModel logImportacionesListadoModel = new LogImportacionesListadoModel();
             logImportacionesListadoModel.PagedList = lista;

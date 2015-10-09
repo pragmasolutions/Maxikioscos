@@ -1,0 +1,60 @@
+﻿@using MaxiKioscos.Entidades
+@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@model MaxiKioscos.Web.Models.CostosListadoModel
+@helper  GetTieneCompraClass(Costo costo)
+{
+    if (costo.Aprobado)
+    {
+    @:class="factura-tiene-compra"
+    }
+}
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableCostos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Categoría</th>
+                <th>Nro Comprobante</th>
+                <th>Monto</th>
+                <th>Maxikiosco</th>
+                <th>Usuario</th>
+                <th>Estado</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var costo in Model.List)
+            {
+                <tr @GetTieneCompraClass(costo)>
+                    <td>@costo.Fecha.ToShortDateString()</td>
+                    <td>@costo.CategoriaCosto.Descripcion</td>
+                    <td>@costo.NroComprobante</td>
+                    <td>$@costo.Monto.ToString("n2")</td>
+                    <td>@costo.CierreCaja.MaxiKiosco.Nombre</td>
+                    <td>@costo.CierreCaja.Usuario.NombreUsuario</td>
+                    <td>@(costo.Aprobado ? "Aprobado" : "No aprobado")</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-costo-detalle" href="@Url.Action("Detalle", new { id = costo.CostoId })"><span class="glyphicon glyphicon-list"></span></a>
+                        @if (!costo.Aprobado)
+                        {
+                            <a class="btn btn-default btn-costo-eliminar" href="@Url.Action("Eliminar", new {id = costo.CostoId})"><span class="glyphicon glyphicon-trash"></span></a>
+                            <a class="btn btn-default btn-costo-aprobar" href="@Url.Action("Aprobar", new { id = costo.CostoId })"><span class="glyphicon glyphicon-ok"></span></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.PagedListPager(Model.List, page => Url.Action("Index", Model.Filtros.GetRouteValues(page)), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded }
+                                         , new AjaxOptions()
+                                         {
+                                             UpdateTargetId = "AdminContainer",
+                                             HttpMethod = "Get",
+                                             InsertionMode = InsertionMode.Replace,
+                                             OnBegin = "maxikioscoSpinner.startSpin",
+                                             OnSuccess = "maxikioscoSpinner.stopSpin",
+                                             OnFailure = "maxikioscoSpinner.stopSpin"
+                                         }))
+</div>

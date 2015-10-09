@@ -1,0 +1,21 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model MaxiKioscos.Web.Models.CategoriasCostosListadoModel
+@{
+    ViewBag.Title = "Categorías de Costos";
+}
+
+@Html.Partial("Listado")
+@Html.Modal("CategoriasCostosModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-categoriascostos.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-categoriascostos.js")
+}

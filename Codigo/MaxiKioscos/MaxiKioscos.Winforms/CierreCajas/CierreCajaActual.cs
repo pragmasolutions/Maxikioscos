@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Winforms.Clases;
 using MaxiKioscos.Winforms.Configuracion;
+using MaxiKioscos.Winforms.Costos;
 using MaxiKioscos.Winforms.DataStruct;
 using MaxiKioscos.Winforms.Facturas;
 using MaxiKioscos.Winforms.Helpers;
 using MaxiKioscos.Winforms.Login;
 using MaxiKioscos.Winforms.OperacionesCaja;
+using MaxiKioscos.Winforms.Principal;
+using MaxiKioscos.Winforms.RetirosPersonales;
 using MaxiKioscos.Winforms.Ventas;
 using Microsoft.Reporting.WinForms;
 
@@ -22,6 +26,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
 {
     public partial class CierreCajaActual : Form
     {
+        public mdiPrincipal Parent { get; set; }
         #region Repositorios
 
         private EFSimpleRepository<OperacionCaja> _operacionCajaRepository;
@@ -75,17 +80,54 @@ namespace MaxiKioscos.Winforms.CierreCajas
             }
         }
 
+        private EFRepository<Costo> _costoRepository;
+        public EFRepository<Costo> CostoRepository
+        {
+            get
+            {
+                if (_costoRepository == null)
+                    _costoRepository = new EFRepository<Costo>();
+                return _costoRepository;
+            }
+            set
+            {
+                _costoRepository = value;
+            }
+        }
+
+        private EFRepository<RetiroPersonal> _retiroPersonalRepository;
+        public EFRepository<RetiroPersonal> RetiroPersonalRepository
+        {
+            get
+            {
+                if (_retiroPersonalRepository == null)
+                    _retiroPersonalRepository = new EFRepository<RetiroPersonal>();
+                return _retiroPersonalRepository;
+            }
+            set
+            {
+                _retiroPersonalRepository = value;
+            }
+        }
+
         #endregion
 
-        public CierreCajaActual()
+        public CierreCajaActual(mdiPrincipal parent)
         {
             InitializeComponent();
+
+            Parent = parent;
 
             this.Text = String.Format("Caja - {0}", DateTime.Now.ToShortDateString());
 
             dvgRefuerzos.Columns[3].DefaultCellStyle.Format = AppSettings.CurrencyColumnFormat;
             dgvFacturas.Columns[4].DefaultCellStyle.Format = AppSettings.CurrencyColumnFormat;
             dgvFacturas.Columns[1].DefaultCellStyle.Format = AppSettings.CompleteDateColumnFormat;
+            dgvCostos.AutoGenerateColumns = false;
+            dgvCostos.Columns[4].DefaultCellStyle.Format = AppSettings.CurrencyColumnFormat;
+            dgvRetirosPersonales.AutoGenerateColumns = false;
+            dgvRetirosPersonales.Columns[2].DefaultCellStyle.Format = AppSettings.CurrencyColumnFormat;
+
             ActualizarPantalla();
         }
 
@@ -194,7 +236,10 @@ namespace MaxiKioscos.Winforms.CierreCajas
             ActualizarGrillaRefuerzos();
             ActualizarGrillaVentas();
             ActualizarGrillaFacturas();
+            ActualizarGrillaCostos();
+            ActualizarGrillaRetirosPersonales();
             ActualizarDineroActual();
+            
         }
 
         private void ActualizarDineroActual()
@@ -237,6 +282,173 @@ namespace MaxiKioscos.Winforms.CierreCajas
                             && !o.Eliminado).ToList();
         }
 
+        private void ActualizarGrillaCostos()
+        {
+            var datasource = CostoRepository.Listado(c => c.CierreCaja, c => c.CategoriaCosto)
+                .Where(c => c.CierreCajaId == UsuarioActual.CierreCajaIdActual)
+                .OrderByDescending(c => c.Fecha).ToList();
+            var costos = datasource.Select(c => new CostoGridStruct
+                {
+                    Estado = c.Aprobado ? "Aprobado" : "No Aprobado",
+                    CajaCerrada = c.CierreCaja.FechaFin != null,
+                    CategoriaCosto = c.CategoriaCosto.Descripcion,
+                    CostoId = c.CostoId,
+                    Fecha = c.Fecha,
+                    Importe = c.Monto,
+                    NroComprobante = c.NroComprobante
+                }).ToList();
+            
+            dgvCostos.DataSource = costos.ToList();
+        }
+
+        private void ActualizarGrillaRetirosPersonales()
+        {
+            var datasource = RetiroPersonalRepository.Listado(c => c.CierreCaja)
+                    .Where(c => c.CierreCajaId == UsuarioActual.CierreCajaIdActual)
+                    .OrderByDescending(c => c.FechaRetiroPersonal).ToList();
+
+            var retiros = datasource.Select(rp => new RetiroPersonalGridStruct
+                {
+                    RetiroPersonalId = rp.RetiroPersonalId,
+                    Fecha = rp.FechaRetiroPersonal,
+                    Importe = rp.ImporteTotal
+                }).ToList();
+
+            dgvRetirosPersonales.DataSource = retiros.ToList();
+        }
+
+        private void dgvCostos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if ((e.ColumnIndex == 7 || e.ColumnIndex == 8 || e.ColumnIndex == 9) && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                string icon = string.Empty;
+                int paddingTop = 0;
+                int paddingLeft = 0;
+                switch (e.ColumnIndex)
+                {
+                    case 7:
+                        icon = @"\Resources\details_icon.ico";
+                        paddingLeft = 3;
+                        paddingTop = 3;
+                        break;
+                    case 8:
+                        icon = @"\Resources\ico_edit.ico";
+                        paddingLeft = 3;
+                        paddingTop = 3;
+                        break;
+                    case 9:
+                        icon = @"\Resources\delete_icon.ico";
+                        paddingLeft = 5;
+                        paddingTop = 4;
+                        break;
+                }
+                var ico = new Icon(AppSettings.ApplicationPath + icon);
+                e.Graphics.DrawIcon(ico, e.CellBounds.Left + paddingLeft, e.CellBounds.Top + paddingTop);
+                e.Handled = true;
+            }
+
+            if ((e.ColumnIndex == 11 || e.ColumnIndex == 12) && e.RowIndex >= 0)
+            {
+                var item = dgvCostos.Rows[e.RowIndex].DataBoundItem as CostoGridStruct;
+
+                if (item.Estado == "Aprobado" || item.CajaCerrada)
+                {
+                    var buttonCell = (DataGridViewDisableButtonCell)dgvCostos.Rows[e.RowIndex].Cells[8];
+                    buttonCell.Enabled = false;
+
+                    var buttonCell2 = (DataGridViewDisableButtonCell)dgvCostos.Rows[e.RowIndex].Cells[9];
+                    buttonCell2.Enabled = false;
+                }
+            }
+
+
+        }
+
+        private void dgvCostos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((e.ColumnIndex == 7 || e.ColumnIndex == 8 || e.ColumnIndex == 9) && e.RowIndex >= 0)
+            {
+                var costo = dgvCostos.Rows[e.RowIndex].DataBoundItem as CostoGridStruct;
+                switch (e.ColumnIndex)
+                {
+                    case 7:
+                        new frmDetalleEliminarCosto(costo.CostoId, "Detalle").ShowDialog();
+                        break;
+                    case 8:
+                        CostoEditar(costo);
+                        break;
+                    case 9:
+                        CostoEliminar(costo);
+                        break;
+                }
+            }
+
+        }
+
+        private void CostoEliminar(CostoGridStruct costo)
+        {
+            if (!costo.CajaCerrada && costo.Estado != "Aprobado")
+            {
+                if (new frmDetalleEliminarCosto(costo.CostoId, "Eliminar").ShowDialog() == DialogResult.OK)
+                {
+                    //borro la factura
+                    CostoRepository.Eliminar(costo.CostoId);
+                    CostoRepository.Commit();
+                    ActualizarPantalla();
+                }
+            }
+        }
+
+        private void CostoEditar(CostoGridStruct costo)
+        {
+            if (!costo.CajaCerrada && costo.Estado != "Aprobado")
+            {
+                if (new frmEditarCosto(costo.CostoId).ShowDialog() == DialogResult.OK)
+                {
+                    CostoRepository = new EFRepository<Costo>();
+                    ActualizarPantalla();
+                }
+            }
+        }
+
+        private void dgvCostos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dgvCostos.SelectedRows[0];
+            var costoId = Convert.ToInt32(row.Cells[0].Value.ToString());
+            new frmDetalleEliminarCosto(costoId, "Detalle").ShowDialog();
+        }
+
+        private void dgvRetirosPersonales_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var ico = new Icon(AppSettings.ApplicationPath + @"\Resources\details_icon.ico");
+                e.Graphics.DrawIcon(ico, e.CellBounds.Left + 3, e.CellBounds.Top + 3);
+                e.Handled = true;
+            }
+
+        }
+
+        private void dgvRetirosPersonales_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
+            {
+                var retiroPersonal = dgvRetirosPersonales.Rows[e.RowIndex].DataBoundItem as RetiroPersonalGridStruct;
+                new frmDetalleRetiroPersonal(retiroPersonal.RetiroPersonalId).ShowDialog();
+            }
+
+        }
+
+        private void dgvRetirosPersonales_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dgvRetirosPersonales.SelectedRows[0];
+            var costoId = Convert.ToInt32(row.Cells[0].Value.ToString());
+            new frmDetalleRetiroPersonal(costoId).ShowDialog();
+        }
 
         private void btnCrearOperacion_Click(object sender, EventArgs e)
         {
@@ -428,6 +640,46 @@ namespace MaxiKioscos.Winforms.CierreCajas
         private void CierreCajaActual_Activated(object sender, EventArgs e)
         {
             ActualizarPantalla();
+        }
+
+        private void btnCrearCosto_Click(object sender, EventArgs e)
+        {
+            if (new frmEditarCosto().ShowDialog() == DialogResult.OK)
+            {
+                ActualizarPantalla();
+            }
+        }
+
+        private void btnAgregarRetiroPersonal_Click(object sender, EventArgs e)
+        {
+            var pantalla = new frmNuevoRetiroPersonal();
+            bool copia = false;
+            foreach (var frm in Parent.MdiChildren)
+            {
+                if (pantalla.Name == frm.Name)
+                {
+                    frm.Close();
+                }
+            }
+
+            pantalla.Closed += ApplicationTab_Closed;
+            pantalla.Load += PantallaOnLoad;
+            pantalla.MdiParent = Parent;
+            pantalla.Show();
+        }
+
+
+        private void ApplicationTab_Closed(object sender, EventArgs e)
+        {
+            var vantana = sender as Form;
+            vantana.Closed -= ApplicationTab_Closed;
+
+            ActualizarPantalla();
+        }
+
+        private void PantallaOnLoad(object sender, EventArgs eventArgs)
+        {
+            ((Form)sender).WindowState = FormWindowState.Maximized;
         }
     }
 }

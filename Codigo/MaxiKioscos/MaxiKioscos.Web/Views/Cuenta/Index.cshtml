@@ -62,6 +62,11 @@
                         @Html.DisplayFor(model => model.MotivoCorreccion.Descripcion)
                         @Html.ValidationMessageFor(model => model.MotivoCorreccionPorDefecto)
                     </div>
+                    <div class="form-group input-group-small">
+                        @Html.LabelFor(model => model.LimiteMaximoRetiroPersonal)
+                        @Html.DisplayFor(model => model.LimiteMaximoRetiroPersonal)
+                        @Html.ValidationMessageFor(model => model.LimiteMaximoRetiroPersonal)
+                    </div>
                 </div>
             </div>
         </div>

@@ -25,6 +25,7 @@ namespace MaxiKioscos.Entidades
             this.TransferenciaProductos = new HashSet<TransferenciaProducto>();
             this.PromocionesPadres = new HashSet<ProductoPromocion>();
             this.PromocionesHijos = new HashSet<ProductoPromocion>();
+            this.RetiroPersonalProductoes = new HashSet<RetiroPersonalProducto>();
         }
     
         public int ProductoId { get; set; }
@@ -54,5 +55,6 @@ namespace MaxiKioscos.Entidades
         public virtual ICollection<TransferenciaProducto> TransferenciaProductos { get; set; }
         public virtual ICollection<ProductoPromocion> PromocionesPadres { get; set; }
         public virtual ICollection<ProductoPromocion> PromocionesHijos { get; set; }
+        public virtual ICollection<RetiroPersonalProducto> RetiroPersonalProductoes { get; set; }
     }
 }

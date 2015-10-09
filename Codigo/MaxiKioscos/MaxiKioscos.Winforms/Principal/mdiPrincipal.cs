@@ -37,6 +37,8 @@ using MaxiKioscos.Winforms.Rubros;
 using MaxiKioscos.Winforms.Facturas;
 using System.IO;
 using Maxikioscos.Comun.Helpers;
+using MaxiKioscos.Winforms.Costos;
+using MaxiKioscos.Winforms.RetirosPersonales;
 
 namespace MaxiKioscos.Winforms.Principal
 {
@@ -419,7 +421,7 @@ namespace MaxiKioscos.Winforms.Principal
         private void tsbCaja_Click(object sender, EventArgs e)
         {
             if (EventosFlags.CierreCajaEstado == CierreCajaEstadoEnum.Abierto)
-                AbrirTab(new CierreCajaActual());
+                AbrirTab(new CierreCajaActual(this));
             else
                 MessageBox.Show("Debe abrir una caja primero.");
         }
@@ -498,7 +500,7 @@ namespace MaxiKioscos.Winforms.Principal
             var user = SeguridadHelper.SolicitarPermisosUsuario(new List<string>() { "SuperAdministrador", "Administrador" });
             if (user != 0)
             {
-                var ventanaDetalleCompleto = new CierreCajaDetalleCompleto();
+                var ventanaDetalleCompleto = new CierreCajaDetalleCompleto(this);
                 AbrirTab(ventanaDetalleCompleto);
             }
         }
@@ -729,6 +731,16 @@ namespace MaxiKioscos.Winforms.Principal
         {
             var about = new abxAcercaDe();
             about.Show();
+        }
+
+        private void tsmCostos_Click(object sender, EventArgs e)
+        {
+            AbrirTab(new frmCostos());
+        }
+
+        private void tsmRetiroPersonal_Click(object sender, EventArgs e)
+        {
+            AbrirTab(new frmRetirosPersonales(this));
         }
     }
 }

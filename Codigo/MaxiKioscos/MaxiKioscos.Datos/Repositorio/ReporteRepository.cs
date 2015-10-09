@@ -134,5 +134,11 @@ namespace MaxiKioscos.Datos.Repositorio
         {
             return MaxiKioscosEntities.RptVentasPorTicket(cierreCajaId).AsQueryable();
         }
+
+
+        public IQueryable<RptRetirosPersonalesRow> RetirosPersonales(DateTime? desde, DateTime? hasta, int? usuarioId)
+        {
+            return MaxiKioscosEntities.RptRetirosPersonales(desde, hasta, usuarioId).AsQueryable();
+        }
     }
 }
