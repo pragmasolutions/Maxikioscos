@@ -139,6 +139,12 @@
 
             var $form = $(this);
 
+            if ($form.data('submitted') === true) {
+                return;
+            }
+
+            $form.data('submitted', true);
+
             ////Checkear que la compra tenga almenos un producto.
             if (!isFormComprasValid($form)) {
                 return false;
@@ -170,8 +176,12 @@
                         });
                     })
                     .always(function () {
+                        $form.data('submitted', false);
                         maxikioscoSpinner.stopSpin();
                     });
+                },
+                cancel: function () {
+                    $form.data('submitted', false);
                 },
                 confirmButton: "Aceptar",
                 cancelButton: "Cancelar"
