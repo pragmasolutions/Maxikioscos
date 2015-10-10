@@ -178,7 +178,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 
                 if (!_huboError)
                 {
-                    var hubieronNuevosDatos = false;
                     int ultimaSecuencia = 0;
 
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Obteniendo datos de servidor...");
@@ -209,7 +208,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                                 String.Format("Actualizando datos de kiosco  [Archivos restantes: {0}]", response.ArchivosRestantes));
                             var result = Uow.Exportaciones.ActualizarKiosco(response.Exportacion.Archivo, AppSettings.MaxiKioscoIdentifier, response.Exportacion.Secuencia);
                             request.UltimaSecuenciaExportacion++;
-                            hubieronNuevosDatos = true;
                             if (!result)
                             {
                                 _huboError = true;
@@ -219,17 +217,14 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                         }
                     }
 
-                    if (hubieronNuevosDatos)
+                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Informando al servidor...");
+                    var acuseRequest = new AcusarExportacionRequest()
                     {
-                        CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Informando al servidor...");
-                        var acuseRequest = new AcusarExportacionRequest()
-                        {
-                            MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
-                            UltimaSecuenciaExportacion = ultimaSecuencia,
-                            HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
-                        };
-                        _sincronizacionService.AcusarExportacion(acuseRequest);
-                    }
+                        MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
+                        UltimaSecuenciaExportacion = ultimaSecuencia,
+                        HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
+                    };
+                    _sincronizacionService.AcusarExportacion(acuseRequest);
 
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
                     Uow.Stocks.Actualizar();

@@ -89,15 +89,6 @@ namespace MaxiKioscos.Services
                         actualizo = true;
                     }
                 }
-
-                if (request.Exportacion != null && actualizo)
-                {
-                    Task.Run(() =>
-                                 {
-                                     Uow.Stocks.Actualizar(request.MaxiKioscoIdentifier);
-                                 });
-
-                }
                 return new ActualizarDatosResponse() { Exito = true };
             }
             catch (Exception ex)
@@ -125,6 +116,12 @@ namespace MaxiKioscos.Services
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
             var fecha = DateHelper.ISOToDate(request.HoraLocalISO);
             kiosco.UltimaSincronizacionExitosa = fecha;
+
+            Task.Run(() =>
+            {
+                Uow.Stocks.Actualizar(request.MaxiKioscoIdentifier);
+            });
+
             Uow.Commit();
         }
 
