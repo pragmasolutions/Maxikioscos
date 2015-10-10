@@ -234,11 +234,11 @@ namespace MaxiKioscos.Services
             }
         }
 
-        public bool AcusarEstadoConexion(Guid maxikioscoIdentifier)
+        public bool AcusarEstadoConexion(Guid maxikioscoIdentifier, string dateISO)
         {
             //Actualizo el estado de kiosco
             var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxikioscoIdentifier);
-            kiosco.UltimaConexion = DateTime.Now;
+            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO);
             try
             {
                 Uow.Commit();

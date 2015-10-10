@@ -819,10 +819,10 @@ namespace MaxiKioscos.Winforms.SincronizationService {
         System.Threading.Tasks.Task ForzarArmadoDeArchivoExportacionAsync(System.Guid usuarioIdentifier);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/AcusarEstadoConexion", ReplyAction="http://tempuri.org/ISincronizacionService/AcusarEstadoConexionResponse")]
-        bool AcusarEstadoConexion(System.Guid maxikioscoIdentifier);
+        bool AcusarEstadoConexion(System.Guid maxikioscoIdentifier, string dateISO);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISincronizacionService/AcusarEstadoConexion", ReplyAction="http://tempuri.org/ISincronizacionService/AcusarEstadoConexionResponse")]
-        System.Threading.Tasks.Task<bool> AcusarEstadoConexionAsync(System.Guid maxikioscoIdentifier);
+        System.Threading.Tasks.Task<bool> AcusarEstadoConexionAsync(System.Guid maxikioscoIdentifier, string dateISO);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -916,12 +916,12 @@ namespace MaxiKioscos.Winforms.SincronizationService {
             return base.Channel.ForzarArmadoDeArchivoExportacionAsync(usuarioIdentifier);
         }
         
-        public bool AcusarEstadoConexion(System.Guid maxikioscoIdentifier) {
-            return base.Channel.AcusarEstadoConexion(maxikioscoIdentifier);
+        public bool AcusarEstadoConexion(System.Guid maxikioscoIdentifier, string dateISO) {
+            return base.Channel.AcusarEstadoConexion(maxikioscoIdentifier, dateISO);
         }
         
-        public System.Threading.Tasks.Task<bool> AcusarEstadoConexionAsync(System.Guid maxikioscoIdentifier) {
-            return base.Channel.AcusarEstadoConexionAsync(maxikioscoIdentifier);
+        public System.Threading.Tasks.Task<bool> AcusarEstadoConexionAsync(System.Guid maxikioscoIdentifier, string dateISO) {
+            return base.Channel.AcusarEstadoConexionAsync(maxikioscoIdentifier, dateISO);
         }
     }
 }

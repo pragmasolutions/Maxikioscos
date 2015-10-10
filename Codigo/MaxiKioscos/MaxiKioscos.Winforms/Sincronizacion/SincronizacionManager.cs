@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -334,7 +335,8 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
             {
-                _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier);
+                var now = DateHelper.DateAndTimeToISO(DateTime.Now);
+                _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier, now);
             }
         }
     }

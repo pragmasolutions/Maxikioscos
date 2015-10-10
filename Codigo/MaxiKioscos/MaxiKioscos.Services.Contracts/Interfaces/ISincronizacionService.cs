@@ -31,7 +31,7 @@ namespace MaxiKioscos.Services.Contracts
         void ForzarArmadoDeArchivoExportacion(Guid usuarioIdentifier);
 
         [OperationContract]
-        bool AcusarEstadoConexion(Guid maxikioscoIdentifier);
+        bool AcusarEstadoConexion(Guid maxikioscoIdentifier, string dateISO);
 
     }
 }
