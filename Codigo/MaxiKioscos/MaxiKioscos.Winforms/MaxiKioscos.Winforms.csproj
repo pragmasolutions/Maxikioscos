@@ -670,7 +670,7 @@
     <Content Include="SqlScripts\101-ControlStock_Crear.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SqlScripts\98-Stock_Actualizar - Copy.sql">
+    <Content Include="SqlScripts\98-Stock_Actualizar.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\100-Sync_Stock.sql">
