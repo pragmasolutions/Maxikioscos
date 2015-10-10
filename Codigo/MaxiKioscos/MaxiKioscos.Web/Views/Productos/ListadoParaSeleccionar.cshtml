@@ -1,6 +1,9 @@
 ﻿@using MaxiKioscos.Web.Comun.Extensiones
 @using PagedList.Mvc
 @model IEnumerable<MaxiKioscos.Entidades.Producto>
+@{
+    var mostrarStockMaxikioscoId = (int?)ViewBag.MostrarStockMaxikioscoId;
+}
 <div class="table-responsive">
     <table class="table table-condensed table-striped table-bordered table-hover" id="TableSeleccionarProductos">
         <thead>
@@ -8,6 +11,10 @@
                 <th>Código</th>
                 <th>Descripcion</th>
                 <th>Marca</th>
+                @if (mostrarStockMaxikioscoId.HasValue)
+                {
+                    <th>Stock Origen</th>
+                }
                 <th></th>
             </tr>
         </thead>
@@ -18,6 +25,12 @@
                     <td>@producto.CodigosListado</td>
                     <td>@producto.Descripcion</td>
                     <td>@producto.Marca.Descripcion</td>
+                    @if (mostrarStockMaxikioscoId.HasValue)
+                    {
+                        <td class="stock-origen">
+                            @producto.GetStockPorMaxikiosco(mostrarStockMaxikioscoId.Value)
+                        </td>
+                    }
                     <td class="text-center">
                         <a class="btn btn-default btn-seleccionar-producto" data-dismiss="modal" href="#" data-productoid="@producto.ProductoId">Seleccionar</a>
                     </td>

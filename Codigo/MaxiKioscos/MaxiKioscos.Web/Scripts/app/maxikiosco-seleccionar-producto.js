@@ -47,7 +47,7 @@
             //Seleccionamos la primer fila.
             seleccionarPrimeraFila();
         },
-        handleBuscador = function(e) {
+        handleBuscador = function (e) {
             e.preventDefault();
             var $input = $('.search-textbox');
             if (e.which == 38 || e.which == 40) {
@@ -56,7 +56,11 @@
                 dirtySearch = true;
             } else {
                 dirtySearch = false;
-                $input.closest('form').submit();
+
+                //Submit cuando es space. para el enter se hace submit automatico
+                if (e.which == 32) {
+                    $input.closest('form').submit();
+                }
             }
         }
         crear = function () {
@@ -72,6 +76,7 @@
             return false;
         },
         productoSubmitCompleted = function (e, response) {
+            
             if (response.exito) {
                 $modalCrearProductos.modal('hide').on('hidden.bs.modal', modalHiddenAfterSuccess);
                 $modal.find('.search-textbox').val(response.descripcion);
@@ -96,10 +101,10 @@
             $formFilter.submit();
         },
         enterKeyDown = function (event) {
+             
             if (event.which === 13) {
                 if (dirtySearch) {
                     dirtySearch = false;
-                    $('.search-textbox').closest('form').submit();
                 }
                 else {
                     if ($currentRow) {

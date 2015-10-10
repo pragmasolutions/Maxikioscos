@@ -206,7 +206,8 @@
                 $currentRow.addClass('highlight');
             }
         },
-        tableTransferenciasKeydown = function(e) {
+        tableTransferenciasKeydown = function (e) {
+            
             e.preventDefault();
             //Si no hay row actual seleccionar la primera.
             if ($currentRow.length === 0) {
@@ -259,6 +260,15 @@
             }
 
             $('#AgregarProducto', $modal).removeAttrs('disabled');
+
+            //Cada vez que cambia el origen tenemos que actualizar el listado que aparece para 
+            //Reflejar el stock del mismo.
+            $agregarProductoModal.find('#MostrarStockMaxikioscoId').val(origenId);
+
+            $agregarProductoModal.find('#TableSeleccionarProductos tr td.stock-origen')
+                .html('<img src="/Content/imagenes/loading.gif" />');
+
+            $agregarProductoModal.find('form').submit();
         },
         existenProductosCargados = function() {
             var existenProductos = false;
