@@ -32,10 +32,10 @@ namespace MaxiKioscos.Web.Controllers
 
             var pageSize =  AppSettings.DefaultPageSize;
 
-            var categforiasCosto = Uow.CategoriasCostos.Listado()
+            var categoriasCosto = Uow.CategoriasCostos.Listado()
                 .Where(model.Filtros.GetFilterExpression())
-                                .OrderBy(m => m.Descripcion).ToList(); 
-            IPagedList<CategoriaCosto> list = categforiasCosto.ToPagedList(pageNumber, pageSize);
+                                .OrderBy(m => m.Descripcion); 
+            IPagedList<CategoriaCosto> list = categoriasCosto.ToPagedList(pageNumber, pageSize);
 
             model.List = list;
 

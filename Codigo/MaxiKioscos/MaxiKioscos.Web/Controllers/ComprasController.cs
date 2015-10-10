@@ -38,7 +38,7 @@ namespace MaxiKioscos.Web.Controllers
                 c => c.ComprasProductos)
                 .Where(c => c.CuentaId == UsuarioActual.CuentaId)
                 .Where(model.Filtros.GetFilterExpression())
-                .OrderByDescending(c => c.Fecha).ToList();
+                .OrderByDescending(c => c.Fecha);
 
 
             var pageNumber = page ?? 1;

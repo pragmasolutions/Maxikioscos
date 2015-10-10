@@ -1,10 +1,10 @@
 ﻿@using MaxiKioscos.Web.Helpers
 @model MaxiKioscos.Web.Models.ComprasFiltrosModel
 <div>
-    @using (Ajax.BeginForm("Index", null,
+    @using (Ajax.BeginForm("Listado", null,
                                            new AjaxOptions()
                                                {
-                                                   UpdateTargetId = "AdminContainer",
+                                                   UpdateTargetId = "ListadoContainer",
                                                    HttpMethod = "GET",
                                                    InsertionMode = InsertionMode.Replace,
                                                    OnBegin = "maxikioscoSpinner.startSpin",
