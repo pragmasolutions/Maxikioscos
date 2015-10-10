@@ -63,9 +63,13 @@ namespace MaxiKioscos.Web.Controllers
             return PartialView("_Listado", listadoModel);
         }
 
-        public ActionResult Seleccionar()
+        public ActionResult Seleccionar(ProductoSeleccionarModel productoSeleccionarModel)
         {
-            ProductoSeleccionarModel productoSeleccionarModel = new ProductoSeleccionarModel();
+            if (productoSeleccionarModel == null)
+            {
+                productoSeleccionarModel = new ProductoSeleccionarModel();
+            }
+
             productoSeleccionarModel.BuscarPorDescripcion = true;
             return PartialView(productoSeleccionarModel);
         }
@@ -73,7 +77,27 @@ namespace MaxiKioscos.Web.Controllers
         //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult ListadoParaSeleccionar(ProductoSeleccionarModel productoSeleccionarModel)
         {
-            var productos = Uow.Productos.Listado(p => p.Rubro, p => p.Marca, p => p.CodigosProductos)
+            Expression<Func<Producto, object>>[] expressions;
+
+            if (productoSeleccionarModel.MostrarStockMaxikioscoId.HasValue)
+            {
+                expressions = new Expression<Func<Producto, object>>[]
+                              {
+                                  p => p.Rubro,
+                                  p => p.Marca, p => p.CodigosProductos,
+                                  p => p.Stocks.Select(x => x.StockTransacciones)
+                              };
+            }
+            else
+            {
+                expressions = new Expression<Func<Producto, object>>[]
+                              {
+                                  p => p.Rubro,
+                                  p => p.Marca, p => p.CodigosProductos
+                              };
+            }
+
+            var productos = Uow.Productos.Listado(expressions)
                 .Where(p => !p.EsPromocion &&
                     (string.IsNullOrEmpty(productoSeleccionarModel.Descripcion)
                             || (productoSeleccionarModel.BuscarPorDescripcion && p.Descripcion.ToLower().Contains(productoSeleccionarModel.Descripcion.ToLower()))
@@ -85,6 +109,8 @@ namespace MaxiKioscos.Web.Controllers
                 productos = productos.OrderBy(p => p.CodigosProductos.Select(c => c.Codigo).FirstOrDefault());
 
             productos = productos.Take(10);
+
+            ViewBag.MostrarStockMaxikioscoId = productoSeleccionarModel.MostrarStockMaxikioscoId;
 
             return PartialView(productos);
         }

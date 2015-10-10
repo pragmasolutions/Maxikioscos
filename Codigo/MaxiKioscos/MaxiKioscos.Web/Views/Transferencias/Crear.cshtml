@@ -20,5 +20,5 @@
         </div>
     </div>
 </div>
-@Html.Action("Seleccionar", "Productos")
+@Html.Action("Seleccionar", "Productos", new { MostrarStockMaxikioscoId = 0 })
 @Html.Partial("IngresarCantidad",new ViewDataDictionary(0))

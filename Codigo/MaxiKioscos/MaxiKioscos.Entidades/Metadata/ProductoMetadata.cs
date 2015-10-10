@@ -168,6 +168,15 @@ namespace MaxiKioscos.Entidades
         }
 
         public List<PromocionMaxikiosco> PromocionMaxikioscos { get; set; }
+
+        public decimal GetStockPorMaxikiosco(int maxikioscoId)
+        {
+            var transacciones = this.Stocks.Where(x => !x.Eliminado && x.MaxiKioscoId == maxikioscoId)
+                    .SelectMany(x => x.StockTransacciones)
+                    .Where(x => !x.Eliminado);
+
+            return transacciones.Select(x => x.Cantidad).DefaultIfEmpty(0).Sum();
+        }
     }
 
     public class ProductoMetadata

@@ -6,6 +6,11 @@ namespace MaxiKioscos.Web.Models
 {
     public class ProductoSeleccionarModel
     {
+        public ProductoSeleccionarModel()
+        {
+            BuscarPorDescripcion = true;
+        }
+
         [Display(Name = "Rubro")]
         [UIHint("Rubro")]
         public int RubroId { get; set; }
@@ -20,5 +25,7 @@ namespace MaxiKioscos.Web.Models
         [Display(Name = "Por descripcion?")]
         [UIHint("TipoBusquedaProducto")]
         public bool BuscarPorDescripcion { get; set; }
+
+        public int? MostrarStockMaxikioscoId { get; set; }
     }
 }
