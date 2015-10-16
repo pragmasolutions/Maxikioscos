@@ -147,6 +147,7 @@
 
             ////Checkear que la compra tenga almenos un producto.
             if (!isFormComprasValid($form)) {
+                $form.data('submitted', false);
                 return false;
             }
 
