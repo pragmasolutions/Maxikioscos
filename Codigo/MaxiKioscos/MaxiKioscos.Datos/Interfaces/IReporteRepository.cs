@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using MaxiKioscos.Entidades;
@@ -61,5 +62,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IQueryable<RptVentaPorTicketRow> VentasPorTicket(int cierreCajaId);
 
         IQueryable<RptRetirosPersonalesRow> RetirosPersonales(DateTime? desde, DateTime? hasta, int? usuarioId);
+
+        IQueryable<RptRetirosPersonalesPorTicketRow> RetirosPersonalesPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId);
     }
 }

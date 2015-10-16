@@ -22,6 +22,7 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="OcultarEnDesktop" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CierreCaja">
           <Key>
@@ -1752,6 +1753,11 @@
           <Parameter Name="Hasta" Type="datetime" Mode="In" />
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_RetirosPersonalesPorTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+          <Parameter Name="Desde" Type="datetime" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="Rpt_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Desde" Type="datetime2" Mode="In" />
           <Parameter Name="Hasta" Type="datetime2" Mode="In" />
@@ -2827,6 +2833,11 @@
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptRetirosPersonalesPorTicket" ReturnType="Collection(MaxiKioscosModel.RptRetirosPersonalesPorTicketRow)">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -4792,6 +4803,7 @@
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Costos" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="CategoriaCosto" ToRole="Costo" />
+          <Property Name="OcultarEnDesktop" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Costo">
           <Key>
@@ -4912,6 +4924,17 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="false" Precision="19" />
           <Property Type="Decimal" Name="ImporteTotal" Nullable="false" Precision="19" />
           <Property Type="Decimal" Name="Diferencia" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="RptRetirosPersonalesPorTicketRow">
+          <Property Type="Int32" Name="Ticket" Nullable="false" />
+          <Property Type="DateTime" Name="FechaRetiroPersonal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CostoUnitario" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6048,6 +6071,7 @@
           <EntitySetMapping Name="CategoriasCostos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.CategoriaCosto">
               <MappingFragment StoreEntitySet="CategoriaCosto">
+                <ScalarProperty Name="OcultarEnDesktop" ColumnName="OcultarEnDesktop" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
@@ -6116,6 +6140,21 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
                 <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptRetirosPersonalesPorTicket" FunctionName="MaxiKioscosModel.Store.Rpt_RetirosPersonalesPorTicket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptRetirosPersonalesPorTicketRow">
+                <ScalarProperty Name="Ticket" ColumnName="Ticket" />
+                <ScalarProperty Name="FechaRetiroPersonal" ColumnName="FechaRetiroPersonal" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="CostoUnitario" ColumnName="CostoUnitario" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="Ganancia" ColumnName="Ganancia" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

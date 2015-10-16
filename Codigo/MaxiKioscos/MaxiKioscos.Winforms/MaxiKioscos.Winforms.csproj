@@ -244,11 +244,11 @@
     <Compile Include="CorreccionesStock\frmGestionCorreccionStock.Designer.cs">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Costos\frmDetalleEliminarCosto.cs">
+    <Compile Include="Gastos\frmDetalleEliminarGasto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Costos\frmDetalleEliminarCosto.Designer.cs">
-      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    <Compile Include="Gastos\frmDetalleEliminarGasto.Designer.cs">
+      <DependentUpon>frmDetalleEliminarGasto.cs</DependentUpon>
     </Compile>
     <Compile Include="DataStruct\RetiroPersonalGridStruct.cs" />
     <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.cs">
@@ -257,11 +257,11 @@
     <Compile Include="RetirosPersonales\frmDetalleRetiroPersonal.Designer.cs">
       <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Costos\frmEditarCosto.cs">
+    <Compile Include="Gastos\frmEditarGasto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Costos\frmEditarCosto.Designer.cs">
-      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    <Compile Include="Gastos\frmEditarGasto.Designer.cs">
+      <DependentUpon>frmEditarGasto.cs</DependentUpon>
     </Compile>
     <Compile Include="DataStruct\ArchivoPrincipalStruct.cs" />
     <Compile Include="DataStruct\CostoGridStruct.cs" />
@@ -437,11 +437,11 @@
     <Compile Include="Reportes\frmReponerStock.Designer.cs">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Costos\frmCostos.cs">
+    <Compile Include="Gastos\frmGastos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Costos\frmCostos.Designer.cs">
-      <DependentUpon>frmCostos.cs</DependentUpon>
+    <Compile Include="Gastos\frmGastos.Designer.cs">
+      <DependentUpon>frmGastos.cs</DependentUpon>
     </Compile>
     <Compile Include="Service References\NotificationService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -572,6 +572,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\132-CierreCaja_CantidadDineroActual.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\137-Sync_CategoriasCosto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\136-CategoriaCosto_OcultarEnDesktop.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\135-CierreCajaCantidadDineroActual.sql">
@@ -1005,14 +1011,14 @@
     <EmbeddedResource Include="CorreccionesStock\frmGestionCorreccionStock.resx">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Costos\frmDetalleEliminarCosto.resx">
-      <DependentUpon>frmDetalleEliminarCosto.cs</DependentUpon>
+    <EmbeddedResource Include="Gastos\frmDetalleEliminarGasto.resx">
+      <DependentUpon>frmDetalleEliminarGasto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RetirosPersonales\frmDetalleRetiroPersonal.resx">
       <DependentUpon>frmDetalleRetiroPersonal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Costos\frmEditarCosto.resx">
-      <DependentUpon>frmEditarCosto.cs</DependentUpon>
+    <EmbeddedResource Include="Gastos\frmEditarGasto.resx">
+      <DependentUpon>frmEditarGasto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Excepciones\frmABMExcepciones.resx">
       <DependentUpon>frmABMExcepciones.cs</DependentUpon>
@@ -1098,8 +1104,8 @@
     <EmbeddedResource Include="Reportes\frmReponerStock.resx">
       <DependentUpon>frmReponerStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Costos\frmCostos.resx">
-      <DependentUpon>frmCostos.cs</DependentUpon>
+    <EmbeddedResource Include="Gastos\frmGastos.resx">
+      <DependentUpon>frmGastos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmCambiarPassword.resx">

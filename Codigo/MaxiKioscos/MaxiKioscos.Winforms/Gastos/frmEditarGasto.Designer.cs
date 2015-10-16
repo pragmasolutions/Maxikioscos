@@ -1,6 +1,6 @@
-﻿namespace MaxiKioscos.Winforms.Costos
+﻿namespace MaxiKioscos.Winforms.Gastos
 {
-    partial class frmEditarCosto
+    partial class frmEditarGasto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditarCosto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditarGasto));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtFecha = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.lblFecha = new System.Windows.Forms.Label();
             this.txtNroComprobante = new Util.Controles.ucTexto();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.txtFecha = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -56,9 +56,9 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.DimGray;
             this.lblTitulo.Location = new System.Drawing.Point(12, 8);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(159, 35);
+            this.lblTitulo.Size = new System.Drawing.Size(160, 35);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Nuevo Costo";
+            this.lblTitulo.Text = "Nuevo Gasto";
             // 
             // label22
             // 
@@ -112,6 +112,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(548, 296);
             this.panel1.TabIndex = 1;
+            // 
+            // txtFecha
+            // 
+            this.txtFecha.Location = new System.Drawing.Point(326, 119);
+            this.txtFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(170, 32);
+            this.txtFecha.TabIndex = 18;
+            this.txtFecha.Texto = "";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.ForeColor = System.Drawing.Color.Black;
+            this.lblFecha.Location = new System.Drawing.Point(322, 92);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(57, 23);
+            this.lblFecha.TabIndex = 17;
+            this.lblFecha.Text = "Fecha";
             // 
             // txtNroComprobante
             // 
@@ -240,27 +260,7 @@
             this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.ForeColor = System.Drawing.Color.Black;
-            this.lblFecha.Location = new System.Drawing.Point(322, 92);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(57, 23);
-            this.lblFecha.TabIndex = 17;
-            this.lblFecha.Text = "Fecha";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Location = new System.Drawing.Point(326, 119);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(170, 32);
-            this.txtFecha.TabIndex = 18;
-            this.txtFecha.Texto = "";
-            // 
-            // frmEditarCosto
+            // frmEditarGasto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
@@ -273,9 +273,9 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "frmEditarCosto";
+            this.Name = "frmEditarGasto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nuevo Costo";
+            this.Text = "Nuevo Gasto";
             this.Shown += new System.EventHandler(this.frmCostoEditar_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

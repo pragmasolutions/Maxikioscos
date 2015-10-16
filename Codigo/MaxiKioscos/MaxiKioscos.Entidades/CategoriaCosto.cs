@@ -25,6 +25,7 @@ namespace MaxiKioscos.Entidades
         public bool Desincronizado { get; set; }
         public bool Eliminado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
+        public bool OcultarEnDesktop { get; set; }
     
         public virtual ICollection<Costo> Costos { get; set; }
     }

@@ -11,7 +11,7 @@ using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Clases;
 using MaxiKioscos.Winforms.Configuracion;
-using MaxiKioscos.Winforms.Costos;
+using MaxiKioscos.Winforms.Gastos;
 using MaxiKioscos.Winforms.DataStruct;
 using MaxiKioscos.Winforms.Facturas;
 using MaxiKioscos.Winforms.Helpers;
@@ -374,7 +374,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
                 switch (e.ColumnIndex)
                 {
                     case 7:
-                        new frmDetalleEliminarCosto(costo.CostoId, "Detalle").ShowDialog();
+                        new frmDetalleEliminarGasto(costo.CostoId, "Detalle").ShowDialog();
                         break;
                     case 8:
                         CostoEditar(costo);
@@ -391,7 +391,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
         {
             if (!costo.CajaCerrada && costo.Estado != "Aprobado")
             {
-                if (new frmDetalleEliminarCosto(costo.CostoId, "Eliminar").ShowDialog() == DialogResult.OK)
+                if (new frmDetalleEliminarGasto(costo.CostoId, "Eliminar").ShowDialog() == DialogResult.OK)
                 {
                     //borro la factura
                     CostoRepository.Eliminar(costo.CostoId);
@@ -405,7 +405,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
         {
             if (!costo.CajaCerrada && costo.Estado != "Aprobado")
             {
-                if (new frmEditarCosto(costo.CostoId).ShowDialog() == DialogResult.OK)
+                if (new frmEditarGasto(costo.CostoId).ShowDialog() == DialogResult.OK)
                 {
                     CostoRepository = new EFRepository<Costo>();
                     ActualizarPantalla();
@@ -417,7 +417,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
         {
             DataGridViewRow row = dgvCostos.SelectedRows[0];
             var costoId = Convert.ToInt32(row.Cells[0].Value.ToString());
-            new frmDetalleEliminarCosto(costoId, "Detalle").ShowDialog();
+            new frmDetalleEliminarGasto(costoId, "Detalle").ShowDialog();
         }
 
         private void dgvRetirosPersonales_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -644,7 +644,7 @@ namespace MaxiKioscos.Winforms.CierreCajas
 
         private void btnCrearCosto_Click(object sender, EventArgs e)
         {
-            if (new frmEditarCosto().ShowDialog() == DialogResult.OK)
+            if (new frmEditarGasto().ShowDialog() == DialogResult.OK)
             {
                 ActualizarPantalla();
             }

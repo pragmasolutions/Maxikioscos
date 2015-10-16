@@ -1,9 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Sync_CategoriasCosto]    Script Date: 08/09/2014 15:49:55 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sync_CategoriasCosto]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Sync_CategoriasCosto]
-GO
-
-CREATE PROCEDURE [dbo].[Sync_CategoriasCosto] 
+ALTER PROCEDURE [dbo].[Sync_CategoriasCosto] 
 	@XML XML,
 	@SobreescribirLocal bit
 AS
@@ -85,10 +80,3 @@ BEGIN
 								FROM @Temp)
 		
 END
-
-
-
-
-GO
-
-

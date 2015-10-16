@@ -490,6 +490,9 @@
     <Content Include="Reportes\RetirosPersonales.rdl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reportes\RetirosPersonalesPorTicket.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\app\maxikiosco-maxikioscos.js" />
     <Content Include="Scripts\app\maxikiosco-proveedores.js" />
@@ -964,6 +967,7 @@
     <Content Include="Views\Costos\Listado.cshtml" />
     <Content Include="Views\Costos\Modales.cshtml" />
     <Content Include="Views\Reportes\RetirosPersonales.cshtml" />
+    <Content Include="Views\Reportes\RetirosPersonalesPorTicket.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

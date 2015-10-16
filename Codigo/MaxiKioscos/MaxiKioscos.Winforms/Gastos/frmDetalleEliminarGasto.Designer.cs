@@ -1,6 +1,6 @@
-﻿namespace MaxiKioscos.Winforms.Costos
+﻿namespace MaxiKioscos.Winforms.Gastos
 {
-    partial class frmDetalleEliminarCosto
+    partial class frmDetalleEliminarGasto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalleEliminarCosto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalleEliminarGasto));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.compraProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtEstado = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtCategoria = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.txtNroComprobante = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.txtMonto = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
             this.txtFecha = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
             this.lblFecha = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -42,11 +44,9 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtMonto = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
-            this.txtNroComprobante = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
-            this.txtCategoria = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
-            this.txtEstado = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
-            this.label16 = new System.Windows.Forms.Label();
+            this.compraProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.compraProductoBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -58,9 +58,9 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.DimGray;
             this.lblTitulo.Location = new System.Drawing.Point(12, 22);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(199, 35);
+            this.lblTitulo.Size = new System.Drawing.Size(200, 35);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Detalle de Costo";
+            this.lblTitulo.Text = "Detalle de Gasto";
             // 
             // panel1
             // 
@@ -82,40 +82,52 @@
             this.panel1.Size = new System.Drawing.Size(554, 381);
             this.panel1.TabIndex = 12;
             // 
-            // compraProductoBindingSource
+            // txtEstado
             // 
-            this.compraProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CompraProducto);
+            this.txtEstado.Location = new System.Drawing.Point(51, 206);
+            this.txtEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(209, 32);
+            this.txtEstado.TabIndex = 33;
+            this.txtEstado.Texto = "";
             // 
-            // btnAceptar
+            // label16
             // 
-            this.btnAceptar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAceptar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.Location = new System.Drawing.Point(225, 440);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(139, 33);
-            this.btnAceptar.TabIndex = 0;
-            this.btnAceptar.Text = "Cerrar";
-            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(47, 179);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(63, 23);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "Estado";
             // 
-            // btnCancelar
+            // txtCategoria
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(375, 440);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(138, 33);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.txtCategoria.Location = new System.Drawing.Point(51, 128);
+            this.txtCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(209, 32);
+            this.txtCategoria.TabIndex = 31;
+            this.txtCategoria.Texto = "";
+            // 
+            // txtNroComprobante
+            // 
+            this.txtNroComprobante.Location = new System.Drawing.Point(336, 53);
+            this.txtNroComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNroComprobante.Name = "txtNroComprobante";
+            this.txtNroComprobante.Size = new System.Drawing.Size(182, 32);
+            this.txtNroComprobante.TabIndex = 30;
+            this.txtNroComprobante.Texto = "";
+            // 
+            // txtMonto
+            // 
+            this.txtMonto.Location = new System.Drawing.Point(51, 53);
+            this.txtMonto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(209, 32);
+            this.txtMonto.TabIndex = 29;
+            this.txtMonto.Texto = "";
             // 
             // txtFecha
             // 
@@ -195,54 +207,42 @@
             this.label25.TabIndex = 24;
             this.label25.Text = "Monto";
             // 
-            // txtMonto
+            // compraProductoBindingSource
             // 
-            this.txtMonto.Location = new System.Drawing.Point(51, 53);
-            this.txtMonto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(209, 32);
-            this.txtMonto.TabIndex = 29;
-            this.txtMonto.Texto = "";
+            this.compraProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CompraProducto);
             // 
-            // txtNroComprobante
+            // btnAceptar
             // 
-            this.txtNroComprobante.Location = new System.Drawing.Point(336, 53);
-            this.txtNroComprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtNroComprobante.Name = "txtNroComprobante";
-            this.txtNroComprobante.Size = new System.Drawing.Size(182, 32);
-            this.txtNroComprobante.TabIndex = 30;
-            this.txtNroComprobante.Texto = "";
+            this.btnAceptar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAceptar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.Location = new System.Drawing.Point(225, 440);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(139, 33);
+            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.Text = "Cerrar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // txtCategoria
+            // btnCancelar
             // 
-            this.txtCategoria.Location = new System.Drawing.Point(51, 128);
-            this.txtCategoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(209, 32);
-            this.txtCategoria.TabIndex = 31;
-            this.txtCategoria.Texto = "";
+            this.btnCancelar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.Location = new System.Drawing.Point(375, 440);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(138, 33);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // txtEstado
-            // 
-            this.txtEstado.Location = new System.Drawing.Point(51, 206);
-            this.txtEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(209, 32);
-            this.txtEstado.TabIndex = 33;
-            this.txtEstado.Texto = "";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(47, 179);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(63, 23);
-            this.label16.TabIndex = 32;
-            this.label16.Text = "Estado";
-            // 
-            // frmDetalleEliminarCosto
+            // frmDetalleEliminarGasto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
@@ -253,8 +253,8 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmDetalleEliminarCosto";
-            this.Text = "Detalle de Costo";
+            this.Name = "frmDetalleEliminarGasto";
+            this.Text = "Detalle de Gasto";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.compraProductoBindingSource)).EndInit();

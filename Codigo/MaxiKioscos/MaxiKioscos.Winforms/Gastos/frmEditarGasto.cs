@@ -11,9 +11,9 @@ using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using Util;
 
-namespace MaxiKioscos.Winforms.Costos
+namespace MaxiKioscos.Winforms.Gastos
 {
-    public partial class frmEditarCosto : Form
+    public partial class frmEditarGasto : Form
     {
         private EFSimpleRepository<Costo> _repository;
         public EFSimpleRepository<Costo> Repository
@@ -29,19 +29,21 @@ namespace MaxiKioscos.Winforms.Costos
 
         private Costo _original { get; set; }
         
-        public frmEditarCosto(int? costoId = null)
+        public frmEditarGasto(int? costoId = null)
         {
             InitializeComponent();
 
-            var categorias = CategoriaRepository.Listado().Where(c => !c.Eliminado).OrderBy(c => c.Descripcion).ToList();
+            var categorias = CategoriaRepository.Listado()
+                                    .Where(c => !c.Eliminado && !c.OcultarEnDesktop)
+                                    .OrderBy(c => c.Descripcion).ToList();
             ddlCategorias.DataSource = categorias;
             ddlCategorias.ValueMember = "CategoriaCostoId";
             ddlCategorias.DisplayMember = "Descripcion";
 
             if (costoId != null)
             {
-                lblTitulo.Text = "Editar Costo";
-                this.Text = "Editar Costo";
+                lblTitulo.Text = "Editar Gasto";
+                this.Text = "Editar Gasto";
                 var costo = Repository.Obtener(o => o.CostoId == costoId);
                 txtFecha.Texto = costo.Fecha.ToShortDateString() + " " + costo.Fecha.ToShortTimeString();
                 txtMonto.Valor = costo.Monto;
@@ -52,8 +54,8 @@ namespace MaxiKioscos.Winforms.Costos
             }
             else
             {
-                lblTitulo.Text = "Nuevo Costo";
-                this.Text = "Nuevo Costo";
+                lblTitulo.Text = "Nuevo Gasto";
+                this.Text = "Nuevo Gasto";
                 _original = new Costo()
                                 {
                                     CierreCajaId = UsuarioActual.CierreCajaIdActual,

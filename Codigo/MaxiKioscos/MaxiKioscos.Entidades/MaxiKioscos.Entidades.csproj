@@ -273,6 +273,9 @@
     <Compile Include="RptGanaciaAdicionalExcepcionRubro.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="RptRetirosPersonalesPorTicketRow.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="RptRetirosPersonalesRow.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>

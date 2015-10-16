@@ -32,6 +32,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(model);
         }
 
+        public ActionResult RetirosPersonalesPorTicket(RetirosPersonalesPorTicketFiltrosModel model)
+        {
+            return PartialOrView(model);
+        }
+
         public ActionResult VentasPorMaxikioscos(ReporteVentasFiltrosModel reporteVentasFiltrosModel)
         {
             return PartialOrView(reporteVentasFiltrosModel);
@@ -173,6 +178,49 @@ namespace MaxiKioscos.Web.Controllers
 
                     reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/VentasPorTicket.rdl"))
                         .SetDataSource("VentasPorTicketDataSet", ventasPorTicketDataSource)
+                        .SetParametro(parameters);
+
+                    byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+                    return File(archivo, reporteFactory.MimeType);
+
+                }
+                catch (Exception ex)
+                {
+                    EventLogger.Log(ex);
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        public ActionResult GenerarRetirosPersonalesPorTicket(RetirosPersonalesPorTicketFiltrosModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (model.Hasta.HasValue)
+                    {
+                        var date = model.Hasta.GetValueOrDefault().AddDays(1);
+                        model.Hasta = date.ToZeroTime();
+                    }
+                    var retirosPorTicketDataSource = Uow.Reportes.RetirosPersonalesPorTicket(model.Desde, model.Hasta, model.UsuarioId).ToList();
+
+                    var reporteFactory = new ReporteFactory();
+
+                    var usuario = model.UsuarioId == null
+                                    ? "TODOS"
+                                    : Uow.Usuarios.Obtener(model.UsuarioId.GetValueOrDefault()).NombreUsuario;
+                    var parameters = new Dictionary<string, string>
+                                  {
+                                      {"Desde", model.Desde.ToLongString("")},
+                                      {"Hasta", model.Hasta.ToLongString("")},
+                                      {"Usuario", usuario}
+                                  };
+
+                    reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/RetirosPersonalesPorTicket.rdl"))
+                        .SetDataSource("RetirosPersonalesPorTicketDataSet", retirosPorTicketDataSource)
                         .SetParametro(parameters);
 
                     byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);

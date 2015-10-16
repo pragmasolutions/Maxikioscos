@@ -17,5 +17,9 @@ namespace MaxiKioscos.Entidades
         [Display(Name = "Descripción")]
         [Required(ErrorMessage = "Debe ingresar una descripción")]
         public string Descripcion { get; set; }
+
+        [Display(Name = "Ocultar en Kiosco")]
+        [Required(ErrorMessage = "Debe ingresar un valor")]
+        public bool OcultarEnDesktop { get; set; }
     }
 }

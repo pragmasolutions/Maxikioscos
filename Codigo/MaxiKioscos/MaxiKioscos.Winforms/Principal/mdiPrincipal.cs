@@ -37,7 +37,7 @@ using MaxiKioscos.Winforms.Rubros;
 using MaxiKioscos.Winforms.Facturas;
 using System.IO;
 using Maxikioscos.Comun.Helpers;
-using MaxiKioscos.Winforms.Costos;
+using MaxiKioscos.Winforms.Gastos;
 using MaxiKioscos.Winforms.RetirosPersonales;
 
 namespace MaxiKioscos.Winforms.Principal
@@ -735,7 +735,7 @@ namespace MaxiKioscos.Winforms.Principal
 
         private void tsmCostos_Click(object sender, EventArgs e)
         {
-            AbrirTab(new frmCostos());
+            AbrirTab(new frmGastos());
         }
 
         private void tsmRetiroPersonal_Click(object sender, EventArgs e)

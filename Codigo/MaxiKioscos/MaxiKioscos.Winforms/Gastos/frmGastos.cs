@@ -15,9 +15,9 @@ using MaxiKioscos.Winforms.DataStruct;
 using MaxiKioscos.Winforms.Login;
 using MaxiKioscos.Winforms.OperacionesCaja;
 using Util;
-namespace MaxiKioscos.Winforms.Costos
+namespace MaxiKioscos.Winforms.Gastos
 {
-    public partial class frmCostos : Form
+    public partial class frmGastos : Form
     {
         public IQueryable<Costo> Costos { get; set; }
 
@@ -28,7 +28,7 @@ namespace MaxiKioscos.Winforms.Costos
             set { _repository = value; }
         }
 
-        public frmCostos()
+        public frmGastos()
         {
             InitializeComponent();
             dgvListado.AutoGenerateColumns = false;
@@ -101,7 +101,7 @@ namespace MaxiKioscos.Winforms.Costos
                 switch (e.ColumnIndex)
                 {
                     case 7:
-                        new frmDetalleEliminarCosto(costo.CostoId, "Detalle").ShowDialog();
+                        new frmDetalleEliminarGasto(costo.CostoId, "Detalle").ShowDialog();
                         break;
                     case 8:
                         Editar(costo);
@@ -118,7 +118,7 @@ namespace MaxiKioscos.Winforms.Costos
         {
             if (!costo.CajaCerrada && costo.Estado != "Aprobado")
             {
-                if (new frmDetalleEliminarCosto(costo.CostoId, "Eliminar").ShowDialog() == DialogResult.OK)
+                if (new frmDetalleEliminarGasto(costo.CostoId, "Eliminar").ShowDialog() == DialogResult.OK)
                 {
                     //borro la factura
                     Repository.Eliminar(costo.CostoId);
@@ -133,7 +133,7 @@ namespace MaxiKioscos.Winforms.Costos
         {
             if (!costo.CajaCerrada && costo.Estado != "Aprobado")
             {
-                if (new frmEditarCosto(costo.CostoId).ShowDialog() == DialogResult.OK)
+                if (new frmEditarGasto(costo.CostoId).ShowDialog() == DialogResult.OK)
                 {
                     Repository = new EFRepository<Costo>();
                     Actualizar(null, null);
@@ -146,7 +146,7 @@ namespace MaxiKioscos.Winforms.Costos
         {
             DataGridViewRow row = dgvListado.SelectedRows[0];
             var costoId = Convert.ToInt32(row.Cells[0].Value.ToString());
-            new frmDetalleEliminarCosto(costoId, "Detalle").ShowDialog();
+            new frmDetalleEliminarGasto(costoId, "Detalle").ShowDialog();
         }
      
         private void frmCostos_Load(object sender, EventArgs e)
@@ -268,7 +268,7 @@ namespace MaxiKioscos.Winforms.Costos
             if (dgvListado.SelectedRows.Count > 0 && e.KeyCode == Keys.D)
             {
                 var costoId = Convert.ToInt32(dgvListado.SelectedRows[0].Cells[0].Value);
-                new frmDetalleEliminarCosto(costoId, "Detalle").ShowDialog();
+                new frmDetalleEliminarGasto(costoId, "Detalle").ShowDialog();
             }
         }
 
@@ -289,7 +289,7 @@ namespace MaxiKioscos.Winforms.Costos
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            if (new frmEditarCosto().ShowDialog() == DialogResult.OK)
+            if (new frmEditarGasto().ShowDialog() == DialogResult.OK)
             {
                 Actualizar(null, null);
             }

@@ -892,5 +892,22 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptRetirosPersonalesRow>("RptRetirosPersonales", desdeParameter, hastaParameter, usuarioIdParameter);
         }
+    
+        public virtual ObjectResult<RptRetirosPersonalesPorTicketRow> RptRetirosPersonalesPorTicket(Nullable<int> usuarioId, Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta)
+        {
+            var usuarioIdParameter = usuarioId.HasValue ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(int));
+    
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptRetirosPersonalesPorTicketRow>("RptRetirosPersonalesPorTicket", usuarioIdParameter, desdeParameter, hastaParameter);
+        }
     }
 }

@@ -87,6 +87,19 @@ namespace MaxiKioscos.Web.Models
         public int? MaxiKioscoId { get; set; }
     }
 
+    public class RetirosPersonalesPorTicketFiltrosModel : ReporteModelBase
+    {
+        [DataType(DataType.Date)]
+        public DateTime? Desde { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? Hasta { get; set; }
+
+        [Display(Name = "Usuario")]
+        [UIHint("Usuario")]
+        public int? UsuarioId { get; set; }
+    }
+
     public class ReporteCierresDeCajaFiltrosModel : ReporteModelBase
     {
         [DataType(DataType.Date)]

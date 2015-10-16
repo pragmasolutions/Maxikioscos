@@ -11,9 +11,9 @@ using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Configuracion;
 
-namespace MaxiKioscos.Winforms.Costos
+namespace MaxiKioscos.Winforms.Gastos
 {
-    public partial class frmDetalleEliminarCosto : Form
+    public partial class frmDetalleEliminarGasto : Form
         
     {
         private EFRepository<Costo> _costoRepository;
@@ -32,7 +32,7 @@ namespace MaxiKioscos.Winforms.Costos
         public string Operacion { get; set; }
 
 
-        public frmDetalleEliminarCosto(int costoId, string operacion)
+        public frmDetalleEliminarGasto(int costoId, string operacion)
         {
             InitializeComponent();
             CargarCosto(costoId);
@@ -40,15 +40,15 @@ namespace MaxiKioscos.Winforms.Costos
             Operacion = operacion;
             if (operacion == "Eliminar")
             {
-                lblTitulo.Text = "Eliminar Costo";
-                this.Text = "Eliminar Costo";
+                lblTitulo.Text = "Eliminar Gasto";
+                this.Text = "Eliminar Gasto";
                 btnCancelar.Visible = true;
                 btnAceptar.Text = "Aceptar";
             }
             else
             {
-                lblTitulo.Text = "Detalle de Costo";
-                this.Text = "Detalle de Costo";
+                lblTitulo.Text = "Detalle de Gasto";
+                this.Text = "Detalle de Gasto";
                 btnCancelar.Visible = false;
             }
         }

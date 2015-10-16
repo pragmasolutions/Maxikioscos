@@ -1,6 +1,6 @@
-﻿namespace MaxiKioscos.Winforms.Costos
+﻿namespace MaxiKioscos.Winforms.Gastos
 {
-    partial class frmCostos
+    partial class frmGastos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCostos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGastos));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
-            this.ucPaginador = new MaxiKioscos.Winforms.Controles.UcPaginador();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.ddlEstados = new Util.Controles.ucDropDownList();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.chxCajaActual = new System.Windows.Forms.CheckBox();
             this.dgvListado = new System.Windows.Forms.DataGridView();
@@ -52,10 +50,14 @@
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CajaCerrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditarCosto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EliminarCosto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ucPaginador = new MaxiKioscos.Winforms.Controles.UcPaginador();
+            this.ddlEstados = new Util.Controles.ucDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,19 +144,6 @@
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
             this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
             // 
-            // ucPaginador
-            // 
-            this.ucPaginador.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.ucPaginador.BackColor = System.Drawing.Color.Transparent;
-            this.ucPaginador.CurrentPage = 1;
-            this.ucPaginador.Location = new System.Drawing.Point(5, 5);
-            this.ucPaginador.Margin = new System.Windows.Forms.Padding(5);
-            this.ucPaginador.Name = "ucPaginador";
-            this.ucPaginador.PageSize = 10;
-            this.ucPaginador.PageTotal = null;
-            this.ucPaginador.Size = new System.Drawing.Size(657, 48);
-            this.ucPaginador.TabIndex = 23;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -181,28 +170,6 @@
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // ddlEstados
-            // 
-            this.ddlEstados.Alto = 34;
-            this.ddlEstados.Ancho = 252;
-            this.ddlEstados.DataSource = null;
-            this.ddlEstados.Disabled = false;
-            this.ddlEstados.DisplayMember = "";
-            this.ddlEstados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.ddlEstados.ErrorMessage = "";
-            this.ddlEstados.EsObligatorio = true;
-            this.ddlEstados.InvalidateChar = null;
-            this.ddlEstados.Location = new System.Drawing.Point(218, 18);
-            this.ddlEstados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ddlEstados.Name = "ddlEstados";
-            this.ddlEstados.Referencia = null;
-            this.ddlEstados.Size = new System.Drawing.Size(252, 34);
-            this.ddlEstados.TabIndex = 6;
-            this.ddlEstados.Texto = "";
-            this.ddlEstados.Valor = 0;
-            this.ddlEstados.ValueMember = "";
-            this.ddlEstados.ComboSelectedIndexChanged += new System.EventHandler(this.ddlEstados_SelectedIndexChanged);
             // 
             // txtBuscar
             // 
@@ -239,19 +206,19 @@
             this.dgvListado.AllowUserToAddRows = false;
             this.dgvListado.AllowUserToDeleteRows = false;
             this.dgvListado.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvListado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvListado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvListado.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListado.ColumnHeadersHeight = 31;
             this.dgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CostoId,
@@ -271,8 +238,8 @@
             this.dgvListado.Name = "dgvListado";
             this.dgvListado.ReadOnly = true;
             this.dgvListado.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvListado.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvListado.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListado.Size = new System.Drawing.Size(972, 456);
             this.dgvListado.TabIndex = 8;
@@ -294,9 +261,9 @@
             // 
             this.Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Fecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle11.Format = "g";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Fecha.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Format = "g";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Fecha.DefaultCellStyle = dataGridViewCellStyle3;
             this.Fecha.HeaderText = "Fecha";
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
@@ -346,6 +313,27 @@
             this.CajaCerrada.Visible = false;
             this.CajaCerrada.Width = 124;
             // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewButtonColumn1.HeaderText = "";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.Width = 22;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewButtonColumn2.HeaderText = "";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            this.dataGridViewButtonColumn2.Width = 22;
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewButtonColumn3.HeaderText = "";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.dataGridViewButtonColumn3.Width = 22;
+            // 
             // Detalle
             // 
             this.Detalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -370,14 +358,42 @@
             this.EliminarCosto.ReadOnly = true;
             this.EliminarCosto.Width = 22;
             // 
-            // dataGridViewButtonColumn1
+            // ucPaginador
             // 
-            this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewButtonColumn1.HeaderText = "";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.Width = 22;
+            this.ucPaginador.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ucPaginador.BackColor = System.Drawing.Color.Transparent;
+            this.ucPaginador.CurrentPage = 1;
+            this.ucPaginador.Location = new System.Drawing.Point(5, 5);
+            this.ucPaginador.Margin = new System.Windows.Forms.Padding(5);
+            this.ucPaginador.Name = "ucPaginador";
+            this.ucPaginador.PageSize = 10;
+            this.ucPaginador.PageTotal = null;
+            this.ucPaginador.Size = new System.Drawing.Size(657, 48);
+            this.ucPaginador.TabIndex = 23;
             // 
-            // frmCostos
+            // ddlEstados
+            // 
+            this.ddlEstados.Alto = 34;
+            this.ddlEstados.Ancho = 252;
+            this.ddlEstados.DataSource = null;
+            this.ddlEstados.Disabled = false;
+            this.ddlEstados.DisplayMember = "";
+            this.ddlEstados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.ddlEstados.ErrorMessage = "";
+            this.ddlEstados.EsObligatorio = true;
+            this.ddlEstados.InvalidateChar = null;
+            this.ddlEstados.Location = new System.Drawing.Point(218, 18);
+            this.ddlEstados.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ddlEstados.Name = "ddlEstados";
+            this.ddlEstados.Referencia = null;
+            this.ddlEstados.Size = new System.Drawing.Size(252, 34);
+            this.ddlEstados.TabIndex = 6;
+            this.ddlEstados.Texto = "";
+            this.ddlEstados.Valor = 0;
+            this.ddlEstados.ValueMember = "";
+            this.ddlEstados.ComboSelectedIndexChanged += new System.EventHandler(this.ddlEstados_SelectedIndexChanged);
+            // 
+            // frmGastos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -385,8 +401,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmCostos";
-            this.Text = "Costos";
+            this.Name = "frmGastos";
+            this.Text = "Gastos";
             this.Activated += new System.EventHandler(this.frmCostos_Activated);
             this.Load += new System.EventHandler(this.frmCostos_Load);
             this.Shown += new System.EventHandler(this.frmCostos_Shown);
@@ -432,6 +448,8 @@
         private System.Windows.Forms.DataGridViewButtonColumn Detalle;
         private System.Windows.Forms.DataGridViewButtonColumn EditarCosto;
         private System.Windows.Forms.DataGridViewButtonColumn EliminarCosto;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn3;
 
     }
 }
