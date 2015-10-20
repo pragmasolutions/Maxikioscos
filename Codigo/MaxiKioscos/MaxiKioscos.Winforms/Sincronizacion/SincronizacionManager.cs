@@ -195,6 +195,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     var faltan = 10; //no importa este valor (tiene que ser mayor a cero nomas)
 
                     _sincronizacionService.ForzarArmadoDeArchivoExportacion(UsuarioActual.Usuario.Identifier);
+                    var vinoAlgoDeWeb = false;
                     while (faltan > 0)
                     {
                         var response = _sincronizacionService.ObtenerDatosSecuencial(request);
@@ -202,6 +203,8 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 
                         if (response.Exportacion != null)
                         {
+                            vinoAlgoDeWeb = true;
+
                             ultimaSecuencia = response.Exportacion.Secuencia;
 
                             CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje),
@@ -217,14 +220,17 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                         }
                     }
 
-                    CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Informando al servidor...");
-                    var acuseRequest = new AcusarExportacionRequest()
+                    if (vinoAlgoDeWeb)
                     {
-                        MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
-                        UltimaSecuenciaExportacion = ultimaSecuencia,
-                        HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
-                    };
-                    _sincronizacionService.AcusarExportacion(acuseRequest);
+                        CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Informando al servidor...");
+                        var acuseRequest = new AcusarExportacionRequest()
+                        {
+                            MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
+                            UltimaSecuenciaExportacion = ultimaSecuencia,
+                            HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
+                        };
+                        _sincronizacionService.AcusarExportacion(acuseRequest);
+                    }
 
                     CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "Actualizando stock...");
                     Uow.Stocks.Actualizar();
@@ -330,7 +336,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
             {
-                var now = DateHelper.DateAndTimeToISO(DateTime.Now);
+                var now = DateHelper.DateAndTimeToISO(DateTime.Now.ToUniversalTime());
                 _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier, now);
             }
         }

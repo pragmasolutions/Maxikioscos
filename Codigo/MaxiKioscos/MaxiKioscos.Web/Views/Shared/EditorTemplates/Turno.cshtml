@@ -1,0 +1,17 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var roles = uow.Turnos.Listado().ToList();
+    roles.RemoveAt(3);
+
+    var selectList = roles.OrderBy(r => r.TurnoId)
+                               .ToSelectListItem(Model, r => r.TurnoId, r => r.Descripcion,
+                               r => r.TurnoId.ToString());
+}
+
+@Html.DropDownList("", selectList,"Seleccione un Turno", new { @class = "form-control" })

@@ -26,7 +26,6 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Index(ProductosFiltrosModel productosFiltrosModel, int? page)
         {
-
             IQueryable<Producto> productos = Listado(productosFiltrosModel);
 
             var pageNumber = page ?? 1;

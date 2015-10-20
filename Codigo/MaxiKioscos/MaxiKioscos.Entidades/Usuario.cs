@@ -27,6 +27,7 @@ namespace MaxiKioscos.Entidades
             this.ControleStock = new HashSet<ControlStock>();
             this.Facturas = new HashSet<Factura>();
             this.Transferencias = new HashSet<Transferencia>();
+            this.Costoes = new HashSet<Costo>();
         }
     
         public int UsuarioId { get; set; }
@@ -51,5 +52,6 @@ namespace MaxiKioscos.Entidades
         public virtual ICollection<ControlStock> ControleStock { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }
         public virtual ICollection<Transferencia> Transferencias { get; set; }
+        public virtual ICollection<Costo> Costoes { get; set; }
     }
 }

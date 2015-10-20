@@ -5,8 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Negocio;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Models;
@@ -35,9 +37,9 @@ namespace MaxiKioscos.Web.Controllers
             };
 
             IQueryable<Costo> costos = Uow.Costos.Listado(c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco)
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno)
                 .Where(model.Filtros.GetFilterExpression())
-                .OrderByDescending(f => f.Fecha);
+                .OrderBy(c => c.Aprobado).ThenByDescending(f => f.Fecha);
 
             var pageNumber = page ?? 1;
             var pageSize = AppSettings.DefaultPageSize;
@@ -56,7 +58,7 @@ namespace MaxiKioscos.Web.Controllers
             var costos = Uow.Costos.Listado(c => c.CategoriaCosto, c => c.CierreCaja,
                                             c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco)
                 .Where(filtros.GetFilterExpression())
-                .OrderByDescending(f => f.Fecha);
+                .OrderBy(c => c.Aprobado).ThenByDescending(f => f.Fecha);
 
             var lista = costos.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
             var listadoModel = new CostosListadoModel
@@ -79,14 +81,16 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Detalle(int id)
         {
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco);
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno);
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
             return PartialView(costo);
         }
         
         public ActionResult Eliminar(int id)
         {
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco);
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno);
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
             return PartialView(costo);
         }
 
@@ -124,30 +128,81 @@ namespace MaxiKioscos.Web.Controllers
             return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        //[HttpPost]
-        //public ActionResult Obtener(int id)
-        //{
-        //    Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
-        //                                    c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco);
-        //    if (costo == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+        public ActionResult Crear()
+        {
+            return PartialView(new Costo()
+            {
+                Fecha = DateTime.Now,
+                EsGastoGeneral = true,
+                Aprobado = true
+            });
+        }
 
-        //    var proveedor = costo.Proveedor;
-        //    return Json(new
-        //        {
-        //            costoNro = costo.CostoNro,
-        //            importeTotal = costo.ImporteTotal, 
-        //            proveedorId = proveedor.ProveedorId,
-        //            proveedor = proveedor.Nombre,
-        //            maxiKioscoId = costo.MaxiKioscoId,
-        //            maxikiosco = costo.MaxiKiosco.Nombre,
-        //            percepcionDGR = proveedor.PercepcionDGR,
-        //            aplicaPercepcionIVA = proveedor.AplicaPercepcionIVA,
-        //            autoNumero = costo.AutoNumero,
-        //            tipoComprobante = costo.Proveedor.TipoComprobante
-        //        });
-        //}
+        [HttpPost]
+        public ActionResult Crear(Costo costo)
+        {
+            if (!costo.EsGastoGeneral)
+            {
+                if (costo.UsuarioId == null)
+                {
+                    ModelState.AddModelError("UsuarioId", "Debe seleccionar un usuario");
+                }
+                if (costo.TurnoId == null)
+                {
+                    ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");
+                }
+            }
+            if (!ModelState.IsValid)
+            {
+                return PartialView(costo);
+            }
+
+            costo.Identifier = Guid.NewGuid();
+            costo.Desincronizado = true;
+            costo.Eliminado = false;
+            Uow.Costos.Agregar(costo);
+            Uow.Commit();
+
+            return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public ActionResult Editar(int id)
+        {
+            var costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CierreCaja, 
+                                                    c => c.CierreCaja.MaxiKiosco,
+                                                    c => c.CierreCaja.Usuario,
+                                                    c => c.Usuario,
+                                                    c => c.Turno);
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
+            return PartialView(costo);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Costo costo)
+        {
+            if (!costo.EsGastoGeneral && costo.CierreCajaId == null)
+            {
+                if (costo.UsuarioId == null)
+                {
+                    ModelState.AddModelError("UsuarioId", "Debe seleccionar un usuario");
+                }
+                if (costo.TurnoId == null)
+                {
+                    ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");
+                }
+                
+            }
+            if (!ModelState.IsValid)
+            {
+                return PartialView(costo);
+            }
+
+            costo.Desincronizado = true;
+            costo.Eliminado = false;
+            Uow.Costos.Modificar(costo);
+            Uow.Commit();
+
+            return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }

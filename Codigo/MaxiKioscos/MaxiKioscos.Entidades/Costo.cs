@@ -15,7 +15,7 @@ namespace MaxiKioscos.Entidades
     public partial class Costo
     {
         public int CostoId { get; set; }
-        public int CierreCajaId { get; set; }
+        public Nullable<int> CierreCajaId { get; set; }
         public int CategoriaCostoId { get; set; }
         public string Observaciones { get; set; }
         public string NroComprobante { get; set; }
@@ -26,8 +26,12 @@ namespace MaxiKioscos.Entidades
         public bool Desincronizado { get; set; }
         public bool Eliminado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
+        public Nullable<int> UsuarioId { get; set; }
+        public Nullable<int> TurnoId { get; set; }
     
         public virtual CategoriaCosto CategoriaCosto { get; set; }
         public virtual CierreCaja CierreCaja { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual Turno Turno { get; set; }
     }
 }

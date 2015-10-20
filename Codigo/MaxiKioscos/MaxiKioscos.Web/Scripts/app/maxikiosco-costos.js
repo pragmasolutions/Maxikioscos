@@ -2,8 +2,10 @@
     var $modal = $("#CostosModal"),
         $modalContent = $("#CostosModal .modal-content"),
         init = function () {
+            $('.btn-costo-crear').click(crear);
             $("#ListadoContainer").on('click', 'a.btn-costo-aprobar', aprobar);
             $("#ListadoContainer").on('click', 'a.btn-costo-detalle', detalle);
+            $("#ListadoContainer").on('click', 'a.btn-costo-editar', editar);
             $("#ListadoContainer").on('click', 'a.btn-costo-eliminar', eliminar);
             $modal.on('submit', 'form', submit);
             
@@ -38,6 +40,7 @@
                 $modalContent.html(result);
                 validacion.parse('#CostosModal');
                 controles.parse('#CostosModal');
+                $('#EsGastoGeneral').change(checkGastoGeneral).change();
             }
         },
         refreshList = function () {
@@ -78,9 +81,23 @@
                 controles.parse('#CostosModal');
 
                 $modal.modal();
-                
+
+                $('#EsGastoGeneral').change(checkGastoGeneral).change();
                 return false;
             });
+        },
+        editar = function () {
+            var url = $(this).attr('href');
+            cargarVista(url);
+            return false;
+        },
+        checkGastoGeneral = function() {
+            if ($(this).prop('checked')) {
+                $modalContent.find('.para-gasto-general').hide();
+                $modalContent.find('#UsuarioId').val("");
+            } else {
+                $modalContent.find('.para-gasto-general').show();
+            }
         };
     init();
 }();

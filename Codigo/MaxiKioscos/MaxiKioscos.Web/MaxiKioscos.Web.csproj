@@ -968,6 +968,10 @@
     <Content Include="Views\Costos\Modales.cshtml" />
     <Content Include="Views\Reportes\RetirosPersonales.cshtml" />
     <Content Include="Views\Reportes\RetirosPersonalesPorTicket.cshtml" />
+    <Content Include="Views\Costos\Crear.cshtml" />
+    <Content Include="Views\Costos\_CamposCostoEditar.cshtml" />
+    <Content Include="Views\Costos\Editar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Turno.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

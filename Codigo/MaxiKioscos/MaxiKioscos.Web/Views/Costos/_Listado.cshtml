@@ -32,14 +32,15 @@
                     <td>@costo.CategoriaCosto.Descripcion</td>
                     <td>@costo.NroComprobante</td>
                     <td>$@costo.Monto.ToString("n2")</td>
-                    <td>@costo.CierreCaja.MaxiKiosco.Nombre</td>
-                    <td>@costo.CierreCaja.Usuario.NombreUsuario</td>
+                    <td>@(costo.CierreCaja == null ? string.Empty : costo.CierreCaja.MaxiKiosco.Nombre)</td>
+                    <td>@costo.NombreUsuario</td>
                     <td>@(costo.Aprobado ? "Aprobado" : "No aprobado")</td>
-                    <td class="text-center">
-                        <a class="btn btn-default btn-costo-detalle" href="@Url.Action("Detalle", new { id = costo.CostoId })"><span class="glyphicon glyphicon-list"></span></a>
+                    <td class="text-center" style="width: 200px;">
+                        <a class="btn btn-default btn-costo-detalle" href="@Url.Action("Detalle", new {id = costo.CostoId})"><span class="glyphicon glyphicon-list"></span></a>
+                        <a class="btn btn-default btn-costo-editar" href="@Url.Action("Editar", new {id = costo.CostoId})"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-default btn-costo-eliminar" href="@Url.Action("Eliminar", new {id = costo.CostoId})"><span class="glyphicon glyphicon-trash"></span></a>
                         @if (!costo.Aprobado)
                         {
-                            <a class="btn btn-default btn-costo-eliminar" href="@Url.Action("Eliminar", new {id = costo.CostoId})"><span class="glyphicon glyphicon-trash"></span></a>
                             <a class="btn btn-default btn-costo-aprobar" href="@Url.Action("Aprobar", new { id = costo.CostoId })"><span class="glyphicon glyphicon-ok"></span></a>
                         }
                     </td>

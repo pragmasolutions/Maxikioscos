@@ -161,7 +161,7 @@
             <PropertyRef Name="CostoId" />
           </Key>
           <Property Name="CostoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CierreCajaId" Type="int" Nullable="false" />
+          <Property Name="CierreCajaId" Type="int" />
           <Property Name="CategoriaCostoId" Type="int" Nullable="false" />
           <Property Name="Observaciones" Type="varchar" MaxLength="5000" />
           <Property Name="NroComprobante" Type="varchar" MaxLength="50" />
@@ -172,6 +172,8 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="UsuarioId" Type="int" />
+          <Property Name="TurnoId" Type="int" />
         </EntityType>
         <EntityType Name="Cuenta">
           <Key>
@@ -936,7 +938,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Costo_CierreCaja">
-          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="1" />
+          <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="0..1" />
           <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CierreCaja">
@@ -944,6 +946,30 @@
             </Principal>
             <Dependent Role="Costo">
               <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_Turno">
+          <End Role="Turno" Type="Self.Turno" Multiplicity="0..1" />
+          <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="TurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="UsuarioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2004,6 +2030,14 @@
             <End Role="CierreCaja" EntitySet="CierreCaja" />
             <End Role="Costo" EntitySet="Costo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Costo_Turno" Association="Self.FK_Costo_Turno">
+            <End Role="Turno" EntitySet="Turno" />
+            <End Role="Costo" EntitySet="Costo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Costo_Usuario" Association="Self.FK_Costo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Costo" EntitySet="Costo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cuenta_MotivoCorreccion" Association="Self.FK_Cuenta_MotivoCorreccion">
             <End Role="MotivoCorreccion" EntitySet="MotivoCorreccion" />
             <End Role="Cuenta" EntitySet="Cuenta" />
@@ -2839,6 +2873,14 @@
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <AssociationSet Name="FK_Costo_Usuario" Association="MaxiKioscosModel.FK_Costo_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Costo" EntitySet="Costos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Costo_Turno" Association="MaxiKioscosModel.FK_Costo_Turno">
+            <End Role="Turno" EntitySet="Turnos" />
+            <End Role="Costo" EntitySet="Costos" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3176,6 +3218,7 @@
           <NavigationProperty Name="ControleStock" Relationship="MaxiKioscosModel.FK_ControlStock_Usuario" FromRole="Usuario" ToRole="ControlStock" />
           <NavigationProperty Name="Facturas" Relationship="MaxiKioscosModel.FK_Factura_Usuario" FromRole="Usuario" ToRole="Factura" />
           <NavigationProperty Name="Transferencias" Relationship="MaxiKioscosModel.FK_Transferencia_Usuario" FromRole="Usuario" ToRole="Transferencia" />
+          <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Usuario" FromRole="Usuario" ToRole="Costo" />
         </EntityType>
         <EntityType Name="Venta">
           <Key>
@@ -3926,6 +3969,7 @@
           <Property Name="Desde" Type="Time" Nullable="false" Precision="0" />
           <Property Name="Hasta" Type="Time" Nullable="false" Precision="0" />
           <NavigationProperty Name="MaxiKioscoTurnos" Relationship="MaxiKioscosModel.FK_MaxiKioscoTurno_Turno" FromRole="Turno" ToRole="MaxiKioscoTurno" />
+          <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Turno" FromRole="Turno" ToRole="Costo" />
         </EntityType>
         <EntityType Name="CorreccionStock">
           <Key>
@@ -4810,7 +4854,7 @@
             <PropertyRef Name="CostoId" />
           </Key>
           <Property Name="CostoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CierreCajaId" Type="Int32" Nullable="false" />
+          <Property Name="CierreCajaId" Type="Int32" />
           <Property Name="CategoriaCostoId" Type="Int32" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <Property Name="NroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -4823,6 +4867,10 @@
           <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
           <NavigationProperty Name="CategoriaCosto" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="Costo" ToRole="CategoriaCosto" />
           <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Costo_CierreCaja" FromRole="Costo" ToRole="CierreCaja" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="MaxiKioscosModel.FK_Costo_Usuario" FromRole="Costo" ToRole="Usuario" />
+          <Property Name="TurnoId" Type="Int32" />
+          <NavigationProperty Name="Turno" Relationship="MaxiKioscosModel.FK_Costo_Turno" FromRole="Costo" ToRole="Turno" />
         </EntityType>
         <EntityType Name="RetiroPersonal">
           <Key>
@@ -4871,7 +4919,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Costo_CierreCaja">
-          <End Type="MaxiKioscosModel.CierreCaja" Role="CierreCaja" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.CierreCaja" Role="CierreCaja" Multiplicity="0..1" />
           <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CierreCaja">
@@ -4936,6 +4984,30 @@
           <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <Association Name="FK_Costo_Usuario">
+          <End Type="MaxiKioscosModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_Turno">
+          <End Type="MaxiKioscosModel.Turno" Role="Turno" Multiplicity="0..1" />
+          <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turno">
+              <PropertyRef Name="TurnoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="TurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6084,6 +6156,8 @@
           <EntitySetMapping Name="Costos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Costo">
               <MappingFragment StoreEntitySet="Costo">
+                <ScalarProperty Name="TurnoId" ColumnName="TurnoId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />

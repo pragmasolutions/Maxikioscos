@@ -17,6 +17,7 @@ namespace MaxiKioscos.Entidades
         public Turno()
         {
             this.MaxiKioscoTurnos = new HashSet<MaxiKioscoTurno>();
+            this.Costoes = new HashSet<Costo>();
         }
     
         public int TurnoId { get; set; }
@@ -25,5 +26,6 @@ namespace MaxiKioscos.Entidades
         public System.TimeSpan Hasta { get; set; }
     
         public virtual ICollection<MaxiKioscoTurno> MaxiKioscoTurnos { get; set; }
+        public virtual ICollection<Costo> Costoes { get; set; }
     }
 }

@@ -40,15 +40,21 @@ namespace MaxiKioscos.Web.Models
         [DisplayName("Categoría")]
         [UIHint("CategoriaCostoId")]
         public int? CategoriaCostoId { get; set; }
+
+        [DisplayName("Mostrar solo Gastos Generales")]
+        public bool SoloGastosGenerales { get; set; }
         
         public override Expression<Func<Costo, bool>> GetFilterExpression()
         {
             return c => (!this.Desde.HasValue || this.Desde.Value <= c.Fecha)
                         && (!this.Hasta.HasValue || this.Hasta.Value >= c.Fecha)
-                        && (!this.UsuarioId.HasValue || this.UsuarioId.Value == c.CierreCaja.UsuarioId)
+                        && (!this.UsuarioId.HasValue 
+                                || (c.CierreCaja != null && c.CierreCaja.UsuarioId == this.UsuarioId)
+                                || c.UsuarioId == this.UsuarioId)
                         && (!this.MaxiKioscoId.HasValue || this.MaxiKioscoId == c.CierreCaja.MaxiKioskoId)
                         && (!this.CategoriaCostoId.HasValue || this.CategoriaCostoId == c.CategoriaCostoId)
                         && (string.IsNullOrEmpty(this.NroComprobante) || c.NroComprobante.ToLower().StartsWith(this.NroComprobante.ToLower()))
+                        && (!SoloGastosGenerales || (SoloGastosGenerales && c.CierreCajaId == null && c.UsuarioId == null))
                         && (this.Estado == null || (this.Estado == true && c.Aprobado) || (this.Estado == false && !c.Aprobado));
         }
 

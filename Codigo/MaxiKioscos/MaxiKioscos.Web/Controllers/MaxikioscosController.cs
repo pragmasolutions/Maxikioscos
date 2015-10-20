@@ -20,7 +20,7 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Index(int? page)
         {
-            var maxiKioscos = Uow.MaxiKioscos.Listado()
+            var maxiKioscos = Uow.MaxiKioscos.Listado().ToList()
                 .Where(m => m.CuentaId == UsuarioActual.CuentaId);
 
             var lista = maxiKioscos.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);

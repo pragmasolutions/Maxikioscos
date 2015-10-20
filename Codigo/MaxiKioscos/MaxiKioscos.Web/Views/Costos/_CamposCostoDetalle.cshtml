@@ -18,24 +18,47 @@
         @Html.Label("Caregoría")
         @Html.DisplayFor(model => model.CategoriaCosto.Descripcion)
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Monto)
-        @Html.DisplayFor(model => model.Monto)
-    </div>
+    @if (!Model.EsGastoGeneral)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto)
+            @Html.DisplayFor(model => model.Monto)
+        </div>
+    }
+    
 </div>
 <div class="col-lg-6">
-    <div class="form-group">
-        @Html.LabelFor(model => model.Fecha)
-        @Html.DisplayFor(model => model.Fecha)
-    </div>
-    <div class="form-group">
-        @Html.Label("Maxikiosco")
-        @Html.DisplayFor(model => model.CierreCaja.MaxiKiosco.Nombre)
-    </div>
-    <div class="form-group">
-        @Html.Label("Usuario")
-        @Html.DisplayFor(model => model.CierreCaja.Usuario.NombreUsuario)
-    </div>
+    @if (Model.EsGastoGeneral)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto)
+            @Html.DisplayFor(model => model.Monto)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha)
+            @Html.DisplayFor(model => model.Fecha)
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fecha)
+            @Html.DisplayFor(model => model.Fecha)
+        </div>
+        <div class="form-group">
+            @Html.Label("Maxikiosco")
+            @Html.DisplayFor(model => model.CierreCaja.MaxiKiosco.Nombre)
+        </div>
+        <div class="form-group">
+            @Html.Label("Usuario")
+            @Html.DisplayFor(model => model.CierreCaja.Usuario.NombreUsuario)
+        </div>
+        <div class="form-group">
+            @Html.Label("Turno")
+            @Html.DisplayFor(model => model.Turno.Descripcion)
+        </div>
+    }
 </div>
 
 

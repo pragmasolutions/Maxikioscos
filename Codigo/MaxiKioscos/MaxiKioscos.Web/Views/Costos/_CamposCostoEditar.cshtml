@@ -1,0 +1,74 @@
+﻿@model MaxiKioscos.Entidades.Costo
+@Html.HiddenFor(model => model.CostoId)
+@Html.HiddenFor(model => model.Identifier)
+@Html.HiddenFor(model => model.Desincronizado)
+@Html.HiddenFor(model => model.Eliminado)
+@Html.HiddenFor(model => model.CierreCajaId)
+
+@if (Model.CierreCaja == null)
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha)
+        @Html.EditorFor(model => model.Fecha)
+        @Html.ValidationMessageFor(model => model.Fecha)
+    </div>
+}
+else
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha)
+        @Html.DisplayFor(model => model.FechaFormateada)
+        @Html.HiddenFor(model => model.Fecha)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Usuario")
+        @Html.DisplayFor(model => model.NombreUsuario)
+    </div>
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Monto)
+    @Html.EditorFor(model => model.Monto)
+    @Html.ValidationMessageFor(model => model.Monto)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.CategoriaCostoId)<br />
+    @Html.EditorFor(model => model.CategoriaCostoId)
+    @Html.ValidationMessageFor(model => model.CategoriaCostoId)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.NroComprobante)
+    @Html.EditorFor(model => model.NroComprobante)
+    @Html.ValidationMessageFor(model => model.NroComprobante)
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Aprobado)<br/>
+    @Html.CheckBoxFor(model => model.Aprobado)
+    @Html.ValidationMessageFor(model => model.Aprobado)
+</div>
+
+@if (Model.CierreCajaId == null)
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.EsGastoGeneral)<br />
+        @Html.CheckBoxFor(model => model.EsGastoGeneral)
+        @Html.ValidationMessageFor(model => model.EsGastoGeneral)
+    </div>
+    <div class="form-group para-gasto-general">
+        @Html.LabelFor(model => model.UsuarioId)<br/>
+        @Html.EditorFor(model => model.UsuarioId)
+        @Html.ValidationMessageFor(model => model.UsuarioId)
+    </div>
+    <div class="form-group para-gasto-general">
+        @Html.LabelFor(model => model.TurnoId)<br />
+        @Html.EditorFor(model => model.TurnoId)
+        @Html.ValidationMessageFor(model => model.TurnoId)
+    </div>
+}
+else
+{
+    @Html.HiddenFor(model => model.EsGastoGeneral)
+    @Html.HiddenFor(model => model.UsuarioId)
+}
+

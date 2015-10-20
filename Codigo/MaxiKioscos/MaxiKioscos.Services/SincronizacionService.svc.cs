@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Compilation;
 using log4net;
+using Maxikioscos.Comun.Extensions;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Services.Contracts;
@@ -235,7 +236,7 @@ namespace MaxiKioscos.Services
         {
             //Actualizo el estado de kiosco
             var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxikioscoIdentifier);
-            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO);
+            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO).GetValueOrDefault().ToUniversalTime();
             try
             {
                 Uow.Commit();

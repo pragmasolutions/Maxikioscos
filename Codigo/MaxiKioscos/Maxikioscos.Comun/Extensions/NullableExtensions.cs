@@ -46,5 +46,6 @@ namespace Maxikioscos.Comun.Extensions
         {
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0, 0);
         }
+
     }
 }

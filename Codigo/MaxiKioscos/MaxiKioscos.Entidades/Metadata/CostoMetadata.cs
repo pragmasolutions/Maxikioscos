@@ -13,6 +13,25 @@ namespace MaxiKioscos.Entidades
         {
             get { return Aprobado ? "Aprobado" : "No aprobado"; }
         }
+
+        public string NombreUsuario
+        {
+            get
+            {
+                if (CierreCaja != null)
+                    return CierreCaja.Usuario.NombreUsuario;
+                if (Usuario != null)
+                    return Usuario.NombreUsuario;
+                return string.Empty;
+            }
+        }
+
+        public bool EsGastoGeneral { get; set; }
+
+        public string FechaFormateada
+        {
+            get { return Fecha.ToShortDateString() + " " + Fecha.ToShortTimeString(); }
+        }
     }
 
     public class CostoMetadata
@@ -21,11 +40,29 @@ namespace MaxiKioscos.Entidades
         [UIHint("Date")]
         public DateTime Fecha { get; set; }
 
-        [DisplayName("Importe Total")]
+        [DisplayName("Monto")]
         [UIHint("Currency")]
         [Required(ErrorMessage = "Debe ingresar un monto")]
         [Range(1, double.MaxValue, ErrorMessage = "Debe ingresar un monto")]
         public decimal Monto { get; set; }
 
+        [DisplayName("Gasto General")]
+        public bool EsGastoGeneral { get; set; }
+
+        [DisplayName("Nro. Comprobante")]
+        public string NroComprobante { get; set; }
+
+        [DisplayName("Usuario")]
+        [UIHint("Usuario")]
+        public int? UsuarioId { get; set; }
+
+        [DisplayName("Categoría")]
+        [UIHint("CategoriaCostoId")]
+        [Required(ErrorMessage = "Debe seleccionar una categoría")]
+        public int CategoriaCostoId { get; set; }
+
+        [DisplayName("Turno")]
+        [UIHint("Turno")]
+        public int? TurnoId { get; set; }
     }
 }

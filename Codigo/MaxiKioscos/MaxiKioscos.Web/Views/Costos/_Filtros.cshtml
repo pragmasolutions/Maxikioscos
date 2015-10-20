@@ -16,19 +16,28 @@
         <table style="width: 100%;" class="table-filtros">
             <tr>
                 <td>
-                    @Html.EditorFor(model => model.Estado)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Desde, new { @class = "label-inline" })
+                        <div class="form-group date-container">
+                            @Html.EditorFor(model => model.Desde)
+                        </div>
+                        @Html.LabelFor(model => model.Hasta, new { @class = "label-inline" })
+                        <div class="form-group date-container">
+                            @Html.EditorFor(model => model.Hasta)
+                        </div>
+                    </div>
                     @if (!IsAjax)
                     {
                         <text>
                             @section scripts
                                 {
-                                @Html.SetFocusTo(model => model.Estado)
+                                @Html.SetFocusTo(model => model.Desde)
                             }
                         </text>
                     }
                     else
                     {
-                        @Html.SetFocusTo(model => model.Estado)
+                        @Html.SetFocusTo(model => model.Desde)
                     }
                     
                 </td>
@@ -49,20 +58,14 @@
                     </div>
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
+                    @Html.EditorFor(model => model.Estado)
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Desde, new { @class = "label-inline" })
-                        <div class="form-group date-container">
-                            @Html.EditorFor(model => model.Desde)
-                        </div>
-                        @Html.LabelFor(model => model.Hasta, new { @class = "label-inline" })
-                        <div class="form-group date-container">
-                            @Html.EditorFor(model => model.Hasta)
-                        </div>
+                        @Html.CheckBoxFor(model => model.SoloGastosGenerales)
+                        @Html.LabelFor(model => model.SoloGastosGenerales)
                     </div>
                 </td>
                 <td>
@@ -74,6 +77,9 @@
                     <div class="form-group">
                         @Html.EditorFor(model => model.CategoriaCostoId)
                     </div>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>&nbsp;&nbsp;Actualizar</button>
                 </td>
             </tr>
         </table>

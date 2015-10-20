@@ -138,8 +138,7 @@ namespace MaxiKioscos.Entidades
                 if (!ProveedorProductos.Any())
                     return null;
 
-                var prod = ProveedorProductos.FirstOrDefault(pp => pp.FechaUltimaModificacion == ProveedorProductos.Max(p => p.FechaUltimaModificacion));
-                return prod.FechaUltimaModificacion;
+                return ProveedorProductos.Max(pp => pp.FechaUltimoCambioCosto);
             }
         }
 
