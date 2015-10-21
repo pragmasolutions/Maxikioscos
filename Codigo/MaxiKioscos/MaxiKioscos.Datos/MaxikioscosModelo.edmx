@@ -174,6 +174,7 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="UsuarioId" Type="int" />
           <Property Name="TurnoId" Type="int" />
+          <Property Name="MaxikioscoId" Type="int" />
         </EntityType>
         <EntityType Name="Cuenta">
           <Key>
@@ -625,6 +626,7 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Desde" Type="time" Precision="0" Nullable="false" />
           <Property Name="Hasta" Type="time" Precision="0" Nullable="false" />
+          <Property Name="HoraMedia" Type="time" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -946,6 +948,18 @@
             </Principal>
             <Dependent Role="Costo">
               <PropertyRef Name="CierreCajaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_Maxikiosco">
+          <End Role="MaxiKiosco" Type="Self.MaxiKiosco" Multiplicity="0..1" />
+          <End Role="Costo" Type="Self.Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaxiKiosco">
+              <PropertyRef Name="MaxiKioscoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="MaxikioscoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2030,6 +2044,10 @@
             <End Role="CierreCaja" EntitySet="CierreCaja" />
             <End Role="Costo" EntitySet="Costo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Costo_Maxikiosco" Association="Self.FK_Costo_Maxikiosco">
+            <End Role="MaxiKiosco" EntitySet="MaxiKiosco" />
+            <End Role="Costo" EntitySet="Costo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Costo_Turno" Association="Self.FK_Costo_Turno">
             <End Role="Turno" EntitySet="Turno" />
             <End Role="Costo" EntitySet="Costo" />
@@ -2881,6 +2899,10 @@
             <End Role="Turno" EntitySet="Turnos" />
             <End Role="Costo" EntitySet="Costos" />
           </AssociationSet>
+          <AssociationSet Name="FK_Costo_Maxikiosco" Association="MaxiKioscosModel.FK_Costo_Maxikiosco">
+            <End Role="MaxiKiosco" EntitySet="MaxiKioscoes" />
+            <End Role="Costo" EntitySet="Costos" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3055,6 +3077,7 @@
           <NavigationProperty Name="Transferencias1" Relationship="MaxiKioscosModel.FK_Transferencia_Origen" FromRole="MaxiKiosco" ToRole="Transferencia" />
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
           <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
           </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -3970,6 +3993,7 @@
           <Property Name="Hasta" Type="Time" Nullable="false" Precision="0" />
           <NavigationProperty Name="MaxiKioscoTurnos" Relationship="MaxiKioscosModel.FK_MaxiKioscoTurno_Turno" FromRole="Turno" ToRole="MaxiKioscoTurno" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Turno" FromRole="Turno" ToRole="Costo" />
+          <Property Name="HoraMedia" Type="Time" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="CorreccionStock">
           <Key>
@@ -4871,6 +4895,8 @@
           <NavigationProperty Name="Usuario" Relationship="MaxiKioscosModel.FK_Costo_Usuario" FromRole="Costo" ToRole="Usuario" />
           <Property Name="TurnoId" Type="Int32" />
           <NavigationProperty Name="Turno" Relationship="MaxiKioscosModel.FK_Costo_Turno" FromRole="Costo" ToRole="Turno" />
+          <Property Name="MaxikioscoId" Type="Int32" />
+          <NavigationProperty Name="MaxiKiosco" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="Costo" ToRole="MaxiKiosco" />
         </EntityType>
         <EntityType Name="RetiroPersonal">
           <Key>
@@ -5005,6 +5031,18 @@
             </Principal>
             <Dependent Role="Costo">
               <PropertyRef Name="TurnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Costo_Maxikiosco">
+          <End Type="MaxiKioscosModel.MaxiKiosco" Role="MaxiKiosco" Multiplicity="0..1" />
+          <End Type="MaxiKioscosModel.Costo" Role="Costo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaxiKiosco">
+              <PropertyRef Name="MaxiKioscoId" />
+            </Principal>
+            <Dependent Role="Costo">
+              <PropertyRef Name="MaxikioscoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5586,6 +5624,7 @@
           <EntitySetMapping Name="Turnos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Turno">
               <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="HoraMedia" ColumnName="HoraMedia" />
                 <ScalarProperty Name="Hasta" ColumnName="Hasta" />
                 <ScalarProperty Name="Desde" ColumnName="Desde" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -6156,6 +6195,7 @@
           <EntitySetMapping Name="Costos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Costo">
               <MappingFragment StoreEntitySet="Costo">
+                <ScalarProperty Name="MaxikioscoId" ColumnName="MaxikioscoId" />
                 <ScalarProperty Name="TurnoId" ColumnName="TurnoId" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />

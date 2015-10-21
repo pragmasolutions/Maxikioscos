@@ -28,11 +28,11 @@
             @foreach (var costo in Model.List)
             {
                 <tr @GetTieneCompraClass(costo)>
-                    <td>@costo.Fecha.ToShortDateString()</td>
+                    <td>@costo.FechaFormateada</td>
                     <td>@costo.CategoriaCosto.Descripcion</td>
                     <td>@costo.NroComprobante</td>
                     <td>$@costo.Monto.ToString("n2")</td>
-                    <td>@(costo.CierreCaja == null ? string.Empty : costo.CierreCaja.MaxiKiosco.Nombre)</td>
+                    <td>@costo.MaxiKioscoNombre</td>
                     <td>@costo.NombreUsuario</td>
                     <td>@(costo.Aprobado ? "Aprobado" : "No aprobado")</td>
                     <td class="text-center" style="width: 200px;">

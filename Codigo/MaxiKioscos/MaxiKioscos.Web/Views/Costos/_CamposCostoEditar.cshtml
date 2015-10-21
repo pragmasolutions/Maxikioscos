@@ -61,9 +61,14 @@ else
         @Html.ValidationMessageFor(model => model.UsuarioId)
     </div>
     <div class="form-group para-gasto-general">
-        @Html.LabelFor(model => model.TurnoId)<br />
+        @Html.LabelFor(model => model.TurnoId)<br/>
         @Html.EditorFor(model => model.TurnoId)
         @Html.ValidationMessageFor(model => model.TurnoId)
+    </div>
+    <div class="form-group para-gasto-general">
+        @Html.LabelFor(model => model.MaxikioscoId)<br />
+        @Html.EditorFor(model => model.MaxikioscoId)
+        @Html.ValidationMessageFor(model => model.MaxikioscoId)
     </div>
 }
 else

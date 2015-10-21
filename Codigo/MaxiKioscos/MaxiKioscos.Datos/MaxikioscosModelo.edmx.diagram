@@ -134,6 +134,7 @@
         <AssociationConnector Association="MaxiKioscosModel.FK_RetiroPersonalProducto_RetiroPersonal" />
         <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Usuario" />
         <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Turno" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Maxikiosco" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

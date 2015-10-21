@@ -26,11 +26,29 @@ namespace MaxiKioscos.Entidades
             }
         }
 
+        public string MaxiKioscoNombre
+        {
+            get
+            {
+                if (CierreCaja != null)
+                    return CierreCaja.MaxiKiosco.Nombre;
+                if (MaxiKiosco != null)
+                    return MaxiKiosco.Nombre;
+                return string.Empty;
+            }
+        }
+
         public bool EsGastoGeneral { get; set; }
 
         public string FechaFormateada
         {
-            get { return Fecha.ToShortDateString() + " " + Fecha.ToShortTimeString(); }
+            get
+            {
+                DateTime fecha = Fecha;
+                if (CierreCajaId == null && Turno != null)
+                    fecha = new DateTime(Fecha.Year, fecha.Month, Fecha.Day, Turno.HoraMedia.Hours, Turno.HoraMedia.Minutes, 0, 0);
+                return fecha.ToShortDateString() + " " + fecha.ToShortTimeString();
+            }
         }
     }
 
@@ -64,5 +82,9 @@ namespace MaxiKioscos.Entidades
         [DisplayName("Turno")]
         [UIHint("Turno")]
         public int? TurnoId { get; set; }
+
+        [DisplayName("Maxikiosco")]
+        [UIHint("MaxiKiosco")]
+        public int? MaxikioscoId { get; set; }
     }
 }

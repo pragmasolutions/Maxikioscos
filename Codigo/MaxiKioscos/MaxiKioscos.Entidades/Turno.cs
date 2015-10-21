@@ -24,6 +24,7 @@ namespace MaxiKioscos.Entidades
         public string Descripcion { get; set; }
         public System.TimeSpan Desde { get; set; }
         public System.TimeSpan Hasta { get; set; }
+        public System.TimeSpan HoraMedia { get; set; }
     
         public virtual ICollection<MaxiKioscoTurno> MaxiKioscoTurnos { get; set; }
         public virtual ICollection<Costo> Costoes { get; set; }

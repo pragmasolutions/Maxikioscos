@@ -37,7 +37,8 @@ namespace MaxiKioscos.Web.Controllers
             };
 
             IQueryable<Costo> costos = Uow.Costos.Listado(c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno)
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, 
+                                            c => c.Turno, c => c.MaxiKiosco)
                 .Where(model.Filtros.GetFilterExpression())
                 .OrderBy(c => c.Aprobado).ThenByDescending(f => f.Fecha);
 
@@ -56,7 +57,8 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Listado(CostosFiltrosModel filtros, int? page)
         {
             var costos = Uow.Costos.Listado(c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco)
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco,
+                                            c => c.Turno, c => c.MaxiKiosco)
                 .Where(filtros.GetFilterExpression())
                 .OrderBy(c => c.Aprobado).ThenByDescending(f => f.Fecha);
 
@@ -81,7 +83,8 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Detalle(int id)
         {
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno);
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco,
+                                            c => c.Turno, c => c.MaxiKiosco);
             costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
             return PartialView(costo);
         }
@@ -89,7 +92,8 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Eliminar(int id)
         {
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
-                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco, c => c.Turno);
+                                            c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco,
+                                            c => c.Turno, c => c.MaxiKiosco);
             costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
             return PartialView(costo);
         }
@@ -151,6 +155,10 @@ namespace MaxiKioscos.Web.Controllers
                 {
                     ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");
                 }
+                if (costo.MaxikioscoId == null)
+                {
+                    ModelState.AddModelError("MaxikioscoId", "Debe seleccionar un kiosco");
+                }
             }
             if (!ModelState.IsValid)
             {
@@ -172,7 +180,8 @@ namespace MaxiKioscos.Web.Controllers
                                                     c => c.CierreCaja.MaxiKiosco,
                                                     c => c.CierreCaja.Usuario,
                                                     c => c.Usuario,
-                                                    c => c.Turno);
+                                                    c => c.Turno, 
+                                                    c => c.MaxiKiosco);
             costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
             return PartialView(costo);
         }
@@ -189,6 +198,10 @@ namespace MaxiKioscos.Web.Controllers
                 if (costo.TurnoId == null)
                 {
                     ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");
+                }
+                if (costo.MaxikioscoId == null)
+                {
+                    ModelState.AddModelError("MaxikioscoId", "Debe seleccionar un kiosco");
                 }
                 
             }

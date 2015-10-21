@@ -28,10 +28,12 @@ namespace MaxiKioscos.Entidades
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public Nullable<int> UsuarioId { get; set; }
         public Nullable<int> TurnoId { get; set; }
+        public Nullable<int> MaxikioscoId { get; set; }
     
         public virtual CategoriaCosto CategoriaCosto { get; set; }
         public virtual CierreCaja CierreCaja { get; set; }
         public virtual Usuario Usuario { get; set; }
         public virtual Turno Turno { get; set; }
+        public virtual MaxiKiosco MaxiKiosco { get; set; }
     }
 }

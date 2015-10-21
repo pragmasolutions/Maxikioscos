@@ -165,11 +165,13 @@ BEGIN
 		  WHERE CSD.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ControlStockDetalles'), TYPE),
 		(SELECT C.*, CierreCajaIdentifier = CC.Identifier,
 						CategoriaCostoIdentifier = CCO.Identifier,
-						UsuarioIdentifier = U.Identifier
+						UsuarioIdentifier = U.Identifier,
+						MaxikioscoIdentifier = M.Identifier
 		  FROM Costo C
 			LEFT JOIN CierreCaja CC ON C.CierreCajaId = CC.CierreCajaId
 			LEFT JOIN CategoriaCosto CCO ON C.CategoriaCostoId = CCO.CategoriaCostoId
 			LEFT JOIN Usuario U ON C.UsuarioId = U.UsuarioId
+			LEFT JOIN Maxikiosco M ON C.MaxikioscoId = M.MaxiKioscoId
 		  WHERE C.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Costos'), TYPE),
 		(SELECT M.*, UsuarioIdentifier = U.Identifier
 		 FROM webpages_Membership M 
