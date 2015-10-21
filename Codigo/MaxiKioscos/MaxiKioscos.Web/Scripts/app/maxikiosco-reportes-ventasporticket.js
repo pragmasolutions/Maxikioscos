@@ -39,6 +39,9 @@
         $(this).attr('href', url);
 
         $('#ReporteIframe').attr('src', url);
+        $('.download-report').each(function(i, button) {
+            $(button).attr('href', '/Reportes/GenerarVentasPorTicket?ReporteTipo=' + $(button).data().tipo + '&' + data);
+        });
         return false;
     };
 

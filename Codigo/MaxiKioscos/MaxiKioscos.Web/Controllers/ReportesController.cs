@@ -161,7 +161,7 @@ namespace MaxiKioscos.Web.Controllers
                 try
                 {
 
-                    var ventasPorTicketDataSource = Uow.Reportes.VentasPorTicket(model.CierreCajaId).ToList();
+                    var ventasPorTicketDataSource = Uow.Reportes.VentasPorTicket(model.CierreCajaId).OrderBy(x => x.FechaVenta).ToList();
 
                     var reporteFactory = new ReporteFactory();
 
@@ -205,7 +205,8 @@ namespace MaxiKioscos.Web.Controllers
                         var date = model.Hasta.GetValueOrDefault().AddDays(1);
                         model.Hasta = date.ToZeroTime();
                     }
-                    var retirosPorTicketDataSource = Uow.Reportes.RetirosPersonalesPorTicket(model.Desde, model.Hasta, model.UsuarioId).ToList();
+                    var retirosPorTicketDataSource = Uow.Reportes
+                        .RetirosPersonalesPorTicket(model.Desde, model.Hasta, model.UsuarioId).OrderBy(x => x.FechaRetiroPersonal).ToList();
 
                     var reporteFactory = new ReporteFactory();
 

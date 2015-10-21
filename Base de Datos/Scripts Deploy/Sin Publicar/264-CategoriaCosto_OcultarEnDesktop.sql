@@ -1,2 +1,0 @@
-ALTER TABLE CategoriaCosto
-ADD OcultarEnDesktop BIT NOT NULL DEFAULT(0)
