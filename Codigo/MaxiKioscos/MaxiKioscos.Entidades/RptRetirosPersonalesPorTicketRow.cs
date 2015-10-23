@@ -22,5 +22,6 @@ namespace MaxiKioscos.Entidades
         public Nullable<decimal> CostoTotal { get; set; }
         public Nullable<decimal> Ganancia { get; set; }
         public Nullable<decimal> PrecioTotal { get; set; }
+        public string Usuario { get; set; }
     }
 }

@@ -574,6 +574,9 @@
     <Content Include="SqlScripts\132-CierreCaja_CantidadDineroActual.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\143-Costos_UsuarioIdUpdate.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\142-Turnos_HoraMedia_2.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

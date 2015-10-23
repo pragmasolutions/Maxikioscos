@@ -5009,6 +5009,7 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="101" />
         </ComplexType>
         <Association Name="FK_Costo_Usuario">
           <End Type="MaxiKioscosModel.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -6269,6 +6270,7 @@
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="Ganancia" ColumnName="Ganancia" />
                 <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

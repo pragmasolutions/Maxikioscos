@@ -67,6 +67,8 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.exportarDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reconectarForzarSincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmGastos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRetiroPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbReposicionStock = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,8 +87,6 @@
             this.tsbControlStock = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.tsmRetiroPersonal = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmGastos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -102,10 +102,10 @@
             this.articulosToolStripMenuItem,
             this.comprasToolStripMenuItem,
             this.proveedoresToolStripMenuItem,
-            this.sincronizaciónToolStripMenuItem,
             this.tsmGastos,
             this.tsmRetiroPersonal,
             this.reportesToolStripMenuItem,
+            this.sincronizaciónToolStripMenuItem,
             this.tsbAcercaDe});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -389,6 +389,20 @@
             this.reconectarForzarSincronizaciónToolStripMenuItem.Text = "Reconectar Forzar Sincronización";
             this.reconectarForzarSincronizaciónToolStripMenuItem.Click += new System.EventHandler(this.reconectarForzarSincronizaciónToolStripMenuItem_Click);
             // 
+            // tsmGastos
+            // 
+            this.tsmGastos.Name = "tsmGastos";
+            this.tsmGastos.Size = new System.Drawing.Size(65, 24);
+            this.tsmGastos.Text = "Gastos";
+            this.tsmGastos.Click += new System.EventHandler(this.tsmCostos_Click);
+            // 
+            // tsmRetiroPersonal
+            // 
+            this.tsmRetiroPersonal.Name = "tsmRetiroPersonal";
+            this.tsmRetiroPersonal.Size = new System.Drawing.Size(121, 24);
+            this.tsmRetiroPersonal.Text = "Retiro Personal";
+            this.tsmRetiroPersonal.Click += new System.EventHandler(this.tsmRetiroPersonal_Click);
+            // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -556,20 +570,6 @@
             this.mdiTabStrip2.TabIndex = 8;
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
-            // 
-            // tsmRetiroPersonal
-            // 
-            this.tsmRetiroPersonal.Name = "tsmRetiroPersonal";
-            this.tsmRetiroPersonal.Size = new System.Drawing.Size(121, 24);
-            this.tsmRetiroPersonal.Text = "Retiro Personal";
-            this.tsmRetiroPersonal.Click += new System.EventHandler(this.tsmRetiroPersonal_Click);
-            // 
-            // tsmGastos
-            // 
-            this.tsmGastos.Name = "tsmGastos";
-            this.tsmGastos.Size = new System.Drawing.Size(65, 24);
-            this.tsmGastos.Text = "Gastos";
-            this.tsmGastos.Click += new System.EventHandler(this.tsmCostos_Click);
             // 
             // mdiPrincipal
             // 

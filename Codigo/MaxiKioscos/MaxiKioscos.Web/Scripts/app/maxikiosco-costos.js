@@ -44,9 +44,12 @@
             }
         },
         refreshList = function () {
-            var url = '/Costos';
+            var $form = $modal.find('form');
+            var url = '/Costos/Listado';
+            var data = $form.serialize();
+
             maxikioscoSpinner.startSpin();
-            $("#AdminContainer").load(url, function () {
+            $("#ListadoContainer").load(url + "?" + data, function () {
                 maxikioscoSpinner.stopSpin();
             });
         },
@@ -94,7 +97,7 @@
         checkGastoGeneral = function() {
             if ($(this).prop('checked')) {
                 $modalContent.find('.para-gasto-general').hide();
-                $modalContent.find('#UsuarioId').val("");
+                $modalContent.find('#MaxikioscoId').val("");
             } else {
                 $modalContent.find('.para-gasto-general').show();
             }

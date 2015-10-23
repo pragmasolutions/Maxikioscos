@@ -16,7 +16,7 @@ namespace MaxiKioscos.Entidades
                 if (UltimaConexion == null)
                     return false;
 
-                var differece = DateHelper.DifferenceInMinutes(DateTime.Now, UltimaConexion.GetValueOrDefault());
+                var differece = DateHelper.DifferenceInMinutes(DateTime.Now.ToUniversalTime(), UltimaConexion.GetValueOrDefault().ToUniversalTime());
                 return differece < 2;
             }
         }

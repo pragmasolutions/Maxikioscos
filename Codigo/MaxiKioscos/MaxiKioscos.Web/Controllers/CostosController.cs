@@ -85,7 +85,7 @@ namespace MaxiKioscos.Web.Controllers
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
                                             c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco,
                                             c => c.Turno, c => c.MaxiKiosco);
-            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.MaxikioscoId == null;
             return PartialView(costo);
         }
         
@@ -94,7 +94,7 @@ namespace MaxiKioscos.Web.Controllers
             Costo costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CategoriaCosto, c => c.CierreCaja,
                                             c => c.CierreCaja.Usuario, c => c.CierreCaja.MaxiKiosco,
                                             c => c.Turno, c => c.MaxiKiosco);
-            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.MaxikioscoId == null;
             return PartialView(costo);
         }
 
@@ -147,10 +147,6 @@ namespace MaxiKioscos.Web.Controllers
         {
             if (!costo.EsGastoGeneral)
             {
-                if (costo.UsuarioId == null)
-                {
-                    ModelState.AddModelError("UsuarioId", "Debe seleccionar un usuario");
-                }
                 if (costo.TurnoId == null)
                 {
                     ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");
@@ -182,7 +178,11 @@ namespace MaxiKioscos.Web.Controllers
                                                     c => c.Usuario,
                                                     c => c.Turno, 
                                                     c => c.MaxiKiosco);
-            costo.EsGastoGeneral = costo.CierreCaja == null && costo.UsuarioId == null;
+            costo.EsGastoGeneral = costo.CierreCaja == null && costo.MaxikioscoId == null;
+            if (costo.CierreCaja != null)
+            {
+                costo.UsuarioId = costo.CierreCaja.UsuarioId;
+            }
             return PartialView(costo);
         }
 
@@ -191,10 +191,6 @@ namespace MaxiKioscos.Web.Controllers
         {
             if (!costo.EsGastoGeneral && costo.CierreCajaId == null)
             {
-                if (costo.UsuarioId == null)
-                {
-                    ModelState.AddModelError("UsuarioId", "Debe seleccionar un usuario");
-                }
                 if (costo.TurnoId == null)
                 {
                     ModelState.AddModelError("TurnoId", "Debe seleccionar un turno");

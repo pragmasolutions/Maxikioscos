@@ -72,6 +72,7 @@ namespace MaxiKioscos.Entidades
 
         [DisplayName("Usuario")]
         [UIHint("Usuario")]
+        [Required(ErrorMessage = "Debe seleccionar un usuario")]
         public int? UsuarioId { get; set; }
 
         [DisplayName("Categoría")]
@@ -86,5 +87,8 @@ namespace MaxiKioscos.Entidades
         [DisplayName("Maxikiosco")]
         [UIHint("MaxiKiosco")]
         public int? MaxikioscoId { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string Observaciones { get; set; }
     }
 }
