@@ -87,15 +87,16 @@
                             </li>
                             <li>
                                 @Ajax.ActionLink("Negativas por Ticket", "VentasNegativasPorTicket", "Reportes",
-                                    new AjaxOptions()
-                                    {
-                                        UpdateTargetId = "AdminContainer",
-                                        HttpMethod = "Get",
-                                        InsertionMode = InsertionMode.Replace,
-                                        OnBegin = "maxikioscoSpinner.startSpin",
-                                        OnSuccess = "maxikioscoSpinner.stopSpin",
-                                        OnFailure = "maxikioscoSpinner.stopSpin"
-                                    })
+                                        new { Desde = DateTime.Now.AddMonths(-1).ToShortDateString(), Hasta = DateTime.Now.ToShortDateString() },
+                                            new AjaxOptions()
+                                                {
+                                                    UpdateTargetId = "AdminContainer",
+                                                    HttpMethod = "Get",
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    OnBegin = "maxikioscoSpinner.startSpin",
+                                                    OnSuccess = "maxikioscoSpinner.stopSpin",
+                                                    OnFailure = "maxikioscoSpinner.stopSpin"
+                                                })
                             </li>
                         </ul>
                     </li>
