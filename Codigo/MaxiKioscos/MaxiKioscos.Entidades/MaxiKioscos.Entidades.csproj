@@ -300,6 +300,9 @@
     <Compile Include="RptVentaPorTicketRow.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="RptVentasNegativasPorTicketRow.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="RptVentasPorCierreCaja.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>

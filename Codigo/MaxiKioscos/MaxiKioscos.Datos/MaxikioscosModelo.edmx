@@ -1838,6 +1838,11 @@
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="CuentaId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_VentasNegativasPorTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+          <Parameter Name="Desde" Type="datetime" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="Rpt_VentasPorCierreCaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
         </Function>
@@ -2903,6 +2908,11 @@
             <End Role="MaxiKiosco" EntitySet="MaxiKioscoes" />
             <End Role="Costo" EntitySet="Costos" />
           </AssociationSet>
+          <FunctionImport Name="RptVentasNegativasPorTicket" ReturnType="Collection(MaxiKioscosModel.RptVentasNegativasPorTicketRow)">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -5047,6 +5057,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="RptVentasNegativasPorTicketRow">
+          <Property Type="Int32" Name="Ticket" Nullable="false" />
+          <Property Type="DateTime" Name="FechaVenta" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CostoUnitario" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="101" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6263,6 +6285,22 @@
               <ComplexTypeMapping TypeName="MaxiKioscosModel.RptRetirosPersonalesPorTicketRow">
                 <ScalarProperty Name="Ticket" ColumnName="Ticket" />
                 <ScalarProperty Name="FechaRetiroPersonal" ColumnName="FechaRetiroPersonal" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="CostoUnitario" ColumnName="CostoUnitario" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="Ganancia" ColumnName="Ganancia" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptVentasNegativasPorTicket" FunctionName="MaxiKioscosModel.Store.Rpt_VentasNegativasPorTicket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentasNegativasPorTicketRow">
+                <ScalarProperty Name="Ticket" ColumnName="Ticket" />
+                <ScalarProperty Name="FechaVenta" ColumnName="FechaVenta" />
                 <ScalarProperty Name="Producto" ColumnName="Producto" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />

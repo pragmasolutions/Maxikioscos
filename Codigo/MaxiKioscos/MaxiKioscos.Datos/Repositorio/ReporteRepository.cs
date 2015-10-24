@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.ExceptionServices;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
@@ -145,6 +146,12 @@ namespace MaxiKioscos.Datos.Repositorio
         public IQueryable<RptRetirosPersonalesPorTicketRow> RetirosPersonalesPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId)
         {
             return MaxiKioscosEntities.RptRetirosPersonalesPorTicket(usuarioId, desde, hasta).AsQueryable();
+        }
+
+
+        public IQueryable<RptVentasNegativasPorTicketRow> VentasNegativasPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId)
+        {
+            return MaxiKioscosEntities.RptVentasNegativasPorTicket(usuarioId, desde, hasta).AsQueryable();
         }
     }
 }

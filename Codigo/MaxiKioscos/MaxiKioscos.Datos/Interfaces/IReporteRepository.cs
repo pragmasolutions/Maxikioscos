@@ -64,5 +64,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IQueryable<RptRetirosPersonalesRow> RetirosPersonales(DateTime? desde, DateTime? hasta, int? usuarioId);
 
         IQueryable<RptRetirosPersonalesPorTicketRow> RetirosPersonalesPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId);
+
+        IQueryable<RptVentasNegativasPorTicketRow> VentasNegativasPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId);
     }
 }
