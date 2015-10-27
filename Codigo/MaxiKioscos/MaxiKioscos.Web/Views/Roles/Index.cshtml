@@ -25,7 +25,7 @@
                             {
                                 <tr>
                                     <td>@rol.RoleName</td>
-                                    <td>@rol.ReporteRoles.Count()</td>
+                                    <td>@rol.ReporteRoles.Count(x => !x.Eliminado)</td>
                                     <td class="text-center">
                                         <a class="btn btn-default btn-rol-reportes" href="@Url.Action("Reportes", new {id = rol.RoleId})"><span class="fa fa-bar-chart-o fa-fw" title="Reportes"></span></a>
                                         <a class="btn btn-default btn-rol-permisos" href="@Url.Action("Permisos", new { id = rol.RoleId})"><span class="fa fa-key fa-fw" title="Permisos"></span></a>

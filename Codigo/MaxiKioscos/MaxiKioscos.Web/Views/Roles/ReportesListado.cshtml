@@ -8,7 +8,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a class="btn btn-default btn-volver" href="@Url.Action("Index")"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Volver a listado de roles</a>
-                <a class="btn btn-default btn-reporte-agregar" href="@Url.Action("Agregar", new { id = (int)ViewBag.RoleId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Reporte</a>
+                <a class="btn btn-default btn-reporte-agregar" href="@Url.Action("Agregar", new {id = (int) ViewBag.RoleId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Reporte</a>
             </div>
             <div class="panel-body">
                 <div class="spacer"></div>
@@ -19,3 +19,4 @@
         </div>
     </div>
 </div>
+@Html.Hidden("RoleId", (int)ViewBag.RoleId)
