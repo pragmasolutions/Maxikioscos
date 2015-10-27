@@ -1,0 +1,26 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList.Mvc
+@model List<MaxiKioscos.Entidades.ReporteRol>
+<div id="ListadoContainer" class="table-responsive">
+    <table class="table table-striped table-bordered table-hover" id="TableRoles">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Menu Padre</th>
+                <th class="columna-botones"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var reporte in Model)
+            {
+                <tr>
+                    <td>@reporte.Reporte.NombreCompleto</td>
+                    <td>@reporte.Reporte.Padre</td>
+                    <td class="text-center">
+                        <a class="btn btn-default btn-reporte-eliminar" href="@Url.Action("Eliminar", new { id = reporte.ReporteRoleId })"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

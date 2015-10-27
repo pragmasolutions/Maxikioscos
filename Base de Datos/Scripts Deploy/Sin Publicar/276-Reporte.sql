@@ -1,0 +1,19 @@
+
+CREATE TABLE dbo.Reporte
+	(
+	ReporteId int NOT NULL IDENTITY (1, 1),
+	NombreCompleto varchar(250) NOT NULL,
+	Nombre varchar(250) NOT NULL,
+	Padre varchar(100) NOT NULL,
+	Path varchar(400) NOT NULL
+	)  ON [PRIMARY]
+
+ALTER TABLE dbo.Reporte ADD CONSTRAINT
+PK_Reporte PRIMARY KEY CLUSTERED 
+(
+ReporteId
+) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+
+ALTER TABLE dbo.Reporte SET (LOCK_ESCALATION = TABLE)
+

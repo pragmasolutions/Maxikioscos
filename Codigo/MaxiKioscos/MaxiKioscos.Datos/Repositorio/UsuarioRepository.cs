@@ -42,7 +42,7 @@ namespace MaxiKioscos.Datos.Repositorio
 
         public IQueryable<Role> RolesListado()
         {
-            return MaxiKioscosEntities.webpages_Roles;
+            return MaxiKioscosEntities.webpages_Roles.Include(r => r.ReporteRoles).Include(r => r.ReporteRoles.Select(rr => rr.Reporte));
         }
 
         #endregion

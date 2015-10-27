@@ -76,6 +76,8 @@ namespace MaxiKioscos.Entidades
         public virtual DbSet<Costo> Costos { get; set; }
         public virtual DbSet<RetiroPersonal> RetirosPersonales { get; set; }
         public virtual DbSet<RetiroPersonalProducto> RetiroPersonalProductos { get; set; }
+        public virtual DbSet<Reporte> Reportes { get; set; }
+        public virtual DbSet<ReporteRol> ReporteRoles { get; set; }
     
         public virtual ObjectResult<Nullable<int>> UsuarioInsertarDependencias(Nullable<int> usuarioId, Nullable<int> roleId, string proveedoresIds)
         {

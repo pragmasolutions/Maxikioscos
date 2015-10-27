@@ -30,6 +30,7 @@ BEGIN
     (SELECT COUNT(*) FROM CategoriaCosto WHERE Desincronizado = 1) + 
     (SELECT COUNT(*) FROM Costo WHERE Desincronizado = 1) + 
     (SELECT COUNT(*) FROM ControlStock WHERE Desincronizado = 1) +  
+    (SELECT COUNT(*) FROM ReporteRol WHERE Desincronizado = 1) +  
     (SELECT COUNT(*) FROM ControlStockDetalle WHERE Desincronizado = 1), 0))
 	
 		

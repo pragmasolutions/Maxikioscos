@@ -156,6 +156,7 @@
     <Compile Include="MensajeTicketError.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\ReporteRolMetadata.cs" />
     <Compile Include="Metadata\RetiroPersonalProductoMetadata.cs" />
     <Compile Include="Metadata\RetiroPersonalMetadata.cs" />
     <Compile Include="Metadata\CostoMetadata.cs" />
@@ -241,6 +242,12 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ReponerStock.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteRol.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RetiroPersonal.cs">

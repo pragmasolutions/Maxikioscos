@@ -74,6 +74,7 @@
     <Compile Include="Interfaces\IExportacionRepository.cs" />
     <Compile Include="Interfaces\IProveedorRepository.cs" />
     <Compile Include="Interfaces\IMaxiKioscosUow.cs" />
+    <Compile Include="Interfaces\IRoleRepository.cs" />
     <Compile Include="Interfaces\IUsuarioRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="MaxiKioscosUow.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Repositorio\ProductoRepository.cs" />
     <Compile Include="Repositorio\StockRepository.cs" />
     <Compile Include="Repositorio\RetiroPersonalRepository.cs" />
+    <Compile Include="Repositorio\RoleRepository.cs" />
     <Compile Include="Repositorio\VentasRepository.cs" />
     <Compile Include="Repositorio\EFBaseRepository.cs" />
     <Compile Include="Repositorio\ReporteRepository.cs" />

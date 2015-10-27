@@ -135,6 +135,10 @@
         <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Usuario" />
         <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Turno" />
         <AssociationConnector Association="MaxiKioscosModel.FK_Costo_Maxikiosco" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Reporte" Width="1.5" PointX="6" PointY="42.875" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ReporteRol" Width="1.5" PointX="8.25" PointY="42.625" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ReporteRol_Reporte" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_ReporteRol_Rol" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

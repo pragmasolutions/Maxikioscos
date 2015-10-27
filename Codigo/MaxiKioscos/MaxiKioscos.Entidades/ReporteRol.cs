@@ -12,18 +12,17 @@ namespace MaxiKioscos.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class ReporteRol
     {
-        public Role()
-        {
-            this.Usuarios = new HashSet<Usuario>();
-            this.ReporteRoles = new HashSet<ReporteRol>();
-        }
-    
+        public int ReporteRoleId { get; set; }
         public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int ReporteId { get; set; }
+        public bool Desincronizado { get; set; }
+        public bool Eliminado { get; set; }
+        public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
+        public System.Guid Identifier { get; set; }
     
-        public virtual ICollection<Usuario> Usuarios { get; set; }
-        public virtual ICollection<ReporteRol> ReporteRoles { get; set; }
+        public virtual Reporte Reporte { get; set; }
+        public virtual Role Roles { get; set; }
     }
 }

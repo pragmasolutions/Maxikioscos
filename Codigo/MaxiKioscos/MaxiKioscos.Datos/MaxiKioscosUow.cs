@@ -1,6 +1,7 @@
 using System;
 using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Interfaces;
+using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Datos
@@ -79,6 +80,8 @@ namespace MaxiKioscos.Datos
         public IRepository<Costo> Costos { get { return GetStandardRepo<Costo>(); } }
         public IRepository<RetiroPersonal> RetirosPersonales { get { return GetStandardRepo<RetiroPersonal>(); } }
         public IRepository<RetiroPersonalProducto> RetiroPersonalProductos { get { return GetStandardRepo<RetiroPersonalProducto>(); } }
+        public IRoleRepository Roles { get { return GetRepo<IRoleRepository>(); } }
+        public IRepository<ReporteRol> ReporteRoles { get { return GetStandardRepo<ReporteRol>(); } }
         /// <summary>
         /// Save pending changes to the database
         /// </summary>

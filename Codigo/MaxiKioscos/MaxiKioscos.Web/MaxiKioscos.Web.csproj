@@ -237,6 +237,7 @@
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -376,6 +377,7 @@
     <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reportes-ventasporticket.js" />
+    <Content Include="Scripts\app\maxikiosco-roles-reportes.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias-editar.js" />
     <Content Include="Scripts\app\maxikiosco-compras-editar.remove.js" />
@@ -404,6 +406,7 @@
     <Content Include="Scripts\app\dataservices\maxikiosco.dataservice.sincronizacion.js" />
     <Content Include="Scripts\app\maxikiosco-exportacion.js" />
     <Content Include="Scripts\app\maxikiosco-excepciones-rubros.js" />
+    <Content Include="Scripts\app\maxikiosco-roles.js" />
     <Content Include="Scripts\app\maxikiosco-usuarios.js" />
     <Content Include="Scripts\app\dataservices\maxikiosco.dataservice.usuarios.js" />
     <Content Include="Reportes\VentasPorMaxikiosco.rdl">
@@ -976,6 +979,14 @@
     <Content Include="Views\Costos\Editar.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Turno.cshtml" />
     <Content Include="Views\Reportes\VentasNegativasPorTicket.cshtml" />
+    <Content Include="Views\Roles\_CamposUsuarioDetalle.cshtml" />
+    <Content Include="Views\Roles\_ReportesListado.cshtml" />
+    <Content Include="Views\Roles\Detalle.cshtml" />
+    <Content Include="Views\Roles\Editar.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\ReportesListado.cshtml" />
+    <Content Include="Views\Roles\Reportes.cshtml" />
+    <Content Include="Views\Roles\Agregar.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -152,6 +153,12 @@ namespace MaxiKioscos.Datos.Repositorio
         public IQueryable<RptVentasNegativasPorTicketRow> VentasNegativasPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId)
         {
             return MaxiKioscosEntities.RptVentasNegativasPorTicket(usuarioId, desde, hasta).AsQueryable();
+        }
+
+
+        public IList<Reporte> Listado()
+        {
+            return MaxiKioscosEntities.Reportes.ToList();
         }
     }
 }

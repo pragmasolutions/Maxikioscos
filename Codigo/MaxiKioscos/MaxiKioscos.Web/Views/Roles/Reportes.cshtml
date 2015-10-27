@@ -1,0 +1,21 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model List<MaxiKioscos.Entidades.ReporteRol>
+@{
+    ViewBag.Title = "Reportes de rol: " + ViewBag.RoleName;
+}
+
+@Html.Partial("ReportesListado")
+@Html.Modal("RolesModal")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-roles-reportes.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-roles-reportes.js")
+}

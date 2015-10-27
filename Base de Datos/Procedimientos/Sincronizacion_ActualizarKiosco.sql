@@ -67,6 +67,8 @@ BEGIN
 		EXEC dbo.Sync_ControlesStockDetalle @XML, 1
 		print('Sync_Costos')		
 		EXEC dbo.Sync_Costos @XML, 1
+		print('Sync_ReporteRoles')		
+		EXEC dbo.Sync_ReporteRoles @XML, 1
 		
 		UPDATE MaxiKiosco
 		SET UltimaSecuenciaExportacion = @Secuencia

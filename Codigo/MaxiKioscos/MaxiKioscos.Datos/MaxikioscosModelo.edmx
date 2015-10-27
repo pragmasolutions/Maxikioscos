@@ -482,6 +482,28 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ReporteId" />
+          </Key>
+          <Property Name="ReporteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Padre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteRol">
+          <Key>
+            <PropertyRef Name="ReporteRoleId" />
+          </Key>
+          <Property Name="ReporteRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="ReporteId" Type="int" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="RetiroPersonal">
           <Key>
             <PropertyRef Name="RetiroPersonalId" />
@@ -1419,6 +1441,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReporteRol_Reporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteRol" Type="Self.ReporteRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="ReporteId" />
+            </Principal>
+            <Dependent Role="ReporteRol">
+              <PropertyRef Name="ReporteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteRol_Rol">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="ReporteRol" Type="Self.ReporteRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="ReporteRol">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RetiroPersonal_CierreCaja">
           <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="1" />
           <End Role="RetiroPersonal" Type="Self.RetiroPersonal" Multiplicity="*" />
@@ -1948,6 +1994,8 @@
           <EntitySet Name="ProveedorProducto" EntityType="Self.ProveedorProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecuentoBillete" EntityType="Self.RecuentoBillete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteRol" EntityType="Self.ReporteRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonal" EntityType="Self.RetiroPersonal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonalProducto" EntityType="Self.RetiroPersonalProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -2204,6 +2252,14 @@
           <AssociationSet Name="FK_RecuentoBillete_CierreCaja" Association="Self.FK_RecuentoBillete_CierreCaja">
             <End Role="CierreCaja" EntitySet="CierreCaja" />
             <End Role="RecuentoBillete" EntitySet="RecuentoBillete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteRol_Reporte" Association="Self.FK_ReporteRol_Reporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteRol" EntitySet="ReporteRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteRol_Rol" Association="Self.FK_ReporteRol_Rol">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="ReporteRol" EntitySet="ReporteRol" />
           </AssociationSet>
           <AssociationSet Name="FK_RetiroPersonal_CierreCaja" Association="Self.FK_RetiroPersonal_CierreCaja">
             <End Role="CierreCaja" EntitySet="CierreCaja" />
@@ -2913,6 +2969,16 @@
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Reportes" EntityType="MaxiKioscosModel.Reporte" />
+          <EntitySet Name="ReporteRoles" EntityType="MaxiKioscosModel.ReporteRol" />
+          <AssociationSet Name="FK_ReporteRol_Reporte" Association="MaxiKioscosModel.FK_ReporteRol_Reporte">
+            <End Role="Reporte" EntitySet="Reportes" />
+            <End Role="ReporteRol" EntitySet="ReporteRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReporteRol_Rol" Association="MaxiKioscosModel.FK_ReporteRol_Rol">
+            <End Role="Role" EntitySet="webpages_Roles" />
+            <End Role="ReporteRol" EntitySet="ReporteRoles" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3534,6 +3600,7 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Usuarios" Relationship="MaxiKioscosModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="Usuario" />
+          <NavigationProperty Name="ReporteRoles" Relationship="MaxiKioscosModel.FK_ReporteRol_Rol" FromRole="Role" ToRole="ReporteRol" />
         </EntityType>
         <Association Name="webpages_UsersInRoles">
           <End Type="MaxiKioscosModel.Role" Role="webpages_Roles" Multiplicity="*" />
@@ -5069,6 +5136,55 @@
           <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="101" />
         </ComplexType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="ReporteId" />
+          </Key>
+          <Property Name="ReporteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Padre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ReporteRoles" Relationship="MaxiKioscosModel.FK_ReporteRol_Reporte" FromRole="Reporte" ToRole="ReporteRol" />
+        </EntityType>
+        <EntityType Name="ReporteRol">
+          <Key>
+            <PropertyRef Name="ReporteRoleId" />
+          </Key>
+          <Property Name="ReporteRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="ReporteId" Type="Int32" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Reporte" Relationship="MaxiKioscosModel.FK_ReporteRol_Reporte" FromRole="ReporteRol" ToRole="Reporte" />
+          <NavigationProperty Name="Roles" Relationship="MaxiKioscosModel.FK_ReporteRol_Rol" FromRole="ReporteRol" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_ReporteRol_Reporte">
+          <End Type="MaxiKioscosModel.Reporte" Role="Reporte" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.ReporteRol" Role="ReporteRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="ReporteId" />
+            </Principal>
+            <Dependent Role="ReporteRol">
+              <PropertyRef Name="ReporteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReporteRol_Rol">
+          <End Type="MaxiKioscosModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.ReporteRol" Role="ReporteRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="ReporteRol">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6312,6 +6428,30 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Reportes">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Padre" ColumnName="Padre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="ReporteId" ColumnName="ReporteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteRoles">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.ReporteRol">
+              <MappingFragment StoreEntitySet="ReporteRol">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="ReporteId" ColumnName="ReporteId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ReporteRoleId" ColumnName="ReporteRoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
