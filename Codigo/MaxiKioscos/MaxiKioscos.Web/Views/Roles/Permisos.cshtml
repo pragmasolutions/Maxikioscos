@@ -1,10 +1,10 @@
 ﻿@using MaxiKioscos.Web.Comun.Extensiones
-@model List<MaxiKioscos.Entidades.ReporteRol>
+@model List<MaxiKioscos.Entidades.PermisoRol>
 @{
     ViewBag.Title = ViewBag.ListAction + " de rol: " + ViewBag.RoleName;
 }
 
-@Html.Partial("ReportesListado")
+@Html.Partial("PermisosListado")
 @Html.Modal("RolesModal")
 @if (!IsAjax)
 {

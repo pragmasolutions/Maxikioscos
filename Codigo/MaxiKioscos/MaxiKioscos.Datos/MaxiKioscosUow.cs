@@ -82,6 +82,9 @@ namespace MaxiKioscos.Datos
         public IRepository<RetiroPersonalProducto> RetiroPersonalProductos { get { return GetStandardRepo<RetiroPersonalProducto>(); } }
         public IRoleRepository Roles { get { return GetRepo<IRoleRepository>(); } }
         public IRepository<ReporteRol> ReporteRoles { get { return GetStandardRepo<ReporteRol>(); } }
+        public IRepository<Permiso> Permisos { get { return GetStandardRepo<Permiso>(); } }
+        public IRepository<PermisoRol> PermisoRoles { get { return GetStandardRepo<PermisoRol>(); } }
+        
         /// <summary>
         /// Save pending changes to the database
         /// </summary>

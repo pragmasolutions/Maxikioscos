@@ -58,10 +58,17 @@ namespace MaxiKioscos.Web.Filters
 
         private string[] GetRolesForActions(string[] actions)
         {
-            return _uow.ReporteRoles.Listado(x => x.Roles,x => x.Reporte)
+            var rolesReportes = _uow.ReporteRoles.Listado(x => x.Roles,x => x.Reporte)
                     .Where(x => actions.Any(y => y.Equals(x.Reporte.NombreCompleto)))
                     .Select(x => x.Roles.RoleName)
                     .ToArray();
+
+            var rolesPermisos = _uow.PermisoRoles.Listado(x => x.Roles, x => x.Permiso)
+                    .Where(x => actions.Any(y => y.Equals(x.Permiso.Nombre)))
+                    .Select(x => x.Roles.RoleName)
+                    .ToArray();
+
+            return rolesReportes.Concat(rolesPermisos).ToArray();
         }
 
         internal static string[] SplitString(string original)

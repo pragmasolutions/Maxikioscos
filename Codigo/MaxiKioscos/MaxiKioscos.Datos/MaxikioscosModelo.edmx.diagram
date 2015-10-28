@@ -139,6 +139,10 @@
         <EntityTypeShape EntityType="MaxiKioscosModel.ReporteRol" Width="1.5" PointX="8.25" PointY="42.625" />
         <AssociationConnector Association="MaxiKioscosModel.FK_ReporteRol_Reporte" />
         <AssociationConnector Association="MaxiKioscosModel.FK_ReporteRol_Rol" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.Permiso" Width="1.5" PointX="9" PointY="38.875" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.PermisoRol" Width="1.5" PointX="11.25" PointY="42.75" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_PermisoRol_Permiso" />
+        <AssociationConnector Association="MaxiKioscosModel.FK_PermisoRol_webpages_Roles" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

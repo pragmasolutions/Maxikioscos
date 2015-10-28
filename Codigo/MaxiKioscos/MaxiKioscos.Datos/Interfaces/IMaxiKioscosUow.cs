@@ -56,5 +56,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IRepository<RetiroPersonalProducto> RetiroPersonalProductos { get; }
         IRoleRepository Roles { get; }
         IRepository<ReporteRol> ReporteRoles { get; }
+        IRepository<Permiso> Permisos { get; }
+        IRepository<PermisoRol> PermisoRoles { get; }
     }
 }

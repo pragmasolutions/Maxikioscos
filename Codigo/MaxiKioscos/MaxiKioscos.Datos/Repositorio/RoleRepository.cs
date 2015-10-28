@@ -20,7 +20,7 @@ namespace MaxiKioscos.Datos.Repositorio
 
         public override Role Obtener(int roleId)
         {
-            return MaxiKioscosEntities.webpages_Roles.Include(r => r.ReporteRoles).Include(r => r.ReporteRoles.Select(rr => rr.Reporte))
+            return MaxiKioscosEntities.webpages_Roles.Include(r => r.ReporteRoles).Include(r => r.PermisoRoles.Select(x => x.Permiso)).Include(r => r.ReporteRoles.Select(rr => rr.Reporte))
                         .FirstOrDefault(r => r.RoleId == roleId);
         }
     }

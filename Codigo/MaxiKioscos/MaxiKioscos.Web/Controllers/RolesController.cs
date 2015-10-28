@@ -34,6 +34,7 @@ namespace MaxiKioscos.Web.Controllers
             Role rol = Uow.Roles.Obtener(id);
             ViewBag.RoleName = rol.RoleName;
             ViewBag.RoleId = rol.RoleId;
+            ViewBag.ListAction = "Reportes";
             return PartialOrView(rol.ReporteRoles.Where(x => !x.Eliminado).ToList());
         }
 
@@ -95,6 +96,84 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Eliminar(int id)
         {
             Uow.ReporteRoles.Eliminar(id);
+            Uow.Commit();
+
+            return Json(new { exito = true });
+        }
+
+
+        public ActionResult Permisos(int id)
+        {
+            Role rol = Uow.Roles.Obtener(id);
+            ViewBag.RoleName = rol.RoleName;
+            ViewBag.RoleId = rol.RoleId;
+            ViewBag.ListAction = "Permisos";
+            return PartialOrView(rol.PermisoRoles.Where(x => !x.Eliminado).ToList());
+        }
+
+        public ActionResult AgregarPermiso(int id)
+        {
+            Role rol = Uow.Roles.Obtener(id);
+            var permisosListado = Uow.Permisos.Listado();
+            var list = rol.PermisoRoles.Where(rr => !rr.Eliminado).Select(r => r.PermisoId).ToList();
+
+            var sobrantes = permisosListado.Where(r => !list.Contains(r.PermisoId))
+                    .OrderBy(r => r.Nombre).ToList();
+
+            ViewBag.RoleId = id;
+            ViewBag.ListadoSobrantes = sobrantes;
+            return PartialOrView(null);
+        }
+
+        [HttpPost]
+        public ActionResult AgregarPermiso(int roleId, int? permisoId)
+        {
+            if (permisoId == null)
+            {
+                ModelState.AddModelError("PermisoId", "Por favor seleccione un permiso");
+            }
+
+            Role rol = Uow.Roles.Obtener(roleId);
+
+            var cuenta = rol.PermisoRoles.Count(x => !x.Eliminado && x.PermisoId == permisoId);
+
+            if (cuenta > 0)
+            {
+                ModelState.AddModelError("ReporteId", "El permiso seleccionado ya existe para este rol");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                var permisosListado = Uow.Permisos.Listado();
+                var list = rol.PermisoRoles.Where(x => !x.Eliminado).Select(x => x.PermisoId).ToList();
+
+                var sobrantes = permisosListado.Where(x => !list.Contains(x.PermisoId))
+                        .OrderBy(r => r.Nombre)
+                        .ToList();
+
+                ViewBag.RoleId = roleId;
+                ViewBag.ListadoSobrantes = sobrantes;
+
+                return PartialOrView(permisoId);
+            }
+
+            rol.PermisoRoles.Add(new PermisoRol()
+            {
+                RoleId = roleId,
+                Identifier = Guid.NewGuid(),
+                Desincronizado = true,
+                PermisoId = permisoId.GetValueOrDefault()
+            });
+
+            Uow.Commit();
+
+            return Json(new { exito = true });
+        }
+
+        [HttpPost]
+        public ActionResult EliminarPermiso(int id)
+        {
+            Uow.PermisoRoles.Eliminar(id);
             Uow.Commit();
 
             return Json(new { exito = true });

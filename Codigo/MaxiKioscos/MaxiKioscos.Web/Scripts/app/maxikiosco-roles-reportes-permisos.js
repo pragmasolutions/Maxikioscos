@@ -1,9 +1,9 @@
-﻿var maxikioscoAjax = function () {
+﻿(function () {
     var $modal = $("#RolesModal"),
         $modalContent = $("#RolesModal .modal-content"),
         init = function () {
-            $("#AdminContainer").unbind().on('click', 'a.btn-reporte-agregar', cargarPopup);
-            $("#ListadoContainer").unbind().on('click', 'a.btn-reporte-eliminar', eliminar);
+            $("#AdminContainer").unbind().on('click', 'a.btn-reporte-permiso-agregar', cargarPopup);
+            $("#ListadoContainer").unbind().on('click', 'a.btn-reporte-permiso-eliminar', eliminar);
             $modal.unbind().on('submit', 'form', submit);
             $("#AdminContainer").on('click', 'a.btn-volver', cargarVista);
         },
@@ -33,7 +33,9 @@
             }
         },
         refreshList = function() {
-            var url = '/Roles/Reportes/' + $('#RoleId').val();
+            var rolId = $('#RoleId').val();
+            var listAction = $('#ListAction').val();
+            var url = String.format('/Roles/{0}/{1}', listAction, rolId);
             maxikioscoSpinner.startSpin();
             $("#AdminContainer").load(url, function() {
                 maxikioscoSpinner.stopSpin();
@@ -67,4 +69,4 @@
             return false;
         }
     init();
-}();
+})();

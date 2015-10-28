@@ -156,6 +156,8 @@
     <Compile Include="MensajeTicketError.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Metadata\PermisoMetadata.cs" />
+    <Compile Include="Metadata\PermisoRolMetadata.cs" />
     <Compile Include="Metadata\ReporteRolMetadata.cs" />
     <Compile Include="Metadata\RetiroPersonalProductoMetadata.cs" />
     <Compile Include="Metadata\RetiroPersonalMetadata.cs" />
@@ -208,6 +210,12 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="OrigenTicketEnum.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permiso.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermisoRol.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">

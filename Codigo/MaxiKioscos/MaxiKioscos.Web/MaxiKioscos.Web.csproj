@@ -378,7 +378,7 @@
     <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reportes-ventasporticket.js" />
-    <Content Include="Scripts\app\maxikiosco-roles-reportes.js" />
+    <Content Include="Scripts\app\maxikiosco-roles-reportes-permisos.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias-editar.js" />
     <Content Include="Scripts\app\maxikiosco-compras-editar.remove.js" />
@@ -989,6 +989,10 @@
     <Content Include="Views\Roles\Reportes.cshtml" />
     <Content Include="Views\Roles\Agregar.cshtml" />
     <Content Include="Views\Shared\_Reportes.cshtml" />
+    <Content Include="Views\Roles\Permisos.cshtml" />
+    <Content Include="Views\Roles\PermisosListado.cshtml" />
+    <Content Include="Views\Roles\_PermisosListado.cshtml" />
+    <Content Include="Views\Roles\AgregarPermiso.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

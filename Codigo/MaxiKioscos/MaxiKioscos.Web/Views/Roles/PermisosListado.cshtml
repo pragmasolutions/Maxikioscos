@@ -1,6 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using MaxiKioscos.Web.Comun.Extensiones
-@model List<MaxiKioscos.Entidades.ReporteRol>
+@model List<MaxiKioscos.Entidades.PermisoRol>
 
 @Html.PaginaTitulo((string)ViewBag.ListAction + " de rol: " + (string)ViewBag.RoleName, "fa-users")
 <div class="row">
@@ -8,12 +8,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <a class="btn btn-default btn-volver" href="@Url.Action("Index")"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Volver a listado de roles</a>
-                <a class="btn btn-default btn-reporte-permiso-agregar" href="@Url.Action("Agregar", new {id = (int) ViewBag.RoleId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Reporte</a>
+                <a class="btn btn-default btn-reporte-permiso-agregar" href="@Url.Action("AgregarPermiso", new {id = (int) ViewBag.RoleId})"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Agregar Permiso</a>
             </div>
             <div class="panel-body">
                 <div class="spacer"></div>
                 <div class="spacer"></div>
-                @Html.Partial("_ReportesListado", Model)
+                @Html.Partial("_PermisosListado", Model)
                 <div class="spacer"></div>
             </div>
         </div>

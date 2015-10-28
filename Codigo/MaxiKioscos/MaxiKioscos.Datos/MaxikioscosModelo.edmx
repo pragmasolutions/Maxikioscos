@@ -386,6 +386,29 @@
           <Property Name="UltimoUsuarioModificacionId" Type="int" />
           <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermisoRol">
+          <Key>
+            <PropertyRef Name="PermisoRolId" />
+          </Key>
+          <Property Name="PermisoRolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="PermisoId" Type="int" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="ProductoId" />
@@ -1273,6 +1296,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PermisoRol_Permiso">
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="1" />
+          <End Role="PermisoRol" Type="Self.PermisoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="PermisoId" />
+            </Principal>
+            <Dependent Role="PermisoRol">
+              <PropertyRef Name="PermisoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisoRol_webpages_Roles">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+          <End Role="PermisoRol" Type="Self.PermisoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="PermisoRol">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Producto_Cuenta">
           <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
@@ -1988,6 +2035,8 @@
           <EntitySet Name="MotivoCorreccion" EntityType="Self.MotivoCorreccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MotivoOperacionCaja" EntityType="Self.MotivoOperacionCaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OperacionCaja" EntityType="Self.OperacionCaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermisoRol" EntityType="Self.PermisoRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductoPromocion" EntityType="Self.ProductoPromocion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
@@ -2196,6 +2245,14 @@
           <AssociationSet Name="FK_OperacionCaja_UsuarioModificador" Association="Self.FK_OperacionCaja_UsuarioModificador">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="OperacionCaja" EntitySet="OperacionCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisoRol_Permiso" Association="Self.FK_PermisoRol_Permiso">
+            <End Role="Permiso" EntitySet="Permiso" />
+            <End Role="PermisoRol" EntitySet="PermisoRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisoRol_webpages_Roles" Association="Self.FK_PermisoRol_webpages_Roles">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="PermisoRol" EntitySet="PermisoRol" />
           </AssociationSet>
           <AssociationSet Name="FK_Producto_Cuenta" Association="Self.FK_Producto_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
@@ -2979,6 +3036,16 @@
             <End Role="Role" EntitySet="webpages_Roles" />
             <End Role="ReporteRol" EntitySet="ReporteRoles" />
           </AssociationSet>
+          <EntitySet Name="Permisos" EntityType="MaxiKioscosModel.Permiso" />
+          <EntitySet Name="PermisoRoles" EntityType="MaxiKioscosModel.PermisoRol" />
+          <AssociationSet Name="FK_PermisoRol_Permiso" Association="MaxiKioscosModel.FK_PermisoRol_Permiso">
+            <End Role="Permiso" EntitySet="Permisos" />
+            <End Role="PermisoRol" EntitySet="PermisoRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermisoRol_webpages_Roles" Association="MaxiKioscosModel.FK_PermisoRol_webpages_Roles">
+            <End Role="Role" EntitySet="webpages_Roles" />
+            <End Role="PermisoRol" EntitySet="PermisoRoles" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3601,6 +3668,7 @@
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Usuarios" Relationship="MaxiKioscosModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="Usuario" />
           <NavigationProperty Name="ReporteRoles" Relationship="MaxiKioscosModel.FK_ReporteRol_Rol" FromRole="Role" ToRole="ReporteRol" />
+          <NavigationProperty Name="PermisoRoles" Relationship="MaxiKioscosModel.FK_PermisoRol_webpages_Roles" FromRole="Role" ToRole="PermisoRol" />
         </EntityType>
         <Association Name="webpages_UsersInRoles">
           <End Type="MaxiKioscosModel.Role" Role="webpages_Roles" Multiplicity="*" />
@@ -5185,6 +5253,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="PermisoRoles" Relationship="MaxiKioscosModel.FK_PermisoRol_Permiso" FromRole="Permiso" ToRole="PermisoRol" />
+        </EntityType>
+        <EntityType Name="PermisoRol">
+          <Key>
+            <PropertyRef Name="PermisoRolId" />
+          </Key>
+          <Property Name="PermisoRolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="PermisoId" Type="Int32" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Permiso" Relationship="MaxiKioscosModel.FK_PermisoRol_Permiso" FromRole="PermisoRol" ToRole="Permiso" />
+          <NavigationProperty Name="Roles" Relationship="MaxiKioscosModel.FK_PermisoRol_webpages_Roles" FromRole="PermisoRol" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_PermisoRol_Permiso">
+          <End Type="MaxiKioscosModel.Permiso" Role="Permiso" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.PermisoRol" Role="PermisoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permiso">
+              <PropertyRef Name="PermisoId" />
+            </Principal>
+            <Dependent Role="PermisoRol">
+              <PropertyRef Name="PermisoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermisoRol_webpages_Roles">
+          <End Type="MaxiKioscosModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="MaxiKioscosModel.PermisoRol" Role="PermisoRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="PermisoRol">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6449,6 +6567,31 @@
                 <ScalarProperty Name="ReporteId" ColumnName="ReporteId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="ReporteRoleId" ColumnName="ReporteRoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisos">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermisoRoles">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.PermisoRol">
+              <MappingFragment StoreEntitySet="PermisoRol">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PermisoRolId" ColumnName="PermisoRolId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
