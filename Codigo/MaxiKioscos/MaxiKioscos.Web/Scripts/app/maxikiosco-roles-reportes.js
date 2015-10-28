@@ -1,11 +1,11 @@
 ﻿var maxikioscoAjax = function () {
     var $modal = $("#RolesModal"),
         $modalContent = $("#RolesModal .modal-content"),
-        init = function() {
+        init = function () {
+            $("#AdminContainer").unbind().on('click', 'a.btn-reporte-agregar', cargarPopup);
+            $("#ListadoContainer").unbind().on('click', 'a.btn-reporte-eliminar', eliminar);
+            $modal.unbind().on('submit', 'form', submit);
             $("#AdminContainer").on('click', 'a.btn-volver', cargarVista);
-            $("#AdminContainer").on('click', 'a.btn-reporte-agregar', cargarPopup);
-            $("#ListadoContainer").on('click', 'a.btn-reporte-eliminar', eliminar);
-            $modal.on('submit', 'form', submit);
         },
         submit = function() {
             var $form = $(this);
