@@ -36,6 +36,11 @@ namespace MaxiKioscos.Entidades
         {
             get { return String.Format("{0}, {1}", Apellido, Nombre); }
         }
+
+        public bool TienePermiso(string permiso)
+        {
+            return this.Rol.PermisoRoles.Where(x => !x.Eliminado).Select(x => x.Permiso.Nombre).Any(x => x.Equals(permiso));
+        }
     }
 
     public class UsuarioMetadata

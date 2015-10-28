@@ -9,13 +9,16 @@ using System.Web.WebPages;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.GASTOS)]
     public class CostosController : BaseController
     {
         public CostosController(IMaxiKioscosUow uow)

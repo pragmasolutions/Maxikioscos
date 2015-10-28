@@ -7,10 +7,12 @@ using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Atributos;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.MAXIKIOSCOS)]
     public class MaxiKioscosController : BaseController
     {
         public MaxiKioscosController(IMaxiKioscosUow uow)

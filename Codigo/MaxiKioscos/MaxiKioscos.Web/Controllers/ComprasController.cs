@@ -7,13 +7,16 @@ using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.COMPRAS)]
     public class ComprasController : BaseController
     {
         private IComprasNegocio ComprasNegocio { get; set; }

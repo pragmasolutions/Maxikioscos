@@ -9,13 +9,16 @@ using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
 using MaxiKioscos.Reportes;
 using MaxiKioscos.Reportes.Enumeraciones;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.TRASFERENCIAS)]
     public class TransferenciasController : BaseController
     {
         private ITransferenciasNegocio TransferenciasNegocio { get; set; }

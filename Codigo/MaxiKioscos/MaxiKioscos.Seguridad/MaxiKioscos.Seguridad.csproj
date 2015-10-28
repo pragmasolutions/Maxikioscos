@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAuthService.cs" />
+    <Compile Include="MaxikioscoPermisos.cs" />
     <Compile Include="MaxikioscoRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

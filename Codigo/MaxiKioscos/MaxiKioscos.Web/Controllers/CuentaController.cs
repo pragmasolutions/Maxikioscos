@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Seguridad;
+using MaxiKioscos.Web.Comun.Atributos;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Models;
@@ -13,6 +15,7 @@ using WebMatrix.WebData;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [AjaxAuthorize(Roles = MaxikioscoRoles.AnyAdminRoles)]
     public class CuentaController : BaseController
     {
         public CuentaController(IMaxiKioscosUow uow)

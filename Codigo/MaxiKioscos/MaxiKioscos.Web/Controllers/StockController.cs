@@ -8,13 +8,16 @@ using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Infrastructure.Alerts;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.STOCK)]
     public class StocksController : BaseController
     {
         private IStockNegocio StockNegocio { get; set; }

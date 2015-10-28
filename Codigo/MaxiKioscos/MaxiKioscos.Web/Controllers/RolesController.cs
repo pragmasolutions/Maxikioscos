@@ -7,6 +7,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Filters;
@@ -16,6 +17,7 @@ using WebMatrix.WebData;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.ROLES)]
     public class RolesController : BaseController
     {
         public RolesController(IMaxiKioscosUow uow)

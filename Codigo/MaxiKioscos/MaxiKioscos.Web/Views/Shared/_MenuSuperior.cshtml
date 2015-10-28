@@ -1,4 +1,5 @@
-﻿@using MaxiKioscos.Web.Configuration
+﻿@using MaxiKioscos.Seguridad
+@using MaxiKioscos.Web.Configuration
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -26,12 +27,16 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
                 </li>
-                <li>
-                    <a data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin" 
-                       data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin" 
-                       data-ajax-update="#AdminContainer" href="/Cuenta"><i class="fa fa-gear fa-fw"></i>Configuración</a>
-                    
-                </li>
+                @if (User.IsInRole(MaxikioscoRoles.SuperAdminRole) || User.IsInRole(MaxikioscoRoles.AdministradorRole))
+                {
+                    <li>
+                        <a data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin"
+                           data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin"
+                           data-ajax-update="#AdminContainer" href="/Cuenta"><i class="fa fa-gear fa-fw"></i>Configuración</a>
+
+                    </li>
+                }
+                
                 <li class="divider"></li>
                 @using (Html.BeginForm("Logoff", "Account"))
                 {

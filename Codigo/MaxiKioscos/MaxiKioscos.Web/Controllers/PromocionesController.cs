@@ -16,9 +16,12 @@ using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Models;
 using PagedList;
 using MaxiKioscos.Negocio;
+using MaxiKioscos.Seguridad;
+using MaxiKioscos.Web.Filters;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.PROMOCIONES)]
     public class PromocionesController : BaseController
     {
         private IPromocionesNegocio PromocionesNegocio { get; set; }

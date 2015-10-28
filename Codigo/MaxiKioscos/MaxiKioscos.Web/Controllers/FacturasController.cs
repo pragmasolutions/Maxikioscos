@@ -7,13 +7,16 @@ using System.Web;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.FACTURAS)]
     public class FacturasController : BaseController
     {
         public FacturasController(IMaxiKioscosUow uow)

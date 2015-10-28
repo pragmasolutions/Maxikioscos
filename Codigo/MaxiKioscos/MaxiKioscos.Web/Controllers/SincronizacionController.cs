@@ -8,14 +8,17 @@ using Ionic.Zip;
 using MaxiKiosco.Win.Util.Helpers;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using MaxiKioscos.Web.Models.DTO;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
     public class SincronizacionController : BaseController
     {
         public SincronizacionController(IMaxiKioscosUow uow)

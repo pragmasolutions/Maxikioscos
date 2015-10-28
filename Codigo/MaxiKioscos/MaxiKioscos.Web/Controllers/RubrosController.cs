@@ -6,14 +6,17 @@ using System.Web.Mvc;
 using System.Web.UI;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 using WebMatrix.WebData;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.RUBROS)]
     public class RubrosController : BaseController
     {
         public RubrosController(IMaxiKioscosUow uow)

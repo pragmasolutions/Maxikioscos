@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using Maxikioscos.Comun.Extensions;
+using MaxiKioscos.Web.Configuration;
 
 namespace MaxiKioscos.Web.Helpers
 {
@@ -11,11 +13,18 @@ namespace MaxiKioscos.Web.Helpers
     {
         public static MvcHtmlString MenuLateralItem(this HtmlHelper helper, string url, string iconClasses, string buttonText)
         {
-            var html = String.Format("<a data-ajax=\"true\" data-ajax-begin=\"maxikioscoSpinner.startSpin\" data-ajax-failure=\"maxikioscoSpinner.stopSpin\"" 
+            var permiso = buttonText.Trim().ToUpper().RemoveWhiteSpace();
+
+            if (!UsuarioActual.Usuario.TienePermiso(permiso))
+            {
+                return MvcHtmlString.Empty;
+            }
+            
+            var html = String.Format("<li><a data-ajax=\"true\" data-ajax-begin=\"maxikioscoSpinner.startSpin\" data-ajax-failure=\"maxikioscoSpinner.stopSpin\"" 
                    + "data-ajax-method=\"Get\" data-ajax-mode=\"replace\" data-ajax-success=\"maxikioscoSpinner.stopSpin\""
                    + "data-ajax-update=\"#AdminContainer\" href=\"{0}\">"
                    + "<i class=\"{1}\"></i>&nbsp;&nbsp;{2}"
-                   + "</a>",
+                   + "</a></li>",
                    url, iconClasses, buttonText);
 
 

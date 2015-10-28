@@ -23,6 +23,8 @@ namespace MaxiKioscos.Datos.Repositorio
                 .Include(u => u.Roles)
                 .Include(u => u.Roles.Select(r => r.ReporteRoles))
                 .Include(u => u.Roles.Select(r => r.ReporteRoles.Select(rr => rr.Reporte)))
+                .Include(u => u.Roles.Select(r => r.PermisoRoles))
+                .Include(u => u.Roles.Select(r => r.PermisoRoles.Select(rr => rr.Permiso)))
                 .FirstOrDefault(u => u.NombreUsuario.ToLower() == nombreUsuario);
         }
 

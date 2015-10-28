@@ -10,14 +10,17 @@ using System.Web.UI;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
+using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Atributos;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
+using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.CONTROLDESTOCK)]
     public class ControlStockController : BaseController
     {
         private IControlStockNegocio ControlStockNegocio { get; set; }

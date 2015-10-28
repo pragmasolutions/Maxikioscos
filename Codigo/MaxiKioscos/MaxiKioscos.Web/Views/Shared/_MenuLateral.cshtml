@@ -9,33 +9,33 @@
             <li>
                 <a href="#"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Artículos<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li>@Html.MenuLateralItem("/Productos/Index", "fa fa-barcode", "Productos")</li>
-                    <li>@Html.MenuLateralItem("/Marcas/Index", "fa fa-copyright", "Marcas")</li>
-                    <li>@Html.MenuLateralItem("/Rubros/Index", "fa fa-sitemap", "Rubros")</li>
-                    <li>@Html.MenuLateralItem("/Promociones/Index", "fa fa-gift", "Promociones")</li>
-                    <li>@Html.MenuLateralItem("/Stocks/Index", "fa fa-calculator", "Stock")</li>
+                    @Html.MenuLateralItem("/Productos/Index", "fa fa-barcode", "Productos")
+                    @Html.MenuLateralItem("/Marcas/Index", "fa fa-copyright", "Marcas")
+                    @Html.MenuLateralItem("/Rubros/Index", "fa fa-sitemap", "Rubros")
+                    @Html.MenuLateralItem("/Promociones/Index", "fa fa-gift", "Promociones")
+                    @Html.MenuLateralItem("/Stocks/Index", "fa fa-calculator", "Stock")
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>@Html.MenuLateralItem("/Compras/Index", "fa fa-shopping-cart", "Compras")</li>
-            <li>@Html.MenuLateralItem("/Costos/Index", "fa fa-dollar", " Gastos")</li>
-            <li>@Html.MenuLateralItem("/Transferencias/Index", "fa fa-exchange", "Transferencias")</li>
-            <li>@Html.MenuLateralItem("/ControlStock/Index", "fa fa-check-circle-o", "Control de Stock")</li>
-            <li>@Html.MenuLateralItem("/Facturas/Index", "fa fa-file-text-o", "Facturas")</li>
-            <li>@Html.MenuLateralItem("/Excepciones/Index", "fa fa-asterisk", "Excepciones")</li>
-            <li>@Html.MenuLateralItem("/Proveedores/Index", "fa fa-truck", "Proveedores")</li>
-            <li>@Html.MenuLateralItem("/Maxikioscos/Index", "glyphicon glyphicon-home", "Maxikioscos")</li>
-            <li>@Html.MenuLateralItem("/ExcepcionesRubros/Index", "fa fa-star-half-o", "Excepciones por Rubro")</li>
-            <li>@Html.MenuLateralItem("/CategoriasCostos/Index", "glyphicon glyphicon-flag", "Categorías de Gastos")</li>
-            <li>@Html.MenuLateralItem("/Usuarios/Index", "fa fa-user", "Usuarios")</li>
-            <li>@Html.MenuLateralItem("/Roles/Index", "fa fa-users", "Roles")</li>
+            @Html.MenuLateralItem("/Compras/Index", "fa fa-shopping-cart", "Compras")
+            @Html.MenuLateralItem("/Costos/Index", "fa fa-dollar", " Gastos")
+            @Html.MenuLateralItem("/Transferencias/Index", "fa fa-exchange", "Transferencias")
+            @Html.MenuLateralItem("/ControlStock/Index", "fa fa-check-circle-o", "Control de Stock")
+            @Html.MenuLateralItem("/Facturas/Index", "fa fa-file-text-o", "Facturas")
+            @Html.MenuLateralItem("/Excepciones/Index", "fa fa-asterisk", "Excepciones")
+            @Html.MenuLateralItem("/Proveedores/Index", "fa fa-truck", "Proveedores")
+            @Html.MenuLateralItem("/Maxikioscos/Index", "glyphicon glyphicon-home", "Maxikioscos")
+            @Html.MenuLateralItem("/ExcepcionesRubros/Index", "fa fa-star-half-o", "Excepciones por Rubro")
+            @Html.MenuLateralItem("/CategoriasCostos/Index", "glyphicon glyphicon-flag", "Categorías de Gastos")
+            @Html.MenuLateralItem("/Usuarios/Index", "fa fa-user", "Usuarios")
+            @Html.MenuLateralItem("/Roles/Index", "fa fa-users", "Roles")
             @Html.Partial("_Reportes")
             <li>
                 <a href="#"><i class="glyphicon glyphicon-resize-small"></i>&nbsp;&nbsp;Sincronización<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li>@Html.MenuLateralItem("/Sincronizacion/EstadoKioscos", "fa fa-power-off", "Estado de kioscos")</li>
-                    <li>@Html.MenuLateralItem("/Sincronizacion/Index", "fa fa-cloud-download", "Log de Exportaciones")</li>
-                    <li>@Html.MenuLateralItem("/Sincronizacion/LogImportacion", "fa fa-cloud-upload", "Log de Importaciones")</li>
+                    @Html.MenuLateralItem("/Sincronizacion/EstadoKioscos", "fa fa-power-off", "Estado de kioscos")
+                    @Html.MenuLateralItem("/Sincronizacion/Index", "fa fa-cloud-download", "Log de Exportaciones")
+                    @Html.MenuLateralItem("/Sincronizacion/LogImportacion", "fa fa-cloud-upload", "Log de Importaciones")
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -48,3 +48,6 @@
     <!-- /.sidebar-collapse -->
 </nav>
 <!-- /.navbar-static-side -->
+
+
+

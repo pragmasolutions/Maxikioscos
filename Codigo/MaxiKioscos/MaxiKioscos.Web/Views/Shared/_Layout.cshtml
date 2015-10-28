@@ -59,33 +59,50 @@
 
     @RenderSection("scripts", required: false)
 
-    <script>
-        $(function () {
-            $("input[type=text]").first().focus();
-        });
-        
-        $(function() {
-            $('#MaxikioscoDefaultId').select2({ allowClear: true });
-            $('#MaxikioscoDefaultId').change(function() {
-                dataservice.usuarios.setearMaxikioscoDefaultId($(this).val());
-            });
+<script>
+    $(function() {
+        $("input[type=text]").first().focus();
+    });
 
-            $('.lnk-logoff').click(function() {
-                $(this).closest('form').submit();
-            });
+    $(function() {
+        $('#MaxikioscoDefaultId').select2({ allowClear: true });
+        $('#MaxikioscoDefaultId').change(function() {
+            dataservice.usuarios.setearMaxikioscoDefaultId($(this).val());
         });
-        
-        //Global objects.
-        var maxikiosco =  maxikiosco || { };
-            
-        maxikiosco.usuarioActual = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario));
-        maxikiosco.cuenta = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario.Cuenta));       
 
-        $(window).bind('beforeunload', function(){
-            return 'Al abandonar la página perderán los datos que no hayan sido guardados';
+        $('.lnk-logoff').click(function() {
+            $(this).closest('form').submit();
         });
-        
-    </script>
+    });
+
+    //Global objects.
+    var maxikiosco = maxikiosco || {};
+
+    maxikiosco.usuarioActual = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario));
+    maxikiosco.cuenta = @MvcHtmlString.Create(JsonHelper.ToJson(UsuarioActual.Usuario.Cuenta));
+
+    $(window).bind('beforeunload', function() {
+        return 'Al abandonar la página perderán los datos que no hayan sido guardados';
+    });
+
+     
+    //remove parents with no child menu items
+    $('#side-menu > li').each(function () {
+        var $menuItem = $(this);
+
+        var isParentItem = $('.nav-second-level', $menuItem).length > 0;
+
+        if (isParentItem) {
+
+            var hasChildMenuItem = $('.nav-second-level > li', $menuItem).length > 0;
+
+            if (!hasChildMenuItem) {
+                $menuItem.remove();
+            }
+        }
+    });
+
+</script>
 
 </body>
 </html>

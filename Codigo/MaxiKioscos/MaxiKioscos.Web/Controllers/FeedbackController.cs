@@ -15,12 +15,14 @@ using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using Maxikioscos.Comun.Logger;
+using MaxiKioscos.Seguridad;
 using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
     [Authorize]
     //[InitializeSimpleMembership]
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.TICKETS)]
     public class FeedbackController : BaseController
     {
         private readonly IEmailNotificationService _notificationService;

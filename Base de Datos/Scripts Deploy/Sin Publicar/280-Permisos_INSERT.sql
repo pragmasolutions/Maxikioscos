@@ -19,4 +19,37 @@ INSERT INTO [Permiso] VALUES ('SINCRONIZACION', 0, 0, GETDATE(), NEWID())
 INSERT INTO [Permiso] VALUES ('TICKETS', 0, 0, GETDATE(), NEWID())
 GO
 
+DECLARE @AdministradorId INT
+SET @AdministradorId = (SELECT TOP 1 RoleId FROM webpages_Roles WHERE RoleName = 'Administrador')
+INSERT INTO PermisoRol ([RoleId],
+						[PermisoId],
+						[Desincronizado],
+						[Eliminado],
+						[FechaUltimaModificacion],
+						[Identifier])
+SELECT @AdministradorId,
+		PermisoId,
+		1,
+		0,
+		NULL,
+		NEWID()
+FROM Permiso
+
+
+DECLARE @SuperAdministradorId INT
+SET @SuperAdministradorId = (SELECT TOP 1 RoleId FROM webpages_Roles WHERE RoleName = 'SuperAdministrador')
+INSERT INTO PermisoRol ([RoleId],
+						[PermisoId],
+						[Desincronizado],
+						[Eliminado],
+						[FechaUltimaModificacion],
+						[Identifier])
+SELECT @SuperAdministradorId,
+		PermisoId,
+		1,
+		0,
+		NULL,
+		NEWID()
+FROM Permiso
+
 
