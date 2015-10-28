@@ -13,7 +13,7 @@
             @foreach(var permiso in Model)
             {
                 <tr>
-                    <td>@permiso.Permiso.Nombre</td>
+                    <td>@permiso.Permiso.NombreCompleto</td>
                     <td class="text-center">
                         <a class="btn btn-default btn-reporte-permiso-eliminar" href="@Url.Action("EliminarPermiso", new { id = permiso.PermisoRolId })"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>

@@ -392,6 +392,7 @@
           </Key>
           <Property Name="PermisoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
@@ -5264,6 +5265,7 @@
           <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
           <Property Name="Identifier" Type="Guid" Nullable="false" />
           <NavigationProperty Name="PermisoRoles" Relationship="MaxiKioscosModel.FK_PermisoRol_Permiso" FromRole="Permiso" ToRole="PermisoRol" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PermisoRol">
           <Key>
@@ -6573,6 +6575,7 @@
           <EntitySetMapping Name="Permisos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Permiso">
               <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />

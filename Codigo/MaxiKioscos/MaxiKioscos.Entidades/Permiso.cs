@@ -25,6 +25,7 @@ namespace MaxiKioscos.Entidades
         public bool Eliminado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public System.Guid Identifier { get; set; }
+        public string NombreCompleto { get; set; }
     
         public virtual ICollection<PermisoRol> PermisoRoles { get; set; }
     }

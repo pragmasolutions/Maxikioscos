@@ -15,7 +15,7 @@ namespace MaxiKioscos.Web.Helpers
         {
             var permiso = buttonText.Trim().ToUpper().RemoveWhiteSpace();
 
-            if (!UsuarioActual.Usuario.TienePermiso(permiso))
+            if (UsuarioActual.Usuario == null || !UsuarioActual.Usuario.TienePermiso(permiso))
             {
                 return MvcHtmlString.Empty;
             }
