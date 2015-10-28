@@ -18,7 +18,11 @@ namespace MaxiKioscos.Datos.Repositorio
             return DbContext
                 .Set<Usuario>()
                 .Select(u => u)
-                .Include(u => u.Cuenta).Include(u => u.Cuenta.MaxiKioscos).Include(u => u.Roles)
+                .Include(u => u.Cuenta)
+                .Include(u => u.Cuenta.MaxiKioscos)
+                .Include(u => u.Roles)
+                .Include(u => u.Roles.Select(r => r.ReporteRoles))
+                .Include(u => u.Roles.Select(r => r.ReporteRoles.Select(rr => rr.Reporte)))
                 .FirstOrDefault(u => u.NombreUsuario.ToLower() == nombreUsuario);
         }
 

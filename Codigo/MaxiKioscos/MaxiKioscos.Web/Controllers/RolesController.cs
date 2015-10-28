@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -15,8 +16,6 @@ using WebMatrix.WebData;
 
 namespace MaxiKioscos.Web.Controllers
 {
-    //[InitializeSimpleMembership]
-    [Authorize]
     public class RolesController : BaseController
     {
         public RolesController(IMaxiKioscosUow uow)

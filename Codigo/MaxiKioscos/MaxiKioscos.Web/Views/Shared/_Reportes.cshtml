@@ -1,0 +1,43 @@
+﻿@using MaxiKioscos.Web.Configuration
+@{
+    var reportesAgrupados = UsuarioActual.Usuario.Roles.FirstOrDefault().ReporteRoles.Where(rr => !rr.Eliminado)
+                                .Select(rr => rr.Reporte).GroupBy(x => x.Padre).ToList();
+}
+
+@if (reportesAgrupados.Any())
+{
+    <li>
+        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp;Reportes<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            @foreach (var grupo in reportesAgrupados)
+            {
+                <li>
+                    <a href="#">&nbsp;@grupo.Key<span class="fa arrow"></span></a>
+                    <ul class="nav nav-third-level">
+                        @foreach (var reporte in grupo.ToList())
+                        {
+                            <li>
+                                @Ajax.ActionLink(reporte.Nombre, reporte.Path, "Reportes",
+                                    new
+                                    {
+                                        Desde = DateTime.Now.AddMonths(-1).ToShortDateString(),
+                                        Hasta = DateTime.Now.ToShortDateString()
+                                    },
+                                    new AjaxOptions()
+                                    {
+                                        UpdateTargetId = "AdminContainer",
+                                        HttpMethod = "Get",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnBegin = "maxikioscoSpinner.startSpin",
+                                        OnSuccess = "maxikioscoSpinner.stopSpin",
+                                        OnFailure = "maxikioscoSpinner.stopSpin"
+                                    })
+                            </li>
+                        }
+                    </ul>
+
+                </li>
+            }
+        </ul>
+    </li>
+}
