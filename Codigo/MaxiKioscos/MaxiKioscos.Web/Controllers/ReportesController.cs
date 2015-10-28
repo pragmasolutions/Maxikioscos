@@ -9,6 +9,7 @@ using MaxiKioscos.Web.Models;
 using Maxikioscos.Comun.Logger;
 using System.Linq;
 using Maxikioscos.Comun.Extensions;
+using MaxiKioscos.Web.Filters;
 
 namespace MaxiKioscos.Web.Controllers
 {
@@ -22,6 +23,7 @@ namespace MaxiKioscos.Web.Controllers
             Uow = uow;
         }
 
+        [ActivityAuthorize(Actions = "Ventas por Cierre de Caja")]
         public ActionResult VentasPorCierreCaja(ReporteVentasCierreCajaFiltrosModel model)
         {
             return PartialOrView(model);
@@ -117,6 +119,7 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(reporteCierresDeCajaFiltrosModel);
         }
 
+        [ActivityAuthorize(Actions = "Ventas por Cierre de Caja")]
         public ActionResult GenerarVentasPorCierreCaja(ReporteVentasCierreCajaFiltrosModel model)
         {
             if (ModelState.IsValid)
