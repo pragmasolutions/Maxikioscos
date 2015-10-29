@@ -5,7 +5,6 @@ using MaxiKioscos.Web.Comun.Atributos;
 
 namespace MaxiKioscos.Web.Controllers
 {
-    [AjaxAuthorize(Roles = MaxikioscoRoles.AnyAdminRoles)]
     public abstract class BaseController : Controller
     {
         protected IMaxiKioscosUow Uow { get; set; }

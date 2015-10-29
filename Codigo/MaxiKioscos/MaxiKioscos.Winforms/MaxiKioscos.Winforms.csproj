@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://ganciokioscos-001-site5.smarterasp.net/</InstallUrl>
     <UpdateUrl>http://ganciokioscos-001-site5.smarterasp.net/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.49</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.50</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>50</ApplicationRevision>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

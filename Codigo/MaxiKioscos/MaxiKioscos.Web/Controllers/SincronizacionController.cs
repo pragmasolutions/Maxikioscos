@@ -18,7 +18,6 @@ using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
-    [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
     public class SincronizacionController : BaseController
     {
         public SincronizacionController(IMaxiKioscosUow uow)
@@ -26,6 +25,7 @@ namespace MaxiKioscos.Web.Controllers
             Uow = uow;
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Index(int? page)
         {
             var exportaciones = Uow.Exportaciones.ListadoPorCuenta(UsuarioActual.CuentaId).OrderByDescending(e => e.Fecha);
@@ -33,6 +33,7 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(lista);
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult LogImportacion(LogImportacionesFiltrosModel filtros,int? page)
         {
             var importaciones = Uow.Importaciones.Listado(i => i.MaxiKiosco)
@@ -48,12 +49,14 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(logImportacionesListadoModel);
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Importar()
         {
             return PartialView(new ImportacionModel());
         }
 
         [HttpPost]
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult ZipUpload(HttpPostedFileBase files)
         {
 
@@ -65,6 +68,7 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [HttpPost]
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Importar(ImportacionModel model)
         {
             if (!ModelState.IsValid)
@@ -76,6 +80,7 @@ namespace MaxiKioscos.Web.Controllers
             return Json(new {exito, error});
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         private bool SincronizarPrincipal(string nombreArchivo, out string error)
         {
             error = null;
@@ -130,6 +135,7 @@ namespace MaxiKioscos.Web.Controllers
             return result;
         }
 
+        [Authorize]
         public ActionResult EstadoKioscos()
         {
             var estados = Uow.MaxiKioscos.EstadoMaxiKioscos(UsuarioActual.CuentaId).ToList();
@@ -149,6 +155,7 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(model);
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         [HttpPost]
         public ActionResult Exportar()
         {
@@ -159,12 +166,14 @@ namespace MaxiKioscos.Web.Controllers
             return new JsonResult() { Data = new { exito }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Detalle(int secuencia)
         {
             var exportacion = Uow.Exportaciones.Obtener(e => e.Secuencia == secuencia && e.CuentaId == UsuarioActual.CuentaId, e => e.ExportacionArchivo);
             return this.Content(exportacion.ExportacionArchivo.Archivo, "text/xml");
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Descargar()
         {
             var model = new ExportacionDescargaModel() { DescargaTipo = 1 };
@@ -172,6 +181,7 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [HttpPost]
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult Descargar(ExportacionDescargaModel model)
         {
             ValidarDescarga(model);
@@ -189,6 +199,7 @@ namespace MaxiKioscos.Web.Controllers
 
         }
 
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         private void ValidarDescarga(ExportacionDescargaModel model)
         {
             if (model.DescargaTipo == 3)
@@ -213,13 +224,15 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [HttpGet]
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult DescargarArchivo(ExportacionDescargaModel model)
         {
             List<Exportacion> exportaciones = model.ObtenerExportaciones();
             var listaXmls = exportaciones.Select(e => new KeyValuePair<string, string>(e.Nombre, e.ExportacionArchivo.Archivo)).ToList();
             return ZipHelper.ZipResult(listaXmls, model.FileName);
         }
-        
+
+        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
         public ActionResult ResetearArchivosDeExportacion()
         {
             var ultimaExportacion = Uow.Exportaciones.Listado().OrderByDescending(e => e.Secuencia).FirstOrDefault();
