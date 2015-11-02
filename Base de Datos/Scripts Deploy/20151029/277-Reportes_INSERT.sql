@@ -19,38 +19,4 @@ INSERT INTO [Reporte] VALUES ('Ganacia Adicional por Excepciones en Rubros', 'Ga
 INSERT INTO [Reporte] VALUES ('Auditoría de Productos', 'Productos','Auditoría','AuditoriaProductos')
 GO
 
-DECLARE @AdministradorId INT
-SET @AdministradorId = (SELECT TOP 1 RoleId FROM webpages_Roles WHERE RoleName = 'Administrador')
-INSERT INTO ReporteRol ([RoleId],
-						[ReporteId],
-						[Desincronizado],
-						[Eliminado],
-						[FechaUltimaModificacion],
-						[Identifier])
-SELECT @AdministradorId,
-		ReporteId,
-		1,
-		0,
-		NULL,
-		NEWID()
-FROM Reporte
-
-
-
-DECLARE @SuperAdministradorId INT
-SET @SuperAdministradorId = (SELECT TOP 1 RoleId FROM webpages_Roles WHERE RoleName = 'SuperAdministrador')
-INSERT INTO ReporteRol ([RoleId],
-						[ReporteId],
-						[Desincronizado],
-						[Eliminado],
-						[FechaUltimaModificacion],
-						[Identifier])
-SELECT @SuperAdministradorId,
-		ReporteId,
-		1,
-		0,
-		NULL,
-		NEWID()
-FROM Reporte
-
 

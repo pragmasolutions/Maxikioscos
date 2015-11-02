@@ -5,7 +5,7 @@
     <DataSource Name="MaxikioscoDS">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=FEDERICO-PC\SQLEXPRESS;Initial Catalog=MaxiKioscos</ConnectString>
+        <ConnectString>Data Source=.;Initial Catalog=MaxiKioscos</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -51,12 +51,16 @@
           <DataField>CajaDiferencia</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="StockDiferencia">
-          <DataField>StockDiferencia</DataField>
+        <Field Name="StockDiferenciaPositiva">
+          <DataField>StockDiferenciaPositiva</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Diferencia">
           <DataField>Diferencia</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="StockDiferenciaNegativa">
+          <DataField>StockDiferenciaNegativa</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -106,22 +110,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.69126cm</Width>
+                  <Width>2.87695cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.119cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.49458cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.26729cm</Width>
+                  <Width>2.78046cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.49261cm</Width>
+                  <Width>2.89994cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.43959cm</Width>
+                  <Width>2.63229cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.94982cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -139,6 +146,7 @@
                                 <TextRun>
                                   <Value>Maxikiosco</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -172,6 +180,7 @@
                                 <TextRun>
                                   <Value>Mes</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -205,6 +214,7 @@
                                 <TextRun>
                                   <Value>Año</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -238,6 +248,7 @@
                                 <TextRun>
                                   <Value>Sobrante en Caja</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -269,8 +280,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Diferencia por Stock</Value>
+                                  <Value>Diferencia Stock (-)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -279,6 +291,40 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#0b62a4</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Diferencia Stock (+)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -304,6 +350,7 @@
                                 <TextRun>
                                   <Value>Diferencia</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -341,7 +388,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Maxikiosco.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -371,7 +420,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=MonthName(Fields!Mes.Value)</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -401,7 +452,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Anio.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -432,7 +485,8 @@
                                 <TextRun>
                                   <Value>=Fields!CajaDiferencia.Value</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -449,29 +503,31 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="StockDiferencia">
+                        <Textbox Name="StockDiferenciaNegativa">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!StockDiferencia.Value</Value>
+                                  <Value>=Fields!StockDiferenciaNegativa.Value</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>StockDiferencia</rd:DefaultName>
+                          <rd:DefaultName>StockDiferenciaNegativa</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -481,6 +537,42 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="StockDiferenciaPositiva">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!StockDiferenciaPositiva.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>StockDiferenciaPositiva</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -496,7 +588,8 @@
                                 <TextRun>
                                   <Value>=Fields!Diferencia.Value</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -513,6 +606,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -532,7 +626,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -562,7 +658,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -592,7 +690,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -623,7 +723,8 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!CajaDiferencia.Value)</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -640,6 +741,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -653,9 +755,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!StockDiferencia.Value)</Value>
+                                  <Value>=Sum(Fields!StockDiferenciaNegativa.Value)</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -672,6 +775,41 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!StockDiferenciaPositiva.Value)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -687,7 +825,8 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!Diferencia.Value)</Value>
                                   <Style>
-                                    <Format>c2</Format>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -704,6 +843,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -714,6 +854,7 @@
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -739,7 +880,7 @@
             <Top>2.58974cm</Top>
             <Left>0.34446cm</Left>
             <Height>1.8cm</Height>
-            <Width>17.88533cm</Width>
+            <Width>17.75304cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -941,7 +1082,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>18.62641cm</Width>
+      <Width>18.22979cm</Width>
       <Page>
         <PageFooter>
           <Height>11.43mm</Height>

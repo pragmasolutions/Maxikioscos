@@ -18,6 +18,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> Anio { get; set; }
         public decimal Diferencia { get; set; }
         public decimal CajaDiferencia { get; set; }
-        public decimal StockDiferencia { get; set; }
+        public decimal StockDiferenciaPositiva { get; set; }
+        public decimal StockDiferenciaNegativa { get; set; }
     }
 }

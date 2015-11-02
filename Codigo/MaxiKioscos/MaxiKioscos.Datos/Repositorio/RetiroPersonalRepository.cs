@@ -50,7 +50,9 @@ namespace MaxiKioscos.Datos.Repositorio
             return this.Listado(c => c.CierreCaja).Where(x => !x.Eliminado
                                                               && x.CierreCaja.UsuarioId == usuarioId
                                                               && x.FechaRetiroPersonal >= fechaInicio)
-                                                    .Sum(x => x.ImporteTotal);
+                                                    .Select(x => x.ImporteTotal)
+                                                              .DefaultIfEmpty(0)
+                                                    .Sum();
         }
     }
 }
