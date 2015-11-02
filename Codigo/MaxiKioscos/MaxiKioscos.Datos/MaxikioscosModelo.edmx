@@ -428,6 +428,7 @@
           <Property Name="PrecioConIVA" Type="money" Nullable="false" />
           <Property Name="PrecioSinIVA" Type="money" Nullable="false" />
           <Property Name="EsPromocion" Type="bit" Nullable="false" />
+          <Property Name="DisponibleEnDeposito" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductoPromocion">
           <Key>
@@ -3287,6 +3288,7 @@
           <NavigationProperty Name="PromocionesPadres" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoHijo" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="PromocionesHijos" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
+          <Property Name="DisponibleEnDeposito" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -5485,6 +5487,7 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
                 <ScalarProperty Name="EsPromocion" ColumnName="EsPromocion" />
                 <ScalarProperty Name="PrecioSinIVA" ColumnName="PrecioSinIVA" />
                 <ScalarProperty Name="PrecioConIVA" ColumnName="PrecioConIVA" />

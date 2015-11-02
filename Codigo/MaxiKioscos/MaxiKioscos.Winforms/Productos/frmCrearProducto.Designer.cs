@@ -55,6 +55,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.codigoProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.windows7Theme1 = new Telerik.WinControls.Themes.Windows7Theme();
+            this.chxDisponibleEnDeposito = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRubro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlMarca)).BeginInit();
@@ -69,13 +71,15 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.DimGray;
             this.lblTitulo.Location = new System.Drawing.Point(12, 8);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(148, 29);
+            this.lblTitulo.Size = new System.Drawing.Size(185, 35);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Editar Producto";
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.chxDisponibleEnDeposito);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtCodigo);
             this.panel1.Controls.Add(this.ddlRubro);
             this.panel1.Controls.Add(this.ddlMarca);
@@ -94,7 +98,7 @@
             this.panel1.Controls.Add(this.label17);
             this.panel1.Location = new System.Drawing.Point(-5, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 296);
+            this.panel1.Size = new System.Drawing.Size(519, 345);
             this.panel1.TabIndex = 1;
             // 
             // txtCodigo
@@ -104,12 +108,14 @@
             this.txtCodigo.BarraScroll = System.Windows.Forms.ScrollBars.None;
             this.txtCodigo.CaracteresValidos = "";
             this.txtCodigo.CharCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Disabled = false;
             this.txtCodigo.ErrorMessage = "";
             this.txtCodigo.EsObligatorio = true;
             this.txtCodigo.InvalidateChar = null;
             this.txtCodigo.Location = new System.Drawing.Point(21, 233);
             this.txtCodigo.LongMax = 30;
             this.txtCodigo.LongMin = 0;
+            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCodigo.MultiLineas = false;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Referencia = null;
@@ -131,7 +137,7 @@
             // 
             this.ddlRubro.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlRubro.ShowImageInEditorArea = true;
-            this.ddlRubro.Size = new System.Drawing.Size(203, 28);
+            this.ddlRubro.Size = new System.Drawing.Size(203, 32);
             this.ddlRubro.TabIndex = 5;
             this.ddlRubro.Text = "radDropDownList1";
             this.ddlRubro.ThemeName = "Windows7";
@@ -150,7 +156,7 @@
             // 
             this.ddlMarca.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlMarca.ShowImageInEditorArea = true;
-            this.ddlMarca.Size = new System.Drawing.Size(203, 28);
+            this.ddlMarca.Size = new System.Drawing.Size(203, 32);
             this.ddlMarca.TabIndex = 4;
             this.ddlMarca.Text = "radDropDownList1";
             this.ddlMarca.ThemeName = "Windows7";
@@ -163,6 +169,7 @@
             this.txtPrecioSinIva.Location = new System.Drawing.Point(21, 172);
             this.txtPrecioSinIva.LongMax = 32767;
             this.txtPrecioSinIva.LongMin = 0;
+            this.txtPrecioSinIva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrecioSinIva.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -189,7 +196,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(17, 149);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 20);
+            this.label15.Size = new System.Drawing.Size(119, 23);
             this.label15.TabIndex = 48;
             this.label15.Text = "Precio Sin IVA ";
             // 
@@ -198,7 +205,7 @@
             this.chxAceptaDecimales.AutoSize = true;
             this.chxAceptaDecimales.Location = new System.Drawing.Point(272, 176);
             this.chxAceptaDecimales.Name = "chxAceptaDecimales";
-            this.chxAceptaDecimales.Size = new System.Drawing.Size(15, 14);
+            this.chxAceptaDecimales.Size = new System.Drawing.Size(18, 17);
             this.chxAceptaDecimales.TabIndex = 6;
             this.chxAceptaDecimales.UseVisualStyleBackColor = true;
             // 
@@ -210,6 +217,7 @@
             this.txtPrecio.Location = new System.Drawing.Point(21, 112);
             this.txtPrecio.LongMax = 32767;
             this.txtPrecio.LongMin = 0;
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrecio.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -239,6 +247,7 @@
             this.txtStockReposicion.Location = new System.Drawing.Point(272, 233);
             this.txtStockReposicion.LongMax = 32767;
             this.txtStockReposicion.LongMin = 0;
+            this.txtStockReposicion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStockReposicion.MaximoValor = null;
             this.txtStockReposicion.MinimoValor = null;
             this.txtStockReposicion.Name = "txtStockReposicion";
@@ -246,6 +255,7 @@
             this.txtStockReposicion.Size = new System.Drawing.Size(203, 25);
             this.txtStockReposicion.TabIndex = 7;
             this.txtStockReposicion.Valor = "";
+            this.txtStockReposicion.ValorDecimal = null;
             // 
             // txtDescripcion
             // 
@@ -254,7 +264,7 @@
             this.txtDescripcion.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(21, 49);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(203, 25);
+            this.txtDescripcion.Size = new System.Drawing.Size(203, 29);
             this.txtDescripcion.TabIndex = 0;
             // 
             // label14
@@ -264,7 +274,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(17, 209);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 20);
+            this.label14.Size = new System.Drawing.Size(65, 23);
             this.label14.TabIndex = 46;
             this.label14.Text = "Código";
             // 
@@ -275,7 +285,7 @@
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(17, 26);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(83, 20);
+            this.label26.Size = new System.Drawing.Size(101, 23);
             this.label26.TabIndex = 44;
             this.label26.Text = "Descripción";
             // 
@@ -286,7 +296,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(268, 26);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(46, 20);
+            this.label25.Size = new System.Drawing.Size(56, 23);
             this.label25.TabIndex = 43;
             this.label25.Text = "Marca";
             // 
@@ -297,7 +307,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(17, 89);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(99, 20);
+            this.label24.Size = new System.Drawing.Size(122, 23);
             this.label24.TabIndex = 42;
             this.label24.Text = "Precio Con IVA";
             // 
@@ -308,7 +318,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(268, 149);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(140, 20);
+            this.label23.Size = new System.Drawing.Size(174, 23);
             this.label23.TabIndex = 41;
             this.label23.Text = "Acepta Stock Decimal";
             // 
@@ -319,7 +329,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(268, 210);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(116, 20);
+            this.label19.Size = new System.Drawing.Size(143, 23);
             this.label19.TabIndex = 40;
             this.label19.Text = "Stock Reposición";
             // 
@@ -330,7 +340,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(267, 89);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(47, 20);
+            this.label17.Size = new System.Drawing.Size(57, 23);
             this.label17.TabIndex = 45;
             this.label17.Text = "Rubro";
             // 
@@ -341,7 +351,7 @@
             this.btnAceptar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.Location = new System.Drawing.Point(183, 353);
+            this.btnAceptar.Location = new System.Drawing.Point(183, 395);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(139, 33);
             this.btnAceptar.TabIndex = 0;
@@ -357,7 +367,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(333, 353);
+            this.btnCancelar.Location = new System.Drawing.Point(333, 395);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 33);
             this.btnCancelar.TabIndex = 1;
@@ -387,12 +397,32 @@
             // 
             this.codigoProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CodigoProducto);
             // 
+            // chxDisponibleEnDeposito
+            // 
+            this.chxDisponibleEnDeposito.AutoSize = true;
+            this.chxDisponibleEnDeposito.Location = new System.Drawing.Point(22, 313);
+            this.chxDisponibleEnDeposito.Name = "chxDisponibleEnDeposito";
+            this.chxDisponibleEnDeposito.Size = new System.Drawing.Size(18, 17);
+            this.chxDisponibleEnDeposito.TabIndex = 49;
+            this.chxDisponibleEnDeposito.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(18, 286);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(186, 23);
+            this.label16.TabIndex = 50;
+            this.label16.Text = "Disponible en Depósito";
+            // 
             // frmCrearProducto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(513, 399);
+            this.ClientSize = new System.Drawing.Size(513, 438);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -455,6 +485,8 @@
         public Telerik.WinControls.UI.RadDropDownList ddlRubro;
         private Telerik.WinControls.Themes.Windows7Theme windows7Theme1;
         private Util.Controles.ucTexto txtCodigo;
+        private System.Windows.Forms.CheckBox chxDisponibleEnDeposito;
+        private System.Windows.Forms.Label label16;
         
         
     }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetalleEliminarProducto));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,6 +72,8 @@
             this.proveedorProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtDisponibleEnDeposito = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -87,7 +89,7 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.DimGray;
             this.lblTitulo.Location = new System.Drawing.Point(12, 8);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(184, 29);
+            this.lblTitulo.Size = new System.Drawing.Size(233, 35);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Detalle de Producto";
             // 
@@ -112,6 +114,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txtDisponibleEnDeposito);
+            this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.txtCodigos);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.txtStockReposicion);
@@ -126,10 +130,10 @@
             this.tabPage1.Controls.Add(this.label23);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(509, 325);
+            this.tabPage1.Size = new System.Drawing.Size(509, 322);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Detalle";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -137,6 +141,7 @@
             // txtCodigos
             // 
             this.txtCodigos.Location = new System.Drawing.Point(29, 228);
+            this.txtCodigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCodigos.Name = "txtCodigos";
             this.txtCodigos.Size = new System.Drawing.Size(203, 26);
             this.txtCodigos.TabIndex = 4;
@@ -149,13 +154,14 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(25, 206);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(61, 20);
+            this.label14.Size = new System.Drawing.Size(74, 23);
             this.label14.TabIndex = 32;
             this.label14.Text = "Códigos";
             // 
             // txtStockReposicion
             // 
             this.txtStockReposicion.Location = new System.Drawing.Point(29, 167);
+            this.txtStockReposicion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStockReposicion.Name = "txtStockReposicion";
             this.txtStockReposicion.Size = new System.Drawing.Size(203, 26);
             this.txtStockReposicion.TabIndex = 3;
@@ -164,6 +170,7 @@
             // txtAceptaCantidadesDecimales
             // 
             this.txtAceptaCantidadesDecimales.Location = new System.Drawing.Point(280, 167);
+            this.txtAceptaCantidadesDecimales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAceptaCantidadesDecimales.Name = "txtAceptaCantidadesDecimales";
             this.txtAceptaCantidadesDecimales.Size = new System.Drawing.Size(203, 26);
             this.txtAceptaCantidadesDecimales.TabIndex = 7;
@@ -172,6 +179,7 @@
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(280, 109);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(203, 26);
             this.txtPrecio.TabIndex = 6;
@@ -180,6 +188,7 @@
             // txtRubro
             // 
             this.txtRubro.Location = new System.Drawing.Point(29, 109);
+            this.txtRubro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRubro.Name = "txtRubro";
             this.txtRubro.Size = new System.Drawing.Size(203, 26);
             this.txtRubro.TabIndex = 2;
@@ -188,6 +197,7 @@
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(280, 46);
+            this.txtMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(203, 26);
             this.txtMarca.TabIndex = 5;
@@ -196,6 +206,7 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(29, 46);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(203, 26);
             this.txtDescripcion.TabIndex = 1;
@@ -208,7 +219,7 @@
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(25, 23);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(83, 20);
+            this.label26.Size = new System.Drawing.Size(101, 23);
             this.label26.TabIndex = 21;
             this.label26.Text = "Descripción";
             // 
@@ -219,7 +230,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(276, 23);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(46, 20);
+            this.label25.Size = new System.Drawing.Size(56, 23);
             this.label25.TabIndex = 20;
             this.label25.Text = "Marca";
             // 
@@ -230,7 +241,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(276, 86);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(48, 20);
+            this.label24.Size = new System.Drawing.Size(58, 23);
             this.label24.TabIndex = 19;
             this.label24.Text = "Precio";
             // 
@@ -241,7 +252,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(276, 144);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(140, 20);
+            this.label23.Size = new System.Drawing.Size(174, 23);
             this.label23.TabIndex = 18;
             this.label23.Text = "Acepta Stock Decimal";
             // 
@@ -252,7 +263,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(25, 144);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(116, 20);
+            this.label19.Size = new System.Drawing.Size(143, 23);
             this.label19.TabIndex = 14;
             this.label19.Text = "Stock Reposición";
             // 
@@ -263,17 +274,17 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(25, 86);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(47, 20);
+            this.label17.Size = new System.Drawing.Size(57, 23);
             this.label17.TabIndex = 22;
             this.label17.Text = "Rubro";
             // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgvProveedores);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(509, 325);
+            this.tabPage2.Size = new System.Drawing.Size(509, 322);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Proveedores";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -283,19 +294,19 @@
             this.dgvProveedores.AllowUserToAddRows = false;
             this.dgvProveedores.AllowUserToDeleteRows = false;
             this.dgvProveedores.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvProveedores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvProveedores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProveedores.AutoGenerateColumns = false;
             this.dgvProveedores.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProveedores.ColumnHeadersHeight = 31;
             this.dgvProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.proveedorProductoIdDataGridViewTextBoxColumn,
@@ -320,8 +331,8 @@
             this.dgvProveedores.Name = "dgvProveedores";
             this.dgvProveedores.ReadOnly = true;
             this.dgvProveedores.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvProveedores.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvProveedores.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProveedores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProveedores.Size = new System.Drawing.Size(454, 265);
             this.dgvProveedores.TabIndex = 23;
@@ -492,12 +503,32 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnCancelar_KeyDown);
             // 
+            // txtDisponibleEnDeposito
+            // 
+            this.txtDisponibleEnDeposito.Location = new System.Drawing.Point(280, 229);
+            this.txtDisponibleEnDeposito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDisponibleEnDeposito.Name = "txtDisponibleEnDeposito";
+            this.txtDisponibleEnDeposito.Size = new System.Drawing.Size(203, 26);
+            this.txtDisponibleEnDeposito.TabIndex = 33;
+            this.txtDisponibleEnDeposito.Texto = "";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(276, 206);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(186, 23);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "Disponible en Depósito";
+            // 
             // frmDetalleEliminarProducto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(541, 465);
+            this.ClientSize = new System.Drawing.Size(539, 456);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -578,6 +609,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn productoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn proveedorDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource proveedorProductoBindingSource;
+        private MaxiKiosco.Win.Util.Controles.ucTextBoxGris txtDisponibleEnDeposito;
+        private System.Windows.Forms.Label label15;
         
         
     }
