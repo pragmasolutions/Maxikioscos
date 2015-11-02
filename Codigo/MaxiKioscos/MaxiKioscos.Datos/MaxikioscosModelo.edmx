@@ -4704,9 +4704,10 @@
           <Property Type="String" Name="Maxikiosco" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="Mes" Nullable="true" />
           <Property Type="Int32" Name="Anio" Nullable="true" />
-          <Property Type="Decimal" Name="Diferencia" Nullable="false" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Diferencia" Nullable="false" Precision="19" />
           <Property Type="Decimal" Name="CajaDiferencia" Nullable="false" Precision="19" />
-          <Property Type="Decimal" Name="StockDiferencia" Nullable="false" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="StockDiferenciaPositiva" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="StockDiferenciaNegativa" Nullable="false" Precision="19" />
         </ComplexType>
         <ComplexType Name="RptGanaciaAdicionalExcepcionRubro">
           <Property Type="String" Name="Maxikiosco" Nullable="false" MaxLength="100" />
@@ -6174,7 +6175,8 @@
                 <ScalarProperty Name="Anio" ColumnName="Anio" />
                 <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
                 <ScalarProperty Name="CajaDiferencia" ColumnName="CajaDiferencia" />
-                <ScalarProperty Name="StockDiferencia" ColumnName="StockDiferencia" />
+                <ScalarProperty Name="StockDiferenciaPositiva" ColumnName="StockDiferenciaPositiva" />
+                <ScalarProperty Name="StockDiferenciaNegativa" ColumnName="StockDiferenciaNegativa" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
