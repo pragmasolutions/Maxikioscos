@@ -11,9 +11,9 @@ namespace MaxiKioscos.Web.Helpers
 {
     public static partial class Helper
     {
-        public static MvcHtmlString MenuLateralItem(this HtmlHelper helper, string url, string iconClasses, string buttonText , bool showAlways = false)
+        public static MvcHtmlString MenuLateralItem(this HtmlHelper helper, string url, string iconClasses, string buttonText, bool showAlways = false, string permisoAccion = null)
         {
-            var permiso = buttonText.Trim().ToUpper().RemoveWhiteSpace();
+            var permiso = string.IsNullOrEmpty(permisoAccion) ? buttonText.Trim().ToUpper().RemoveWhiteSpace() : permisoAccion;
 
             if (!showAlways && !UsuarioActual.Usuario.TienePermiso(permiso))
             {

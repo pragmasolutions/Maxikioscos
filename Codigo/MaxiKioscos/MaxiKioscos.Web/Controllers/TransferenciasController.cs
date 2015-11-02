@@ -18,7 +18,7 @@ using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
-    [ActivityAuthorize(Actions = MaxikioscoPermisos.TRASFERENCIAS)]
+    [ActivityAuthorize(Actions = MaxikioscoPermisos.TRANSFERENCIAS)]
     public class TransferenciasController : BaseController
     {
         private ITransferenciasNegocio TransferenciasNegocio { get; set; }

@@ -15,7 +15,7 @@ namespace MaxiKioscos.Seguridad
         public const string STOCK = "STOCK";
         public const string COMPRAS = "COMPRAS";
         public const string GASTOS = "GASTOS";
-        public const string TRASFERENCIAS = "TRASFERENCIAS";
+        public const string TRANSFERENCIAS = "TRANSFERENCIAS";
         public const string CONTROLDESTOCK = "CONTROLDESTOCK";
         public const string FACTURAS = "FACTURAS";
         public const string EXCEPCIONES = "EXCEPCIONES";

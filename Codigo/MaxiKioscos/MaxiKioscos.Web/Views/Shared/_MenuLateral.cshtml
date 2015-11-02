@@ -1,4 +1,5 @@
-﻿@using MaxiKioscos.Web.Helpers
+﻿@using MaxiKioscos.Seguridad
+@using MaxiKioscos.Web.Helpers
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
@@ -26,7 +27,7 @@
             @Html.MenuLateralItem("/Proveedores/Index", "fa fa-truck", "Proveedores")
             @Html.MenuLateralItem("/Maxikioscos/Index", "glyphicon glyphicon-home", "Maxikioscos")
             @Html.MenuLateralItem("/ExcepcionesRubros/Index", "fa fa-star-half-o", "Excepciones por Rubro")
-            @Html.MenuLateralItem("/CategoriasCostos/Index", "glyphicon glyphicon-flag", "Categorías de Gastos")
+            @Html.MenuLateralItem("/CategoriasCostos/Index", "glyphicon glyphicon-flag", "Categorías de Gastos", false, MaxikioscoPermisos.CATEGORIASDEGASTOS)
             @Html.MenuLateralItem("/Usuarios/Index", "fa fa-user", "Usuarios")
             @Html.MenuLateralItem("/Roles/Index", "fa fa-users", "Roles")
             @Html.Partial("_Reportes")
