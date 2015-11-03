@@ -574,6 +574,15 @@
     <Content Include="SqlScripts\132-CierreCaja_CantidadDineroActual.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\147-Exportacion_NuevoXmlPrincipal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\148-Sync_CategoriasCostos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\146-CategoriaCosto_PadreId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\145-Sync_Productos.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

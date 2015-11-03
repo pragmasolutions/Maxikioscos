@@ -17,6 +17,7 @@ namespace MaxiKioscos.Entidades
         public CategoriaCosto()
         {
             this.Costos = new HashSet<Costo>();
+            this.Hijos = new HashSet<CategoriaCosto>();
         }
     
         public int CategoriaCostoId { get; set; }
@@ -26,7 +27,10 @@ namespace MaxiKioscos.Entidades
         public bool Eliminado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public bool OcultarEnDesktop { get; set; }
+        public Nullable<int> PadreId { get; set; }
     
         public virtual ICollection<Costo> Costos { get; set; }
+        public virtual ICollection<CategoriaCosto> Hijos { get; set; }
+        public virtual CategoriaCosto Padre { get; set; }
     }
 }

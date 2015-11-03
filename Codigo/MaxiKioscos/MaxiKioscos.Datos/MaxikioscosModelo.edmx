@@ -23,6 +23,7 @@
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="OcultarEnDesktop" Type="bit" Nullable="false" />
+          <Property Name="PadreId" Type="int" />
         </EntityType>
         <EntityType Name="CierreCaja">
           <Key>
@@ -746,6 +747,18 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CategoriaCosto_CategoriaCosto">
+          <End Role="CategoriaCosto" Type="Self.CategoriaCosto" Multiplicity="0..1" />
+          <End Role="CategoriaCosto1" Type="Self.CategoriaCosto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="CategoriaCosto1">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CierreCaja_MaxiKiosco">
           <End Role="MaxiKiosco" Type="Self.MaxiKiosco" Multiplicity="1" />
           <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="*" />
@@ -2064,6 +2077,10 @@
           <EntitySet Name="VentaProducto" EntityType="Self.VentaProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoriaCosto_CategoriaCosto" Association="Self.FK_CategoriaCosto_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriaCosto" />
+            <End Role="CategoriaCosto1" EntitySet="CategoriaCosto" />
+          </AssociationSet>
           <AssociationSet Name="FK_CierreCaja_MaxiKiosco" Association="Self.FK_CierreCaja_MaxiKiosco">
             <End Role="MaxiKiosco" EntitySet="MaxiKiosco" />
             <End Role="CierreCaja" EntitySet="CierreCaja" />
@@ -3047,6 +3064,10 @@
           <AssociationSet Name="FK_PermisoRol_webpages_Roles" Association="MaxiKioscosModel.FK_PermisoRol_webpages_Roles">
             <End Role="Role" EntitySet="webpages_Roles" />
             <End Role="PermisoRol" EntitySet="PermisoRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoriaCosto_CategoriaCosto" Association="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriasCostos" />
+            <End Role="CategoriaCosto1" EntitySet="CategoriasCostos" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -5021,6 +5042,9 @@
           <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Costos" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="CategoriaCosto" ToRole="Costo" />
           <Property Name="OcultarEnDesktop" Type="Boolean" Nullable="false" />
+          <Property Name="PadreId" Type="Int32" />
+          <NavigationProperty Name="Hijos" Relationship="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto" FromRole="CategoriaCosto" ToRole="CategoriaCosto1" />
+          <NavigationProperty Name="Padre" Relationship="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto" FromRole="CategoriaCosto1" ToRole="CategoriaCosto" />
         </EntityType>
         <EntityType Name="Costo">
           <Key>
@@ -5305,6 +5329,18 @@
             </Principal>
             <Dependent Role="PermisoRol">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoriaCosto_CategoriaCosto">
+          <End Type="MaxiKioscosModel.CategoriaCosto" Role="CategoriaCosto" Multiplicity="0..1" />
+          <End Type="MaxiKioscosModel.CategoriaCosto" Role="CategoriaCosto1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="CategoriaCosto1">
+              <PropertyRef Name="PadreId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6446,6 +6482,7 @@
           <EntitySetMapping Name="CategoriasCostos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.CategoriaCosto">
               <MappingFragment StoreEntitySet="CategoriaCosto">
+                <ScalarProperty Name="PadreId" ColumnName="PadreId" />
                 <ScalarProperty Name="OcultarEnDesktop" ColumnName="OcultarEnDesktop" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />

@@ -9,7 +9,15 @@ namespace MaxiKioscos.Entidades
     [MetadataType(typeof(CategoriaCostoMetadata))]
     public partial class CategoriaCosto : IEntity
     {
-       
+        public string PadreNombre
+        {
+            get
+            {
+                if (Padre == null)
+                    return string.Empty;
+                return Padre.Descripcion;
+            }
+        }
     }
 
     public class CategoriaCostoMetadata
@@ -21,5 +29,12 @@ namespace MaxiKioscos.Entidades
         [Display(Name = "Ocultar en Kiosco")]
         [Required(ErrorMessage = "Debe ingresar un valor")]
         public bool OcultarEnDesktop { get; set; }
+
+        [Display(Name = "Padre")]
+        public string PadreNombre { get; set; }
+
+        [Display(Name = "Padre")]
+        [UIHint("CategoriaCostoId")]
+        public int PadreId { get; set; }
     }
 }

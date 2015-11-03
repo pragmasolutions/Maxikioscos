@@ -12,6 +12,12 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.PadreId)<br/>
+        @Html.EditorFor(model => model.PadreId)
+        @Html.ValidationMessageFor(model => model.PadreId)
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.OcultarEnDesktop)<br />
         @Html.EditorFor(model => model.OcultarEnDesktop)
         @Html.ValidationMessageFor(model => model.OcultarEnDesktop)
