@@ -70,7 +70,7 @@
             this.lblTitulo.ForeColor = System.Drawing.Color.DimGray;
             this.lblTitulo.Location = new System.Drawing.Point(12, 8);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(73, 29);
+            this.lblTitulo.Size = new System.Drawing.Size(88, 36);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Crear";
             // 
@@ -102,7 +102,7 @@
             this.chkSoloStockCero.AutoSize = true;
             this.chkSoloStockCero.Location = new System.Drawing.Point(24, 277);
             this.chkSoloStockCero.Name = "chkSoloStockCero";
-            this.chkSoloStockCero.Size = new System.Drawing.Size(15, 14);
+            this.chkSoloStockCero.Size = new System.Drawing.Size(18, 17);
             this.chkSoloStockCero.TabIndex = 58;
             this.chkSoloStockCero.UseVisualStyleBackColor = true;
             // 
@@ -113,9 +113,9 @@
             this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(20, 256);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(137, 18);
+            this.label20.Size = new System.Drawing.Size(146, 24);
             this.label20.TabIndex = 59;
-            this.label20.Text = "Solo con stock 0";
+            this.label20.Text = "Excluir stock 0";
             // 
             // btnReiniciar
             // 
@@ -165,7 +165,7 @@
             this.txtCantidadFilas.Location = new System.Drawing.Point(21, 411);
             this.txtCantidadFilas.LongMax = 32767;
             this.txtCantidadFilas.LongMin = 0;
-            this.txtCantidadFilas.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidadFilas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCantidadFilas.MaximoValor = null;
             this.txtCantidadFilas.MinimoValor = null;
             this.txtCantidadFilas.Name = "txtCantidadFilas";
@@ -182,7 +182,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(18, 385);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(138, 18);
+            this.label16.Size = new System.Drawing.Size(172, 24);
             this.label16.TabIndex = 55;
             this.label16.Text = "Cantidad de Filas";
             // 
@@ -200,7 +200,7 @@
             // 
             this.ddlRubro.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlRubro.ShowImageInEditorArea = true;
-            this.ddlRubro.Size = new System.Drawing.Size(203, 28);
+            this.ddlRubro.Size = new System.Drawing.Size(203, 32);
             this.ddlRubro.TabIndex = 3;
             this.ddlRubro.Text = "radDropDownList1";
             this.ddlRubro.ThemeName = "Windows7";
@@ -210,7 +210,7 @@
             this.chxSoloMasVendidos.AutoSize = true;
             this.chxSoloMasVendidos.Location = new System.Drawing.Point(23, 344);
             this.chxSoloMasVendidos.Name = "chxSoloMasVendidos";
-            this.chxSoloMasVendidos.Size = new System.Drawing.Size(15, 14);
+            this.chxSoloMasVendidos.Size = new System.Drawing.Size(18, 17);
             this.chxSoloMasVendidos.TabIndex = 4;
             this.chxSoloMasVendidos.UseVisualStyleBackColor = true;
             this.chxSoloMasVendidos.CheckedChanged += new System.EventHandler(this.chxSoloMasVendidos_CheckedChanged);
@@ -229,7 +229,7 @@
             // 
             this.ddlProveedor.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlProveedor.ShowImageInEditorArea = true;
-            this.ddlProveedor.Size = new System.Drawing.Size(203, 28);
+            this.ddlProveedor.Size = new System.Drawing.Size(203, 32);
             this.ddlProveedor.TabIndex = 2;
             this.ddlProveedor.Text = "radDropDownList1";
             this.ddlProveedor.ThemeName = "Windows7";
@@ -242,7 +242,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(18, 323);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(180, 18);
+            this.label15.Size = new System.Drawing.Size(220, 24);
             this.label15.TabIndex = 53;
             this.label15.Text = "Solo los más vendidos";
             // 
@@ -253,7 +253,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(19, 175);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 18);
+            this.label14.Size = new System.Drawing.Size(67, 24);
             this.label14.TabIndex = 50;
             this.label14.Text = "Rubro";
             // 
@@ -264,7 +264,7 @@
             this.txtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtFecha.Location = new System.Drawing.Point(21, 38);
             this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(162, 24);
+            this.txtFecha.Size = new System.Drawing.Size(162, 29);
             this.txtFecha.TabIndex = 1;
             // 
             // lblFecha
@@ -274,7 +274,7 @@
             this.lblFecha.ForeColor = System.Drawing.Color.Black;
             this.lblFecha.Location = new System.Drawing.Point(17, 10);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(54, 18);
+            this.lblFecha.Size = new System.Drawing.Size(69, 24);
             this.lblFecha.TabIndex = 47;
             this.lblFecha.Text = "Fecha";
             // 
@@ -285,7 +285,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(19, 94);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(86, 18);
+            this.label19.Size = new System.Drawing.Size(107, 24);
             this.label19.TabIndex = 39;
             this.label19.Text = "Proveedor";
             // 
@@ -347,7 +347,7 @@
             this.txtLimiteSuperior.Location = new System.Drawing.Point(394, 14);
             this.txtLimiteSuperior.LongMax = 32767;
             this.txtLimiteSuperior.LongMin = 0;
-            this.txtLimiteSuperior.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimiteSuperior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLimiteSuperior.MaximoValor = null;
             this.txtLimiteSuperior.MinimoValor = null;
             this.txtLimiteSuperior.Name = "txtLimiteSuperior";
@@ -368,7 +368,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(290, 17);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(81, 18);
+            this.label18.Size = new System.Drawing.Size(97, 24);
             this.label18.TabIndex = 53;
             this.label18.Text = "hasta fila:";
             // 
@@ -382,7 +382,7 @@
             this.txtLimiteInferior.Location = new System.Drawing.Point(122, 15);
             this.txtLimiteInferior.LongMax = 32767;
             this.txtLimiteInferior.LongMin = 0;
-            this.txtLimiteInferior.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimiteInferior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLimiteInferior.MaximoValor = null;
             this.txtLimiteInferior.MinimoValor = null;
             this.txtLimiteInferior.Name = "txtLimiteInferior";
@@ -403,7 +403,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(7, 17);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(88, 18);
+            this.label17.Size = new System.Drawing.Size(108, 24);
             this.label17.TabIndex = 51;
             this.label17.Text = "Desde fila:";
             // 

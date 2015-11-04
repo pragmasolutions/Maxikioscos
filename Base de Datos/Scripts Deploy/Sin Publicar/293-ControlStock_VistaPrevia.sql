@@ -121,7 +121,7 @@ BEGIN
 			Diferencia
 	FROM @Intermedia 
 	WHERE (@MasVendidos = 0 OR (@MasVendidos = 1 AND Fila <= @CantidadFilas)) AND 
-		  (@SoloStockCero IS NULL OR @SoloStockCero = 0 OR (@SoloStockCero = 1 AND Cantidad = 0))
+		  (@SoloStockCero IS NULL OR @SoloStockCero = 0 OR (@SoloStockCero = 1 AND Cantidad != 0))
 
 	ORDER BY Fila
 END
