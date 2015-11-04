@@ -1,2 +1,0 @@
-ALTER TABLE ControStock
-ADD ControStockCero BIT NOT NULL DEFAULT(0)

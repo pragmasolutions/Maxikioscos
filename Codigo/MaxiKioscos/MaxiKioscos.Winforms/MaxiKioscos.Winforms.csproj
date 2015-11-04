@@ -709,10 +709,18 @@
     <Content Include="SqlScripts\101-ControlStock_Crear.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SqlScripts\149-ControlStock_VistaPrevia.sql" />
-    <Content Include="SqlScripts\150-ControlStock-AgregarColConStockCero.sql" />
-    <Content Include="SqlScripts\151-ControlStock_Crear.sql" />
-    <Content Include="SqlScripts\152-Sync_ControlesStock.sql" />
+    <Content Include="SqlScripts\150-ControlStock_VistaPrevia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\149-ControlStock-AgregarColConStockCero.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\151-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\152-Sync_ControlesStock.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\98-Stock_Actualizar.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

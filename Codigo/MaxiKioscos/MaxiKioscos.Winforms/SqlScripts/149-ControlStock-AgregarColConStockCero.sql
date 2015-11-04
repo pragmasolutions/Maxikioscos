@@ -1,0 +1,2 @@
+ALTER TABLE ControlStock
+ADD ConStockCero BIT NOT NULL DEFAULT(0)
