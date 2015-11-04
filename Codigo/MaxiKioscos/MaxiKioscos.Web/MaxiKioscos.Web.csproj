@@ -993,6 +993,9 @@
     <Content Include="Views\Roles\PermisosListado.cshtml" />
     <Content Include="Views\Roles\_PermisosListado.cshtml" />
     <Content Include="Views\Roles\AgregarPermiso.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CategoriaCostoPadres.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CategoriaCostoHijas.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CategoriaCostoPadresFiltros.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

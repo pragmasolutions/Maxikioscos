@@ -17,7 +17,7 @@ namespace MaxiKioscos.Web.Models
         public string Descripcion { get; set; }
         
         [Display(Name = "Padre")]
-        [UIHint("CategoriaCostoPadres")]
+        [UIHint("CategoriaCostoPadresFiltros")]
         public int? PadreId { get; set; }
 
         public override Expression<Func<CategoriaCosto, bool>> GetFilterExpression()

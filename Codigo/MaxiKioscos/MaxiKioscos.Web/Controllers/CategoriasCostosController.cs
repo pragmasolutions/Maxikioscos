@@ -146,5 +146,15 @@ namespace MaxiKioscos.Web.Controllers
             return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        public ActionResult ListadoPorPadre(int id)
+        {
+            var list = Uow.CategoriasCostos.Listado().Where(x => x.PadreId == id).Select(x => new
+            {
+                id = x.CategoriaCostoId,
+                text = x.Descripcion
+            }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

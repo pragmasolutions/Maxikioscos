@@ -7,9 +7,9 @@
 @{
     var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
     var list = uow.CategoriasCostos.Listado(x => x.Hijos)
-        .Where(x => x.Hijos.Any())
+        .Where(x => x.PadreId != null)
         .OrderBy(r => r.Descripcion).ToList();
     var selectList = list.ToSelectListItem(Model, c => c.CategoriaCostoId, c => c.Descripcion,
                                c => c.CategoriaCostoId.ToString());
 }
-@Html.DropDownList("", selectList, "Seleccione Padre", new { @data_placeholder = "Seleccione Padre", @class = "form-dropdown", style = "height: 34px" })
+@Html.DropDownList("", selectList, "Seleccione Sub-Categoría", new { @data_placeholder = "Seleccione Sub-Categoría", @class = "form-dropdown", style = "height: 34px" })

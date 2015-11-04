@@ -50,6 +50,8 @@ namespace MaxiKioscos.Entidades
                 return fecha.ToShortDateString() + " " + fecha.ToShortTimeString();
             }
         }
+
+        public int? CategoriaPadreId { get; set; }
     }
 
     public class CostoMetadata
@@ -75,9 +77,9 @@ namespace MaxiKioscos.Entidades
         [Required(ErrorMessage = "Debe seleccionar un usuario")]
         public int? UsuarioId { get; set; }
 
-        [DisplayName("Categoría")]
-        [UIHint("CategoriaCostoId")]
-        [Required(ErrorMessage = "Debe seleccionar una categoría")]
+        [DisplayName("Sub-Categoría")]
+        [UIHint("CategoriaCostoHijas")]
+        [Required(ErrorMessage = "Debe seleccionar una sub-categoría")]
         public int CategoriaCostoId { get; set; }
 
         [DisplayName("Turno")]
@@ -90,5 +92,10 @@ namespace MaxiKioscos.Entidades
 
         [DataType(DataType.MultilineText)]
         public string Observaciones { get; set; }
+
+        [DisplayName("Categoría")]
+        [UIHint("CategoriaCostoPadres")]
+        [Required(ErrorMessage = "Debe seleccionar una categoría")]
+        public int? CategoriaPadreId { get; set; }
     }
 }

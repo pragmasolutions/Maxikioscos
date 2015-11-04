@@ -9,6 +9,7 @@
     var list = uow.CategoriasCostos.Listado(x => x.Hijos)
         .Where(x => x.Hijos.Any())
         .OrderBy(r => r.Descripcion).ToList();
+    list.Insert(0, new CategoriaCosto(){ CategoriaCostoId = -1, Descripcion = "[SIN PADRE]"});
     var selectList = list.ToSelectListItem(Model, c => c.CategoriaCostoId, c => c.Descripcion,
                                c => c.CategoriaCostoId.ToString());
 }
