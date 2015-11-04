@@ -209,7 +209,9 @@ namespace MaxiKioscos.Entidades
 
         [DisplayName("Acepta Stock decimal")]
         public bool AceptaCantidadesDecimales { get; set; }
-        
+
+        [DisplayName("Disponible en Depósito")]
+        public bool DisponibleEnDeposito { get; set; }
     }
 
     public class ProveedorProductoComparer : IEqualityComparer<ProveedorProducto>

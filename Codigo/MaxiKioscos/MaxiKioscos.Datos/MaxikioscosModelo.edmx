@@ -23,6 +23,7 @@
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="OcultarEnDesktop" Type="bit" Nullable="false" />
+          <Property Name="PadreId" Type="int" />
         </EntityType>
         <EntityType Name="CierreCaja">
           <Key>
@@ -429,6 +430,7 @@
           <Property Name="PrecioConIVA" Type="money" Nullable="false" />
           <Property Name="PrecioSinIVA" Type="money" Nullable="false" />
           <Property Name="EsPromocion" Type="bit" Nullable="false" />
+          <Property Name="DisponibleEnDeposito" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductoPromocion">
           <Key>
@@ -746,6 +748,18 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CategoriaCosto_CategoriaCosto">
+          <End Role="CategoriaCosto" Type="Self.CategoriaCosto" Multiplicity="0..1" />
+          <End Role="CategoriaCosto1" Type="Self.CategoriaCosto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="CategoriaCosto1">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CierreCaja_MaxiKiosco">
           <End Role="MaxiKiosco" Type="Self.MaxiKiosco" Multiplicity="1" />
           <End Role="CierreCaja" Type="Self.CierreCaja" Multiplicity="*" />
@@ -2066,6 +2080,10 @@
           <EntitySet Name="VentaProducto" EntityType="Self.VentaProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoriaCosto_CategoriaCosto" Association="Self.FK_CategoriaCosto_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriaCosto" />
+            <End Role="CategoriaCosto1" EntitySet="CategoriaCosto" />
+          </AssociationSet>
           <AssociationSet Name="FK_CierreCaja_MaxiKiosco" Association="Self.FK_CierreCaja_MaxiKiosco">
             <End Role="MaxiKiosco" EntitySet="MaxiKiosco" />
             <End Role="CierreCaja" EntitySet="CierreCaja" />
@@ -3052,6 +3070,10 @@
             <End Role="Role" EntitySet="webpages_Roles" />
             <End Role="PermisoRol" EntitySet="PermisoRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_CategoriaCosto_CategoriaCosto" Association="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto">
+            <End Role="CategoriaCosto" EntitySet="CategoriasCostos" />
+            <End Role="CategoriaCosto1" EntitySet="CategoriasCostos" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3292,6 +3314,7 @@
           <NavigationProperty Name="PromocionesPadres" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoHijo" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="PromocionesHijos" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
+          <Property Name="DisponibleEnDeposito" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -5025,6 +5048,9 @@
           <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Costos" Relationship="MaxiKioscosModel.FK_Costo_CategoriaCosto" FromRole="CategoriaCosto" ToRole="Costo" />
           <Property Name="OcultarEnDesktop" Type="Boolean" Nullable="false" />
+          <Property Name="PadreId" Type="Int32" />
+          <NavigationProperty Name="Hijos" Relationship="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto" FromRole="CategoriaCosto" ToRole="CategoriaCosto1" />
+          <NavigationProperty Name="Padre" Relationship="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto" FromRole="CategoriaCosto1" ToRole="CategoriaCosto" />
         </EntityType>
         <EntityType Name="Costo">
           <Key>
@@ -5312,6 +5338,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CategoriaCosto_CategoriaCosto">
+          <End Type="MaxiKioscosModel.CategoriaCosto" Role="CategoriaCosto" Multiplicity="0..1" />
+          <End Type="MaxiKioscosModel.CategoriaCosto" Role="CategoriaCosto1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaCosto">
+              <PropertyRef Name="CategoriaCostoId" />
+            </Principal>
+            <Dependent Role="CategoriaCosto1">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5491,6 +5529,7 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
                 <ScalarProperty Name="EsPromocion" ColumnName="EsPromocion" />
                 <ScalarProperty Name="PrecioSinIVA" ColumnName="PrecioSinIVA" />
                 <ScalarProperty Name="PrecioConIVA" ColumnName="PrecioConIVA" />
@@ -6450,6 +6489,7 @@
           <EntitySetMapping Name="CategoriasCostos">
             <EntityTypeMapping TypeName="MaxiKioscosModel.CategoriaCosto">
               <MappingFragment StoreEntitySet="CategoriaCosto">
+                <ScalarProperty Name="PadreId" ColumnName="PadreId" />
                 <ScalarProperty Name="OcultarEnDesktop" ColumnName="OcultarEnDesktop" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />

@@ -61,6 +61,12 @@ namespace MaxiKioscos.Winforms.Productos
             set { txtAceptaCantidadesDecimales.Texto = value; }
         }
 
+        public string DisponibleEnDeposito
+        {
+            get { return txtDisponibleEnDeposito.Texto; }
+            set { txtDisponibleEnDeposito.Texto = value; }
+        }
+
         public string StockReposicion
         {
             get { return txtStockReposicion.Texto; }
@@ -116,6 +122,7 @@ namespace MaxiKioscos.Winforms.Productos
             Marca = Producto.Marca == null ? string.Empty : Producto.Marca.Descripcion;
             Codigos = Producto.CodigosListado;
             AceptaCantidadesDecimales = Producto.AceptaCantidadesDecimales ? "SI" : "NO";
+            DisponibleEnDeposito = Producto.DisponibleEnDeposito ? "SI" : "NO";
             StockReposicion = Producto.StockReposicion == null
                             ? string.Empty
                             : Producto.StockReposicion.GetValueOrDefault().ToString("N2");

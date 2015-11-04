@@ -26,18 +26,21 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Index(CategoriasCostosListadoModel model, int? page)
         {
+           // var asd = new SelectList(new List<CategoriaCosto>(), "Id", "Name","Category",1);
             model.Filtros = model.Filtros ?? new CategoriasCostosFiltrosModel()
             {
                 Descripcion = model.Descripcion,
+                PadreId = model.PadreId,
                 Page = page
             };
             var pageNumber = page ?? 1;
 
             var pageSize =  AppSettings.DefaultPageSize;
 
-            var categoriasCosto = Uow.CategoriasCostos.Listado()
+            var categoriasCosto = Uow.CategoriasCostos.Listado(x => x.Padre)
                 .Where(model.Filtros.GetFilterExpression())
-                                .OrderBy(m => m.Descripcion); 
+                                .OrderBy(m => m.PadreId)
+                                .ThenBy(c => c.Descripcion); 
             IPagedList<CategoriaCosto> list = categoriasCosto.ToPagedList(pageNumber, pageSize);
 
             model.List = list;
@@ -63,6 +66,13 @@ namespace MaxiKioscos.Web.Controllers
             if (yaExiste)
                 ModelState.AddModelError("Descripcion", "Ya existe una categoría con el mismo nombre");
 
+            if (categoriaCosto.PadreId != null)
+            {
+                var padre = Uow.CategoriasCostos.Obtener(categoriaCosto.PadreId.Value);
+                if (padre.PadreId != null)
+                    ModelState.AddModelError("PadreId", "El padre seleccionado ya es a su vez hijo de otra categoría");
+            }
+
             if (!ModelState.IsValid)
             {
                 return PartialView(categoriaCosto);
@@ -71,7 +81,7 @@ namespace MaxiKioscos.Web.Controllers
             Uow.CategoriasCostos.Agregar(categoriaCosto);
             Uow.Commit();
             
-            return new JsonResult(){ Data = new { exito = true , categoriaCosto = categoriaCosto}, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+            return new JsonResult(){ Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
 
         public ActionResult Editar(int id)
@@ -89,6 +99,21 @@ namespace MaxiKioscos.Web.Controllers
                                                                     categoriaCosto.CategoriaCostoId);
             if (yaExiste)
                 ModelState.AddModelError("Descripcion", "Ya existe una categoría con el mismo nombre");
+
+            if (categoriaCosto.PadreId != null)
+            {
+                if (categoriaCosto.CategoriaCostoId == categoriaCosto.PadreId)
+                {
+                    ModelState.AddModelError("PadreId", "El padre seleccionado debe ser diferente de la categoría que se está editando");
+                }
+                else
+                {
+                    var padre = Uow.CategoriasCostos.Obtener(categoriaCosto.PadreId.Value);
+                    if (padre.PadreId != null)
+                        ModelState.AddModelError("PadreId", "El padre seleccionado ya es a su vez hijo de otra categoría");
+                }
+                
+            }
             
             if (!ModelState.IsValid)
             {
@@ -111,9 +136,24 @@ namespace MaxiKioscos.Web.Controllers
         [HttpPost]
         public ActionResult Eliminar(CategoriaCosto categoriaCosto)
         {
+            var hijas = Uow.CategoriasCostos.Listado().Where(x => !x.Eliminado && x.PadreId == categoriaCosto.CategoriaCostoId).ToList();
+            foreach (var hija in hijas)
+            {
+                Uow.CategoriasCostos.Eliminar(hija);
+            }
             Uow.CategoriasCostos.Eliminar(categoriaCosto);
             Uow.Commit();
             return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        public ActionResult ListadoPorPadre(int id)
+        {
+            var list = Uow.CategoriasCostos.Listado().Where(x => x.PadreId == id).Select(x => new
+            {
+                id = x.CategoriaCostoId,
+                text = x.Descripcion
+            }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -32,25 +32,20 @@ namespace MaxiKioscos.Winforms.Gastos
         public frmEditarGasto(int? costoId = null)
         {
             InitializeComponent();
-
-            var categorias = CategoriaRepository.Listado()
-                                    .Where(c => !c.Eliminado && !c.OcultarEnDesktop)
-                                    .OrderBy(c => c.Descripcion).ToList();
-            ddlCategorias.DataSource = categorias;
-            ddlCategorias.ValueMember = "CategoriaCostoId";
-            ddlCategorias.DisplayMember = "Descripcion";
+            _original = Repository.Obtener(o => o.CostoId == costoId, x => x.CategoriaCosto);
+            CargarCategorias(costoId == null);
 
             if (costoId != null)
             {
                 lblTitulo.Text = "Editar Gasto";
                 this.Text = "Editar Gasto";
-                var costo = Repository.Obtener(o => o.CostoId == costoId);
-                txtFecha.Texto = costo.Fecha.ToShortDateString() + " " + costo.Fecha.ToShortTimeString();
-                txtMonto.Valor = costo.Monto;
-                txtObservaciones.Text = costo.Observaciones;
-                ddlCategorias.Valor = costo.CategoriaCostoId;
-                txtNroComprobante.Valor = costo.NroComprobante;
-                _original = costo;
+
+                txtFecha.Texto = _original.Fecha.ToShortDateString() + " " + _original.Fecha.ToShortTimeString();
+                txtMonto.Valor = _original.Monto;
+                txtObservaciones.Text = _original.Observaciones;
+                ddlCategorias.SelectedValue = _original.CategoriaCosto.PadreId.Value;
+                ddlSubCategorias.SelectedValue = _original.CategoriaCostoId;
+                txtNroComprobante.Valor = _original.NroComprobante;
             }
             else
             {
@@ -69,6 +64,28 @@ namespace MaxiKioscos.Winforms.Gastos
             btnCancelar.Focus();
         }
 
+        private void CargarCategorias(bool creando)
+        {
+            var padres = CategoriaRepository.Listado()
+                                    .Where(c => !c.Eliminado && !c.OcultarEnDesktop
+                                            && c.PadreId == null)
+                                    .OrderBy(c => c.Descripcion).ToList();
+            padres.Insert(0, new CategoriaCosto() { Descripcion = "Seleccione Categoría" });
+            ddlCategorias.ValueMember = "CategoriaCostoId";
+            ddlCategorias.DisplayMember = "Descripcion";
+            ddlCategorias.DataSource = padres;
+            
+
+            var hijas = creando
+                ? new List<CategoriaCosto>() { new CategoriaCosto() {  Descripcion = "Seleccione Sub-Categoría"} }
+                : CategoriaRepository.Listado().Where(x => x.PadreId == _original.CategoriaCosto.PadreId
+                                                        && !x.OcultarEnDesktop).ToList();
+            ddlSubCategorias.ValueMember = "CategoriaCostoId";
+            ddlSubCategorias.DisplayMember = "Descripcion";
+            ddlSubCategorias.DataSource = hijas;
+            
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             errorProvider1.Dispose();
@@ -80,7 +97,7 @@ namespace MaxiKioscos.Winforms.Gastos
                 decimal monto = Convert.ToDecimal(txtMonto.Valor);
                 _original.Monto = monto;
                 _original.Observaciones = txtObservaciones.Text;
-                _original.CategoriaCostoId = ddlCategorias.Valor;
+                _original.CategoriaCostoId = (int)ddlSubCategorias.SelectedValue;
                 _original.NroComprobante = txtNroComprobante.Valor;
 
                 if (_original.CostoId == 0)
@@ -102,6 +119,15 @@ namespace MaxiKioscos.Winforms.Gastos
         private void frmCostoEditar_Shown(object sender, EventArgs e)
         {
             txtMonto.Select();
+        }
+
+        private void ddlCategorias_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            var padreId = (int)ddlCategorias.SelectedValue;
+            var hijas = CategoriaRepository.Listado().Where(x => x.PadreId == padreId && !x.OcultarEnDesktop).ToList();
+            hijas.Insert(0, new CategoriaCosto(){ Descripcion = "Seleccione Sub-Categoría"});
+            ddlSubCategorias.DataSource = hijas;
+            ddlSubCategorias.SelectedIndex = 0;
         }
     }
 }

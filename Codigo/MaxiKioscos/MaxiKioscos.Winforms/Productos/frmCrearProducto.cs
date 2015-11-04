@@ -109,6 +109,7 @@ namespace MaxiKioscos.Winforms.Productos
                     var prod = new Producto()
                            {
                                AceptaCantidadesDecimales = chxAceptaDecimales.Checked,
+                               DisponibleEnDeposito = chxDisponibleEnDeposito.Checked,
                                Descripcion = txtDescripcion.Text,
                                MarcaId = Convert.ToInt32(ddlMarca.SelectedValue),
                                PrecioConIVA = txtPrecio.Valor.GetValueOrDefault(),

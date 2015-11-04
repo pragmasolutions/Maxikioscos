@@ -176,6 +176,7 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Editar(int id)
         {
             var costo = Uow.Costos.Obtener(c => c.CostoId == id, c => c.CierreCaja, 
+                                                    c => c.CategoriaCosto,
                                                     c => c.CierreCaja.MaxiKiosco,
                                                     c => c.CierreCaja.Usuario,
                                                     c => c.Usuario,
@@ -186,6 +187,7 @@ namespace MaxiKioscos.Web.Controllers
             {
                 costo.UsuarioId = costo.CierreCaja.UsuarioId;
             }
+            costo.CategoriaPadreId = costo.CategoriaCosto.PadreId;
             return PartialView(costo);
         }
 

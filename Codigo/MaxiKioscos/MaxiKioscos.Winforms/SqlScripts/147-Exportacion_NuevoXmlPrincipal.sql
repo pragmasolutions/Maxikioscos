@@ -1,10 +1,4 @@
-/****** Object:  StoredProcedure [dbo].[Exportacion_NuevoXmlPrincipal]    Script Date: 04/14/2015 23:53:28 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Exportacion_NuevoXmlPrincipal]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
-GO
-
-
-CREATE PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
+ALTER PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
 	@UsuarioId int,
 	@Secuencia int = NULL
 AS
@@ -144,6 +138,9 @@ BEGIN
 				LEFT JOIN Usuario U ON UP.UsuarioId = U.UsuarioId
 				LEFT JOIN Proveedor P ON UP.ProveedorId = P.ProveedorId
 			WHERE UP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('UsuarioProveedores'), TYPE),
+		(SELECT RR.*
+			FROM ReporteRol RR
+			WHERE RR.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ReporteRoles'), TYPE),
 		(SELECT M.*, UsuarioIdentifier = U.Identifier 
 		 FROM webpages_Membership M 
 		 LEFT JOIN Usuario U ON M.UserId = U.UsuarioId
@@ -192,6 +189,7 @@ BEGIN
 		UPDATE ControlStockDetalle SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE CategoriaCosto SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Costo SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE ReporteRoles SET Desincronizado = 0 WHERE Desincronizado = 1
 		--INSERTAMOS EL NUEVO XML
 		INSERT INTO Exportacion(Secuencia, Fecha, CreadorId, CuentaId, Archivo, Eliminado, 
 								FechaUltimaModificacion, Desincronizado, Acusada)
@@ -220,15 +218,3 @@ END CATCH
 	
 	
 END
-
-
-
-
-
-
-
-
-
-GO
-
-

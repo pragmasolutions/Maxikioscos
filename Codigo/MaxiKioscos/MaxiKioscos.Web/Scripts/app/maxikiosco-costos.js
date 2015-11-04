@@ -1,6 +1,7 @@
 ﻿var maxikioscoAjax = function () {
     var $modal = $("#CostosModal"),
         $modalContent = $("#CostosModal .modal-content"),
+        operation,
         init = function () {
             $('.btn-costo-crear').click(crear);
             $("#ListadoContainer").on('click', 'a.btn-costo-aprobar', aprobar);
@@ -14,6 +15,7 @@
         },
         crear = function () {
             var url = $(this).attr('href');
+            operation = 'crear';
             cargarVista(url);
             return false;
         },
@@ -34,6 +36,7 @@
             if (result.exito) {
                 $modal.modal('hide').on('hidden.bs.modal', function () {
                     //Refresh the list.
+
                     refreshList();
                 });
             } else {
@@ -44,7 +47,7 @@
             }
         },
         refreshList = function () {
-            var $form = $modal.find('form');
+            var $form = $('#frmGastos');
             var url = '/Costos/Listado';
             var data = $form.serialize();
 
@@ -64,11 +67,13 @@
         },
         detalle = function () {
             var url = $(this).attr('href');
+            operation = 'detalle';
             cargarVista(url);
             return false;
         },
         eliminar = function () {
             var url = $(this).attr('href');
+            operation = 'eliminar';
             cargarVista(url);
             return false;
         },
@@ -86,8 +91,28 @@
                 $modal.modal();
 
                 $('#EsGastoGeneral').change(checkGastoGeneral).change();
+
+                $('#CategoriaPadreId').change(categoriaPadreChanged);
+
+                if (operation == 'crear') {
+                    $modalContent.find("#CategoriaCostoId").html('<option value="">Seleccione Sub-Categoría</option>');
+                }
                 return false;
             });
+        },
+        categoriaPadreChanged = function() {
+            var padreId = $('#CategoriaPadreId').val();
+            $modalContent.find("#CategoriaCostoId").html('<option value="">Seleccione Sub-Categoría</option>');
+            if (padreId) {
+                $.getJSON('/CategoriasCostos/ListadoPorPadre/' + padreId, function (hijas) {
+                    
+                    for (var i = 0; i < hijas.length; i++) {
+                        var hija = hijas[i];
+                        $modalContent.find("#CategoriaCostoId").append('<option value="' + hija.id + '">' + hija.text + '</option>');
+                    }
+                });
+            } 
+            
         },
         editar = function () {
             var url = $(this).attr('href');

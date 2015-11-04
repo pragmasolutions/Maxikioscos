@@ -32,6 +32,10 @@
             @Html.LabelFor(model => model.StockReposicion)
             @Html.DisplayFor(model => model.StockReposicion)
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisponibleEnDeposito)
+            <input class="form-control" id="DisponibleEnDeposito" name="DisponibleEnDeposito" readonly="readonly" type="text" value="@(Model.DisponibleEnDeposito ? "Si" : "No")">
+        </div>
     </div>
 </div>
 <div class="row">

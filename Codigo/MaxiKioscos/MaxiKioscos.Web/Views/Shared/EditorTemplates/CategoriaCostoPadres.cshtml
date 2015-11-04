@@ -1,0 +1,15 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Entidades
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model int?
+@{
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var list = uow.CategoriasCostos.Listado(x => x.Hijos)
+        .Where(x => x.Hijos.Any())
+        .OrderBy(r => r.Descripcion).ToList();
+    var selectList = list.ToSelectListItem(Model, c => c.CategoriaCostoId, c => c.Descripcion,
+                               c => c.CategoriaCostoId.ToString());
+}
+@Html.DropDownList("", selectList, "Seleccione Padre", new { @data_placeholder = "Seleccione Padre", @class = "form-dropdown", style = "height: 34px" })

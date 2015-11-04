@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>Descripción</th>
+                <th>Padre</th>
                 <th>Ocultar en kiosco</th>
                 <th class="columna-botones"></th>
             </tr>
@@ -14,6 +15,7 @@
             {
                 <tr>
                     <td>@categoria.Descripcion</td>
+                    <td>@categoria.PadreNombre</td>
                     <td>@(categoria.OcultarEnDesktop ? "Si" : "No")</td>
                     <td class="text-center">
                         <a class="btn btn-default btn-categoriacosto-detalle" href="@Url.Action("Detalle", new { id = categoria.CategoriaCostoId})"><span class="glyphicon glyphicon-list"></span></a>
