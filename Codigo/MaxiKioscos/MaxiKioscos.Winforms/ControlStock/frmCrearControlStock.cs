@@ -84,7 +84,7 @@ namespace MaxiKioscos.Winforms.ControlStock
 
         public int? ProveedorId
         {
-            get { return (int) ddlProveedor.SelectedValue == 0 ? (int?) null : (int) ddlProveedor.SelectedValue; }
+            get { return (int)ddlProveedor.SelectedValue == 0 ? (int?)null : (int)ddlProveedor.SelectedValue; }
         }
 
         public int? RubroId
@@ -100,6 +100,11 @@ namespace MaxiKioscos.Winforms.ControlStock
             get { return chxSoloMasVendidos.Checked; }
         }
 
+        public bool SoloStockCero
+        {
+            get { return chkSoloStockCero.Checked; }
+        }
+
         public int? CantidadFilas
         {
             get
@@ -111,13 +116,13 @@ namespace MaxiKioscos.Winforms.ControlStock
         }
 
         #region Metodos
-        
-        
+
+
         private void CargarControles()
         {
             Proveedores = ProveedorRepository.Listado().OrderBy(p => p.Nombre).ToList();
             var proveedores = Proveedores.ToList();
-            proveedores.Insert(0, new Proveedor() { ProveedorId = 0, Nombre = "(Seleccione Proveedor)"});
+            proveedores.Insert(0, new Proveedor() { ProveedorId = 0, Nombre = "(Seleccione Proveedor)" });
             ddlProveedor.DisplayMember = "Nombre";
             ddlProveedor.ValueMember = "ProveedorId";
             ddlProveedor.DataSource = proveedores;
@@ -130,7 +135,7 @@ namespace MaxiKioscos.Winforms.ControlStock
             ddlRubro.DataSource = rubros;
         }
 
-        
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtLimiteInferior.Valor) || string.IsNullOrEmpty(txtLimiteSuperior.Valor))
@@ -159,7 +164,7 @@ namespace MaxiKioscos.Winforms.ControlStock
             if (superior > LimiteSuperior)
             {
                 MessageBox.Show("El valor máximo para el límite superior es " + LimiteSuperior);
-                this.DialogResult = DialogResult.None; 
+                this.DialogResult = DialogResult.None;
                 return;
             }
 
@@ -169,7 +174,7 @@ namespace MaxiKioscos.Winforms.ControlStock
         public void CrearControl(int inferior, int superior)
         {
             var stocksInicializados = ControlStockRepository.CrearControlStock(AppSettings.MaxiKioscoId, ProveedorId,
-                                         RubroId, UsuarioActual.UsuarioId, SoloMasVendidos, CantidadFilas, inferior, superior);
+                                         RubroId, UsuarioActual.UsuarioId, SoloMasVendidos, SoloStockCero, CantidadFilas, inferior, superior);
             if (!stocksInicializados)
             {
                 MessageBox.Show("Ha ocurrido un error registrado el control.");
@@ -198,7 +203,7 @@ namespace MaxiKioscos.Winforms.ControlStock
             List<Rubro> rubros = proveedorId == 0
                 ? Rubros.ToList()
                 : RubroRepository.MaxiKioscosEntities.ProveedorObtenerRubros(proveedorId).ToList();
-            
+
             rubros.Insert(0, new Rubro { RubroId = 0, Descripcion = "(Seleccione Rubro)" });
             ddlRubro.DisplayMember = "Descripcion";
             ddlRubro.ValueMember = "RubroId";
@@ -258,6 +263,7 @@ namespace MaxiKioscos.Winforms.ControlStock
         {
             txtCantidadFilas.Disabled = true;
             chxSoloMasVendidos.Enabled = false;
+            chkSoloStockCero.Enabled = false;
             ddlProveedor.Enabled = false;
             ddlRubro.Enabled = false;
             btnGenerar.Enabled = false;
@@ -265,14 +271,14 @@ namespace MaxiKioscos.Winforms.ControlStock
             btnAceptar.Enabled = true;
             pnlLimites.Visible = true;
 
-            var detalles = ControlStockRepository.ReporteControlStockVistaPrevia(AppSettings.MaxiKioscoId, ProveedorId, 
-                                                                            RubroId, SoloMasVendidos, CantidadFilas).ToList();
+            var detalles = ControlStockRepository.ReporteControlStockVistaPrevia(AppSettings.MaxiKioscoId, ProveedorId,
+                                                                            RubroId, SoloMasVendidos, SoloStockCero, CantidadFilas).ToList();
 
             LimiteInferior = 1;
             LimiteSuperior = detalles.Count();
             txtLimiteInferior.Valor = "1";
             txtLimiteSuperior.Valor = LimiteSuperior.ToString();
-            
+
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             LocalReport localReport = reportViewer1.LocalReport;
 
@@ -280,13 +286,13 @@ namespace MaxiKioscos.Winforms.ControlStock
             string reportPath = @"\RDLS\ControlStockVistaPrevia.rdl";
             localReport.ReportPath = AppSettings.ApplicationPath + reportPath;
             localReport.DataSources.Clear();
-            localReport.DataSources.Add(new ReportDataSource("DataSet1", detalles));	
+            localReport.DataSources.Add(new ReportDataSource("DataSet1", detalles));
 
             //Construyo los parámetros
             var rpMaxikiosco = new ReportParameter();
             rpMaxikiosco.Name = "Maxikiosco";
             rpMaxikiosco.Values.Add(AppSettings.Maxikiosco.Nombre);
-            
+
             var rpFecha = new ReportParameter();
             rpFecha.Name = "Fecha";
             rpFecha.Values.Add(DateTime.Now.ToShortDateString());
@@ -333,6 +339,7 @@ namespace MaxiKioscos.Winforms.ControlStock
         {
             txtCantidadFilas.Disabled = false;
             chxSoloMasVendidos.Enabled = true;
+            chkSoloStockCero.Enabled = true;
             ddlProveedor.Enabled = true;
             ddlRubro.Enabled = true;
             btnGenerar.Enabled = true;

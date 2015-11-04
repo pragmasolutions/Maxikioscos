@@ -37,6 +37,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> CantidadFilas { get; set; }
         public int LimiteInferior { get; set; }
         public int LimiteSuperior { get; set; }
+        public bool ConStockCero { get; set; }
     
         public virtual MaxiKiosco MaxiKiosco { get; set; }
         public virtual Proveedor Proveedor { get; set; }

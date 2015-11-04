@@ -694,6 +694,9 @@
     <Content Include="SqlScripts\101-ControlStock_Crear.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\144-ControlStock_VistaPrevia.sql" />
+    <Content Include="SqlScripts\145-ControlStock-AgregarColConStockCero.sql" />
+    <Content Include="SqlScripts\146-ControlStock_Crear.sql" />
     <Content Include="SqlScripts\98-Stock_Actualizar.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

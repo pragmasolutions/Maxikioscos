@@ -1,9 +1,4 @@
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ControlStock_VistaPrevia]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[ControlStock_VistaPrevia]
-GO
-
-CREATE PROCEDURE [dbo].[ControlStock_VistaPrevia]
+ALTER PROCEDURE [dbo].[ControlStock_VistaPrevia]
 	@MaxiKioscoId int, 
 	@ProveedorId int = NULL,
 	@RubroId int = NULL,
@@ -125,6 +120,6 @@ BEGIN
 
 	ORDER BY Fila
 END
-GO
+
 
 

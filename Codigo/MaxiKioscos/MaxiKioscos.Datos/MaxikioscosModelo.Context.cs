@@ -484,7 +484,7 @@ namespace MaxiKioscos.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptDineroPorMaxikiosco>("RptDineroPorMaxikiosco");
         }
     
-        public virtual ObjectResult<Nullable<int>> ControlStockCrear(Nullable<int> maxiKioscoId, Nullable<int> proveedorId, Nullable<int> rubroId, Nullable<int> usuarioId, Nullable<bool> masVendidos, Nullable<int> cantidadFilas, Nullable<int> limiteInferior, Nullable<int> limiteSuperior)
+        public virtual ObjectResult<Nullable<int>> ControlStockCrear(Nullable<int> maxiKioscoId, Nullable<int> proveedorId, Nullable<int> rubroId, Nullable<int> usuarioId, Nullable<bool> masVendidos, Nullable<bool> conStockCero, Nullable<int> cantidadFilas, Nullable<int> limiteInferior, Nullable<int> limiteSuperior)
         {
             var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
                 new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
@@ -506,6 +506,10 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("MasVendidos", masVendidos) :
                 new ObjectParameter("MasVendidos", typeof(bool));
     
+            var conStockCeroParameter = conStockCero.HasValue ?
+                new ObjectParameter("ConStockCero", conStockCero) :
+                new ObjectParameter("ConStockCero", typeof(bool));
+    
             var cantidadFilasParameter = cantidadFilas.HasValue ?
                 new ObjectParameter("CantidadFilas", cantidadFilas) :
                 new ObjectParameter("CantidadFilas", typeof(int));
@@ -518,7 +522,7 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("LimiteSuperior", limiteSuperior) :
                 new ObjectParameter("LimiteSuperior", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ControlStockCrear", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, usuarioIdParameter, masVendidosParameter, cantidadFilasParameter, limiteInferiorParameter, limiteSuperiorParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ControlStockCrear", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, usuarioIdParameter, masVendidosParameter, conStockCeroParameter, cantidadFilasParameter, limiteInferiorParameter, limiteSuperiorParameter);
         }
     
         public virtual ObjectResult<ControlStockPlanillaRow> ReporteControlStockPlanilla(Nullable<int> controlStockId)
@@ -828,7 +832,7 @@ namespace MaxiKioscos.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Rubro>("ProveedorObtenerRubros", mergeOption, proveedorIdParameter);
         }
     
-        public virtual ObjectResult<ControlStockVistaPreviaRow> ControlStockVistaPrevia(Nullable<int> maxiKioscoId, Nullable<int> proveedorId, Nullable<int> rubroId, Nullable<bool> masVendidos, Nullable<int> cantidadFilas)
+        public virtual ObjectResult<ControlStockVistaPreviaRow> ControlStockVistaPrevia(Nullable<int> maxiKioscoId, Nullable<int> proveedorId, Nullable<int> rubroId, Nullable<bool> masVendidos, Nullable<bool> soloStockCero, Nullable<int> cantidadFilas)
         {
             var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
                 new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
@@ -846,11 +850,15 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("MasVendidos", masVendidos) :
                 new ObjectParameter("MasVendidos", typeof(bool));
     
+            var soloStockCeroParameter = soloStockCero.HasValue ?
+                new ObjectParameter("SoloStockCero", soloStockCero) :
+                new ObjectParameter("SoloStockCero", typeof(bool));
+    
             var cantidadFilasParameter = cantidadFilas.HasValue ?
                 new ObjectParameter("CantidadFilas", cantidadFilas) :
                 new ObjectParameter("CantidadFilas", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ControlStockVistaPreviaRow>("ControlStockVistaPrevia", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, masVendidosParameter, cantidadFilasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ControlStockVistaPreviaRow>("ControlStockVistaPrevia", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, masVendidosParameter, soloStockCeroParameter, cantidadFilasParameter);
         }
     
         public virtual ObjectResult<ProductoStock> ProductoStock(Nullable<int> productoId)

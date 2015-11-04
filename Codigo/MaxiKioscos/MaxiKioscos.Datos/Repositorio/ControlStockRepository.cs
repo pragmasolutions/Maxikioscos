@@ -28,7 +28,7 @@ namespace MaxiKioscos.Datos.Repositorio
            }
        }
 
-       public bool CrearControlStock(int maxiKioscoId, int? proveedorId, int? rubroId, int usuarioId, bool masVendidos,
+       public bool CrearControlStock(int maxiKioscoId, int? proveedorId, int? rubroId, int usuarioId, bool masVendidos, bool conStockCero,
                                         int? cantidadFilas, int limiteInferior, int limiteSuperior)
        {
            try
@@ -36,7 +36,7 @@ namespace MaxiKioscos.Datos.Repositorio
                var maxi = MaxiKioscosEntities.MaxiKioscoes.FirstOrDefault(m => m.MaxiKioscoId == maxiKioscoId);
                MaxiKioscosEntities.StockActualizar(maxi.Identifier, null);
 
-               MaxiKioscosEntities.ControlStockCrear(maxiKioscoId, proveedorId, rubroId, usuarioId, masVendidos,
+               MaxiKioscosEntities.ControlStockCrear(maxiKioscoId, proveedorId, rubroId, usuarioId, masVendidos,conStockCero,
                                                 cantidadFilas, limiteInferior, limiteSuperior);
                return true;
            }
@@ -52,9 +52,9 @@ namespace MaxiKioscos.Datos.Repositorio
        }
 
        public List<ControlStockVistaPreviaRow> ReporteControlStockVistaPrevia(int maxiKioscoId, int? proveedorId, int? rubroId,
-                                bool masVendidos, int? cantidadFilas)
+                                bool masVendidos, bool conStockCero, int? cantidadFilas)
        {
-           return MaxiKioscosEntities.ControlStockVistaPrevia(maxiKioscoId, proveedorId, rubroId, masVendidos, cantidadFilas).ToList();
+           return MaxiKioscosEntities.ControlStockVistaPrevia(maxiKioscoId, proveedorId, rubroId, masVendidos, conStockCero, cantidadFilas).ToList();
        }
    }
 }

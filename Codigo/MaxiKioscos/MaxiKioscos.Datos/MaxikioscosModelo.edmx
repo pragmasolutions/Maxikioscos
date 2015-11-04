@@ -121,6 +121,7 @@
           <Property Name="CantidadFilas" Type="int" />
           <Property Name="LimiteInferior" Type="int" Nullable="false" />
           <Property Name="LimiteSuperior" Type="int" Nullable="false" />
+          <Property Name="ConStockCero" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ControlStockDetalle">
           <Key>
@@ -1787,6 +1788,7 @@
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
           <Parameter Name="MasVendidos" Type="bit" Mode="In" />
+          <Parameter Name="ConStockCero" Type="bit" Mode="In" />
           <Parameter Name="CantidadFilas" Type="int" Mode="In" />
           <Parameter Name="LimiteInferior" Type="int" Mode="In" />
           <Parameter Name="LimiteSuperior" Type="int" Mode="In" />
@@ -1800,6 +1802,7 @@
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="MasVendidos" Type="bit" Mode="In" />
+          <Parameter Name="SoloStockCero" Type="bit" Mode="In" />
           <Parameter Name="CantidadFilas" Type="int" Mode="In" />
         </Function>
         <Function Name="Exportacion_NuevoXmlKiosco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2830,6 +2833,7 @@
             <Parameter Name="RubroId" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
             <Parameter Name="MasVendidos" Mode="In" Type="Boolean" />
+            <Parameter Name="ConStockCero" Mode="In" Type="Boolean" />
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
             <Parameter Name="LimiteInferior" Mode="In" Type="Int32" />
             <Parameter Name="LimiteSuperior" Mode="In" Type="Int32" />
@@ -2965,6 +2969,7 @@
             <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
             <Parameter Name="RubroId" Mode="In" Type="Int32" />
             <Parameter Name="MasVendidos" Mode="In" Type="Boolean" />
+            <Parameter Name="SoloStockCero" Mode="In" Type="Boolean" />
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProductoStock" ReturnType="Collection(MaxiKioscosModel.ProductoStock)">
@@ -4557,6 +4562,7 @@
           <Property Name="CantidadFilas" Type="Int32" />
           <Property Name="LimiteInferior" Type="Int32" Nullable="false" />
           <Property Name="LimiteSuperior" Type="Int32" Nullable="false" />
+          <Property Name="ConStockCero" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ControlStockDetalle">
           <Key>
@@ -6095,6 +6101,7 @@
           <EntitySetMapping Name="ControlesStock">
             <EntityTypeMapping TypeName="MaxiKioscosModel.ControlStock">
               <MappingFragment StoreEntitySet="ControlStock">
+                <ScalarProperty Name="ConStockCero" ColumnName="ConStockCero" />
                 <ScalarProperty Name="LimiteSuperior" ColumnName="LimiteSuperior" />
                 <ScalarProperty Name="LimiteInferior" ColumnName="LimiteInferior" />
                 <ScalarProperty Name="CantidadFilas" ColumnName="CantidadFilas" />
