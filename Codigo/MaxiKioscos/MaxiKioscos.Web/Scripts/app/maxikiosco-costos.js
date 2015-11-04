@@ -36,6 +36,7 @@
             if (result.exito) {
                 $modal.modal('hide').on('hidden.bs.modal', function () {
                     //Refresh the list.
+
                     refreshList();
                 });
             } else {
@@ -46,7 +47,7 @@
             }
         },
         refreshList = function () {
-            var $form = $modal.find('form');
+            var $form = $('#frmGastos');
             var url = '/Costos/Listado';
             var data = $form.serialize();
 
