@@ -27,7 +27,15 @@ namespace MaxiKioscos.Winforms.Sincronizacion
 {
     public class SincronizacionManager : ISincronizacionManager
     {
-        public static bool Sincronizando = false;
+        public bool Sincronizando
+        {
+            get
+            {
+                if (TssProgreso == null)
+                    return false;
+                return TssProgreso.Text != string.Empty;
+            }
+        }
         private readonly ISincronizacionService _sincronizacionService;
         private IMaxiKioscosUow Uow { get; set; }
         private mdiPrincipal CurrentForm { get; set; }
@@ -62,7 +70,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             if (!Sincronizando)
             {
-                Sincronizando = true;
                 var dialog = new frmSincronizacionFeedback(_sincronizacionService, Uow, TipoSincronizacion.WebSecuencial);
                 dialog.ShowDialog();
             }
@@ -91,13 +98,42 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 }
             }
         }
-
-        #region ISincronizacionManager Members
-
         
         public async Task InicializarKiosco()
         {
             new frmSeleccionarMaxikiosco(_sincronizacionService, Uow).ShowDialog();
+        }
+
+
+
+        public void ExportarDatosDesincronizados()
+        {
+            if (!Sincronizando)
+            {
+                var repository = new ExportacionRepository();
+                var puedeExportar = repository.PuedeExportarKiosco();
+                if (puedeExportar)
+                {
+                    //Generamos la exportacion para usuario que realizo la solicitud.
+                    repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
+                }
+            }
+
+        }
+
+        public static bool _isConnected = false;
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+        }
+
+        public async Task PingServer()
+        {
+            if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
+            {
+                var now = DateHelper.DateAndTimeToISO(DateTime.Now.ToUniversalTime());
+                _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier, now);
+            }
         }
 
         public async Task SincronizarEnSegundoPlano(mdiPrincipal form, BackgroundWorker worker, 
@@ -105,7 +141,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             if (!Sincronizando)
             {
-                Sincronizando = true;
                 if (worker.IsBusy != true)
                 {
                     CurrentForm = form;
@@ -118,7 +153,6 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 }
             }
         }
-
         delegate void ActualizarMensajeDelegate(string mensaje);
         public void ActualizarMensaje(string mensaje)
         {
@@ -159,6 +193,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                         MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier
                     };
                     var actualizarResponse = _sincronizacionService.ActualizarDatos(actualizarDatosRequest);
+
                     if (!actualizarResponse.Exito)
                     {
                         AppSettings.RefreshSettings();
@@ -288,8 +323,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                 SyncTimer.Interval = interval;
                 SyncTimer.Start();
             }
-            Sincronizando = false;
-
+            
             Timer = new Timer {Interval = 5000};
             Timer.Tick += TimerOnTick;
             Timer.Start();
@@ -306,39 +340,5 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             CurrentForm.Invoke(new ActualizarMensajeDelegate(ActualizarMensaje), "");
         }
 
-        #endregion
-
-
-        public void ExportarDatosDesincronizados()
-        {
-            if (!Sincronizando)
-            {
-                Sincronizando = true;
-                var repository = new ExportacionRepository();
-                var puedeExportar = repository.PuedeExportarKiosco();
-                if (puedeExportar)
-                {
-                    //Generamos la exportacion para usuario que realizo la solicitud.
-                    repository.ExportarKiosco(AppSettings.MaxiKioscoIdentifier, UsuarioActual.UsuarioId);
-                }
-                Sincronizando = false;
-            }
-            
-        }
-
-        public static bool _isConnected = false;
-        public bool IsConnected
-        {
-            get { return _isConnected; }
-        }
-
-        public async Task PingServer()
-        {
-            if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
-            {
-                var now = DateHelper.DateAndTimeToISO(DateTime.Now.ToUniversalTime());
-                _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier, now);
-            }
-        }
     }
 }

@@ -294,7 +294,6 @@ namespace MaxiKioscos.Winforms.Exportacion
                 ActualizacionPantallasHelper.ActualizarPantallaVentas();
                 this.DialogResult = DialogResult.OK;
             }
-            SincronizacionManager.Sincronizando = false;
         }
     }
 }

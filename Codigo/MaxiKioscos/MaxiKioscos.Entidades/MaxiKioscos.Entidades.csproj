@@ -119,6 +119,7 @@
     <Compile Include="ExportacionArchivo.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensiones\ReporteStock.cs" />
     <Compile Include="Extensiones\ProductoCompleto.cs" />
     <Compile Include="Extensiones\EstadoKiosco.cs" />
     <Compile Include="Extensiones\ProductoHorario.cs" />
@@ -256,6 +257,9 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteRol.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteStock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RetiroPersonal.cs">

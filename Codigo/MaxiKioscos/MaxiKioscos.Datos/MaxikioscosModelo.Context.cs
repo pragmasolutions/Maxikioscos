@@ -80,6 +80,7 @@ namespace MaxiKioscos.Entidades
         public virtual DbSet<ReporteRol> ReporteRoles { get; set; }
         public virtual DbSet<Permiso> Permisos { get; set; }
         public virtual DbSet<PermisoRol> PermisoRoles { get; set; }
+        public virtual DbSet<ReporteStock> ReportesStock { get; set; }
     
         public virtual ObjectResult<Nullable<int>> UsuarioInsertarDependencias(Nullable<int> usuarioId, Nullable<int> roleId, string proveedoresIds)
         {

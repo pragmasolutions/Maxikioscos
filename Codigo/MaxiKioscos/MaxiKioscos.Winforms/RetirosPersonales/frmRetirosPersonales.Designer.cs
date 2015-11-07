@@ -42,12 +42,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chxCajaActual = new System.Windows.Forms.CheckBox();
             this.dgvListado = new System.Windows.Forms.DataGridView();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.RetiroPersonalId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImporteFormateado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CierreCajaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -194,7 +194,7 @@
             this.dgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RetiroPersonalId,
             this.Fecha,
-            this.Importe,
+            this.ImporteFormateado,
             this.CierreCajaId,
             this.Detalle});
             this.dgvListado.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -213,6 +213,13 @@
             this.dgvListado.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_CellContentDoubleClick);
             this.dgvListado.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListado_CellPainting);
             this.dgvListado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvListado_KeyDown);
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewButtonColumn1.HeaderText = "";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.Width = 22;
             // 
             // RetiroPersonalId
             // 
@@ -235,14 +242,14 @@
             this.Fecha.ReadOnly = true;
             this.Fecha.Width = 200;
             // 
-            // Importe
+            // ImporteFormateado
             // 
-            this.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Importe.DataPropertyName = "Importe";
-            this.Importe.HeaderText = "Monto";
-            this.Importe.Name = "Importe";
-            this.Importe.ReadOnly = true;
-            this.Importe.Width = 200;
+            this.ImporteFormateado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ImporteFormateado.DataPropertyName = "ImporteFormateado";
+            this.ImporteFormateado.HeaderText = "Monto";
+            this.ImporteFormateado.Name = "ImporteFormateado";
+            this.ImporteFormateado.ReadOnly = true;
+            this.ImporteFormateado.Width = 200;
             // 
             // CierreCajaId
             // 
@@ -260,13 +267,6 @@
             this.Detalle.Name = "Detalle";
             this.Detalle.ReadOnly = true;
             this.Detalle.Width = 22;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewButtonColumn1.HeaderText = "";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.Width = 22;
             // 
             // frmRetirosPersonales
             // 
@@ -312,7 +312,7 @@
         private System.Windows.Forms.Button btnAgregarRetiroPersonal;
         private System.Windows.Forms.DataGridViewTextBoxColumn RetiroPersonalId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImporteFormateado;
         private System.Windows.Forms.DataGridViewTextBoxColumn CierreCajaId;
         private System.Windows.Forms.DataGridViewButtonColumn Detalle;
 
