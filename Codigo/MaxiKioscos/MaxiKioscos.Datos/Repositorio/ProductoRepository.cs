@@ -77,5 +77,12 @@ namespace MaxiKioscos.Datos.Repositorio
         {
             return this.MaxiKioscosEntities.ProductoStock(productoId).ToList();
         }
+
+        public List<PromocionCompleta> PromocionesListado(int? rubroId, string descripcion, decimal? precio,
+                                    int? stockReposicion, int? conStockMenorA, string codigo)
+        {
+            return this.MaxiKioscosEntities.PromocionesListado(rubroId, descripcion, precio, stockReposicion,
+                    conStockMenorA, codigo).ToList();
+        }
     }
 }

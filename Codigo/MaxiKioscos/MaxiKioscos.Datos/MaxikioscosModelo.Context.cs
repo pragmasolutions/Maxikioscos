@@ -939,5 +939,34 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptVentasNegativasPorTicketRow>("RptVentasNegativasPorTicket", usuarioIdParameter, desdeParameter, hastaParameter);
         }
+    
+        public virtual ObjectResult<PromocionCompleta> PromocionesListado(Nullable<int> rubroId, string descripcion, Nullable<decimal> precio, Nullable<int> stockReposicion, Nullable<int> conStockMenorA, string codigo)
+        {
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var stockReposicionParameter = stockReposicion.HasValue ?
+                new ObjectParameter("StockReposicion", stockReposicion) :
+                new ObjectParameter("StockReposicion", typeof(int));
+    
+            var conStockMenorAParameter = conStockMenorA.HasValue ?
+                new ObjectParameter("ConStockMenorA", conStockMenorA) :
+                new ObjectParameter("ConStockMenorA", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PromocionCompleta>("PromocionesListado", rubroIdParameter, descripcionParameter, precioParameter, stockReposicionParameter, conStockMenorAParameter, codigoParameter);
+        }
     }
 }

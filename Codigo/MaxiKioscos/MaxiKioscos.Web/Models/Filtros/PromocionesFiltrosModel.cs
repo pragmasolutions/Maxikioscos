@@ -29,19 +29,15 @@ namespace MaxiKioscos.Web.Models
         [Display(Name = "Stock reposicion")]
         public int? StockReposicion { get; set; }
 
-        //[Display(Name = "Acepta Stock decimal")]
-        //public bool? AceptaCantidadesDecimales { get; set; }
-
+        [Display(Name = "Con stock menor a")]
+        public int? ConStockMenorA { get; set; }
+        
         [Display(Name = "Código")]
         public string Codigo { get; set; }
 
         public override Expression<Func<Producto, bool>> GetFilterExpression()
         {
-            return p => (!this.RubroId.HasValue || this.RubroId.Value == p.RubroId)
-                        && (string.IsNullOrEmpty(this.Descripcion) || p.Descripcion.Contains(this.Descripcion))
-                        && (!this.Precio.HasValue || this.Precio.Value == p.PrecioConIVA)
-                        && (!this.StockReposicion.HasValue || this.StockReposicion.Value == p.StockReposicion)
-                        && (string.IsNullOrEmpty(this.Codigo) || p.CodigosProductos.Any(c => !c.Eliminado && c.Codigo.StartsWith(this.Codigo)));
+            return null;
         }
 
         public override RouteValueDictionary GetRouteValues(int page = 1)

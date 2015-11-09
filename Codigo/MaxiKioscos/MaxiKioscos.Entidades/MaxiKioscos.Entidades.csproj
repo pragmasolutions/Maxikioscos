@@ -237,6 +237,9 @@
     <Compile Include="ProductoStock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="PromocionCompleta.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>

@@ -11,5 +11,7 @@ namespace MaxiKioscos.Datos.Interfaces
         ProductoCompleto Obtener(int productoId, int maxikioscoId, int proveedorId);
         ProductoParaTransferencia ObtenerParaTransferencia(int productoId, int origenId, int destinoId);
         List<ProductoStock> ObtenerStock(int productoId);
+        List<PromocionCompleta> PromocionesListado(int? rubroId, string descripcion, decimal? precio,
+            int? stockReposicion, int? conStockMenorA, string codigo);
     }
 }

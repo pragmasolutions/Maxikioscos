@@ -1863,6 +1863,14 @@
         <Function Name="Producto_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Promocion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="StockReposicion" Type="int" Mode="In" />
+          <Parameter Name="ConStockMenorA" Type="int" Mode="In" />
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Proveedor_ObtenerRubros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
         </Function>
@@ -3089,6 +3097,14 @@
             <End Role="CategoriaCosto1" EntitySet="CategoriasCostos" />
           </AssociationSet>
           <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
+          <FunctionImport Name="PromocionesListado" ReturnType="Collection(MaxiKioscosModel.PromocionCompleta)">
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="StockReposicion" Mode="In" Type="Int32" />
+            <Parameter Name="ConStockMenorA" Mode="In" Type="Int32" />
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -5378,6 +5394,14 @@
           <Property Name="ValorizadoDetalladoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <ComplexType Name="PromocionCompleta">
+          <Property Type="Guid" Name="Identifier" Nullable="false" />
+          <Property Type="String" Name="CodigosListado" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="CostosResumen" Nullable="true" />
+          <Property Type="Decimal" Name="PrecioConIVA" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="ProductoId" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6689,6 +6713,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PromocionesListado" FunctionName="MaxiKioscosModel.Store.Promocion_Listado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.PromocionCompleta">
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="CodigosListado" ColumnName="CodigosListado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CostosResumen" ColumnName="CostosResumen" />
+                <ScalarProperty Name="PrecioConIVA" ColumnName="PrecioConIVA" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
