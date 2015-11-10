@@ -1,0 +1,4 @@
+UPDATE Permiso
+SET Nombre = 'TRANSFERENCIAS',
+	NombreCompleto = 'TRANSFERENCIAS'
+WHERE Nombre = 'TRASFERENCIAS'
