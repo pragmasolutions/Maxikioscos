@@ -100,7 +100,7 @@
                 return false;
             });
         },
-        categoriaPadreChanged = function() {
+        categoriaPadreChanged = function () {
             var padreId = $('#CategoriaPadreId').val();
             $modalContent.find("#CategoriaCostoId").html('<option value="">Seleccione Sub-Categoría</option>');
             if (padreId) {
@@ -116,6 +116,7 @@
         },
         editar = function () {
             var url = $(this).attr('href');
+            operation = 'editar';
             cargarVista(url);
             return false;
         },

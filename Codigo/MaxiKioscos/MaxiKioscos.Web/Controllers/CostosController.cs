@@ -141,7 +141,8 @@ namespace MaxiKioscos.Web.Controllers
             {
                 Fecha = DateTime.Now,
                 EsGastoGeneral = true,
-                Aprobado = true
+                Aprobado = true,
+                UsuarioId = UsuarioActual.Usuario.UsuarioId
             });
         }
 
