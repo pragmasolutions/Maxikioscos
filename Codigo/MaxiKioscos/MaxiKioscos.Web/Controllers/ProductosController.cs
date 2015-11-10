@@ -468,6 +468,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             return Uow.Productos
                 .Listado(p => p.Rubro, f => f.Marca, f => f.CodigosProductos,
+                    f => f.ProveedorProductos,
                     f => f.ProveedorProductos.Select(pp => pp.Proveedor),
                     p => p.ComprasProductos.Select(cp => cp.Compra))
                 .Where(p => p.CuentaId == UsuarioActual.CuentaId && !p.EsPromocion)
