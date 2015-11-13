@@ -10,17 +10,16 @@
 namespace MaxiKioscos.Entidades
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ReporteStock
+    public partial class ProductoTransferenciaDesktop
     {
-        public int ReporteStockId { get; set; }
-        public int Mes { get; set; }
-        public int Anio { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
-        public byte[] Valorizado { get; set; }
-        public byte[] ValorizadoGeneral { get; set; }
-        public byte[] ValorizadoDetallado { get; set; }
-        public byte[] ValorizadoDetalladoGeneral { get; set; }
+        public int ProductoId { get; set; }
+        public string Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public string Marca { get; set; }
+        public decimal Precio { get; set; }
+        public Nullable<decimal> Costo { get; set; }
+        public Nullable<decimal> StockActual { get; set; }
+        public Nullable<decimal> VendidoEnUltimoMes { get; set; }
     }
 }

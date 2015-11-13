@@ -11,14 +11,15 @@ using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Clases;
 using MaxiKioscos.Winforms.Configuracion;
-using MaxiKioscos.Winforms.Productos;
 using MaxiKioscos.Winforms.Productos.Modulos;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using MaxiKioscos.Winforms.Principal;
+using MaxiKioscos.Winforms.Transferencias.Modulos;
 using MaxiKioscos.Winforms.UserControls;
 using Telerik.WinControls.UI;
+using ProductoCriterioBusqueda = MaxiKioscos.Winforms.Productos.ProductoCriterioBusqueda;
 
 namespace MaxiKioscos.Winforms.Transferencias
 {
@@ -74,7 +75,7 @@ namespace MaxiKioscos.Winforms.Transferencias
         public bool MensajeErrorAbierto { get; set; }
         public bool PopupAbierto { get; set; }
         public bool ConfirmacionAbierta { get; set; }
-        public List<ProductoHorario> ProductosDatasource { get; set; }
+        public List<ProductoTransferenciaDesktop> ProductosDatasource { get; set; }
 
         private Timer _timerArrow;
         private bool _pressingArrow = false;
@@ -166,7 +167,7 @@ namespace MaxiKioscos.Winforms.Transferencias
         {
             var timer = (Timer) sender;
             timer.Stop();
-            ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId);
+            ProductosDatasource = ProductoRepository.ListadoProductoTransferenciaDesktop(AppSettings.MaxiKioscoId);
         }
 
         private TimeSpan DiferenciaHorariaEnElDia()
@@ -203,14 +204,14 @@ namespace MaxiKioscos.Winforms.Transferencias
                 CargarGrillaProductos();
             }
             
-            ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId);
+            ProductosDatasource = ProductoRepository.ListadoProductoTransferenciaDesktop(AppSettings.MaxiKioscoId);
         }
 
         private void CargarGrillaProductos()
         {
             foreach (var prod in Transferencia.TransferenciaProductos.Where(x => !x.Eliminado).ToList())
             {
-                var item = new ProductoHorario
+                var item = new ProductoTransferenciaDesktop
                 {
                     Codigo = prod.Producto.CodigosListado,
                     Costo = prod.Costo,
@@ -536,7 +537,7 @@ namespace MaxiKioscos.Winforms.Transferencias
             dgvListado.Rows[rowCount - 1].Selected = true;
         }
 
-        private void BuscarArticulo(ProductoHorario prod)
+        private void BuscarArticulo(ProductoTransferenciaDesktop prod)
         {
             //char guion = "-";
             if (prod != null)
@@ -652,7 +653,7 @@ namespace MaxiKioscos.Winforms.Transferencias
             {
                 PopupAbierto = true;
                 var productos = ProductosDatasource.Where(p => ObtenerProductosVendidosIds().All(c => c != p.ProductoId)).ToList();
-                var frm = new frmBuscador(txtCodigo.Text, productos, true, criterio);
+                var frm = new frmBuscadorTransferencia(txtCodigo.Text, productos, true, criterio);
 
                 frm.Cambio += BuscarArticulo;
                 frm.TeclaApretada += FrmOnTeclaApretada;
@@ -703,7 +704,7 @@ namespace MaxiKioscos.Winforms.Transferencias
             {
                 PopupAbierto = true;
                 //var productos = ProductosDatasource.Where(p => ObtenerProductosVendidosIds().All(c => c != p.ProductoId)).ToList();
-                var frm = new frmBuscador(txtCodigo.Text, ProductosDatasource.ToList(), true, criterio);
+                var frm = new frmBuscadorTransferencia(txtCodigo.Text, ProductosDatasource.ToList(), true, criterio);
                 frm.Cambio += BuscarArticulo;
                 frm.TeclaApretada += FrmOnTeclaApretada;
                 frm.MensajeError += FrmOnMensajeError;
@@ -719,7 +720,7 @@ namespace MaxiKioscos.Winforms.Transferencias
             }
             else
             {
-                var buscador = this.OwnedForms.First() as frmBuscador;
+                var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
                 buscador.AplicarFiltros(txtCodigo.Text);
             }
         }
@@ -767,7 +768,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                 default:
                     if (this.OwnedForms.Any())
                     {
-                        var buscador = this.OwnedForms.First() as frmBuscador;
+                        var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
                         buscador.AplicarFiltros(txtCodigo.Text);
 
                         SeleccionarUltimaFila();
@@ -808,7 +809,7 @@ namespace MaxiKioscos.Winforms.Transferencias
             }
             else if (this.OwnedForms.Any())
             {
-                var buscador = this.OwnedForms.First() as frmBuscador;
+                var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
                 buscador.AplicarFiltros(txtCodigo.Text);
 
                 SeleccionarUltimaFila();
@@ -892,7 +893,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                 {
                     AbrirBuscador(ProductoCriterioBusqueda.Codigo);
                 }
-                var buscador = this.OwnedForms.First() as frmBuscador;
+                var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
 
                 
                 _ultimaBusqueda = buscador.RecordarBusqueda 
@@ -910,23 +911,7 @@ namespace MaxiKioscos.Winforms.Transferencias
 
                     var prod = ProductosDatasource.FirstOrDefault(p => p.ProductoId == buscador.ProductoSeleccionado.ProductoId);
                     
-                    if (prod.EsPromocion)
-                    {
-                        if (prod.StockActual == 0)
-                        {
-                            MessageBox.Show("Esta promoción no se encuentra disponible para la cantidad solicitada");
-                            SuprimirUltimaFila();
-                        }
-                        else
-                        {
-                            ActualizarStockPromociones(prod.ProductoId, 1);
-                            prod.StockActual--;
-                        }
-                    }
-                    else
-                    {
-                        prod.StockActual--;
-                    }
+                    prod.StockActual--;
                     ScrollearHastaElFinal();
                 }
                 buscador.Close();
@@ -949,7 +934,7 @@ namespace MaxiKioscos.Winforms.Transferencias
         {
  	        if (this.OwnedForms.Any())
             {
-                var buscador = this.OwnedForms.First() as frmBuscador;
+                var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
                 buscador.Subir();
             }
  	        else
@@ -962,7 +947,7 @@ namespace MaxiKioscos.Winforms.Transferencias
         {
             if (this.OwnedForms.Any())
             {
-                var buscador = this.OwnedForms.First() as frmBuscador;
+                var buscador = this.OwnedForms.First() as frmBuscadorTransferencia;
                 buscador.Bajar();
             }
             else

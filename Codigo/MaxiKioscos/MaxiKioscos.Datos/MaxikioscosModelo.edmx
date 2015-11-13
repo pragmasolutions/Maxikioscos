@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MaxiKioscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MaxiKioscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Billete">
           <Key>
             <PropertyRef Name="BilleteId" />
@@ -530,6 +530,19 @@
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteStock">
+          <Key>
+            <PropertyRef Name="ReporteStockId" />
+          </Key>
+          <Property Name="ReporteStockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mes" Type="int" Nullable="false" />
+          <Property Name="Anio" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Valorizado" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoGeneral" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoDetallado" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoDetalladoGeneral" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="RetiroPersonal">
           <Key>
@@ -1839,6 +1852,10 @@
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Producto_ObtenerParaTransferenciaDesktop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Producto_ObtenerProductoPorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Codigo" Type="varchar" Mode="In" />
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
@@ -1894,17 +1911,6 @@
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="CuentaId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Rpt_GastosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Desde" Type="datetime2" Mode="In" />
-          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
-          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
-          <Parameter Name="CategoriaCostoId" Type="int" Mode="In" />
-          <Parameter Name="SubCategoriaCostoId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="Rpt_GastosPorCategoria_TotalGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Desde" Type="datetime2" Mode="In" />
-          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
         </Function>
         <Function Name="Rpt_ReponerStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
@@ -2075,6 +2081,7 @@
           <EntitySet Name="RecuentoBillete" EntityType="Self.RecuentoBillete" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteRol" EntityType="Self.ReporteRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteStock" EntityType="Self.ReporteStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonal" EntityType="Self.RetiroPersonal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonalProducto" EntityType="Self.RetiroPersonalProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -3086,7 +3093,6 @@
             <End Role="CategoriaCosto" EntitySet="CategoriasCostos" />
             <End Role="CategoriaCosto1" EntitySet="CategoriasCostos" />
           </AssociationSet>
-          <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
           <FunctionImport Name="PromocionesListado" ReturnType="Collection(MaxiKioscosModel.PromocionCompleta)">
             <Parameter Name="RubroId" Mode="In" Type="Int32" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -3105,6 +3111,11 @@
           <FunctionImport Name="RptGastosPorCategoriaTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral)">
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
+          <FunctionImport Name="ProductoObtenerParaTransferenciaDesktop" ReturnType="Collection(MaxiKioscosModel.ProductoTransferenciaDesktop)">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -5383,19 +5394,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ReporteStock">
-          <Key>
-            <PropertyRef Name="ReporteStockId" />
-          </Key>
-          <Property Name="ReporteStockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Mes" Type="Int32" Nullable="false" />
-          <Property Name="Anio" Type="Int32" Nullable="false" />
-          <Property Name="Valorizado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoDetallado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoDetalladoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <ComplexType Name="PromocionCompleta">
           <Property Type="Guid" Name="Identifier" Nullable="false" />
           <Property Type="String" Name="CodigosListado" Nullable="true" />
@@ -5418,6 +5416,29 @@
           <Property Type="String" Name="SubCategoria" Nullable="false" MaxLength="400" />
           <Property Type="String" Name="MaxiKiosco" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="19" />
+        </ComplexType>
+        <EntityType Name="ReporteStock">
+          <Key>
+            <PropertyRef Name="ReporteStockId" />
+          </Key>
+          <Property Name="ReporteStockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mes" Type="Int32" Nullable="false" />
+          <Property Name="Anio" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Valorizado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoDetallado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoDetalladoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="ProductoTransferenciaDesktop">
+          <Property Type="Int32" Name="ProductoId" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="Costo" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="VendidoEnUltimoMes" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6717,26 +6738,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="RptGastosPorCategoria" FunctionName="MaxiKioscosModel.Store.Rpt_GastosPorCategoria">
+          <EntitySetMapping Name="ReportesStock">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.ReporteStock">
+              <MappingFragment StoreEntitySet="ReporteStock">
+                <ScalarProperty Name="ValorizadoDetalladoGeneral" ColumnName="ValorizadoDetalladoGeneral" />
+                <ScalarProperty Name="ValorizadoDetallado" ColumnName="ValorizadoDetallado" />
+                <ScalarProperty Name="ValorizadoGeneral" ColumnName="ValorizadoGeneral" />
+                <ScalarProperty Name="Valorizado" ColumnName="Valorizado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="ReporteStockId" ColumnName="ReporteStockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProductoObtenerParaTransferenciaDesktop" FunctionName="MaxiKioscosModel.Store.Producto_ObtenerParaTransferenciaDesktop">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptGastosPorCategoria">
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="SubCategoria" ColumnName="SubCategoria" />
-                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RptGastosPorCategoriaTotalGeneral" FunctionName="MaxiKioscosModel.Store.Rpt_GastosPorCategoria_TotalGeneral">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral">
-                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-                <ScalarProperty Name="SubCategoria" ColumnName="SubCategoria" />
-                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoTransferenciaDesktop">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="VendidoEnUltimoMes" ColumnName="VendidoEnUltimoMes" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

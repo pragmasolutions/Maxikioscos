@@ -1006,5 +1006,18 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptGastosPorCategoriaTotalGeneral>("RptGastosPorCategoriaTotalGeneral", desdeParameter, hastaParameter);
         }
+    
+        public virtual ObjectResult<ProductoTransferenciaDesktop> ProductoObtenerParaTransferenciaDesktop(string codigo, Nullable<int> maxiKioscoId)
+        {
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
+                new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
+                new ObjectParameter("MaxiKioscoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoTransferenciaDesktop>("ProductoObtenerParaTransferenciaDesktop", codigoParameter, maxiKioscoIdParameter);
+        }
     }
 }
