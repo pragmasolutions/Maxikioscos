@@ -267,9 +267,11 @@
     <Compile Include="Models\Listado\CategoriasCostosListadoModel.cs" />
     <Compile Include="Models\Listado\CostosListadoModel.cs" />
     <Compile Include="Models\Listado\PromocionesListadoModel.cs" />
+    <Compile Include="Models\Listado\ReportesStockListadoModel.cs" />
     <Compile Include="Models\Listado\TransferenciasListadoModel.cs" />
     <Compile Include="Models\Listado\ComprasListadoModel.cs" />
     <Compile Include="Models\Listado\ExcepcionesListadoModel.cs" />
+    <Compile Include="Models\ReporteStockModel.cs" />
     <Compile Include="Models\StockModel.cs" />
     <Compile Include="Models\DTO\ArchivoKioscoDTO.cs" />
     <Compile Include="Models\CargarProductoModel.cs" />
@@ -384,6 +386,7 @@
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reportes-ventasporticket.js" />
     <Content Include="Scripts\app\maxikiosco-roles-reportes-permisos.js" />
+    <Content Include="Scripts\app\maxikiosco-reportes-stock.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias.js" />
     <Content Include="Scripts\app\maxikiosco-transferencias-editar.js" />
     <Content Include="Scripts\app\maxikiosco-compras-editar.remove.js" />
@@ -503,6 +506,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reportes\VentasNegativasPorTicket.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\GastosPorCategoria.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\GastosPorCategoriaTotalGeneral.rdl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
@@ -1001,6 +1010,9 @@
     <Content Include="Views\Shared\EditorTemplates\CategoriaCostoPadres.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CategoriaCostoHijas.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CategoriaCostoPadresFiltros.cshtml" />
+    <Content Include="Views\Reportes\StockValorizadoMensual.cshtml" />
+    <Content Include="Views\Reportes\Listado.cshtml" />
+    <Content Include="Views\Reportes\DetalleValorizadoMensual.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

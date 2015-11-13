@@ -119,7 +119,8 @@ namespace MaxiKioscos.Winforms.Ventas
         {
             var timer = (Timer) sender;
             timer.Stop();
-            ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId);
+            ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId)
+                                    .Where(x => !x.EsPromocion || (x.EsPromocion && x.StockActual > 0)).ToList();
         }
 
         private TimeSpan DiferenciaHorariaEnElDia()
@@ -146,7 +147,8 @@ namespace MaxiKioscos.Winforms.Ventas
 
             if (ForzarSincronizacion)
             {
-                ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId);
+                ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId)
+                    .Where(x => !x.EsPromocion || (x.EsPromocion && x.StockActual > 0)).ToList();
             }
             ForzarSincronizacion = false;
         }
@@ -609,7 +611,8 @@ namespace MaxiKioscos.Winforms.Ventas
             if (!this.OwnedForms.Any())
             {
                 PopupAbierto = true;
-                var productos = ProductosDatasource.Where(p => ObtenerProductosVendidosIds().All(c => c != p.ProductoId)).ToList();
+                var productos = ProductosDatasource.Where(p => ObtenerProductosVendidosIds().All(c => c != p.ProductoId)
+                    && (!p.EsPromocion || (p.EsPromocion && p.StockActual > 0))).ToList();
                 var frm = new frmBuscador(txtCodigo.Text, productos, true, criterio);
 
                 frm.Cambio += BuscarArticulo;
@@ -661,7 +664,7 @@ namespace MaxiKioscos.Winforms.Ventas
             {
                 PopupAbierto = true;
                 //var productos = ProductosDatasource.Where(p => ObtenerProductosVendidosIds().All(c => c != p.ProductoId)).ToList();
-                var frm = new frmBuscador(txtCodigo.Text, ProductosDatasource.ToList(), true, criterio);
+                var frm = new frmBuscador(txtCodigo.Text, ProductosDatasource.Where(x => !x.EsPromocion || (x.EsPromocion && x.StockActual > 0)).ToList(), true, criterio);
                 frm.Cambio += BuscarArticulo;
                 frm.TeclaApretada += FrmOnTeclaApretada;
                 frm.MensajeError += FrmOnMensajeError;
@@ -900,7 +903,10 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void ScrollearHastaElFinal()
         {
-            dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.RowCount - 1;
+            if (dgvListado.RowCount != 0)
+            {
+                dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.RowCount - 1;
+            }
         }
 
         private void BuscadorSubir()

@@ -41,7 +41,8 @@ namespace MaxiKioscos.Datos.Helpers
                    {typeof(IProductoRepository), dbContext => new ProductoRepository(dbContext)},
                    {typeof(IStockRepository), dbContext => new StockRepository(dbContext)},
                    {typeof(IControlStockRepository), dbContext => new ControlStockRepository(dbContext)},
-                   {typeof(IRoleRepository), dbContext => new RoleRepository(dbContext)}
+                   {typeof(IRoleRepository), dbContext => new RoleRepository(dbContext)},
+                   {typeof(IReporteStockRepository), dbContext => new ReporteStockRepository(dbContext)}
                 };
         }
 

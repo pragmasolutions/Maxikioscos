@@ -1,0 +1,20 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@model PagedList.IPagedList<MaxiKioscos.Entidades.ReporteStock>
+@{
+    ViewBag.Title = "Reportes de Stock Valorizado Mensuales";
+}
+
+@Html.Partial("Listado")
+@if (!IsAjax)
+{
+    <text>
+    @section scripts
+    {
+        @Scripts.Render("~/Scripts/app/maxikiosco-reportes-stock.js")
+    }
+    </text>
+}
+else
+{
+    @Scripts.Render("~/Scripts/app/maxikiosco-reportes-stock.js")
+}

@@ -29,6 +29,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public System.Guid Identifier { get; set; }
         public bool Eliminado { get; set; }
+        public string AutoNumero { get; set; }
     
         public virtual MaxiKiosco Destino { get; set; }
         public virtual MaxiKiosco Origen { get; set; }

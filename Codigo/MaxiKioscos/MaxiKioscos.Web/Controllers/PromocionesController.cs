@@ -35,11 +35,11 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Index(PromocionesFiltrosModel promocionesFiltrosModel, int? page)
         {
 
-            IQueryable<Producto> productos = Listado(promocionesFiltrosModel);
+            var productos = Listado(promocionesFiltrosModel);
 
             var pageNumber = page ?? 1;
             var pageSize = 30;
-            IPagedList<Producto> lista = productos.OrderBy(s => s.Descripcion).ToPagedList(pageNumber, pageSize);
+            IPagedList<PromocionCompleta> lista = productos.OrderBy(s => s.Descripcion).ToPagedList(pageNumber, pageSize);
 
             var listadoModel = new PromocionesListadoModel
                                    {
@@ -607,16 +607,14 @@ namespace MaxiKioscos.Web.Controllers
             }
         }
 
-        private IQueryable<Producto> Listado(PromocionesFiltrosModel filtros)
+        private List<PromocionCompleta> Listado(PromocionesFiltrosModel filtros)
         {
-            return Uow.Productos
-                .Listado(p => p.Rubro, f => f.Marca, f => f.CodigosProductos,
-                         p => p.PromocionesHijos, p => p.PromocionesHijos.Select(pp => pp.Hijo),
-                         f => f.ProveedorProductos.Select(pp => pp.Proveedor),
-                         p => p.ComprasProductos.Select(cp => cp.Compra))
-                .Where(p => p.CuentaId == UsuarioActual.CuentaId && p.EsPromocion)
-                .Where(filtros.GetFilterExpression())
-                .OrderBy(p => p.Descripcion);
+            return Uow.Productos.PromocionesListado(filtros.RubroId,
+                filtros.Descripcion,
+                filtros.Precio,
+                filtros.StockReposicion,
+                filtros.ConStockMenorA,
+                filtros.Codigo).OrderBy(p => p.Descripcion).ToList();
         }
 
         #endregion

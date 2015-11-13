@@ -151,11 +151,6 @@ namespace MaxiKioscos.Winforms.Proveedores
 
             Proveedor = Repository.Obtener(proveedorId);
             
-            //traigo localidad y tipo de cuit.. despues mejorar esto
-            var proveedores = Repository.Listado(p => p.Localidad).ToList();
-            var tipocuit = Repository.Listado(t=>t.TipoCuit).ToList();
-            
-
             Identifier = Proveedor.Identifier;
             Nombre = Proveedor.Nombre;
             Contacto = Proveedor.Contacto;

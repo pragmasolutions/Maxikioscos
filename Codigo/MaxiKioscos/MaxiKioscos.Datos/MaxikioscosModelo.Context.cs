@@ -80,6 +80,7 @@ namespace MaxiKioscos.Entidades
         public virtual DbSet<ReporteRol> ReporteRoles { get; set; }
         public virtual DbSet<Permiso> Permisos { get; set; }
         public virtual DbSet<PermisoRol> PermisoRoles { get; set; }
+        public virtual DbSet<ReporteStock> ReportesStock { get; set; }
     
         public virtual ObjectResult<Nullable<int>> UsuarioInsertarDependencias(Nullable<int> usuarioId, Nullable<int> roleId, string proveedoresIds)
         {
@@ -937,6 +938,86 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("Hasta", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptVentasNegativasPorTicketRow>("RptVentasNegativasPorTicket", usuarioIdParameter, desdeParameter, hastaParameter);
+        }
+    
+        public virtual ObjectResult<PromocionCompleta> PromocionesListado(Nullable<int> rubroId, string descripcion, Nullable<decimal> precio, Nullable<int> stockReposicion, Nullable<int> conStockMenorA, string codigo)
+        {
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var stockReposicionParameter = stockReposicion.HasValue ?
+                new ObjectParameter("StockReposicion", stockReposicion) :
+                new ObjectParameter("StockReposicion", typeof(int));
+    
+            var conStockMenorAParameter = conStockMenorA.HasValue ?
+                new ObjectParameter("ConStockMenorA", conStockMenorA) :
+                new ObjectParameter("ConStockMenorA", typeof(int));
+    
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PromocionCompleta>("PromocionesListado", rubroIdParameter, descripcionParameter, precioParameter, stockReposicionParameter, conStockMenorAParameter, codigoParameter);
+        }
+    
+        public virtual ObjectResult<RptGastosPorCategoria> RptGastosPorCategoria(Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta, Nullable<int> maxikioscoId, Nullable<int> categoriaCostoId, Nullable<int> subCategoriaCostoId)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            var maxikioscoIdParameter = maxikioscoId.HasValue ?
+                new ObjectParameter("MaxikioscoId", maxikioscoId) :
+                new ObjectParameter("MaxikioscoId", typeof(int));
+    
+            var categoriaCostoIdParameter = categoriaCostoId.HasValue ?
+                new ObjectParameter("CategoriaCostoId", categoriaCostoId) :
+                new ObjectParameter("CategoriaCostoId", typeof(int));
+    
+            var subCategoriaCostoIdParameter = subCategoriaCostoId.HasValue ?
+                new ObjectParameter("SubCategoriaCostoId", subCategoriaCostoId) :
+                new ObjectParameter("SubCategoriaCostoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptGastosPorCategoria>("RptGastosPorCategoria", desdeParameter, hastaParameter, maxikioscoIdParameter, categoriaCostoIdParameter, subCategoriaCostoIdParameter);
+        }
+    
+        public virtual ObjectResult<RptGastosPorCategoriaTotalGeneral> RptGastosPorCategoriaTotalGeneral(Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptGastosPorCategoriaTotalGeneral>("RptGastosPorCategoriaTotalGeneral", desdeParameter, hastaParameter);
+        }
+    
+        public virtual ObjectResult<ProductoTransferenciaDesktop> ProductoObtenerParaTransferenciaDesktop(string codigo, Nullable<int> maxiKioscoId)
+        {
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
+                new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
+                new ObjectParameter("MaxiKioscoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoTransferenciaDesktop>("ProductoObtenerParaTransferenciaDesktop", codigoParameter, maxiKioscoIdParameter);
         }
     }
 }

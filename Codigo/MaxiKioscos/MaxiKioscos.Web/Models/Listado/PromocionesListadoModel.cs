@@ -24,7 +24,7 @@ namespace MaxiKioscos.Web.Models
         [Display(Name = "Código")]
         public string Codigo { get; set; }
 
-        public IPagedList<Producto> List { get; set; }
+        public IPagedList<PromocionCompleta> List { get; set; }
 
         public PromocionesFiltrosModel Filtros { get; set; }
     }

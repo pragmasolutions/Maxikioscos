@@ -66,6 +66,7 @@
     <Compile Include="Helpers\SincronizacionHelper.cs" />
     <Compile Include="Interfaces\IDatabaseRepository.cs" />
     <Compile Include="Interfaces\IControlStockRepository.cs" />
+    <Compile Include="Interfaces\IReporteStockRepository.cs" />
     <Compile Include="Interfaces\IStockRepository.cs" />
     <Compile Include="Interfaces\IMaxiKioscoRepository.cs" />
     <Compile Include="Interfaces\IProductoRepository.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Repositorio\MaxiKioscoRepository.cs" />
     <Compile Include="Repositorio\ExcepcionRepository.cs" />
     <Compile Include="Repositorio\ProductoRepository.cs" />
+    <Compile Include="Repositorio\ReporteStockRepository.cs" />
     <Compile Include="Repositorio\StockRepository.cs" />
     <Compile Include="Repositorio\RetiroPersonalRepository.cs" />
     <Compile Include="Repositorio\RoleRepository.cs" />

@@ -9,7 +9,10 @@ using MaxiKioscos.Web.Models;
 using Maxikioscos.Comun.Logger;
 using System.Linq;
 using Maxikioscos.Comun.Extensions;
+using MaxiKioscos.Entidades;
+using MaxiKioscos.Reportes.Enumeraciones;
 using MaxiKioscos.Web.Filters;
+using PagedList;
 
 namespace MaxiKioscos.Web.Controllers
 {
@@ -519,7 +522,14 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult GenerarStockValorizadoDetallado(ReporteStockValorizadoFiltrosModel model)
         {
-            var reporteFactory = new ReporteFactory();
+            ReporteFactory factory;
+            var archivo = GenerarStockValorizadoDetalladoReporte(model, out factory);
+            return File(archivo, factory.MimeType);
+        }
+
+        public byte[] GenerarStockValorizadoDetalladoReporte(ReporteStockValorizadoFiltrosModel model, out ReporteFactory reporteFactory)
+        {
+            reporteFactory = new ReporteFactory();
             IQueryable<object> dataset;
 
             var rubro = Uow.Rubros.Obtener(r => r.RubroId == model.RubroId);
@@ -546,13 +556,19 @@ namespace MaxiKioscos.Web.Controllers
                     .SetDataSource("dataset", dataset);
             }
 
-            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
-            return File(archivo, reporteFactory.MimeType);
+            return reporteFactory.Renderizar(model.ReporteTipo);
         }
 
         public ActionResult GenerarStockValorizado(ReporteStockValorizadoFiltrosModel model)
         {
-            var reporteFactory = new ReporteFactory();
+            ReporteFactory factory;
+            var archivo = GenerarStockValorizadoReporte(model, out factory);
+            return File(archivo, factory.MimeType);
+        }
+
+        private byte[] GenerarStockValorizadoReporte(ReporteStockValorizadoFiltrosModel model, out ReporteFactory reporteFactory)
+        {
+            reporteFactory = new ReporteFactory();
             IQueryable<object> dataset;
 
             var rubro = Uow.Rubros.Obtener(r => r.RubroId == model.RubroId);
@@ -579,10 +595,8 @@ namespace MaxiKioscos.Web.Controllers
                     .SetDataSource("dataset", dataset);
             }
 
-            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
-            return File(archivo, reporteFactory.MimeType);
+            return reporteFactory.Renderizar(model.ReporteTipo);
         }
-
         public ActionResult GenerarComprasPorProveedor(ReporteComprasPorProveedorFiltrosModel model)
         {
             DateTime? hasta = model.Hasta == null
@@ -819,5 +833,100 @@ namespace MaxiKioscos.Web.Controllers
 
             return File(archivo, reporteFactory.MimeType);
         }
+
+        #region AUTOMATIZACIONES
+
+        public ActionResult GenerarStockValorizadoMensual()
+        {
+            var hoy = DateTime.Now.ToUniversalTime();
+            var mes = hoy.Month;
+            var anio = hoy.Year;
+            var elemento = Uow.ReportesStock.Obtener(mes, anio);
+            if (elemento == null)
+            {
+                elemento = new ReporteStock()
+                {
+                    FechaCreacion = hoy,
+                    Mes = mes,
+                    Anio = anio
+                };
+
+                ReporteFactory factory;
+                elemento.Valorizado = GenerarStockValorizadoReporte(new ReporteStockValorizadoFiltrosModel()
+                {
+                    MostrarTotalGeneral = false,
+                    ReporteTipo = ReporteTipoEnum.Pdf
+                }, out factory);
+                elemento.ValorizadoGeneral = GenerarStockValorizadoReporte(new ReporteStockValorizadoFiltrosModel()
+                {
+                    MostrarTotalGeneral = true,
+                    ReporteTipo = ReporteTipoEnum.Pdf
+                }, out factory);
+                elemento.ValorizadoDetallado = GenerarStockValorizadoDetalladoReporte(new ReporteStockValorizadoFiltrosModel()
+                {
+                    MostrarTotalGeneral = false,
+                    ReporteTipo = ReporteTipoEnum.Pdf
+                }, out factory);
+                elemento.ValorizadoDetalladoGeneral = GenerarStockValorizadoDetalladoReporte(new ReporteStockValorizadoFiltrosModel()
+                {
+                    MostrarTotalGeneral = true,
+                    ReporteTipo = ReporteTipoEnum.Pdf
+                }, out factory);
+                Uow.ReportesStock.Crear(elemento);
+                Uow.Commit();
+            }
+            return Json(new {exito = true}, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult StockValorizadoMensual()
+        {
+            var reportes = Uow.ReportesStock.Listado().OrderByDescending(m => m.Anio).ThenByDescending(m => m.Mes).ToList();
+            IPagedList<ReporteStock> list = reportes.ToPagedList(1, int.MaxValue);
+
+            return PartialOrView(list);
+        }
+
+        public ActionResult DetalleValorizadoMensual(int mes, int anio, int reporteStockId)
+        {
+            var model = new ReporteStockModel()
+            {
+                Mes = mes,
+                Anio = anio,
+                ReporteStockId = reporteStockId
+            };
+            return PartialOrView(model);
+        }
+
+        public ActionResult StockValorizadoAutomatico(int id)
+        {
+            var reporte = Uow.ReportesStock.Obtener(id);
+
+            return File(reporte.Valorizado, "application/pdf");
+        }
+
+        public ActionResult StockValorizadoGeneralAutomatico(int id)
+        {
+            var reporte = Uow.ReportesStock.Obtener(id);
+
+            return File(reporte.ValorizadoGeneral, "application/pdf");
+        }
+
+        public ActionResult StockValorizadoDetalladoAutomatico(int id)
+        {
+            var reporte = Uow.ReportesStock.Obtener(id);
+
+            return File(reporte.ValorizadoDetallado, "application/pdf");
+        }
+
+        public ActionResult StockValorizadoDetalladoGeneralAutomatico(int id)
+        {
+            var reporte = Uow.ReportesStock.Obtener(id);
+
+            return File(reporte.ValorizadoDetalladoGeneral, "application/pdf");
+        }
+        
+
+        #endregion
+
     }
 }

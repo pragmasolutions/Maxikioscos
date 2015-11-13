@@ -168,6 +168,21 @@ namespace MaxiKioscos.Entidades
 
         public List<PromocionMaxikiosco> PromocionMaxikioscos { get; set; }
 
+        public decimal? Ganancia
+        {
+            get
+            {
+                ProveedorProducto pp = ProveedorProductos.Any(x => x.FechaUltimoCambioCosto != null)
+                            ? ProveedorProductos.OrderByDescending(x => x.FechaUltimoCambioCosto).FirstOrDefault()
+                            : ProveedorProductos.OrderByDescending(x => x.FechaUltimaModificacion).FirstOrDefault();
+                if (pp == null)
+                {
+                    return null;
+                }
+                return ((this.PrecioConIVA - pp.CostoConIVA) / pp.CostoConIVA) * 100;
+            }
+        }
+
         public decimal GetStockPorMaxikiosco(int maxikioscoId)
         {
             var transacciones = this.Stocks.Where(x => !x.Eliminado && x.MaxiKioscoId == maxikioscoId)

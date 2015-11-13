@@ -23,7 +23,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public System.Guid Identifier { get; set; }
         public bool Eliminado { get; set; }
-        public decimal StockOrigen { get; set; }
+        public Nullable<decimal> StockOrigen { get; set; }
         public decimal StockDestino { get; set; }
         public int Orden { get; set; }
         public decimal Costo { get; set; }

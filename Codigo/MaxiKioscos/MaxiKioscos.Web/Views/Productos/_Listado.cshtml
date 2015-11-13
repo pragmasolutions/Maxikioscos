@@ -10,7 +10,7 @@
                 <th>Marca</th>
                 <th>Costos</th>
                 <th>Precio</th>
-                <th style="width: 80px;">Stock Reposición</th>
+                <th style="width: 80px;">Ganancia (%)</th>
                 <th style="width: 100px;">Modificación Costo</th>
                 <th>Última compra</th>
                 <th class="columna-botones"></th>
@@ -25,7 +25,7 @@
                     <td>@producto.Marca.Descripcion</td>
                     <td>@producto.CostosResumen</td>
                     <td class="text-right">@producto.PrecioConIVA.ToString("C2")</td>
-                    <td>@producto.StockReposicion</td>
+                    <td>@(producto.Ganancia.HasValue ? producto.Ganancia.GetValueOrDefault().ToString("N2") + "%" : "")</td>
                     <td class="text-center">@(producto.UltimaModificacionCosto.HasValue ? producto.UltimaModificacionCosto.Value.ToShortDateString() : string.Empty)</td>
                     <td class="text-center">@(producto.UltimaCompraCosto.HasValue ? producto.UltimaCompraCosto.Value.ToShortDateString() : string.Empty)</td>
                     <td class="text-center">

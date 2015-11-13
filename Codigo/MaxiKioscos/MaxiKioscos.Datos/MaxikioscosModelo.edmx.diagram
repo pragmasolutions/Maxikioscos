@@ -144,6 +144,7 @@
         <AssociationConnector Association="MaxiKioscosModel.FK_PermisoRol_Permiso" />
         <AssociationConnector Association="MaxiKioscosModel.FK_PermisoRol_webpages_Roles" />
         <AssociationConnector Association="MaxiKioscosModel.FK_CategoriaCosto_CategoriaCosto" />
+        <EntityTypeShape EntityType="MaxiKioscosModel.ReporteStock" Width="1.5" PointX="0.75" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

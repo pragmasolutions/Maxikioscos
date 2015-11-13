@@ -1,0 +1,36 @@
+﻿@using MaxiKioscos.Web.Comun.Extensiones
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<MaxiKioscos.Entidades.ReporteStock>
+@Html.PaginaTitulo("Reportes de Stock Valorizado Mensuales", "fa-bar-chart-o")
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="TableReportesStock">
+                        <thead>
+                            <tr>
+                                <th>Año</th>
+                                <th>Mes</th>
+                                <th class="columna-botones"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var reporte in Model)
+                            {
+                                <tr>
+                                    <td>@reporte.Anio</td>
+                                    <td>@reporte.MesDescripcion</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-default btn-reporte-stock-detalle" href="@Url.Action("DetalleValorizadoMensual", new { reporteStockId = reporte.ReporteStockId, mes = reporte.Mes, anio = reporte.Anio })"><span class="glyphicon glyphicon-list"></span></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -119,6 +119,8 @@
     <Compile Include="ExportacionArchivo.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensiones\ProductoTransferenciaDesktop.cs" />
+    <Compile Include="Extensiones\ReporteStock.cs" />
     <Compile Include="Extensiones\ProductoCompleto.cs" />
     <Compile Include="Extensiones\EstadoKiosco.cs" />
     <Compile Include="Extensiones\ProductoHorario.cs" />
@@ -236,6 +238,12 @@
     <Compile Include="ProductoStock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductoTransferenciaDesktop.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PromocionCompleta.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedor.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
@@ -256,6 +264,9 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteRol.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteStock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RetiroPersonal.cs">
@@ -286,6 +297,12 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RptGanaciaAdicionalExcepcionRubro.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptGastosPorCategoria.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptGastosPorCategoriaTotalGeneral.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RptRetirosPersonalesPorTicketRow.cs">
