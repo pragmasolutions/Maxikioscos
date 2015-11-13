@@ -1401,6 +1401,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Host\" />
+    <Folder Include="Transferencias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="m.ico" />
