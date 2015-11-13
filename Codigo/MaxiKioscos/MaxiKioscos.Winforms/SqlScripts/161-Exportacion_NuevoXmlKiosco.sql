@@ -1,26 +1,46 @@
-/****** Object:  StoredProcedure [dbo].[Exportacion_NuevoXmlPrincipal]    Script Date: 04/14/2015 23:53:28 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Exportacion_NuevoXmlPrincipal]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
-GO
-
-
-CREATE PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
-	@UsuarioId int,
-	@Secuencia int = NULL
+ALTER PROCEDURE [dbo].[Exportacion_NuevoXmlKiosco]
+	@MaxiKioscoIdentifier uniqueidentifier,
+	@UsuarioId int
 AS
 BEGIN
-	IF @Secuencia IS NULL
-	BEGIN
-		SELECT @Secuencia = ISNULL(MAX(Secuencia) + 1, 1) FROM Exportacion
-	END
+	DECLARE @Secuencia int
+	SELECT @Secuencia = ISNULL(MAX(Secuencia) + 1, 1) FROM Exportacion
 	
+	DECLARE @MaxikioscoId int
+	SELECT @MaxikioscoId = (SELECT TOP 1 MaxiKioscoId FROM MaxiKiosco WHERE Identifier = @MaxiKioscoIdentifier)
 	
 	DECLARE @CuentaId int
-	SELECT @CuentaId = (SELECT TOP 1 CuentaId FROM Usuario WHERE UsuarioId = @UsuarioId)	
+	SELECT @CuentaId = (SELECT TOP 1 CuentaId FROM MaxiKiosco WHERE MaxiKioscoId = @MaxikioscoId)	
 	
 	DECLARE @ExportacionId int
 	SET @ExportacionId = 0
 	
+	--Nos aseguramos de mandar siempre el cierre de caja
+	UPDATE CC
+	SET Desincronizado = 1
+	FROM Venta V
+		INNER JOIN CierreCaja CC
+			ON V.CierreCajaId = CC.CierreCajaId
+	WHERE V.Desincronizado = 1
+		AND CC.Desincronizado = 0
+	
+	UPDATE CC
+	SET Desincronizado = 1
+	FROM Factura F
+		INNER JOIN CierreCaja CC
+			ON F.CierreCajaId = CC.CierreCajaId
+	WHERE F.Desincronizado = 1
+		AND CC.Desincronizado = 0
+		
+	UPDATE CC
+	SET Desincronizado = 1
+	FROM OperacionCaja OC
+		INNER JOIN CierreCaja CC
+			ON OC.CierreCajaId = CC.CierreCajaId
+	WHERE OC.Desincronizado = 1
+		AND CC.Desincronizado = 0	
+		
+		
 	DECLARE @XML XML
 	
 	BEGIN TRY
@@ -28,20 +48,19 @@ BEGIN
 		--OBTENGO EL XML
 		SET @XML = (
 		SELECT
-		(SELECT R.*, CuentaIdentifier = C.Identifier
-		 FROM Rubro R
-	      LEFT JOIN Cuenta C ON R.CuentaId = C.CuentaId
-		  WHERE R.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Rubros'), TYPE),
-		(SELECT M.*, CuentaIdentifier = C.Identifier 
-		 FROM Marca M
-		 LEFT JOIN Cuenta C ON M.CuentaId = C.CuentaId 
-		 WHERE M.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Marcas'), TYPE),
-		(SELECT CC.*,
-			PadreIdentifier = CC2.Identifier
-		 FROM CategoriaCosto CC
-			LEFT JOIN CategoriaCosto CC2
-				ON CC.PadreId = CC2.CategoriaCostoId
-		 WHERE CC.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('CategoriasCosto'), TYPE),
+		(SELECT CC.*, UsuarioIdentifier = U.Identifier, MaxiKioscoIdentifier = M.Identifier
+		 FROM CierreCaja CC
+	      LEFT JOIN Usuario U ON CC.UsuarioId = U.UsuarioId
+	      LEFT JOIN MaxiKiosco M ON CC.MaxiKioskoId = M.MaxiKioscoId
+		  WHERE CC.Desincronizado = 1 
+				AND M.Identifier = @MaxiKioscoIdentifier FOR XML AUTO, ELEMENTS, ROOT('CierresCaja'), TYPE),
+		(SELECT OC.*, CierreCajaIdentifier = CC.Identifier,
+			UsuarioCreadorIdentifier = UC.Identifier, UsuarioModificacionIdentifier = UM.Identifier
+		 FROM OperacionCaja OC
+	      LEFT JOIN CierreCaja CC ON OC.CierreCajaId = CC.CierreCajaId
+	      LEFT JOIN Usuario UC ON OC.UsuarioCreadorId = UC.UsuarioId
+	      LEFT JOIN Usuario UM ON OC.UltimoUsuarioModificacionId = UM.UsuarioId
+		  WHERE OC.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('OperacionesCaja'), TYPE),
 		(SELECT P.*, MarcaIdentifier = M.Identifier, RubroIdentifier = R.Identifier, CuentaIdentifier = C.Identifier  
 			FROM Producto P
 			LEFT JOIN Marca M ON P.MarcaId = M.MarcaId
@@ -73,30 +92,12 @@ BEGIN
 		 FROM StockTransaccion ST
 			LEFT JOIN Stock S ON ST.StockId = S.StockId
 		 WHERE ST.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('StockTransacciones'), TYPE),
-		(SELECT * FROM Cuenta WHERE Desincronizado = 1	FOR XML AUTO, ELEMENTS, ROOT('Cuentas'), TYPE),		
-		(SELECT ER.*, RubroIdentifier = R.Identifier, MaxiKioscoIdentifier = M.Identifier 
-		 FROM ExcepcionRubro ER
-		  LEFT JOIN Rubro R ON ER.RubroId = R.RubroId
-		  LEFT JOIN MaxiKiosco M ON ER.MaxiKioscoId = M.MaxiKioscoId
-		  WHERE ER.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ExcepcionesRubros'), TYPE),	
-		(SELECT MT.*, MaxiKioscoIdentifier = M.Identifier 
-		 FROM MaxiKioscoTurno MT
-			LEFT JOIN MaxiKiosco M ON MT.MaxiKioscoId = M.MaxiKioscoId
-		 WHERE MT.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('MaxiKioscoTurnos'), TYPE),
-		(SELECT P.*, CuentaIdentifier = C.Identifier 
-		 FROM Proveedor P
-		 LEFT JOIN Cuenta C ON P.CuentaId = C.CuentaId
-		 WHERE P.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Proveedores'), TYPE),
 		(SELECT PP.*, ProveedorIdentifier = PROV.Identifier, ProductoIdentifier = PROD.Identifier  
 		 FROM ProveedorProducto PP
 			LEFT JOIN Proveedor PROV ON PP.ProveedorId = PROV.ProveedorId
 			LEFT JOIN Producto PROD ON PP.ProductoId = PROD.ProductoId
 		 WHERE PP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ProveedorProductos'), TYPE),
-		(SELECT PP.*, PadreIdentifier = PADRE.Identifier, HijoIdentifier = HIJO.Identifier  
-		 FROM ProductoPromocion PP
-			LEFT JOIN Producto PADRE ON PP.PadreId = PADRE.ProductoId
-			LEFT JOIN Producto HIJO ON PP.HijoId = HIJO.ProductoId
-		 WHERE PP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ProductoPromociones'), TYPE),
+		
 		(SELECT S.*, MaxiKioscoIdentifier = M.Identifier, ProductoIdentifier = P.Identifier
 		 FROM Stock S
 			LEFT JOIN Producto P
@@ -104,6 +105,42 @@ BEGIN
 			LEFT JOIN MaxiKiosco M
 				ON S.MaxiKioscoId = M.MaxiKioscoId
 		 WHERE S.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Stock'), TYPE),
+		(SELECT M.*, CuentaIdentifier = C.Identifier
+			FROM MaxiKiosco M
+				LEFT JOIN Cuenta C ON M.CuentaId = C.CuentaId
+			WHERE M.Identifier = @MaxiKioscoIdentifier 
+			FOR XML AUTO, ELEMENTS, ROOT('MaxiKioscos'), TYPE),
+		 (SELECT F.*,
+		    UsuarioIdentifier = (SELECT Identifier FROM Usuario WHERE UsuarioId = F.Usuario),
+		    ProveedorIdentifier = P.Identifier,
+			MaxiKioscoIdentifier = M.Identifier, CierreCajaIdentifier = CC.Identifier
+		  FROM Factura F 
+			LEFT JOIN Proveedor P ON F.ProveedorId = P.ProveedorId
+			LEFT JOIN MaxiKiosco M ON F.MaxiKioscoId = M.MaxiKioscoId
+			LEFT JOIN CierreCaja CC ON F.CierreCajaId = CC.CierreCajaId
+		  WHERE F.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Facturas'), TYPE),
+		(SELECT V.*, CierreCajaIdentifier = CC.Identifier
+		  FROM Venta V 
+			LEFT JOIN CierreCaja CC ON V.CierreCajaId = CC.CierreCajaId
+		  WHERE V.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Ventas'), TYPE),
+		(SELECT VP.*, VentaIdentifier = V.Identifier, ProductoIdentifier = P.Identifier
+		  FROM VentaProducto VP 
+			LEFT JOIN Venta V ON VP.VentaId = V.VentaId
+			LEFT JOIN Producto P ON VP.ProductoId = P.ProductoId
+		  WHERE VP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('VentasProductos'), TYPE),
+		(SELECT RP.*, CierreCajaIdentifier = CC.Identifier
+		  FROM RetiroPersonal RP 
+			LEFT JOIN CierreCaja CC ON RP.CierreCajaId = CC.CierreCajaId
+		  WHERE RP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('RetirosPersonales'), TYPE),
+		(SELECT RPP.*, RetiroPersonalIdentifier = RP.Identifier, ProductoIdentifier = P.Identifier
+		  FROM RetiroPersonalProducto RPP 
+			LEFT JOIN RetiroPersonal RP ON RPP.RetiroPersonalId = RP.RetiroPersonalId
+			LEFT JOIN Producto P ON RPP.ProductoId = P.ProductoId
+		  WHERE RPP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('RetirosPersonalesProductos'), TYPE),
+		(SELECT RB.*, CierreCajaIdentifier = CC.Identifier
+		  FROM RecuentoBillete RB
+			LEFT JOIN CierreCaja CC ON RB.CierreCajaId = CC.CierreCajaId
+		  WHERE RB.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('RecuentoBilletes'), TYPE),
 		(SELECT CS.*, ProveedorIdentifier = P.Identifier, RubroIdentifier = R.Identifier,
 				MaxiKioscoIdentifier = M.Identifier, UsuarioIdentifier = U.Identifier
 		  FROM ControlStock CS 
@@ -121,42 +158,13 @@ BEGIN
 		  WHERE CSD.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('ControlStockDetalles'), TYPE),
 		(SELECT C.*, CierreCajaIdentifier = CC.Identifier,
 						CategoriaCostoIdentifier = CCO.Identifier,
-						UsuarioIdentifier = U.Identifier,
-						MaxikioscoIdentifier = M.Identifier
+						UsuarioIdentifier = U.Identifier
 		  FROM Costo C
 			LEFT JOIN CierreCaja CC ON C.CierreCajaId = CC.CierreCajaId
 			LEFT JOIN CategoriaCosto CCO ON C.CategoriaCostoId = CCO.CategoriaCostoId
 			LEFT JOIN Usuario U ON C.UsuarioId = U.UsuarioId
-			LEFT JOIN MaxiKiosco M ON C.MaxikioscoId = M.MaxiKioscoId
 		  WHERE C.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Costos'), TYPE),
-		(SELECT U.*, CuentaIdentifier = C.Identifier 
-		 FROM Usuario U
-			LEFT JOIN Cuenta C ON U.CuentaId = C.CuentaId
-		 WHERE U.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Usuario'), TYPE),
-		 (SELECT M.*, CuentaIdentifier = C.Identifier
-			FROM MaxiKiosco M
-				LEFT JOIN Cuenta C ON M.CuentaId = C.CuentaId
-			WHERE M.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('MaxiKioscos'), TYPE),
-		(SELECT UP.*, 
-				P.Identifier ProveedorIdentifier,
-				U.Identifier UsuarioIdentifier
-			FROM UsuarioProveedor UP
-				LEFT JOIN Usuario U ON UP.UsuarioId = U.UsuarioId
-				LEFT JOIN Proveedor P ON UP.ProveedorId = P.ProveedorId
-			WHERE UP.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('UsuarioProveedores'), TYPE),
-		(SELECT M.*, UsuarioIdentifier = U.Identifier 
-		 FROM webpages_Membership M 
-		 LEFT JOIN Usuario U ON M.UserId = U.UsuarioId
-		 WHERE U.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Membership'), TYPE),		 
-		 (SELECT UR.*, UsuarioIdentifier = U.Identifier 
-		 FROM webpages_UsersInRoles UR 
-		 LEFT JOIN Usuario U ON UR.UserId = U.UsuarioId
-		 WHERE U.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('UsersInRoles'), TYPE),
-		 (SELECT E.*, CierreCajaIdentifier = CC.Identifier
-		 FROM Excepcion E
-	      LEFT JOIN CierreCaja CC ON E.CierreCajaId = CC.CierreCajaId
-		  WHERE E.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Excepciones'), TYPE),
-		  (SELECT T.*, OrigenIdentifier = O.Identifier, 
+		(SELECT T.*, OrigenIdentifier = O.Identifier, 
 					DestinoIdentifier = D.Identifier, 
 					UsuarioIdentifier = U.Identifier  
 			FROM Transferencia T
@@ -170,15 +178,10 @@ BEGIN
 			LEFT JOIN Producto P ON TP.ProductoId = P.ProductoId
 			LEFT JOIN Transferencia T ON TP.TransferenciaId = T.TransferenciaId
 			WHERE T.Desincronizado = 1	FOR XML RAW('TransferenciaProducto'), ELEMENTS, ROOT('TransferenciasProductos'), TYPE),
-		 (SELECT F.*, 
-			UsuarioIdentifier = (SELECT Identifier FROM Usuario WHERE UsuarioId = F.Usuario),
-			ProveedorIdentifier = P.Identifier,
-			MaxiKioscoIdentifier = M.Identifier, CierreCajaIdentifier = CC.Identifier
-		  FROM Factura F 
-			LEFT JOIN Proveedor P ON F.ProveedorId = P.ProveedorId
-			LEFT JOIN MaxiKiosco M ON F.MaxiKioscoId = M.MaxiKioscoId
-			LEFT JOIN CierreCaja CC ON F.CierreCajaId = CC.CierreCajaId
-		  WHERE F.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Facturas'), TYPE)
+		(SELECT M.*, UsuarioIdentifier = U.Identifier
+		 FROM webpages_Membership M 
+		 LEFT JOIN Usuario U ON M.UserId = U.UsuarioId
+		 WHERE U.Desincronizado = 1 FOR XML AUTO, ELEMENTS, ROOT('Membership'), TYPE)
 		
 		FOR XML PATH(''), ROOT('Exportacion'))
 		
@@ -188,35 +191,31 @@ BEGIN
 		UPDATE CompraProducto SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE CorreccionStock SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE StockTransaccion SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Cuenta SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE ExcepcionRubro SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Marca SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE MaxiKioscoTurno SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Producto SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Proveedor SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE ProveedorProducto SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Rubro SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Stock SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Usuario SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE MaxiKiosco SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE UsuarioProveedor SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Factura SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE CierreCaja SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE OperacionCaja SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE Venta SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE VentaProducto SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE RecuentoBillete SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE ControlStock SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE Excepcion SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE ControlStockDetalle SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE CategoriaCosto SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE RetiroPersonal SET Desincronizado = 0 WHERE Desincronizado = 1
+		UPDATE RetiroPersonalProducto SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Costo SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE Transferencia SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE TransferenciaProducto SET Desincronizado = 0 WHERE Desincronizado = 1
-		UPDATE ProductoPromocion SET Desincronizado = 0 WHERE Desincronizado = 1
 		--INSERTAMOS EL NUEVO XML
 		INSERT INTO Exportacion(Secuencia, Fecha, CreadorId, CuentaId, Archivo, Eliminado, 
 								FechaUltimaModificacion, Desincronizado, Acusada)
 		VALUES (@Secuencia, GETDATE(), @UsuarioId, @CuentaId, @XML, 0, GETDATE(), 1, 0)
-		SET @ExportacionId = CONVERT(INT,SCOPE_IDENTITY())
+	
 	COMMIT TRAN
 	
-	
+	SET @ExportacionId = CONVERT(INT,SCOPE_IDENTITY())
 	SELECT @ExportacionId AS ExportacionId
 	
 	END TRY
@@ -237,15 +236,3 @@ END CATCH
 	
 	
 END
-
-
-
-
-
-
-
-
-
-GO
-
-

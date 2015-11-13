@@ -17,8 +17,8 @@
       <Query>
         <DataSourceName>MaxiKioscos</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@TransferenciaId">
-            <Value>=Parameters!TransferenciaId.Value</Value>
+          <QueryParameter Name="@AutoNumero">
+            <Value>=Parameters!AutoNumero.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
@@ -581,7 +581,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!TransferenciaId.Value</Value>
+                    <Value>=Parameters!AutoNumero.Value</Value>
                     <Style>
                       <FontFamily>Verdana</FontFamily>
                     </Style>
@@ -815,9 +815,11 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="TransferenciaId">
-      <DataType>Integer</DataType>
-      <Prompt>Transferencia Id</Prompt>
+    <ReportParameter Name="AutoNumero">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>AutoNumero</Prompt>
     </ReportParameter>
     <ReportParameter Name="Creado">
       <DataType>String</DataType>

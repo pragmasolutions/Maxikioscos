@@ -661,6 +661,7 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="AutoNumero" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="TransferenciaProducto">
           <Key>
@@ -675,7 +676,7 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
-          <Property Name="StockOrigen" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StockOrigen" Type="decimal" Precision="18" Scale="2" />
           <Property Name="StockDestino" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Orden" Type="int" Nullable="false" />
           <Property Name="Costo" Type="money" Nullable="false" />
@@ -4829,6 +4830,7 @@
           <NavigationProperty Name="Origen" Relationship="MaxiKioscosModel.FK_Transferencia_Origen" FromRole="Transferencia" ToRole="MaxiKiosco" />
           <NavigationProperty Name="Usuario" Relationship="MaxiKioscosModel.FK_Transferencia_Usuario" FromRole="Transferencia" ToRole="Usuario" />
           <NavigationProperty Name="TransferenciaProductos" Relationship="MaxiKioscosModel.FK_TransferenciaProducto_Transferencia" FromRole="Transferencia" ToRole="TransferenciaProducto" />
+          <Property Name="AutoNumero" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Transferencia_Destino">
           <End Type="MaxiKioscosModel.MaxiKiosco" Role="MaxiKiosco" Multiplicity="1" />
@@ -4893,7 +4895,7 @@
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="MaxiKioscosModel.FK_TransferenciaProducto_Producto" FromRole="TransferenciaProducto" ToRole="Producto" />
           <NavigationProperty Name="Transferencia" Relationship="MaxiKioscosModel.FK_TransferenciaProducto_Transferencia" FromRole="TransferenciaProducto" ToRole="Transferencia" />
-          <Property Name="StockOrigen" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="StockOrigen" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="StockDestino" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Orden" Type="Int32" Nullable="false" />
           <Property Name="Costo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
@@ -6315,6 +6317,7 @@
           <EntitySetMapping Name="Transferencias">
             <EntityTypeMapping TypeName="IsTypeOf(MaxiKioscosModel.Transferencia)">
               <MappingFragment StoreEntitySet="Transferencia">
+                <ScalarProperty Name="AutoNumero" ColumnName="AutoNumero" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />

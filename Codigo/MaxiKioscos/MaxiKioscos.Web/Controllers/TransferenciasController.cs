@@ -102,11 +102,14 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Crear()
         {
-            int ultima = Uow.Transferencias.Max(t => t.TransferenciaId);
+            var ultima = Uow.Transferencias.Listado().Where(x => x.AutoNumero.StartsWith("WEB_")).OrderByDescending(x => x.TransferenciaId).FirstOrDefault();
+            var numero = ultima == null
+                ? 1
+                : Convert.ToInt32(ultima.AutoNumero.Replace("WEB_", "")) + 1;
             var transferencia = new Transferencia()
                                 {
                                     FechaCreacion = DateTime.Now,
-                                    TransferenciaId = ultima + 1,
+                                    AutoNumero = String.Format("WEB_{0}", numero),
                                     UsuarioId = UsuarioActual.Usuario.UsuarioId
                                 };
 
@@ -147,7 +150,9 @@ namespace MaxiKioscos.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
-            
+
+            int ultima = Uow.Transferencias.Listado().Where(x => x.AutoNumero.StartsWith("WEB_")).Max(t => t.TransferenciaId);
+            transferencia.AutoNumero = String.Format("WEB_{0}", ultima + 1);
             TransferenciasNegocio.Crear(transferencia);
 
             return Json(new { exito = true, transferencia.TransferenciaId });
@@ -230,7 +235,7 @@ namespace MaxiKioscos.Web.Controllers
             var datasources = new Dictionary<string, object> { {"Dataset", stockDataSource}};
             var parameters = new Dictionary<string, string>
                                   {
-                                      {"TransferenciaId", id.ToString()},
+                                      {"AutoNumero", transferencia.AutoNumero },
                                       {"Destino", transferencia.Destino.Nombre},
                                       {"Origen", transferencia.Origen.Nombre},
                                       {"Usuario", transferencia.Usuario.NombreUsuario},
