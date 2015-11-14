@@ -12,23 +12,23 @@
             {
                 <text>
                     <a class="btn btn-default btn-controlStockDetalle-editar" href="@Url.Action("Corregir", "ControlStockDetalle", new { id = Model.ControlStockDetalleId })"
-                        data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin" 
-                        data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin" 
-                        data-ajax-update="#AdminContainer"><span class="glyphicon glyphicon-edit"></span></a>
-                            
+                       data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin"
+                       data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin"
+                       data-ajax-update="#AdminContainer"><span class="glyphicon glyphicon-edit"></span></a>
+
                     <a class="btn btn-default btn-controlStockDetalle-eliminar" href="#" style="display: none;" data-id="@Model.ControlStockDetalleId"><span class="glyphicon glyphicon-trash"></span></a>
                 </text>
             }
             else
             {
                 <text>
-                    Ir a <a href="@Url.Action("Detalle", "ControlStock", new { id = Model.ControlStockPrevioId })"
-                        data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin" 
-                        data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin" 
-                        data-ajax-update="#AdminContainer">@Model.ControlStockPrevio.NroControlFormateado</a>
+                    Ir a <a class="btn-controlStockDetalle-detalle" href="@Url.Action("Detalle", "ControlStock", new { id = Model.ControlStockPrevioId })"
+                            data-ajax="true" data-ajax-begin="maxikioscoSpinner.startSpin" data-ajax-failure="maxikioscoSpinner.stopSpin"
+                            data-ajax-method="Get" data-ajax-mode="replace" data-ajax-success="maxikioscoSpinner.stopSpin"
+                            data-ajax-update="#AdminContainer">@Model.ControlStockPrevio.NroControlFormateado</a>
                 </text>
             }
-            
+
         }
         @Html.HiddenFor(model => model.Cantidad)
         @Html.HiddenFor(model => model.ControlStockDetalleId)

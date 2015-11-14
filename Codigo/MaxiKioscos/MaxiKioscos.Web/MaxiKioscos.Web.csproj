@@ -67,6 +67,11 @@
       <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.DataVisualization\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
       <Private>True</Private>
@@ -1008,6 +1013,7 @@
     <Content Include="Views\Reportes\StockValorizadoMensual.cshtml" />
     <Content Include="Views\Reportes\Listado.cshtml" />
     <Content Include="Views\Reportes\DetalleValorizadoMensual.cshtml" />
+    <Content Include="Views\ControlStock\_InicializarCursorTable.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>
