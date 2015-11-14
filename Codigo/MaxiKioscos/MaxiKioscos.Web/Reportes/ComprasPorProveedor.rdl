@@ -745,6 +745,7 @@
                                   <Value>Proveedor</Value>
                                   <Style>
                                     <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -778,6 +779,7 @@
                                 <TextRun>
                                   <Value>Importe A</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -811,6 +813,7 @@
                                 <TextRun>
                                   <Value>Importe X</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -844,6 +847,7 @@
                                 <TextRun>
                                   <Value>DRG</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -877,6 +881,7 @@
                                 <TextRun>
                                   <Value>IVA</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -910,6 +915,7 @@
                                 <TextRun>
                                   <Value>Descuento</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
                                 </TextRun>
@@ -947,7 +953,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Proveedor.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -978,6 +986,7 @@
                                 <TextRun>
                                   <Value>=Fields!ImportaA.Value</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
@@ -1011,6 +1020,7 @@
                                 <TextRun>
                                   <Value>=Fields!ImporteX.Value</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
@@ -1044,6 +1054,7 @@
                                 <TextRun>
                                   <Value>=Fields!DRG.Value</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
@@ -1077,6 +1088,7 @@
                                 <TextRun>
                                   <Value>=Fields!IVA.Value</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
@@ -1110,6 +1122,7 @@
                                 <TextRun>
                                   <Value>=Fields!DescuentoTotal.Value</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
                                 </TextRun>
@@ -1148,6 +1161,7 @@
                                 <TextRun>
                                   <Value>Totales</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1182,6 +1196,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!ImportaA.Value)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
@@ -1216,6 +1231,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!ImporteX.Value)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
@@ -1250,6 +1266,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!DRG.Value)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
@@ -1284,6 +1301,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!IVA.Value)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00</Format>
                                   </Style>
@@ -1305,7 +1323,6 @@
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1319,6 +1336,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!DescuentoTotal.Value)</Value>
                                   <Style>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00</Format>
                                   </Style>

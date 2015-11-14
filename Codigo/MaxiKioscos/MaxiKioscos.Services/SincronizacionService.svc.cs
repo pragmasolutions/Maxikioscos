@@ -117,13 +117,12 @@ namespace MaxiKioscos.Services
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
             var fecha = DateHelper.ISOToDate(request.HoraLocalISO);
             kiosco.UltimaSincronizacionExitosa = fecha;
+            Uow.Commit();
 
             Task.Run(() =>
             {
                 Uow.Stocks.Actualizar(request.MaxiKioscoIdentifier);
             });
-
-            Uow.Commit();
         }
 
         public InicializarKioscoResponse InicializarKiosco()

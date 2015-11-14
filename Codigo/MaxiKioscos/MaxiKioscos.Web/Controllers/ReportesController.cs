@@ -127,11 +127,6 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(gastoPorCategoriaFiltrosModel);
         }
 
-        public ActionResult GastoPorCategoriaTotalGeneral(ReporteGastoPorCategoriaTotalGeneralFiltrosModel gastoPorCategoriaTotalGeneralFiltrosModel)
-        {
-            return PartialOrView(gastoPorCategoriaTotalGeneralFiltrosModel);
-        }
-
         [ActivityAuthorize(Actions = "Ventas por Cierre de Caja")]
         public ActionResult GenerarVentasPorCierreCaja(ReporteVentasCierreCajaFiltrosModel model)
         {
@@ -902,6 +897,7 @@ namespace MaxiKioscos.Web.Controllers
 
         #region AUTOMATIZACIONES
 
+        [AllowAnonymous]
         public ActionResult GenerarStockValorizadoMensual()
         {
             var hoy = DateTime.Now.ToUniversalTime();

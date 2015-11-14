@@ -84,5 +84,10 @@ namespace MaxiKioscos.Datos.Repositorio
             return this.MaxiKioscosEntities.PromocionesListado(rubroId, descripcion, precio, stockReposicion,
                     conStockMenorA, codigo).ToList();
         }
+
+        public List<ProductoTransferenciaDesktop> ListadoProductoTransferenciaDesktop(int maxikioscoId)
+        {
+            return this.MaxiKioscosEntities.ProductoObtenerParaTransferenciaDesktop("0", maxikioscoId).ToList();
+        }
     }
 }

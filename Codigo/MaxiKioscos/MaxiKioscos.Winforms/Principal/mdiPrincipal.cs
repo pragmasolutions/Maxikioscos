@@ -39,6 +39,7 @@ using System.IO;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Winforms.Gastos;
 using MaxiKioscos.Winforms.RetirosPersonales;
+using MaxiKioscos.Winforms.Transferencias;
 
 namespace MaxiKioscos.Winforms.Principal
 {
@@ -251,7 +252,7 @@ namespace MaxiKioscos.Winforms.Principal
             ToggleForzarSincronizacionEstado();
         }
 
-        private void AbrirTab(Form pantalla)
+        public void AbrirTab(Form pantalla)
         {
             bool copia = false;
             foreach (var frm in this.MdiChildren)
@@ -741,6 +742,11 @@ namespace MaxiKioscos.Winforms.Principal
         private void tsmRetiroPersonal_Click(object sender, EventArgs e)
         {
             AbrirTab(new frmRetirosPersonales(this));
+        }
+
+        private void tsbTransferencias_Click(object sender, EventArgs e)
+        {
+            AbrirTab(new frmTransferencias(this));
         }
     }
 }

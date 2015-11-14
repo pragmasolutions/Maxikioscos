@@ -3,6 +3,12 @@
     color: white;
 }
 
+.table tbody tr.highlight td a:not(.btn),
+.table tbody tr.highlight td a:not(.btn):visited{
+    background-color: #2A6496;
+    color: white;
+}
+
 .table tbody > tr > td {
     vertical-align: middle;
 }

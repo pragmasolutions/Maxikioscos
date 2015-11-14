@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Fecha</th>
-                <th>Número</th>
+                <th>AutoNúmero</th>
                 <th>Origen</th>
                 <th>Destino</th>
                 <th>Aprobada</th>
@@ -21,7 +21,7 @@
             {
                 <tr>
                     <td>@transferencia.FechaCreacion.ToShortDateString()</td>
-                    <td>@transferencia.TransferenciaId</td>
+                    <td>@transferencia.AutoNumero</td>
                     <td>@transferencia.Origen.Nombre</td>
                     <td>@transferencia.Destino.Nombre</td>
                     <td>@(transferencia.FechaAprobacion == null ? "NO" : "SI")</td>

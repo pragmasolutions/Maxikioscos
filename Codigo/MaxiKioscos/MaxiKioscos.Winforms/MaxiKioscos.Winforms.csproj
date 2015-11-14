@@ -244,6 +244,7 @@
     <Compile Include="CorreccionesStock\frmGestionCorreccionStock.Designer.cs">
       <DependentUpon>frmGestionCorreccionStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataStruct\TransferenciaGridStruct.cs" />
     <Compile Include="Gastos\frmDetalleEliminarGasto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +456,30 @@
     </Compile>
     <Compile Include="Sincronizacion\ISincronizacionManager.cs" />
     <Compile Include="Sincronizacion\SincronizacionManager.cs" />
+    <Compile Include="Transferencias\frmDetalleTransferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencias\frmDetalleTransferencia.Designer.cs">
+      <DependentUpon>frmDetalleTransferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transferencias\frmCrearTransferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencias\frmCrearTransferencia.Designer.cs">
+      <DependentUpon>frmCrearTransferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transferencias\frmTransferencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencias\frmTransferencias.Designer.cs">
+      <DependentUpon>frmTransferencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transferencias\Modulos\frmBuscadorTransferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencias\Modulos\frmBuscadorTransferencia.Designer.cs">
+      <DependentUpon>frmBuscadorTransferencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios\frmCambiarPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,6 +590,7 @@
     <Compile Include="Ventas\Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
+    <Content Include="Resources\transfer.png" />
     <Content Include="SqlScripts\112-Costo.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -716,6 +742,36 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\151-ControlStock_Crear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\155-DropTransferenciaProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\156-DropTransferencia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\157-CreateTransferencia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\158-CreateTransferenciaProducto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\164-Producto_ObtenerParaTransferenciaDesktop.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\163-Exportacion_PuedeExportarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\162-Sincronizacion_ActualizarKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\161-Exportacion_NuevoXmlKiosco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\160-Sync_TransferenciasProductos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\159-Sync_Transferencias.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlScripts\154-CierreCaja_Detalle.sql">
@@ -1159,6 +1215,19 @@
       <DependentUpon>frmGastos.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transferencias\frmDetalleTransferencia.resx">
+      <DependentUpon>frmDetalleTransferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencias\frmCrearTransferencia.resx">
+      <DependentUpon>frmCrearTransferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencias\frmTransferencias.resx">
+      <DependentUpon>frmTransferencias.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencias\Modulos\frmBuscadorTransferencia.resx">
+      <DependentUpon>frmBuscadorTransferencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\frmCambiarPassword.resx">
       <DependentUpon>frmCambiarPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -1344,7 +1413,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Host\" />
-    <Folder Include="Transferencias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="m.ico" />
