@@ -17,10 +17,10 @@ namespace MaxiKioscos.Entidades
         public int ReporteStockId { get; set; }
         public int Mes { get; set; }
         public int Anio { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
         public byte[] Valorizado { get; set; }
         public byte[] ValorizadoGeneral { get; set; }
         public byte[] ValorizadoDetallado { get; set; }
         public byte[] ValorizadoDetalladoGeneral { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
     }
 }

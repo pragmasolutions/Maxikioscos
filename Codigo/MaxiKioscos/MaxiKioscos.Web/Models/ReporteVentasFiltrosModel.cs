@@ -210,6 +210,40 @@ namespace MaxiKioscos.Web.Models
         public ReporteTipoEnum ReporteTipo { get; set; }
     }
 
+    public class ReporteGastoPorCategoriaFiltrosModel : ReporteModelBase
+    {
+        [DataType(DataType.Date)]
+        public DateTime? Desde { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? Hasta { get; set; }
+
+        [Display(Name = "Maxikiosco")]
+        [UIHint("Maxikiosco")]
+        public int? MaxikioscoId { get; set; }
+
+        [Display(Name = "Categoria")]
+        [UIHint("Categoria")]
+        public int? CategoriaId { get; set; }
+
+        [Display(Name = "Sub Categoria")]
+        [UIHint("SubCategoria")]
+        public int? SubCategoriaId { get; set; }
+
+        [Display(Name = "Mostrar totales generales")]
+        public bool MostrarTotalGeneral { get; set; }
+
+    }
+
+    public class ReporteGastoPorCategoriaTotalGeneralFiltrosModel : ReporteModelBase
+    {
+        [DataType(DataType.Date)]
+        public DateTime? Desde { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? Hasta { get; set; }
+    }
+
     public class ReporteRangoFechaBase : ReporteModelBase
     {
         [DataType(DataType.Date)]

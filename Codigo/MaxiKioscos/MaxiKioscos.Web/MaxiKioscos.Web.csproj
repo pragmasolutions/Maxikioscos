@@ -252,6 +252,7 @@
     <Compile Include="Ioc\NinjectDependencyResolver.cs" />
     <Compile Include="Ioc\NinjectServiceHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ReporteGastoPorCategoriaModel.cs" />
     <Compile Include="Models\ExcepcionModel.cs" />
     <Compile Include="Models\Filtros\CategoriasCostosFiltrosModel.cs" />
     <Compile Include="Models\Filtros\CostosFiltrosModel.cs" />
@@ -372,6 +373,7 @@
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\app\bootstrapAlerts.js" />
+    <Content Include="Scripts\app\maxikiosco-reporte-gastos-categoria.js" />
     <Content Include="Scripts\app\maxikiosco-categoriascostos.js" />
     <Content Include="Scripts\app\maxikiosco-costos.js" />
     <Content Include="Scripts\app\maxikiosco-productos-stock.js" />
@@ -1008,6 +1010,9 @@
     <Content Include="Views\Reportes\StockValorizadoMensual.cshtml" />
     <Content Include="Views\Reportes\Listado.cshtml" />
     <Content Include="Views\Reportes\DetalleValorizadoMensual.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Categoria.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SubCategoria.cshtml" />
+    <Content Include="Views\Reportes\GastosPorCategoria.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

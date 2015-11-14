@@ -531,6 +531,19 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="ReporteStock">
+          <Key>
+            <PropertyRef Name="ReporteStockId" />
+          </Key>
+          <Property Name="ReporteStockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mes" Type="int" Nullable="false" />
+          <Property Name="Anio" Type="int" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Valorizado" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoGeneral" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoDetallado" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ValorizadoDetalladoGeneral" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="RetiroPersonal">
           <Key>
             <PropertyRef Name="RetiroPersonalId" />
@@ -2074,6 +2087,7 @@
           <EntitySet Name="RecuentoBillete" EntityType="Self.RecuentoBillete" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteRol" EntityType="Self.ReporteRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteStock" EntityType="Self.ReporteStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonal" EntityType="Self.RetiroPersonal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RetiroPersonalProducto" EntityType="Self.RetiroPersonalProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -3085,7 +3099,6 @@
             <End Role="CategoriaCosto" EntitySet="CategoriasCostos" />
             <End Role="CategoriaCosto1" EntitySet="CategoriasCostos" />
           </AssociationSet>
-          <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
           <FunctionImport Name="PromocionesListado" ReturnType="Collection(MaxiKioscosModel.PromocionCompleta)">
             <Parameter Name="RubroId" Mode="In" Type="Int32" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -3105,6 +3118,7 @@
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
             <Parameter Name="Hasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
           </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -5381,19 +5395,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ReporteStock">
-          <Key>
-            <PropertyRef Name="ReporteStockId" />
-          </Key>
-          <Property Name="ReporteStockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Mes" Type="Int32" Nullable="false" />
-          <Property Name="Anio" Type="Int32" Nullable="false" />
-          <Property Name="Valorizado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoDetallado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ValorizadoDetalladoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <ComplexType Name="PromocionCompleta">
           <Property Type="Guid" Name="Identifier" Nullable="false" />
           <Property Type="String" Name="CodigosListado" Nullable="true" />
@@ -5417,6 +5418,19 @@
           <Property Type="String" Name="MaxiKiosco" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="19" />
         </ComplexType>
+        <EntityType Name="ReporteStock">
+          <Key>
+            <PropertyRef Name="ReporteStockId" />
+          </Key>
+          <Property Name="ReporteStockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mes" Type="Int32" Nullable="false" />
+          <Property Name="Anio" Type="Int32" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Valorizado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoDetallado" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ValorizadoDetalladoGeneral" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6737,6 +6751,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ReportesStock">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.ReporteStock">
+              <MappingFragment StoreEntitySet="ReporteStock">
+                <ScalarProperty Name="ValorizadoDetalladoGeneral" ColumnName="ValorizadoDetalladoGeneral" />
+                <ScalarProperty Name="ValorizadoDetallado" ColumnName="ValorizadoDetallado" />
+                <ScalarProperty Name="ValorizadoGeneral" ColumnName="ValorizadoGeneral" />
+                <ScalarProperty Name="Valorizado" ColumnName="Valorizado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="ReporteStockId" ColumnName="ReporteStockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
