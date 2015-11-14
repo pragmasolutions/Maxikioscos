@@ -1013,6 +1013,7 @@
     <Content Include="Views\Reportes\StockValorizadoMensual.cshtml" />
     <Content Include="Views\Reportes\Listado.cshtml" />
     <Content Include="Views\Reportes\DetalleValorizadoMensual.cshtml" />
+    <Content Include="Views\ControlStock\_InicializarCursorTable.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

@@ -2,22 +2,35 @@
 @using PagedList.Mvc
 @model MaxiKioscos.Web.Models.ControlStockDetalleListadoModel
 <div id="ListadoContainer" class="table-responsive">
-    @using(Html.BeginForm("Cerrar", "ControlStock"))
+    @using (Html.BeginForm("Cerrar", "ControlStock"))
     {
         @Html.HiddenFor(model => model.ControlStockId)
         <table class="table table-striped table-bordered table-hover" id="TableControlStock">
             <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Diferencia</th>
-                    <th>Motivo</th>
-                    <th style="width: 110px;"></th>
-                </tr>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Diferencia</th>
+                <th>Motivo</th>
+                <th style="width: 110px;"></th>
+            </tr>
             </thead>
             <tbody>
-                @Html.EditorFor(model => model.List)
+            @Html.EditorFor(model => model.List)
             </tbody>
         </table>
     }
 </div>
+@if (!IsAjax)
+{
+    <text>
+        @section scripts
+    {
+            @{Html.RenderPartial("_InicializarCursorTable");}
+        }
+    </text>
+}
+else
+{
+    Html.RenderPartial("_InicializarCursorTable");
+}
