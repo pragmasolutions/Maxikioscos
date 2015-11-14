@@ -836,6 +836,7 @@ namespace MaxiKioscos.Web.Controllers
 
         #region AUTOMATIZACIONES
 
+        [AllowAnonymous]
         public ActionResult GenerarStockValorizadoMensual()
         {
             var hoy = DateTime.Now.ToUniversalTime();
