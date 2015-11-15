@@ -951,9 +951,6 @@
             <Height>0.6cm</Height>
             <Width>5.65798cm</Width>
             <ZIndex>7</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!MaxikioscoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -984,9 +981,6 @@
             <Height>0.6cm</Height>
             <Width>5.65799cm</Width>
             <ZIndex>8</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!CategoriaCostoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1019,9 +1013,6 @@
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>9</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!MaxikioscoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1054,9 +1045,6 @@
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>10</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!CategoriaCostoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1087,9 +1075,6 @@
             <Height>0.6cm</Height>
             <Width>7.08674cm</Width>
             <ZIndex>11</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!SubCategoriaCostoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1122,9 +1107,6 @@
             <Height>0.6cm</Height>
             <Width>2.87042cm</Width>
             <ZIndex>12</ZIndex>
-            <Visibility>
-              <Hidden>=IsNothing(Parameters!SubCategoriaCostoId.Value)</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1257,6 +1239,7 @@
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <Prompt>Maxikiosco</Prompt>
+      <UsedInQuery>True</UsedInQuery>
     </ReportParameter>
     <ReportParameter Name="Categoria">
       <DataType>String</DataType>
@@ -1267,6 +1250,7 @@
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <Prompt>SubCategoria</Prompt>
+      <UsedInQuery>True</UsedInQuery>
     </ReportParameter>
   </ReportParameters>
   <Language>es-AR</Language>

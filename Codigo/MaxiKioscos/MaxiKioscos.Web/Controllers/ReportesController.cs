@@ -850,7 +850,7 @@ namespace MaxiKioscos.Web.Controllers
             var categoria = Uow.CategoriasCostos.Obtener(r => r.CategoriaCostoId == model.CategoriaId);
             var categoriaDescripcion = categoria != null ? categoria.Descripcion : TodosText;
 
-            var subcategoria = Uow.CategoriasCostos.Obtener(r => r.CategoriaCostoId == model.CategoriaId && r.PadreId != null);
+            var subcategoria = Uow.CategoriasCostos.Obtener(r => r.CategoriaCostoId == model.SubCategoriaId);
             var subcategoriaDescripcion = subcategoria != null ? subcategoria.Descripcion : TodosText;
 
             var maxikiosco = Uow.MaxiKioscos.Obtener(r => r.MaxiKioscoId == model.MaxikioscoId);

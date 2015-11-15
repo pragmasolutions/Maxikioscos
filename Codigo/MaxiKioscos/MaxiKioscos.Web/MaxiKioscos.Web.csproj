@@ -257,7 +257,6 @@
     <Compile Include="Ioc\NinjectDependencyResolver.cs" />
     <Compile Include="Ioc\NinjectServiceHelper.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ReporteGastoPorCategoriaModel.cs" />
     <Compile Include="Models\ExcepcionModel.cs" />
     <Compile Include="Models\Filtros\CategoriasCostosFiltrosModel.cs" />
     <Compile Include="Models\Filtros\CostosFiltrosModel.cs" />
