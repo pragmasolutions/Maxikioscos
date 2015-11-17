@@ -4,21 +4,25 @@
 
             $("#MostrarTotalGeneral").click(function () {
 
-                toggleSelectMaxikioscos();
+                toggleSelectMaxikioscos();                
+                toggleSelectCategoria();
+                toggleSelectSubCategoria();
 
                 $formRefreshReport.submit();
             });
 
-            toggleSelectMaxikioscos(); 
+            toggleSelectMaxikioscos();
             toggleSelectCategoria();
             toggleSelectSubCategoria();
+
+           
         },
         toggleSelectMaxikioscos = function () {
             if ($("#MostrarTotalGeneral").is(':checked')) {
-                $("#MaxiKioscoId", $formRefreshReport).val('').attr('disabled', 'disabled');
+                $("#MaxikioscoId", $formRefreshReport).val('').attr('disabled', 'disabled');
 
             } else {
-                $("#MaxiKioscoId", $formRefreshReport).removeAttr('disabled');
+                $("#MaxikioscoId", $formRefreshReport).removeAttr('disabled');
             }
         };
 
