@@ -94,7 +94,7 @@
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style>
-                          <Format>'$'0.00;('$'0.00)</Format>
+                          <Format>'$'#,0.00</Format>
                           <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                         </Style>
                         <UseValueAsLabel>true</UseValueAsLabel>
@@ -329,8 +329,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>VentasPorMaxikioscoDataSet</DataSetName>
-            <Top>42.69236mm</Top>
-            <Left>3.937mm</Left>
+            <Top>47.34903mm</Top>
+            <Left>3.93702mm</Left>
             <Height>50mm</Height>
             <Width>183.38803mm</Width>
             <Style>
@@ -444,7 +444,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Direccion</Value>
+                                  <Value>Dirección</Value>
                                   <Style>
                                     <Color>White</Color>
                                   </Style>
