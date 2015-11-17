@@ -93,10 +93,10 @@
             </Paragraphs>
             <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
             <rd:DefaultName>ReportTitle</rd:DefaultName>
-            <Top>0.9525mm</Top>
-            <Left>0.10795cm</Left>
+            <Top>1.22427mm</Top>
+            <Left>0.96616cm</Left>
             <Height>10.16mm</Height>
-            <Width>186.56299mm</Width>
+            <Width>152.7154mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -115,7 +115,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIf(Parameters!Desde.Value &lt;&gt; NOTHING, FormatDateTime(Parameters!Desde.Value, DateFormat.ShortDate), "")</Value>
+                    <Value>=IIf(Parameters!Desde.Value &lt;&gt; NOTHING, FormatDateTime(Parameters!Desde.Value, DateFormat.ShortDate), "-")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -123,8 +123,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Desde</rd:DefaultName>
-            <Top>1.30937cm</Top>
-            <Left>3.59926cm</Left>
+            <Top>1.33655cm</Top>
+            <Left>3.50497cm</Left>
             <Height>0.6cm</Height>
             <Width>5.65798cm</Width>
             <ZIndex>1</ZIndex>
@@ -145,7 +145,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIf(Parameters!Hasta.Value &lt;&gt; NOTHING, FormatDateTime(Parameters!Hasta.Value, DateFormat.ShortDate), "")</Value>
+                    <Value>=IIf(Parameters!Hasta.Value &lt;&gt; NOTHING, FormatDateTime(Parameters!Hasta.Value, DateFormat.ShortDate), "-")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -153,8 +153,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Hasta</rd:DefaultName>
-            <Top>1.30937cm</Top>
-            <Left>12.394cm</Left>
+            <Top>1.33655cm</Top>
+            <Left>12.29971cm</Left>
             <Height>0.6cm</Height>
             <Width>5.65799cm</Width>
             <ZIndex>2</ZIndex>
@@ -185,8 +185,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.30937cm</Top>
-            <Left>1.0287cm</Left>
+            <Top>1.33655cm</Top>
+            <Left>0.93441cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>3</ZIndex>
@@ -217,8 +217,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.30937cm</Top>
-            <Left>9.8305cm</Left>
+            <Top>1.33655cm</Top>
+            <Left>9.73621cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>4</ZIndex>
@@ -236,12 +236,12 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>18.20651cm</Width>
+                  <Width>18.36526cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>4.66958cm</Height>
+                  <Height>5.62208cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -254,14 +254,16 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>CATEGORIA: </Value>
+                                      <Value>CATEGORÍA: </Value>
                                       <Style>
+                                        <FontSize>12pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
                                     <TextRun>
                                       <Value>=UCase(Fields!Categoria.Value)</Value>
                                       <Style>
+                                        <FontSize>12pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -271,9 +273,9 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox104</rd:DefaultName>
                               <Top>0.3175cm</Top>
-                              <Left>0.3175cm</Left>
+                              <Left>0.127cm</Left>
                               <Height>0.6cm</Height>
-                              <Width>10.17323cm</Width>
+                              <Width>17.88901cm</Width>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
@@ -293,12 +295,12 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>17.56831cm</Width>
+                                    <Width>17.88148cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
-                                    <Height>2.67229cm</Height>
+                                    <Height>3.4925cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
@@ -320,7 +322,7 @@
                                                       <Width>4.98799cm</Width>
                                                     </TablixColumn>
                                                     <TablixColumn>
-                                                      <Width>2.96768cm</Width>
+                                                      <Width>3.35301cm</Width>
                                                     </TablixColumn>
                                                   </TablixColumns>
                                                   <TablixRows>
@@ -337,7 +339,10 @@
                                                                   <TextRuns>
                                                                     <TextRun>
                                                                       <Value>Maxi Kiosco</Value>
-                                                                      <Style />
+                                                                      <Style>
+                                                                        <FontWeight>Bold</FontWeight>
+                                                                        <Color>White</Color>
+                                                                      </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
                                                                   <Style />
@@ -349,6 +354,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -367,7 +373,10 @@
                                                                   <TextRuns>
                                                                     <TextRun>
                                                                       <Value>Fecha</Value>
-                                                                      <Style />
+                                                                      <Style>
+                                                                        <FontWeight>Bold</FontWeight>
+                                                                        <Color>White</Color>
+                                                                      </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
                                                                   <Style />
@@ -379,6 +388,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -397,7 +407,10 @@
                                                                   <TextRuns>
                                                                     <TextRun>
                                                                       <Value>Importe Total</Value>
-                                                                      <Style />
+                                                                      <Style>
+                                                                        <FontWeight>Bold</FontWeight>
+                                                                        <Color>White</Color>
+                                                                      </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
                                                                   <Style />
@@ -409,6 +422,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -427,7 +441,10 @@
                                                                   <TextRuns>
                                                                     <TextRun>
                                                                       <Value>Observaciones</Value>
-                                                                      <Style />
+                                                                      <Style>
+                                                                        <FontWeight>Bold</FontWeight>
+                                                                        <Color>White</Color>
+                                                                      </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
                                                                   <Style />
@@ -439,6 +456,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -457,7 +475,10 @@
                                                                   <TextRuns>
                                                                     <TextRun>
                                                                       <Value>Nro Comprobante</Value>
-                                                                      <Style />
+                                                                      <Style>
+                                                                        <FontWeight>Bold</FontWeight>
+                                                                        <Color>White</Color>
+                                                                      </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
                                                                   <Style />
@@ -469,6 +490,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -555,7 +577,7 @@
                                                                     <TextRun>
                                                                       <Value>=Fields!ImporteTotal.Value</Value>
                                                                       <Style>
-                                                                        <Format>'$'0.00;('$'0.00)</Format>
+                                                                        <Format>'$'#,0.00;('$'#,0.00)</Format>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -664,7 +686,7 @@
                                                 <Top>1.27cm</Top>
                                                 <Left>0.2024cm</Left>
                                                 <Height>1.27cm</Height>
-                                                <Width>16.98058cm</Width>
+                                                <Width>17.36591cm</Width>
                                                 <Style>
                                                   <Border>
                                                     <Style>None</Style>
@@ -678,7 +700,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>SUB CATEGORIA: </Value>
+                                                        <Value>SUB CATEGORÍA: </Value>
                                                         <Style>
                                                           <FontWeight>Bold</FontWeight>
                                                         </Style>
@@ -697,7 +719,7 @@
                                                 <Top>0.29531cm</Top>
                                                 <Left>0.2024cm</Left>
                                                 <Height>0.6cm</Height>
-                                                <Width>10.17323cm</Width>
+                                                <Width>17.36591cm</Width>
                                                 <ZIndex>1</ZIndex>
                                                 <Style>
                                                   <Border>
@@ -712,6 +734,48 @@
                                                   <PaddingRight>2pt</PaddingRight>
                                                   <PaddingTop>2pt</PaddingTop>
                                                   <PaddingBottom>2pt</PaddingBottom>
+                                                </Style>
+                                              </Textbox>
+                                              <Textbox Name="Textbox128">
+                                                <CanGrow>true</CanGrow>
+                                                <KeepTogether>true</KeepTogether>
+                                                <Paragraphs>
+                                                  <Paragraph>
+                                                    <TextRuns>
+                                                      <TextRun>
+                                                        <Value>TOTAL SUB CATEGORÍA: </Value>
+                                                        <Style>
+                                                          <FontWeight>Bold</FontWeight>
+                                                          <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                                        </Style>
+                                                      </TextRun>
+                                                      <TextRun>
+                                                        <Value>=Sum(Fields!ImporteTotal.Value)</Value>
+                                                        <Style>
+                                                          <FontWeight>Bold</FontWeight>
+                                                          <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                                          <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
+                                                        </Style>
+                                                      </TextRun>
+                                                    </TextRuns>
+                                                    <Style />
+                                                  </Paragraph>
+                                                </Paragraphs>
+                                                <rd:DefaultName>Textbox126</rd:DefaultName>
+                                                <Top>2.71639cm</Top>
+                                                <Left>0.2024cm</Left>
+                                                <Height>0.6cm</Height>
+                                                <Width>17.36591cm</Width>
+                                                <ZIndex>2</ZIndex>
+                                                <Style>
+                                                  <Border>
+                                                    <Style>Solid</Style>
+                                                  </Border>
+                                                  <PaddingLeft>2pt</PaddingLeft>
+                                                  <PaddingRight>2pt</PaddingRight>
+                                                  <PaddingTop>2pt</PaddingTop>
+                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                  <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                                                 </Style>
                                               </Textbox>
                                             </ReportItems>
@@ -755,8 +819,8 @@
                               <KeepTogether>true</KeepTogether>
                               <Top>1.11329cm</Top>
                               <Left>0.32503cm</Left>
-                              <Height>2.67229cm</Height>
-                              <Width>17.56831cm</Width>
+                              <Height>3.4925cm</Height>
+                              <Width>17.88148cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -771,16 +835,17 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>TOTAL: </Value>
+                                      <Value>TOTAL CATEGORÍA: </Value>
                                       <Style>
                                         <FontWeight>Bold</FontWeight>
+                                        <Format>'$'#,0.00;('$'#,0.00)</Format>
                                       </Style>
                                     </TextRun>
                                     <TextRun>
                                       <Value>=Sum(Fields!ImporteTotal.Value)</Value>
                                       <Style>
                                         <FontWeight>Bold</FontWeight>
-                                        <Format>'$'0.00;('$'0.00)</Format>
+                                        <Format>'$'#,0.00;('$'#,0.00)</Format>
                                         <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                                       </Style>
                                     </TextRun>
@@ -789,39 +854,20 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox126</rd:DefaultName>
-                              <Top>3.92669cm</Top>
-                              <Left>0.254cm</Left>
+                              <Top>4.84391cm</Top>
+                              <Left>0.18954cm</Left>
                               <Height>0.6cm</Height>
-                              <Width>10.17323cm</Width>
+                              <Width>17.36591cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>Solid</Style>
                                 </Border>
-                                <TopBorder>
-                                  <Color>Black</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </TopBorder>
-                                <BottomBorder>
-                                  <Color>Black</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
-                                <LeftBorder>
-                                  <Color>Black</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </LeftBorder>
-                                <RightBorder>
-                                  <Color>Black</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </RightBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
                                 <PaddingBottom>2pt</PaddingBottom>
+                                <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                           </ReportItems>
@@ -862,8 +908,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>3.59516cm</Top>
             <Left>0.83916cm</Left>
-            <Height>4.66958cm</Height>
-            <Width>18.20651cm</Width>
+            <Height>5.62208cm</Height>
+            <Width>18.36526cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -880,14 +926,17 @@
                   <TextRun>
                     <Value>TOTAL GENERAL: </Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Format>'$'#,0.00;('$'#,0.00)</Format>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=Sum(Fields!ImporteTotal.Value)</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Format>'$'0.00;('$'0.00)</Format>
+                      <Format>'$'#,0.00;('$'#,0.00)</Format>
                       <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
                     </Style>
                   </TextRun>
@@ -896,39 +945,20 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox126</rd:DefaultName>
-            <Top>8.75863cm</Top>
-            <Left>0.85937cm</Left>
+            <Top>9.71113cm</Top>
+            <Left>1.0287cm</Left>
             <Height>0.6cm</Height>
-            <Width>10.17323cm</Width>
+            <Width>17.57584cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
               </Border>
-              <TopBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>1pt</Width>
-              </TopBorder>
-              <BottomBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>1pt</Width>
-              </BottomBorder>
-              <LeftBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>1pt</Width>
-              </LeftBorder>
-              <RightBorder>
-                <Color>Black</Color>
-                <Style>Solid</Style>
-                <Width>1pt</Width>
-              </RightBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
+              <rd:FormatSymbolCulture>es-AR</rd:FormatSymbolCulture>
             </Style>
           </Textbox>
           <Textbox Name="Desde2">
@@ -946,8 +976,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Desde</rd:DefaultName>
-            <Top>2.08576cm</Top>
-            <Left>3.63453cm</Left>
+            <Top>2.11294cm</Top>
+            <Left>3.54024cm</Left>
             <Height>0.6cm</Height>
             <Width>5.65798cm</Width>
             <ZIndex>7</ZIndex>
@@ -976,8 +1006,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Hasta</rd:DefaultName>
-            <Top>2.08576cm</Top>
-            <Left>12.42575cm</Left>
+            <Top>2.11294cm</Top>
+            <Left>12.33146cm</Left>
             <Height>0.6cm</Height>
             <Width>5.65799cm</Width>
             <ZIndex>8</ZIndex>
@@ -1008,8 +1038,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.08576cm</Top>
-            <Left>1.0287cm</Left>
+            <Top>2.11294cm</Top>
+            <Left>0.93441cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>9</ZIndex>
@@ -1040,8 +1070,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.08576cm</Top>
-            <Left>9.8305cm</Left>
+            <Top>2.11294cm</Top>
+            <Left>9.73621cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>10</ZIndex>
@@ -1070,8 +1100,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Hasta</rd:DefaultName>
-            <Top>2.82687cm</Top>
-            <Left>3.96967cm</Left>
+            <Top>2.85405cm</Top>
+            <Left>3.87538cm</Left>
             <Height>0.6cm</Height>
             <Width>7.08674cm</Width>
             <ZIndex>11</ZIndex>
@@ -1102,8 +1132,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.86215cm</Top>
-            <Left>1.0287cm</Left>
+            <Top>2.88933cm</Top>
+            <Left>0.93441cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87042cm</Width>
             <ZIndex>12</ZIndex>
@@ -1118,7 +1148,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>96.03748mm</Height>
+        <Height>106.35623mm</Height>
         <Style>
           <Border>
             <Style>None</Style>

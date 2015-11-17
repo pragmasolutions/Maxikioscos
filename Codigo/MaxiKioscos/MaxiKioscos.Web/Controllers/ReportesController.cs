@@ -858,21 +858,24 @@ namespace MaxiKioscos.Web.Controllers
             
             var parameters = new Dictionary<string, string>
                                   {
-                                      {"MaxiKioscoId", model.MaxikioscoId.GetValueOrDefault().ToString()},
-                                      {"CategoriaId", model.CategoriaId.GetValueOrDefault().ToString()},
-                                      {"SubCategoriaId", model.SubCategoriaId.GetValueOrDefault().ToString()},
+                                      {"MaxikioscoId", model.MaxikioscoId.GetValueOrDefault().ToString()},
+                                      {"CategoriaCostoId", model.CategoriaId.GetValueOrDefault().ToString()},
+                                      {"SubCategoriaCostoId", model.SubCategoriaId.GetValueOrDefault().ToString()},
                                       {"Categoria", categoriaDescripcion},
                                       {"SubCategoria", subcategoriaDescripcion},
                                       {"Maxikiosco", maxikioscoDescripcion},
-                                      {"DesdeString", model.Desde == null ? "-" : model.Desde.GetValueOrDefault().ToShortDateString()},
-                                      {"HastaString", model.Hasta == null ? "-" : model.Hasta.GetValueOrDefault().ToShortDateString()}
+                                      {"Desde", model.Desde == null ? "-" : model.Desde.GetValueOrDefault().ToShortDateString()},
+                                      {"Hasta", model.Hasta == null ? "-" : model.Hasta.GetValueOrDefault().ToShortDateString()}
                                   };
 
             if (model.MostrarTotalGeneral)
             {
                 var gastosPorCategoriaTotalGeneralDataSource =
                     Uow.Reportes.GastosPorCategoriaTotalGeneral(model.Desde,
-                        hasta);
+                        hasta,
+                        model.MaxikioscoId,
+                        model.CategoriaId,
+                        model.SubCategoriaId);
 
                 reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/GastosPorCategoriaTotalGeneral.rdl"))
                     .SetDataSource("DataSet1", gastosPorCategoriaTotalGeneralDataSource);
@@ -889,7 +892,9 @@ namespace MaxiKioscos.Web.Controllers
                     .SetDataSource("DataSet1", gastosPorCategoriaDataSource);
 
             }
-           
+
+            reporteFactory.SetParametro(parameters);
+            
             byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
 
             return File(archivo, reporteFactory.MimeType);

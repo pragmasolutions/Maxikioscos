@@ -2011,6 +2011,9 @@
         <Function Name="Rpt_GastosPorCategoria_TotalGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Desde" Type="datetime2" Mode="In" />
           <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="CategoriaCostoId" Type="int" Mode="In" />
+          <Parameter Name="SubCategoriaCostoId" Type="int" Mode="In" />
         </Function>
         <Function Name="Rpt_VentasPorTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
@@ -3120,14 +3123,17 @@
             <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
             <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="RptGastosPorCategoriaTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral)">
-            <Parameter Name="Desde" Mode="In" Type="DateTime" />
-            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
           <FunctionImport Name="ProductoObtenerParaTransferenciaDesktop" ReturnType="Collection(MaxiKioscosModel.ProductoTransferenciaDesktop)">
             <Parameter Name="Codigo" Mode="In" Type="String" />
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptGastosPorCategoriaTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
