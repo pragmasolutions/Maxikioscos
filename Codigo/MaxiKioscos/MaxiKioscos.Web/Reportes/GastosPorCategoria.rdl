@@ -5,7 +5,7 @@
     <DataSource Name="MaxikioscoDS">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=.\SQL2012;Initial Catalog=MaxiKioscos</ConnectString>
+        <ConnectString>Data Source=HXWS-NDOGI\SQLEXPRESS;Initial Catalog=MaxiKioscos</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
@@ -79,7 +79,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Gastos por Categorias Totales Generales</Value>
+                    <Value>Gastos por Categorias</Value>
                     <Style>
                       <FontFamily>Verdana</FontFamily>
                       <FontSize>20pt</FontSize>
@@ -93,8 +93,8 @@
             </Paragraphs>
             <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
             <rd:DefaultName>ReportTitle</rd:DefaultName>
-            <Top>1.22427mm</Top>
-            <Left>0.96616cm</Left>
+            <Top>1.44161mm</Top>
+            <Left>0.93441cm</Left>
             <Height>10.16mm</Height>
             <Width>152.7154mm</Width>
             <Style>
@@ -644,7 +644,9 @@
                                                                       <Style />
                                                                     </TextRun>
                                                                   </TextRuns>
-                                                                  <Style />
+                                                                  <Style>
+                                                                    <TextAlign>Right</TextAlign>
+                                                                  </Style>
                                                                 </Paragraph>
                                                               </Paragraphs>
                                                               <rd:DefaultName>NroComprobante</rd:DefaultName>
@@ -816,7 +818,6 @@
                                   </TablixMember>
                                 </TablixMembers>
                               </TablixRowHierarchy>
-                              <KeepTogether>true</KeepTogether>
                               <Top>1.11329cm</Top>
                               <Left>0.32503cm</Left>
                               <Height>3.4925cm</Height>
@@ -904,7 +905,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
-            <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>3.59516cm</Top>
             <Left>0.83916cm</Left>
@@ -1155,7 +1155,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>19.92378cm</Width>
+      <Width>19.87086cm</Width>
       <Page>
         <PageFooter>
           <Height>11.43mm</Height>

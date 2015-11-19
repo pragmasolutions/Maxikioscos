@@ -4,17 +4,12 @@
 
             $("#MostrarTotalGeneral").click(function () {
 
-                toggleSelectMaxikioscos();                
-                toggleSelectCategoria();
-                toggleSelectSubCategoria();
+                toggleSelectMaxikioscos();                                
 
                 $formRefreshReport.submit();
             });
 
             toggleSelectMaxikioscos();
-            toggleSelectCategoria();
-            toggleSelectSubCategoria();
-
            
         },
         toggleSelectMaxikioscos = function () {

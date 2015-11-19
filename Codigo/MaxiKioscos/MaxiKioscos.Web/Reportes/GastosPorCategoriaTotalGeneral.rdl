@@ -67,7 +67,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Gastos por Categorias Totales Generales</Value>
+                    <Value>Totales Generales de Gastos por Categorias</Value>
                     <Style>
                       <FontFamily>Verdana</FontFamily>
                       <FontSize>20pt</FontSize>
@@ -558,7 +558,7 @@
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>DataSet1</DataSetName>
-            <Top>3.91266cm</Top>
+            <Top>3.59516cm</Top>
             <Left>0.0762cm</Left>
             <Height>3.36048cm</Height>
             <Width>18.12713cm</Width>
@@ -633,8 +633,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Hasta</rd:DefaultName>
-            <Top>2.29743cm</Top>
-            <Left>11.79075cm</Left>
+            <Top>2.36799cm</Top>
+            <Left>2.98895cm</Left>
             <Height>0.6cm</Height>
             <Width>5.65799cm</Width>
             <ZIndex>7</ZIndex>
@@ -665,8 +665,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.29743cm</Top>
-            <Left>9.1955cm</Left>
+            <Top>2.36799cm</Top>
+            <Left>0.3937cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>8</ZIndex>
@@ -695,10 +695,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Hasta</rd:DefaultName>
-            <Top>3.03854cm</Top>
-            <Left>3.33467cm</Left>
+            <Top>2.3327cm</Top>
+            <Left>12.13647cm</Left>
             <Height>0.6cm</Height>
-            <Width>7.08674cm</Width>
+            <Width>6.06686cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -727,73 +727,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.07382cm</Top>
-            <Left>0.3937cm</Left>
+            <Top>2.36798cm</Top>
+            <Left>9.1955cm</Left>
             <Height>0.6cm</Height>
             <Width>2.87042cm</Width>
             <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox7">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Maxikiosco:</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.29743cm</Top>
-            <Left>0.3937cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Desde2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!Maxikiosco.Value</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Desde</rd:DefaultName>
-            <Top>2.29743cm</Top>
-            <Left>2.99953cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.65798cm</Width>
-            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
