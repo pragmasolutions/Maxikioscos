@@ -56,6 +56,7 @@ BEGIN
 		LEFT JOIN (SELECT * FROM dbo.UltimosCostos()) UC
 			ON P.ProductoId = UC.ProductoId		
 	WHERE (@RubroId IS NULL OR R.RubroId = @RubroId)
+		AND S.StockActual != 0
 	GROUP BY R.Descripcion
 	ORDER BY R.Descripcion
 END

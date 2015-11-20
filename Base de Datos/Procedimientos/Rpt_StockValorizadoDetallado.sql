@@ -64,6 +64,7 @@ BEGIN
 			ON P.ProductoId = UC.ProductoId		
 	WHERE (@RubroId IS NULL OR R.RubroId = @RubroId)
 			AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
+			AND S.StockActual != 0
 	ORDER BY P.Descripcion
 END
 

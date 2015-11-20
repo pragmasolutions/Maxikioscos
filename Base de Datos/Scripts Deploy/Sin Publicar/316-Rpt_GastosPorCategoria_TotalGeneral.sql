@@ -3,7 +3,6 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_G
 DROP PROCEDURE [dbo].[Rpt_GastosPorCategoria_TotalGeneral]
 GO
 
-
 CREATE PROCEDURE [dbo].[Rpt_GastosPorCategoria_TotalGeneral]
 	@Desde datetime2(7),
 	@Hasta datetime2(7),
@@ -35,8 +34,8 @@ FROM
 		ON CR.CierreCajaId = C.CierreCajaId
 	LEFT OUTER JOIN Maxikiosco M2 
 		ON M2.MaxikioscoId = CR.MaxikioskoId
-	WHERE 
-	        (@Desde IS NULL OR C.Fecha >= @Desde)
+	WHERE C.Eliminado = 0
+	    AND (@Desde IS NULL OR C.Fecha >= @Desde)
 		AND (@Hasta IS NULL OR c.Fecha <= @Hasta)		
 		AND (@MaxikioscoId IS NULL OR C.MaxikioscoId = @MaxikioscoId OR @MaxikioscoId = CR.MaxiKioskoId)		
 		AND (@CategoriaCostoId IS NULL OR CC.CategoriaCostoId = @CategoriaCostoId)
@@ -44,8 +43,6 @@ FROM
 	GROUP BY T.Categoria, SubCategoria, MaxiKiosco
 	ORDER BY Categoria, SubCategoria DESC
 END
-
-
 
 GO
 

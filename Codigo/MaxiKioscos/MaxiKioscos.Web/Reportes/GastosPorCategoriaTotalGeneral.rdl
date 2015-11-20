@@ -242,7 +242,14 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>CATEGORÍA: </Value>
+                                      <Value>CATEGORÍA:</Value>
+                                      <Style>
+                                        <FontSize>12pt</FontSize>
+                                        <FontWeight>Normal</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value xml:space="preserve"> </Value>
                                       <Style>
                                         <FontSize>12pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
@@ -283,7 +290,7 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>3.21469cm</Width>
+                                    <Width>3.46604cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -377,7 +384,7 @@
                                 <TablixMembers>
                                   <TablixMember>
                                     <TablixHeader>
-                                      <Size>13.71864cm</Size>
+                                      <Size>13.96999cm</Size>
                                       <CellContents>
                                         <Textbox Name="Textbox114">
                                           <CanGrow>true</CanGrow>
@@ -427,7 +434,7 @@
                                       </SortExpression>
                                     </SortExpressions>
                                     <TablixHeader>
-                                      <Size>13.71864cm</Size>
+                                      <Size>13.96999cm</Size>
                                       <CellContents>
                                         <Textbox Name="SubCategoria1">
                                           <CanGrow>true</CanGrow>
@@ -466,9 +473,9 @@
                               <RepeatColumnHeaders>true</RepeatColumnHeaders>
                               <DataSetName>DataSet1</DataSetName>
                               <Top>1.09389cm</Top>
-                              <Left>0.84667cm</Left>
+                              <Left>0.34396cm</Left>
                               <Height>1.31879cm</Height>
-                              <Width>16.93333cm</Width>
+                              <Width>17.43604cm</Width>
                               <ZIndex>1</ZIndex>
                               <Style>
                                 <Border>
@@ -503,19 +510,34 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox126</rd:DefaultName>
                               <Top>2.58907cm</Top>
-                              <Left>0.84667cm</Left>
+                              <Left>0.34396cm</Left>
                               <Height>0.6cm</Height>
-                              <Width>16.93333cm</Width>
+                              <Width>17.43604cm</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
-                                  <Style>None</Style>
+                                  <Style>Solid</Style>
                                 </Border>
+                                <TopBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
                                 <BottomBorder>
                                   <Color>Black</Color>
                                   <Style>Solid</Style>
                                   <Width>1pt</Width>
                                 </BottomBorder>
+                                <LeftBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>Black</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -604,13 +626,28 @@
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </TopBorder>
               <BottomBorder>
                 <Color>Black</Color>
                 <Style>Solid</Style>
                 <Width>1pt</Width>
               </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </RightBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
