@@ -8,13 +8,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{534bdc80-acf4-4ba8-8dcd-4600f1df6c88}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
     <RootNamespace>MaxiKioscos.Database</RootNamespace>
     <AssemblyName>MaxiKioscos.Database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>3082,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Modern_Spanish_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -57,5 +59,180 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\EstadoTicket_1.sql" />
+    <Build Include="dbo\Tables\Usuario_1.sql" />
+    <Build Include="dbo\Tables\TicketError_1.sql" />
+    <Build Include="dbo\Tables\MensajeTicketError_1.sql" />
+    <Build Include="dbo\Tables\Exportacion_1.sql" />
+    <Build Include="dbo\Tables\ControlStock_1.sql" />
+    <Build Include="dbo\Tables\CierreCaja_1.sql" />
+    <Build Include="dbo\Tables\ControlStockDetalle_1.sql" />
+    <Build Include="dbo\Tables\OperacionCaja_1.sql" />
+    <Build Include="dbo\Tables\Transferencia.sql" />
+    <Build Include="dbo\Tables\Reporte.sql" />
+    <Build Include="dbo\Tables\UsuarioProveedor_1.sql" />
+    <Build Include="dbo\Tables\TipoCuit_1.sql" />
+    <Build Include="dbo\Tables\ReporteRol.sql" />
+    <Build Include="dbo\Tables\StockTransaccionTipo_1.sql" />
+    <Build Include="dbo\Tables\Localidad_1.sql" />
+    <Build Include="dbo\Tables\TransferenciaProducto.sql" />
+    <Build Include="dbo\Tables\MotivoCorreccion_1.sql" />
+    <Build Include="dbo\Tables\Turno_1.sql" />
+    <Build Include="dbo\Tables\MaxiKioscoTurno_1.sql" />
+    <Build Include="dbo\Tables\Rubro_1.sql" />
+    <Build Include="dbo\Tables\Permiso.sql" />
+    <Build Include="dbo\Tables\Marca_1.sql" />
+    <Build Include="dbo\Tables\PermisoRol.sql" />
+    <Build Include="dbo\Tables\ProductoPromocion.sql" />
+    <Build Include="dbo\Tables\Excepcion_1.sql" />
+    <Build Include="dbo\Tables\ErrorSincronizacion_1.sql" />
+    <Build Include="dbo\Tables\ProveedorProducto_1.sql" />
+    <Build Include="dbo\Tables\CodigoProducto_1.sql" />
+    <Build Include="dbo\Tables\Producto_1.sql" />
+    <Build Include="dbo\Tables\CorreccionStock_1.sql" />
+    <Build Include="dbo\Tables\webpages_Membership_1.sql" />
+    <Build Include="dbo\Tables\ReporteStock.sql" />
+    <Build Include="dbo\Tables\Importacion_1.sql" />
+    <Build Include="dbo\Tables\webpages_OAuthMembership_1.sql" />
+    <Build Include="dbo\Tables\Factura_1.sql" />
+    <Build Include="dbo\Tables\webpages_Roles_1.sql" />
+    <Build Include="dbo\Tables\CategoriaCosto.sql" />
+    <Build Include="dbo\Tables\webpages_UsersInRoles_1.sql" />
+    <Build Include="dbo\Tables\Compra_1.sql" />
+    <Build Include="dbo\Tables\ConfiguracionLocal_1.sql" />
+    <Build Include="dbo\Tables\Venta_1.sql" />
+    <Build Include="dbo\Tables\Costo.sql" />
+    <Build Include="dbo\Tables\MaxiKiosco_1.sql" />
+    <Build Include="dbo\Tables\VentaProducto_1.sql" />
+    <Build Include="dbo\Tables\Provincia_1.sql" />
+    <Build Include="dbo\Tables\Proveedor_1.sql" />
+    <Build Include="dbo\Tables\RetiroPersonal.sql" />
+    <Build Include="dbo\Tables\RetiroPersonalProducto.sql" />
+    <Build Include="dbo\Tables\ExcepcionRubro_1.sql" />
+    <Build Include="dbo\Tables\Stock_1.sql" />
+    <Build Include="dbo\Tables\StockTransaccion_1.sql" />
+    <Build Include="dbo\Tables\Billete_1.sql" />
+    <Build Include="dbo\Tables\RecuentoBillete_1.sql" />
+    <Build Include="dbo\Tables\CompraProducto_1.sql" />
+    <Build Include="dbo\Tables\MotivoOperacionCaja_1.sql" />
+    <Build Include="dbo\Tables\Cuenta_1.sql" />
+    <Build Include="dbo\Functions\XmlEncode_1.sql" />
+    <Build Include="dbo\Functions\UltimoCosto.sql" />
+    <Build Include="dbo\Functions\EntreHorarios_1.sql" />
+    <Build Include="dbo\Functions\PrecioPorHora_1.sql" />
+    <Build Include="dbo\Functions\RecargoPorProductoId_1.sql" />
+    <Build Include="dbo\Functions\ID_Splitter_1.sql" />
+    <Build Include="dbo\Functions\MaxikioscoUltimoCierreCaja_1.sql" />
+    <Build Include="dbo\Functions\Promocion_MaxikioscosStock.sql" />
+    <Build Include="dbo\Functions\Producto_CostosResumen.sql" />
+    <Build Include="dbo\Functions\UltimosCostos_1.sql" />
+    <Build Include="dbo\Functions\CierreCajaCantidadDineroActual_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Ventas_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_UsuariosRoles_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Usuarios_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_UsuarioProveedores_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_StockTransacciones_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Rubros_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_RecuentoBilletes_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ProveedorProductos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Factura_ObtenerAbiertasPorUsuario_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_OperacionesCaja_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Membership_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_MaxiKioscosTurnos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_MaxiKioscos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Costos.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Marcas_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Facturas_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_CierresDeCajaDetalle_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ExcepcionesRubros_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_RetirosPersonalesPorTicket.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Excepciones_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasNegativasPorTicket.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_CorreccionesStock_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_DescuentoProveedoresTop5_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_DescuentoProveedores_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ReporteRoles.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorCierreCaja_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorProductoRanking_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_ReponerStock_1.sql" />
+    <Build Include="dbo\Stored Procedures\Exportacion_Resetear.sql" />
+    <Build Include="dbo\Stored Procedures\Transferencia_Detalle.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorProducto_TotalGeneral.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_ComprasPorProveedorTop5.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_TransferenciaPorProducto_TotalGeneral.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_TransferenciaPorProducto.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_DineroSobranteFaltante_1.sql" />
+    <Build Include="dbo\Stored Procedures\Producto_ObtenerProductoPorCodigo_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ProductoPromociones.sql" />
+    <Build Include="dbo\Stored Procedures\Producto_ListadoCompleto_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Productos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Proveedor_ObtenerRubros.sql" />
+    <Build Include="dbo\Stored Procedures\CierreCaja_UltimaCajaFinal_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_Stock_DiferenciaCierres_1.sql" />
+    <Build Include="dbo\Stored Procedures\CierreCaja_ObtenerUltima.sql" />
+    <Build Include="dbo\Stored Procedures\ActualizarPrincipal_1.sql" />
+    <Build Include="dbo\Stored Procedures\Producto_ParaTransferencia.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_AuditoriaProductos.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_CategoriasCosto.sql" />
+    <Build Include="dbo\Stored Procedures\Sincronizacion_EstadoKioscos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Proveedores_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Compras_1.sql" />
+    <Build Include="dbo\Stored Procedures\ControlStock_DeshabilitarAbiertos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_ComprasPorProveedor.sql" />
+    <Build Include="dbo\Stored Procedures\ControlStock_Crear_1.sql" />
+    <Build Include="dbo\Stored Procedures\ControlStock_VistaPrevia.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ControlesStock_1.sql" />
+    <Build Include="dbo\Stored Procedures\Producto_Stock.sql" />
+    <Build Include="dbo\Stored Procedures\CierreCaja_Detalle_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Stock_1.sql" />
+    <Build Include="dbo\Stored Procedures\Stock_Actualizar_1.sql" />
+    <Build Include="dbo\Stored Procedures\Usuario_InsertarDependencias_1.sql" />
+    <Build Include="dbo\Stored Procedures\Promocion_Listado.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_Stock_1.sql" />
+    <Build Include="dbo\Stored Procedures\Usuario_CambiarPassword_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sincronizacion_ActualizarPrincipal_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorTicket.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_TransferenciasProductos.sql" />
+    <Build Include="dbo\Stored Procedures\Sincronizacion_ActualizarKiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Exportacion_NuevoXmlKiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Exportacion_NuevoXmlPrincipal_1.sql" />
+    <Build Include="dbo\Stored Procedures\Venta_GenerarNumero_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Transferencias.sql" />
+    <Build Include="dbo\Stored Procedures\Exportacion_PuedeExportarPrincipal_1.sql" />
+    <Build Include="dbo\Stored Procedures\Exportacion_PuedeExportarKiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorMaxikiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_VentasPorProducto_1.sql" />
+    <Build Include="dbo\Stored Procedures\Producto_ObtenerParaTransferenciaDesktop.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_Cuentas_1.sql" />
+    <Build Include="dbo\Stored Procedures\Usuario_ObtenerMembresia_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_StockValorizadoDetallado.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_StockValorizadoGeneral.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_StockValorizadoDetalladoGeneral.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_StockValorizado.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_GanaciaAdicionalExcepcionRubro_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_GastosPorCategoria_TotalGeneral.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_GastosPorCategoria.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_RetirosPersonales.sql" />
+    <Build Include="dbo\Stored Procedures\Rubro_ListadoPorKiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_CierresDeCaja_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_RetirosPersonalesProductos.sql" />
+    <Build Include="dbo\Stored Procedures\VetnasDummy_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_ControlStockPlanilla_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ControlesStockDetalle_1.sql" />
+    <Build Include="dbo\Stored Procedures\RetiroPersonal_GenerarNumero.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_ComprasProductos_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_DineroPorMaxikiosco_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_CodigosProducto_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_CierresCaja_1.sql" />
+    <Build Include="dbo\Stored Procedures\Rpt_RetirosPersonales.sql" />
+    <Build Include="dbo\Stored Procedures\CierreCaja_CantidadDineroActual_1.sql" />
+    <Build Include="dbo\Stored Procedures\CierreCaja_Cerrar_1.sql" />
+    <Build Include="dbo\Stored Procedures\Sync_VentasProductos_1.sql" />
   </ItemGroup>
 </Project>
