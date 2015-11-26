@@ -278,8 +278,29 @@
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </RightBorder>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -562,6 +583,7 @@
                                                                       <Value>Producto</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -574,7 +596,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -595,6 +617,7 @@
                                                                       <Value>Cantidad</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -607,7 +630,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -628,6 +651,7 @@
                                                                       <Value>Precio Unitario</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -640,7 +664,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -661,6 +685,7 @@
                                                                       <Value>Costo Unitario</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -673,7 +698,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -694,6 +719,7 @@
                                                                       <Value>Costo Total</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -706,7 +732,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -727,6 +753,7 @@
                                                                       <Value>Importe Total</Value>
                                                                       <Style>
                                                                         <FontSize>8pt</FontSize>
+                                                                        <Color>White</Color>
                                                                       </Style>
                                                                     </TextRun>
                                                                   </TextRuns>
@@ -739,7 +766,7 @@
                                                                   <Color>LightGrey</Color>
                                                                   <Style>Solid</Style>
                                                                 </Border>
-                                                                <BackgroundColor>Silver</BackgroundColor>
+                                                                <BackgroundColor>#0b62a4</BackgroundColor>
                                                                 <PaddingLeft>2pt</PaddingLeft>
                                                                 <PaddingRight>2pt</PaddingRight>
                                                                 <PaddingTop>2pt</PaddingTop>
@@ -1190,7 +1217,7 @@
                                                 <Top>1.03662cm</Top>
                                                 <Left>0.03471cm</Left>
                                                 <Height>1.70066cm</Height>
-                                                <Width>17.53167cm</Width>
+                                                <Width>17.53168cm</Width>
                                                 <ZIndex>2</ZIndex>
                                                 <Style>
                                                   <Border>

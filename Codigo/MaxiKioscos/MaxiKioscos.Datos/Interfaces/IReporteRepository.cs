@@ -67,6 +67,11 @@ namespace MaxiKioscos.Datos.Interfaces
 
         IQueryable<RptVentasNegativasPorTicketRow> VentasNegativasPorTicket(DateTime? desde, DateTime? hasta, int? usuarioId);
 
+        IQueryable<RptGastosPorCategoria> GastosPorCategoria(DateTime? desde, DateTime? hasta, int? maxikioscoId,
+            int? categoriaId, int? subcategoriaId);
+
+        IQueryable<RptGastosPorCategoriaTotalGeneral> GastosPorCategoriaTotalGeneral(DateTime? desde, DateTime? hasta, int? maxikioscoId, int? categoriaId, int? subcategoriaId);
+       
         IList<Reporte> Listado();
     }
 }

@@ -122,6 +122,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(reporteCierresDeCajaFiltrosModel);
         }
 
+        public ActionResult GastosPorCategoria(ReporteGastoPorCategoriaFiltrosModel gastoPorCategoriaFiltrosModel)
+        {
+            return PartialOrView(gastoPorCategoriaFiltrosModel);
+        }
+
         [ActivityAuthorize(Actions = "Ventas por Cierre de Caja")]
         public ActionResult GenerarVentasPorCierreCaja(ReporteVentasCierreCajaFiltrosModel model)
         {
@@ -834,8 +839,70 @@ namespace MaxiKioscos.Web.Controllers
             return File(archivo, reporteFactory.MimeType);
         }
 
+        public ActionResult GenerarGastoPorCategoria(ReporteGastoPorCategoriaFiltrosModel model)
+        {
+            DateTime? hasta = model.Hasta == null
+                                    ? (DateTime?)null
+                                    : model.Hasta.GetValueOrDefault().AddDays(1);
+
+            var reporteFactory = new ReporteFactory();
+
+            var categoria = Uow.CategoriasCostos.Obtener(r => r.CategoriaCostoId == model.CategoriaId);
+            var categoriaDescripcion = categoria != null ? categoria.Descripcion : TodosText;
+
+            var subcategoria = Uow.CategoriasCostos.Obtener(r => r.CategoriaCostoId == model.SubCategoriaId);
+            var subcategoriaDescripcion = subcategoria != null ? subcategoria.Descripcion : TodosText;
+
+            var maxikiosco = Uow.MaxiKioscos.Obtener(r => r.MaxiKioscoId == model.MaxikioscoId);
+            var maxikioscoDescripcion = maxikiosco != null ? maxikiosco.Nombre : TodosText;
+            
+            var parameters = new Dictionary<string, string>
+                                  {
+                                      {"MaxikioscoId", model.MaxikioscoId.GetValueOrDefault().ToString()},
+                                      {"CategoriaCostoId", model.CategoriaId.GetValueOrDefault().ToString()},
+                                      {"SubCategoriaCostoId", model.SubCategoriaId.GetValueOrDefault().ToString()},
+                                      {"Categoria", categoriaDescripcion},
+                                      {"SubCategoria", subcategoriaDescripcion},
+                                      {"Maxikiosco", maxikioscoDescripcion},
+                                      {"Desde", model.Desde == null ? "-" : model.Desde.GetValueOrDefault().ToShortDateString()},
+                                      {"Hasta", model.Hasta == null ? "-" : model.Hasta.GetValueOrDefault().ToShortDateString()}
+                                  };
+
+            if (model.MostrarTotalGeneral)
+            {
+                var gastosPorCategoriaTotalGeneralDataSource =
+                    Uow.Reportes.GastosPorCategoriaTotalGeneral(model.Desde,
+                        hasta,
+                        model.MaxikioscoId,
+                        model.CategoriaId,
+                        model.SubCategoriaId);
+
+                reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/GastosPorCategoriaTotalGeneral.rdl"))
+                    .SetDataSource("DataSet1", gastosPorCategoriaTotalGeneralDataSource);
+            }
+            else
+            {
+                var gastosPorCategoriaDataSource = Uow.Reportes.GastosPorCategoria(model.Desde,
+                    hasta,
+                    model.MaxikioscoId,
+                    model.CategoriaId,
+                    model.SubCategoriaId);
+
+                reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/GastosPorCategoria.rdl"))
+                    .SetDataSource("DataSet1", gastosPorCategoriaDataSource);
+
+            }
+
+            reporteFactory.SetParametro(parameters);
+            
+            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+            return File(archivo, reporteFactory.MimeType);
+        }
+
         #region AUTOMATIZACIONES
 
+        [AllowAnonymous]
         public ActionResult GenerarStockValorizadoMensual()
         {
             var hoy = DateTime.Now.ToUniversalTime();

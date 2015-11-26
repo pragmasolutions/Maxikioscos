@@ -42,7 +42,7 @@ namespace MaxiKioscos.Web.Controllers
                                                             ProveedorId = model.ProveedorId,
                                                             Page = page,
                                                             RubroId = model.RubroId,
-                                                            Estado = 0
+                                                            Estado = model.Estado
                                                         };
 
             IQueryable<ControlStock> controles = Listado(model.Filtros);

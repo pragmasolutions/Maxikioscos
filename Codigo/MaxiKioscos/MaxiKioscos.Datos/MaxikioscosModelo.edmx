@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MaxiKioscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MaxiKioscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Billete">
           <Key>
             <PropertyRef Name="BilleteId" />
@@ -2001,6 +2001,20 @@
           <Parameter Name="CuentaId" Type="int" Mode="In" />
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_GastosPorCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="CategoriaCostoId" Type="int" Mode="In" />
+          <Parameter Name="SubCategoriaCostoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Rpt_GastosPorCategoria_TotalGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="CategoriaCostoId" Type="int" Mode="In" />
+          <Parameter Name="SubCategoriaCostoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_VentasPorTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
         </Function>
@@ -2444,7 +2458,8 @@
             <End Role="VentaProducto" EntitySet="VentaProducto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MaxiKioscosModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2594,7 +2609,7 @@
             <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
           <FunctionImport Name="UsuarioObtenerMembresia" ReturnType="Collection(MaxiKioscosModel.Membresia)">
-          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Excepcions" EntityType="MaxiKioscosModel.Excepcion" />
           <AssociationSet Name="FK_Excepcion_CierreCaja" Association="MaxiKioscosModel.FK_Excepcion_CierreCaja">
@@ -2606,7 +2621,7 @@
             <Parameter Name="CajaFinal" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="CierreCajaDetalle" ReturnType="Collection(MaxiKioscosModel.CierreCajaDetalleRow)">
-          <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
+            <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <AssociationSet Name="FK_CierreCaja_Usuario" Association="MaxiKioscosModel.FK_CierreCaja_Usuario">
             <End Role="Usuario" EntitySet="Usuarios" />
@@ -2688,7 +2703,7 @@
             <End Role="ExcepcionRubro" EntitySet="ExcepcionRubroes" />
           </AssociationSet>
           <FunctionImport Name="RubroListadoPorKiosco" ReturnType="Collection(MaxiKioscosModel.RubroCompleto)">
-          <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Turnos" EntityType="MaxiKioscosModel.Turno" />
           <EntitySet Name="CorreccionStocks" EntityType="MaxiKioscosModel.CorreccionStock" />
@@ -2751,10 +2766,10 @@
             <End Role="Factura" EntitySet="Facturas" />
           </AssociationSet>
           <FunctionImport Name="CierreCajaCantidadDineroActual" ReturnType="Collection(Decimal)">
-          <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
+            <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SincronizacionEstadoKioscos" ReturnType="Collection(MaxiKioscosModel.EstadoKiosco)" >
-          <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="ProveedorProductos" EntityType="MaxiKioscosModel.ProveedorProducto" />
           <AssociationSet Name="FK_ProveedorProducto_Producto" Association="MaxiKioscosModel.FK_ProveedorProducto_Producto">
@@ -2880,7 +2895,7 @@
             <End Role="ControlStockDetalle" EntitySet="ControlStockDetalles" />
           </AssociationSet>
           <FunctionImport Name="ReporteControlStockPlanilla" ReturnType="Collection(MaxiKioscosModel.ControlStockPlanillaRow)">
-          <Parameter Name="ControlStockId" Mode="In" Type="Int32" />
+            <Parameter Name="ControlStockId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptDineroSobranteFaltante" ReturnType="Collection(MaxiKioscosModel.RptDineroSobranteFaltante)">
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
@@ -2906,16 +2921,16 @@
           </AssociationSet>
           <EntitySet Name="ConfiguracionesLocales" EntityType="MaxiKioscosModel.ConfiguracionLocal" />
           <FunctionImport Name="VentaGenerarNumero" ReturnType="Collection(Int32)">
-          <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptVentasPorCierreCaja" ReturnType="Collection(MaxiKioscosModel.RptVentasPorCierreCaja)">
-          <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
+            <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CierreCajaUltimaCajaFinal" ReturnType="Collection(Decimal)">
-          <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CierreCajaObtenerUltima" EntitySet="CierreCajas" ReturnType="Collection(MaxiKioscosModel.CierreCaja)">
-          <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Transferencias" EntityType="MaxiKioscosModel.Transferencia" />
           <AssociationSet Name="FK_Transferencia_Destino" Association="MaxiKioscosModel.FK_Transferencia_Destino">
@@ -2950,7 +2965,7 @@
             <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="TransferenciaDetalle" ReturnType="Collection(MaxiKioscosModel.TransferenciaDetalleRow)">
-          <Parameter Name="TransferenciaId" Mode="In" Type="Int32" />
+            <Parameter Name="TransferenciaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptVentasPorProductoTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptVentasPorProductoTotalGeneral)">
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
@@ -2983,10 +2998,10 @@
             <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptStockValorizadoGeneral" ReturnType="Collection(MaxiKioscosModel.StockValorizadoGeneralRow)">
-          <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptStockValorizadoDetalladoGeneral" ReturnType="Collection(MaxiKioscosModel.StockValorizadoDetalladoGeneralRow)">
-          <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptAuditoriaProductos" ReturnType="Collection(MaxiKioscosModel.RptAuditoriaProductosRow)" />
           <EntitySet Name="ProductoPromocions" EntityType="MaxiKioscosModel.ProductoPromocion" />
@@ -2999,7 +3014,7 @@
             <End Role="ProductoPromocion" EntitySet="ProductoPromocions" />
           </AssociationSet>
           <FunctionImport Name="ProveedorObtenerRubros" EntitySet="Rubroes" ReturnType="Collection(MaxiKioscosModel.Rubro)">
-          <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ControlStockVistaPrevia" ReturnType="Collection(MaxiKioscosModel.ControlStockVistaPreviaRow)">
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
@@ -3010,10 +3025,10 @@
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ProductoStock" ReturnType="Collection(MaxiKioscosModel.ProductoStock)">
-          <Parameter Name="ProductoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptVentasPorTicket" ReturnType="Collection(MaxiKioscosModel.RptVentaPorTicketRow)">
-          <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
+            <Parameter Name="CierreCajaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="CategoriasCostos" EntityType="MaxiKioscosModel.CategoriaCosto" />
           <EntitySet Name="Costos" EntityType="MaxiKioscosModel.Costo" />
@@ -3040,7 +3055,7 @@
             <End Role="RetiroPersonalProducto" EntitySet="RetiroPersonalProductos" />
           </AssociationSet>
           <FunctionImport Name="RetiroPersonalGenerarNumero" ReturnType="Collection(Int32)">
-          <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptRetirosPersonales" ReturnType="Collection(MaxiKioscosModel.RptRetirosPersonalesRow)">
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
@@ -3108,16 +3123,19 @@
             <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
             <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="RptGastosPorCategoriaTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral)">
-            <Parameter Name="Desde" Mode="In" Type="DateTime" />
-            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <EntitySet Name="ReportesStock" EntityType="MaxiKioscosModel.ReporteStock" />
           <FunctionImport Name="ProductoObtenerParaTransferenciaDesktop" ReturnType="Collection(MaxiKioscosModel.ProductoTransferenciaDesktop)">
             <Parameter Name="Codigo" Mode="In" Type="String" />
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
-          </EntityContainer>
+          <FunctionImport Name="RptGastosPorCategoriaTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
             <PropertyRef Name="CierreCajaId" />
@@ -3229,7 +3247,7 @@
           <Property Name="AutoNumero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UsuarioCreador" Relationship="MaxiKioscosModel.FK_Factura_Usuario" FromRole="Factura" ToRole="Usuario" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="Localidad">
           <Key>
             <PropertyRef Name="LocalidadId" />
@@ -3292,7 +3310,7 @@
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
           <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
             <PropertyRef Name="MotivoOperacionCajaId" />
@@ -3325,7 +3343,7 @@
           <NavigationProperty Name="UsuarioCreador" Relationship="MaxiKioscosModel.FK_OperacionCaja_UsuarioCreador" FromRole="OperacionCaja" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificador" Relationship="MaxiKioscosModel.FK_OperacionCaja_UsuarioModificador" FromRole="OperacionCaja" ToRole="Usuario" />
           <Property Name="Identifier" Type="Guid" Nullable="false" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="ProductoId" />
@@ -5440,7 +5458,7 @@
           <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="VendidoEnUltimoMes" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -5834,7 +5852,7 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CierreCajaCerrar" FunctionName="MaxiKioscosModel.Store.CierreCaja_Cerrar" />
           <FunctionImportMapping FunctionImportName="CierreCajaDetalle" FunctionName="MaxiKioscosModel.Store.CierreCaja_Detalle">
-          <ResultMapping>
+            <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.CierreCajaDetalleRow">
                 <ScalarProperty Name="Concepto" ColumnName="Concepto" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
@@ -6100,7 +6118,7 @@
           <FunctionImportMapping FunctionImportName="RptStock" FunctionName="MaxiKioscosModel.Store.Rpt_Stock">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.RptStock">
-                </ComplexTypeMapping>
+              </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RptStockDiferenciaCierres" FunctionName="MaxiKioscosModel.Store.Rpt_Stock_DiferenciaCierres" />
@@ -6282,7 +6300,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ControlStockCrear" FunctionName="MaxiKioscosModel.Store.ControlStock_Crear" />
           <FunctionImportMapping FunctionImportName="ReporteControlStockPlanilla" FunctionName="MaxiKioscosModel.Store.Rpt_ControlStockPlanilla">
-          <ResultMapping>
+            <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.ControlStockPlanillaRow">
                 <ScalarProperty Name="Producto" ColumnName="Producto" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
@@ -6293,7 +6311,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RptReponerStock" FunctionName="MaxiKioscosModel.Store.Rpt_ReponerStock">
-          <ResultMapping>
+            <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.ReponerStock">
                 <ScalarProperty Name="Producto" ColumnName="Producto" />
                 <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
@@ -6766,7 +6784,44 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="ReportesStock">
+            <EntityTypeMapping TypeName="MaxiKioscosModel.ReporteStock">
+              <MappingFragment StoreEntitySet="ReporteStock">
+                <ScalarProperty Name="ValorizadoDetalladoGeneral" ColumnName="ValorizadoDetalladoGeneral" />
+                <ScalarProperty Name="ValorizadoDetallado" ColumnName="ValorizadoDetallado" />
+                <ScalarProperty Name="ValorizadoGeneral" ColumnName="ValorizadoGeneral" />
+                <ScalarProperty Name="Valorizado" ColumnName="Valorizado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="ReporteStockId" ColumnName="ReporteStockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RptGastosPorCategoria" FunctionName="MaxiKioscosModel.Store.Rpt_GastosPorCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptGastosPorCategoria">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="SubCategoria" ColumnName="SubCategoria" />
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptGastosPorCategoriaTotalGeneral" FunctionName="MaxiKioscosModel.Store.Rpt_GastosPorCategoria_TotalGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptGastosPorCategoriaTotalGeneral">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="SubCategoria" ColumnName="SubCategoria" />
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

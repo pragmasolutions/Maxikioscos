@@ -156,6 +156,16 @@ namespace MaxiKioscos.Datos.Repositorio
         }
 
 
+        public IQueryable<RptGastosPorCategoria> GastosPorCategoria(DateTime? desde, DateTime? hasta, int? maxikioscoId, int? categoriaId, int? subcategoriaId)
+        {
+            return MaxiKioscosEntities.RptGastosPorCategoria(desde, hasta, maxikioscoId, categoriaId, subcategoriaId).AsQueryable();
+        }
+
+        public IQueryable<RptGastosPorCategoriaTotalGeneral> GastosPorCategoriaTotalGeneral(DateTime? desde, DateTime? hasta, int? maxikioscoId, int? categoriaId, int? subcategoriaId)
+        {
+            return MaxiKioscosEntities.RptGastosPorCategoriaTotalGeneral(desde, hasta, maxikioscoId, categoriaId, subcategoriaId).AsQueryable();
+        }
+
         public IList<Reporte> Listado()
         {
             return MaxiKioscosEntities.Reportes.ToList();

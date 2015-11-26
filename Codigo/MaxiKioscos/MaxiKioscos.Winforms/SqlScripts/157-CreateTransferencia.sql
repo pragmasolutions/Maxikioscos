@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[Transferencia](
 	[DestinoId] [int] NOT NULL,
 	[UsuarioId] [int] NOT NULL,
 	[FechaAprobacion] [datetime] NULL,
-	[AutoNumero] [varchar(20)] NULL,
+	[AutoNumero] varchar(20) NULL,
 	[Desincronizado] [bit] NOT NULL,
 	[FechaUltimaModificacion] [datetime2](7) NULL,
 	[Identifier] [uniqueidentifier] NOT NULL,
