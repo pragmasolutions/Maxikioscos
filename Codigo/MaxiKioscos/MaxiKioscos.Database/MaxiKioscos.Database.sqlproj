@@ -25,6 +25,7 @@
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DefaultCollation>Modern_Spanish_CI_AS</DefaultCollation>
     <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <DacVersion>1.0.0.1</DacVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -63,6 +64,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\EstadoTicket_1.sql" />
@@ -234,5 +236,12 @@
     <Build Include="dbo\Stored Procedures\CierreCaja_CantidadDineroActual_1.sql" />
     <Build Include="dbo\Stored Procedures\CierreCaja_Cerrar_1.sql" />
     <Build Include="dbo\Stored Procedures\Sync_VentasProductos_1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snapshots\MaxiKioscos.Database_20151127_17-45-56.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Snapshots\MaxiKioscos.Database_20151128_14-51-02.dacpac" />
+    <None Include="Snapshots\MaxiKioscos.Database_20151128_17-58-15.dacpac" />
   </ItemGroup>
 </Project>

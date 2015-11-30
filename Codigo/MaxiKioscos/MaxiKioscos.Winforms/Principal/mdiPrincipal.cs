@@ -77,7 +77,6 @@ namespace MaxiKioscos.Winforms.Principal
             _sincronizacionManager.SyncExitosa += ActualizarUltimaSyncExitosa;
 
             CheckearNuevoKiosco();
-            ActualizarEsquema();
 
             IniciarTimerExportacion();
         }

@@ -14,6 +14,7 @@ using MaxiKioscos.Winforms.Principal;
 using MaxiKioscos.Winforms.Sincronizacion;
 using Microsoft.AspNet.SignalR.Client;
 using log4net;
+using MaxiKioscos.Winforms.Helpers;
 
 namespace MaxiKioscos.Winforms
 {
@@ -65,8 +66,12 @@ namespace MaxiKioscos.Winforms
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += ApplicationOnThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
-#endif
 
+            DatabaseUpdate databaseUpdate = new DatabaseUpdate();
+            const string connectionStringName = "SchemaUpdater";
+            const string snapshotFolder = "Snapshots";
+            databaseUpdate.UpgradeDatabase(connectionStringName, snapshotFolder);
+#endif
             Application.Run(CompositionRoot.Resolve<mdiPrincipal>());
         }
 
