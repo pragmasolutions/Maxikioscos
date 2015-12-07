@@ -9,6 +9,7 @@ using MaxiKioscos.Web.Models;
 using Maxikioscos.Comun.Logger;
 using System.Linq;
 using Maxikioscos.Comun.Extensions;
+using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Reportes.Enumeraciones;
 using MaxiKioscos.Web.Filters;
@@ -940,9 +941,18 @@ namespace MaxiKioscos.Web.Controllers
                     ReporteTipo = ReporteTipoEnum.Pdf
                 }, out factory);
                 Uow.ReportesStock.Crear(elemento);
-                Uow.Commit();
+                try
+                {
+                    Uow.Commit();
+                    return Json(new { exito = true }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { error = ExceptionHelper.GetInnerException(ex).Message }, JsonRequestBehavior.AllowGet);
+                }
+                
             }
-            return Json(new {exito = true}, JsonRequestBehavior.AllowGet);
+            return Json(new { exito = true }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult StockValorizadoMensual()
