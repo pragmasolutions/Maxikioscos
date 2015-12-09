@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Winforms.Configuracion;
 using Util;
+using MaxiKiosco = MaxiKioscos.Entidades.MaxiKiosco;
 
 namespace MaxiKioscos.Winforms.Gastos
 {
@@ -28,7 +30,7 @@ namespace MaxiKioscos.Winforms.Gastos
         }
 
         private Costo _original { get; set; }
-        
+
         public frmEditarGasto(int? costoId = null)
         {
             InitializeComponent();
@@ -55,12 +57,14 @@ namespace MaxiKioscos.Winforms.Gastos
                                 {
                                     CierreCajaId = UsuarioActual.CierreCajaIdActual,
                                     Identifier = Guid.NewGuid(),
-                                    Desincronizado = true
+                                    Desincronizado = true,
+                                    UsuarioId = UsuarioActual.UsuarioId,
+                                    MaxikioscoId = AppSettings.MaxiKioscoId
                                 };
                 lblFecha.Visible = false;
                 txtFecha.Visible = false;
             }
-            
+
             btnCancelar.Focus();
         }
 
@@ -74,16 +78,16 @@ namespace MaxiKioscos.Winforms.Gastos
             ddlCategorias.ValueMember = "CategoriaCostoId";
             ddlCategorias.DisplayMember = "Descripcion";
             ddlCategorias.DataSource = padres;
-            
+
 
             var hijas = creando
-                ? new List<CategoriaCosto>() { new CategoriaCosto() {  Descripcion = "Seleccione Sub-Categoría"} }
+                ? new List<CategoriaCosto>() { new CategoriaCosto() { Descripcion = "Seleccione Sub-Categoría" } }
                 : CategoriaRepository.Listado().Where(x => x.PadreId == _original.CategoriaCosto.PadreId
                                                         && !x.OcultarEnDesktop).ToList();
             ddlSubCategorias.ValueMember = "CategoriaCostoId";
             ddlSubCategorias.DisplayMember = "Descripcion";
             ddlSubCategorias.DataSource = hijas;
-            
+
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -91,13 +95,15 @@ namespace MaxiKioscos.Winforms.Gastos
             errorProvider1.Dispose();
 
             this.DialogResult = DialogResult.None;
-            var valido = Validacion.Validar(errorProvider1, new List<object>{txtMonto, ddlCategorias});
+            var valido = Validacion.Validar(errorProvider1, new List<object> { txtMonto, ddlCategorias });
             if (valido)
             {
                 decimal monto = Convert.ToDecimal(txtMonto.Valor);
                 _original.Monto = monto;
                 _original.Observaciones = txtObservaciones.Text;
-                _original.CategoriaCostoId = (int)ddlSubCategorias.SelectedValue;
+                _original.CategoriaCostoId = (int) ddlSubCategorias.SelectedValue != 0
+                    ? (int) ddlSubCategorias.SelectedValue
+                    : (int) ddlCategorias.SelectedValue;
                 _original.NroComprobante = txtNroComprobante.Valor;
 
                 if (_original.CostoId == 0)
@@ -110,7 +116,7 @@ namespace MaxiKioscos.Winforms.Gastos
                     Repository.Modificar(_original);
                     _original.Desincronizado = true;
                 }
-                
+
                 Repository.Commit();
                 this.DialogResult = DialogResult.OK;
             }
@@ -125,7 +131,7 @@ namespace MaxiKioscos.Winforms.Gastos
         {
             var padreId = (int)ddlCategorias.SelectedValue;
             var hijas = CategoriaRepository.Listado().Where(x => x.PadreId == padreId && !x.OcultarEnDesktop).ToList();
-            hijas.Insert(0, new CategoriaCosto(){ Descripcion = "Seleccione Sub-Categoría"});
+            hijas.Insert(0, new CategoriaCosto() { Descripcion = "Seleccione Sub-Categoría" });
             ddlSubCategorias.DataSource = hijas;
             ddlSubCategorias.SelectedIndex = 0;
         }
