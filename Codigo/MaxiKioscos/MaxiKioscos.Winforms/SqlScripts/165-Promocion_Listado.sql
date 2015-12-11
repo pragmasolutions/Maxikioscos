@@ -37,6 +37,3 @@ BEGIN
 										AND CP.ProductoId = P.ProductoId
 										AND UPPER(CP.Codigo) LIKE UPPER(@Codigo) + '%'))
 END
-
-GO
-
