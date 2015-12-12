@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
-namespace MaxiKioscos.Datos.Repositorio
+namespace MaxiKioscos.Datos.Sync
 {
     public class ProveedorRepository : EFRepository<Proveedor>,IProveedorRepository
     {

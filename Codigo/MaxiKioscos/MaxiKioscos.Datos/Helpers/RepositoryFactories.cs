@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Datos.Helpers

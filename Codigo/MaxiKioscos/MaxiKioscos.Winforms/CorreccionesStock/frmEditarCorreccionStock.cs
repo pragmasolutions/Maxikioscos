@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaxiKiosco.Win.Util;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Configuracion;
 using MaxiKioscos.Winforms.Interfaces;

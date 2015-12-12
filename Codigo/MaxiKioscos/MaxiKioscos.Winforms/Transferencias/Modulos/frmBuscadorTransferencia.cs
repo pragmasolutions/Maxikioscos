@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaxiKioscos.Winforms.Clases;
 using MaxiKioscos.Entidades;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Winforms.Configuracion;
 using MaxiKioscos.Winforms.Productos;
 

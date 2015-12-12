@@ -53,9 +53,6 @@ ALTER TABLE MaxiKiosco
 DROP COLUMN Abreviacion
 GO
 
-ALTER TABLE MaxiKiosco
-DROP COLUMN UltimaSincronizacionExitosa
-GO
 
 ALTER TABLE MaxiKiosco
 DROP COLUMN UltimaConexion

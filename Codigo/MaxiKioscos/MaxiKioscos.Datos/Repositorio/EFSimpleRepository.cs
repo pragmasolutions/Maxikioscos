@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
-namespace MaxiKioscos.Datos.Repositorio
+namespace MaxiKioscos.Datos.Sync
 {
     /// <summary>
     /// The EF-dependent, generic repository for data access

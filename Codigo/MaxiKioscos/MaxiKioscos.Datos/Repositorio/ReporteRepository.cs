@@ -7,7 +7,7 @@ using System.Runtime.ExceptionServices;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
-namespace MaxiKioscos.Datos.Repositorio
+namespace MaxiKioscos.Datos.Sync
 {
     public class ReporteRepository : EFBaseRepository, IReporteRepository
     {

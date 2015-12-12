@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using MaxiKioscos.Entidades;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Winforms.Configuracion;
 using MaxiKioscos.Winforms.Helpers;
 using MaxiKioscos.Winforms.Login;

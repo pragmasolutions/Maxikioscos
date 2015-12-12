@@ -30,6 +30,7 @@ namespace MaxiKioscos.IoC
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
             kernel.Bind<IMaxiKioscosUow>().To<MaxiKioscosUow>();
             kernel.Bind<IStockNegocio>().To<StockNegocio>();
+            kernel.Bind<ISincronizacionNegocio>().To<SincronizacionNegocio>();
             kernel.Bind<IComprasNegocio>().To<ComprasNegocio>();
             kernel.Bind<ITransferenciasNegocio>().To<TransferenciasNegocio>();
             kernel.Bind<IControlStockNegocio>().To<ControlStockNegocio>();

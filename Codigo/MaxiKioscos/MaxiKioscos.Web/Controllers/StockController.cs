@@ -5,7 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Negocio;
 using MaxiKioscos.Seguridad;

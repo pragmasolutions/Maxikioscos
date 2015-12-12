@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Winforms

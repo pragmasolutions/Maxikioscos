@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MaxiKioscos.SincronizacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SyncExportacion">
+          <Key>
+            <PropertyRef Name="ExportacionId" />
+          </Key>
+          <Property Name="ExportacionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Secuencia" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreadorId" Type="int" Nullable="false" />
+          <Property Name="Archivo" Type="xml" Nullable="false" />
+          <Property Name="CuentaId" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="47" StoreGeneratedPattern="Computed" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
+          <Property Name="Desincronizado" Type="bit" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Acusada" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SyncMaxiKiosco">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UltimaSecuenciaExportacion" Type="int" />
+          <Property Name="UltimaSecuenciaAcusada" Type="int" />
+          <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="MaxiKioscosSincronizacionModelStoreContainer">
+          <EntitySet Name="SyncExportacion" EntityType="Self.SyncExportacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SyncMaxiKiosco" EntityType="Self.SyncMaxiKiosco" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaxiKioscos.SincronizacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SyncExportacion">
+          <Key>
+            <PropertyRef Name="ExportacionId" />
+          </Key>
+          <Property Name="ExportacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Secuencia" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreadorId" Type="Int32" Nullable="false" />
+          <Property Name="CuentaId" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="47" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="Desincronizado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaUltimaModificacion" Type="DateTime" Precision="7" />
+          <Property Name="Acusada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ExportacionArchivo" Relationship="MaxiKioscos.SincronizacionModel.SyncExportacionSyncExportacionArchivo" FromRole="SyncExportacion" ToRole="SyncExportacionArchivo" />
+        </EntityType>
+        <EntityType Name="SyncMaxiKiosco">
+          <Key>
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Name="Identifier" Type="Guid" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UltimaSecuenciaExportacion" Type="Int32" />
+          <Property Name="UltimaSecuenciaAcusada" Type="Int32" />
+          <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="SincronizacionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SyncExportaciones" EntityType="Self.SyncExportacion" />
+          <EntitySet Name="SyncMaxiKioscos" EntityType="Self.SyncMaxiKiosco" />
+          <EntitySet Name="SyncExportacionArchivos" EntityType="MaxiKioscos.SincronizacionModel.SyncExportacionArchivo" />
+          <AssociationSet Name="SyncExportacionSyncExportacionArchivo" Association="MaxiKioscos.SincronizacionModel.SyncExportacionSyncExportacionArchivo">
+            <End Role="SyncExportacion" EntitySet="SyncExportaciones" />
+            <End Role="SyncExportacionArchivo" EntitySet="SyncExportacionArchivos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="SyncExportacionArchivo">
+          <Key>
+            <PropertyRef Name="ExportacionId" />
+          </Key>
+          <Property Name="ExportacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Archivo" Type="String" Nullable="false" FixedLength="false" MaxLength="Max" Unicode="true" />
+          <NavigationProperty Name="SyncExportacion" Relationship="MaxiKioscos.SincronizacionModel.SyncExportacionSyncExportacionArchivo" FromRole="SyncExportacionArchivo" ToRole="SyncExportacion" />
+        </EntityType>
+        <Association Name="SyncExportacionSyncExportacionArchivo">
+          <End Type="MaxiKioscos.SincronizacionModel.SyncExportacion" Role="SyncExportacion" Multiplicity="1" />
+          <End Type="MaxiKioscos.SincronizacionModel.SyncExportacionArchivo" Role="SyncExportacionArchivo" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="SyncExportacion">
+              <PropertyRef Name="ExportacionId" />
+            </Principal>
+            <Dependent Role="SyncExportacionArchivo">
+              <PropertyRef Name="ExportacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaxiKioscosSincronizacionModelStoreContainer" CdmEntityContainer="SincronizacionEntities">
+          <EntitySetMapping Name="SyncExportaciones">
+            <EntityTypeMapping TypeName="MaxiKioscos.SincronizacionModel.SyncExportacion">
+              <MappingFragment StoreEntitySet="SyncExportacion">
+                <ScalarProperty Name="ExportacionId" ColumnName="ExportacionId" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="CreadorId" ColumnName="CreadorId" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Acusada" ColumnName="Acusada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SyncMaxiKioscos">
+            <EntityTypeMapping TypeName="MaxiKioscos.SincronizacionModel.SyncMaxiKiosco">
+              <MappingFragment StoreEntitySet="SyncMaxiKiosco">
+                <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UltimaSecuenciaExportacion" ColumnName="UltimaSecuenciaExportacion" />
+                <ScalarProperty Name="UltimaSecuenciaAcusada" ColumnName="UltimaSecuenciaAcusada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SyncExportacionArchivos">
+            <EntityTypeMapping TypeName="IsTypeOf(MaxiKioscos.SincronizacionModel.SyncExportacionArchivo)">
+              <MappingFragment StoreEntitySet="SyncExportacion">
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="ExportacionId" ColumnName="ExportacionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

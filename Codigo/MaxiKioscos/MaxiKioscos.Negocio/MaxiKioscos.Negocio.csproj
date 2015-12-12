@@ -64,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IPromocionesNegocio.cs" />
+    <Compile Include="Interfaces\ISincronizacionNegocio.cs" />
     <Compile Include="Interfaces\ITransferenciasNegocio.cs" />
     <Compile Include="PromocionesNegocio.cs" />
+    <Compile Include="SincronizacionNegocio.cs" />
     <Compile Include="TransferenciasNegocio.cs" />
     <Compile Include="ComprasNegocio.cs" />
     <Compile Include="ControlStockNegocio.cs" />

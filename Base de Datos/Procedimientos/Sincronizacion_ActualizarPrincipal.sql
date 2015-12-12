@@ -62,10 +62,6 @@ BEGIN
 		print('Sync_TransferenciasProductos')		
 		EXEC dbo.Sync_TransferenciasProductos @XML, 0
 		
-		print('UPDATE MaxiKiosco')
-		UPDATE MaxiKiosco
-		SET UltimaSecuenciaAcusada = @Secuencia
-		WHERE Identifier = @MaxikioscoIdentifier
 		
 		IF @NombreArchivo IS NOT NULL
 		BEGIN

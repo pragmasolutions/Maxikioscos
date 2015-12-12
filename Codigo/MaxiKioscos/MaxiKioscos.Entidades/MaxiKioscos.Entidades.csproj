@@ -347,6 +347,11 @@
     <Compile Include="RubroCompleto.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SincronizacionModelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SincronizacionModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Stock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
@@ -367,6 +372,15 @@
     </Compile>
     <Compile Include="StockValorizadoRow.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyncExportacion.cs">
+      <DependentUpon>SincronizacionModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyncExportacionArchivo.cs">
+      <DependentUpon>SincronizacionModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyncMaxiKiosco.cs">
+      <DependentUpon>SincronizacionModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="TicketError.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
@@ -405,6 +419,10 @@
       <LastGenOutput>MaxikioscosModelo.cs</LastGenOutput>
     </None>
     <None Include="Properties\DataSources\Producto.datasource" />
+    <None Include="SincronizacionModelo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SincronizacionModelo.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

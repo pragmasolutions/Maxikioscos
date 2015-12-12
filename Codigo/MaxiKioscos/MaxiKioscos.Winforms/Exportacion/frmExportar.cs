@@ -12,7 +12,7 @@ using System.Xml;
 using Ionic.Zip;
 using MaxiKiosco.Win.Util;
 using MaxiKiosco.Win.Util.Helpers;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.Configuracion;
 using Util;

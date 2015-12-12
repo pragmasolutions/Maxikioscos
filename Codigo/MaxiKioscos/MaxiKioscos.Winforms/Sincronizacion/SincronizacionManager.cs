@@ -19,7 +19,7 @@ using System.Linq;
 using System.Windows.Forms.VisualStyles;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Datos.Helpers;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Winforms.Helpers;
 using MaxiKioscos.Winforms.Principal;
 

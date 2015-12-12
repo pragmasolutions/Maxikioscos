@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Configuration;
 using System.Web.Helpers;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Winforms.Configuracion;
 
 namespace MaxiKioscos.Winforms.Membership

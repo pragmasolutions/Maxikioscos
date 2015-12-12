@@ -20,7 +20,7 @@ namespace MaxiKioscos.Datos.Interfaces
 
         bool PuedeExportarPrincipal();
 
-        int ExportarPrincipal(int usuarioId, int? secuencia = null);
+        string ExportarPrincipal(int usuarioId);
 
         int ExportarKiosco(Guid maxikioscoIdentifier, int usuarioId);
 

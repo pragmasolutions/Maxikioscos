@@ -115,6 +115,18 @@
     <Compile Include="Repositorio\ProveedorRepository.cs" />
     <Compile Include="Repositorio\RubroRepository.cs" />
     <Compile Include="Repositorio\UsuarioRepository.cs" />
+    <Compile Include="SincronizacionModelo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SincronizacionModelo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SincronizacionModelo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SincronizacionModelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Sync\Repositorio\SyncBaseRepository.cs" />
+    <Compile Include="Sync\Repositorio\SyncSimpleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MaxiKioscos.Entidades\MaxiKioscos.Entidades.csproj">
@@ -144,6 +156,19 @@
       <DependentUpon>MaxikioscosModelo.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <EntityDeploy Include="SincronizacionModelo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SincronizacionModelo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SincronizacionModelo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SincronizacionModelo.edmx</DependentUpon>
+      <LastGenOutput>SincronizacionModelo.Context.cs</LastGenOutput>
+      <CustomToolNamespace>MaxiKioscos.Entidades</CustomToolNamespace>
+    </None>
+    <None Include="SincronizacionModelo.edmx.diagram">
+      <DependentUpon>SincronizacionModelo.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

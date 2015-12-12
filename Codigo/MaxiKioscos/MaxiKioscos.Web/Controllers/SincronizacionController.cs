@@ -8,6 +8,7 @@ using Ionic.Zip;
 using MaxiKiosco.Win.Util.Helpers;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Negocio;
 using MaxiKioscos.Seguridad;
 using MaxiKioscos.Web.Comun.Helpers;
 using MaxiKioscos.Web.Configuration;
@@ -20,9 +21,12 @@ namespace MaxiKioscos.Web.Controllers
 {
     public class SincronizacionController : BaseController
     {
-        public SincronizacionController(IMaxiKioscosUow uow)
+        private ISincronizacionNegocio _sincronizacionNegocio { get; set; }
+
+        public SincronizacionController(IMaxiKioscosUow uow, ISincronizacionNegocio sincronizacionNegocio)
         {
             Uow = uow;
+            _sincronizacionNegocio = sincronizacionNegocio;
         }
 
         [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
@@ -159,10 +163,8 @@ namespace MaxiKioscos.Web.Controllers
         [HttpPost]
         public ActionResult Exportar()
         {
-            var exito = Uow.Exportaciones.PuedeExportarPrincipal();
-
-            if (exito)
-                exito = Uow.Exportaciones.ExportarPrincipal(UsuarioActual.Usuario.UsuarioId) > 0;
+            var exito = _sincronizacionNegocio.ExportarPrincipal(UsuarioActual.Usuario.UsuarioId);
+                
             return new JsonResult() { Data = new { exito }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
@@ -230,19 +232,6 @@ namespace MaxiKioscos.Web.Controllers
             List<Exportacion> exportaciones = model.ObtenerExportaciones();
             var listaXmls = exportaciones.Select(e => new KeyValuePair<string, string>(e.Nombre, e.ExportacionArchivo.Archivo)).ToList();
             return ZipHelper.ZipResult(listaXmls, model.FileName);
-        }
-
-        [ActivityAuthorize(Actions = MaxikioscoPermisos.SINCRONIZACION)] 
-        public ActionResult ResetearArchivosDeExportacion()
-        {
-            var ultimaExportacion = Uow.Exportaciones.Listado().OrderByDescending(e => e.Secuencia).FirstOrDefault();
-            if (ultimaExportacion != null)
-            {
-                var secuencia = ultimaExportacion.Secuencia + 1;
-                Uow.Exportaciones.Resetear();
-                Uow.Exportaciones.ExportarPrincipal(1, secuencia);
-            }
-            return new ContentResult(){ Content = "Exito"};
         }
     }
 }

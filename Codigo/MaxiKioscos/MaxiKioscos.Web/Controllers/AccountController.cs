@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Web.Configuration;
 using Microsoft.Web.WebPages.OAuth;

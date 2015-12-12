@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
-namespace MaxiKioscos.Datos.Repositorio
+namespace MaxiKioscos.Datos.Sync
 {
    public class StockRepository: EFRepository<Stock>, IStockRepository
    {

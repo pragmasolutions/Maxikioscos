@@ -6,15 +6,21 @@ using log4net;
 using Maxikioscos.Comun.Extensions;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Datos.Interfaces;
+using MaxiKioscos.Datos.Sync.Repositorio;
+using MaxiKioscos.Entidades;
+using MaxiKioscos.Negocio;
 using MaxiKioscos.Services.Contracts;
 
 namespace MaxiKioscos.Services
 {
     public class SincronizacionService : BaseService, ISincronizacionService
     {
-        public SincronizacionService(IMaxiKioscosUow uow)
+        private ISincronizacionNegocio _sincronizacionNegocio { get; set; }
+
+        public SincronizacionService(IMaxiKioscosUow uow, ISincronizacionNegocio sincronizacionNegocio)
         {
             Uow = uow;
+            _sincronizacionNegocio = sincronizacionNegocio;
         }
 
         /// <summary>
@@ -32,19 +38,16 @@ namespace MaxiKioscos.Services
 
 
             var response = new ObtenerDatosResponse();
-            var puedeExportar = Uow.Exportaciones.PuedeExportarPrincipal();
-            if (puedeExportar)
-            {
-                Uow.Exportaciones.ExportarPrincipal(usuario.UsuarioId);
-            }
+            _sincronizacionNegocio.ExportarPrincipal(usuario.UsuarioId);
 
             //Actualizo el estado de kiosco
-            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxiKioscoIdentifier);
+            var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+            var kiosco = syncRepo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
-            Uow.Commit();
+            syncRepo.Commit();
 
             //Obtenemos las exportacion generadas
-            var exportaciones = Uow.Exportaciones.Listado(e => e.ExportacionArchivo)
+            var exportaciones = _sincronizacionNegocio.ListadoExportaciones(e => e.ExportacionArchivo)
                 .Where(e => e.CuentaId == usuario.CuentaId
                             && (!request.UltimaSecuenciaExportacion.HasValue)
                             || e.Secuencia > request.UltimaSecuenciaExportacion)
@@ -69,7 +72,8 @@ namespace MaxiKioscos.Services
         {
             try
             {
-                var maxi = Uow.MaxiKioscos.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
+                var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+                var maxi = syncRepo.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
                 var actualizo = false;
 
                 if (request.Exportacion != null)
@@ -86,23 +90,22 @@ namespace MaxiKioscos.Services
                                 MensageError = "SECUENCIA DESFASADA"
                             };
                         }
-                        Uow.Exportaciones.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
+                        _sincronizacionNegocio.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
                         actualizo = true;
                     }
                 }
-                return new ActualizarDatosResponse() { Exito = true };
+                return new ActualizarDatosResponse() {Exito = true};
             }
             catch (Exception ex)
             {
                 LogManager.GetLogger("errors").Error(ex);
                 return new ActualizarDatosResponse
-                       {
-                           MensageError = ExceptionHelper.GetInnerException(ex).Message,
-                           Exito = false
-                       };
+                {
+                    MensageError = ExceptionHelper.GetInnerException(ex).Message,
+                    Exito = false
+                };
+
             }
-            //Actualizamos la base de datos principal con los datos del kiosco
-            
         }
 
 
@@ -113,11 +116,13 @@ namespace MaxiKioscos.Services
         public void AcusarExportacion(AcusarExportacionRequest request)
         {
             //Actualizo el estado de kiosco
-            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
+            var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+            var kiosco = syncRepo.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
+
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
             var fecha = DateHelper.ISOToDate(request.HoraLocalISO);
             kiosco.UltimaSincronizacionExitosa = fecha;
-            Uow.Commit();
+            syncRepo.Commit();
 
             Task.Run(() =>
             {
@@ -172,21 +177,22 @@ namespace MaxiKioscos.Services
 
 
             var response = new ObtenerDatosSecuencialResponse();
-            
+
             //Actualizo el estado de kiosco
-            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxiKioscoIdentifier);
+            var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+            var kiosco = syncRepo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
-            Uow.Commit();
+            syncRepo.Commit();
 
             //Controlo si es la última
-            var cantidadPorExportar = Uow.Exportaciones.Listado()
+            var cantidadPorExportar = _sincronizacionNegocio.ListadoExportaciones()
                 .Count(e => e.CuentaId == usuario.CuentaId
                             && (!request.UltimaSecuenciaExportacion.HasValue)
                             || e.Secuencia > request.UltimaSecuenciaExportacion);
 
             if (cantidadPorExportar > 0)
             {
-                var exportacion = Uow.Exportaciones.Listado(e => e.ExportacionArchivo)
+                var exportacion = _sincronizacionNegocio.ListadoExportaciones(e => e.ExportacionArchivo)
                     .FirstOrDefault(e => e.CuentaId == usuario.CuentaId
                                 && (!request.UltimaSecuenciaExportacion.HasValue)
                                 || e.Secuencia > request.UltimaSecuenciaExportacion);
@@ -209,7 +215,8 @@ namespace MaxiKioscos.Services
         public ObtenerSecuenciasResponse ObtenerSecuencias(string identifier)
         {
             var id = Guid.Parse(identifier);
-            var maxi = Uow.MaxiKioscos.Listado().FirstOrDefault(m => m.Identifier == id);
+            var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+            var maxi = syncRepo.Obtener(m => m.Identifier == id);
             return new ObtenerSecuenciasResponse()
             {
                 UltimaSecuenciaAcusada = maxi.UltimaSecuenciaAcusada.GetValueOrDefault(),
@@ -224,11 +231,7 @@ namespace MaxiKioscos.Services
             if (usuario == null)
                 throw new ApplicationException("No se encontro el usuario");
 
-            var puedeExportar = Uow.Exportaciones.PuedeExportarPrincipal();
-            if (puedeExportar)
-            {
-                Uow.Exportaciones.ExportarPrincipal(usuario.UsuarioId);
-            }
+            _sincronizacionNegocio.ExportarPrincipal(usuario.UsuarioId);
         }
 
         public bool AcusarEstadoConexion(Guid maxikioscoIdentifier, string dateISO)

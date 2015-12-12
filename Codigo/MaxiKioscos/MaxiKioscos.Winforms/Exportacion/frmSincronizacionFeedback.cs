@@ -20,7 +20,7 @@ using log4net.Repository.Hierarchy;
 using Maxikioscos.Comun.Helpers;
 using MaxiKiosco.Win.Util.Helpers;
 using MaxiKioscos.Datos.Helpers;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Winforms.Configuracion;

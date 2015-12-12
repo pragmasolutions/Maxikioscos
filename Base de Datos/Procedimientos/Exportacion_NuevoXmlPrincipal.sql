@@ -5,16 +5,10 @@ GO
 
 
 CREATE PROCEDURE [dbo].[Exportacion_NuevoXmlPrincipal]
-	@UsuarioId int,
-	@Secuencia int = NULL
+	@UsuarioId int
 AS
 BEGIN
-	IF @Secuencia IS NULL
-	BEGIN
-		SELECT @Secuencia = ISNULL(MAX(Secuencia) + 1, 1) FROM Exportacion
-	END
-	
-	
+		
 	DECLARE @CuentaId int
 	SELECT @CuentaId = (SELECT TOP 1 CuentaId FROM Usuario WHERE UsuarioId = @UsuarioId)	
 	
@@ -22,6 +16,8 @@ BEGIN
 	SET @ExportacionId = 0
 	
 	DECLARE @XML XML
+	SET @XML = NULL
+	
 	
 	BEGIN TRY
     BEGIN TRAN
@@ -209,23 +205,20 @@ BEGIN
 		UPDATE Transferencia SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE TransferenciaProducto SET Desincronizado = 0 WHERE Desincronizado = 1
 		UPDATE ProductoPromocion SET Desincronizado = 0 WHERE Desincronizado = 1
-		--INSERTAMOS EL NUEVO XML
-		INSERT INTO Exportacion(Secuencia, Fecha, CreadorId, CuentaId, Archivo, Eliminado, 
-								FechaUltimaModificacion, Desincronizado, Acusada)
-		VALUES (@Secuencia, GETDATE(), @UsuarioId, @CuentaId, @XML, 0, GETDATE(), 1, 0)
-		SET @ExportacionId = CONVERT(INT,SCOPE_IDENTITY())
+		
+		
 	COMMIT TRAN
 	
 	
-	SELECT @ExportacionId AS ExportacionId
+	SELECT @XML AS Archivo
 	
 	END TRY
 	
 	BEGIN CATCH
     
     IF @@TRANCOUNT > 0 ROLLBACK
-
-    SELECT 0 AS ExportacionId
+	
+	SELECT @XML AS Archivo
 	
     /*************************************
     *  Return from the Stored Procedure

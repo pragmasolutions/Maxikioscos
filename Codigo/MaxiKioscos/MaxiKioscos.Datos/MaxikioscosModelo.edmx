@@ -1839,7 +1839,6 @@
         </Function>
         <Function Name="Exportacion_NuevoXmlPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
-          <Parameter Name="Secuencia" Type="int" Mode="In" />
         </Function>
         <Function Name="Exportacion_PuedeExportarKiosco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Exportacion_PuedeExportarPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -2756,9 +2755,8 @@
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
             <Parameter Name="CuentaId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ExportacionNuevoXmlPrincipal" ReturnType="Collection(Int32)">
+          <FunctionImport Name="ExportacionNuevoXmlPrincipal" ReturnType="Collection(String)">
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-            <Parameter Name="Secuencia" Mode="In" Type="Int32" />
           </FunctionImport>
           <AssociationSet Name="FK_CorreccionStock_MaxiKiosco" Association="MaxiKioscosModel.FK_CorreccionStock_MaxiKiosco">
             <End Role="MaxiKiosco" EntitySet="MaxiKioscoes" />

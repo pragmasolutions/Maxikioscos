@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Winforms

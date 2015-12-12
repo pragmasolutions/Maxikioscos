@@ -1,7 +1,7 @@
 using System;
 using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
+using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Datos

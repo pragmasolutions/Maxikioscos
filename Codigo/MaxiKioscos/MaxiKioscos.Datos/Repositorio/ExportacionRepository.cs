@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
-namespace MaxiKioscos.Datos.Repositorio
+namespace MaxiKioscos.Datos.Sync
 {
     public class ExportacionRepository : EFRepository<Exportacion>, IExportacionRepository
     {
@@ -45,9 +45,9 @@ namespace MaxiKioscos.Datos.Repositorio
         }
         
 
-        public int ExportarPrincipal(int usuarioId, int? secuencia = null)
+        public string ExportarPrincipal(int usuarioId)
         {
-            return MaxiKioscosEntities.ExportacionNuevoXmlPrincipal(usuarioId, secuencia).FirstOrDefault().GetValueOrDefault();
+            return MaxiKioscosEntities.ExportacionNuevoXmlPrincipal(usuarioId).FirstOrDefault();
         }
 
         public int ExportarKiosco(Guid maxikioscoIdentifier, int usuarioId)
