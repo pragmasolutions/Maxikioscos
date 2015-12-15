@@ -60,6 +60,15 @@
             cargarVista(url);
             return false;
         },
+        eliminarMarca = function () {
+            var url = '/Marcas/Eliminar/' + $('#MarcaId').val();
+            $.ajax({
+                type: "POST",
+                url: url
+            }).done(submitExito);
+
+            return false;
+        }
         cargarVista = function (url) {
             maxikioscoSpinner.startSpin();
             $modalContent.load(url, function () {
@@ -68,6 +77,7 @@
                 controles.parse('#MarcasModal');
                 $modal.modal();
                 util.focusPrimerElemento($modalContent);
+                $('.btn-eliminar').click(eliminarMarca);
                 return false;
             });
         };

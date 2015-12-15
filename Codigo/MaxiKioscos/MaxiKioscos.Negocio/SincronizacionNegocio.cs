@@ -5,9 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Datos.Sync.Repositorio;
 using MaxiKioscos.Entidades;
+
 
 namespace MaxiKioscos.Negocio
 {
@@ -29,25 +31,36 @@ namespace MaxiKioscos.Negocio
                 var archivo = Uow.Exportaciones.ExportarPrincipal(usuarioId);
                 exito = !string.IsNullOrEmpty(archivo);
 
-                var syncRepo = new SyncSimpleRepository<SyncExportacion>();
-                var maxSeq = syncRepo.Listado().Max(s => s.Secuencia);
-                var exportacion = new SyncExportacion()
+                if (exito)
                 {
-                    Acusada = true,
-                    ExportacionArchivo = new SyncExportacionArchivo()
+                    try
                     {
-                        Archivo = archivo
-                    },
-                    CreadorId = usuarioId,
-                    CuentaId = 1,
-                    Desincronizado = true,
-                    Eliminado = false,
-                    Fecha = DateTime.Now,
-                    Secuencia = maxSeq + 1
-                };
-                syncRepo.Agregar(exportacion);
-                syncRepo.Commit();
-            }
+                        var syncRepo = new SyncSimpleRepository<SyncExportacion>();
+                        var maxSeq = syncRepo.Listado().Max(s => s.Secuencia);
+                        var exportacion = new SyncExportacion()
+                        {
+                            Acusada = true,
+                            ExportacionArchivo = new SyncExportacionArchivo()
+                            {
+                                Archivo = archivo
+                            },
+                            CreadorId = usuarioId,
+                            CuentaId = 1,
+                            Desincronizado = true,
+                            Eliminado = false,
+                            Fecha = DateTime.Now,
+                            Secuencia = maxSeq + 1
+                        };
+                        syncRepo.Agregar(exportacion);
+                        syncRepo.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        exito = false;
+                    }
+                    
+                } 
+            } 
             return exito;
         }
 

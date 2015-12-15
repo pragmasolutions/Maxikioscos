@@ -97,15 +97,16 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(Marca marca)
+        public ActionResult Eliminar(int id, FormCollection collection)
         {
-            var productos = Uow.Productos.Listado().Where(p => p.MarcaId == marca.MarcaId).ToList();
+            var productos = Uow.Productos.Listado().Where(p => p.MarcaId == id).ToList();
             if (productos.Count > 0)
             {
                 ModelState.AddModelError("ProductosAsociados", "No puede elimiarse la marca porque tiene productos asociados");
+                Marca marca = Uow.Marcas.Obtener(id);
                 return PartialView(marca);
             }
-            Uow.Marcas.Eliminar(marca);
+            Uow.Marcas.Eliminar(id);
             Uow.Commit();
             return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

@@ -93,5 +93,11 @@ namespace MaxiKioscos.Datos.Sync
         }
 
         #endregion
+
+
+        public void Dispose()
+        {
+            MaxiKioscosEntities.Dispose();
+        }
     }
 }
