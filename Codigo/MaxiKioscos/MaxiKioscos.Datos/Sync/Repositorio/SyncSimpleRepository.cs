@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace MaxiKioscos.Datos.Sync.Repositorio
     {
         public SyncSimpleRepository()
             :base()
+        {
+            DbSet = DbContext.Set<T>();
+        }
+
+        public SyncSimpleRepository(DbConnection existingConnection, bool contextOwnsConnection)
+            : base(existingConnection, contextOwnsConnection)
         {
             DbSet = DbContext.Set<T>();
         }
