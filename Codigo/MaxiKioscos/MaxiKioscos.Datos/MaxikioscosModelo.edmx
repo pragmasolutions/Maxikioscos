@@ -270,6 +270,7 @@
           <Property Name="Usuario" Type="int" />
           <Property Name="AutoNumero" Type="varchar" MaxLength="20" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Finalizada" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Importacion">
           <Key>
@@ -2756,7 +2757,7 @@
             <Parameter Name="CuentaId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ExportacionNuevoXmlPrincipal" ReturnType="Collection(String)">
-            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
           <AssociationSet Name="FK_CorreccionStock_MaxiKiosco" Association="MaxiKioscosModel.FK_CorreccionStock_MaxiKiosco">
             <End Role="MaxiKiosco" EntitySet="MaxiKioscoes" />
@@ -3252,6 +3253,7 @@
           <Property Name="AutoNumero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UsuarioCreador" Relationship="MaxiKioscosModel.FK_Factura_Usuario" FromRole="Factura" ToRole="Usuario" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Finalizada" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Localidad">
           <Key>
@@ -5543,6 +5545,7 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Factura">
               <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="Finalizada" ColumnName="Finalizada" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="AutoNumero" ColumnName="AutoNumero" />
                 <ScalarProperty Name="UsuarioId" ColumnName="Usuario" />
