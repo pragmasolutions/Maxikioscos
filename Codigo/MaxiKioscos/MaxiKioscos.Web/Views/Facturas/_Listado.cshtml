@@ -10,6 +10,13 @@
     @:class="factura-tiene-compra"
     }
 }
+@helper  FacturaFinalizada(Factura factura)
+{
+    if (factura.Finalizada)
+    {
+        @:class="factura-finalizada"
+    }
+}
 <div id="ListadoContainer" class="table-responsive">
     <table class="table table-striped table-bordered table-hover" id="TableFacturas">
         <thead>
@@ -27,7 +34,7 @@
         <tbody>
             @foreach (var factura in Model.List)
             {
-                <tr @GetTieneCompraClass(factura)>
+                <tr @FacturaFinalizada(factura)>
                     <td>@factura.Fecha.ToShortDateString()</td>
                     <td>@factura.FacturaNro</td>
                     <td>@factura.AutoNumero</td>
@@ -37,8 +44,9 @@
                     <td>@(factura.TieneCompra ? "SI" : "NO")</td>
                     <td class="text-center">
                         <a class="btn btn-default btn-factura-detalle" href="@Url.Action("Detalle", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-list"></span></a>
-                        @if (!factura.TieneCompra)
+                        @if (!factura.Finalizada)
                         {
+                            <a class="btn btn-default btn-factura-finalizar" href="@Url.Action("Finalizar", new { id = factura.FacturaId })" data-toggle="tooltip" title="Finalizar Factura"><span class="glyphicon glyphicon-check"></span></a>
                             <a class="btn btn-default btn-factura-editar" href="@Url.Action("Editar", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-edit"></span></a>
                             <a class="btn btn-default btn-factura-eliminar" href="@Url.Action("Eliminar", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-trash"></span></a>
                         }

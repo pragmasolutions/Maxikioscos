@@ -3,6 +3,7 @@
         $modalContent = $("#FacturasModal .modal-content"),
         init = function () {
             $('.btn-factura-crear').click(crear);
+            $("#ListadoContainer").on('click', 'a.btn-factura-finalizar', finalizar);
             $("#ListadoContainer").on('click', 'a.btn-factura-editar', editar);
             $("#ListadoContainer").on('click', 'a.btn-factura-detalle', detalle);
             $("#ListadoContainer").on('click', 'a.btn-factura-eliminar', eliminar);
@@ -47,6 +48,11 @@
             $("#AdminContainer").load(url, function () {
                 maxikioscoSpinner.stopSpin();
             });
+        },
+        finalizar = function () {
+            var url = $(this).attr('href');
+            cargarVista(url);
+            return false;
         },
         editar = function () {
             var url = $(this).attr('href');

@@ -196,6 +196,35 @@ namespace MaxiKioscos.Web.Controllers
             return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        public ActionResult Finalizar(int id)
+        {
+            Factura factura = Uow.Facturas.Obtener(f => f.FacturaId == id, f => f.MaxiKiosco, f => f.Proveedor);
+            return PartialView(factura);
+        }
+
+        [HttpPost]
+        public ActionResult Finalizar(int id, FormCollection collection)
+        {
+            Factura factura = Uow.Facturas.Obtener(f => f.FacturaId == id, f => f.Compras);
+            if (factura == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (factura.Finalizada)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+
+            factura.Finalizada = true;
+
+            Uow.Facturas.Modificar(factura);
+
+            Uow.Commit();
+
+            return new JsonResult() { Data = new { exito = true }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
         [HttpPost]
         public ActionResult Obtener(int facturaId)
         {
