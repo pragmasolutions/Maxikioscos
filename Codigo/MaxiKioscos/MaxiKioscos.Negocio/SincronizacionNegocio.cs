@@ -91,8 +91,6 @@ namespace MaxiKioscos.Negocio
 
                     var repo = new SyncSimpleRepository<SyncMaxiKiosco>();
 
-                    repo.SincronizacionEntities.Database.UseTransaction(dbContextTransaction.UnderlyingTransaction);
-
                     var maxi = repo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
 
                     maxi.UltimaSecuenciaAcusada = secuencia;
