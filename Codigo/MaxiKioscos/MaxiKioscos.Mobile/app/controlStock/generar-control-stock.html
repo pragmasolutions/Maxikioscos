@@ -1,0 +1,22 @@
+<ion-view view-title="Control Stock" ng-controller="GenerarControlStockCtrl as vm">
+    <div class="bar bar-header bar-calm">
+        <h1 class="title">Control Stock</h1>
+    </div>
+    <ion-content class="has-header">
+        <div class="list">
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Proveedor
+                </div>
+                <select ng-model="vm.proveedorSeleccionado">
+                    <option value="" label="Seleccione Proveedor"></option>
+                    <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.id}}">
+                        {{proveedor.nombre}}
+                    </option>
+                </select>
+            </label>
+        </div>
+
+    </ion-content>
+</ion-view>
