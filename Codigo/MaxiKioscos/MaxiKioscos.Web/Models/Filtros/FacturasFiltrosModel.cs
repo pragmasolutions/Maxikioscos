@@ -36,6 +36,10 @@ namespace MaxiKioscos.Web.Models
         [DisplayName("Tiene Compra")]
         [UIHint("TieneCompra")]
         public bool? TieneCompra { get; set; }
+
+        [DisplayName("Finalizada")]
+        [UIHint("FacturaFinalizada")]
+        public bool? Finalizada { get; set; }
         
         public override Expression<Func<Factura, bool>> GetFilterExpression()
         {
@@ -43,7 +47,8 @@ namespace MaxiKioscos.Web.Models
                         && (!this.Hasta.HasValue || this.Hasta.Value >= f.Fecha)
                         && (!this.ProveedorId.HasValue || this.ProveedorId.Value == f.ProveedorId)
                         && (!this.MaxiKioscoId.HasValue || this.MaxiKioscoId == f.MaxiKioscoId)
-                        && (!this.TieneCompra.HasValue || this.TieneCompra == f.Compras.Any());
+                        && (!this.TieneCompra.HasValue || this.TieneCompra == f.Compras.Any())
+                        && (!this.Finalizada.HasValue || this.Finalizada == f.Finalizada);
         }
 
         public override RouteValueDictionary GetRouteValues(int page = 1)

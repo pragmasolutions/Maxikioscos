@@ -112,3 +112,8 @@ tbody tr td.col-codigo {
     white-space: nowrap;
     max-width: 120px;
 }
+
+
+td.cell-spacer {
+    padding-bottom: 5px;
+}
