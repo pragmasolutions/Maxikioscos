@@ -130,7 +130,7 @@ namespace MaxiKioscos.Datos
             return RepositoryProvider.GetRepository<T>();
         }
 
-        private MaxiKioscosEntities DbContext { get; set; }
+        public MaxiKioscosEntities DbContext { get; set; }
 
         #region IDisposable
 

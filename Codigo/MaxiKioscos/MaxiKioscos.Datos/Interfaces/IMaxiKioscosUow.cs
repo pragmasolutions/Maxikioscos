@@ -1,3 +1,4 @@
+using System;
 using MaxiKioscos.Entidades;
 
 namespace MaxiKioscos.Datos.Interfaces
@@ -5,7 +6,7 @@ namespace MaxiKioscos.Datos.Interfaces
     /// <summary>
     /// Interface for the Code Camper "Unit of Work"
     /// </summary>
-    public interface IMaxiKioscosUow
+    public interface IMaxiKioscosUow : IDisposable
     {
         // Save pending changes to the data store.
         void Commit();
@@ -59,5 +60,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IRepository<Permiso> Permisos { get; }
         IRepository<PermisoRol> PermisoRoles { get; }
         IReporteStockRepository ReportesStock { get; }
+
+        MaxiKioscosEntities DbContext { get; }
     }
 }

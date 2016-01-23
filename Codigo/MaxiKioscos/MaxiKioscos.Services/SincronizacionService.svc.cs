@@ -90,11 +90,18 @@ namespace MaxiKioscos.Services
                                 MensageError = "SECUENCIA DESFASADA"
                             };
                         }
-                        _sincronizacionNegocio.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
-                        actualizo = true;
+
+                        actualizo = _sincronizacionNegocio.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
                     }
                 }
-                return new ActualizarDatosResponse() {Exito = true};
+                return new ActualizarDatosResponse()
+                       {
+                           Exito = actualizo,
+                           MensageError =
+                               !actualizo
+                                   ? "Ha ocurrido un error no se pudo actualizar el servidor. Intente más tarde."
+                                   : null
+                       };
             }
             catch (Exception ex)
             {
@@ -104,7 +111,6 @@ namespace MaxiKioscos.Services
                     MensageError = ExceptionHelper.GetInnerException(ex).Message,
                     Exito = false
                 };
-
             }
         }
 
@@ -223,7 +229,7 @@ namespace MaxiKioscos.Services
                 UltimaSecuenciaExportacion = maxi.UltimaSecuenciaExportacion.GetValueOrDefault()
             };
         }
-        
+
         public void ForzarArmadoDeArchivoExportacion(Guid usuarioIdentifier)
         {
             var usuario = Uow.Usuarios.Obtener(u => u.Identifier == usuarioIdentifier);

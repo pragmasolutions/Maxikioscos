@@ -27,6 +27,19 @@ tr.factura-tiene-compra td {
     color: white !important;
 }
 
+tr.factura-finalizada td {
+    background-color: #7AB47C !important;
+    color: white !important;
+}
+
+#TableFacturas .columna-botones {
+    -moz-min-width: 190px;
+    -ms-min-width: 190px;
+    -o-min-width: 190px;
+    -webkit-min-width: 190px;
+    min-width: 190px;
+}
+
 #CostosList tr td div.input-group.input-group-currency {
     width: 120px;
 }col-codigo
@@ -98,4 +111,9 @@ tbody tr td.col-codigo {
     overflow: hidden;
     white-space: nowrap;
     max-width: 120px;
+}
+
+
+td.cell-spacer {
+    padding-bottom: 5px;
 }

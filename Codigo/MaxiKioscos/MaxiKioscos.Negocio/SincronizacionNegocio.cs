@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using log4net;
+using MaxiKioscos.Datos;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Datos.Sync.Repositorio;
 using MaxiKioscos.Entidades;
@@ -15,6 +20,8 @@ namespace MaxiKioscos.Negocio
 {
     public class SincronizacionNegocio : ISincronizacionNegocio
     {
+        readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private IMaxiKioscosUow Uow { get; set; }
 
         public SincronizacionNegocio(IMaxiKioscosUow uow)
@@ -58,9 +65,9 @@ namespace MaxiKioscos.Negocio
                     {
                         exito = false;
                     }
-                    
-                } 
-            } 
+
+                }
+            }
             return exito;
         }
 
@@ -76,14 +83,33 @@ namespace MaxiKioscos.Negocio
 
         public bool ActualizarPrincipal(string archivo, Guid maxiKioscoIdentifier, int secuencia, string nombreArchivo)
         {
-            Uow.Exportaciones.ActualizarPrincipal(archivo, maxiKioscoIdentifier, secuencia, nombreArchivo);
+            using (var dbContextTransaction = Uow.DbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    Uow.Exportaciones.ActualizarPrincipal(archivo, maxiKioscoIdentifier, secuencia, nombreArchivo);
 
-            var repo = new SyncSimpleRepository<SyncMaxiKiosco>();
-            var maxi = repo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
-            maxi.UltimaSecuenciaAcusada = secuencia;
-            repo.Commit();
+                    var repo = new SyncSimpleRepository<SyncMaxiKiosco>();
 
-            return true;
+                    var maxi = repo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
+
+                    maxi.UltimaSecuenciaAcusada = secuencia;
+
+                    repo.Commit();
+
+                    dbContextTransaction.Commit();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+
+                    _logger.Error(ex);
+
+                    return false;
+                }
+            }
         }
     }
 }

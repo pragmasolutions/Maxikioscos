@@ -15,17 +15,17 @@
     {
         <table style="width: 100%;">
             <tr>
-                <td>
+                <td class="cell-spacer">
                     @Html.LabelFor(model => model.Desde, new { @class = "label-inline" })
                     <div class="form-group date-container">
                         @Html.EditorFor(model => model.Desde)
                         @if (!IsAjax)
                         {
                             <text>
-                            @section scripts
-                            {
-                                @Html.SetFocusTo(model => model.Desde)
-                            }
+                                @section scripts
+                                {
+                                    @Html.SetFocusTo(model => model.Desde)
+                                }
                             </text>
                         }
                         else
@@ -38,27 +38,33 @@
                         @Html.EditorFor(model => model.Hasta)
                     </div>
                 </td>
-                <td>
+                <td class="cell-spacer">
                     <div class="form-group">
                         @Html.EditorFor(model => model.MaxiKioscoId)
                     </div>
                 </td>
-                <td>
+                <td class="cell-spacer">
                     <div class="form-group">
                         @Html.TextBoxFor(model => model.FacturaNro,
-                                         new
-                                             {
-                                                 @class = "form-control auto-submit-input",
-                                                 placeholder = " Nro Factura",
-                                                 @style = "width: 210px;"
-                                             })
+                            new
+                            {
+                                @class = "form-control auto-submit-input",
+                                placeholder = " Nro Factura",
+                                @style = "width: 210px;"
+                            })
                     </div>
                 </td>
+                <td></td>
             </tr>
             <tr>
                 <td>
                     <div class="form-group">
                         @Html.EditorFor(model => model.TieneCompra)
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Finalizada)
                     </div>
                 </td>
                 <td>

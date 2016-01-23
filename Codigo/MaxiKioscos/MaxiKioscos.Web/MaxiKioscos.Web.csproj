@@ -1018,6 +1018,8 @@
     <Content Include="Views\ControlStock\_InicializarCursorTable.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SubCategoria.cshtml" />
     <Content Include="Views\Reportes\GastosPorCategoria.cshtml" />
+    <Content Include="Views\Facturas\Finalizar.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FacturaFinalizada.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

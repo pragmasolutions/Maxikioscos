@@ -23,6 +23,8 @@ namespace MaxiKioscos.Negocio
             
             var factura = Uow.Facturas.Obtener(compra.FacturaId);
 
+            factura.Finalizada = true;
+
             Uow.Facturas.Modificar(factura);
 
             //Fix para prevenir gurdar la factura.

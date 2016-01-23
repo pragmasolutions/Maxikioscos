@@ -33,6 +33,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> UsuarioId { get; set; }
         public string AutoNumero { get; set; }
         public System.DateTime FechaCreacion { get; set; }
+        public bool Finalizada { get; set; }
     
         public virtual MaxiKiosco MaxiKiosco { get; set; }
         public virtual Proveedor Proveedor { get; set; }
