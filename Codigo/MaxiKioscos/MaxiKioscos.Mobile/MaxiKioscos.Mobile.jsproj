@@ -121,6 +121,7 @@
     <Content Include="app\layout\menu-layout.html" />
     <Content Include="app\login\login-ctrl.js" />
     <Content Include="app\login\login.html" />
+    <Content Include="app\services\rubrosApi.js" />
     <Content Include="app\services\proveedoresApi.js" />
     <Content Include="app\services\loginApi.js" />
     <Content Include="bower.json" />
