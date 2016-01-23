@@ -35,6 +35,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ddlCategorias = new Telerik.WinControls.UI.RadDropDownList();
             this.txtFecha = new MaxiKiosco.Win.Util.Controles.ucTextBoxGris();
             this.lblFecha = new System.Windows.Forms.Label();
             this.txtNroComprobante = new Util.Controles.ucTexto();
@@ -44,13 +45,9 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.ddlSubCategorias = new Telerik.WinControls.UI.RadDropDownList();
-            this.ddlCategorias = new Telerik.WinControls.UI.RadDropDownList();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlSubCategorias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategorias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -69,7 +66,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(37, 245);
+            this.label22.Location = new System.Drawing.Point(37, 178);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(125, 23);
             this.label22.TabIndex = 8;
@@ -93,18 +90,16 @@
             this.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtObservaciones.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservaciones.ForeColor = System.Drawing.Color.Black;
-            this.txtObservaciones.Location = new System.Drawing.Point(41, 268);
+            this.txtObservaciones.Location = new System.Drawing.Point(41, 201);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(454, 68);
+            this.txtObservaciones.Size = new System.Drawing.Size(454, 129);
             this.txtObservaciones.TabIndex = 5;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.ddlCategorias);
-            this.panel1.Controls.Add(this.ddlSubCategorias);
-            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtFecha);
             this.panel1.Controls.Add(this.lblFecha);
             this.panel1.Controls.Add(this.txtNroComprobante);
@@ -118,6 +113,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(548, 361);
             this.panel1.TabIndex = 1;
+            // 
+            // ddlCategorias
+            // 
+            this.ddlCategorias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ddlCategorias.DropDownAnimationEnabled = true;
+            this.ddlCategorias.Font = new System.Drawing.Font("Arial Narrow", 12F);
+            this.ddlCategorias.Location = new System.Drawing.Point(41, 119);
+            this.ddlCategorias.MaxDropDownItems = 0;
+            this.ddlCategorias.Name = "ddlCategorias";
+            this.ddlCategorias.Padding = new System.Windows.Forms.Padding(2);
+            // 
+            // 
+            // 
+            this.ddlCategorias.RootElement.Padding = new System.Windows.Forms.Padding(2);
+            this.ddlCategorias.ShowImageInEditorArea = true;
+            this.ddlCategorias.Size = new System.Drawing.Size(203, 28);
+            this.ddlCategorias.TabIndex = 22;
+            this.ddlCategorias.Text = "radDropDownList1";
+            this.ddlCategorias.ThemeName = "Windows7";
             // 
             // txtFecha
             // 
@@ -245,56 +259,6 @@
             this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(37, 166);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(118, 23);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "Sub-Categoría";
-            // 
-            // ddlSubCategorias
-            // 
-            this.ddlSubCategorias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddlSubCategorias.DropDownAnimationEnabled = true;
-            this.ddlSubCategorias.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.ddlSubCategorias.Location = new System.Drawing.Point(41, 192);
-            this.ddlSubCategorias.MaxDropDownItems = 0;
-            this.ddlSubCategorias.Name = "ddlSubCategorias";
-            this.ddlSubCategorias.Padding = new System.Windows.Forms.Padding(2);
-            // 
-            // 
-            // 
-            this.ddlSubCategorias.RootElement.Padding = new System.Windows.Forms.Padding(2);
-            this.ddlSubCategorias.ShowImageInEditorArea = true;
-            this.ddlSubCategorias.Size = new System.Drawing.Size(203, 32);
-            this.ddlSubCategorias.TabIndex = 21;
-            this.ddlSubCategorias.Text = "radDropDownList1";
-            this.ddlSubCategorias.ThemeName = "Windows7";
-            // 
-            // ddlCategorias
-            // 
-            this.ddlCategorias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddlCategorias.DropDownAnimationEnabled = true;
-            this.ddlCategorias.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.ddlCategorias.Location = new System.Drawing.Point(41, 119);
-            this.ddlCategorias.MaxDropDownItems = 0;
-            this.ddlCategorias.Name = "ddlCategorias";
-            this.ddlCategorias.Padding = new System.Windows.Forms.Padding(2);
-            // 
-            // 
-            // 
-            this.ddlCategorias.RootElement.Padding = new System.Windows.Forms.Padding(2);
-            this.ddlCategorias.ShowImageInEditorArea = true;
-            this.ddlCategorias.Size = new System.Drawing.Size(203, 32);
-            this.ddlCategorias.TabIndex = 22;
-            this.ddlCategorias.Text = "radDropDownList1";
-            this.ddlCategorias.ThemeName = "Windows7";
-            this.ddlCategorias.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCategorias_SelectedIndexChanged);
-            // 
             // frmEditarGasto
             // 
             this.AcceptButton = this.btnAceptar;
@@ -314,9 +278,8 @@
             this.Shown += new System.EventHandler(this.frmCostoEditar_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlSubCategorias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategorias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,9 +314,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblFecha;
         private MaxiKiosco.Win.Util.Controles.ucTextBoxGris txtFecha;
-        private System.Windows.Forms.Label label16;
         public Telerik.WinControls.UI.RadDropDownList ddlCategorias;
-        public Telerik.WinControls.UI.RadDropDownList ddlSubCategorias;
         
     }
 }
