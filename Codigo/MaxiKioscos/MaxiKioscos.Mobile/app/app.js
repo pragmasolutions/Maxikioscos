@@ -14,30 +14,73 @@ angular.module('maxikioscosApp', ['ionic', 'ngMessages'])
         // Set up the various states which the app can be in.
         // Each state's controller can be found in controllers.js
         $stateProvider
-
             .state('home', {
                 url: '/home',
                 templateUrl: 'app/home/home.html'
             })
-
             .state('loginState', {
                 url: '/login',
                 templateUrl: 'app/login/login.html',
                 controller: 'LoginCtrl'
             })
-
             .state('generarControlStock', {
                 url: '/generarControlStock',
                 templateUrl: 'app/controlStock/generar-control-stock.html',
                 controller: 'GenerarControlStockCtrl'
             })
+            .state('controlStockVistaPrevia', {
+                url: '/controlStockVistaPrevia',
+                templateUrl: 'app/controlStock/control-stock-vista-previa.html',
+                controller: 'ControlStockVistaPreviaCtrl'
+            })
+            .state('cargarControlStock', {
+                url: '/cargarControlStock',
+                templateUrl: 'app/controlStock/cargar-control-stock.html',
+                controller: 'CargarControlStockCtrl'
+            })
 
             .state('app', {
+                abstract: true,
                 url: "/app",
+
                 templateUrl: "app/layout/menu-layout.html"
+            })
+            .state('app.home', {
+                url: '/home',
+                views: {
+                    'mainContent': {
+                        templateUrl: 'app/home/home.html'
+                    }
+                }
+            })
+            .state('app.generarControlStock', {
+                url: '/generarControlStock',
+                views: {
+                    'mainContent': {
+                        templateUrl: 'app/controlStock/generar-control-stock.html'
+                    }
+                }
+            })
+            .state('app.controlStockVistaPrevia', {
+                url: '/controlStockVistaPrevia',
+                views: {
+                    'mainContent': {
+                        templateUrl: 'app/controlStock/control-stock-vista-previa.html'
+                    }
+                }
+            })
+            .state('app.cargarControlStock', {
+                url: '/cargarControlStock',
+                views: {
+                    'mainContent': {
+                        templateUrl: 'app/controlStock/cargar-control-stock.html'
+                    }
+                }
             });
 
+
+
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/generarControlStock');
+        $urlRouterProvider.otherwise('/app/home');
 
     });

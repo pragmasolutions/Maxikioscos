@@ -13,7 +13,7 @@
             }
         </style>
 
-        <link href="lib/ionic/css/app.css" rel="stylesheet">
+        <link href="lib/ionic/release/css/app.css" rel="stylesheet">
         <link href="css/index.css" rel="stylesheet" />
 
         <!--<script type="text/javascript">
@@ -21,22 +21,27 @@
                 document.write("<script src='cordova.js'><\/script>");
             }
         </script>-->
+
         <script src="scripts/platformOverrides.js"></script>
 
-        <!-- ionic/angularjs js -->
-        <!--<script src="/lib/ionic.bundle.js"></script>-->
+        <!--Lib-->
         <script src="lib/ionic/release/js/ionic.bundle.js"></script>
         <script src="lib/angular-messages/angular-messages.js"></script>
 
+        <!--App Controllers-->
         <script src="app/app.js"></script>
         <script src="app/layout/menu-layout-ctrl.js"></script>
         <script src="app/login/login-ctrl.js"></script>
         <script src="app/controlStock/generar-control-stock-ctrl.js"></script>
-        <!-- your project references -->
-
+        <script src="app/controlStock/control-stock-vista-previa-ctrl.js"></script>
+        <script src="app/controlStock/cargar-control-stock-ctrl.js"></script>
+        
+        <!-- APIs -->
         <script src="app/services/loginApi.js"></script>
         <script src="app/services/proveedoresApi.js"></script>
         <script src="app/services/rubrosApi.js"></script>
+        <script src="app/services/controlStockApi.js"></script>
+        <script src="app/services/motivosApi.js"></script>
     </head>
 
 <body ng-app="maxikioscosApp">

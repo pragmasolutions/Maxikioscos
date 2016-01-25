@@ -114,6 +114,10 @@
   <ItemGroup>
     <Content Include=".bowerrc" />
     <Content Include="app\app.js" />
+    <Content Include="app\controlStock\cargar-control-stock.html" />
+    <Content Include="app\controlStock\cargar-control-stock-ctrl.js" />
+    <Content Include="app\controlStock\control-stock-vista-previa.html" />
+    <Content Include="app\controlStock\control-stock-vista-previa-ctrl.js" />
     <Content Include="app\controlStock\generar-control-stock.html" />
     <Content Include="app\controlStock\generar-control-stock-ctrl.js" />
     <Content Include="app\home\home.html" />
@@ -121,24 +125,27 @@
     <Content Include="app\layout\menu-layout.html" />
     <Content Include="app\login\login-ctrl.js" />
     <Content Include="app\login\login.html" />
+    <Content Include="app\services\controlStockApi.js" />
+    <Content Include="app\services\motivosApi.js" />
     <Content Include="app\services\rubrosApi.js" />
     <Content Include="app\services\proveedoresApi.js" />
     <Content Include="app\services\loginApi.js" />
     <Content Include="bower.json" />
     <Content Include="lib\angular-messages\angular-messages.js" />
     <Content Include="lib\ionic\css\app.css" />
-    <Content Include="lib\ionic\css\app.css.map" />
-    <Content Include="lib\ionic\fonts\ionicons.eot" />
-    <Content Include="lib\ionic\fonts\ionicons.svg" />
-    <Content Include="lib\ionic\fonts\ionicons.ttf" />
-    <Content Include="lib\ionic\fonts\ionicons.woff" />
+    <Content Include="lib\ionic\release\css\app.css" />
+    <Content Include="lib\ionic\release\css\app.css.map" />
+    <Content Include="lib\ionic\release\css\ionic.css" />
+    <Content Include="lib\ionic\release\css\ionic.min.css" />
+    <Content Include="lib\ionic\release\fonts\ionicons.eot" />
+    <Content Include="lib\ionic\release\fonts\ionicons.svg" />
+    <Content Include="lib\ionic\release\fonts\ionicons.ttf" />
+    <Content Include="lib\ionic\release\fonts\ionicons.woff" />
     <Content Include="lib\ionic\release\js\ionic.bundle.js" />
     <Content Include="lib\ionic\release\js\ionic.js" />
     <Content Include="lib\ionic\scss\app.scss" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />
     <Content Include="merges\android\scripts\platformOverrides.js" />
-    <Folder Include="app\directives\" />
-    <Folder Include="app\templates\" />
     <Folder Include="merges\ios\" />
     <Content Include="merges\windows\scripts\platformOverrides.js" />
     <Content Include="merges\windows\scripts\winstore-jscompat.js" />
@@ -157,8 +164,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="index.html" />
-    <Content Include="npmPlaceholder.txt" />
-    <Content Include="packages.config" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\platformOverrides.js" />
     <Content Include="css\index.css" />
@@ -236,7 +241,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetPlatformIdentifier>MDD</TargetPlatformIdentifier>
-    <NuGetPackageImportStamp>b6c6badd</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>dff4f70e</NuGetPackageImportStamp>
   </PropertyGroup>
   <Target Name="EnsureBuildPrerequisites">
     <!-- These errors will trigger if building from inside Visual Studio and requirements could not be determined -->
@@ -257,7 +262,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Npm.js.1.3.15.4\build\npm.js.targets'))" />
   </Target>
-  <Import Project="..\packages\Npm.js.1.3.15.4\build\npm.js.targets" Condition="Exists('..\packages\Npm.js.1.3.15.4\build\npm.js.targets')" />
 </Project>

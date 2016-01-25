@@ -9,7 +9,7 @@
                 <div class="input-label">
                     Proveedor
                 </div>
-                <select ng-model="vm.proveedorSeleccionado">
+                <select ng-model="vm.criterios.proveedorSeleccionado">
                     <option value="" label="Seleccione Proveedor"></option>
                     <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.id}}">
                         {{proveedor.nombre}}
@@ -21,7 +21,7 @@
                 <div class="input-label">
                     Rubro
                 </div>
-                <select ng-model="vm.rubroSeleccionado">
+                <select ng-model="vm.criterios.rubroSeleccionado">
                     <option value="" label="Seleccione Rubro"></option>
                     <option ng-repeat="rubro in vm.rubros" value="{{rubro.id}}">
                         {{rubro.nombre}}
@@ -29,13 +29,17 @@
                 </select>
             </label>
 
-            <ion-checkbox ng-model="vm.excluirStockCero">Excluir Stock 0</ion-checkbox>
-            <ion-checkbox ng-model="vm.soloMasVendidos">Solo los más Vendidos</ion-checkbox>
+            <ion-checkbox ng-model="vm.criterios.excluirStockCero">Excluir Stock 0</ion-checkbox>
+            <ion-checkbox ng-model="vm.criterios.soloMasVendidos">Solo los m&aacute;s Vendidos</ion-checkbox>
 
             <label class="item item-input">
-                <span class="input-label" ng-model="vm.CantidadFilas">Cantidad de Filas</span>
-                <input type="text">
+                <span class="input-label">Cantidad de Filas</span>
+                <input type="number" ng-model="vm.criterios.CantidadFilas">
             </label>
+
+            <button class="button button-calm button-full" ng-click="vm.generarClick(vm.criterios)">
+                Generar
+            </button>
         </div>
 
     </ion-content>
