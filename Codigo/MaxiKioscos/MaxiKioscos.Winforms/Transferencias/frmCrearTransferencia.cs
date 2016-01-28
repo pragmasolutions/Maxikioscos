@@ -442,7 +442,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                             linea.StockDestino = Convert.ToDecimal(dgvListado.Rows[i].Cells["StockActual"].Value.ToString());
                             linea.Identifier = Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
                             linea.TransferenciaProductoId = Convert.ToInt32(dgvListado.Rows[i].Cells["TransferenciaProductoId"].Value.ToString());
-
+                            linea.Identifier = Guid.NewGuid();
                             lineas.Add(linea);
                         }
 
