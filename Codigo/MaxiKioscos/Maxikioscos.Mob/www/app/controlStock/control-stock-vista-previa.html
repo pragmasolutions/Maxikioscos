@@ -1,0 +1,36 @@
+<ion-view view-title="Listado Control Stock" ng-controller="ControlStockVistaPreviaCtrl as vm">
+
+<ion-content>
+<ul class="list">
+    <label class="item item-input">
+        <span class="input-label">Desde Fila</span>
+        <input type="number" ng-model="vm.criterios.desdeFila" ng-change="vm.filtrarProductos(vm.criterios.desdeFila, vm.criterios.hastaFila)">
+    </label>
+
+    <label class="item item-input">
+        <span class="input-label">Hasta Fila</span>
+        <input type="number" ng-model="vm.criterios.hastaFila" ng-change="vm.filtrarProductos(vm.criterios.desdeFila, vm.criterios.hastaFila)">
+    </label>
+    
+    <li class="item" ng-repeat="producto in vm.productosFiltrados">
+
+        <div class="row">
+            <div class="col-75">
+                <strong class="bold">{{producto.fila}}.</strong>
+                <span>{{producto.nombre}}</span>
+            </div>
+            <div class="col-25">
+                <span class="label">Cant.:</span>
+                <span class="right">{{producto.stockActual}}</span>
+            </div>
+        </div>
+
+    </li>
+</ul>
+
+<button class="button button-calm button-full" ng-click="vm.aceptarClick(vm.criterios)">
+    Aceptar
+</button>
+
+</ion-content>
+</ion-view>

@@ -1,0 +1,57 @@
+<ion-view view-title="Cargar Control Stock" ng-controller="CargarControlStockCtrl as vm">
+    <ion-content>
+        <ul class="list">
+            <a class="button button-icon button-clear icon ion-search" ng-click="vm.buscarProductoClick()"></a>
+        
+             <li class="item">
+                <div class="row">
+                    <div class="col col-40">
+                        <h2>Prod</h2>
+                    </div>
+                    <div class="col col-10">
+                        <h2>St.</h2>
+                    </div>
+                    <div class="col col-30">
+                        <h2>Mot.</h2>
+                    </div>
+                    <div class="col">
+                        <h2>Diff.</h2>
+                    </div>
+                </div>
+            </li>
+
+            <li class="item"
+                ng-repeat="producto in vm.productos"
+                ng-class="{'balanced': producto.motivo && producto.diferencia}"
+                id="{{producto.codigo}}">
+
+                <div class="row row-center">
+                    <div class="col col-40">
+                        <strong class="bold">{{producto.fila}}.</strong>
+                        <span>{{producto.nombre}}</span>
+                        <div class="bold">{{producto.codigo}}</div>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <span class="right">{{producto.stockActual}}</span>
+                    </div>
+                    <div class="col col-30">
+                        <select ng-model="producto.motivo">
+                            <option value="" label="Sel. Mot"></option>
+                            <option ng-repeat="motivo in vm.motivos" value="{{motivo.id}}">
+                                {{motivo.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="producto.diferencia"/>
+                    </div>
+                </div>
+
+            </li>
+
+            <button class="button button-calm button-full" ng-click="vm.aceptarClick(vm.productos)">
+                Aceptar
+            </button>
+        </ul>
+    </ion-content>
+</ion-view>
