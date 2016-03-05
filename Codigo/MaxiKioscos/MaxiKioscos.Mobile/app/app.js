@@ -16,7 +16,8 @@ angular.module('maxikioscosApp', ['ionic', 'ngMessages'])
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: 'app/home/home.html'
+                templateUrl: 'app/home/home.html',
+                controller: 'homeCtrl'
             })
             .state('loginState', {
                 url: '/login',

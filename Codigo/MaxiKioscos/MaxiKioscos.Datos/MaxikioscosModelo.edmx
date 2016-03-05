@@ -326,6 +326,7 @@
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
           <Property Name="UltimaConexion" Type="datetime" />
+          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -1839,7 +1840,6 @@
         </Function>
         <Function Name="Exportacion_NuevoXmlPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
-          <Parameter Name="Secuencia" Type="int" Mode="In" />
         </Function>
         <Function Name="Exportacion_PuedeExportarKiosco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Exportacion_PuedeExportarPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -2758,7 +2758,6 @@
           </FunctionImport>
           <FunctionImport Name="ExportacionNuevoXmlPrincipal" ReturnType="Collection(Int32)">
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-            <Parameter Name="Secuencia" Mode="In" Type="Int32" />
           </FunctionImport>
           <AssociationSet Name="FK_CorreccionStock_MaxiKiosco" Association="MaxiKioscosModel.FK_CorreccionStock_MaxiKiosco">
             <End Role="MaxiKiosco" EntitySet="MaxiKioscoes" />
@@ -3317,6 +3316,7 @@
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
           <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
+          <Property Name="NombreMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -5591,6 +5591,7 @@
           <EntitySetMapping Name="MaxiKioscoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.MaxiKiosco">
               <MappingFragment StoreEntitySet="MaxiKiosco">
+                <ScalarProperty Name="NombreMaquina" ColumnName="NombreMaquina" />
                 <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="UltimoScriptCorrido" ColumnName="UltimoScriptCorrido" />

@@ -1,0 +1,2 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MaxiKioscos.Services.NotificacionService" CodeBehind="MaxiKioscosService.svc.cs" 
+    Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

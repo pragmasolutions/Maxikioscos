@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="MaxiKioscosService.svc" />
     <Content Include="NotificacionService.svc" />
     <Content Include="SincronizacionService.svc" />
     <Content Include="Web.config">
@@ -116,6 +117,9 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MaxiKioscosService.svc.cs">
+      <DependentUpon>MaxiKioscosService.svc</DependentUpon>
     </Compile>
     <Compile Include="NotificacionService.svc.cs">
       <DependentUpon>NotificacionService.svc</DependentUpon>

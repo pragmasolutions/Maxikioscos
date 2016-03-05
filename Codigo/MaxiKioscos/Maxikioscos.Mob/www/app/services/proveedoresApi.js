@@ -1,9 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('maxikioscosApp').factory('proveedoresApi', ['$http', '$q', '$ionicLoading', proveedoresApi]);
+    angular.module('maxikioscosApp').factory('proveedoresApi', ['$http', '$q', '$ionicLoading',  proveedoresApi, 'httpService']);
 
-    function proveedoresApi($http, $q, $ionicLoading) {
+    function proveedoresApi($http, $q, $ionicLoading, httpService) {
         var self = this;
 
         function getAll() {

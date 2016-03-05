@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Mobile.Api.Models.Request;
+using MaxiKioscos.Mobile.Api.Models.Response;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {

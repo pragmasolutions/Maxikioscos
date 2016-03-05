@@ -1,8 +1,13 @@
-<ion-view view-title="Home">
+<ion-view view-title="Home" ng-controller="homeCtrl as vm">
     <div class="bar bar-header bar-calm">
         <h1 class="title">Home</h1>
     </div>
+    <div class="bar bar-header bar-calm">
+        <h3 class="title">Seleccionar MaxiKiosco para conectarse..</h3>
+    </div>
     <ion-content class="has-header">
-
+    	<div class="row row-center" style="border-top: 1px #000000 solid" ng-repeat="maxikiosco in vm.maxikioscosList">
+    		
+    	</div>
     </ion-content>
 </ion-view>

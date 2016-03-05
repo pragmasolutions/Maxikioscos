@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Data\MaxiKioscoData.cs" />
     <Compile Include="Data\ExportacionData.cs" />
+    <Compile Include="Interfaces\IMaxiKioscoService.cs" />
     <Compile Include="Interfaces\INotificacionService.cs" />
     <Compile Include="Interfaces\IForzarSincronizacionService.cs" />
     <Compile Include="Interfaces\ISincronizacionService.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Request\AcusarExportacionRequest.cs" />
     <Compile Include="Request\ObtenerDatosRequest.cs" />
     <Compile Include="Request\ReportarErrorRequest.cs" />
+    <Compile Include="Response\KioscoApiResponse.cs" />
     <Compile Include="Response\ObtenerUltimasSecuenciasResponse.cs" />
     <Compile Include="Response\KioscoAsignadoResponse.cs" />
     <Compile Include="Response\InicializarKioscoResponse.cs" />
