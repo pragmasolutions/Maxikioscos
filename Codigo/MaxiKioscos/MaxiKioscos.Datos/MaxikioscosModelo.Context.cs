@@ -332,13 +332,17 @@ namespace MaxiKioscos.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("RptStockDiferenciaCierres", desdeParameter, hastaParameter, maxiKioscoIdParameter, cuentaIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ExportacionNuevoXmlPrincipal(Nullable<int> usuarioId)
+        public virtual ObjectResult<Nullable<int>> ExportacionNuevoXmlPrincipal(Nullable<int> usuarioId, Nullable<int> secuencia)
         {
             var usuarioIdParameter = usuarioId.HasValue ?
                 new ObjectParameter("UsuarioId", usuarioId) :
                 new ObjectParameter("UsuarioId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ExportacionNuevoXmlPrincipal", usuarioIdParameter);
+            var secuenciaParameter = secuencia.HasValue ?
+                new ObjectParameter("Secuencia", secuencia) :
+                new ObjectParameter("Secuencia", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ExportacionNuevoXmlPrincipal", usuarioIdParameter, secuenciaParameter);
         }
     
         public virtual ObjectResult<ProductoHorario> ObtenerProductoPorCodigo(string codigo, Nullable<int> maxiKioscoId)
