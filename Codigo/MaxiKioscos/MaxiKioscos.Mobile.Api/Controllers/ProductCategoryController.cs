@@ -11,7 +11,7 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    [System.Web.Mvc.Authorize]
+
     public class ProductCategoryController : ApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }

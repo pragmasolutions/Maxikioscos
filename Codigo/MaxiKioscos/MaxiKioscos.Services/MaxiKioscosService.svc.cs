@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web.Script.Serialization;
 using MaxiKioscos.Datos;
 using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Interfaces;
@@ -17,13 +18,14 @@ using MaxiKioscos.Services.Contracts;
 
 namespace MaxiKioscos.Services
 {
-    public class MaxiKioscoService : BaseService, IMaxiKioscoService
+    public class MaxiKioscosService : BaseService, IMaxiKioscoService
     {
-        public MaxiKioscoService(IMaxiKioscosUow uow)
+        public MaxiKioscosService(IMaxiKioscosUow uow)
         {
             Uow = uow;
         }
 
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.WrappedRequest, RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         public IList<KioscoApiResponse> GetMaxiKioscos()
         {
             try
@@ -34,8 +36,7 @@ namespace MaxiKioscos.Services
                                                                                 MachineName = m.NombreMaquina
                                                                             }).ToList();
 
-
-
+                
                 return maxiKioscosList;
             }
             catch (Exception)
