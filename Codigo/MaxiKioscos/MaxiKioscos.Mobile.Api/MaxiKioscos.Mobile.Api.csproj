@@ -42,18 +42,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Web.WebApi">
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Web.WebApi.WebHost">
+    <Reference Include="Ninject.Web.WebApi.WebHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.WebHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -119,8 +124,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebActivatorEx">
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -185,7 +191,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\NinjectResolver.cs" />
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="App_Start\IocContainer.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -228,6 +235,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Ioc\IIocContainer.cs" />
+    <Compile Include="Ioc\NinjectIocContainer.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -307,6 +316,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MaxiKiosco.Seguridad.WebSecurity\MaxiKiosco.Seguridad.WebSecurity.csproj">
+      <Project>{68110e34-c47a-4299-b9fd-388ef354c434}</Project>
+      <Name>MaxiKiosco.Seguridad.WebSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MaxiKioscos.Datos\MaxiKioscos.Datos.csproj">
       <Project>{fa0797c2-b5e3-4d5e-a401-a7d6ea896293}</Project>
       <Name>MaxiKioscos.Datos</Name>
@@ -314,6 +327,14 @@
     <ProjectReference Include="..\MaxiKioscos.Entidades\MaxiKioscos.Entidades.csproj">
       <Project>{28b83eab-becf-46b3-908f-b787bd10d367}</Project>
       <Name>MaxiKioscos.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.IoC\MaxiKioscos.IoC.csproj">
+      <Project>{934febe9-9f45-49f5-bb0a-4bde02f3b68b}</Project>
+      <Name>MaxiKioscos.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Seguridad\MaxiKioscos.Seguridad.csproj">
+      <Project>{4cff7c06-39a8-42b2-933e-9114746c2148}</Project>
+      <Name>MaxiKioscos.Seguridad</Name>
     </ProjectReference>
     <ProjectReference Include="..\Util\MaxiKiosco.Win.Util.csproj">
       <Project>{ea2fb179-2c13-45c6-882d-a9c61b442cc4}</Project>

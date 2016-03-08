@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Http.Dependencies;
 using MaxiKioscos.Datos;
+using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MaxiKioscos.Mobile.Api.App_Start.NinjectWebCommon), "Start")]
@@ -45,17 +44,15 @@ namespace MaxiKioscos.Mobile.Api.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            
             var kernel = new StandardKernel();
-
-            System.Web.Mvc.DependencyResolver.SetResolver(new NinjectResolver(kernel)); 
-
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 
-
+                kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
+                kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
+                kernel.Bind<IMaxiKioscosUow>().To<MaxiKioscosUow>().InRequestScope();
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -72,7 +69,6 @@ namespace MaxiKioscos.Mobile.Api.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IMaxiKioscosUow>().To<MaxiKioscosUow>().InRequestScope();
         }        
     }
 }

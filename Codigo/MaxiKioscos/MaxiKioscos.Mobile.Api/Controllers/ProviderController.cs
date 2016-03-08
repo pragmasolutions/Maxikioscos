@@ -21,7 +21,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
             _uow = uow;
         }
 
-
+        
         public SimpleListItem[] Get()
         {
             return _uow.Proveedores.Listado().OrderBy(x => x.Nombre).Select(x => new SimpleListItem
