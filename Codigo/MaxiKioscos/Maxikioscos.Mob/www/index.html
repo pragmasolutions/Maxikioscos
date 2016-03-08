@@ -23,6 +23,10 @@
     <script src="app/app.js"></script>
 
     <script src="app/controllers.js"></script>
+
+    <script src="app/shared/constant.js"></script>
+    <script src="app/shared/sharedController.js"></script>
+
     <script src="app/login/login-ctrl.js"></script>
     <script src="app/controlStock/generar-control-stock-ctrl.js"></script>
     <script src="app/controlStock/control-stock-vista-previa-ctrl.js"></script>
@@ -36,10 +40,10 @@
     <script src="app/services/controlStockApi.js"></script>
     <script src="app/services/motivosApi.js"></script>
     <script src="app/services/http.service.js"></script>
-    <script src="app/services/maxikioscosService.js"></script>
+    <script src="app/services/maxikioscosService.js"></script>    
   </head>
 
-  <body ng-app="maxikioscosApp">
+  <body ng-app="maxikioscosApp" ng-controller="maxikioscosApp.SharedController as sharedCtrl">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>

@@ -3,7 +3,7 @@
 
     angular.module('maxikioscosApp').controller('ControlStockVistaPreviaCtrl', ['$scope', '$rootScope', '$state', 'controlStockApi', ControlStockVistaPreviaCtrl]);
 
-    function ControlStockVistaPreviaCtrl($scope, $rootScope, $state, controlStockApi) {
+    function ControlStockVistaPreviaCtrl($scope, controlStockApi) {
         var vm = this;
 
         vm.productosFiltrados = [];

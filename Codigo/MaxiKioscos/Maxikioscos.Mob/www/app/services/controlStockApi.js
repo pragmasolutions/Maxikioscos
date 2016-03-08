@@ -1,150 +1,41 @@
 (function () {
     'use strict';
 
-    angular.module('maxikioscosApp').factory('controlStockApi', ['$http', '$q', '$ionicLoading', controlStockApi]);
+    angular.module('maxikioscosApp').service('controlStockApi', controlStockApi);
 
-    function controlStockApi($http, $q, $ionicLoading) {
-        var self = this;
+    controlStockApi.$inject = ['maxikioscosService', 'httpService'];
+
+    function controlStockApi(maxikioscosService, httpService) {
+        var srv = this;
+        
+        srv.initialize = initialize;
+        srv.getVistaPrevia = getVistaPrevia;
+        srv.cargarControlStock = cargarControlStock;
+
+        function initialize(){
+
+        };
 
         function getVistaPrevia() {
-            var deferred = $q.defer();
-
-            //$ionicLoading.show({
-            //    template: 'Loading...'
-            //});
-            //$http.post("http://maxikioscos/api/rubros", { username: username, password: password })
-            //    .success(function (data) {
-            //        $ionicLoading.hide();
-            //        deferred.resolve(data);
-            //    })
-            //    .error(function () {
-            //         $ionicLoading.hide();  
-            //       deferred.reject();
-            //    });
-
-            var productos = [
-                {
-                    fila: 1,
-                    id: 1,
-                    codigo: 7790290001190,
-                    nombre: 'PRODUCTO 1',
-                    stockActual: 5
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 2,
-                    id: 2,
-                    codigo: 7790290001192,
-                    nombre: 'PRODUCTO 2',
-                    stockActual: 7
-                },
-                {
-                    fila: 3,
-                    id: 3,
-                    codigo: 7790290001193,
-                    nombre: 'PRODUCTO 3',
-                    stockActual: 0
-                },
-                {
-                    fila: 4,
-                    id: 4,
-                    codigo: 7790290001194,
-                    nombre: 'PRODUCTO 4',
-                    stockActual: 2
-                }
-            ];
-
-            deferred.resolve(productos);
-
-            return deferred.promise;
-        };
+            var param = { username: username, password: password };
+            return httpService.doGet('http://'+ maxikioscosService.maxiKioscoStatus.machineName + '/api/rubros', param)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return null;
+            });
+        };        
 
         function cargarControlStock(controlStockProductos) {
-            var deferred = $q.defer();
+            var param = { username: username, password: password };
+            return httpService.doPost('http://'+ maxikioscosService.maxiKioscoStatus.machineName + '/api/rubros', param)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return null;
+            });                       
+        };        
 
-            //$ionicLoading.show({
-            //    template: 'Loading...'
-            //});
-            //$http.post("http://maxikioscos/api/rubros", { username: username, password: password })
-            //    .success(function (data) {
-            //        $ionicLoading.hide();
-            //        deferred.resolve(data);
-            //    })
-            //    .error(function () {
-            //         $ionicLoading.hide();  
-            //       deferred.reject();
-            //    });
-
-            deferred.resolve(true);
-
-            return deferred.promise;
-        };
-
-        return {
-            getVistaPrevia: getVistaPrevia,
-            cargarControlStock: cargarControlStock
-        };
+        srv.initialize();
     };
 })();

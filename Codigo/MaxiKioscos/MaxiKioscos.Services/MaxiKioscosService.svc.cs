@@ -30,7 +30,7 @@ namespace MaxiKioscos.Services
         {
             try
             {
-                var maxiKioscosList = Uow.MaxiKioscos.Listado().Select(m => new KioscoApiResponse
+                var maxiKioscosList = Uow.MaxiKioscos.Listado(m => m.Eliminado).Select(m => new KioscoApiResponse
                                                                             {
                                                                                 Identifier = m.Identifier,
                                                                                 MachineName = m.NombreMaquina

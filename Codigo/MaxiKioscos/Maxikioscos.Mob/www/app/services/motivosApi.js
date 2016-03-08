@@ -1,49 +1,29 @@
 (function () {
     'use strict';
 
-    angular.module('maxikioscosApp').factory('motivosApi', ['$http', '$q', '$ionicLoading', motivosApi]);
+    angular.module('maxikioscosApp').service('motivosApi', motivosApi);
 
-    function motivosApi($http, $q, $ionicLoading) {
-        var self = this;
+    motivosApi.$inject = ['httpService', 'maxikioscosService'];
+
+    function motivosApi(httpService, maxikioscosService) {
+        var srv = this;
+
+        srv.initialize = initialize;
+        srv.getAll = getAll;
+
+        function initiliaze(){
+
+        };
 
         function getAll() {
-            var deferred = $q.defer();
+           return httpService.doGet('http://' + maxikioscosService.maxiKioscoStatus.machineName + '/api/motivos/')
+           .then(function(response){
+                return response;
+           }, function(response){
+                return null;
+           });
+        };      
 
-            //$ionicLoading.show({
-            //    template: 'Loading...'
-            //});
-            //$http.post("http://maxikioscos/api/rubros", { username: username, password: password })
-            //    .success(function (data) {
-            //        $ionicLoading.hide();
-            //        deferred.resolve(data);
-            //    })
-            //    .error(function () {
-            //         $ionicLoading.hide();  
-            //       deferred.reject();
-            //    });
-
-            var motivos = [
-                {
-                    id: 1,
-                    nombre: 'MOTIVO 1'
-                },
-                {
-                    id: 2,
-                    nombre: 'MOTIVO 2'
-                },
-                {
-                    id: 2,
-                    nombre: 'MOTIVO 3'
-                }
-            ];
-
-            deferred.resolve(motivos);
-
-            return deferred.promise;
-        };
-
-        return {
-            getAll: getAll
-        };
+        srv.initialize(); 
     };
 })();

@@ -785,6 +785,9 @@
     </Content>
     <Content Include="SqlScripts\165-Promocion_Listado.sql" />
     <Content Include="SqlScripts\166-Exportacion_NuevoXmlKiosco.sql" />
+    <Content Include="SqlScripts\167-Alter_Table_Add_NombreMaquina.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlScripts\98-Stock_Actualizar.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

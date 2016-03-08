@@ -20,7 +20,5 @@ namespace MaxiKioscos.Mobile.Api.Controllers
         {
             _uow = uow;
         }
-
-
     }
 }

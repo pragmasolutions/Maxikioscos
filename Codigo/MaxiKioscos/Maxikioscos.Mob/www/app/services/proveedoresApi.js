@@ -1,45 +1,29 @@
 (function () {
     'use strict';
 
-    angular.module('maxikioscosApp').factory('proveedoresApi', ['$http', '$q', '$ionicLoading',  proveedoresApi, 'httpService']);
+    angular.module('maxikioscosApp').service('proveedoresApi', proveedoresApi);
 
-    function proveedoresApi($http, $q, $ionicLoading, httpService) {
-        var self = this;
+    proveedoresApi.$inject = ['httpService', 'maxikioscosService'];
+
+    function proveedoresApi(httpService, maxikioscosService) {
+        var srv = this;
+
+        srv.initialize = initialize;
+        srv.getAll = getAll;
+
+        function initiliaze(){
+
+        };
 
         function getAll() {
-            var deferred = $q.defer();
+            return httpService.doGet('http://' + maxikioscosService.maxiKioscoStatus.machineName + '/api/provider/')
+           .then(function(response){
+                return response;
+           }, function(response){
+                return null;
+           });  
+        };      
 
-            //$ionicLoading.show({
-            //    template: 'Loading...'
-            //});
-            //$http.post("http://maxikioscos/api/proveedores", { username: username, password: password })
-            //    .success(function (data) {
-            //        $ionicLoading.hide();
-            //        deferred.resolve(data);
-            //    })
-            //    .error(function () {
-            //         $ionicLoading.hide();  
-            //       deferred.reject();
-            //    });
-
-            var proveedores = [
-                {
-                    id: 1,
-                    nombre: 'PROVEEDOR 1'
-                },
-                {
-                    id: 2,
-                    nombre: 'PROVEEDOR 2'
-                }
-            ];
-
-            deferred.resolve(proveedores);
-
-            return deferred.promise;
-        };
-
-        return {
-            getAll: getAll
-        };
+        srv.initialize();  
     };
 })();
