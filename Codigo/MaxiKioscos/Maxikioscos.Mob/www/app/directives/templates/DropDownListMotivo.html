@@ -1,0 +1,5 @@
+﻿<div ng-class="controls, controls-row">
+    <select ng-model="selectedMotivo" ng-options="motivo.Name for motivo in vm.dataMotivos track by motivo.Id"></select>
+    {{ motivo.Name }}
+</div>
+

@@ -66,6 +66,15 @@ angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers'])
                 templateUrl: 'app/controlStock/cargar-control-stock.html'
             }
         }
+    })
+
+    .state('app.chooseReportType', {
+        url: '/chooseReportType',
+        views: {
+            'mainContent': {
+                templateUrl: 'app/reportType/reportType.html'
+            }
+        }
     });
 
     // if none of the above states are matched, use this as the fallback

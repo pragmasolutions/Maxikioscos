@@ -1,0 +1,27 @@
+<ion-view view-title="Home" ng-controller="reportTypeController as vm">
+    <div class="bar bar-header bar-calm">
+        <h1 class="title">Forma de Trabajo</h1>
+    </div>
+    <div class="bar bar-header bar-calm">
+        <h3 class="title">Seleccione una forma..</h3>
+    </div>
+    <ion-content class="has-header">
+     <ul class="list">        
+             <li class="item">
+                <div class="row">                    
+                    <div class="col col-12">
+                        <h2>Tipo</h2>
+                    </div>                    
+                </div>
+            </li>
+             <li class="item" ng-repeat="report in vm.reportsType" ng-click="vm.setMaxikiosco(maxikiosco)">
+                <div class="row row-center">                    
+                    <div class="col col-12 text-right">
+                        <span class="right">{{report.Name}}</span>
+                    </div>                   
+                </div>
+
+            </li>
+		</ul>    	
+    </ion-content>
+</ion-view>
