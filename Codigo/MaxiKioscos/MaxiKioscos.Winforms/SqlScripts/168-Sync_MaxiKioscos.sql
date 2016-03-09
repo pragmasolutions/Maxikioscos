@@ -1,10 +1,4 @@
-
-/****** Object:  StoredProcedure [dbo].[Sync_MaxiKioscos]    Script Date: 09/20/2014 15:04:06 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sync_MaxiKioscos]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Sync_MaxiKioscos]
-GO
-
-CREATE PROCEDURE [dbo].[Sync_MaxiKioscos] 
+ALTER PROCEDURE [dbo].[Sync_MaxiKioscos] 
 	@XML XML,
 	@SobreescribirLocal bit
 AS
@@ -112,11 +106,4 @@ BEGIN
 								FROM @Temp)
 		
 END
-
-
-
-
-
-GO
-
 
