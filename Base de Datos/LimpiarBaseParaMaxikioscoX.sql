@@ -78,6 +78,7 @@ WHERE CierreCajaId IS NOT NULL
 							WHERE MaxiKioskoId = 12)
 
 
+
 DELETE
 FROM CierreCaja
 WHERE MaxiKioskoId != 12 
@@ -112,6 +113,31 @@ WHERE MaxiKioscoId != 12
 DELETE 
 FROM MaxikioscoTurno
 WHERE MaxiKioscoId != 12 
+
+
+INSERT INTO ConfiguracionLocal
+SELECT 1, Identifier
+FROM MaxiKiosco 
+WHERE MaxiKioscoId = 12
+
+
+UPDATE MaxiKiosco
+SET UltimoScriptCorrido = 166
+
+
+INSERT INTO [dbo].[Exportacion]
+     VALUES
+           (1
+           ,GETDATE()
+           ,1
+           ,'<Exportacion></Exportacion>'
+           ,1
+           ,0
+           ,0
+           ,GETDATE()
+           ,1)
+GO
+
 
 
 
