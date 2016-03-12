@@ -6,6 +6,10 @@ namespace MaxiKioscos.Services.Contracts
     [DataContract]
     public class KioscoApiResponse
     {
+
+        [DataMember]
+        public int Id { get; set; }
+
         [DataMember]
         public System.Guid Identifier { get; set; }
 

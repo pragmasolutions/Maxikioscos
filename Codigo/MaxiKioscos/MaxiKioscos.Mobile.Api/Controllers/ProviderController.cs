@@ -24,7 +24,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
         
         public SimpleListItem[] Get()
         {
-            return _uow.Proveedores.Listado().OrderBy(x => x.Nombre).Select(x => new SimpleListItem
+            return _uow.Proveedores.Listado().Where(m => !m.Eliminado).OrderBy(x => x.Nombre).Select(x => new SimpleListItem
             {
                 Id = x.ProveedorId,
                 Description = x.Nombre

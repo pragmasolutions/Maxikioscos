@@ -8,5 +8,7 @@ namespace MaxiKioscos.Services.Contracts
     {
         [OperationContract]
         IList<KioscoApiResponse> GetMaxiKioscos();
+
+        
     }
 }

@@ -7,8 +7,8 @@
                 </div>
                 <select ng-model="vm.criterios.proveedorSeleccionado">
                     <option value="" label="Seleccione Proveedor"></option>
-                    <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.id}}">
-                        {{proveedor.nombre}}
+                    <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.Id}}">
+                        {{proveedor.Description}}
                     </option>
                 </select>
             </label>
@@ -19,8 +19,8 @@
                 </div>
                 <select ng-model="vm.criterios.rubroSeleccionado">
                     <option value="" label="Seleccione Rubro"></option>
-                    <option ng-repeat="rubro in vm.rubros" value="{{rubro.id}}">
-                        {{rubro.nombre}}
+                    <option ng-repeat="rubro in vm.rubros" value="{{rubro.Id}}">
+                        {{rubro.Description}}
                     </option>
                 </select>
             </label>
@@ -30,10 +30,10 @@
 
             <label class="item item-input">
                 <span class="input-label">Cantidad de Filas</span>
-                <input type="number" ng-model="vm.criterios.CantidadFilas">
+                <input type="number" ng-model="vm.criterios.cantidadFilas">
             </label>
 
-            <button class="button button-calm button-full" ng-click="vm.generarClick(vm.criterios)">
+            <button class="button button-calm button-full" ng-click="vm.generarClick()">
                 Generar
             </button>
         </div>

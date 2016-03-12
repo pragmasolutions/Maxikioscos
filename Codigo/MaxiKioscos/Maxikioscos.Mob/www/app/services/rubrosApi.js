@@ -3,20 +3,20 @@
 
     angular.module('maxikioscosApp').service('rubrosApi', rubrosApi);
 
-    rubrosApi.$inject = ['httpService', 'maxikioscosService'];
+    rubrosApi.$inject = ['httpService', 'maxikioscosService', 'SERVICE_CONSTANTS'];
 
-    function rubrosApi(httpService, maxikioscosService) {
+    function rubrosApi(httpService, maxikioscosService, SERVICE_CONSTANTS) {
         var srv = this;
 
         srv.initialize = initialize;
         srv.getAll = getAll;
 
-        function initiliaze(){
+        function initialize(){
 
         };
 
         function getAll() {
-            return httpService.doGet('http://' + maxikioscosService.maxiKioscoStatus.machineName + '/api/rubros/')
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.RUBROS_LIST)
            .then(function(response){
                 return response;
            }, function(response){

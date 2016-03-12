@@ -9,18 +9,22 @@
 		var srv = this;
 
 		srv.maxiKioscoStatus = {
-			maxikioscoId: '',
-			machineName: '',
+			UserId: 1,			
+			maxikioscoId: '252BB32B-B6A7-4580-9BEC-2027C94D7E3A',
+			machineName: 'localhost',
 			isWebOnline: true,
 			isLocalServiceOnline: true,
-			urlLocalService: ''
+			urlLocalService: 'http://localhost:8080'
 		}
 
 		
-		srv.getMaxikioscos = getMaxikioscos;		
+		srv.getMaxikioscos = getMaxikioscos;				
+		srv.urlLocalService = urlLocalService;
 
-		function urlLocalService(machineName){
-			srv.maxiKioscoStatus.urlLocalService = SERVICE_CONSTANTS.PROTOCOL + srv.maxiKioscoStatus.machineName + SERVICE_CONSTANTS.PORT;
+		function urlLocalService(maxikiosco){			
+			srv.maxiKioscoStatus.maxikioscoId = maxikiosco.Identifier;
+			srv.maxiKioscoStatus.machineName = maxikiosco.MachineName;
+			srv.maxiKioscoStatus.urlLocalService = SERVICE_CONSTANTS.PROTOCOL_SERVICE + srv.maxiKioscoStatus.machineName + SERVICE_CONSTANTS.PORT;
 		}
 
 		function getMaxikioscos(){

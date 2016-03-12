@@ -1031,5 +1031,46 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptGastosPorCategoriaTotalGeneral>("RptGastosPorCategoriaTotalGeneral", desdeParameter, hastaParameter, maxikioscoIdParameter, categoriaCostoIdParameter, subCategoriaCostoIdParameter);
         }
+    
+        public virtual ObjectResult<ControlStockObtenerDetalleRow> ControlStockObtenerDetalle(Nullable<int> maxiKioscoId, Nullable<int> proveedorId, Nullable<int> rubroId, Nullable<int> usuarioId, Nullable<bool> masVendidos, Nullable<bool> conStockCero, Nullable<int> cantidadFilas, Nullable<int> limiteInferior, Nullable<int> limiteSuperior)
+        {
+            var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
+                new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
+                new ObjectParameter("MaxiKioscoId", typeof(int));
+    
+            var proveedorIdParameter = proveedorId.HasValue ?
+                new ObjectParameter("ProveedorId", proveedorId) :
+                new ObjectParameter("ProveedorId", typeof(int));
+    
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            var usuarioIdParameter = usuarioId.HasValue ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(int));
+    
+            var masVendidosParameter = masVendidos.HasValue ?
+                new ObjectParameter("MasVendidos", masVendidos) :
+                new ObjectParameter("MasVendidos", typeof(bool));
+    
+            var conStockCeroParameter = conStockCero.HasValue ?
+                new ObjectParameter("ConStockCero", conStockCero) :
+                new ObjectParameter("ConStockCero", typeof(bool));
+    
+            var cantidadFilasParameter = cantidadFilas.HasValue ?
+                new ObjectParameter("CantidadFilas", cantidadFilas) :
+                new ObjectParameter("CantidadFilas", typeof(int));
+    
+            var limiteInferiorParameter = limiteInferior.HasValue ?
+                new ObjectParameter("LimiteInferior", limiteInferior) :
+                new ObjectParameter("LimiteInferior", typeof(int));
+    
+            var limiteSuperiorParameter = limiteSuperior.HasValue ?
+                new ObjectParameter("LimiteSuperior", limiteSuperior) :
+                new ObjectParameter("LimiteSuperior", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ControlStockObtenerDetalleRow>("ControlStockObtenerDetalle", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, usuarioIdParameter, masVendidosParameter, conStockCeroParameter, cantidadFilasParameter, limiteInferiorParameter, limiteSuperiorParameter);
+        }
     }
 }

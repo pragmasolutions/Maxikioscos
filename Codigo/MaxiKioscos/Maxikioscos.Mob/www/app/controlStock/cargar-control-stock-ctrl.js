@@ -4,27 +4,42 @@
     angular.module('maxikioscosApp').controller('CargarControlStockCtrl', 
 
         ['$scope', '$q', '$rootScope', '$state','$timeout','$cordovaBarcodeScanner', '$ionicScrollDelegate', '$ionicPosition', 
-         'controlStockApi', 'motivosApi', CargarControlStockCtrl]);
+         'controlStockApi', 'motivosApi', '$ionicPopup', CargarControlStockCtrl]);
 
-    function CargarControlStockCtrl($scope, $q, $rootScope, $state,$timeout,$cordovaBarcodeScanner, $ionicScrollDelegate, $ionicPosition, controlStockApi, motivosApi) {
+    function CargarControlStockCtrl($scope, $q, $rootScope, $state,$timeout,$cordovaBarcodeScanner, $ionicScrollDelegate, $ionicPosition, controlStockApi, motivosApi, $ionicPopup) {
         var vm = this;
 
-        motivosApi.getAll()
+        vm.criterios = $rootScope.criterios || {};
+        vm.guardar = guardar;
+        vm.getMotivos = getMotivos;
+        vm.initialize = initialize;
+
+        function initialize(){
+            vm.getMotivos();
+        }
+
+        function getMotivos(){
+            motivosApi.getAll()
             .then(function (motivos) {
                 vm.motivos = motivos;
             });
+        }
 
         var productosFiltrados = $rootScope.productosFiltrados || [];
 
         vm.productos = productosFiltrados.map(function (x) {
             return {
-                id: x.id,
-                fila : x.fila,
-                codigo : x.codigo,
-                nombre: x.nombre,
-                stockActual: x.stockActual,
-                motivo: null,
-                diferencia : null
+                StockId: x.StockId,                      
+                Codigo : x.Codigo,
+                Producto: x.Producto,
+                StockActual: x.StockActual,
+                FechaUltimaModificacion: x.FechaUltimaModificacion,
+                Eliminado: x.Eliminado,
+                Identifier: x.Identifier,
+                Desincronizado: x.Desincronizado,
+                HabilitadoParaCorregir: x.HabilitadoParaCorregir,
+                MotivoCorreccionId: null,
+                Diferencia : 0
             }
         });
 
@@ -64,15 +79,28 @@
             });
         };
 
-        vm.aceptarClick = function (productos) {
+         function guardar() {
+            vm.criterios.ControlStockDetalle = vm.productos;
+            var confirmPopup = $ionicPopup.confirm({
+                     title: 'Guardar listado',
+                    template: '¿Está seguro de que desea guardar el listado?'
+                });
 
-            //TODO: ask for confirmation
-            if (true) {
-
-                controlStockApi.cargarControlStock(productos);
-
-                $state.go("app.home");
+               confirmPopup.then(function(res) {
+                     if(res) {
+                       controlStockApi.cerrarControlStock(vm.criterios)
+                       .then(function(response){
+                            if(response){
+                                $scope.sharedCtrl.goToHome();
+                            }else{
+                                //MOSTRAR ERROR
+                            }                            
+                       });
+                     }
+               });            
+                
             }
-        };
-    };
+
+        vm.initialize();
+    };        
 })();

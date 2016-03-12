@@ -14,7 +14,7 @@
                     <div class="col col-30">
                         <h2>Mot.</h2>
                     </div>
-                    <div class="col">
+                    <div class="col-20">
                         <h2>Diff.</h2>
                     </div>
                 </div>
@@ -27,29 +27,29 @@
 
                 <div class="row row-center">
                     <div class="col col-40">
-                        <strong class="bold">{{producto.fila}}.</strong>
-                        <span>{{producto.nombre}}</span>
-                        <div class="bold">{{producto.codigo}}</div>
+                        <strong class="bold">{{$index + 1}}.</strong>
+                        <span>{{producto.Producto}}</span>
+                        <div class="bold">{{producto.Codigo}}</div>
                     </div>
                     <div class="col col-10 text-right">
-                        <span class="right">{{producto.stockActual}}</span>
+                        <span class="right">{{producto.StockActual}}</span>
                     </div>
                     <div class="col col-30">
-                        <select ng-model="producto.motivo">
+                        <select ng-model="producto.MotivoCorreccionId">
                             <option value="" label="Sel. Mot"></option>
-                            <option ng-repeat="motivo in vm.motivos" value="{{motivo.id}}">
-                                {{motivo.nombre}}
+                            <option ng-repeat="motivo in vm.motivos" value="{{motivo.Id}}">
+                                {{motivo.Description}}
                             </option>
                         </select>
                     </div>
                     <div class="col">
-                        <input type="number" ng-model="producto.diferencia"/>
+                        <input type="number" ng-model="producto.Diferencia"/>
                     </div>
                 </div>
 
             </li>
 
-            <button class="button button-calm button-full" ng-click="vm.aceptarClick(vm.productos)">
+            <button class="button button-calm button-full" ng-click="vm.guardar()">
                 Aceptar
             </button>
         </ul>

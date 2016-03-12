@@ -20,7 +20,7 @@ namespace MaxiKioscos.Mobile.Api
         }
 
 
-        private static void RegisterBindings(IKernel kernel)
+        public static void RegisterBindings(IKernel kernel)
         {
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();

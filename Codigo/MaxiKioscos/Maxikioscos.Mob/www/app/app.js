@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers'])
+angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers']) //,'dropdownRubroApp','dropdownMotivoApp','dropdownMarcaApp'
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,7 +22,8 @@ angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
   $stateProvider
 
     .state('app', {
@@ -73,6 +74,15 @@ angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers'])
         views: {
             'mainContent': {
                 templateUrl: 'app/reportType/reportType.html'
+            }
+        }
+    })
+
+    .state('app.chooseMaxikiosco', {
+        url: '/chooseMaxikiosco',
+        views: {
+            'mainContent': {
+                templateUrl: 'app/home/chooseMaxikiosco.html'
             }
         }
     });

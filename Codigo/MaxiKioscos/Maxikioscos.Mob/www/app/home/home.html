@@ -3,25 +3,13 @@
         <h1 class="title">Home</h1>
     </div>
     <div class="bar bar-header bar-calm">
-        <h3 class="title">Seleccionar MaxiKiosco para conectarse..</h3>
+
     </div>
     <ion-content class="has-header">
-     <ul class="list">        
-             <li class="item">
-                <div class="row">                    
-                    <div class="col col-12">
-                        <h2>Maxikiosco</h2>
-                    </div>                    
-                </div>
-            </li>
-             <li class="item" ng-repeat="maxikiosco in vm.maxikioscosList" ng-click="vm.setMaxikiosco(maxikiosco)">
-                <div class="row row-center">                    
-                    <div class="col col-12 text-right">
-                        <span class="right">{{maxikiosco.MachineName}}</span>
-                    </div>                   
-                </div>
-
-            </li>
-		</ul>    	
+        <h3 class="title">El servicio de Maxikioscos no se encuentra disponible.</h3>
+        <h3 class="title">Verifique la conexión a internet.</h3>
+        <button class="button button-calm button-full" ng-click="vm.reload()">
+            Reintentar
+        </button>	
     </ion-content>
 </ion-view>

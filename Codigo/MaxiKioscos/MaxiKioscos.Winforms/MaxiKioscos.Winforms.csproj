@@ -791,6 +791,7 @@
     <Content Include="SqlScripts\167-Alter_Table_Add_NombreMaquina.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SqlScripts\169-Create_ControlStock_ObtenerDetalles.sql" />
     <Content Include="SqlScripts\98-Stock_Actualizar.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -13,9 +13,13 @@
 			PORT: port,
 			API: api,
 			MAXIKIOSCOS: urlMasterService + 'MaxiKioscosService.svc/GetMaxiKioscos',
-			RUBROS_LIST : api + 'rubros/Get',
-			MARCAS_LIST : api + 'marcas/Get',
-			MOTIVOS_LIST : api + 'motivos/Get',
+			RUBROS_LIST : api + 'Rubro/Get',
+			MARCAS_LIST : api + 'Provider/Get',
+			MOTIVOS_LIST : api + 'Motivo/Get',
+			STOCK_CONTROL: api + 'stockcontrol/Get',
+			STOCK_CONTROL_DETALLE: api + 'stockcontrol/GetObtenerDetalle',
+			STOCK_CONTROL_CERRAR: api + 'stockcontrol/PostCerrar'
+
 
 		};
 	})());

@@ -3,39 +3,55 @@
 
     angular.module('maxikioscosApp').service('controlStockApi', controlStockApi);
 
-    controlStockApi.$inject = ['maxikioscosService', 'httpService'];
+    controlStockApi.$inject = ['maxikioscosService', 'httpService', 'SERVICE_CONSTANTS'];
 
-    function controlStockApi(maxikioscosService, httpService) {
+    function controlStockApi(maxikioscosService, httpService, SERVICE_CONSTANTS) {
         var srv = this;
         
-        srv.initialize = initialize;
         srv.getVistaPrevia = getVistaPrevia;
-        srv.cargarControlStock = cargarControlStock;
+        srv.cerrarControlStock = cerrarControlStock;
+        srv.getDetalleFinal = getDetalleFinal;
 
-        function initialize(){
-
-        };
-
-        function getVistaPrevia() {
-            var param = { username: username, password: password };
-            return httpService.doGet('http://'+ maxikioscosService.maxiKioscoStatus.machineName + '/api/rubros', param)
+        function getVistaPrevia(controlStockCriterios) {
+            var param = {  ShopIdentifier: controlStockCriterios.ShopIdentifier,
+                            ProviderId: controlStockCriterios.ProviderId  || null,
+                            ProductCategoryId: controlStockCriterios.ProductCategoryId  || null,
+                            ExcludeZeroStock: controlStockCriterios.ExcludeZeroStock  || null,
+                            OnlyBestSellers: controlStockCriterios.OnlyBestSellers  || null,
+                            RowsAmount: controlStockCriterios.RowsAmount || null};
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL, param)
             .then(function(response){
-                return response;
+                return response.List;
             }, function(response){
                 return null;
             });
         };        
 
-        function cargarControlStock(controlStockProductos) {
-            var param = { username: username, password: password };
-            return httpService.doPost('http://'+ maxikioscosService.maxiKioscoStatus.machineName + '/api/rubros', param)
+        function cerrarControlStock(controlStock) {                 
+            return httpService.doPost(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL_CERRAR, controlStock)
             .then(function(response){
                 return response;
             }, function(response){
                 return null;
             });                       
-        };        
+        };
 
-        srv.initialize();
+        function getDetalleFinal(controlStockCriterios) {
+            var param = {  ShopIdentifier: controlStockCriterios.ShopIdentifier,
+                            ProviderId: controlStockCriterios.ProviderId  || null,
+                            ProductCategoryId: controlStockCriterios.ProductCategoryId  || null,
+                            ExcludeZeroStock: controlStockCriterios.ExcludeZeroStock  || null,
+                            OnlyBestSellers: controlStockCriterios.OnlyBestSellers  || null,
+                            RowsAmount: controlStockCriterios.RowsAmount || null,
+                            LowerLimit: controlStockCriterios.LowerLimit || null,
+                            UpperLimit: controlStockCriterios.UpperLimit || null
+                        };
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL_DETALLE, param)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return null;
+            });
+        };                 
     };
 })();

@@ -14,20 +14,20 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
 
-    public class MotivosController : ApiController
+    public class RubroController : ApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
 
-        public MotivosController(IMaxiKioscosUow uow)
+        public RubroController(IMaxiKioscosUow uow)
         {
             _uow = uow;
         }
 
         public SimpleListItem[] Get()
         {
-            return _uow.MotivosCorreccion.Listado().OrderBy(x => x.Descripcion).Select(x => new SimpleListItem
+            return _uow.Rubros.Listado().Where(m => !m.Eliminado).OrderBy(x => x.Descripcion).Select(x => new SimpleListItem
             {
-                Id = x.MotivoCorreccionId,
+                Id = x.RubroId,
                 Description = x.Descripcion
             }).ToArray();
         }

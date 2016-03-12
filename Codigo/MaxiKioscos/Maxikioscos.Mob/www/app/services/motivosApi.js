@@ -3,20 +3,20 @@
 
     angular.module('maxikioscosApp').service('motivosApi', motivosApi);
 
-    motivosApi.$inject = ['httpService', 'maxikioscosService'];
+    motivosApi.$inject = ['httpService', 'maxikioscosService', 'SERVICE_CONSTANTS'];
 
-    function motivosApi(httpService, maxikioscosService) {
+    function motivosApi(httpService, maxikioscosService, SERVICE_CONSTANTS) {
         var srv = this;
 
         srv.initialize = initialize;
         srv.getAll = getAll;
 
-        function initiliaze(){
+        function initialize(){
 
         };
 
         function getAll() {
-           return httpService.doGet('http://' + maxikioscosService.maxiKioscoStatus.machineName + '/api/motivos/')
+           return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.MOTIVOS_LIST)
            .then(function(response){
                 return response;
            }, function(response){

@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('maxikioscoApp').controller('reportTypeController', reportTypeController);
+	angular.module('maxikioscosApp').controller('reportTypeController', reportTypeController);
 
 	reportTypeController.$inject = ['$scope'];
 
@@ -9,22 +9,19 @@
 
 		vm.reportsType = [
 			{
-				Name: 'Por lote'
+				Name: 'Autómatico'
 			},
 			{
 				Name: 'Manual'
 			}
 		]
 
-		vm.goToForBatch = goToForBatch;
-		vm.goToManual = goToManual;
+		vm.goTo = goTo;		
 
-		function goToForBatch(){
-			$scope.sharedCtrl.goToControlStockVistaPrevia():
-		}
-
-		function goToManual(){
-			
-		}
+		function goTo(index){
+			if (index == 0){
+				$scope.sharedCtrl.goToGenerarControlStock();	
+			}			
+		}		
 	}
 })();

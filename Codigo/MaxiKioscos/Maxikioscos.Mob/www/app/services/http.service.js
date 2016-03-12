@@ -68,11 +68,16 @@
         };        
 
         function doPing(urlService, callback){
+          $ionicLoading.show({
+               template: 'Loading...'
+            });
           $http.get(urlService)
                     .success(function() {
+                        $ionicLoading.hide();
                         callback(true);
                     })
                     .error(function() {
+                        $ionicLoading.hide();
                         callback(false);
                     })
 

@@ -7,25 +7,22 @@
 
 	function homeCtrl($scope, maxikioscosService){
 		var vm = this;
-
-		vm.maxikioscosList = {};
-		vm.selectedMaxikiosco = undefined;
-		vm.setMaxikiosco = setMaxikiosco;
+		
+		vm.reload = reload;
 
 		vm.initialize = initialize;
 
-		function initialize(){
-			$scope.sharedCtrl.validateWebMasterAcess();
-				
+		function initialize(){			
+			if (maxikioscosService.maxiKioscoStatus.isWebOnline){				
+				$scope.sharedCtrl.goToChooseMaxikiosco();
+			}			
 		}
 
-		function setMaxikiosco(maxikiosco){
-			maxikioscosService.maxiKioscoStatus.maxikioscoId = maxikiosco.Identifier;
-			maxikioscosService.maxiKioscoStatus.machineName = maxikiosco.MachineName;
-				
-		};
-
-	vm.initialize();
+		function reload(){
+			$scope.sharedCtrl.validateWebMasterAcess();
+		}
+		
+		vm.initialize();
 	}
 
 })();

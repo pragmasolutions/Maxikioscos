@@ -32,6 +32,7 @@ namespace MaxiKioscos.Services
             {
                 var maxiKioscosList = Uow.MaxiKioscos.Listado(m => m.Eliminado).Select(m => new KioscoApiResponse
                                                                             {
+                                                                                Id = m.MaxiKioscoId,
                                                                                 Identifier = m.Identifier,
                                                                                 MachineName = m.NombreMaquina
                                                                             }).ToList();

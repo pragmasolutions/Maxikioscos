@@ -1,5 +1,5 @@
 (function () {
-    angular.module('maxikioscosApp').controller('maxikioscosApp.SharedController', sharedController);
+    angular.module('maxikioscosApp').controller('sharedController', sharedController);
 
     sharedController.$inject = ['$state', 'maxikioscosService', '$scope', 'httpService', 'SERVICE_CONSTANTS'];
 
@@ -22,11 +22,13 @@
 
         vm.goToChooseReportType = goToChooseReportType;
 
+        vm.goToChooseMaxikiosco = goToChooseMaxikiosco;
+
         vm.initialize = initialize;
               
 
         function initialize() {
-          
+            //vm.validateWebMasterAcess(); 
         }
 
         function goToHome() {
@@ -54,21 +56,32 @@
              $state.go("app.chooseReportType");
         }
 
+        function goToChooseMaxikiosco() {
+            vm.currentSection = "Seleccionar";
+             $state.go("app.chooseMaxikiosco");
+        }
+
         function validateMaxikioscoAcess() {
-            httpService.doPing(SERVICE_CONSTANTS.PROTOCOL_SERVICE + maxikioscosService.maxikioscoStatus.machineName + SERVICE_CONSTANTS.PORT, function(response){
-                maxikioscosService.maxiKioscoStatus.isLocalServiceOnline = response;
-                if(response){
+            // httpService.doPing(SERVICE_CONSTANTS.PROTOCOL_SERVICE + maxikioscosService.maxiKioscoStatus.machineName + SERVICE_CONSTANTS.PORT, function(response){
+            //     maxikioscosService.maxiKioscoStatus.isLocalServiceOnline = response;
+            //     if(response){
                     vm.goToChooseReportType();             
-                }            
-            });    		
+            //     }else{
+            //         vm.goToHome();
+            //         return;
+            //     }            
+            // });    		
         }       
 
         function validateWebMasterAcess(){                            
             httpService.doPing(SERVICE_CONSTANTS.URL_MASTER_SERVICE + 'MaxiKioscosService.svc', function(response){
                 maxikioscosService.maxiKioscoStatus.isWebOnline = response;
-                if(response){                    
+                if(response){
+                    vm.goToChooseMaxikiosco();    
+                }else{
                     vm.goToHome();
-                }            
+                    return;                
+                }                
             });
         }
 

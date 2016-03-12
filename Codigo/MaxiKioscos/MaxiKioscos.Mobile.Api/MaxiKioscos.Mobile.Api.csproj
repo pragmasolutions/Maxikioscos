@@ -227,10 +227,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MotivosController.cs" />
+    <Compile Include="Controllers\MotivoController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\StockControlController.cs" />
-    <Compile Include="Controllers\ProductCategoryController.cs" />
+    <Compile Include="Controllers\RubroController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -241,6 +241,9 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Request\StockControlCreateRequest.cs" />
+    <Compile Include="Models\Request\StockControlDetailRequest.cs" />
+    <Compile Include="Models\Request\StockControlDetalleRowRequest.cs" />
     <Compile Include="Models\Request\StockControlPreviewRequest.cs" />
     <Compile Include="Models\Response\SimpleListItem.cs" />
     <Compile Include="Models\Response\StockControlPreviewResponse.cs" />

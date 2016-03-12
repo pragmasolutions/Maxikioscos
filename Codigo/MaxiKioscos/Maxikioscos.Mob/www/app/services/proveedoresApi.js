@@ -3,25 +3,25 @@
 
     angular.module('maxikioscosApp').service('proveedoresApi', proveedoresApi);
 
-    proveedoresApi.$inject = ['httpService', 'maxikioscosService'];
+    proveedoresApi.$inject = ['httpService', 'maxikioscosService', 'SERVICE_CONSTANTS'];
 
-    function proveedoresApi(httpService, maxikioscosService) {
+    function proveedoresApi(httpService, maxikioscosService, SERVICE_CONSTANTS) {
         var srv = this;
 
         srv.initialize = initialize;
         srv.getAll = getAll;
 
-        function initiliaze(){
+        function initialize(){
 
         };
 
-        function getAll() {
-            return httpService.doGet('http://' + maxikioscosService.maxiKioscoStatus.machineName + '/api/provider/')
-           .then(function(response){
-                return response;
-           }, function(response){
-                return null;
-           });  
+        function getAll() {            
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.MARCAS_LIST)
+                       .then(function(response){
+                            return response;
+                       }, function(response){
+                            return null;
+                   });  
         };      
 
         srv.initialize();  
