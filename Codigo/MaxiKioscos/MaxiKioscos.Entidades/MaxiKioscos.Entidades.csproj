@@ -235,6 +235,9 @@
     <Compile Include="ProductoParaTransferencia.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductoPorCodigo.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductoPromocion.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>

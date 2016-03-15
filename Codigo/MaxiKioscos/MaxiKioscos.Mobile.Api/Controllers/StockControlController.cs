@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Datos.Repositorio;
@@ -14,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    [System.Web.Mvc.Authorize]
+    
     public class StockControlController : ApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
@@ -143,6 +144,11 @@ namespace MaxiKioscos.Mobile.Api.Controllers
             }
 
             return false;
+        }
+
+        public bool PostDinamicoCerrar(StockControlDynamicCreateRequest request)
+        {
+            return true;
         }
     }
 }

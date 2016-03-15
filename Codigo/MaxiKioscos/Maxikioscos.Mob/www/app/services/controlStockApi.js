@@ -27,8 +27,32 @@
             });
         };        
 
+         function getProductByCode(code) {
+            var param = {  code: code,
+                            maxikioscoId: maxikioscosService.maxiKioscoStatus.maxikioscoId
+                        };
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.PRODUCTS_BY_CODE, param)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return null;
+            });
+        };
+
         function cerrarControlStock(controlStock) {                 
             return httpService.doPost(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL_CERRAR, controlStock)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return null;
+            });                       
+        };
+
+         function cerrarControlStockDinamico(controlStockDetalle) { 
+            var param = {
+                            ControlStockDetalle: controlStockDetalle
+                        }                
+            return httpService.doPost(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL_DINAMICO_CERRAR, param)
             .then(function(response){
                 return response;
             }, function(response){

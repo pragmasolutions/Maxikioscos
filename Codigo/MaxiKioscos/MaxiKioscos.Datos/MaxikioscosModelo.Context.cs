@@ -1072,5 +1072,18 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ControlStockObtenerDetalleRow>("ControlStockObtenerDetalle", maxiKioscoIdParameter, proveedorIdParameter, rubroIdParameter, usuarioIdParameter, masVendidosParameter, conStockCeroParameter, cantidadFilasParameter, limiteInferiorParameter, limiteSuperiorParameter);
         }
+    
+        public virtual ObjectResult<ProductoPorCodigo> ProductoPorCodigo(string codigo, Nullable<int> maxiKioscoId)
+        {
+            var codigoParameter = codigo != null ?
+                new ObjectParameter("Codigo", codigo) :
+                new ObjectParameter("Codigo", typeof(string));
+    
+            var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
+                new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
+                new ObjectParameter("MaxiKioscoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoPorCodigo>("ProductoPorCodigo", codigoParameter, maxiKioscoIdParameter);
+        }
     }
 }

@@ -1877,6 +1877,10 @@
           <Parameter Name="DestinoId" Type="int" Mode="In" />
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Producto_PorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Producto_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
@@ -3164,6 +3168,10 @@
             <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
             <Parameter Name="LimiteInferior" Mode="In" Type="Int32" />
             <Parameter Name="LimiteSuperior" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoPorCodigo" ReturnType="Collection(MaxiKioscosModel.ProductoPorCodigo)">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -5500,6 +5508,12 @@
           <Property Type="Guid" Name="Identifier" Nullable="true" />
           <Property Type="Int32" Name="HabilitadoParaCorregir" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="ProductoPorCodigo">
+          <Property Type="Int32" Name="ProductoId" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6863,6 +6877,16 @@
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="HabilitadoParaCorregir" ColumnName="HabilitadoParaCorregir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoPorCodigo" FunctionName="MaxiKioscosModel.Store.Producto_PorCodigo">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoPorCodigo">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

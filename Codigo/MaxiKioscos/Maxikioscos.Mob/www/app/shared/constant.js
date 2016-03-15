@@ -18,8 +18,9 @@
 			MOTIVOS_LIST : api + 'Motivo/Get',
 			STOCK_CONTROL: api + 'stockcontrol/Get',
 			STOCK_CONTROL_DETALLE: api + 'stockcontrol/GetObtenerDetalle',
-			STOCK_CONTROL_CERRAR: api + 'stockcontrol/PostCerrar'
-
+			STOCK_CONTROL_CERRAR: api + 'stockcontrol/PostCerrar',
+			PRODUCTS_BY_CODE: api + 'product/GetByCode',
+			STOCK_CONTROL_DINAMICO_CERRAR: api + 'stockcontrol/PostDinamicoCerrar'
 
 		};
 	})());

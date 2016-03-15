@@ -14,7 +14,7 @@
 			machineName: 'localhost',
 			isWebOnline: true,
 			isLocalServiceOnline: true,
-			urlLocalService: 'http://localhost:8080'
+			urlLocalService: 'http://192.168.0.11:8080'
 		}
 
 		

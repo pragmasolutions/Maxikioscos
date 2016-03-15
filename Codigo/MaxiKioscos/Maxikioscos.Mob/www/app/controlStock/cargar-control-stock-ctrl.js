@@ -44,11 +44,11 @@
         });
 
         function resaltarProducto(barcode){
-            var producto = _.find(vm.productos, function(x) { return x.codigo == barcode; });
+            var producto = _.find(vm.productos, function(x) { return x.Codigo == barcode; });
 
-                if (producto && producto.codigo) {
+                if (producto && producto.Codigo) {
 
-                    var filaProducto = angular.element(document.getElementById(producto.codigo));
+                    var filaProducto = angular.element(document.getElementById(producto.Codigo));
 
                     if (filaProducto) {
 
@@ -66,17 +66,16 @@
                 }
         }
 
-        vm.buscarProductoClick = function () {
-
-            $cordovaBarcodeScanner.scan().then(function (imageData) {
-                var barcode = imageData.text;
-                
-                resaltarProducto(barcode);
-                                
+        vm.buscarProductoClick = function () {            
+            $cordovaBarcodeScanner
+            .scan()
+            .then(function (imageData) {
+                var barcode = imageData.text;                
+                resaltarProducto(barcode);                            
             }, function (err) {
-                // An error occured. Show a message to the user
+                // An error occured. Show a message to the user                
                 alert("Error scanning: " + err);
-            });
+            });                           
         };
 
          function guardar() {
@@ -91,7 +90,7 @@
                        controlStockApi.cerrarControlStock(vm.criterios)
                        .then(function(response){
                             if(response){
-                                $scope.sharedCtrl.goToHome();
+                                $scope.sharedCtrl.goToChooseReportType();
                             }else{
                                 //MOSTRAR ERROR
                             }                            
