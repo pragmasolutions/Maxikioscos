@@ -3,10 +3,10 @@
 
     angular.module('maxikioscosApp').controller('CargarControlStockCtrl', 
 
-        ['$scope', '$q', '$rootScope', '$state','$timeout','$cordovaBarcodeScanner', '$ionicScrollDelegate', '$ionicPosition', 
+        ['$scope', '$rootScope', '$timeout','$cordovaBarcodeScanner', '$ionicScrollDelegate', '$ionicPosition', 
          'controlStockApi', 'motivosApi', '$ionicPopup', CargarControlStockCtrl]);
 
-    function CargarControlStockCtrl($scope, $q, $rootScope, $state,$timeout,$cordovaBarcodeScanner, $ionicScrollDelegate, $ionicPosition, controlStockApi, motivosApi, $ionicPopup) {
+    function CargarControlStockCtrl($scope, $rootScope, $timeout, $cordovaBarcodeScanner, $ionicScrollDelegate, $ionicPosition, controlStockApi, motivosApi, $ionicPopup) {
         var vm = this;
 
         vm.criterios = $rootScope.criterios || {};

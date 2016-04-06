@@ -6,13 +6,16 @@
     function sharedController($state, maxikioscosService, $scope, httpService, SERVICE_CONSTANTS) {
         var vm = this;
 
-        vm.currentSection = "HOME";               
+        vm.isLogged = false;
 
-        vm.validateMaxikioscoAcess = validateMaxikioscoAcess;
-
-        vm.validateWebMasterAcess = validateWebMasterAcess;
+        vm.currentSection = "HOME";                      
         
         vm.goToHome = goToHome;
+
+        vm.goToLogin = goToLogin;
+
+        vm.goToLogOff = goToLogOff;
+
     	//generarControlStock
         vm.goToGenerarControlStock = goToGenerarControlStock;        
         //controlStockVistaPrevia
@@ -20,70 +23,60 @@
     	//cargarControlStock
     	vm.goToCargarControlStock = goToCargarControlStock;
 
-        vm.goToChooseReportType = goToChooseReportType;
-
-        vm.goToChooseMaxikiosco = goToChooseMaxikiosco;
+        vm.goToCargarControlStockDinamico = goToCargarControlStockDinamico;
 
         vm.initialize = initialize;
+
+        vm.validateLogin = validateLogin;
               
 
         function initialize() {
-            //vm.validateWebMasterAcess(); 
+            maxikioscosService.validateMaxikioscoAccess();
+            maxikioscosService.validateWebMasterAccess();
         }
 
-        function goToHome() {
-            vm.currentSection = "HOME";
-            $state.go("app.home");
+        function goToHome() {      
+            vm.validateLogin("app.home");                  
+        }
+
+        function goToLogin() {            
+            vm.currentSection = "LOGIN";
+            $state.go("app.login");
+        }
+
+        function goToLogOff(){
+            return httpService.doPost(SERVICE_CONSTANTS.LOGOFF)
+            .then(function(response){
+                vm.isLogged = false;
+                vm.goToLogin();
+            }, function(error){
+                return error;
+            });
         }
 
         function goToGenerarControlStock() {
-            vm.currentSection = "Generar Control Stock";
-             $state.go("app.generarControlStock");
+            vm.validateLogin("app.generarControlStock");            
         }
 
         function goToControlStockVistaPrevia() {
-            vm.currentSection = "Control StockVista Previa";
-             $state.go("app.controlStockVistaPrevia");
+            vm.validateLogin("app.controlStockVistaPrevia");             
         }
 
        function goToCargarControlStock() {
-            vm.currentSection = "Cargar Control Stock";
-             $state.go("app.cargarControlStock");
+            vm.validateLogin("app.cargarControlStock");             
         }
 
-        function goToChooseReportType() {
-            vm.currentSection = "Seleccionar";
-             $state.go("app.chooseReportType");
+        function goToCargarControlStockDinamico() {
+            vm.validateLogin("app.cargarControlStockDinamico");             
         }
-
-        function goToChooseMaxikiosco() {
-            vm.currentSection = "Seleccionar";
-             $state.go("app.chooseMaxikiosco");
-        }
-
-        function validateMaxikioscoAcess() {
-            // httpService.doPing(SERVICE_CONSTANTS.PROTOCOL_SERVICE + maxikioscosService.maxiKioscoStatus.machineName + SERVICE_CONSTANTS.PORT, function(response){
-            //     maxikioscosService.maxiKioscoStatus.isLocalServiceOnline = response;
-            //     if(response){
-                    vm.goToChooseReportType();             
-            //     }else{
-            //         vm.goToHome();
-            //         return;
-            //     }            
-            // });    		
-        }       
-
-        function validateWebMasterAcess(){                            
-            httpService.doPing(SERVICE_CONSTANTS.URL_MASTER_SERVICE + 'MaxiKioscosService.svc', function(response){
-                maxikioscosService.maxiKioscoStatus.isWebOnline = response;
-                if(response){
-                    vm.goToChooseMaxikiosco();    
-                }else{
-                    vm.goToHome();
-                    return;                
-                }                
-            });
-        }
+       
+       function validateLogin(page){
+            if(!vm.isLogged){
+                vm.goToLogin();
+            }else{
+                $state.go(page);
+            }
+       }
 
         vm.initialize();
     }

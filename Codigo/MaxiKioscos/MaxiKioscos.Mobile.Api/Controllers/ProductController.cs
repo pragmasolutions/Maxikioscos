@@ -22,30 +22,41 @@ namespace MaxiKioscos.Mobile.Api.Controllers
             _uow = uow;
         }
 
-        public ProductRowResponse GetByCode(string code, int maxikioscoId)
+        public ProductRowResponse GetByCode([FromUri] ProductCodeRequest request)
         {
-            var product = _uow.Productos.ProductoPorCodigo(code, maxikioscoId);
-
-            if (product != null)
+            if (request != null)
             {
-                return new ProductRowResponse
-                       {
-                           ProductId = product.ProductoId,
-                           Producto = product.Descripcion,
-                           Codigo = product.Codigo,
-                           StockActual = product.StockActual.Value,
-                           Identifier = Guid.NewGuid(),
-                           FechaUltimaModificacion = DateTime.Now,
-                           Desincronizado = true,
-                           Eliminado = false,
-                           HabilitadoParaCorregir = true,
-                           MotivoCorreccionId = null,
-                           Diferencia = 0,
-                           StockId = 0
-                       };
+                try
+                {
+                    var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.MaxikioscoId);
+                    var product = _uow.Productos.ProductoPorCodigo(request.Code, shop.MaxiKioscoId);
+
+                    if (product.StockId.HasValue)
+                    {
+                        return new ProductRowResponse
+                        {
+                            StockId = product.StockId.Value,
+                            Producto = product.Producto,
+                            Codigo = product.Codigo,
+                            StockActual = product.StockActual.Value,
+                            Identifier = product.Identifier.Value,
+                            FechaUltimaModificacion = DateTime.Now,
+                            Desincronizado = true,
+                            Eliminado = false,
+                            HabilitadoParaCorregir = true,
+                            MotivoCorreccionId = null,
+                            Diferencia = 0
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException(string.Format("No se encontró producto para el código: {0}", request.Code));
+                }
+                
             }
 
-            return null;
+            throw new ApplicationException(string.Format("No se encontró producto para el código: {0}", request.Code));
         }
     }
 }

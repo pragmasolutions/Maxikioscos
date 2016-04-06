@@ -145,10 +145,5 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
             return false;
         }
-
-        public bool PostDinamicoCerrar(StockControlDynamicCreateRequest request)
-        {
-            return true;
-        }
     }
 }

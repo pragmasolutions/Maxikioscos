@@ -5509,10 +5509,15 @@
           <Property Type="Int32" Name="HabilitadoParaCorregir" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ProductoPorCodigo">
-          <Property Type="Int32" Name="ProductoId" Nullable="false" />
           <Property Type="String" Name="Codigo" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
-          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="8" Scale="0" />
+          <Property Type="Int32" Name="StockId" Nullable="true" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="26" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Desincronizado" Nullable="true" />
+          <Property Type="Int32" Name="Eliminado" Nullable="true" />
+          <Property Type="Guid" Name="Identifier" Nullable="true" />
+          <Property Type="Int32" Name="HabilitadoParaCorregir" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -6883,10 +6888,15 @@
           <FunctionImportMapping FunctionImportName="ProductoPorCodigo" FunctionName="MaxiKioscosModel.Store.Producto_PorCodigo">
           <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoPorCodigo">
-                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="HabilitadoParaCorregir" ColumnName="HabilitadoParaCorregir" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

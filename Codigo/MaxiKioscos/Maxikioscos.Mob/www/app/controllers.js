@@ -26,7 +26,11 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+    $scope.sharedCtrl.goToLogin();
+  };
+
+  $scope.logoff = function() {
+    $scope.sharedCtrl.goToLogOff();
   };
 
   // Perform the login action when the user submits the login form
@@ -38,5 +42,13 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
+  };
+
+  $scope.goToCargarControlStockDinamico = function(){
+      $scope.sharedCtrl.goToCargarControlStockDinamico();
+  };
+
+  $scope.goToGenerarControlStock = function(){
+     $scope.sharedCtrl.goToGenerarControlStock(); 
   };
 });

@@ -1,8 +1,15 @@
-<ion-view view-title="Cargar Control Stock" ng-controller="CargarControlStockCtrl as vm">
+<ion-view view-title="Cargar Control Stock Dinámico" ng-controller="CargarControlStockDynamicCtrl as vm">
     <ion-content>
-        <ul class="list">
-            <a class="button button-icon button-clear icon ion-search" ng-click="vm.buscarProductoClick()"></a>
-        
+        <div cass="row">
+            <a class="button button-icon button-clear icon ion-search" ng-click="vm.buscarProductoClick()"> Escanear</a>
+        </div>
+        <div cass="row">        
+            <a class="button button-icon button-clear icon ion-search" ng-click="vm.buscarProductoPorCodigo()"> Ingresar código</a>
+        </div>
+        <div cass="row">
+            <a class="button button-icon button-clear icon ion-trash-b" ng-disabled="vm.productos.length == 0" ng-click="vm.limpiar()"> Limpiar</a>
+        </div>
+        <ul class="list">            
              <li class="item">
                 <div class="row">
                     <div class="col col-40">
@@ -44,6 +51,9 @@
                     </div>
                     <div class="col">
                         <input type="number" ng-model="producto.Diferencia"/>
+                    </div>
+                    <div class="col">
+                         <a class="button button-icon button-clear icon ion-trash-b" style="font-color:red;" ng-click="vm.eliminar($index)"></a>
                     </div>
                 </div>
 

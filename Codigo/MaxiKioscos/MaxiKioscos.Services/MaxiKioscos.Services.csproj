@@ -107,6 +107,14 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -154,6 +162,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MaxiKiosco.Seguridad.WebSecurity\MaxiKiosco.Seguridad.WebSecurity.csproj">
+      <Project>{68110e34-c47a-4299-b9fd-388ef354c434}</Project>
+      <Name>MaxiKiosco.Seguridad.WebSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Maxikioscos.Comun\Maxikioscos.Comun.csproj">
       <Project>{a0460b78-fcaf-49f7-aec1-8856c3f65ad3}</Project>
       <Name>Maxikioscos.Comun</Name>
@@ -177,6 +189,10 @@
     <ProjectReference Include="..\MaxiKioscos.Negocio\MaxiKioscos.Negocio.csproj">
       <Project>{0e3617f2-a0d0-4509-b16d-14d4652cf6f0}</Project>
       <Name>MaxiKioscos.Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MaxiKioscos.Seguridad\MaxiKioscos.Seguridad.csproj">
+      <Project>{4cff7c06-39a8-42b2-933e-9114746c2148}</Project>
+      <Name>MaxiKioscos.Seguridad</Name>
     </ProjectReference>
     <ProjectReference Include="..\MaxiKioscos.Services.Contracts\MaxiKioscos.Services.Contracts.csproj">
       <Project>{d0a3254e-4f0e-46f7-b6d0-4b64c1189b10}</Project>

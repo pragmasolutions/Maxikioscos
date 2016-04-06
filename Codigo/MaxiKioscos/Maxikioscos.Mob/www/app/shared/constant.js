@@ -5,7 +5,7 @@
 		var protocolService = "http://";
 		var api= "/api/";
 		var port= ":8080";
-		var urlMasterService = 'http://localhost:51557/';
+		var urlMasterService = 'http://192.168.0.12:51557/';
 		
 		return {
 			URL_MASTER_SERVICE: urlMasterService,
@@ -13,6 +13,8 @@
 			PORT: port,
 			API: api,
 			MAXIKIOSCOS: urlMasterService + 'MaxiKioscosService.svc/GetMaxiKioscos',
+			LOGIN: urlMasterService + 'MaxiKioscosService.svc/Login',
+			LOGOFF: urlMasterService + 'MaxiKioscosService.svc/LogOff',
 			RUBROS_LIST : api + 'Rubro/Get',
 			MARCAS_LIST : api + 'Provider/Get',
 			MOTIVOS_LIST : api + 'Motivo/Get',

@@ -13,9 +13,14 @@ namespace MaxiKioscos.Entidades
     
     public partial class ProductoPorCodigo
     {
-        public int ProductoId { get; set; }
         public string Codigo { get; set; }
-        public string Descripcion { get; set; }
         public Nullable<decimal> StockActual { get; set; }
+        public Nullable<int> StockId { get; set; }
+        public string Producto { get; set; }
+        public System.DateTime FechaUltimaModificacion { get; set; }
+        public Nullable<int> Desincronizado { get; set; }
+        public Nullable<int> Eliminado { get; set; }
+        public Nullable<System.Guid> Identifier { get; set; }
+        public Nullable<int> HabilitadoParaCorregir { get; set; }
     }
 }

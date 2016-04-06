@@ -1,29 +1,34 @@
 (function () {
     'use strict';
 
-    angular.module('maxikioscosApp').factory('loginApi', ['$http', '$q', '$ionicLoading', loginApi]);
+    angular.module('maxikioscosApp').service('loginApi', loginApi);
 
-    function loginApi($http, $q, $ionicLoading) {
-        var self = this;
+    loginApi.$inject = ['httpService', 'SERVICE_CONSTANTS','maxikioscosService', '$rootScope', 'EVENTS_CONSTANTS'];
+
+    function loginApi(httpService, SERVICE_CONSTANTS, maxikioscosService, $rootScope, EVENTS_CONSTANTS) {
+        var srv = this;
+
+        srv.login = login;        
 
         function login(username, password) {
-            var deferred = $q.defer();
+            var param = {
+                            UserName: username,
+                            Password:  password
+                        };
 
-            //$http.post("http://maxikioscos/api/login", { username: username, password: password })
-            //    .success(function (data) {
-            //        deferred.resolve(data);
-            //    })
-            //    .error(function () {
-            //        deferred.reject();
-            //    });
+            return httpService.doPost(SERVICE_CONSTANTS.LOGIN, param)
+            .then(function(response){
+                if (!response.Error){                    
+                    maxikioscosService.maxiKioscoStatus.UserId = response.UserId;                        
+                    return response;
+                }            
 
-            deferred.resolve(true);
-
-            return deferred.promise;
-        };
-
-        return {
-            login: login
-        };
+                return response;
+            }, function(error){
+                return {
+                            Error: 'No se encuentra el servicio o este está fuera de linea.'
+                        };
+            });
+        };           
     };
 })();

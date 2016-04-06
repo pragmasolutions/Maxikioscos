@@ -1,28 +1,34 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('maxikioscosApp').controller('LoginCtrl', ['$scope', '$state', 'loginApi', LoginCtrl]);
+    angular.module('maxikioscosApp').controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl($scope, $state, loginApi) {
+    LoginCtrl.$inject = ['$rootScope', '$scope', 'loginApi', 'maxikioscosService', 'EVENTS_CONSTANTS'];
+
+    function LoginCtrl($rootScope, $scope, loginApi, maxikioscosService, EVENTS_CONSTANTS) {
         var vm = this;
+
+        vm.signIn = signIn;        
+        vm.message = '';
 
         vm.authorization = {
             username: '',
             password: ''
         };
 
-        vm.signIn = function (form) {
+        function signIn(form) {
             if (form.$valid) {
-
-                loginApi.login(vm.authorization.username, vm.authorization.username.password)
+                loginApi.login(vm.authorization.username, vm.authorization.password)
                     .then(function (data) {
-                       
-                        $state.go('home');
-
-                    }).finally(function () {
-                        
+                        if(!data.Error){
+                            $scope.sharedCtrl.isWebOnline = true;
+                            $scope.sharedCtrl.isLogged = true;                             
+                            $scope.sharedCtrl.goToHome();    
+                        }else{
+                            vm.message = data.Error;
+                        }                        
                     });
             }
-        };
+        };        
     };
 })();

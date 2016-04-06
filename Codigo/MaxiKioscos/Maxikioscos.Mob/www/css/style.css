@@ -16,3 +16,12 @@
 .col input{
 	width: 100%;
 }
+
+/*VALIDACION*/
+input.ng-touched.ng-invalid {
+    border-bottom: 2px solid red;
+}
+
+input.ng-touched.ng-invalid+div[ng-messages]{
+    color: red;
+}

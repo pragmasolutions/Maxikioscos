@@ -50,8 +50,10 @@
     <Compile Include="Interfaces\ISincronizacionService.cs" />
     <Compile Include="Request\ActualizarDatosRequest.cs" />
     <Compile Include="Request\AcusarExportacionRequest.cs" />
+    <Compile Include="Request\LoginRequest.cs" />
     <Compile Include="Request\ObtenerDatosRequest.cs" />
     <Compile Include="Request\ReportarErrorRequest.cs" />
+    <Compile Include="Response\LoginResponse.cs" />
     <Compile Include="Response\UsuarioApiResponse.cs" />
     <Compile Include="Response\KioscoApiResponse.cs" />
     <Compile Include="Response\ObtenerUltimasSecuenciasResponse.cs" />

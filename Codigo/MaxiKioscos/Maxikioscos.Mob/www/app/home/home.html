@@ -1,15 +1,23 @@
-<ion-view view-title="Home" ng-controller="homeCtrl as vm">
-    <div class="bar bar-header bar-calm">
-        <h1 class="title">Home</h1>
-    </div>
-    <div class="bar bar-header bar-calm">
-
-    </div>
-    <ion-content class="has-header">
-        <h3 class="title">El servicio de Maxikioscos no se encuentra disponible.</h3>
-        <h3 class="title">Verifique la conexión a internet.</h3>
-        <button class="button button-calm button-full" ng-click="vm.reload()">
-            Reintentar
-        </button>	
+<ion-view title="DrugStore" hide-back-button="true" show-menu-button="true" ng-controller="homeCtrl as vm">       
+    <ion-content class="has-header">        
+        <div ng-if="!vm.maxikioscoAvailable">
+            <h3 class="title" style="text-align: center;">El servicio local no se encuentra disponible.</h3>
+            </br>
+            <h5 class="title padding">1. Verifique la conexión a internet.</h5>
+            <h5 class="title padding">2. Verifique que el servicio este en linea.</h5>
+            </br>
+            <button class="button button-energized button-block" ng-click="vm.reload()">
+                Reconectar
+            </button>       
+            </br>
+            </br>
+            <h6 class="title" style="text-align: center;">Si el problema persiste, contáctese con el equipo soporte.</h6>
+        </div>
+        <div ng-if="vm.maxikioscoAvailable">
+            <h3 class="title" style="text-align: center;">BIENVENIDO!</h3>
+            </br>
+            <h4 class="title" style="text-align: center;">Elija una opción del menú</h3>
+        </div>
+        
     </ion-content>
 </ion-view>

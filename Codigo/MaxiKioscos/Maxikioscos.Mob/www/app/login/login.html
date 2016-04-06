@@ -1,54 +1,35 @@
-﻿<ion-view view-title="Ingreso" ng-controller="LoginCtrl as vm">
+﻿<ion-view title="DrugStore" hide-menu-button="true" ng-controller="LoginCtrl as vm">
 
     <ion-content class="padding">
 
-        <h2 style="text-align: center;">Ingreso</h2><br />
+        <h2 style="text-align: center;">Login</h2><br />
 
-        <form name="authorizationForm" novalidate="" ng-submit="vm.signIn(authorizationForm)">
-
-            <div class="list">
-
-                <label class="item item-input" ng-class="{ 'has-errors' : authorizationForm.username.$invalid, 'no-errors' : authorizationForm.username.$valid}">
-                    <span class="input-label">Username</span>
-                    <input type="text" name="username" ng-model="vm.authorization.username" ng-minlength="5" ng-maxlength="20" required>
+        <form name="authorizationForm">
+            <section class="form-group" style="align: center;">
+                <label for="Username" localization-group="DisplayName" localization-key="vm.authorization.username">
+                    Usuario
                 </label>
-
-                <div class="error-container" ng-show="authorizationForm.username.$error" ng-messages="authorizationForm.username.$error">
-                    <div ng-messages-include="error-list.html"></div>
+                <input class="form-control" name="Username" ng-model="vm.authorization.username" required="required" type="text"/>
+                <div ng-messages="authorizationForm.Username.$error" ng-show="authorizationForm.Username.$touched || authorizationForm.$submitted">
+                    <div ng-messages-include="/app/templates/error-messages.html">
+                    </div>
                 </div>
-
-                <label class="item item-input" ng-class="{ 'has-errors' : authorizationForm.password.$invalid && authorizationForm.$submitted, 'no-errors' : authorizationForm.password.$valid  && authorizationForm.$submitted}">
-                    <span class="input-label">Password</span>
-                    <input type="password" name="password" ng-model="vm.authorization.password" ng-minlength="5" ng-maxlength="20" required>
+                <label for="Password" localization-group="DisplayName" localization-key="vm.authorization.password">
+                    Contraseña
                 </label>
-
-                <div class="error-container last-error-container" ng-show="authorizationForm.password.$error && authorizationForm.$submitted" ng-messages="authorizationForm.password.$error">
-                    <div ng-messages-include="error-list.html"></div>
+                <input class="form-control" name="Password" ng-model="vm.authorization.password" required="required" type="password" value=""/>
+                <div ng-messages="authorizationForm.Password.$error" ng-show="authorizationForm.Password.$touched || authorizationForm.$submitted">
+                    <div ng-messages-include="/app/templates/error-messages.html">
+                    </div>
                 </div>
-
-            </div>
-
-            <button class="button button-full button-positive" type="submit">
-                Entrar
-            </button>
-
+                </br>
+                <button class="button button-calm button-block" ng-click="vm.signIn(authorizationForm)">
+                    Entrar
+                </button>  
+                 <div class="alert alert-danger" data-ng-hide="vm.message == ''">
+                    <h5 style="text-align: center; color:red;">{{vm.message}}</h5>
+                </div>             
+            </section>         
         </form>
-
-        <script id="error-list.html" type="text/ng-template">
-            <div class="error" ng-message="required">
-                <i class="ion-information-circled"></i>
-                Este campo es requerido!
-            </div>
-            <div class="error" ng-message="minlength">
-                <i class="ion-information-circled"></i>
-                La logitud maxima de este campo son 5 caracteres!
-            </div>
-            <div class="error" ng-message="maxlength">
-                <i class="ion-information-circled"></i>
-                La longitud maxima de este campo son 20 caracteres!
-            </div>
-        </script>  
-
     </ion-content>
-
 </ion-view>
