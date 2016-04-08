@@ -18,28 +18,6 @@ namespace MaxiKioscos.Services
             AuthService = authService;
         }
 
-        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        public IList<KioscoApiResponse> GetMaxiKioscos()
-        {
-            try
-            {
-                var maxiKioscosList = Uow.MaxiKioscos.Listado(m => m.Eliminado).Select(m => new KioscoApiResponse
-                                                                            {
-                                                                                Id = m.MaxiKioscoId,
-                                                                                Identifier = m.Identifier,
-                                                                                MachineName = m.NombreMaquina
-                                                                            }).ToList();
-
-
-                return maxiKioscosList;
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException(ex.InnerException.Message);
-            }
-
-        }
-
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         public LoginResponse Login(LoginRequest login)
         {

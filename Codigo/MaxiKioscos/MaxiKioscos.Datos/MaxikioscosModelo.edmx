@@ -3348,7 +3348,6 @@
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
           <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
-          <Property Name="NombreMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -5645,7 +5644,6 @@
           <EntitySetMapping Name="MaxiKioscoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.MaxiKiosco">
               <MappingFragment StoreEntitySet="MaxiKiosco">
-                <ScalarProperty Name="NombreMaquina" ColumnName="NombreMaquina" />
                 <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="UltimoScriptCorrido" ColumnName="UltimoScriptCorrido" />

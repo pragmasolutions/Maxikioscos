@@ -24,8 +24,7 @@ BEGIN
 		Direccion varchar(200),
 		Telefono varchar(20),
 		Asignado bit,
-		Abreviacion varchar(4),
-		NombreMaquina varchar(50),
+		Abreviacion varchar(4),		
 		Desincronizado bit,
 		FechaUltimaModificacion datetime2(7),
 		Eliminado bit,
@@ -34,7 +33,7 @@ BEGIN
 	);
 	
 	WITH MaxiKioscoCTE (MaxiKioscoId, Identifier, Nombre, Direccion, Telefono, Asignado, Abreviacion,
-		NombreMaquina, Desincronizado, FechaUltimaModificacion, Eliminado, EstaOnLine, CuentaIdentifier)
+		Desincronizado, FechaUltimaModificacion, Eliminado, EstaOnLine, CuentaIdentifier)
 	AS (
 		SELECT    *
 		FROM       OPENXML (@idoc, '/Exportacion/MaxiKioscos/M/C',3) 
@@ -44,8 +43,7 @@ BEGIN
 						Direccion varchar(200) '../Direccion',
 						Telefono varchar(20) '../Telefono',
 						Asignado bit '../Asignado',
-						Abreviacion varchar(4) '../Abreviacion',
-						NombreMaquina varchar(50) '../NombreMaquina',
+						Abreviacion varchar(4) '../Abreviacion',						
 						Desincronizado bit '../Desincronizado',
 						FechaUltimaModificacion datetime2(7) '../FechaUltimaModificacion',
 						Eliminado bit '../Eliminado',
@@ -62,8 +60,7 @@ BEGIN
 		Direccion = CTE.Desincronizado,
 		Telefono = CTE.Telefono,
 		Asignado = CTE.Asignado,
-		Abreviacion = CTE.Abreviacion,
-		NombreMaquina = CTE.NombreMaquina,
+		Abreviacion = CTE.Abreviacion,		
 		Desincronizado = CTE.Desincronizado,
 		FechaUltimaModificacion = CTE.FechaUltimaModificacion, 
 		Eliminado = CTE.Eliminado, 
@@ -77,14 +74,13 @@ BEGIN
 	;
 	 
 	 INSERT INTO MaxiKiosco (Identifier, Nombre, Direccion, Telefono, Asignado, Abreviacion,
-		NombreMaquina, Desincronizado, FechaUltimaModificacion, Eliminado, EstaOnLine, CuentaId)
+		 Desincronizado, FechaUltimaModificacion, Eliminado, EstaOnLine, CuentaId)
 	 SELECT Identifier, 
 			Nombre, 
 			Direccion, 
 			Telefono, 
 			Asignado,
-			Abreviacion,
-			NombreMaquina,
+			Abreviacion,			
 			Desincronizado, 
 			FechaUltimaModificacion,
 	 		Eliminado, 
