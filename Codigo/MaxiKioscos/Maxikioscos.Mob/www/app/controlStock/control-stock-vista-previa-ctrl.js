@@ -28,9 +28,23 @@
                 vm.criterios.UserId = maxikioscosService.maxiKioscoStatus.UserId;                                
                 controlStockApi.getDetalleFinal(vm.criterios)
                 .then(function(productosControlStock) {
-                    $rootScope.productosFiltrados = productosControlStock;
-                    $rootScope.criterios = vm.criterios;
-                    $scope.sharedCtrl.goToCargarControlStock();                
+                    if (!productosControlStock.Error)
+                    {
+                        $rootScope.productosFiltrados = productosControlStock;
+                        $rootScope.criterios = vm.criterios;
+                        $scope.sharedCtrl.goToCargarControlStock();                    
+                    }else{
+                        var alertPopup = $ionicPopup.alert({
+                                 title: 'Error al obtener el detalle',
+                                 template: productosControlStock.Error,
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                 
+                               });
+                        }
+                    
                 });
                
              }
@@ -45,14 +59,26 @@
         function getVistaPrevia(){
            controlStockApi.getVistaPrevia(vm.criterios)
             .then(function(productosControlStock) {
-                vm.productos = productosControlStock;
-                vm.productosFiltrados = vm.productos;
+                if(!productosControlStock.Error)
+                {
+                    vm.productos = productosControlStock;
+                    vm.productosFiltrados = vm.productos;
+                    vm.criterios.LowerLimit = 1;
+                    vm.criterios.UpperLimit = vm.productos.length;
 
-                vm.criterios.LowerLimit = 1;
-                vm.criterios.UpperLimit = vm.productos.length;
+                }else{
+                    var alertPopup = $ionicPopup.alert({
+                                 title: 'Error al obtener la vista previa',
+                                 template: productosControlStock.Error,
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                 
+                               });
+                    }                                    
             });        
-        }
-        
+        }        
 
         function generar() {              
             vm.criterios.UserId = maxikioscosService.maxiKioscoStatus.UserId;                        

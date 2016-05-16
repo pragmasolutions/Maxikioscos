@@ -89,10 +89,26 @@
                      if(res) {
                        controlStockApi.cerrarControlStock(vm.criterios)
                        .then(function(response){
-                            if(response){
-                                $scope.sharedCtrl.goToChooseReportType();
+                            if(!response.Error){
+                                var alertPopup = $ionicPopup.alert({
+                                 title: 'Mensaje',
+                                 template: 'Se ha guardado correctamente.',
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                    $scope.sharedCtrl.goToHome();
+                               });                                
                             }else{
-                                //MOSTRAR ERROR
+                                var alertPopup = $ionicPopup.alert({
+                                 title: 'Error al Guardar',
+                                 template: response.Error,
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                 
+                               });
                             }                            
                        });
                      }

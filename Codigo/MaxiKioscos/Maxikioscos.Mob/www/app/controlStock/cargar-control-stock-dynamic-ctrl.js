@@ -25,7 +25,20 @@
         function getMotivos(){
             motivosApi.getAll()
             .then(function (motivos) {
-                vm.motivos = motivos;
+                if(!motivos.Error){
+                    vm.motivos = motivos;
+                }else{
+                        var alertPopup = $ionicPopup.alert({
+                                            title: 'Error al Buscar..',
+                                            template: motivos.Error,
+                                            okText: 'Aceptar'
+                                        });
+
+                        alertPopup.then(function(res) {
+                         
+                        });
+
+                    }                
             });
         }
 
@@ -101,12 +114,12 @@
                                   } else {
                                     controlStockApi.getProductByCode($scope.data.code.toString())
                                     .then(function(response){
-                                        if(response){
+                                        if(!response.Error){
                                             vm.productos.push(response);                                            
                                         }else{
                                             var alertPopup = $ionicPopup.alert({
                                                     title: 'Error al Buscar..',
-                                                    template: 'Se ha producido un error. Intente nuevamente.',
+                                                    template: response.Error,
                                                     okText: 'Aceptar'
                                                 });
 
@@ -137,13 +150,13 @@
                 var barcode = imageData.text;                
                 controlStockApi.getProductByCode(barcode)
                 .then(function(response){
-                    if(response){
+                    if(!response.Error){
                         vm.productos.push(response);
                         vm.resaltarProducto(barcode);
                     }else{
                         var alertPopup = $ionicPopup.alert({
                                  title: 'Error al Buscar..',
-                                 template: 'Se ha producido un error. Intente nuevamente.',
+                                 template: response.Error,
                                  okText: 'Aceptar'
                             });
 
@@ -170,12 +183,20 @@
                         
                        controlStockApi.cerrarControlStockDinamico(vm.productos)
                        .then(function(response){
-                            if(response){
-                                $scope.sharedCtrl.goToChooseReportType();
+                            if(!response.Error){
+                                var alertPopup = $ionicPopup.alert({
+                                 title: 'Mensaje',
+                                 template: 'Se ha guardado correctamente.',
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                    $scope.sharedCtrl.goToHome();
+                               });                                
                             }else{
                                var alertPopup = $ionicPopup.alert({
                                  title: 'Error al Guardar',
-                                 template: 'Se ha producido un error. Intente nuevamente.',
+                                 template: response.Error,
                                  okText: 'Aceptar'
                                });
 

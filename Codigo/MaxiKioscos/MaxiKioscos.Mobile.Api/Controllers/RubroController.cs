@@ -26,11 +26,19 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
         public SimpleListItem[] Get()
         {
-            return _uow.Rubros.Listado().Where(m => !m.Eliminado).OrderBy(x => x.Descripcion).Select(x => new SimpleListItem
+            try
             {
-                Id = x.RubroId,
-                Description = x.Descripcion
-            }).ToArray();
+                return _uow.Rubros.Listado().Where(m => !m.Eliminado).OrderBy(x => x.Descripcion).Select(x => new SimpleListItem
+                {
+                    Id = x.RubroId,
+                    Description = x.Descripcion
+                }).ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+            }
+            
         }
     }
 }

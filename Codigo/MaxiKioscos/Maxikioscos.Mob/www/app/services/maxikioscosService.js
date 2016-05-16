@@ -10,12 +10,12 @@
 
 		srv.maxiKioscoStatus = {
 			UserId: 1,			
-			maxikioscoId: '252BB32B-B6A7-4580-9BEC-2027C94D7E3A',
+			maxikioscoId: '',
 			machineName: '',
 			isWebOnline: false,
 			isLocalServiceOnline: false,
-			//urlLocalService: 'http://localhost:8080'
-			urlLocalService: 'http://192.168.0.12:8080'
+			urlLocalService: 'http://localhost:8080'
+			//urlLocalService: 'http://192.168.0.7:8080'
 		}
 
 		srv.validateMaxikioscoAccess = validateMaxikioscoAccess;

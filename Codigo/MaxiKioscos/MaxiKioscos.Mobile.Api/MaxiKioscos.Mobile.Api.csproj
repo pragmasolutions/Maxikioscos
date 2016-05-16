@@ -234,6 +234,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MotivoController.cs" />
+    <Compile Include="Controllers\MaxikioscoController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\StockControlController.cs" />
     <Compile Include="Controllers\RubroController.cs" />
@@ -253,9 +254,12 @@
     <Compile Include="Models\Request\StockControlDetailRequest.cs" />
     <Compile Include="Models\Request\StockControlDetalleRowRequest.cs" />
     <Compile Include="Models\Request\StockControlPreviewRequest.cs" />
+    <Compile Include="Models\Request\StockControlResumeRequest.cs" />
     <Compile Include="Models\Response\ProductRowResponse.cs" />
+    <Compile Include="Models\Response\MaxikioscoResponse.cs" />
     <Compile Include="Models\Response\SimpleListItem.cs" />
     <Compile Include="Models\Response\StockControlPreviewResponse.cs" />
+    <Compile Include="Models\Response\StockControlResumeResponse.cs" />
     <Compile Include="NinjectConfig.cs" />
     <Compile Include="NinjectControllerFactory.cs" />
     <Compile Include="NinjectDependencyResolver.cs" />

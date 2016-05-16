@@ -45,7 +45,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                             Eliminado = false,
                             HabilitadoParaCorregir = true,
                             MotivoCorreccionId = null,
-                            Diferencia = 0
+                            Diferencia = null
                         };
                     }
                 }

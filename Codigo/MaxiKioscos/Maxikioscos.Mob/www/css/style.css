@@ -25,3 +25,11 @@ input.ng-touched.ng-invalid {
 input.ng-touched.ng-invalid+div[ng-messages]{
     color: red;
 }
+
+.user{
+	font-size: 14 pts;
+}
+
+.password{
+	font-size: ;
+}

@@ -28,38 +28,51 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
         public StockControlPreviewResponse Get([FromUri]StockControlPreviewRequest request)
         {
-
-            var response = new StockControlPreviewResponse();
-            if (request.ProviderId != null)
+            try
             {
-                //Verifico si tiene facturas sin compras asociadas
-                var billIds = _uow.Facturas.Listado().Where(f => f.ProveedorId == request.ProviderId).Select(f => f.FacturaId).ToList();
-                var purchases = _uow.Compras.Listado().Count(c => billIds.Contains(c.FacturaId));
-                if (billIds.Count() != purchases)
-                    response.WarningMessage = "El proveedor seleccionado tiene facturas que no han sido completadas. Está seguro que desea continuar?";
+                var response = new StockControlPreviewResponse();
+                if (request.ProviderId != null)
+                {
+                    //Verifico si tiene facturas sin compras asociadas
+                    var billIds = _uow.Facturas.Listado().Where(f => f.ProveedorId == request.ProviderId).Select(f => f.FacturaId).ToList();
+                    var purchases = _uow.Compras.Listado().Count(c => billIds.Contains(c.FacturaId));
+                    if (billIds.Count() != purchases)
+                        response.WarningMessage = "El proveedor seleccionado tiene facturas que no han sido completadas. Está seguro que desea continuar?";
+                }
+                var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
+                response.List = _uow.ControlesStock.ReporteControlStockVistaPrevia(shop.MaxiKioscoId,
+                                                                                request.ProviderId,
+                                                                                request.ProductCategoryId,
+                                                                                request.OnlyBestSellers,
+                                                                                request.ExcludeZeroStock,
+                                                                                request.RowsAmount).ToArray();
+                return response;
             }
-            var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
-            response.List = _uow.ControlesStock.ReporteControlStockVistaPrevia(shop.MaxiKioscoId,
-                                                                            request.ProviderId,
-                                                                            request.ProductCategoryId,
-                                                                            request.OnlyBestSellers,
-                                                                            request.ExcludeZeroStock,
-                                                                            request.RowsAmount).ToArray();
-            return response;
+            catch (Exception ex)
+            {
+                throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+            }
         }
         
         public List<ControlStockObtenerDetalleRow> GetObtenerDetalle([FromUri]StockControlDetailRequest request)
         {
             if (request != null)
             {
-                var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
-                return _uow.ControlesStock.ObtenerDetalle(shop.MaxiKioscoId, request.ProviderId,
-                                            request.ProductCategoryId, request.UserId, request.OnlyBestSellers,
-                                            request.ExcludeZeroStock, request.RowsAmount, request.LowerLimit,
-                                            request.UpperLimit);
+                try
+                {
+                    var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
+                    return _uow.ControlesStock.ObtenerDetalle(shop.MaxiKioscoId, request.ProviderId,
+                                                request.ProductCategoryId, request.UserId, request.OnlyBestSellers,
+                                                request.ExcludeZeroStock, request.RowsAmount, request.LowerLimit,
+                                                request.UpperLimit);
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+                }
             }
 
-            return null;
+            throw new ApplicationException(string.Format("El conjunto de parámetros no puede ser nulo."));
         }
         
         public bool PostCerrar(StockControlCreateRequest request)
@@ -67,83 +80,90 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
             if (request != null)
             {
-
-                var controlStock = new ControlStock();
-                var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
-                //Set control stock
-                controlStock.MaxiKioscoId = shop.MaxiKioscoId;
-                controlStock.UsuarioId = request.UserId;
-                controlStock.ProveedorId = request.ProviderId;
-                controlStock.RubroId = request.ProductCategoryId;
-                controlStock.CantidadFilas = request.RowsAmount;
-                controlStock.ConStockCero= !request.ExcludeZeroStock;
-                controlStock.MasVendidos = request.OnlyBestSellers;
-                controlStock.LimiteInferior = request.LowerLimit;
-                controlStock.LimiteSuperior = request.UpperLimit;
-                controlStock.FechaCreacion = DateTime.Now;
-                controlStock.FechaCorreccion = DateTime.Now;
-                controlStock.Identifier = Guid.NewGuid();
-                controlStock.Desincronizado = true;
-                controlStock.Cerrado = true;
-
-                var detalleList = new List<ControlStockDetalle>();
-
-                var motivos = _uow.MotivosCorreccion.Listado();
-                var detalles = request.ControlStockDetalle.Where(d => d.MotivoCorreccionId != null).ToList();
-                if (detalles.Any())
+                try
                 {
-                    foreach (var controlStockDetalle in detalles)
+                    var controlStock = new ControlStock();
+                    var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.ShopIdentifier);
+                    //Set control stock
+                    controlStock.MaxiKioscoId = shop.MaxiKioscoId;
+                    controlStock.UsuarioId = request.UserId;
+                    controlStock.ProveedorId = request.ProviderId;
+                    controlStock.RubroId = request.ProductCategoryId;
+                    controlStock.CantidadFilas = request.RowsAmount;
+                    controlStock.ConStockCero = !request.ExcludeZeroStock;
+                    controlStock.MasVendidos = request.OnlyBestSellers;
+                    controlStock.LimiteInferior = request.LowerLimit;
+                    controlStock.LimiteSuperior = request.UpperLimit;
+                    controlStock.FechaCreacion = DateTime.Now;
+                    controlStock.FechaCorreccion = DateTime.Now;
+                    controlStock.Identifier = Guid.NewGuid();
+                    controlStock.Desincronizado = true;
+                    controlStock.Cerrado = true;
+
+                    var detalleList = new List<ControlStockDetalle>();
+
+                    var motivos = _uow.MotivosCorreccion.Listado();
+                    var detalles = request.ControlStockDetalle.Where(d => d.MotivoCorreccionId != null).ToList();
+                    if (detalles.Any())
                     {
-                        var stock = _uow.Stocks.Obtener(controlStockDetalle.StockId);
-
-                        var transaccion = new StockTransaccion()
+                        foreach (var controlStockDetalle in detalles)
                         {
-                            Desincronizado = true,
-                            Eliminado = false,
-                            FechaUltimaModificacion = DateTime.Now,
-                            Identifier = Guid.NewGuid(),
-                            StockId = controlStockDetalle.StockId,
-                            StockTransaccionTipoId = 3 //Correccion
-                        };
+                            var stock = _uow.Stocks.Obtener(controlStockDetalle.StockId);
 
-                        var motivo = motivos.FirstOrDefault(m => m.MotivoCorreccionId == controlStockDetalle.MotivoCorreccionId);
-                        transaccion.Cantidad = motivo.SumarAStock
-                                                   ? controlStockDetalle.Diferencia.GetValueOrDefault()
-                                                   : -controlStockDetalle.Diferencia.GetValueOrDefault();
-                        _uow.StockTransacciones.Agregar(transaccion);
-                        stock.StockActual += transaccion.Cantidad;
+                            var transaccion = new StockTransaccion()
+                            {
+                                Desincronizado = true,
+                                Eliminado = false,
+                                FechaUltimaModificacion = DateTime.Now,
+                                Identifier = Guid.NewGuid(),
+                                StockId = controlStockDetalle.StockId,
+                                StockTransaccionTipoId = 3 //Correccion
+                            };
 
-                        _uow.Stocks.Modificar(stock);
-                        controlStockDetalle.Desincronizado = true;
-                        detalleList.Add(new ControlStockDetalle()
-                                        {
-                                            StockId = controlStockDetalle.StockId,
-                                            Cantidad = controlStockDetalle.StockActual,
-                                            FechaUltimaModificacion = DateTime.Now,
-                                            Desincronizado = true,
-                                            Eliminado = false,
-                                            Identifier = controlStockDetalle.Identifier,
-                                            Correccion = controlStockDetalle.Diferencia,
-                                            Precio = null,
-                                            HabilitadoParaCorregir = controlStockDetalle.HabilitadoParaCorregir,
-                                            ControlStockPrevioId = null
-                                        });
+                            var motivo = motivos.FirstOrDefault(m => m.MotivoCorreccionId == controlStockDetalle.MotivoCorreccionId);
+                            transaccion.Cantidad = motivo.SumarAStock
+                                                       ? controlStockDetalle.Diferencia.GetValueOrDefault()
+                                                       : -controlStockDetalle.Diferencia.GetValueOrDefault();
+                            _uow.StockTransacciones.Agregar(transaccion);
+                            stock.StockActual += transaccion.Cantidad;
 
-                        controlStock.ControlStockDetalles = detalleList;
+                            _uow.Stocks.Modificar(stock);
+                            controlStockDetalle.Desincronizado = true;
+                            detalleList.Add(new ControlStockDetalle()
+                            {
+                                StockId = controlStockDetalle.StockId,
+                                Cantidad = controlStockDetalle.StockActual,
+                                FechaUltimaModificacion = DateTime.Now,
+                                Desincronizado = true,
+                                Eliminado = false,
+                                Identifier = controlStockDetalle.Identifier,
+                                Correccion = controlStockDetalle.Diferencia,
+                                Precio = null,
+                                HabilitadoParaCorregir = controlStockDetalle.HabilitadoParaCorregir,
+                                ControlStockPrevioId = null
+                            });
+
+                            controlStock.ControlStockDetalles = detalleList;
+                        }
                     }
+
+                    _uow.ControlesStock.Agregar(controlStock);
+                    _uow.Commit();
+
+                    //Deshabilito todos los ControlStockDetalle con controlStock abierto para el mismo stock
+                    if (detalleList.Any())
+                        _uow.ControlesStock.DeshabilitarAbiertos(controlStock.ControlStockId, detalles.Select(d => d.StockId).ToArray());
+
+                    return true;
                 }
-                
-                _uow.ControlesStock.Agregar(controlStock);
-                _uow.Commit();
-
-                //Deshabilito todos los ControlStockDetalle con controlStock abierto para el mismo stock
-                if (detalleList.Any())
-                    _uow.ControlesStock.DeshabilitarAbiertos(controlStock.ControlStockId, detalles.Select(d => d.StockId).ToArray());
-
-                return true;
+                catch (Exception ex)
+                {
+                    throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+                }
             }
 
-            return false;
+            throw new ApplicationException(string.Format("El conjunto de parámetros no puede ser nulo."));
         }
+        
     }
 }

@@ -3,9 +3,9 @@
 
     angular.module('maxikioscosApp').controller('GenerarControlStockCtrl', GenerarControlStockCtrl);
 
-    GenerarControlStockCtrl.$inject = ['$scope', '$rootScope', 'proveedoresApi', 'rubrosApi', 'maxikioscosService'];
+    GenerarControlStockCtrl.$inject = ['$scope', '$rootScope', 'proveedoresApi', 'rubrosApi', 'maxikioscosService', '$ionicPopup'];
 
-    function GenerarControlStockCtrl($scope, $rootScope, proveedoresApi, rubrosApi, maxikioscosService) {
+    function GenerarControlStockCtrl($scope, $rootScope, proveedoresApi, rubrosApi, maxikioscosService, $ionicPopup) {
         var vm = this;
         
         vm.criterios={};
@@ -42,13 +42,39 @@
 
          function getAllProveedores() {                
             proveedoresApi.getAll().then(function(proveedores) {
-                vm.proveedores = proveedores;
+                if(!proveedores.Error)
+                {
+                    vm.proveedores = proveedores;
+                }else{
+                        var alertPopup = $ionicPopup.alert({
+                                 title: 'Error al obtener Proveedores',
+                                 template: proveedores.Error,
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                 
+                               });
+                    }                
             });
         };
 
          function getAllRubros() {
             rubrosApi.getAll().then(function (rubros) {
-                vm.rubros = rubros;
+                if(!rubros.Error){
+                    vm.rubros = rubros;
+                }else{
+                        var alertPopup = $ionicPopup.alert({
+                                 title: 'Error al obtener Rubros',
+                                 template: rubros.Error,
+                                 okText: 'Aceptar'
+                               });
+
+                               alertPopup.then(function(res) {
+                                 
+                               });
+
+                    }                                 
             });
         }
 

@@ -20,7 +20,7 @@
            .then(function(response){
                 return response;
            }, function(response){
-                return null;
+                return {Error: response.data.ExceptionMessage};
            });  
         };      
 

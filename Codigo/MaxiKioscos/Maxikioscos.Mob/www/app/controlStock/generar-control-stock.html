@@ -29,8 +29,8 @@
             <ion-checkbox ng-model="vm.criterios.soloMasVendidos">Solo los m&aacute;s Vendidos</ion-checkbox>
 
             <label class="item item-input">
-                <span class="input-label">Cantidad de Filas</span>
-                <input type="number" ng-model="vm.criterios.cantidadFilas">
+                <span class="input-label" ng-disabled="!vm.criterios.soloMasVendidos">Cantidad de Filas</span>
+                <input type="number" ng-model="vm.criterios.cantidadFilas" ng-disabled="!vm.criterios.soloMasVendidos">
             </label>
 
             <button class="button button-calm button-full" ng-click="vm.generarClick()">

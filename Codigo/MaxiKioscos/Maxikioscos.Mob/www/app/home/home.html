@@ -1,5 +1,11 @@
 <ion-view title="DrugStore" hide-back-button="true" show-menu-button="true" ng-controller="homeCtrl as vm">       
     <ion-content class="has-header">        
+        <div>
+            <h3 class="title" style="text-align: center;">BIENVENIDO</h3>
+            </br>
+            <h4 class="title" style="text-align: center;">Elija una opción del menú</h4>
+            </br>
+        </div>
         <div ng-if="!vm.maxikioscoAvailable">
             <h3 class="title" style="text-align: center;">El servicio local no se encuentra disponible.</h3>
             </br>
@@ -7,16 +13,24 @@
             <h5 class="title padding">2. Verifique que el servicio este en linea.</h5>
             </br>
             <button class="button button-energized button-block" ng-click="vm.reload()">
+                <i class="icon ion-loop"></i>
                 Reconectar
             </button>       
             </br>
             </br>
             <h6 class="title" style="text-align: center;">Si el problema persiste, contáctese con el equipo soporte.</h6>
         </div>
-        <div ng-if="vm.maxikioscoAvailable">
-            <h3 class="title" style="text-align: center;">BIENVENIDO!</h3>
+        <div ng-if="!vm.isConnected">            
+            <h4 class="title" style="text-align: center;">Haga click en el botón para conectarse al kiosco.</h4>
             </br>
-            <h4 class="title" style="text-align: center;">Elija una opción del menú</h3>
+            <button class="button button-balanced button-block" ng-click="vm.connect()">
+                <i class="icon ion-power"></i>
+                Conectar
+            </button>       
+        </div>
+        <div ng-if="vm.isConnected">            
+            <h4 class="title" style="text-align: center;">El dispositivo se encuentra conectado.</h4>
+            </br>
         </div>
         
     </ion-content>

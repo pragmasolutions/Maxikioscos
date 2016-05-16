@@ -19,7 +19,7 @@
             return httpService.doPost(SERVICE_CONSTANTS.LOGIN, param)
             .then(function(response){
                 if (!response.Error){                    
-                    maxikioscosService.maxiKioscoStatus.UserId = response.UserId;                        
+                    maxikioscosService.maxiKioscoStatus.UserId = response.UserId;
                     return response;
                 }            
 
