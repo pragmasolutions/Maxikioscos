@@ -51,7 +51,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw new ApplicationException(string.Format("No se encontró producto para el código: {0}", request.Code));
+                    throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
                 }
                 
             }

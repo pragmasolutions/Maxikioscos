@@ -14,6 +14,8 @@
         vm.rubros = null;
         vm.getAllProveedores = getAllProveedores;
         vm.getAllRubros = getAllRubros;
+        vm.validateProveedor = validateProveedor;
+        vm.validateRubro = validateRubro;
         
         vm.criterios.proveedorSeleccionado = null;
         vm.criterios.rubroSeleccionado = null;
@@ -25,6 +27,18 @@
         function initialize(){
             vm.getAllProveedores();
             vm.getAllRubros();
+        }
+
+        function validateProveedor(){
+            if(vm.criterios.proveedorSeleccionado==""){
+                vm.criterios.proveedorSeleccionado = null;
+            }
+        }
+
+         function validateRubro(){
+            if(vm.criterios.rubroSeleccionado==""){
+                vm.criterios.rubroSeleccionado = null;
+            }
         }
 
          function generarClick() {

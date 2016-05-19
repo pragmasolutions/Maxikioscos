@@ -23,30 +23,36 @@
             <li class="item"
                 ng-repeat="producto in vm.productos"
                 ng-class="{'balanced': producto.MotivoCorreccionId && producto.Diferencia}"
-                id="{{producto.Codigo}}">
-
-                <div class="row row-center">
-                    <div class="col col-40">
+                id="{{producto.Codigo}}">                
+                 <div class="row">
+                    <div class="col-10 padding-top">
                         <strong class="bold">{{$index + 1}}.</strong>
+                    </div>
+                    <div class="col-80 padding-top">
                         <span>{{producto.Producto}}</span>
+                    </div>                   
+                </div>
+                <div class="row padding-bottom">
+                    <div class="col">
                         <div class="bold">{{producto.Codigo}}</div>
                     </div>
-                    <div class="col col-10 text-right">
-                        <span class="right">{{producto.StockActual}}</span>
+                    <div class="col">
+                        <span>Stock: <b>{{producto.StockActual}}</b></span>
                     </div>
-                    <div class="col col-30">
-                        <select ng-model="producto.MotivoCorreccionId">
+                </div>
+                <div class="row">
+                    <div class="col-6">                        
+                        <select class="selectMotivo" ng-model="producto.MotivoCorreccionId">
                             <option value="" label="Sel. Mot"></option>
                             <option ng-repeat="motivo in vm.motivos" value="{{motivo.Id}}">
                                 {{motivo.Description}}
                             </option>
-                        </select>
+                        </select>                        
                     </div>
-                    <div class="col">
-                        <input type="number" ng-model="producto.Diferencia"/>
+                    <div class="col-6" style="padding-left:10px;">                       
+                        <input type="number" ng-model="producto.Diferencia" placeholder="Diferencia" class="diferencia" />
                     </div>
-                </div>
-
+                </div>     
             </li>
 
             <button class="button button-calm button-full" ng-click="vm.guardar()">

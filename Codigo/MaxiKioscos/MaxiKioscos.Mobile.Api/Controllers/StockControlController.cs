@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -72,7 +74,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                 }
             }
 
-            throw new ApplicationException(string.Format("El conjunto de parámetros no puede ser nulo."));
+            throw new ApplicationException("El conjunto de parámetros no puede ser nulo.");
         }
         
         public bool PostCerrar(StockControlCreateRequest request)
@@ -137,10 +139,11 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                                 Desincronizado = true,
                                 Eliminado = false,
                                 Identifier = controlStockDetalle.Identifier,
-                                Correccion = controlStockDetalle.Diferencia,
+                                Correccion = controlStockDetalle.Diferencia?? 0,
                                 Precio = null,
                                 HabilitadoParaCorregir = controlStockDetalle.HabilitadoParaCorregir,
-                                ControlStockPrevioId = null
+                                ControlStockPrevioId = null,
+                                MotivoCorreccionId = controlStockDetalle.MotivoCorreccionId ?? 6
                             });
 
                             controlStock.ControlStockDetalles = detalleList;
@@ -162,8 +165,41 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                 }
             }
 
-            throw new ApplicationException(string.Format("El conjunto de parámetros no puede ser nulo."));
+            throw new ApplicationException("El conjunto de parámetros no puede ser nulo.");
         }
-        
+
+        public IList<StockControlResumeResponse> GetResumen([FromUri]StockControlResumeRequest request)
+        {
+            if (request != null)
+            {
+                try
+                {
+                    var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.MaxikioscoIdentifier);
+                    var controls = _uow.ControlesStock.Listado(r => r.Rubro, p=>p.Proveedor)
+                            .Where(c => c.MaxiKioscoId == shop.MaxiKioscoId &&
+                                    c.FechaUltimaModificacion >=
+                                    request.DateFrom &&
+                                    c.FechaUltimaModificacion <= request.DateTo)
+                                    .Select(cs => new StockControlResumeResponse
+                                                    {
+                                                        StockControlId = cs.ControlStockId,
+                                                        NroControl = cs.NroControl,
+                                                        Proveedor = cs.Proveedor.Nombre,
+                                                        Rubro = cs.Rubro.Descripcion,
+                                                        LimiteInferior = cs.LimiteInferior,
+                                                        LimiteSuperior = cs.LimiteSuperior
+                                                    }).ToList();
+                    return controls;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+                }
+            }
+
+            throw new ApplicationException("El conjunto de parámetros no puede ser nulo.");
+        }
+
     }
 }

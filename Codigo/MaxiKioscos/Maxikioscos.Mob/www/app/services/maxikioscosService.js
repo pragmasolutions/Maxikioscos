@@ -14,8 +14,8 @@
 			machineName: '',
 			isWebOnline: false,
 			isLocalServiceOnline: false,
-			urlLocalService: 'http://localhost:8080'
-			//urlLocalService: 'http://192.168.0.7:8080'
+			//urlLocalService: 'http://localhost:8080'
+			urlLocalService: 'http://192.168.0.12:8080'
 		}
 
 		srv.validateMaxikioscoAccess = validateMaxikioscoAccess;

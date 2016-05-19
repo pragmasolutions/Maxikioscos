@@ -39,7 +39,7 @@
                 Desincronizado: x.Desincronizado,
                 HabilitadoParaCorregir: x.HabilitadoParaCorregir,
                 MotivoCorreccionId: null,
-                Diferencia : 0
+                Diferencia : null
             }
         });
 

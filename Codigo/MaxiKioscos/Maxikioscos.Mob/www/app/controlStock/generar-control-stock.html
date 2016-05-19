@@ -5,7 +5,7 @@
                 <div class="input-label">
                     Proveedor
                 </div>
-                <select ng-model="vm.criterios.proveedorSeleccionado">
+                <select ng-model="vm.criterios.proveedorSeleccionado" ng-change="vm.validateProveedor()">
                     <option value="" label="Seleccione Proveedor"></option>
                     <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.Id}}">
                         {{proveedor.Description}}
@@ -17,7 +17,7 @@
                 <div class="input-label">
                     Rubro
                 </div>
-                <select ng-model="vm.criterios.rubroSeleccionado">
+                <select ng-model="vm.criterios.rubroSeleccionado"  ng-change="vm.validateRubro()">
                     <option value="" label="Seleccione Rubro"></option>
                     <option ng-repeat="rubro in vm.rubros" value="{{rubro.Id}}">
                         {{rubro.Description}}
@@ -33,7 +33,7 @@
                 <input type="number" ng-model="vm.criterios.cantidadFilas" ng-disabled="!vm.criterios.soloMasVendidos">
             </label>
 
-            <button class="button button-calm button-full" ng-click="vm.generarClick()">
+            <button class="button button-calm button-full" ng-click="vm.generarClick()" ng-disabled="(vm.criterios.rubroSeleccionado == null && vm.criterios.proveedorSeleccionado == null)">
                 Generar
             </button>
         </div>

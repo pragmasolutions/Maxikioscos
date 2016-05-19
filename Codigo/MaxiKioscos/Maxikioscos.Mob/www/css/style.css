@@ -33,3 +33,15 @@ input.ng-touched.ng-invalid+div[ng-messages]{
 .password{
 	font-size: ;
 }
+
+.selectMotivo{
+	height: 34px;
+	left:0;
+	padding: 0
+}
+
+.diferencia{
+	padding-left: 10px; 
+	border:solid;
+	width: 75px;
+}

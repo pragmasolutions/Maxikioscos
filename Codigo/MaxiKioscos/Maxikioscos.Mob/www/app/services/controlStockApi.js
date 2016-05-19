@@ -13,6 +13,21 @@
         srv.getDetalleFinal = getDetalleFinal;
         srv.getProductByCode = getProductByCode;
         srv.cerrarControlStockDinamico = cerrarControlStockDinamico;
+        srv.getResume = getResume;
+
+        function getResume(controlStockRequest){
+            var param = {  
+                            MaxikioscoIdentifier: maxikioscosService.maxiKioscoStatus.maxikioscoId,
+                            DateFrom: controlStockRequest.DateFrom,
+                            DateTo: controlStockRequest.DateTo
+                        };
+            return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.STOCK_CONTROL_GETRESUME, param)
+            .then(function(response){
+                return response;
+            }, function(response){
+                return {Error: response.data.ExceptionMessage};
+            });
+        }
 
         function getVistaPrevia(controlStockCriterios) {
             var param = {  ShopIdentifier: controlStockCriterios.ShopIdentifier,

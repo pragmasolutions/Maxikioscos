@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers', 'ngMessages']) //,'dropdownRubroApp','dropdownMotivoApp','dropdownMarcaApp'
+angular.module('maxikioscosApp', ['ngCordova','ionic', 'starter.controllers', 'ngMessages', 'angularMoment']) //,'dropdownRubroApp','dropdownMotivoApp','dropdownMarcaApp'
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

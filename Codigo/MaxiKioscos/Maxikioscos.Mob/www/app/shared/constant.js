@@ -24,7 +24,8 @@
 			STOCK_CONTROL_CERRAR: api + 'stockcontrol/PostCerrar',
 			PRODUCTS_BY_CODE: api + 'product/GetByCode',
 			MAXIKIOSCO_IDENTIFIER: api + 'Maxikiosco/GetIdentifier',
-			STOCK_CONTROL_DINAMICO_CERRAR: api + 'stockcontrol/PostDinamicoCerrar'
+			STOCK_CONTROL_DINAMICO_CERRAR: api + 'stockcontrol/PostDinamicoCerrar',
+			STOCK_CONTROL_GETRESUME: api + 'stockcontrol/GetResumen'
 
 		};
 	})());

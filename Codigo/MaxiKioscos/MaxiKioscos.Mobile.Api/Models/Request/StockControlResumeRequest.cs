@@ -7,7 +7,7 @@ namespace MaxiKioscos.Mobile.Api.Models.Request
 {
     public class StockControlResumeRequest
     {
-        public int MaxikioscoId { get; set; }
+        public Guid MaxikioscoIdentifier { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
     }
