@@ -327,6 +327,7 @@
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
           <Property Name="UltimaConexion" Type="datetime" />
+          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -2023,6 +2024,21 @@
           <Parameter Name="CuentaId" Type="int" Mode="In" />
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_VentasPorProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="CuentaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Rpt_VentasPorProveedor_TotalGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="CuentaId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_VentasPorTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CierreCajaId" Type="int" Mode="In" />
         </Function>
@@ -3141,6 +3157,21 @@
             <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
             <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="RptVentasPorProveedor" ReturnType="Collection(MaxiKioscosModel.RptVentasPorProveedor)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptVentasPorProveedorTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptVentasPorProveedorTotalGeneral)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3317,6 +3348,7 @@
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
           <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
+          <Property Name="NombreMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -5465,6 +5497,27 @@
           <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="VendidoEnUltimoMes" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
+        <ComplexType Name="RptVentasPorProveedor">
+          <Property Type="String" Name="MaxiKiosco" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="PrecioPromedio" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CantidadTotal" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="VentaTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="RptVentasPorProveedorTotalGeneral">
+          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="PrecioPromedio" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CantidadTotal" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="VentaTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5592,6 +5645,7 @@
           <EntitySetMapping Name="MaxiKioscoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.MaxiKiosco">
               <MappingFragment StoreEntitySet="MaxiKiosco">
+                <ScalarProperty Name="NombreMaquina" ColumnName="NombreMaquina" />
                 <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="UltimoScriptCorrido" ColumnName="UltimoScriptCorrido" />
@@ -6816,6 +6870,35 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PromocionesListado" FunctionName="MaxiKioscosModel.Store.Promocion_Listado" />
+          <FunctionImportMapping FunctionImportName="RptVentasPorProveedor" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProveedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentasPorProveedor">
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptVentasPorProveedorTotalGeneral" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProveedor_TotalGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentasPorProveedorTotalGeneral">
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

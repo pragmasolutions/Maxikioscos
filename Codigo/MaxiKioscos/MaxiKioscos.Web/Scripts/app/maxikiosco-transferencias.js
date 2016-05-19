@@ -1,6 +1,7 @@
 ﻿var transferencias = function () {
     var $modal,
         $modalContent = $("#TransferenciasModalContrainer"),
+        _loadingView = false,
         init = function () {
             $('.btn-transferencia-crear').click(crear);
             $("#z").on('click', 'a.btn-transferencia-editar', editar);
@@ -31,39 +32,47 @@
             });
         },
         refreshList = function () {
-            
+            _loadingView = true;
             var url = '/Transferencias';
             maxikioscoSpinner.startSpin();
             $("#AdminContainer").load(url, function() {
                 maxikioscoSpinner.stopSpin();
+                _loadingView = false;
             });
         },
         editar = function () {
-            var url = $(this).attr('href');
-            cargarVista(url);
+            if (!_loadingView) {
+                var url = $(this).attr('href');
+                cargarVista(url);
+            }
             return false;
         },
         detalle = function () {
-            var url = $(this).attr('href');
-            cargarVista(url);
+            if (!_loadingView) {
+                var url = $(this).attr('href');
+                cargarVista(url);
+            }
             return false;
         },
         eliminar = function () {
-            var url = $(this).attr('href');
-            cargarVista(url);
+            if (!_loadingView) {
+                var url = $(this).attr('href');
+                cargarVista(url);
+            }
             return false;
         },
         aprobar = function () {
-            var url = $(this).attr('href');
-            maxikioscoSpinner.startSpin();
-            $.ajax({
-                type: "POST",
-                url: url
-            }).done(refreshList);
+            if (!_loadingView) {
+                var url = $(this).attr('href');
+                maxikioscoSpinner.startSpin();
+                $.ajax({
+                    type: "POST",
+                    url: url
+                }).done(refreshList);
+            }
             return false;
         },
         cargarVista = function (url) {
-            
             maxikioscoSpinner.startSpin();
             $modalContent.load(url, function () {
                 maxikioscoSpinner.stopSpin();
@@ -81,6 +90,7 @@
                 $('#FechaCreacion').attr('disabled', 'disabled');
 
                 $('#FrmEliminarTransferencia').submit(submit);
+
                 return false;
             });
         },

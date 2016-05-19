@@ -47,8 +47,17 @@ namespace MaxiKioscos.Web.Controllers
         {
             if (ModelState.IsValid && AuthService.Login(model.UserName, model.Password,model.RememberMe))
             {
-                Session["Username"] = model.UserName;
-                return RedirectToLocal(returnUrl);
+                var user = Uow.Usuarios.Obtener(model.UserName);
+                if (user.Eliminado)
+                {
+                    AuthService.LogOff();
+                    UsuarioActual.Usuario = null;
+                }
+                else
+                {
+                    Session["Username"] = model.UserName;
+                    return RedirectToLocal(returnUrl);
+                }
             }
 
             // If we got this far, something failed, redisplay form

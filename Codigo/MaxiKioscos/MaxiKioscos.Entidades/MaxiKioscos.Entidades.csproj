@@ -341,6 +341,12 @@
     <Compile Include="RptVentasPorProductoTotalGeneral.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="RptVentasPorProveedor.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptVentasPorProveedorTotalGeneral.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Rubro.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>

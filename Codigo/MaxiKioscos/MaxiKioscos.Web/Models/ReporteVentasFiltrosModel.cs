@@ -21,6 +21,13 @@ namespace MaxiKioscos.Web.Models
         public bool MostrarTotalGeneral { get; set; }
     }
 
+    public class ReporteVentasProveedorFiltrosModel : ReporteVentasFiltrosModel
+    {
+        [Display(Name = "Proveedor")]
+        [UIHint("Proveedor")]
+        public int? ProveedorId { get; set; }
+    }
+
     public class ReporteTransferenciasPorProductosFiltrosModel : ReporteRangoFechaBase
     {
         [Display(Name = "Rubro")]
@@ -68,6 +75,11 @@ namespace MaxiKioscos.Web.Models
         [Display(Name = "Cierre de Caja")]
         [Required(ErrorMessage = "Debe seleccionar un cierre de caja")]
         public int CierreCajaId { get; set; }
+
+        public ReporteVentasCierreCajaFiltrosModel()
+        {
+            this.Fecha = DateTime.Now;
+        }
     }
 
     public class GanaciaAdicionalExcepcionRubroFiltrosModel : ReporteModelBase

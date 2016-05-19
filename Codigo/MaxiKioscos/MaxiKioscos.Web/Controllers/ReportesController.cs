@@ -58,6 +58,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(reporteVentasFiltrosModel);
         }
 
+        public ActionResult VentasPorProveedor(ReporteVentasProveedorFiltrosModel model)
+        {
+            return PartialOrView(model);
+        }
+
         public ActionResult TransferenciasPorProducto(ReporteTransferenciasPorProductosFiltrosModel filtros)
         {
             return PartialOrView(filtros);
@@ -395,6 +400,69 @@ namespace MaxiKioscos.Web.Controllers
             reporteFactory.SetDataSource("VentasPorProductoRankingDataSet", ventasPorProductoRankingDataSource);
 
             byte[] archivo = reporteFactory.Renderizar(reporteVentasFiltrosModel.ReporteTipo);
+
+            return File(archivo, reporteFactory.MimeType);
+        }
+
+        public ActionResult GenerarVentasPorProveedor(ReporteVentasProveedorFiltrosModel model)
+        {
+            DateTime? hasta = model.Hasta == null
+                ? (DateTime?)null
+                : model.Hasta.GetValueOrDefault().AddDays(1);
+
+            var reporteFactory = new ReporteFactory();
+
+            var rubro = Uow.Rubros.Obtener(r => r.RubroId == model.RubroId);
+            var rubroDescripcion = rubro != null ? rubro.Descripcion : TodosText;
+            var rubroId = model.RubroId.HasValue
+                ? model.RubroId.Value.ToString()
+                : null;
+
+            var proveedor = Uow.Proveedores.Obtener(r => r.ProveedorId == model.ProveedorId);
+            var proveedorNombre = proveedor != null ? proveedor.Nombre : TodosText;
+
+            reporteFactory
+                .SetParametro("Desde", model.Desde.ToShortDateString(null))
+                .SetParametro("Hasta", model.Hasta.ToShortDateString(null))
+                .SetParametro("CuentaId", UsuarioActual.CuentaId.ToString())
+                .SetParametro("RubroId", rubroId)
+                .SetParametro("RubroDescripcion", rubroDescripcion)
+                .SetParametro("ProveedorNombre", proveedorNombre);
+
+            if (model.MostrarTotalGeneral)
+            {
+                var ventasPorProveedorTotalGeneralDataSource =
+                    Uow.Reportes.VentasPorProveedorTotalGeneral(model.Desde,
+                        hasta,
+                        model.RubroId,
+                        model.ProveedorId,
+                        UsuarioActual.CuentaId);
+
+                reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/VentasPorProveedorTotalGeneral.rdl"))
+                    .SetDataSource("VentasPorProveedorTotalGeneralDataSet", ventasPorProveedorTotalGeneralDataSource);
+            }
+            else
+            {
+                var ventasPorProveedorDataSource = Uow.Reportes.VentasPorProveedor(model.Desde,
+                    hasta,
+                    model.RubroId,
+                    model.MaxiKioscoId,
+                    model.ProveedorId,
+                    UsuarioActual.CuentaId).ToList();
+
+                var maxikiosco = Uow.MaxiKioscos.Obtener(m => m.MaxiKioscoId == model.MaxiKioscoId);
+                var maxikioscoNombre = maxikiosco != null ? maxikiosco.Nombre : TodosText;
+
+                reporteFactory
+                    .SetParametro("MaxikioscoId", model.MaxiKioscoId.HasValue ? model.MaxiKioscoId.Value.ToString() : null)
+                    .SetParametro("MaxikioscoNombre", maxikioscoNombre)
+                    .SetPathCompleto(Server.MapPath("~/Reportes/VentasPorProveedor.rdl"))
+                    .SetDataSource("VentasPorProveedorDataSet", ventasPorProveedorDataSource);
+
+            }
+
+
+            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
 
             return File(archivo, reporteFactory.MimeType);
         }

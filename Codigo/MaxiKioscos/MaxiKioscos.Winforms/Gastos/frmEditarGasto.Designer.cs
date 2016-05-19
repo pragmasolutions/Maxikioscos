@@ -129,7 +129,7 @@
             this.ddlCategorias.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlCategorias.ShowImageInEditorArea = true;
             this.ddlCategorias.Size = new System.Drawing.Size(203, 28);
-            this.ddlCategorias.TabIndex = 22;
+            this.ddlCategorias.TabIndex = 3;
             this.ddlCategorias.Text = "radDropDownList1";
             this.ddlCategorias.ThemeName = "Windows7";
             // 
@@ -139,7 +139,7 @@
             this.txtFecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(170, 32);
-            this.txtFecha.TabIndex = 18;
+            this.txtFecha.TabIndex = 4;
             this.txtFecha.Texto = "";
             // 
             // lblFecha

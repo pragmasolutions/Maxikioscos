@@ -47,6 +47,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> UltimoScriptCorrido { get; set; }
         public Nullable<System.DateTime> UltimaSincronizacionExitosa { get; set; }
         public Nullable<System.DateTime> UltimaConexion { get; set; }
+        public string NombreMaquina { get; set; }
     
         public virtual ICollection<CierreCaja> CierreCajas { get; set; }
         public virtual Cuenta Cuenta { get; set; }

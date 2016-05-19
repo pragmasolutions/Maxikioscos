@@ -202,10 +202,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                         {
                             _secuenciaDesfasada = true;
                         }
-                        else
-                        {
-                            MessageBox.Show(actualizarResponse.MensageError);
-                        }
+                        //else
+                        //{
+                        //    MessageBox.Show(actualizarResponse.MensageError);
+                        //}
                         break;
                     }
                     count++;
@@ -273,7 +273,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Maxikioscos.Comun.Helpers.ExceptionHelper.GetInnerException(ex).Message);
+                //MessageBox.Show(Maxikioscos.Comun.Helpers.ExceptionHelper.GetInnerException(ex).Message);
                 _huboError = true;
                 AppSettings.RefreshSettings();
             }

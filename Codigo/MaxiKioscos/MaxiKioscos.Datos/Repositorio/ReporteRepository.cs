@@ -40,9 +40,19 @@ namespace MaxiKioscos.Datos.Sync
             return MaxiKioscosEntities.RptVentasPorProductoTotalGeneral(desde, hasta, rubroId, cuentaId).AsQueryable();
         }
 
+        public IQueryable<RptVentasPorProveedorTotalGeneral> VentasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedorId, int? cuentaId)
+        {
+            return MaxiKioscosEntities.RptVentasPorProveedorTotalGeneral(desde, hasta, rubroId, proveedorId, cuentaId).AsQueryable();
+        }
+        
         public IQueryable<RptVentaPorProductoRanking> VentasPorProductoRanking(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? cuentaId, int? cierreCajaId)
         {
             return MaxiKioscosEntities.RptVentasPorProductoRanking(desde, hasta, rubroId, maxikioscoId, cuentaId, cierreCajaId).AsQueryable();
+        }
+        
+        public IQueryable<RptVentasPorProveedor> VentasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId)
+        {
+            return MaxiKioscosEntities.RptVentasPorProveedor(desde, hasta, rubroId, maxikioscoId, proveedorId, cuentaId).AsQueryable();
         }
 
         public IQueryable<RptTransferenciaPorProducto> TransferenciasPorProducto(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoOrigenId, int? maxikioscoDestinoId, int? cuentaId)

@@ -1,10 +1,5 @@
-/****** Object:  UserDefinedFunction [dbo].[UltimosCostos]    Script Date: 11/19/2014 22:47:49 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[UltimosCostos]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
-DROP FUNCTION [dbo].[UltimosCostos]
-GO
 
-
-CREATE FUNCTION [dbo].[UltimosCostos]
+ALTER FUNCTION [dbo].[UltimosCostos]
 (	
 	
 )
@@ -24,7 +19,5 @@ RETURN
 	WHERE rn = 1
 )
 
-
-GO
 
 
