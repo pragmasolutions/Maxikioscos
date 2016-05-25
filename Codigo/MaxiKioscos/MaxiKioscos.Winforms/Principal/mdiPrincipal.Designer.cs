@@ -85,9 +85,10 @@
             this.tsbVentas = new System.Windows.Forms.ToolStripButton();
             this.tspAccesosDirectos = new System.Windows.Forms.ToolStrip();
             this.tsbControlStock = new System.Windows.Forms.ToolStripButton();
+            this.tsbTransferencias = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.tsbTransferencias = new System.Windows.Forms.ToolStripButton();
+            this.txtSugerenciaCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -134,7 +135,7 @@
             // tsmIniciarSesion
             // 
             this.tsmIniciarSesion.Name = "tsmIniciarSesion";
-            this.tsmIniciarSesion.Size = new System.Drawing.Size(210, 24);
+            this.tsmIniciarSesion.Size = new System.Drawing.Size(216, 26);
             this.tsmIniciarSesion.Tag = "Anonimo";
             this.tsmIniciarSesion.Text = "Iniciar Sesión";
             this.tsmIniciarSesion.Click += new System.EventHandler(this.tsmIniciarSesion_Click);
@@ -142,38 +143,38 @@
             // tsmCerrarSesion
             // 
             this.tsmCerrarSesion.Name = "tsmCerrarSesion";
-            this.tsmCerrarSesion.Size = new System.Drawing.Size(210, 24);
+            this.tsmCerrarSesion.Size = new System.Drawing.Size(216, 26);
             this.tsmCerrarSesion.Text = "Cerrar Sesión";
             this.tsmCerrarSesion.Click += new System.EventHandler(this.tsmCerrarSesion_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
             // 
             // tsmConfiguracion
             // 
             this.tsmConfiguracion.Name = "tsmConfiguracion";
-            this.tsmConfiguracion.Size = new System.Drawing.Size(210, 24);
+            this.tsmConfiguracion.Size = new System.Drawing.Size(216, 26);
             this.tsmConfiguracion.Text = "Configuracion";
             this.tsmConfiguracion.Click += new System.EventHandler(this.tsmConfiguracion_Click);
             // 
             // tsmCambiarContraseña
             // 
             this.tsmCambiarContraseña.Name = "tsmCambiarContraseña";
-            this.tsmCambiarContraseña.Size = new System.Drawing.Size(210, 24);
+            this.tsmCambiarContraseña.Size = new System.Drawing.Size(216, 26);
             this.tsmCambiarContraseña.Text = "Cambiar contraseña";
             this.tsmCambiarContraseña.Click += new System.EventHandler(this.tsmCambiarContraseña_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
             // 
             // tsmReportarError
             // 
             this.tsmReportarError.Name = "tsmReportarError";
-            this.tsmReportarError.Size = new System.Drawing.Size(210, 24);
+            this.tsmReportarError.Size = new System.Drawing.Size(216, 26);
             this.tsmReportarError.Text = "Reportar error";
             this.tsmReportarError.Visible = false;
             this.tsmReportarError.Click += new System.EventHandler(this.tsmReportarError_Click);
@@ -181,7 +182,7 @@
             // tsmSalir
             // 
             this.tsmSalir.Name = "tsmSalir";
-            this.tsmSalir.Size = new System.Drawing.Size(210, 24);
+            this.tsmSalir.Size = new System.Drawing.Size(216, 26);
             this.tsmSalir.Tag = "Anonimo";
             this.tsmSalir.Text = "Salir";
             this.tsmSalir.Click += new System.EventHandler(this.tsmSalir_Click);
@@ -201,26 +202,26 @@
             // tsmiAbrirCaja
             // 
             this.tsmiAbrirCaja.Name = "tsmiAbrirCaja";
-            this.tsmiAbrirCaja.Size = new System.Drawing.Size(196, 24);
+            this.tsmiAbrirCaja.Size = new System.Drawing.Size(202, 26);
             this.tsmiAbrirCaja.Text = "Abrir Caja";
             this.tsmiAbrirCaja.Click += new System.EventHandler(this.tsmiAbrirCaja_Click);
             // 
             // tsmiCerrarCaja
             // 
             this.tsmiCerrarCaja.Name = "tsmiCerrarCaja";
-            this.tsmiCerrarCaja.Size = new System.Drawing.Size(196, 24);
+            this.tsmiCerrarCaja.Size = new System.Drawing.Size(202, 26);
             this.tsmiCerrarCaja.Text = "Cerrar Caja";
             this.tsmiCerrarCaja.Click += new System.EventHandler(this.tsmiCerrarCaja_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(193, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmExcepciones
             // 
             this.tsmExcepciones.Name = "tsmExcepciones";
-            this.tsmExcepciones.Size = new System.Drawing.Size(196, 24);
+            this.tsmExcepciones.Size = new System.Drawing.Size(202, 26);
             this.tsmExcepciones.Text = "Excepciones";
             this.tsmExcepciones.Visible = false;
             this.tsmExcepciones.Click += new System.EventHandler(this.tsmExcepciones_Click);
@@ -228,7 +229,7 @@
             // tsmiDetalleCompleto
             // 
             this.tsmiDetalleCompleto.Name = "tsmiDetalleCompleto";
-            this.tsmiDetalleCompleto.Size = new System.Drawing.Size(196, 24);
+            this.tsmiDetalleCompleto.Size = new System.Drawing.Size(202, 26);
             this.tsmiDetalleCompleto.Text = "Detalle Completo";
             this.tsmiDetalleCompleto.Click += new System.EventHandler(this.tsmiDetalleCompleto_Click);
             // 
@@ -249,45 +250,45 @@
             // tsmGestionDeArticulos
             // 
             this.tsmGestionDeArticulos.Name = "tsmGestionDeArticulos";
-            this.tsmGestionDeArticulos.Size = new System.Drawing.Size(218, 24);
+            this.tsmGestionDeArticulos.Size = new System.Drawing.Size(224, 26);
             this.tsmGestionDeArticulos.Text = "Gestión de Articulos";
             this.tsmGestionDeArticulos.Click += new System.EventHandler(this.tsmGestionDeArticulos_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(215, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(221, 6);
             // 
             // tsmGestionDeMarcas
             // 
             this.tsmGestionDeMarcas.Name = "tsmGestionDeMarcas";
-            this.tsmGestionDeMarcas.Size = new System.Drawing.Size(218, 24);
+            this.tsmGestionDeMarcas.Size = new System.Drawing.Size(224, 26);
             this.tsmGestionDeMarcas.Text = "Gestión de Marcas";
             this.tsmGestionDeMarcas.Click += new System.EventHandler(this.tsmGestionDeMarcas_Click);
             // 
             // tsmGestionDeRubros
             // 
             this.tsmGestionDeRubros.Name = "tsmGestionDeRubros";
-            this.tsmGestionDeRubros.Size = new System.Drawing.Size(218, 24);
+            this.tsmGestionDeRubros.Size = new System.Drawing.Size(224, 26);
             this.tsmGestionDeRubros.Text = "Gestión de Rubros";
             this.tsmGestionDeRubros.Click += new System.EventHandler(this.tsmGestionDeRubros_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(215, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(221, 6);
             // 
             // gestionDeToolStripMenuItem
             // 
             this.gestionDeToolStripMenuItem.Name = "gestionDeToolStripMenuItem";
-            this.gestionDeToolStripMenuItem.Size = new System.Drawing.Size(218, 24);
+            this.gestionDeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gestionDeToolStripMenuItem.Text = "Retiro de Mercadería";
             this.gestionDeToolStripMenuItem.Click += new System.EventHandler(this.gestionDeToolStripMenuItem_Click);
             // 
             // tsmControlStock
             // 
             this.tsmControlStock.Name = "tsmControlStock";
-            this.tsmControlStock.Size = new System.Drawing.Size(218, 24);
+            this.tsmControlStock.Size = new System.Drawing.Size(224, 26);
             this.tsmControlStock.Text = "Control de Stock";
             this.tsmControlStock.Click += new System.EventHandler(this.tsmControlStock_Click);
             // 
@@ -303,14 +304,14 @@
             // tsmGestionDeMercaderias
             // 
             this.tsmGestionDeMercaderias.Name = "tsmGestionDeMercaderias";
-            this.tsmGestionDeMercaderias.Size = new System.Drawing.Size(227, 24);
+            this.tsmGestionDeMercaderias.Size = new System.Drawing.Size(233, 26);
             this.tsmGestionDeMercaderias.Text = "Ingreso de Mercadería";
             this.tsmGestionDeMercaderias.Click += new System.EventHandler(this.tsmGestionDeMercaderias_Click);
             // 
             // gesiónDeFacturasToolStripMenuItem
             // 
             this.gesiónDeFacturasToolStripMenuItem.Name = "gesiónDeFacturasToolStripMenuItem";
-            this.gesiónDeFacturasToolStripMenuItem.Size = new System.Drawing.Size(227, 24);
+            this.gesiónDeFacturasToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
             this.gesiónDeFacturasToolStripMenuItem.Text = "Gestión de Facturas";
             this.gesiónDeFacturasToolStripMenuItem.Click += new System.EventHandler(this.gesiónDeFacturasToolStripMenuItem_Click);
             // 
@@ -325,7 +326,7 @@
             // tsmiGestionProveedores
             // 
             this.tsmiGestionProveedores.Name = "tsmiGestionProveedores";
-            this.tsmiGestionProveedores.Size = new System.Drawing.Size(235, 24);
+            this.tsmiGestionProveedores.Size = new System.Drawing.Size(241, 26);
             this.tsmiGestionProveedores.Text = "Gestión de Proveedores";
             this.tsmiGestionProveedores.Click += new System.EventHandler(this.gestionDeProveedoresToolStripMenuItem_Click);
             // 
@@ -339,14 +340,15 @@
             // tsmRetiroPersonal
             // 
             this.tsmRetiroPersonal.Name = "tsmRetiroPersonal";
-            this.tsmRetiroPersonal.Size = new System.Drawing.Size(121, 24);
+            this.tsmRetiroPersonal.Size = new System.Drawing.Size(120, 24);
             this.tsmRetiroPersonal.Text = "Retiro Personal";
             this.tsmRetiroPersonal.Click += new System.EventHandler(this.tsmRetiroPersonal_Click);
             // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbReposicionStock});
+            this.tsbReposicionStock,
+            this.txtSugerenciaCompras});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.reportesToolStripMenuItem.Text = "Reportes";
@@ -354,7 +356,7 @@
             // tsbReposicionStock
             // 
             this.tsbReposicionStock.Name = "tsbReposicionStock";
-            this.tsbReposicionStock.Size = new System.Drawing.Size(212, 24);
+            this.tsbReposicionStock.Size = new System.Drawing.Size(241, 26);
             this.tsbReposicionStock.Text = "Reposición de Stock";
             this.tsbReposicionStock.Click += new System.EventHandler(this.tsbReposicionStock_Click);
             // 
@@ -375,7 +377,7 @@
             // tsmSegundoPlano
             // 
             this.tsmSegundoPlano.Name = "tsmSegundoPlano";
-            this.tsmSegundoPlano.Size = new System.Drawing.Size(297, 24);
+            this.tsmSegundoPlano.Size = new System.Drawing.Size(303, 26);
             this.tsmSegundoPlano.Text = "Sincronizar desde Web";
             this.tsmSegundoPlano.Click += new System.EventHandler(this.tsmSegundoPlano_Click);
             // 
@@ -383,7 +385,7 @@
             // 
             this.tssSecuencial.Name = "tssSecuencial";
             this.tssSecuencial.ShowShortcutKeys = false;
-            this.tssSecuencial.Size = new System.Drawing.Size(297, 24);
+            this.tssSecuencial.Size = new System.Drawing.Size(303, 26);
             this.tssSecuencial.Text = "Sincronización Secuencial";
             this.tssSecuencial.Visible = false;
             this.tssSecuencial.Click += new System.EventHandler(this.sincronizacionSecuencialStripMenuItem_Click);
@@ -391,31 +393,31 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(294, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(300, 6);
             // 
             // actualizarDesdeArchivoToolStripMenuItem
             // 
             this.actualizarDesdeArchivoToolStripMenuItem.Name = "actualizarDesdeArchivoToolStripMenuItem";
-            this.actualizarDesdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(297, 24);
+            this.actualizarDesdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
             this.actualizarDesdeArchivoToolStripMenuItem.Text = "Actualizar desde archivo";
             this.actualizarDesdeArchivoToolStripMenuItem.Click += new System.EventHandler(this.actualizarDesdeArchivoToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(294, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(300, 6);
             // 
             // exportarDatosToolStripMenuItem
             // 
             this.exportarDatosToolStripMenuItem.Name = "exportarDatosToolStripMenuItem";
-            this.exportarDatosToolStripMenuItem.Size = new System.Drawing.Size(297, 24);
+            this.exportarDatosToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
             this.exportarDatosToolStripMenuItem.Text = "Exportar datos...";
             this.exportarDatosToolStripMenuItem.Click += new System.EventHandler(this.exportarDatosToolStripMenuItem_Click);
             // 
             // reconectarForzarSincronizaciónToolStripMenuItem
             // 
             this.reconectarForzarSincronizaciónToolStripMenuItem.Name = "reconectarForzarSincronizaciónToolStripMenuItem";
-            this.reconectarForzarSincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(297, 24);
+            this.reconectarForzarSincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
             this.reconectarForzarSincronizaciónToolStripMenuItem.Text = "Reconectar Forzar Sincronización";
             this.reconectarForzarSincronizaciónToolStripMenuItem.Click += new System.EventHandler(this.reconectarForzarSincronizaciónToolStripMenuItem_Click);
             // 
@@ -554,6 +556,18 @@
             this.tsbControlStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbControlStock.Click += new System.EventHandler(this.tsbControlStock_Click);
             // 
+            // tsbTransferencias
+            // 
+            this.tsbTransferencias.Image = ((System.Drawing.Image)(resources.GetObject("tsbTransferencias.Image")));
+            this.tsbTransferencias.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbTransferencias.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTransferencias.Name = "tsbTransferencias";
+            this.tsbTransferencias.Padding = new System.Windows.Forms.Padding(5);
+            this.tsbTransferencias.Size = new System.Drawing.Size(141, 79);
+            this.tsbTransferencias.Text = "TRANSFERENCIAS";
+            this.tsbTransferencias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbTransferencias.Click += new System.EventHandler(this.tsbTransferencias_Click);
+            // 
             // mdiTabStrip2
             // 
             this.mdiTabStrip2.ActiveTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -573,17 +587,12 @@
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
             // 
-            // tsbTransferencias
+            // txtSugerenciaCompras
             // 
-            this.tsbTransferencias.Image = ((System.Drawing.Image)(resources.GetObject("tsbTransferencias.Image")));
-            this.tsbTransferencias.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbTransferencias.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbTransferencias.Name = "tsbTransferencias";
-            this.tsbTransferencias.Padding = new System.Windows.Forms.Padding(5);
-            this.tsbTransferencias.Size = new System.Drawing.Size(141, 79);
-            this.tsbTransferencias.Text = "TRANSFERENCIAS";
-            this.tsbTransferencias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbTransferencias.Click += new System.EventHandler(this.tsbTransferencias_Click);
+            this.txtSugerenciaCompras.Name = "txtSugerenciaCompras";
+            this.txtSugerenciaCompras.Size = new System.Drawing.Size(241, 26);
+            this.txtSugerenciaCompras.Text = "Sugerencia de Compras";
+            this.txtSugerenciaCompras.Click += new System.EventHandler(this.txtSugerenciaCompras_Click);
             // 
             // mdiPrincipal
             // 
@@ -678,6 +687,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmRetiroPersonal;
         private System.Windows.Forms.ToolStripMenuItem tsmGastos;
         private System.Windows.Forms.ToolStripButton tsbTransferencias;
+        private System.Windows.Forms.ToolStripMenuItem txtSugerenciaCompras;
     }
 }
 

@@ -238,6 +238,9 @@
     <Compile Include="ProductoStock.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductoSugerenciaCompra.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductoTransferenciaDesktop.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
@@ -285,6 +288,12 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RptCierreDeCajaDetalle.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptComprasDetalladasPorProveedor.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RptComprasDetalladasPorProveedorTotalGeneral.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="RptComprasPorProveedor.cs">

@@ -35,7 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chxDisponibleEnDeposito = new System.Windows.Forms.CheckBox();
             this.ddlRubro = new Telerik.WinControls.UI.RadDropDownList();
+            this.label20 = new System.Windows.Forms.Label();
             this.ddlMarca = new Telerik.WinControls.UI.RadDropDownList();
             this.txtPorcentajeGanancia = new Util.Controles.ucProcentaje();
             this.label16 = new System.Windows.Forms.Label();
@@ -72,8 +74,8 @@
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.windows7Theme1 = new Telerik.WinControls.Themes.Windows7Theme();
-            this.chxDisponibleEnDeposito = new System.Windows.Forms.CheckBox();
-            this.label20 = new System.Windows.Forms.Label();
+            this.txtFactorAgrupamiento = new Util.Controles.ucSoloNumero();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRubro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlMarca)).BeginInit();
@@ -96,6 +98,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtFactorAgrupamiento);
+            this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.chxDisponibleEnDeposito);
             this.panel1.Controls.Add(this.ddlRubro);
             this.panel1.Controls.Add(this.label20);
@@ -121,8 +125,17 @@
             this.panel1.Controls.Add(this.label17);
             this.panel1.Location = new System.Drawing.Point(-5, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 509);
+            this.panel1.Size = new System.Drawing.Size(519, 563);
             this.panel1.TabIndex = 1;
+            // 
+            // chxDisponibleEnDeposito
+            // 
+            this.chxDisponibleEnDeposito.AutoSize = true;
+            this.chxDisponibleEnDeposito.Location = new System.Drawing.Point(271, 295);
+            this.chxDisponibleEnDeposito.Name = "chxDisponibleEnDeposito";
+            this.chxDisponibleEnDeposito.Size = new System.Drawing.Size(18, 17);
+            this.chxDisponibleEnDeposito.TabIndex = 10;
+            this.chxDisponibleEnDeposito.UseVisualStyleBackColor = true;
             // 
             // ddlRubro
             // 
@@ -139,9 +152,20 @@
             this.ddlRubro.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlRubro.ShowImageInEditorArea = true;
             this.ddlRubro.Size = new System.Drawing.Size(203, 32);
-            this.ddlRubro.TabIndex = 6;
+            this.ddlRubro.TabIndex = 7;
             this.ddlRubro.Text = "radDropDownList1";
             this.ddlRubro.ThemeName = "Windows7";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(267, 268);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(186, 23);
+            this.label20.TabIndex = 52;
+            this.label20.Text = "Disponible en Depósito";
             // 
             // ddlMarca
             // 
@@ -158,7 +182,7 @@
             this.ddlMarca.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlMarca.ShowImageInEditorArea = true;
             this.ddlMarca.Size = new System.Drawing.Size(203, 32);
-            this.ddlMarca.TabIndex = 5;
+            this.ddlMarca.TabIndex = 6;
             this.ddlMarca.Text = "radDropDownList1";
             this.ddlMarca.ThemeName = "Windows7";
             // 
@@ -184,7 +208,7 @@
             this.txtPorcentajeGanancia.Name = "txtPorcentajeGanancia";
             this.txtPorcentajeGanancia.PosicionText = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPorcentajeGanancia.ReadOnly = false;
-            this.txtPorcentajeGanancia.Size = new System.Drawing.Size(200, 26);
+            this.txtPorcentajeGanancia.Size = new System.Drawing.Size(203, 26);
             this.txtPorcentajeGanancia.TabIndex = 2;
             this.txtPorcentajeGanancia.TextboxTabIndex = 5;
             this.txtPorcentajeGanancia.Valor = null;
@@ -270,10 +294,10 @@
             // btnCrearCodigo
             // 
             this.btnCrearCodigo.Image = ((System.Drawing.Image)(resources.GetObject("btnCrearCodigo.Image")));
-            this.btnCrearCodigo.Location = new System.Drawing.Point(403, 350);
+            this.btnCrearCodigo.Location = new System.Drawing.Point(403, 406);
             this.btnCrearCodigo.Name = "btnCrearCodigo";
             this.btnCrearCodigo.Size = new System.Drawing.Size(72, 23);
-            this.btnCrearCodigo.TabIndex = 9;
+            this.btnCrearCodigo.TabIndex = 11;
             this.btnCrearCodigo.Text = "Agregar";
             this.btnCrearCodigo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCrearCodigo.UseVisualStyleBackColor = true;
@@ -320,7 +344,7 @@
             this.CodigoEditar,
             this.CodigoEliminar});
             this.dgvCodigos.DataSource = this.codigoProductoBindingSource;
-            this.dgvCodigos.Location = new System.Drawing.Point(21, 375);
+            this.dgvCodigos.Location = new System.Drawing.Point(21, 431);
             this.dgvCodigos.MultiSelect = false;
             this.dgvCodigos.Name = "dgvCodigos";
             this.dgvCodigos.ReadOnly = true;
@@ -415,7 +439,7 @@
             this.chxAceptaDecimales.Location = new System.Drawing.Point(272, 176);
             this.chxAceptaDecimales.Name = "chxAceptaDecimales";
             this.chxAceptaDecimales.Size = new System.Drawing.Size(18, 17);
-            this.chxAceptaDecimales.TabIndex = 7;
+            this.chxAceptaDecimales.TabIndex = 8;
             this.chxAceptaDecimales.UseVisualStyleBackColor = true;
             // 
             // txtPrecio
@@ -462,7 +486,7 @@
             this.txtStockReposicion.Name = "txtStockReposicion";
             this.txtStockReposicion.PosicionText = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtStockReposicion.Size = new System.Drawing.Size(203, 25);
-            this.txtStockReposicion.TabIndex = 8;
+            this.txtStockReposicion.TabIndex = 9;
             this.txtStockReposicion.Valor = "";
             this.txtStockReposicion.ValorDecimal = null;
             // 
@@ -481,7 +505,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(17, 354);
+            this.label14.Location = new System.Drawing.Point(17, 407);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(74, 23);
             this.label14.TabIndex = 46;
@@ -560,10 +584,10 @@
             this.btnAceptar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.Location = new System.Drawing.Point(183, 559);
+            this.btnAceptar.Location = new System.Drawing.Point(183, 613);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(139, 33);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.TabIndex = 12;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAceptar.UseVisualStyleBackColor = false;
@@ -576,10 +600,10 @@
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(333, 559);
+            this.btnCancelar.Location = new System.Drawing.Point(333, 613);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 33);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -602,32 +626,43 @@
             this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
             this.dataGridViewButtonColumn2.Width = 22;
             // 
-            // chxDisponibleEnDeposito
+            // txtFactorAgrupamiento
             // 
-            this.chxDisponibleEnDeposito.AutoSize = true;
-            this.chxDisponibleEnDeposito.Location = new System.Drawing.Point(271, 295);
-            this.chxDisponibleEnDeposito.Name = "chxDisponibleEnDeposito";
-            this.chxDisponibleEnDeposito.Size = new System.Drawing.Size(18, 17);
-            this.chxDisponibleEnDeposito.TabIndex = 51;
-            this.chxDisponibleEnDeposito.UseVisualStyleBackColor = true;
+            this.txtFactorAgrupamiento.AceptaDecimales = false;
+            this.txtFactorAgrupamiento.CaracteresPermitidos = null;
+            this.txtFactorAgrupamiento.Disabled = false;
+            this.txtFactorAgrupamiento.ErrorMessage = "";
+            this.txtFactorAgrupamiento.EsObligatorio = true;
+            this.txtFactorAgrupamiento.Location = new System.Drawing.Point(22, 359);
+            this.txtFactorAgrupamiento.LongMax = 32767;
+            this.txtFactorAgrupamiento.LongMin = 0;
+            this.txtFactorAgrupamiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFactorAgrupamiento.MaximoValor = null;
+            this.txtFactorAgrupamiento.MinimoValor = null;
+            this.txtFactorAgrupamiento.Name = "txtFactorAgrupamiento";
+            this.txtFactorAgrupamiento.PosicionText = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtFactorAgrupamiento.Size = new System.Drawing.Size(202, 31);
+            this.txtFactorAgrupamiento.TabIndex = 5;
+            this.txtFactorAgrupamiento.Valor = "";
+            this.txtFactorAgrupamiento.ValorDecimal = null;
             // 
-            // label20
+            // label21
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(267, 268);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(186, 23);
-            this.label20.TabIndex = 52;
-            this.label20.Text = "Disponible en Depósito";
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(18, 332);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(194, 23);
+            this.label21.TabIndex = 56;
+            this.label21.Text = "Factor de Agrupamiento";
             // 
             // frmEditarProducto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(513, 600);
+            this.ClientSize = new System.Drawing.Size(513, 654);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -708,6 +743,8 @@
         public Telerik.WinControls.UI.RadDropDownList ddlMarca;
         private System.Windows.Forms.CheckBox chxDisponibleEnDeposito;
         private System.Windows.Forms.Label label20;
+        private Util.Controles.ucSoloNumero txtFactorAgrupamiento;
+        private System.Windows.Forms.Label label21;
         
         
     }

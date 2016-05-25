@@ -40,14 +40,15 @@ namespace MaxiKioscos.Datos.Sync
             return MaxiKioscosEntities.RptVentasPorProductoTotalGeneral(desde, hasta, rubroId, cuentaId).AsQueryable();
         }
 
-        public IQueryable<RptVentasPorProveedorTotalGeneral> VentasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedorId, int? cuentaId)
-        {
-            return MaxiKioscosEntities.RptVentasPorProveedorTotalGeneral(desde, hasta, rubroId, proveedorId, cuentaId).AsQueryable();
-        }
         
         public IQueryable<RptVentaPorProductoRanking> VentasPorProductoRanking(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? cuentaId, int? cierreCajaId)
         {
             return MaxiKioscosEntities.RptVentasPorProductoRanking(desde, hasta, rubroId, maxikioscoId, cuentaId, cierreCajaId).AsQueryable();
+        }
+
+        public IQueryable<RptVentasPorProveedorTotalGeneral> VentasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedorId, int? cuentaId)
+        {
+            return MaxiKioscosEntities.RptVentasPorProveedorTotalGeneral(desde, hasta, rubroId, proveedorId, cuentaId).AsQueryable();
         }
         
         public IQueryable<RptVentasPorProveedor> VentasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId)
@@ -179,6 +180,21 @@ namespace MaxiKioscos.Datos.Sync
         public IList<Reporte> Listado()
         {
             return MaxiKioscosEntities.Reportes.ToList();
+        }
+
+        public IQueryable<RptComprasDetalladasPorProveedorTotalGeneral> ComprasDetalladasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedorId, int? cuentaId)
+        {
+            return MaxiKioscosEntities.RptComprasDetalladasPorProveedorTotalGeneral(desde, hasta, rubroId, proveedorId, cuentaId).AsQueryable();
+        }
+
+        public IQueryable<RptComprasDetalladasPorProveedor> ComprasDetalladasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId)
+        {
+            return MaxiKioscosEntities.RptComprasDetalladasPorProveedor(desde, hasta, rubroId, maxikioscoId, proveedorId, cuentaId).AsQueryable();
+        }
+
+        public List<ProductoSugerenciaCompra> ProductoSugerenciaCompras(int proveedorId, int dias, int maxiKioscoId)
+        {
+            return MaxiKioscosEntities.ProductoSugerenciaCompras(proveedorId, dias, maxiKioscoId).ToList();
         }
     }
 }

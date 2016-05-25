@@ -90,6 +90,21 @@ namespace Util.Controles
             }
         }
 
+        public int? ValorEntero
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(TextBox1.Text))
+                    return null;
+                int val;
+                if (int.TryParse(TextBox1.Text.Trim().Replace(".00", ""), out val))
+                {
+                    return val;
+                }
+                return null;
+            }
+        }
+
         public bool EsObligatorio
         {
             get

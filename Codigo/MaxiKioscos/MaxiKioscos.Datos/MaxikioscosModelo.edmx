@@ -433,6 +433,7 @@
           <Property Name="PrecioSinIVA" Type="money" Nullable="false" />
           <Property Name="EsPromocion" Type="bit" Nullable="false" />
           <Property Name="DisponibleEnDeposito" Type="bit" Nullable="false" />
+          <Property Name="FactorAgrupamiento" Type="int" />
         </EntityType>
         <EntityType Name="ProductoPromocion">
           <Key>
@@ -1869,6 +1870,11 @@
         <Function Name="Producto_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Producto_SugerenciaCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="CantidadDias" Type="int" Mode="In" />
+          <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Promocion_Listado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
@@ -1896,6 +1902,21 @@
           <Parameter Name="Hasta" Type="datetime2" Mode="In" />
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
+          <Parameter Name="CuentaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Rpt_ComprasDetalladasPorProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="CuentaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Rpt_ComprasDetalladasPorProveedor_TotalGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
           <Parameter Name="CuentaId" Type="int" Mode="In" />
         </Function>
         <Function Name="Rpt_ComprasPorProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -3172,6 +3193,26 @@
             <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
             <Parameter Name="CuentaId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="RptComprasDetalladasPorProveedor" ReturnType="Collection(MaxiKioscosModel.RptComprasDetalladasPorProveedor)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptComprasDetalladasPorProveedorTotalGeneral" ReturnType="Collection(MaxiKioscosModel.RptComprasDetalladasPorProveedorTotalGeneral)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoSugerenciaCompras" ReturnType="Collection(MaxiKioscosModel.ProductoSugerenciaCompra)">
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="CantidadDias" Mode="In" Type="Int32" />
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3415,6 +3456,7 @@
           <NavigationProperty Name="PromocionesHijos" Relationship="MaxiKioscosModel.FK_ProductoPromocion_ProductoPadre" FromRole="Producto" ToRole="ProductoPromocion" />
           <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
           <Property Name="DisponibleEnDeposito" Type="Boolean" Nullable="false" />
+          <Property Name="FactorAgrupamiento" Type="Int32" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -5518,6 +5560,32 @@
           <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <ComplexType Name="RptComprasDetalladasPorProveedor">
+          <Property Type="String" Name="MaxiKiosco" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Proveedor" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="PrecioPromedio" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CantidadTotal" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CompraTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="RptComprasDetalladasPorProveedorTotalGeneral">
+          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="PrecioPromedio" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="CantidadTotal" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="CompraTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="ProductoSugerenciaCompra">
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="Decimal" Name="CantidadVendida" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="CantidadRecomendada" Nullable="true" Precision="38" Scale="9" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5699,6 +5767,7 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="FactorAgrupamiento" ColumnName="FactorAgrupamiento" />
                 <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
                 <ScalarProperty Name="EsPromocion" ColumnName="EsPromocion" />
                 <ScalarProperty Name="PrecioSinIVA" ColumnName="PrecioSinIVA" />
@@ -6896,6 +6965,44 @@
                 <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptComprasDetalladasPorProveedor" FunctionName="MaxiKioscosModel.Store.Rpt_ComprasDetalladasPorProveedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptComprasDetalladasPorProveedor">
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="CompraTotal" ColumnName="CompraTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptComprasDetalladasPorProveedorTotalGeneral" FunctionName="MaxiKioscosModel.Store.Rpt_ComprasDetalladasPorProveedor_TotalGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptComprasDetalladasPorProveedorTotalGeneral">
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="CompraTotal" ColumnName="CompraTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoSugerenciaCompras" FunctionName="MaxiKioscosModel.Store.Producto_SugerenciaCompras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoSugerenciaCompra">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CantidadVendida" ColumnName="CantidadVendida" />
+                <ScalarProperty Name="CantidadRecomendada" ColumnName="CantidadRecomendada" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

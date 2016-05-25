@@ -117,6 +117,11 @@ namespace MaxiKioscos.Winforms.Productos
             chxAceptaDecimales.Checked = Producto.AceptaCantidadesDecimales;
             chxDisponibleEnDeposito.Checked = Producto.DisponibleEnDeposito;
 
+            if (Producto.FactorAgrupamiento != null)
+            {
+                txtFactorAgrupamiento.Valor = Producto.FactorAgrupamiento.GetValueOrDefault().ToString();
+            }
+
             var costo = Producto.UltimoCosto;
             txtUltimoCosto.Disabled = true;
             txtUltimoCosto.Valor = costo;
@@ -166,6 +171,7 @@ namespace MaxiKioscos.Winforms.Productos
                 Producto.PrecioConIVA = txtPrecio.Valor.GetValueOrDefault();
                 Producto.PrecioSinIVA = txtPrecioSinIva.Valor.GetValueOrDefault();
                 Producto.RubroId = (int)ddlRubro.SelectedValue;
+                Producto.FactorAgrupamiento = txtFactorAgrupamiento.ValorEntero;
                 Producto.StockReposicion = string.IsNullOrEmpty(txtStockReposicion.Valor)
                                                ? (int?) null
                                                : int.Parse(txtStockReposicion.Valor);

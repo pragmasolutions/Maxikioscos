@@ -227,6 +227,9 @@ namespace MaxiKioscos.Entidades
 
         [DisplayName("Disponible en Depósito")]
         public bool DisponibleEnDeposito { get; set; }
+
+        [DisplayName("Factor de Agrupamiento")]
+        public int? FactorAgrupamiento { get; set; }
     }
 
     public class ProveedorProductoComparer : IEqualityComparer<ProveedorProducto>

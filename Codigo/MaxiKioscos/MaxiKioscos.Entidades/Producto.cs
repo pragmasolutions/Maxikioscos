@@ -43,6 +43,7 @@ namespace MaxiKioscos.Entidades
         public decimal PrecioSinIVA { get; set; }
         public bool EsPromocion { get; set; }
         public bool DisponibleEnDeposito { get; set; }
+        public Nullable<int> FactorAgrupamiento { get; set; }
     
         public virtual ICollection<CodigoProducto> CodigosProductos { get; set; }
         public virtual Cuenta Cuenta { get; set; }

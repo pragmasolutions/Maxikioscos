@@ -478,7 +478,7 @@ namespace MaxiKioscos.Winforms.Reportes
             }
             else
             {
-                _productoSeleccionado = null;
+                _proveedorSeleccionado = null;
             }
         }
         #endregion

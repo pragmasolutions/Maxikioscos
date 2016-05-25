@@ -32,6 +32,13 @@
             </label>
             @Html.ValidationMessageFor(model => model.AceptaCantidadesDecimales)
         </div>
+        <div class="checkbox">
+            <label style="font-weight: bold;">
+                @Html.EditorFor(model => model.DisponibleEnDeposito)
+                @Html.DisplayNameFor(model => model.DisponibleEnDeposito)
+            </label>
+            @Html.ValidationMessageFor(model => model.DisponibleEnDeposito)
+        </div>
     </div>
     <div class="col-lg-6">
         <div class="form-group">
@@ -49,13 +56,12 @@
             @Html.EditorFor(model => model.StockReposicion)
             @Html.ValidationMessageFor(model => model.StockReposicion)
         </div>
-        <div class="checkbox">
-            <label style="font-weight: bold;">
-                @Html.EditorFor(model => model.DisponibleEnDeposito)
-                @Html.DisplayNameFor(model => model.DisponibleEnDeposito)
-            </label>
-            @Html.ValidationMessageFor(model => model.DisponibleEnDeposito)
+        @Html.LabelFor(model => model.FactorAgrupamiento)
+        <div class="form-group">
+            @Html.EditorFor(model => model.FactorAgrupamiento)
+            @Html.ValidationMessageFor(model => model.FactorAgrupamiento)
         </div>
+        
     </div>
 </div>
 <div class="row">

@@ -386,6 +386,7 @@
     <Content Include="Scripts\app\maxikiosco-reporte-transferencias-producto.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-proveedor.js" />
     <Content Include="Scripts\app\maxikiosco-reporte-ventas-producto.js" />
+    <Content Include="Scripts\app\maxikiosco-reportes-sugerencias.js" />
     <Content Include="Scripts\app\maxikiosco-reportes-ventasporticket.js" />
     <Content Include="Scripts\app\maxikiosco-roles-reportes-permisos.js" />
     <Content Include="Scripts\app\maxikiosco-reportes-stock.js" />
@@ -521,6 +522,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Reportes\VentasPorProveedorTotalGeneral.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ComprasDetalladasPorProveedor.rdl">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\ComprasDetalladasPorProveedorTotalGeneral.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reportes\SugerenciaComprasPorProveedor.rdl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
@@ -1029,6 +1040,8 @@
     <Content Include="Views\Facturas\Finalizar.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\FacturaFinalizada.cshtml" />
     <Content Include="Views\Reportes\VentasPorProveedor.cshtml" />
+    <Content Include="Views\Reportes\ComprasDetalladasPorProveedor.cshtml" />
+    <Content Include="Views\Reportes\SugerenciaComprasPorProveedor.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

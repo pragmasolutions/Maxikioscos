@@ -201,6 +201,26 @@ namespace MaxiKioscos.Web.Models
         public int? ProveedorId { get; set; }
     }
 
+    public class ReporteSugerenciaComprasFiltrosModel : ReporteModelBase
+    {
+        [Display(Name = "Maxikiosco")]
+        [UIHint("MaxiKiosco")]
+        [Required(ErrorMessage = "Debe ingresar un maxikiosco")]
+        public int? MaxiKioscoId { get; set; }
+
+        [Display(Name = "Proveedor")]
+        [UIHint("Proveedor")]
+        [Required(ErrorMessage = "Debe ingresar un proveedor")]
+        public int? ProveedorId { get; set; }
+
+        [Display(Name = "Días")]
+        [Required(ErrorMessage = "Debe ingresar una duración en días")]
+        [Range(1, int.MaxValue, ErrorMessage = "La duración en días debe ser mayor a cero")]
+        public int? Dias { get; set; }
+    }
+
+    
+
 
     public class ReporteReposicionFiltrosModel : ReporteModelBase
     {

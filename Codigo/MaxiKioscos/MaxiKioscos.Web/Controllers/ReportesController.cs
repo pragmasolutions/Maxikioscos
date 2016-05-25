@@ -63,6 +63,12 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(model);
         }
 
+        public ActionResult ComprasDetalladasPorProveedor(ReporteVentasProveedorFiltrosModel model)
+        {
+            return PartialOrView(model);
+        }
+
+
         public ActionResult TransferenciasPorProducto(ReporteTransferenciasPorProductosFiltrosModel filtros)
         {
             return PartialOrView(filtros);
@@ -131,6 +137,11 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult GastosPorCategoria(ReporteGastoPorCategoriaFiltrosModel gastoPorCategoriaFiltrosModel)
         {
             return PartialOrView(gastoPorCategoriaFiltrosModel);
+        }
+
+        public ActionResult SugerenciaComprasPorProveedor(ReporteSugerenciaComprasFiltrosModel model)
+        {
+            return PartialOrView(model);
         }
 
         [ActivityAuthorize(Actions = "Ventas por Cierre de Caja")]
@@ -458,6 +469,69 @@ namespace MaxiKioscos.Web.Controllers
                     .SetParametro("MaxikioscoNombre", maxikioscoNombre)
                     .SetPathCompleto(Server.MapPath("~/Reportes/VentasPorProveedor.rdl"))
                     .SetDataSource("VentasPorProveedorDataSet", ventasPorProveedorDataSource);
+
+            }
+
+
+            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+            return File(archivo, reporteFactory.MimeType);
+        }
+
+        public ActionResult GenerarComprasDetalladasPorProveedor(ReporteVentasProveedorFiltrosModel model)
+        {
+            DateTime? hasta = model.Hasta == null
+                ? (DateTime?)null
+                : model.Hasta.GetValueOrDefault().AddDays(1);
+
+            var reporteFactory = new ReporteFactory();
+
+            var rubro = Uow.Rubros.Obtener(r => r.RubroId == model.RubroId);
+            var rubroDescripcion = rubro != null ? rubro.Descripcion : TodosText;
+            var rubroId = model.RubroId.HasValue
+                ? model.RubroId.Value.ToString()
+                : null;
+
+            var proveedor = Uow.Proveedores.Obtener(r => r.ProveedorId == model.ProveedorId);
+            var proveedorNombre = proveedor != null ? proveedor.Nombre : TodosText;
+
+            reporteFactory
+                .SetParametro("Desde", model.Desde.ToShortDateString(null))
+                .SetParametro("Hasta", model.Hasta.ToShortDateString(null))
+                .SetParametro("CuentaId", UsuarioActual.CuentaId.ToString())
+                .SetParametro("RubroId", rubroId)
+                .SetParametro("RubroDescripcion", rubroDescripcion)
+                .SetParametro("ProveedorNombre", proveedorNombre);
+
+            if (model.MostrarTotalGeneral)
+            {
+                var comprasPorProveedorTotalGeneralDataSource =
+                    Uow.Reportes.ComprasDetalladasPorProveedorTotalGeneral(model.Desde,
+                        hasta,
+                        model.RubroId,
+                        model.ProveedorId,
+                        UsuarioActual.CuentaId);
+
+                reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/ComprasDetalladasPorProveedorTotalGeneral.rdl"))
+                    .SetDataSource("ComprasPorProveedorTotalGeneralDataSet", comprasPorProveedorTotalGeneralDataSource);
+            }
+            else
+            {
+                var comprasDetalladasPorProveedorDataSource = Uow.Reportes.ComprasDetalladasPorProveedor(model.Desde,
+                    hasta,
+                    model.RubroId,
+                    model.MaxiKioscoId,
+                    model.ProveedorId,
+                    UsuarioActual.CuentaId).ToList();
+
+                var maxikiosco = Uow.MaxiKioscos.Obtener(m => m.MaxiKioscoId == model.MaxiKioscoId);
+                var maxikioscoNombre = maxikiosco != null ? maxikiosco.Nombre : TodosText;
+
+                reporteFactory
+                    .SetParametro("MaxikioscoId", model.MaxiKioscoId.HasValue ? model.MaxiKioscoId.Value.ToString() : null)
+                    .SetParametro("MaxikioscoNombre", maxikioscoNombre)
+                    .SetPathCompleto(Server.MapPath("~/Reportes/ComprasDetalladasPorProveedor.rdl"))
+                    .SetDataSource("ComprasPorProveedorDataSet", comprasDetalladasPorProveedorDataSource);
 
             }
 
@@ -967,6 +1041,45 @@ namespace MaxiKioscos.Web.Controllers
             byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
 
             return File(archivo, reporteFactory.MimeType);
+        }
+                            
+        public ActionResult GenerarSugerenciaComprasPorProveedor(ReporteSugerenciaComprasFiltrosModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var sugerenciaCompras = Uow.Reportes.ProductoSugerenciaCompras(model.ProveedorId.GetValueOrDefault(), 
+                                                                    model.Dias.GetValueOrDefault(), 
+                                                                    model.MaxiKioscoId.GetValueOrDefault());
+                    var proveedor = Uow.Proveedores.Obtener(model.ProveedorId.GetValueOrDefault());
+                    var maxikiosco = Uow.MaxiKioscos.Obtener(model.MaxiKioscoId.GetValueOrDefault());
+
+                    var reporteFactory = new ReporteFactory();
+                    
+                    var parameters = new Dictionary<string, string>
+                                  {
+                                      {"Proveedor", proveedor.Nombre },
+                                      {"Maxikiosco", maxikiosco.Nombre },
+                                      {"Fecha", DateTime.Now.ToShortDateString() }
+                                  };
+
+                    reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/SugerenciaComprasPorProveedor.rdl"))
+                        .SetDataSource("dsSugerenciaCompras", sugerenciaCompras)
+                        .SetParametro(parameters); ;
+
+                    byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+                    return File(archivo, reporteFactory.MimeType);
+
+                }
+                catch (Exception ex)
+                {
+                    EventLogger.Log(ex);
+                    return null;
+                }
+            }
+            return null;
         }
 
         #region AUTOMATIZACIONES

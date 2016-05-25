@@ -748,5 +748,10 @@ namespace MaxiKioscos.Winforms.Principal
         {
             AbrirTab(new frmTransferencias(this));
         }
+
+        private void txtSugerenciaCompras_Click(object sender, EventArgs e)
+        {
+            AbrirTab(new frmSugerenciaCompras());
+        }
     }
 }

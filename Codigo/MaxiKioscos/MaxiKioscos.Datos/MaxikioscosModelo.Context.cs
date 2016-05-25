@@ -1081,5 +1081,76 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptVentasPorProveedorTotalGeneral>("RptVentasPorProveedorTotalGeneral", desdeParameter, hastaParameter, rubroIdParameter, proveedorIdParameter, cuentaIdParameter);
         }
+    
+        public virtual ObjectResult<RptComprasDetalladasPorProveedor> RptComprasDetalladasPorProveedor(Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta, Nullable<int> rubroId, Nullable<int> maxikioscoId, Nullable<int> proveedorId, Nullable<int> cuentaId)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            var maxikioscoIdParameter = maxikioscoId.HasValue ?
+                new ObjectParameter("MaxikioscoId", maxikioscoId) :
+                new ObjectParameter("MaxikioscoId", typeof(int));
+    
+            var proveedorIdParameter = proveedorId.HasValue ?
+                new ObjectParameter("ProveedorId", proveedorId) :
+                new ObjectParameter("ProveedorId", typeof(int));
+    
+            var cuentaIdParameter = cuentaId.HasValue ?
+                new ObjectParameter("CuentaId", cuentaId) :
+                new ObjectParameter("CuentaId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptComprasDetalladasPorProveedor>("RptComprasDetalladasPorProveedor", desdeParameter, hastaParameter, rubroIdParameter, maxikioscoIdParameter, proveedorIdParameter, cuentaIdParameter);
+        }
+    
+        public virtual ObjectResult<RptComprasDetalladasPorProveedorTotalGeneral> RptComprasDetalladasPorProveedorTotalGeneral(Nullable<System.DateTime> desde, Nullable<System.DateTime> hasta, Nullable<int> rubroId, Nullable<int> proveedorId, Nullable<int> cuentaId)
+        {
+            var desdeParameter = desde.HasValue ?
+                new ObjectParameter("Desde", desde) :
+                new ObjectParameter("Desde", typeof(System.DateTime));
+    
+            var hastaParameter = hasta.HasValue ?
+                new ObjectParameter("Hasta", hasta) :
+                new ObjectParameter("Hasta", typeof(System.DateTime));
+    
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            var proveedorIdParameter = proveedorId.HasValue ?
+                new ObjectParameter("ProveedorId", proveedorId) :
+                new ObjectParameter("ProveedorId", typeof(int));
+    
+            var cuentaIdParameter = cuentaId.HasValue ?
+                new ObjectParameter("CuentaId", cuentaId) :
+                new ObjectParameter("CuentaId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptComprasDetalladasPorProveedorTotalGeneral>("RptComprasDetalladasPorProveedorTotalGeneral", desdeParameter, hastaParameter, rubroIdParameter, proveedorIdParameter, cuentaIdParameter);
+        }
+    
+        public virtual ObjectResult<ProductoSugerenciaCompra> ProductoSugerenciaCompras(Nullable<int> proveedorId, Nullable<int> cantidadDias, Nullable<int> maxiKioscoId)
+        {
+            var proveedorIdParameter = proveedorId.HasValue ?
+                new ObjectParameter("ProveedorId", proveedorId) :
+                new ObjectParameter("ProveedorId", typeof(int));
+    
+            var cantidadDiasParameter = cantidadDias.HasValue ?
+                new ObjectParameter("CantidadDias", cantidadDias) :
+                new ObjectParameter("CantidadDias", typeof(int));
+    
+            var maxiKioscoIdParameter = maxiKioscoId.HasValue ?
+                new ObjectParameter("MaxiKioscoId", maxiKioscoId) :
+                new ObjectParameter("MaxiKioscoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoSugerenciaCompra>("ProductoSugerenciaCompras", proveedorIdParameter, cantidadDiasParameter, maxiKioscoIdParameter);
+        }
     }
 }

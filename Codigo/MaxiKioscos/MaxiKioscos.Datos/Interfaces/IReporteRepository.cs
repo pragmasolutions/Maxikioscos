@@ -15,9 +15,9 @@ namespace MaxiKioscos.Datos.Interfaces
 
         IQueryable<RptVentaPorProducto> VentasPorProducto(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? cuentaId);
 
-        IQueryable<RptVentasPorProveedor> VentasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId);
-
         IQueryable<RptVentasPorProductoTotalGeneral> VentasPorProductoTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? cuentaId);
+
+        IQueryable<RptVentasPorProveedor> VentasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId);
 
         IQueryable<RptVentasPorProveedorTotalGeneral> VentasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedor, int? cuentaId);
 
@@ -77,5 +77,11 @@ namespace MaxiKioscos.Datos.Interfaces
         IQueryable<RptGastosPorCategoriaTotalGeneral> GastosPorCategoriaTotalGeneral(DateTime? desde, DateTime? hasta, int? maxikioscoId, int? categoriaId, int? subcategoriaId);
        
         IList<Reporte> Listado();
+
+        IQueryable<RptComprasDetalladasPorProveedor> ComprasDetalladasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId);
+
+        IQueryable<RptComprasDetalladasPorProveedorTotalGeneral> ComprasDetalladasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedor, int? cuentaId);
+
+        List<ProductoSugerenciaCompra> ProductoSugerenciaCompras(int proveedorId, int dias, int maxiKioscoId);
     }
 }

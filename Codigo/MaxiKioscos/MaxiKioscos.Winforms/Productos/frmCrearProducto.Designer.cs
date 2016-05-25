@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrearProducto));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chxDisponibleEnDeposito = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtCodigo = new Util.Controles.ucTexto();
             this.ddlRubro = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlMarca = new Telerik.WinControls.UI.RadDropDownList();
@@ -55,8 +57,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.codigoProductoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.windows7Theme1 = new Telerik.WinControls.Themes.Windows7Theme();
-            this.chxDisponibleEnDeposito = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtFactorAgrupamiento = new Util.Controles.ucSoloNumero();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRubro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlMarca)).BeginInit();
@@ -78,6 +80,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtFactorAgrupamiento);
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.chxDisponibleEnDeposito);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtCodigo);
@@ -98,8 +102,28 @@
             this.panel1.Controls.Add(this.label17);
             this.panel1.Location = new System.Drawing.Point(-5, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 345);
+            this.panel1.Size = new System.Drawing.Size(519, 370);
             this.panel1.TabIndex = 1;
+            // 
+            // chxDisponibleEnDeposito
+            // 
+            this.chxDisponibleEnDeposito.AutoSize = true;
+            this.chxDisponibleEnDeposito.Location = new System.Drawing.Point(22, 313);
+            this.chxDisponibleEnDeposito.Name = "chxDisponibleEnDeposito";
+            this.chxDisponibleEnDeposito.Size = new System.Drawing.Size(18, 17);
+            this.chxDisponibleEnDeposito.TabIndex = 4;
+            this.chxDisponibleEnDeposito.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(18, 286);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(186, 23);
+            this.label16.TabIndex = 50;
+            this.label16.Text = "Disponible en Depósito";
             // 
             // txtCodigo
             // 
@@ -138,7 +162,7 @@
             this.ddlRubro.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlRubro.ShowImageInEditorArea = true;
             this.ddlRubro.Size = new System.Drawing.Size(203, 32);
-            this.ddlRubro.TabIndex = 5;
+            this.ddlRubro.TabIndex = 6;
             this.ddlRubro.Text = "radDropDownList1";
             this.ddlRubro.ThemeName = "Windows7";
             // 
@@ -157,7 +181,7 @@
             this.ddlMarca.RootElement.Padding = new System.Windows.Forms.Padding(2);
             this.ddlMarca.ShowImageInEditorArea = true;
             this.ddlMarca.Size = new System.Drawing.Size(203, 32);
-            this.ddlMarca.TabIndex = 4;
+            this.ddlMarca.TabIndex = 5;
             this.ddlMarca.Text = "radDropDownList1";
             this.ddlMarca.ThemeName = "Windows7";
             // 
@@ -206,7 +230,7 @@
             this.chxAceptaDecimales.Location = new System.Drawing.Point(272, 176);
             this.chxAceptaDecimales.Name = "chxAceptaDecimales";
             this.chxAceptaDecimales.Size = new System.Drawing.Size(18, 17);
-            this.chxAceptaDecimales.TabIndex = 6;
+            this.chxAceptaDecimales.TabIndex = 7;
             this.chxAceptaDecimales.UseVisualStyleBackColor = true;
             // 
             // txtPrecio
@@ -253,7 +277,7 @@
             this.txtStockReposicion.Name = "txtStockReposicion";
             this.txtStockReposicion.PosicionText = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtStockReposicion.Size = new System.Drawing.Size(203, 25);
-            this.txtStockReposicion.TabIndex = 7;
+            this.txtStockReposicion.TabIndex = 8;
             this.txtStockReposicion.Valor = "";
             this.txtStockReposicion.ValorDecimal = null;
             // 
@@ -351,10 +375,10 @@
             this.btnAceptar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.Location = new System.Drawing.Point(183, 395);
+            this.btnAceptar.Location = new System.Drawing.Point(183, 418);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(139, 33);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.TabIndex = 10;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAceptar.UseVisualStyleBackColor = false;
@@ -367,10 +391,10 @@
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(333, 395);
+            this.btnCancelar.Location = new System.Drawing.Point(333, 418);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 33);
-            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -397,32 +421,43 @@
             // 
             this.codigoProductoBindingSource.DataSource = typeof(MaxiKioscos.Entidades.CodigoProducto);
             // 
-            // chxDisponibleEnDeposito
+            // label18
             // 
-            this.chxDisponibleEnDeposito.AutoSize = true;
-            this.chxDisponibleEnDeposito.Location = new System.Drawing.Point(22, 313);
-            this.chxDisponibleEnDeposito.Name = "chxDisponibleEnDeposito";
-            this.chxDisponibleEnDeposito.Size = new System.Drawing.Size(18, 17);
-            this.chxDisponibleEnDeposito.TabIndex = 49;
-            this.chxDisponibleEnDeposito.UseVisualStyleBackColor = true;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(268, 286);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(194, 23);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "Factor de Agrupamiento";
             // 
-            // label16
+            // txtFactorAgrupamiento
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(18, 286);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(186, 23);
-            this.label16.TabIndex = 50;
-            this.label16.Text = "Disponible en Depósito";
+            this.txtFactorAgrupamiento.AceptaDecimales = false;
+            this.txtFactorAgrupamiento.CaracteresPermitidos = null;
+            this.txtFactorAgrupamiento.Disabled = false;
+            this.txtFactorAgrupamiento.ErrorMessage = "";
+            this.txtFactorAgrupamiento.EsObligatorio = true;
+            this.txtFactorAgrupamiento.Location = new System.Drawing.Point(272, 313);
+            this.txtFactorAgrupamiento.LongMax = 32767;
+            this.txtFactorAgrupamiento.LongMin = 0;
+            this.txtFactorAgrupamiento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFactorAgrupamiento.MaximoValor = null;
+            this.txtFactorAgrupamiento.MinimoValor = null;
+            this.txtFactorAgrupamiento.Name = "txtFactorAgrupamiento";
+            this.txtFactorAgrupamiento.PosicionText = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtFactorAgrupamiento.Size = new System.Drawing.Size(203, 31);
+            this.txtFactorAgrupamiento.TabIndex = 9;
+            this.txtFactorAgrupamiento.Valor = "";
+            this.txtFactorAgrupamiento.ValorDecimal = null;
             // 
             // frmCrearProducto
             // 
             this.AcceptButton = this.btnAceptar;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(513, 438);
+            this.ClientSize = new System.Drawing.Size(513, 458);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -432,7 +467,7 @@
             this.MaximizeBox = false;
             this.Name = "frmCrearProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Editar Producto";
+            this.Text = "F";
             this.Shown += new System.EventHandler(this.frmCrearProducto_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -487,6 +522,8 @@
         private Util.Controles.ucTexto txtCodigo;
         private System.Windows.Forms.CheckBox chxDisponibleEnDeposito;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private Util.Controles.ucSoloNumero txtFactorAgrupamiento;
         
         
     }

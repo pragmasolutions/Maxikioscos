@@ -115,6 +115,7 @@ namespace MaxiKioscos.Winforms.Productos
                                PrecioConIVA = txtPrecio.Valor.GetValueOrDefault(),
                                PrecioSinIVA = txtPrecioSinIva.Valor.GetValueOrDefault(),
                                RubroId = Convert.ToInt32(ddlRubro.SelectedValue),
+                               FactorAgrupamiento = txtFactorAgrupamiento.ValorEntero,
                                StockReposicion = string.IsNullOrEmpty(txtStockReposicion.Valor)
                                                        ? (int?)null
                                                        : int.Parse(txtStockReposicion.Valor),
