@@ -22,6 +22,11 @@ namespace MaxiKioscos.Datos.Sync
                 .FirstOrDefault(u => u.ProductoId==productoId);
         }
 
+        public ProductoPorCodigo ProductoPorCodigo(string codigo, int maxiKioscoId)
+        {
+            return MaxiKioscosEntities.ProductoPorCodigo(codigo, maxiKioscoId).FirstOrDefault();
+        }
+
         public ProductoHorario ObtenerPorCodigo(string codigo, int maxiKioscoId)
         {
             return MaxiKioscosEntities.ObtenerProductoPorCodigo(codigo, maxiKioscoId).FirstOrDefault();

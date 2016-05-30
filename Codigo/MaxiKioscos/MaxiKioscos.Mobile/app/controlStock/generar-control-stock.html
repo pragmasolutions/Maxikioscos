@@ -1,0 +1,46 @@
+<ion-view view-title="Control Stock" ng-controller="GenerarControlStockCtrl as vm">
+    <div class="bar bar-header bar-calm">
+        <h1 class="title">Control Stock</h1>
+    </div>
+    <ion-content class="has-header">
+        <div class="list">
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Proveedor
+                </div>
+                <select ng-model="vm.criterios.proveedorSeleccionado">
+                    <option value="" label="Seleccione Proveedor"></option>
+                    <option ng-repeat="proveedor in vm.proveedores" value="{{proveedor.id}}">
+                        {{proveedor.nombre}}
+                    </option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Rubro
+                </div>
+                <select ng-model="vm.criterios.rubroSeleccionado">
+                    <option value="" label="Seleccione Rubro"></option>
+                    <option ng-repeat="rubro in vm.rubros" value="{{rubro.id}}">
+                        {{rubro.nombre}}
+                    </option>
+                </select>
+            </label>
+
+            <ion-checkbox ng-model="vm.criterios.excluirStockCero">Excluir Stock 0</ion-checkbox>
+            <ion-checkbox ng-model="vm.criterios.soloMasVendidos">Solo los m&aacute;s Vendidos</ion-checkbox>
+
+            <label class="item item-input">
+                <span class="input-label">Cantidad de Filas</span>
+                <input type="number" ng-model="vm.criterios.CantidadFilas">
+            </label>
+
+            <button class="button button-calm button-full" ng-click="vm.generarClick(vm.criterios)">
+                Generar
+            </button>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -82,6 +82,9 @@
     <Compile Include="ControlStockDetalle.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="ControlStockObtenerDetalleRow.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ControlStockPlanillaRow.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
@@ -230,6 +233,9 @@
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductoParaTransferencia.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoPorCodigo.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductoPromocion.cs">

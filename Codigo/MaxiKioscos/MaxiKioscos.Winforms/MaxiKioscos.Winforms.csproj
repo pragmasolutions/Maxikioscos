@@ -785,6 +785,8 @@
     </Content>
     <Content Include="SqlScripts\165-Promocion_Listado.sql" />
     <Content Include="SqlScripts\166-Exportacion_NuevoXmlKiosco.sql" />
+    <Content Include="SqlScripts\167-Create_ControlStock_ObtenerDetalles.sql" />
+    <Content Include="SqlScripts\168-Create_sp_Producto_PorCodigo.sql" />
     <Content Include="SqlScripts\167-Factura_Agregar_Col_Finalizada.sql" />
     <Content Include="SqlScripts\176-Sync_Productos.sql" />
     <Content Include="SqlScripts\175-Sync_Facturas.sql" />

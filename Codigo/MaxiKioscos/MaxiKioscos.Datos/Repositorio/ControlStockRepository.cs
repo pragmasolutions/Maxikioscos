@@ -56,5 +56,20 @@ namespace MaxiKioscos.Datos.Sync
        {
            return MaxiKioscosEntities.ControlStockVistaPrevia(maxiKioscoId, proveedorId, rubroId, masVendidos, conStockCero, cantidadFilas).ToList();
        }
+
+       public List<ControlStockObtenerDetalleRow> ObtenerDetalle(int maxiKioscoId, int? proveedorId, int? rubroId,
+           int usuarioId, bool masVendidos, bool conStockCero,
+           int? cantidadFilas, int limiteInferior, int limiteSuperior)
+       {
+           try
+           {
+               return MaxiKioscosEntities.ControlStockObtenerDetalle(maxiKioscoId, proveedorId, rubroId, usuarioId,
+                   masVendidos, conStockCero, cantidadFilas, limiteInferior, limiteSuperior).ToList();
+           }
+           catch (Exception)
+           {
+               return null;
+           }
+       }
    }
 }

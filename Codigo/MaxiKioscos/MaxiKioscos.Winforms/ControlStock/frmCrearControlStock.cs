@@ -227,7 +227,7 @@ namespace MaxiKioscos.Winforms.ControlStock
                     var compras = ComprasRepository.Listado().Where(c => facturasIds.Contains(c.FacturaId)).Count();
                     if (facturasIds.Count() != compras)
                     {
-                        var mensaje = "El proveedor seleccionado tiene facturas no han sido completadas. Está seguro que desea continuar?";
+                        var mensaje = "El proveedor seleccionado tiene facturas que no han sido completadas. Está seguro que desea continuar?";
                         using (var popup = new ConfirmationForm(mensaje, "Si", "No"))
                         {
                             var result = popup.ShowDialog();

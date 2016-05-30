@@ -324,6 +324,7 @@
           <Property Name="Abreviacion" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
+          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -1824,6 +1825,17 @@
           <Parameter Name="ControlStockId" Type="int" Mode="In" />
           <Parameter Name="StockIds" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ControlStock_ObtenerDetalles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+          <Parameter Name="MasVendidos" Type="bit" Mode="In" />
+          <Parameter Name="ConStockCero" Type="bit" Mode="In" />
+          <Parameter Name="CantidadFilas" Type="int" Mode="In" />
+          <Parameter Name="LimiteInferior" Type="int" Mode="In" />
+          <Parameter Name="LimiteSuperior" Type="int" Mode="In" />
+        </Function>
         <Function Name="ControlStock_VistaPrevia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
@@ -1862,6 +1874,10 @@
           <Parameter Name="OrigenId" Type="int" Mode="In" />
           <Parameter Name="DestinoId" Type="int" Mode="In" />
           <Parameter Name="ProductoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Producto_PorCodigo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
         </Function>
         <Function Name="Producto_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
@@ -3173,6 +3189,21 @@
             <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
             <Parameter Name="CategoriaCostoId" Mode="In" Type="Int32" />
             <Parameter Name="SubCategoriaCostoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ControlStockObtenerDetalle" ReturnType="Collection(MaxiKioscosModel.ControlStockObtenerDetalleRow)">
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="MasVendidos" Mode="In" Type="Boolean" />
+            <Parameter Name="ConStockCero" Mode="In" Type="Boolean" />
+            <Parameter Name="CantidadFilas" Mode="In" Type="Int32" />
+            <Parameter Name="LimiteInferior" Mode="In" Type="Int32" />
+            <Parameter Name="LimiteSuperior" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProductoPorCodigo" ReturnType="Collection(MaxiKioscosModel.ProductoPorCodigo)">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptVentasPorProveedor" ReturnType="Collection(MaxiKioscosModel.RptVentasPorProveedor)">
             <Parameter Name="Desde" Mode="In" Type="DateTime" />
@@ -5531,6 +5562,28 @@
           <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="VendidoEnUltimoMes" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
+        <ComplexType Name="ControlStockObtenerDetalleRow">
+          <Property Type="Int32" Name="StockId" Nullable="true" />
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Desincronizado" Nullable="false" />
+          <Property Type="Int32" Name="Eliminado" Nullable="false" />
+          <Property Type="Guid" Name="Identifier" Nullable="true" />
+          <Property Type="Int32" Name="HabilitadoParaCorregir" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ProductoPorCodigo">
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="StockActual" Nullable="true" Precision="8" Scale="0" />
+          <Property Type="Int32" Name="StockId" Nullable="true" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="26" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Desincronizado" Nullable="true" />
+          <Property Type="Int32" Name="Eliminado" Nullable="true" />
+          <Property Type="Guid" Name="Identifier" Nullable="true" />
+          <Property Type="Int32" Name="HabilitadoParaCorregir" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="RptVentasPorProveedor">
           <Property Type="String" Name="MaxiKiosco" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
@@ -6927,6 +6980,36 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PromocionesListado" FunctionName="MaxiKioscosModel.Store.Promocion_Listado" />
+          <FunctionImportMapping FunctionImportName="ControlStockObtenerDetalle" FunctionName="MaxiKioscosModel.Store.ControlStock_ObtenerDetalles" >
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ControlStockObtenerDetalleRow">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="HabilitadoParaCorregir" ColumnName="HabilitadoParaCorregir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ProductoPorCodigo" FunctionName="MaxiKioscosModel.Store.Producto_PorCodigo">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoPorCodigo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Desincronizado" ColumnName="Desincronizado" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="HabilitadoParaCorregir" ColumnName="HabilitadoParaCorregir" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RptVentasPorProveedor" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProveedor">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentasPorProveedor">

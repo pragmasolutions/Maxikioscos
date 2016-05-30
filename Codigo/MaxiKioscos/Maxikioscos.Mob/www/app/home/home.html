@@ -1,0 +1,102 @@
+<ion-view title="DrugStore" hide-back-button="true" show-menu-button="true" ng-controller="homeCtrl as vm">       
+    <ion-content class="has-header">        
+        <div style="padding-top:15px">
+            <h3 class="title" style="text-align: center;">BIENVENIDO</h3>
+            </br>            
+        </div>
+        <div ng-if="!vm.maxikioscoAvailable">
+            <h3 class="title" style="text-align: center;">El servicio local no se encuentra disponible.</h3>
+            </br>
+            <h5 class="title padding">1. Verifique la conexión a internet.</h5>
+            <h5 class="title padding">2. Verifique que el servicio este en linea.</h5>
+            </br>
+            <button class="button button-energized button-block" ng-click="vm.reload()">
+                <i class="icon ion-loop"></i>
+                Reconectar
+            </button>       
+            </br>
+            </br>
+            <h6 class="title" style="text-align: center;">Si el problema persiste, contáctese con el equipo soporte.</h6>
+        </div>
+        <div ng-if="!vm.isConnected">            
+            <h4 class="title" style="text-align: center;">Haga click en el botón para conectarse al kiosco.</h4>
+            </br>
+            <button class="button button-balanced button-block" ng-click="vm.connect()">
+                <i class="icon ion-power"></i>
+                Conectar
+            </button>       
+        </div>
+        <div ng-if="vm.isConnected">            
+            <h4 class="title" style="text-align: center;color:green;">El dispositivo se encuentra conectado.</h4>
+            </br>
+            <h4 class="title" style="text-align: center;">Elija una opción del menú</h4>
+            </br>
+            <h4 class="title" style="text-align: left;">Resúmen de Control de Stock</h4>
+            </br>
+            <form name="filterForm">
+                <div class="row">                                
+                    <div class="col-6" style="padding-top: 7px;">
+                        <label style="vertical-align:middle;">Fecha desde:</label>
+                    </div>
+                    <div class="col-6" style="padding-left: 10px;">
+                        <input type="date" id="dataFrom" name="dataFrom" ng-model="vm.controlStockResume.DateFrom"
+                        required />
+                        <div role="alert">
+                          <span class="error" ng-show="filterForm.dataFrom.$error.required">
+                            Este campo es requerido</span>
+                            <span class="error" ng-show="filterForm.dataFrom.$error.date">
+                            No es una fecha válida</span>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="row">            
+                    <div class="col-6" style="padding-top: 7px;">
+                        <label style="vertical-align:middle;">Fecha hasta:</label>
+                    </div>
+                    <div class="col-6" style="padding-left: 10px;">
+                        <input type="date" id="dataTo" name="dataTo" ng-model="vm.controlStockResume.DateTo"
+                        required />
+                        <div role="alert">
+                          <span class="error" ng-show="filterForm.dataTo.$error.required">
+                            Este campo es requerido</span>
+                            <span class="error" ng-show="filterForm.dataTo.$error.date">
+                            No es una fecha válida</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="button button-balanced button-block" ng-click="vm.getResume(filterForm)" ng-disabled="(vm.controlStockResume.DateTo < vm.controlStockResume.DateFrom) || !filterForm.$valid">
+                        <i class="icon ion-clipboard"></i>
+                        Aceptar
+                    </button>  
+                </div>
+            </form>
+            <ul class="list">
+                <li class="item" ng-repeat="control in vm.controlsResume" id="{{control.StockControlId}}" style="padding:0;">
+                    <div class="row">
+                        <div class="col-10 padding-top">
+                            <strong class="bold">{{control.NroControl}}.</strong>
+                        </div>
+                        <div class="col-80 padding-top">
+                            <span>{{control.Proveedor}}</span>
+                        </div>                   
+                    </div>
+                    <div class="row">
+                        <div class="col-100 padding-top">
+                            <strong class="bold">Rubro: {{control.Rubro}}</strong>
+                        </div>                                          
+                    </div>
+                    <div class="row">
+                        <div class="col-50 padding-top">
+                            <strong class="bold">Lim Inf: {{control.LimiteInferior}}</strong>
+                        </div>  
+                        <div class="col-50 padding-top">
+                            <strong class="bold">Lim Sup: {{control.LimiteSuperior}}</strong>
+                        </div>                                        
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+    </ion-content>
+</ion-view>

@@ -13,5 +13,7 @@ namespace MaxiKioscos.Datos.Interfaces
         List<ProductoStock> ObtenerStock(int productoId);
         List<PromocionCompleta> PromocionesListado(int? rubroId, string descripcion, decimal? precio,
             int? stockReposicion, int? conStockMenorA, string codigo);
+
+        ProductoPorCodigo ProductoPorCodigo(string codigo, int maxiKioscoId);
     }
 }

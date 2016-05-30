@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,13 +44,17 @@
   <ItemGroup>
     <Compile Include="Data\MaxiKioscoData.cs" />
     <Compile Include="Data\ExportacionData.cs" />
+    <Compile Include="Interfaces\IMaxiKioscoService.cs" />
     <Compile Include="Interfaces\INotificacionService.cs" />
     <Compile Include="Interfaces\IForzarSincronizacionService.cs" />
     <Compile Include="Interfaces\ISincronizacionService.cs" />
     <Compile Include="Request\ActualizarDatosRequest.cs" />
     <Compile Include="Request\AcusarExportacionRequest.cs" />
+    <Compile Include="Request\LoginRequest.cs" />
     <Compile Include="Request\ObtenerDatosRequest.cs" />
     <Compile Include="Request\ReportarErrorRequest.cs" />
+    <Compile Include="Response\LoginResponse.cs" />
+    <Compile Include="Response\UsuarioApiResponse.cs" />
     <Compile Include="Response\ObtenerUltimasSecuenciasResponse.cs" />
     <Compile Include="Response\KioscoAsignadoResponse.cs" />
     <Compile Include="Response\InicializarKioscoResponse.cs" />

@@ -1,0 +1,52 @@
+<ion-view view-title="Cargar Control Stock Dinámico" ng-controller="CargarControlStockDynamicCtrl as vm">
+    <ion-content>
+        <div class="row">
+            <a class="button button-icon button-clear icon ion-search" style="text-align: left;" ng-click="vm.buscarProductoClick()"> Escanear</a>
+        </div>
+        <div class="row">
+            <a class="button col button-icon button-clear icon ion-search" style="text-align: left;" ng-click="vm.buscarProductoPorCodigo()"> Ingresar código</a>
+        </div>
+        <div class="row">
+            <a class="button button-icon col button-clear icon ion-trash-b" style="text-align: left;" ng-disabled="vm.productos.length == 0" ng-click="vm.limpiar()"> Limpiar</a>
+        </div>
+        <ul class="list">           
+            <li class="item" ng-repeat="producto in vm.productos" ng-class="{'balanced': producto.MotivoCorreccionId && producto.Diferencia}" id="{{producto.Codigo}}" style="padding:0;">
+                <div class="row">
+                    <div class="col-10 padding-top">
+                        <strong class="bold">{{$index + 1}}.</strong>
+                    </div>
+                    <div class="col-80 padding-top">
+                        <span>{{producto.Producto}}</span>
+                    </div>                   
+                    <div class="col-10" style="horizontal-align: right;vertical-align: top;">
+                        <a class="button button-icon-right button-clear icon ion-trash-b" style="font-color:red;" ng-click="vm.eliminar($index)"></a>
+                    </div>
+                </div>
+                <div class="row padding-bottom">
+                    <div class="col">
+                        <div class="bold">{{producto.Codigo}}</div>
+                    </div>
+                    <div class="col">
+                        <span>Stock: <b>{{producto.StockActual}}</b></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">                       
+                        <select class="selectMotivo" ng-model="producto.MotivoCorreccionId">
+                            <option value="" label="Sel. Mot"></option>
+                            <option ng-repeat="motivo in vm.motivos" value="{{motivo.Id}}">
+                                {{motivo.Description}}
+                            </option>
+                        </select>                        
+                    </div>
+                    <div class="col-6" style="padding-left:10px;">                        
+                        <input type="number" ng-model="producto.Diferencia" placeholder="Diferencia" class="diferencia"/>
+                    </div>
+                </div>               
+            </li>
+            <button class="button button-calm button-full" ng-click="vm.guardar()">
+                Aceptar
+            </button>
+        </ul>
+    </ion-content>
+</ion-view>

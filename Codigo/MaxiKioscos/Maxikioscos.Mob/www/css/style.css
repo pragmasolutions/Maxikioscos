@@ -1,0 +1,47 @@
+/* Tables */
+.highlighted-row{
+	background-color: #FFD332;
+}
+
+.col-30 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 30%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 30%;
+    -ms-flex: 0 0 30%;
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+.col input{
+	width: 100%;
+}
+
+/*VALIDACION*/
+input.ng-touched.ng-invalid {
+    border-bottom: 2px solid red;
+}
+
+input.ng-touched.ng-invalid+div[ng-messages]{
+    color: red;
+}
+
+.user{
+	font-size: 14 pts;
+}
+
+.password{
+	font-size: ;
+}
+
+.selectMotivo{
+	height: 34px;
+	left:0;
+	padding: 0
+}
+
+.diferencia{
+	padding-left: 10px; 
+	border:solid;
+	width: 75px;
+}
