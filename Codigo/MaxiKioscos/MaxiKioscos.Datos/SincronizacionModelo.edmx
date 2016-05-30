@@ -30,6 +30,7 @@
           <Property Name="UltimaSecuenciaExportacion" Type="int" />
           <Property Name="UltimaSecuenciaAcusada" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
+          <Property Name="UltimaConexion" Type="datetime" />
         </EntityType>
         <EntityContainer Name="MaxiKioscosSincronizacionModelStoreContainer">
           <EntitySet Name="SyncExportacion" EntityType="Self.SyncExportacion" Schema="dbo" store:Type="Tables" />
@@ -64,6 +65,7 @@
           <Property Name="UltimaSecuenciaExportacion" Type="Int32" />
           <Property Name="UltimaSecuenciaAcusada" Type="Int32" />
           <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
+          <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="SincronizacionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SyncExportaciones" EntityType="Self.SyncExportacion" />
@@ -119,6 +121,7 @@
           <EntitySetMapping Name="SyncMaxiKioscos">
             <EntityTypeMapping TypeName="MaxiKioscos.SincronizacionModel.SyncMaxiKiosco">
               <MappingFragment StoreEntitySet="SyncMaxiKiosco">
+                <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

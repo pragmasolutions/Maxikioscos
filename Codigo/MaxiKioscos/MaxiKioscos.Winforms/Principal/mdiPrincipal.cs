@@ -522,10 +522,6 @@ namespace MaxiKioscos.Winforms.Principal
             _sincronizacionManager.ActualizarKioscoDesdeArchivo(openFileDialogSincronizacion);
         }
 
-        private void exportarDatosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new frmExportar().ShowDialog();
-        }
 
         #endregion
 

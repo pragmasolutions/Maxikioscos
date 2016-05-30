@@ -457,6 +457,11 @@ namespace MaxiKioscos.Winforms.RetirosPersonales
                         if (seAgregoTransaccion)
                             stockTransaccionRepository.Commit();
 
+                        foreach (var linea in lineas)
+                        {
+                            stockTransaccionRepository.MaxiKioscosEntities.StockActualizar(AppSettings.MaxiKioscoIdentifier, linea.ProductoId);
+                        }
+
                         Repository.Agregar(retiroPersonal);
                         if (Repository.Commit())
                         {

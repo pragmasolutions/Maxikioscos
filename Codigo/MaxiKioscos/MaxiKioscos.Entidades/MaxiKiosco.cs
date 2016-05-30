@@ -39,15 +39,11 @@ namespace MaxiKioscos.Entidades
         public bool Desincronizado { get; set; }
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public bool Eliminado { get; set; }
-        public Nullable<int> UltimaSecuenciaExportacion { get; set; }
-        public Nullable<int> UltimaSecuenciaAcusada { get; set; }
         public bool EstaOnLine { get; set; }
         public bool Asignado { get; set; }
         public string Abreviacion { get; set; }
         public Nullable<int> UltimoScriptCorrido { get; set; }
         public Nullable<System.DateTime> UltimaSincronizacionExitosa { get; set; }
-        public Nullable<System.DateTime> UltimaConexion { get; set; }
-        public string NombreMaquina { get; set; }
     
         public virtual ICollection<CierreCaja> CierreCajas { get; set; }
         public virtual Cuenta Cuenta { get; set; }

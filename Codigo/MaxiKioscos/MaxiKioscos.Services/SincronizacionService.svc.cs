@@ -23,11 +23,6 @@ namespace MaxiKioscos.Services
             _sincronizacionNegocio = sincronizacionNegocio;
         }
 
-        /// <summary>
-        /// Obtiene todos los datos de desincronizados desde la base de datos principal
-        /// </summary>
-        /// <param name="request">Request parametros</param>
-        /// <returns>Datos a sincronizar en el maxikiosco</returns>
         public ObtenerDatosResponse ObtenerDatos(ObtenerDatosRequest request)
         {
             var maxiKioscoIdentifier = request.MaxiKioscoIdentifier;
@@ -64,10 +59,6 @@ namespace MaxiKioscos.Services
             return response;
         }
 
-        /// <summary>
-        /// Actualiza la base de datos principal con datos de un maxikiosco
-        /// </summary>
-        /// <param name="request"></param>
         public ActualizarDatosResponse ActualizarDatos(ActualizarDatosRequest request)
         {
             try
@@ -114,11 +105,6 @@ namespace MaxiKioscos.Services
             }
         }
 
-
-        /// <summary>
-        /// Actualiza la base de datos principal con la ultima secuencia de exportacion del kiosco
-        /// </summary>
-        /// <param name="request"></param>
         public void AcusarExportacion(AcusarExportacionRequest request)
         {
             //Actualizo el estado de kiosco
@@ -242,12 +228,12 @@ namespace MaxiKioscos.Services
 
         public bool AcusarEstadoConexion(Guid maxikioscoIdentifier, string dateISO)
         {
-            //Actualizo el estado de kiosco
-            var kiosco = Uow.MaxiKioscos.Obtener(m => m.Identifier == maxikioscoIdentifier);
+            var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
+            var kiosco = syncRepo.Obtener(m => m.Identifier == maxikioscoIdentifier);
             kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO).GetValueOrDefault().ToUniversalTime();
             try
             {
-                Uow.Commit();
+                syncRepo.Commit();
                 return true;
             }
             catch (Exception)

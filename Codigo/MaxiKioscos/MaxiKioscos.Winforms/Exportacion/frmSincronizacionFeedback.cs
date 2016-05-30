@@ -134,7 +134,8 @@ namespace MaxiKioscos.Winforms.Exportacion
             var nombresArchivos = DirectoryHelper.ObtenerArchivos(carpetaTemporal, "xml");
 
             //Obtengo la ultima secuencia importada desde el principal
-            var ultimaSecuencia = Uow.MaxiKioscos.Obtener(AppSettings.MaxiKioscoId).UltimaSecuenciaExportacion ?? 0;
+            var syncKiosco = _sincronizacionService.ObtenerSecuencias(AppSettings.MaxiKioscoIdentifier.ToString());
+            var ultimaSecuencia = syncKiosco.UltimaSecuenciaExportacion;
                     
             //Corro los nuevos scripts
             var nuevos = nombresArchivos.Select(a => new ArchivoPrincipalStruct(a))

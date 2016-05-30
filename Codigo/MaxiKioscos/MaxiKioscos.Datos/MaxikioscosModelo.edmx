@@ -320,14 +320,10 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Eliminado" Type="bit" Nullable="false" />
-          <Property Name="UltimaSecuenciaExportacion" Type="int" />
-          <Property Name="UltimaSecuenciaAcusada" Type="int" />
           <Property Name="Asignado" Type="bit" Nullable="false" />
           <Property Name="Abreviacion" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
-          <Property Name="UltimaConexion" Type="datetime" />
-          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -3371,13 +3367,11 @@
           <NavigationProperty Name="CierreCajas" Relationship="MaxiKioscosModel.FK_CierreCaja_MaxiKiosco" FromRole="MaxiKiosco" ToRole="CierreCaja" />
           <NavigationProperty Name="Cuenta" Relationship="MaxiKioscosModel.FK_MaxiKiosco_Cuenta" FromRole="MaxiKiosco" ToRole="Cuenta" />
           <NavigationProperty Name="Facturas" Relationship="MaxiKioscosModel.FK_Factura_MaxiKiosco" FromRole="MaxiKiosco" ToRole="Factura" />
-          <Property Name="UltimaSecuenciaExportacion" Type="Int32" />
           <NavigationProperty Name="Stocks" Relationship="MaxiKioscosModel.FK_ProductoMaxiKiosco_MaxiKiosco" FromRole="MaxiKiosco" ToRole="Stock" />
           <NavigationProperty Name="Compras" Relationship="MaxiKioscosModel.FK_Compra_MaxiKiosco" FromRole="MaxiKiosco" ToRole="Compra" />
           <NavigationProperty Name="ExcepcionRubroes" Relationship="MaxiKioscosModel.FK_ExcepcionRubro_MaxiKiosco" FromRole="MaxiKiosco" ToRole="ExcepcionRubro" />
           <NavigationProperty Name="MaxiKioscoTurnos" Relationship="MaxiKioscosModel.FK_MaxiKioscoTurno_MaxiKiosco" FromRole="MaxiKiosco" ToRole="MaxiKioscoTurno" />
           <NavigationProperty Name="CorreccionesDeStocks" Relationship="MaxiKioscosModel.FK_CorreccionStock_MaxiKiosco" FromRole="MaxiKiosco" ToRole="CorreccionStock" />
-          <Property Name="UltimaSecuenciaAcusada" Type="Int32" />
           <NavigationProperty Name="Importacions" Relationship="MaxiKioscosModel.FK_Importacion_MaxiKiosco" FromRole="MaxiKiosco" ToRole="Importacion" />
           <Property Name="EstaOnLine" Type="Boolean" Nullable="false" />
           <Property Name="Asignado" Type="Boolean" Nullable="false" />
@@ -3386,10 +3380,8 @@
           <Property Name="UltimoScriptCorrido" Type="Int32" />
           <NavigationProperty Name="Transferencias" Relationship="MaxiKioscosModel.FK_Transferencia_Destino" FromRole="MaxiKiosco" ToRole="Transferencia" />
           <NavigationProperty Name="Transferencias1" Relationship="MaxiKioscosModel.FK_Transferencia_Origen" FromRole="MaxiKiosco" ToRole="Transferencia" />
-          <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
-          <Property Name="UltimaConexion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Costoes" Relationship="MaxiKioscosModel.FK_Costo_Maxikiosco" FromRole="MaxiKiosco" ToRole="Costo" />
-          <Property Name="NombreMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UltimaSincronizacionExitosa" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="MotivoOperacionCaja">
           <Key>
@@ -5713,15 +5705,11 @@
           <EntitySetMapping Name="MaxiKioscoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.MaxiKiosco">
               <MappingFragment StoreEntitySet="MaxiKiosco">
-                <ScalarProperty Name="NombreMaquina" ColumnName="NombreMaquina" />
-                <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="UltimaSincronizacionExitosa" ColumnName="UltimaSincronizacionExitosa" />
                 <ScalarProperty Name="UltimoScriptCorrido" ColumnName="UltimoScriptCorrido" />
                 <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
                 <ScalarProperty Name="Asignado" ColumnName="Asignado" />
                 <ScalarProperty Name="EstaOnLine" ColumnName="EstaOnLine" />
-                <ScalarProperty Name="UltimaSecuenciaAcusada" ColumnName="UltimaSecuenciaAcusada" />
-                <ScalarProperty Name="UltimaSecuenciaExportacion" ColumnName="UltimaSecuenciaExportacion" />
                 <ScalarProperty Name="MaxiKioscoId" ColumnName="MaxiKioscoId" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

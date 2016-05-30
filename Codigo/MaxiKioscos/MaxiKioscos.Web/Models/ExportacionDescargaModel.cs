@@ -42,35 +42,7 @@ namespace MaxiKioscos.Web.Models
         public DateTime? Fecha { get; set; }
 
         public string FileName { get; set; }
-
-        internal List<Exportacion> ObtenerExportaciones()
-        {
-            var repo = new ExportacionRepository();
-            var archivos = new List<Exportacion>();
-            switch (DescargaTipo)
-            {
-                case 1: //Kiosco
-                    var kioscoRepository = new MaxiKioscoRepository();
-                    var kiosco = kioscoRepository.Obtener(this.MaxiKioscoId.GetValueOrDefault());
-                    archivos = repo.ListadoPorCuenta(UsuarioActual.CuentaId, e => e.ExportacionArchivo)
-                                            .Where(e => e.Secuencia > kiosco.UltimaSecuenciaExportacion.GetValueOrDefault()).ToList();
-                    break;
-                case 2: //Completa
-                    archivos = repo.ListadoPorCuenta(UsuarioActual.CuentaId, e => e.ExportacionArchivo).ToList();
-                    break;
-                case 3: //Parcial (secuencia)
-                    archivos = repo.ListadoPorCuenta(UsuarioActual.CuentaId, e => e.ExportacionArchivo)
-                                                                .Where(e => e.Secuencia >= this.Secuencia).ToList();
-                    break;
-                case 4: //Fecha
-                    var fecha = this.Fecha.GetValueOrDefault().AddDays(-1);
-                    archivos = repo.ListadoPorCuenta(UsuarioActual.CuentaId, e => e.ExportacionArchivo)
-                                                                .Where(e => e.Fecha > fecha).ToList();
-                    break;
-            }
-            return archivos;
-        }
-
+        
         internal string GenerarNombreArchivo()
         {
             var nombre = string.Empty;

@@ -24,11 +24,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://ganciokioscos-001-site5.smarterasp.net/</InstallUrl>
-    <UpdateUrl>http://ganciokioscos-001-site5.smarterasp.net/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.60</MinimumRequiredVersion>
+    <InstallUrl>http://ganciokioscos-001-site5.htempurl.com/</InstallUrl>
+    <UpdateUrl>http://ganciokioscos-001-site5.htempurl.com/</UpdateUrl>
+    <MinimumRequiredVersion>1.1.0.65</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>61</ApplicationRevision>
+    <ApplicationRevision>66</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -293,12 +293,6 @@
     </Compile>
     <Compile Include="Excepciones\frmGestionExcepciones.Designer.cs">
       <DependentUpon>frmGestionExcepciones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Exportacion\frmExportar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Exportacion\frmExportar.Designer.cs">
-      <DependentUpon>frmExportar.cs</DependentUpon>
     </Compile>
     <Compile Include="Exportacion\frmSincronizacionFeedback.cs">
       <SubType>Form</SubType>
@@ -792,6 +786,10 @@
     <Content Include="SqlScripts\165-Promocion_Listado.sql" />
     <Content Include="SqlScripts\166-Exportacion_NuevoXmlKiosco.sql" />
     <Content Include="SqlScripts\167-Factura_Agregar_Col_Finalizada.sql" />
+    <Content Include="SqlScripts\176-Sync_Productos.sql" />
+    <Content Include="SqlScripts\175-Sync_Facturas.sql" />
+    <Content Include="SqlScripts\174-Sincronizacion_ActualizarKiosco.sql" />
+    <Content Include="SqlScripts\173-MaxiKiosco_EliminarCampos.sql" />
     <Content Include="SqlScripts\172-Producto_SugerenciaCompras.sql" />
     <Content Include="SqlScripts\171-Sync_Productos.sql" />
     <Content Include="SqlScripts\170-Producto_FactorAgrupamiento.sql" />
@@ -1152,9 +1150,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Excepciones\frmGestionExcepciones.resx">
       <DependentUpon>frmGestionExcepciones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Exportacion\frmExportar.resx">
-      <DependentUpon>frmExportar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Exportacion\frmSincronizacionFeedback.resx">
       <DependentUpon>frmSincronizacionFeedback.cs</DependentUpon>

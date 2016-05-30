@@ -1,0 +1,2 @@
+ALTER TABLE SyncMaxiKiosco
+ADD UltimaConexion DATETIME NULL

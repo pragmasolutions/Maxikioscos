@@ -63,11 +63,10 @@
             this.tsmRetiroPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbReposicionStock = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtSugerenciaCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmSegundoPlano = new System.Windows.Forms.ToolStripMenuItem();
-            this.tssSecuencial = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.actualizarDesdeArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.exportarDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reconectarForzarSincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +87,6 @@
             this.tsbTransferencias = new System.Windows.Forms.ToolStripButton();
             this.mdiTabStrip2 = new MdiTabStrip.MdiTabStrip();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
-            this.txtSugerenciaCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tspAccesosDirectos.SuspendLayout();
@@ -360,13 +358,18 @@
             this.tsbReposicionStock.Text = "Reposición de Stock";
             this.tsbReposicionStock.Click += new System.EventHandler(this.tsbReposicionStock_Click);
             // 
+            // txtSugerenciaCompras
+            // 
+            this.txtSugerenciaCompras.Name = "txtSugerenciaCompras";
+            this.txtSugerenciaCompras.Size = new System.Drawing.Size(241, 26);
+            this.txtSugerenciaCompras.Text = "Sugerencia de Compras";
+            this.txtSugerenciaCompras.Click += new System.EventHandler(this.txtSugerenciaCompras_Click);
+            // 
             // sincronizaciónToolStripMenuItem
             // 
             this.sincronizaciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmSegundoPlano,
-            this.tssSecuencial,
             this.toolStripSeparator3,
-            this.actualizarDesdeArchivoToolStripMenuItem,
             this.toolStripSeparator7,
             this.exportarDatosToolStripMenuItem,
             this.reconectarForzarSincronizaciónToolStripMenuItem});
@@ -381,26 +384,10 @@
             this.tsmSegundoPlano.Text = "Sincronizar desde Web";
             this.tsmSegundoPlano.Click += new System.EventHandler(this.tsmSegundoPlano_Click);
             // 
-            // tssSecuencial
-            // 
-            this.tssSecuencial.Name = "tssSecuencial";
-            this.tssSecuencial.ShowShortcutKeys = false;
-            this.tssSecuencial.Size = new System.Drawing.Size(303, 26);
-            this.tssSecuencial.Text = "Sincronización Secuencial";
-            this.tssSecuencial.Visible = false;
-            this.tssSecuencial.Click += new System.EventHandler(this.sincronizacionSecuencialStripMenuItem_Click);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(300, 6);
-            // 
-            // actualizarDesdeArchivoToolStripMenuItem
-            // 
-            this.actualizarDesdeArchivoToolStripMenuItem.Name = "actualizarDesdeArchivoToolStripMenuItem";
-            this.actualizarDesdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
-            this.actualizarDesdeArchivoToolStripMenuItem.Text = "Actualizar desde archivo";
-            this.actualizarDesdeArchivoToolStripMenuItem.Click += new System.EventHandler(this.actualizarDesdeArchivoToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
@@ -412,7 +399,6 @@
             this.exportarDatosToolStripMenuItem.Name = "exportarDatosToolStripMenuItem";
             this.exportarDatosToolStripMenuItem.Size = new System.Drawing.Size(303, 26);
             this.exportarDatosToolStripMenuItem.Text = "Exportar datos...";
-            this.exportarDatosToolStripMenuItem.Click += new System.EventHandler(this.exportarDatosToolStripMenuItem_Click);
             // 
             // reconectarForzarSincronizaciónToolStripMenuItem
             // 
@@ -587,13 +573,6 @@
             this.mdiTabStrip2.TabPermanence = MdiTabStrip.MdiTabPermanence.LastOpen;
             this.mdiTabStrip2.Text = "mdiTabStrip2";
             // 
-            // txtSugerenciaCompras
-            // 
-            this.txtSugerenciaCompras.Name = "txtSugerenciaCompras";
-            this.txtSugerenciaCompras.Size = new System.Drawing.Size(241, 26);
-            this.txtSugerenciaCompras.Text = "Sugerencia de Compras";
-            this.txtSugerenciaCompras.Click += new System.EventHandler(this.txtSugerenciaCompras_Click);
-            // 
             // mdiPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -659,7 +638,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDetalleCompleto;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem gestionDeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actualizarDesdeArchivoToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialogSincronizacion;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem exportarDatosToolStripMenuItem;
@@ -677,7 +655,6 @@
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsbReposicionStock;
         private System.Windows.Forms.ToolStripStatusLabel tssUsuario;
-        private System.Windows.Forms.ToolStripMenuItem tssSecuencial;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel tssProgreso;
         private System.ComponentModel.BackgroundWorker bgWorker;

@@ -19,5 +19,6 @@ namespace MaxiKioscos.Entidades
         public Nullable<int> UltimaSecuenciaExportacion { get; set; }
         public Nullable<int> UltimaSecuenciaAcusada { get; set; }
         public Nullable<System.DateTime> UltimaSincronizacionExitosa { get; set; }
+        public Nullable<System.DateTime> UltimaConexion { get; set; }
     }
 }

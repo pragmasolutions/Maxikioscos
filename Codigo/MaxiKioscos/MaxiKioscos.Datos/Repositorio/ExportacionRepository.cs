@@ -76,15 +76,8 @@ namespace MaxiKioscos.Datos.Sync
 
         public bool ActualizarPrincipal(string xml, Guid maxikioscoIdentifier, int secuencia, string nombreArchivo)
         {
-            try
-            {
-                var result = MaxiKioscosEntities.SincronizacionActualizarPrincipal(xml, maxikioscoIdentifier, secuencia, nombreArchivo).FirstOrDefault();
-                return result.GetValueOrDefault();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = MaxiKioscosEntities.SincronizacionActualizarPrincipal(xml, maxikioscoIdentifier, secuencia, nombreArchivo).FirstOrDefault();
+            return result.GetValueOrDefault();
         }
 
         public void Resetear()
