@@ -9,7 +9,6 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
-using MaxiKioscos.Datos.Repositorio;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Mobile.Api.Models.Request;
 using MaxiKioscos.Mobile.Api.Models.Response;

@@ -6,7 +6,7 @@
 		var api= "/api/";
 		var port= ":8080";
 		// var urlMasterService = 'http://192.168.0.7:51557/';
-		var urlMasterService = 'http://192.168.0.12:51557/';
+		var urlMasterService = 'http://192.168.0.16:51557/';
 		
 		return {
 			URL_MASTER_SERVICE: urlMasterService,

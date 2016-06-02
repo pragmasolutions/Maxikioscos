@@ -1,3 +1,8 @@
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ControlStock_ObtenerDetalles]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[ControlStock_ObtenerDetalles]
+GO
+
+
 CREATE PROCEDURE [dbo].[ControlStock_ObtenerDetalles]
  @MaxiKioscoId int, 
  @ProveedorId int = NULL,
@@ -218,3 +223,6 @@ BEGIN
     AND S.MaxiKioscoId = @MaxiKioscoId
  
 END
+GO
+
+
