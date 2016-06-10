@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DateTime.cs" />
     <Compile Include="Interfaces\IPromocionesNegocio.cs" />
     <Compile Include="Interfaces\ISincronizacionNegocio.cs" />
     <Compile Include="Interfaces\ITransferenciasNegocio.cs" />

@@ -230,7 +230,7 @@ namespace MaxiKioscos.Services
         {
             var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
             var kiosco = syncRepo.Obtener(m => m.Identifier == maxikioscoIdentifier);
-            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO).GetValueOrDefault().ToUniversalTime();
+            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO).GetValueOrDefault();
             try
             {
                 syncRepo.Commit();

@@ -11,6 +11,7 @@ using System.Linq;
 using Maxikioscos.Comun.Extensions;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Negocio.Extensions;
 using MaxiKioscos.Reportes.Enumeraciones;
 using MaxiKioscos.Web.Filters;
 using PagedList;
@@ -151,10 +152,9 @@ namespace MaxiKioscos.Web.Controllers
             {
                 try
                 {
-
-                    var ventasPorProductoDataSource = Uow.Reportes.VentasPorCierreCaja(model.CierreCajaId).ToList();
-
                     var ventasPorProductoRankingDataSource = Uow.Reportes.VentasPorProductoRanking(null, null, null, null, null, model.CierreCajaId).ToList();
+                    var ventasPorProductoDataSource = Uow.Reportes.VentasPorCierreCaja(model.CierreCajaId).ToList();
+                    
                     var reporteFactory = new ReporteFactory();
 
                     var cierreCaja = Uow.CierresDeCaja.Obtener(c => c.CierreCajaId == model.CierreCajaId,
@@ -940,7 +940,7 @@ namespace MaxiKioscos.Web.Controllers
                                       {"Proveedor", proveedor},
                                       {"Maxikiosco",  maxikiosco},
                                       {"MaxiKioscoId",  model.MaxiKioscoId.GetValueOrDefault().ToString()},
-                                      {"Fecha", DateTime.Now.ToShortDateString()}
+                                      {"Fecha", DateTime.UtcNow.ToArgentinaDateString()}
                                   };
             var reporteFactory = new ReporteFactory();
 
@@ -1061,7 +1061,7 @@ namespace MaxiKioscos.Web.Controllers
                                   {
                                       {"Proveedor", proveedor.Nombre },
                                       {"Maxikiosco", maxikiosco.Nombre },
-                                      {"Fecha", DateTime.Now.ToShortDateString() }
+                                      {"Fecha", DateTime.UtcNow.ToArgentinaDateString() }
                                   };
 
                     reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/SugerenciaComprasPorProveedor.rdl"))
@@ -1087,7 +1087,7 @@ namespace MaxiKioscos.Web.Controllers
         [AllowAnonymous]
         public ActionResult GenerarStockValorizadoMensual()
         {
-            var hoy = DateTime.Now.ToUniversalTime();
+            var hoy = DateTime.UtcNow;
             var mes = hoy.Month;
             var anio = hoy.Year;
             var elemento = Uow.ReportesStock.Obtener(mes, anio);

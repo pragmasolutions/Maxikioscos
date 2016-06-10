@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
+using MaxiKioscos.Negocio.Extensions;
 using MaxiKioscos.Web.Configuration;
 
 namespace MaxiKioscos.Web.Models
@@ -51,17 +52,17 @@ namespace MaxiKioscos.Web.Models
                 case 1: //Kiosco
                     var kioscoRepository = new MaxiKioscoRepository();
                     var kiosco = kioscoRepository.Obtener(this.MaxiKioscoId.GetValueOrDefault());
-                    nombre = String.Format("EXP-Kiosco-{0} {1}.zip", kiosco.Nombre, DateTime.Now.ToString("dd-MM-yyyy"));
+                    nombre = String.Format("EXP-Kiosco-{0} {1}.zip", kiosco.Nombre, DateTime.UtcNow.ToArgentinaTimezone().ToString("dd-MM-yyyy"));
                     break;
                 case 2: //Completa
-                    nombre = String.Format("EXP-Completa {0}.zip", DateTime.Now.ToString("dd-MM-yyyy"));
+                    nombre = String.Format("EXP-Completa {0}.zip", DateTime.UtcNow.ToArgentinaTimezone().ToString("dd-MM-yyyy"));
                     break;
                 case 3: //Parcial (secuencia)
-                    nombre = String.Format("EXP-Secuencia-{0} {1}.zip", this.Secuencia, DateTime.Now.ToString("dd-MM-yyyy"));
+                    nombre = String.Format("EXP-Secuencia-{0} {1}.zip", this.Secuencia, DateTime.UtcNow.ToArgentinaTimezone().ToString("dd-MM-yyyy"));
                     break;
                 case 4: //Fecha
                     nombre = String.Format("EXP-Fecha-{0} {1}.zip", this.Fecha.GetValueOrDefault().ToString("dd-MM-yyyy"), 
-                                                                    DateTime.Now.ToString("dd-MM-yyyy"));
+                                                                    DateTime.UtcNow.ToArgentinaTimezone().ToString("dd-MM-yyyy"));
                     break;
             }
             return nombre;

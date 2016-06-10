@@ -91,7 +91,7 @@ namespace MaxiKioscos.Web.Controllers
             ViewBag.CierresCaja = new List<CierreCaja>();
             var model = new ExcepcionModel()
                             {
-                                Fecha = DateTime.Now,
+                                Fecha = DateTime.UtcNow,
                                 Excepcion = new Excepcion()
                             };
             return PartialView(model);
@@ -106,7 +106,7 @@ namespace MaxiKioscos.Web.Controllers
                 return PartialView(model);
             }
             model.Excepcion.Identifier = Guid.NewGuid();
-            model.Excepcion.FechaCarga = DateTime.Now;
+            model.Excepcion.FechaCarga = DateTime.UtcNow;
             Uow.Excepciones.Agregar(model.Excepcion);
             Uow.Commit();
             

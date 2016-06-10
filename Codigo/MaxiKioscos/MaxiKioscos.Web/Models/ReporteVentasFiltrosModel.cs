@@ -78,7 +78,7 @@ namespace MaxiKioscos.Web.Models
 
         public ReporteVentasCierreCajaFiltrosModel()
         {
-            this.Fecha = DateTime.Now;
+            this.Fecha = DateTime.UtcNow;
         }
     }
 
@@ -146,7 +146,7 @@ namespace MaxiKioscos.Web.Models
     {
         public ReporteDineroSobranteFaltanteFiltrosModel()
         {
-            var now = DateTime.Now;
+            var now = DateTime.UtcNow;
             Desde = new DateTime(now.Year, now.Month, 1);
             Hasta = now;
         }

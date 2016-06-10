@@ -324,7 +324,6 @@
           <Property Name="Abreviacion" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="UltimoScriptCorrido" Type="int" />
           <Property Name="UltimaSincronizacionExitosa" Type="datetime" />
-          <Property Name="NombreMaquina" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MaxiKioscoTurno">
           <Key>
@@ -6070,18 +6069,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RptVentasPorProductoRanking" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProductoRanking">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentaPorProductoRanking">
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
-                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
-                <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
-                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
-                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Compras">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Compra">
               <MappingFragment StoreEntitySet="Compra">
@@ -7077,6 +7064,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptVentasPorProductoRanking" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProductoRanking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentaPorProductoRanking">
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -7091,8 +7090,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>

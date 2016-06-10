@@ -464,7 +464,7 @@ namespace MaxiKioscos.Web.Controllers
             {
                 costo.Identifier = Guid.NewGuid();
                 costo.Desincronizado = true;
-                costo.FechaUltimoCambioCosto = DateTime.Now;
+                costo.FechaUltimoCambioCosto = DateTime.UtcNow;
                 Uow.ProveedorProductos.Agregar(costo);
             }
 
@@ -476,7 +476,7 @@ namespace MaxiKioscos.Web.Controllers
                 if (costoActualizado != null)
                 {
                     if (costo.CostoConIVA != costoActualizado.CostoConIVA)
-                        costo.FechaUltimoCambioCosto = DateTime.Now;
+                        costo.FechaUltimoCambioCosto = DateTime.UtcNow;
 
                     costo.CostoConIVA = costoActualizado.CostoConIVA;
                     costo.CostoSinIVA = costoActualizado.CostoSinIVA;
@@ -567,7 +567,7 @@ namespace MaxiKioscos.Web.Controllers
                             Identifier = Guid.NewGuid(),
                             Desincronizado = true,
                             OperacionCreacion = operacion + " desde promociones web",
-                            FechaCreacion = DateTime.Now,
+                            FechaCreacion = DateTime.UtcNow,
                             StockTransacciones = new List<StockTransaccion>()
                             {
                                 new StockTransaccion()

@@ -68,7 +68,7 @@ namespace MaxiKioscos.Web.Controllers
                 stock.ProductoId = productoId;
                 stock.MaxiKiosco = maxiKiosco;
                 stock.Producto = producto;
-                stock.FechaCreacion = DateTime.Now;
+                stock.FechaCreacion = DateTime.UtcNow;
                 stock.OperacionCreacion = "Edición en web";
             }
 
@@ -124,7 +124,7 @@ namespace MaxiKioscos.Web.Controllers
                 stock.ProductoId = productoId;
                 stock.MaxiKiosco = maxiKiosco;
                 stock.Producto = producto;
-                stock.FechaCreacion = DateTime.Now;
+                stock.FechaCreacion = DateTime.UtcNow;
                 stock.OperacionCreacion = "Transferencia manual en web";
                 stock.Identifier = Guid.NewGuid();
             }

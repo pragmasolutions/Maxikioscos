@@ -101,7 +101,7 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Crear()
         {
             LlenarControles();
-            return PartialView(new Factura() { Fecha = DateTime.Now});
+            return PartialView(new Factura() { Fecha = DateTime.UtcNow});
         }
 
         private void LlenarControles()
@@ -125,7 +125,7 @@ namespace MaxiKioscos.Web.Controllers
             }
             factura.Identifier = Guid.NewGuid();
             factura.UsuarioId = UsuarioActual.Usuario.UsuarioId;
-            factura.FechaCreacion = DateTime.Now;
+            factura.FechaCreacion = DateTime.UtcNow;
 
             var maxikiosco = Uow.MaxiKioscos.Obtener(factura.MaxiKioscoId);
             var fact = Uow.Facturas.Listado(f => f.MaxiKiosco).Where(f => f.MaxiKioscoId == factura.MaxiKioscoId && f.AutoNumero.StartsWith("WEB_")).OrderBy(f => f.FacturaId).ToList();

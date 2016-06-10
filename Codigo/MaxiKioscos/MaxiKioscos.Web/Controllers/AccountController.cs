@@ -106,7 +106,7 @@ namespace MaxiKioscos.Web.Controllers
                                                                                              Nombre = "Juan",
                                                                                              CuentaId = 1,
                                                                                              Identifier = Guid.NewGuid(),
-                                                                                             FechaUltimaModificacion = DateTime.Now,
+                                                                                             FechaUltimaModificacion = DateTime.UtcNow,
                                                                                              Eliminado = false,
                                                                                              Desincronizado = true
                                                                                          });

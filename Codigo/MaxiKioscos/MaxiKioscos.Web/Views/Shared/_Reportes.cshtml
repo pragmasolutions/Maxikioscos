@@ -1,4 +1,5 @@
-﻿@using MaxiKioscos.Web.Configuration
+﻿@using MaxiKioscos.Negocio.Extensions
+@using MaxiKioscos.Web.Configuration
 @{
     var reportesAgrupados = UsuarioActual.Usuario.Roles.FirstOrDefault().ReporteRoles.Where(rr => !rr.Eliminado)
                                 .Select(rr => rr.Reporte).GroupBy(x => x.Padre).ToList();
@@ -20,8 +21,8 @@
                                 @Ajax.ActionLink(reporte.Nombre, reporte.Path, "Reportes",
                                     new
                                     {
-                                        Desde = DateTime.Now.AddMonths(-1).ToShortDateString(),
-                                        Hasta = DateTime.Now.ToShortDateString()
+                                        Desde = DateTime.UtcNow.AddMonths(-1).ToArgentinaDateString(),
+                                        Hasta = DateTime.UtcNow.ToArgentinaDateString()
                                     },
                                     new AjaxOptions()
                                     {

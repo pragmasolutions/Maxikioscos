@@ -131,7 +131,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             if (AppSettings.MaxiKioscoIdentifier != Guid.Empty)
             {
-                var now = DateHelper.DateAndTimeToISO(DateTime.Now.ToUniversalTime());
+                var now = DateHelper.DateAndTimeToISO(DateTime.UtcNow);
                 _isConnected = _sincronizacionService.AcusarEstadoConexion(AppSettings.MaxiKioscoIdentifier, now);
             }
         }
@@ -262,7 +262,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                         {
                             MaxiKioscoIdentifier = AppSettings.MaxiKioscoIdentifier,
                             UltimaSecuenciaExportacion = ultimaSecuencia,
-                            HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.Now)
+                            HoraLocalISO = DateHelper.DateAndTimeToISO(DateTime.UtcNow)
                         };
                         _sincronizacionService.AcusarExportacion(acuseRequest);
                     }

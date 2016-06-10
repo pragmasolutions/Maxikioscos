@@ -176,7 +176,7 @@ namespace MaxiKioscos.Web.Controllers
             if (!string.IsNullOrEmpty(model.Password))
             {
                 var encondedPassword = Crypto.HashPassword(model.Password);
-                Uow.Usuarios.CambiarPassword(model.Usuario.UsuarioId, encondedPassword, DateTime.Now);
+                Uow.Usuarios.CambiarPassword(model.Usuario.UsuarioId, encondedPassword, DateTime.UtcNow);
             }
 
             model.Usuario.Desincronizado = true;

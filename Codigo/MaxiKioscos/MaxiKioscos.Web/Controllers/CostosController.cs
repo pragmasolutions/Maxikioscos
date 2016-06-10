@@ -139,7 +139,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             return PartialView(new Costo()
             {
-                Fecha = DateTime.Now,
+                Fecha = DateTime.UtcNow,
                 EsGastoGeneral = true,
                 Aprobado = true,
                 UsuarioId = UsuarioActual.Usuario.UsuarioId

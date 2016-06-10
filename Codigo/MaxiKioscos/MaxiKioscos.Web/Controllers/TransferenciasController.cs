@@ -108,7 +108,7 @@ namespace MaxiKioscos.Web.Controllers
                 : Convert.ToInt32(ultima.AutoNumero.Replace("WEB_", "")) + 1;
             var transferencia = new Transferencia()
                                 {
-                                    FechaCreacion = DateTime.Now,
+                                    FechaCreacion = DateTime.UtcNow,
                                     AutoNumero = String.Format("WEB_{0}", numero),
                                     UsuarioId = UsuarioActual.Usuario.UsuarioId
                                 };

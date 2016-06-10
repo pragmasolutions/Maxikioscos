@@ -93,7 +93,7 @@ namespace MaxiKioscos.Web.Controllers
 
         public ActionResult Crear()
         {
-            var compra = new Compra() { Fecha = DateTime.Now };
+            var compra = new Compra() { Fecha = DateTime.UtcNow };
             ViewBag.CantidadIngresada = null;
 
             return PartialView(compra);

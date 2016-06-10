@@ -15,6 +15,7 @@ using MaxiKioscos.Web.Configuration;
 using MaxiKioscos.Web.Filters;
 using MaxiKioscos.Web.Models;
 using Maxikioscos.Comun.Logger;
+using MaxiKioscos.Negocio.Extensions;
 using MaxiKioscos.Seguridad;
 using PagedList;
 
@@ -104,7 +105,7 @@ namespace MaxiKioscos.Web.Controllers
                 var ticket = new TicketError
                                  {
                                      EstadoTicketId = EstadoTicketEnum.Pendiente,
-                                     Fecha = DateTime.Now,
+                                     Fecha = DateTime.UtcNow,
                                      Mensaje = error.Description,
                                      UsuarioId = UsuarioActual.Usuario.UsuarioId,
                                      Origen = OrigenTicketEnum.Web,
@@ -148,7 +149,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var mensaje = new MensajeTicketError()
                               {
-                                  Fecha = DateTime.Now,
+                                  Fecha = DateTime.UtcNow,
                                   Texto = model.NuevoMensaje,
                                   TicketErrorId = model.TicketId,
                                   UsuarioId = UsuarioActual.Usuario.UsuarioId,
@@ -167,7 +168,7 @@ namespace MaxiKioscos.Web.Controllers
                 Mensaje = mensaje.Texto,
                 TicketId = mensaje.TicketErrorId,
                 Titulo = String.Format("[{0}] {1}", ticket.TicketErrorId, ticket.Titulo),
-                Fecha = String.Format("{0} {1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString())
+                Fecha = DateTime.UtcNow.ToArgentinaTimeString()
             };
             var result = _notificationService.EnviarNotificacionTicket(data, AppSettings.BaseURL);
             return Json(new { success = result.Status == EmailResultStatus.Sent }, JsonRequestBehavior.AllowGet);
@@ -178,7 +179,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var ticket = Uow.TicketErrores.Obtener(id);
             ticket.EstadoTicketId = EstadoTicketEnum.EnProgreso;
-            ticket.FechaEnProgreso = DateTime.Now;
+            ticket.FechaEnProgreso = DateTime.UtcNow;
             Uow.TicketErrores.Modificar(ticket);
 
             try
@@ -197,7 +198,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var ticket = Uow.TicketErrores.Obtener(id);
             ticket.EstadoTicketId = EstadoTicketEnum.Cerrado;
-            ticket.FechaCierre = DateTime.Now;
+            ticket.FechaCierre = DateTime.UtcNow;
             Uow.TicketErrores.Modificar(ticket);
 
             try
@@ -216,7 +217,7 @@ namespace MaxiKioscos.Web.Controllers
         {
             var ticket = Uow.TicketErrores.Obtener(id);
             ticket.EstadoTicketId = EstadoTicketEnum.Eliminado;
-            ticket.FechaCierre = DateTime.Now;
+            ticket.FechaCierre = DateTime.UtcNow;
             Uow.TicketErrores.Modificar(ticket);
 
             try

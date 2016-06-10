@@ -1,4 +1,5 @@
-﻿@using MaxiKioscos.Web.Comun.Extensiones
+﻿@using MaxiKioscos.Negocio.Extensions
+@using MaxiKioscos.Web.Comun.Extensiones
 @model MaxiKioscos.Web.Models.EstadoKioscosModel
 @{
     ViewBag.Title = "Estado de MaxiKioscos";
@@ -29,7 +30,7 @@
                                 <tr>
                                     <td>@estado.Nombre</td>
                                     <td>@estado.UltimaSecuenciaExportacion</td>
-                                    <td>@estado.Fecha</td>
+                                    <td>@(estado.Fecha == null ? "" : estado.Fecha.GetValueOrDefault().ToArgentinaTimeString())</td>
                                     <td class="text-center">@if (estado.EstaConectado)
                                                             {
                                         <div class="btn btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Conectado">
