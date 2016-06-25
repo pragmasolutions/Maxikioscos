@@ -37,6 +37,7 @@ namespace MaxiKioscos.Services
                 Error = "El usuario o en password es incorrecto."
             };
         }
+
         
         public void LogOff()
         {

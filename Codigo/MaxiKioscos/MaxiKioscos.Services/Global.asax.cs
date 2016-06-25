@@ -6,6 +6,7 @@ using MaxiKioscos.IoC;
 using Ninject;
 using Ninject.Web.Common;
 using WebMatrix.WebData;
+using System.Web;
 
 namespace MaxiKioscos.Services
 {
@@ -33,6 +34,16 @@ namespace MaxiKioscos.Services
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
 
             base.OnApplicationStarted();
+        }
+
+        protected void Application_BeginRequest(Object sender, EventArgs e)
+        {
+            if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
+            {
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+
+                HttpContext.Current.Response.End();
+            }
         }
     }
 }
