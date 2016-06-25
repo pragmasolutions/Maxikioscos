@@ -112,8 +112,7 @@ namespace MaxiKioscos.Services
             var kiosco = syncRepo.Obtener(m => m.Identifier == request.MaxiKioscoIdentifier);
 
             kiosco.UltimaSecuenciaExportacion = request.UltimaSecuenciaExportacion;
-            var fecha = DateHelper.ISOToDate(request.HoraLocalISO);
-            kiosco.UltimaSincronizacionExitosa = fecha;
+            kiosco.UltimaSincronizacionExitosa = DateTime.UtcNow;
             syncRepo.Commit();
 
             Task.Run(() =>
@@ -230,7 +229,7 @@ namespace MaxiKioscos.Services
         {
             var syncRepo = new SyncSimpleRepository<SyncMaxiKiosco>();
             var kiosco = syncRepo.Obtener(m => m.Identifier == maxikioscoIdentifier);
-            kiosco.UltimaConexion = DateHelper.ISOToDate(dateISO).GetValueOrDefault();
+            kiosco.UltimaConexion = DateTime.UtcNow;
             try
             {
                 syncRepo.Commit();

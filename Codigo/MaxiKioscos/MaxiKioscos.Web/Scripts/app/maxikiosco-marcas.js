@@ -68,7 +68,7 @@
             }).done(submitExito);
 
             return false;
-        }
+        },
         cargarVista = function (url) {
             maxikioscoSpinner.startSpin();
             $modalContent.load(url, function () {

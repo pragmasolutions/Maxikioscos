@@ -10,24 +10,18 @@ namespace MaxiKioscos.Negocio.Extensions
     {
         public static DateTime ToArgentinaTimezone(this DateTime date)
         {
-            TimeZoneInfo timeZoneInfo;
-            timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
-            return TimeZoneInfo.ConvertTime(date, timeZoneInfo);
+            return date.AddHours(-3);
         }
 
         public static string ToArgentinaDateString(this DateTime date)
         {
-            TimeZoneInfo timeZoneInfo;
-            timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
-            var datetime = TimeZoneInfo.ConvertTime(date, timeZoneInfo);
+            var datetime = date.AddHours(-3);
             return datetime.ToShortDateString();
         }
 
         public static string ToArgentinaTimeString(this DateTime date)
         {
-            TimeZoneInfo timeZoneInfo;
-            timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
-            var datetime = TimeZoneInfo.ConvertTime(date, timeZoneInfo);
+            var datetime = date.AddHours(-3);
             return String.Format("{0} {1}", datetime.ToShortDateString(), datetime.ToShortTimeString());
         }
     }

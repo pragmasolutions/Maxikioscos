@@ -46,8 +46,8 @@ namespace MaxiKioscos.Web.Controllers
                 var exp = exportacionRepo.Obtener(x => x.Secuencia == sync.UltimaSecuenciaExportacion);
                 estadoKioscos.Add(new EstadoKiosco
                 {
-                    ExportacionId = exp == null ? (int?)null : exp.ExportacionId,
-                    Fecha = exp == null ? (DateTime?)null : exp.Fecha,
+                    ExportacionId = exp == null ? (int?)null : kiosco.MaxiKioscoId,
+                    Fecha = sync == null ? (DateTime?)null : sync.UltimaSincronizacionExitosa,
                     Identifier = sync.Identifier,
                     MaxiKioscoId = kiosco.MaxiKioscoId,
                     Nombre = kiosco.Nombre,
