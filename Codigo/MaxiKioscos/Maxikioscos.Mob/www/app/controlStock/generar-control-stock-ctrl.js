@@ -21,8 +21,9 @@
         vm.criterios.rubroSeleccionado = null;
         vm.criterios.excluirStockCero = false;
         vm.criterios.soloMasVendidos = false;
-        vm.criterios.cantidadFilas = 20;
+        vm.criterios.cantidadFilas = '';
         vm.generarClick = generarClick;
+        vm.soloMasVendidosChanged = soloMasVendidosChanged;
 
         function initialize(){
             vm.getAllProveedores();
@@ -52,9 +53,18 @@
                                 };
 
             $scope.sharedCtrl.goToControlStockVistaPrevia();
-        };
+        }
 
-         function getAllProveedores() {                
+        function soloMasVendidosChanged(){
+            if (vm.criterios.soloMasVendidos) {
+                vm.criterios.cantidadFilas = 20;
+            }
+            else {
+                vm.criterios.cantidadFilas = '';
+            }
+        }
+
+        function getAllProveedores() {                
             proveedoresApi.getAll().then(function(proveedores) {
                 if(!proveedores.Error)
                 {

@@ -14,7 +14,7 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Maxikioscos</h1>
+      <h1 class="title">DrugStore</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
@@ -23,11 +23,11 @@
         </ion-item>
         <!-- <ion-item menu-close href="#/app/generarControlStock"> -->
         <ion-item menu-close ng-click="goToGenerarControlStock()" ng-disabled="!sharedCtrl.isLogged">
-          Control de Stock
+          Por Proveedor/Rubro
         </ion-item>
         <!-- <ion-item menu-close href="#/app/cargarControlStockDinamico"> -->
         <ion-item menu-close ng-click="goToCargarControlStockDinamico()" ng-disabled="!sharedCtrl.isLogged">
-          Control de Stock (dinámico)
+          Dinámico
         </ion-item>
         <ion-item menu-close ng-click="logoff()" ng-disabled="!sharedCtrl.isLogged">         
             Log off

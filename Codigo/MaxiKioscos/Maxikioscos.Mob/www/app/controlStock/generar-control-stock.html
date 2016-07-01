@@ -1,4 +1,4 @@
-<ion-view view-title="Control Stock" ng-controller="GenerarControlStockCtrl as vm">
+<ion-view view-title="Generar Planilla" ng-controller="GenerarControlStockCtrl as vm">
     <ion-content>
         <div class="list">
             <label class="item item-input item-select">
@@ -26,16 +26,19 @@
             </label>
 
             <ion-checkbox ng-model="vm.criterios.excluirStockCero">Excluir Stock 0</ion-checkbox>
-            <ion-checkbox ng-model="vm.criterios.soloMasVendidos">Solo los m&aacute;s Vendidos</ion-checkbox>
+            <ion-checkbox ng-change="vm.soloMasVendidosChanged()" ng-model="vm.criterios.soloMasVendidos">Solo los m&aacute;s Vendidos</ion-checkbox>
 
-            <label class="item item-input">
+            <label class="item item-input" style="padding: 4px 10px;">
                 <span class="input-label" ng-disabled="!vm.criterios.soloMasVendidos">Cantidad de Filas</span>
                 <input type="number" ng-model="vm.criterios.cantidadFilas" ng-disabled="!vm.criterios.soloMasVendidos">
             </label>
 
-            <button class="button button-calm button-full" ng-click="vm.generarClick()" ng-disabled="(vm.criterios.rubroSeleccionado == null && vm.criterios.proveedorSeleccionado == null)">
+            <div class="row" style="padding: 0 6px;">
+                <button class="button button-calm button-full" ng-click="vm.generarClick()" ng-disabled="(vm.criterios.rubroSeleccionado == null && vm.criterios.proveedorSeleccionado == null)">
                 Generar
-            </button>
+                </button>
+            </div>
+            
         </div>
 
     </ion-content>

@@ -18,7 +18,7 @@
             </br>
             <h6 class="title" style="text-align: center;">Si el problema persiste, contáctese con el equipo soporte.</h6>
         </div>
-        <div ng-if="!vm.isConnected">            
+        <div ng-if="!vm.isConnected" style="padding: 5px 10px;">            
             <h4 class="title" style="text-align: center;">Haga click en el botón para conectarse al kiosco.</h4>
             </br>
             <button class="button button-balanced button-block" ng-click="vm.connect()">
@@ -26,7 +26,7 @@
                 Conectar
             </button>       
         </div>
-        <div ng-if="vm.isConnected">            
+        <div ng-if="vm.isConnected" style="padding: 5px 10px;">            
             <h4 class="title" style="text-align: center;color:green;">El dispositivo se encuentra conectado.</h4>
             </br>
             <h4 class="title" style="text-align: center;">Elija una opción del menú</h4>
@@ -35,7 +35,7 @@
             </br>
             <form name="filterForm">
                 <div class="row">                                
-                    <div class="col-6" style="padding-top: 7px;">
+                    <div class="col-6" style="padding-top: 7px;  width: 90px;">
                         <label style="vertical-align:middle;">Fecha desde:</label>
                     </div>
                     <div class="col-6" style="padding-left: 10px;">
@@ -50,7 +50,7 @@
                     </div>                   
                 </div>
                 <div class="row">            
-                    <div class="col-6" style="padding-top: 7px;">
+                    <div class="col-6" style="padding-top: 7px; width: 90px;">
                         <label style="vertical-align:middle;">Fecha hasta:</label>
                     </div>
                     <div class="col-6" style="padding-left: 10px;">
@@ -67,36 +67,111 @@
                 <div class="row">
                     <button class="button button-balanced button-block" ng-click="vm.getResume(filterForm)" ng-disabled="(vm.controlStockResume.DateTo < vm.controlStockResume.DateFrom) || !filterForm.$valid">
                         <i class="icon ion-clipboard"></i>
-                        Aceptar
+                        Buscar
                     </button>  
                 </div>
             </form>
             <ul class="list">
-                <li class="item" ng-repeat="control in vm.controlsResume" id="{{control.StockControlId}}" style="padding:0;">
-                    <div class="row">
-                        <div class="col-10 padding-top">
-                            <strong class="bold">{{control.NroControl}}.</strong>
+                <li class="item {{control.itemClass}}" ng-repeat="control in vm.controlsResume" id="{{control.StockControlId}}" style="padding:0;">
+                    <div class="{{control.showProviderCategoryClass}}" >
+                        <div class="row" >
+                            <div class="col-10 padding-top">
+                                <strong class="bold">{{control.NroControl}}.</strong>
+                            </div>
+                            <div class="col-80 padding-top">
+                                <strong class="bold">Proveedor: </strong><span>{{control.Proveedor}}</span>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-100 padding-top">
+                                <strong class="bold">Rubro: </strong>{{control.Rubro}}
+                            </div>                                          
+                        </div>
+                        <div class="row">
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Inf: </strong>{{control.LimiteInferior}}
+                            </div>  
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Sup: </strong>{{control.LimiteSuperior}}
+                            </div>                                        
+                        </div>
+                    </div>
+
+                    <div class="{{control.showProviderClass}}" >
+                        <div class="row" >
+                            <div class="col-10 padding-top">
+                                <strong class="bold">{{control.NroControl}}.</strong>
+                            </div>
+                            <div class="col-80 padding-top">
+                                <strong class="bold">Proveedor: </strong><span>{{control.Proveedor}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Inf: </strong>{{control.LimiteInferior}}
+                            </div>  
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Sup: </strong>{{control.LimiteSuperior}}
+                            </div>                                        
+                        </div>
+                    </div>
+
+                    <div class="{{control.showCategoryClass}}" >
+                        <div class="row" >
+                            <div class="col-10 padding-top">
+                                <strong class="bold">{{control.NroControl}}.</strong>
+                            </div>
+                            <div class="col-80 padding-top">
+                                <strong class="bold">Rubro: </strong><span>{{control.Rubro}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Inf: </strong>{{control.LimiteInferior}}
+                            </div>  
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Lim Sup: </strong>{{control.LimiteSuperior}}
+                            </div>                                        
+                        </div>
+                    </div>
+
+                    <div class="{{control.showDynamicClass}}" >
+                        <div class="row" >
+                            <div class="col-10 padding-top">
+                                <strong class="bold">{{control.NroControl}}.</strong>
+                            </div>
+                            <div class="col-80 padding-top">
+                                <span>Dinámico</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 padding-top">
+                                <strong class="bold">Cantidad: </strong>{{control.LimiteSuperior}}
+                            </div>                                        
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-80 padding-top">
-                            <span>{{control.Proveedor}}</span>
-                        </div>                   
-                    </div>
-                    <div class="row">
-                        <div class="col-100 padding-top">
-                            <strong class="bold">Rubro: {{control.Rubro}}</strong>
-                        </div>                                          
-                    </div>
-                    <div class="row">
-                        <div class="col-50 padding-top">
-                            <strong class="bold">Lim Inf: {{control.LimiteInferior}}</strong>
-                        </div>  
-                        <div class="col-50 padding-top">
-                            <strong class="bold">Lim Sup: {{control.LimiteSuperior}}</strong>
-                        </div>                                        
+                            <strong class="bold">Fecha: </strong><span>{{control.Fecha}}</span>
+                        </div>
                     </div>
                 </li>
             </ul>
         </div>
         
+        <style>
+            .hidden{
+                display: none;
+            }
+
+            .staticStockControl{
+                background-color: #FFF5BE;
+            }
+
+            .dynamicStockControl{
+                background-color: #CBFFC8;
+            }
+        </style>
     </ion-content>
 </ion-view>

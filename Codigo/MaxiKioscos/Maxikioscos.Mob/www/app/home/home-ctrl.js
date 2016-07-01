@@ -37,7 +37,15 @@
 			controlStockApi.getResume(vm.controlStockResume)
 				.then(function(response){
 					if(!response.Error){
-						 vm.controlsResume = response;                                                 
+						vm.controlsResume = response;   
+						for (var i = 0; i < vm.controlsResume.length; i++) {
+							var cs = vm.controlsResume[i];
+        					cs.showProviderCategoryClass = (cs.Proveedor && cs.Rubro) ? '' : 'hidden';
+        					cs.showProviderClass = (cs.Proveedor && !cs.Rubro) ? '' : 'hidden';
+        					cs.showCategoryClass = (!cs.Proveedor && cs.Rubro) ? '' : 'hidden';
+        					cs.showDynamicClass = (!cs.Proveedor && !cs.Rubro) ? '' : 'hidden';
+        					cs.itemClass = (!cs.Proveedor && !cs.Rubro) ? 'dynamicStockControl' : 'staticStockControl';
+    					}                                           
 	                }else{
 	                    var alertPopup = $ionicPopup.alert({
 	                     title: 'Error en Resúmen',

@@ -1,4 +1,4 @@
-<ion-view view-title="Listado Control Stock" ng-controller="ControlStockVistaPreviaCtrl as vm">
+<ion-view view-title="Vista Previa de Planilla" ng-controller="ControlStockVistaPreviaCtrl as vm">
 
 <ion-content>
 <ul class="list">
@@ -15,12 +15,12 @@
     <li class="item" ng-repeat="producto in vm.productosFiltrados">
 
         <div class="row">
-            <div class="col-75">
+            <div class="col-75" style="white-space: normal">
                 <strong class="bold">{{producto.Fila}}.</strong>
                 <span>{{producto.Producto}}</span>
             </div>
             <div class="col-25">
-                <span class="label">Cant.:</span>
+                <span class="label" style="font-weight: bold;">Cant.:</span>
                 <span class="right">{{producto.Cantidad}}</span>
             </div>
         </div>
@@ -28,9 +28,10 @@
     </li>
 </ul>
 
-<button class="button button-calm button-full" ng-click="vm.aceptarClick()">
-    Aceptar
-</button>
+<div class="row" style="padding: 0 6px;">
+    <button class="button button-calm button-full" ng-click="vm.aceptarClick()">Aceptar</button>
+</div>
+
 
 </ion-content>
 </ion-view>

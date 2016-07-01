@@ -61,12 +61,25 @@
             .then(function(productosControlStock) {
                 if(!productosControlStock.Error)
                 {
-                    vm.productos = productosControlStock;
-                    vm.productosFiltrados = vm.productos;
-                    vm.criterios.LowerLimit = 1;
-                    vm.criterios.UpperLimit = vm.productos.length;
+                    if (productosControlStock.length == 0){
+                        var alertPopup = $ionicPopup.alert({
+                             title: 'No se encontraron resultados que coincidan con los parámetros ingresados',
+                             template: productosControlStock.Error,
+                             okText: 'Aceptar'
+                           });
 
-                }else{
+                           alertPopup.then(function(res) {
+                             $rootScope.$ionicGoBack();
+                           });
+                        }   
+                        else {
+                        vm.productos = productosControlStock;
+                        vm.productosFiltrados = vm.productos;
+                        vm.criterios.LowerLimit = 1;
+                        vm.criterios.UpperLimit = vm.productos.length;
+                    }
+                }
+                else{
                     var alertPopup = $ionicPopup.alert({
                                  title: 'Error al obtener la vista previa',
                                  template: productosControlStock.Error,

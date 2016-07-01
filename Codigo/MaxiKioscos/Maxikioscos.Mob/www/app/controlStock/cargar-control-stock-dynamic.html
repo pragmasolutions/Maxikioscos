@@ -16,7 +16,7 @@
                         <strong class="bold">{{$index + 1}}.</strong>
                     </div>
                     <div class="col-80 padding-top">
-                        <span>{{producto.Producto}}</span>
+                        <span style="white-space: normal;">{{producto.Producto}}</span>
                     </div>                   
                     <div class="col-10" style="horizontal-align: right;vertical-align: top;">
                         <a class="button button-icon-right button-clear icon ion-trash-b" style="font-color:red;" ng-click="vm.eliminar($index)"></a>
@@ -24,10 +24,10 @@
                 </div>
                 <div class="row padding-bottom">
                     <div class="col">
-                        <div class="bold">{{producto.Codigo}}</div>
+                        <div><b>Cod: </b>{{producto.Codigo}}</div>
                     </div>
                     <div class="col">
-                        <span>Stock: <b>{{producto.StockActual}}</b></span>
+                        <span><b>Stock: </b>{{producto.StockActual}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -44,9 +44,10 @@
                     </div>
                 </div>               
             </li>
-            <button class="button button-calm button-full" ng-click="vm.guardar()">
-                Aceptar
-            </button>
+            <div class="row" style="padding: 0 6px;">
+                <button class="button button-calm button-full" ng-click="vm.guardar()">Aceptar</button>
+            </div>
+            
         </ul>
     </ion-content>
 </ion-view>

@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Mvc;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Mobile.Api.Models.Request;
 using MaxiKioscos.Mobile.Api.Models.Response;
-using Newtonsoft.Json;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    
+    [EnableCors("*", "*", "*")]
     public class StockControlController : ApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
@@ -75,8 +69,9 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
             throw new ApplicationException("El conjunto de parámetros no puede ser nulo.");
         }
-        
-        public bool PostCerrar(StockControlCreateRequest request)
+
+        [HttpPost]
+        public bool Cerrar(StockControlCreateRequest request)
         {
 
             if (request != null)
@@ -138,7 +133,7 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                                 Desincronizado = true,
                                 Eliminado = false,
                                 Identifier = controlStockDetalle.Identifier,
-                                Correccion = controlStockDetalle.Diferencia?? 0,
+                                Correccion = controlStockDetalle.Diferencia ?? 0,
                                 Precio = null,
                                 HabilitadoParaCorregir = controlStockDetalle.HabilitadoParaCorregir,
                                 ControlStockPrevioId = null,
@@ -166,27 +161,31 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
             throw new ApplicationException("El conjunto de parámetros no puede ser nulo.");
         }
-
+        
         public IList<StockControlResumeResponse> GetResumen([FromUri]StockControlResumeRequest request)
         {
             if (request != null)
             {
                 try
                 {
+                    var dateTo = request.DateTo.AddDays(1);
                     var shop = _uow.MaxiKioscos.Listado().First(x => x.Identifier == request.MaxikioscoIdentifier);
-                    var controls = _uow.ControlesStock.Listado(r => r.Rubro, p=>p.Proveedor)
+                    var controls = _uow.ControlesStock.Listado(r => r.Rubro, p => p.Proveedor).OrderByDescending(x => x.FechaCreacion)
                             .Where(c => c.MaxiKioscoId == shop.MaxiKioscoId &&
                                     c.FechaUltimaModificacion >=
                                     request.DateFrom &&
-                                    c.FechaUltimaModificacion <= request.DateTo)
+                                    c.FechaUltimaModificacion <= dateTo)
+                                    .Take(10)
+                                    .ToList()
                                     .Select(cs => new StockControlResumeResponse
                                                     {
                                                         StockControlId = cs.ControlStockId,
                                                         NroControl = cs.NroControl,
-                                                        Proveedor = cs.Proveedor.Nombre,
-                                                        Rubro = cs.Rubro.Descripcion,
+                                                        Proveedor = cs.Proveedor != null ? cs.Proveedor.Nombre : null,
+                                                        Rubro = cs.Rubro != null ? cs.Rubro.Descripcion : null,
                                                         LimiteInferior = cs.LimiteInferior,
-                                                        LimiteSuperior = cs.LimiteSuperior
+                                                        LimiteSuperior = cs.LimiteSuperior,
+                                                        Fecha = String.Format("{0} {1}", cs.FechaCreacion.ToShortDateString(), cs.FechaCreacion.ToShortTimeString())
                                                     }).ToList();
                     return controls;
 

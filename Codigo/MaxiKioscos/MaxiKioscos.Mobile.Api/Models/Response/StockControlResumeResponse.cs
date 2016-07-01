@@ -13,5 +13,6 @@ namespace MaxiKioscos.Mobile.Api.Models.Response
         public string Rubro { get; set; }
         public int LimiteInferior { get; set; }
         public int LimiteSuperior { get; set; }
+        public string Fecha { get; set; }
     }
 }
