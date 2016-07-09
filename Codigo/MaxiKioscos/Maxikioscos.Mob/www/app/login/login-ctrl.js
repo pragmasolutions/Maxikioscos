@@ -21,8 +21,7 @@
                 loginApi.login(vm.authorization.username, vm.authorization.password)
                     .then(function (data) {
                         if(!data.Error){
-                            $scope.sharedCtrl.isWebOnline = true;
-                            $scope.sharedCtrl.isLogged = true;                             
+                            $scope.sharedCtrl.isWebOnline = true;                   
                             $scope.sharedCtrl.goToHome();    
                         }else{
                             vm.message = data.Error;

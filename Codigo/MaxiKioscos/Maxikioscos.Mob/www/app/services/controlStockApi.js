@@ -17,7 +17,7 @@
 
         function getResume(controlStockRequest){
             var param = {  
-                            MaxikioscoIdentifier: maxikioscosService.maxiKioscoStatus.maxikioscoId,
+                            MaxikioscoIdentifier: maxikioscosService.connection.maxikioscoId,
                             DateFrom: controlStockRequest.DateFrom,
                             DateTo: controlStockRequest.DateTo
                         };
@@ -25,7 +25,7 @@
             .then(function(response){
                 return response;
             }, function(response){
-                return {Error: response.data.ExceptionMessage};
+                return {Error: response.data ? response.data.ExceptionMessage : 'Error al obtener el resumen'};
             });
         }
 

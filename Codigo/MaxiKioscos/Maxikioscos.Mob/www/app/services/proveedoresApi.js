@@ -20,7 +20,7 @@
                        .then(function(response){
                             return response;
                        }, function(response){
-                            return {Error: response.data.ExceptionMessage};
+                            return {Error: response.data ? response.data.ExceptionMessage : 'Error al obtener los proveedores'};
                    });  
         };      
 

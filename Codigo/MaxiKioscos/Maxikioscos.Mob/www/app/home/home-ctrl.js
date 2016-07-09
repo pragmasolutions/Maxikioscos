@@ -3,16 +3,18 @@
 
 	angular.module('maxikioscosApp').controller('homeCtrl', homeCtrl);
 
-	homeCtrl.$inject = ['$scope', 'maxikioscosService', 'httpService', 'SERVICE_CONSTANTS', 'controlStockApi', '$ionicPopup'];
+	homeCtrl.$inject = ['$scope', 'maxikioscosService', 'httpService', 'SERVICE_CONSTANTS', 'controlStockApi', '$ionicPopup','localStorageService'];
 
-	function homeCtrl($scope, maxikioscosService, httpService, SERVICE_CONSTANTS, controlStockApi, $ionicPopup){
+	function homeCtrl($scope, maxikioscosService, httpService, SERVICE_CONSTANTS, controlStockApi, $ionicPopup, localStorageService){
 		var vm = this;
+
+		vm.connection = maxikioscosService.connection;
 		
 		vm.reload = reload;
-		vm.maxikioscoAvailable = true;
+		// vm.maxikioscoAvailable = true;
 		vm.initialize = initialize;
 		vm.connect = connect;
-		vm.isConnected = false;
+		//vm.isConnected = false;
 		vm.controlsResume = null;
 		vm.getResume = getResume;		
 		vm.getControlStockResume = getControlStockResume;
@@ -22,7 +24,7 @@
 								}
 
 		function initialize(){			
-			if (!$scope.sharedCtrl.isLogged){				
+			if (!$scope.sharedCtrl.authentication.isAuth){				
 				$scope.sharedCtrl.goToLogin();
 			}
 		}
@@ -61,22 +63,20 @@
 		}
 
 		function connect(){
-			httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.MAXIKIOSCO_IDENTIFIER)
-			.then(function(response){
-				if (response != null){
-					vm.isConnected = true;
-					maxikioscosService.maxiKioscoStatus.maxikioscoId = response.Identifier;
-					vm.getControlStockResume();
-				}else{
-					vm.maxikioscoAvailable = false;
-					vm.isConnected = false;
-				}                 
-			});			
+			maxikioscosService.connect().then(function(){
+				vm.getControlStockResume();
+			});		
 		}
 
 		function reload(){
 			vm.connect();
 		}
+
+		$scope.$on('$ionicView.enter', function(event, data) {
+			if (vm.connection.isConnected) {
+				vm.getControlStockResume();	
+			}
+        });
 		
 		vm.initialize();
 	}
