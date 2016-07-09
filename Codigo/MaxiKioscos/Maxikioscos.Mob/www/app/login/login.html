@@ -15,7 +15,7 @@
                 </label>
                 <input class="form-control" name="Username" ng-model="vm.authorization.username" required="required" type="text" placeholder="Ingrese usuario"/>
                 <div ng-messages="authorizationForm.Username.$error" ng-show="authorizationForm.Username.$touched || authorizationForm.$submitted">
-                    <div ng-messages-include="/app/templates/error-messages.html">
+                    <div ng-messages-include="app/templates/error-messages.html">
                     </div>
                 </div>
                 <label class="password" for="Password" localization-group="DisplayName" localization-key="vm.authorization.password">
@@ -23,7 +23,7 @@
                 </label>
                 <input class="form-control" name="Password" ng-model="vm.authorization.password" required="required" type="password" value="" placeholder="Ingrese contraseña"/>
                 <div ng-messages="authorizationForm.Password.$error" ng-show="authorizationForm.Password.$touched || authorizationForm.$submitted">
-                    <div ng-messages-include="/app/templates/error-messages.html">
+                    <div ng-messages-include="app/templates/error-messages.html">
                     </div>
                 </div>
                 </br>
