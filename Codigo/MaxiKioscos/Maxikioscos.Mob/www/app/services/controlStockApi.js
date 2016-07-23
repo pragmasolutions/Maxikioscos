@@ -47,13 +47,22 @@
          function getProductByCode(code) {
             var param = {  
                             Code: code,
-                            MaxikioscoId: maxikioscosService.maxiKioscoStatus.maxikioscoId
+                            MaxikioscoId: maxikioscosService.connection.maxikioscoId
                         };
             return httpService.doGet(maxikioscosService.maxiKioscoStatus.urlLocalService + SERVICE_CONSTANTS.PRODUCTS_BY_CODE, param)
             .then(function(response){
                 return response;
             }, function(response){
-                return {Error: response.data.ExceptionMessage};
+
+                if (response && response.data && response.data.ExceptionMessage) {
+                    return {Error: response.data.ExceptionMessage};
+                }
+
+                if (response && response.data) {
+                    return {Error: response.data};
+                }
+
+                return {Error: 'Error al obtener el producto'};
             });
         };
 
@@ -62,13 +71,21 @@
             .then(function(response){
                 return response;
             }, function(response){
-                return {Error: response.data.ExceptionMessage};
+                if (response && response.data && response.data.ExceptionMessage) {
+                    return {Error: response.data.ExceptionMessage};
+                }
+
+                if (response && response.data) {
+                    return {Error: response.data};
+                }
+
+                return {Error: 'Error al cerrar control stock'};
             });                       
         };
 
          function cerrarControlStockDinamico(controlStockDetalle) { 
             var param = {
-                            ShopIdentifier: maxikioscosService.maxiKioscoStatus.maxikioscoId,
+                            ShopIdentifier: maxikioscosService.connection.maxikioscoId,
                             UserId: maxikioscosService.maxiKioscoStatus.UserId,
                             ProviderId: null,
                             ProductCategoryId: null,

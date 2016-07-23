@@ -44,7 +44,7 @@
 
          function generarClick() {
             $rootScope.criterios = {
-                                    ShopIdentifier: maxikioscosService.maxiKioscoStatus.maxikioscoId,
+                                    ShopIdentifier: maxikioscosService.connection.maxikioscoId,
                                     ProviderId: vm.criterios.proveedorSeleccionado ? vm.criterios.proveedorSeleccionado : null,
                                     ProductCategoryId: vm.criterios.rubroSeleccionado ? vm.criterios.rubroSeleccionado : null,
                                     ExcludeZeroStock: vm.criterios.excluirStockCero,

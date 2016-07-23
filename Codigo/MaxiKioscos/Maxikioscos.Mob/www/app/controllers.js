@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,maxikioscosService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -31,6 +31,10 @@ angular.module('starter.controllers', [])
 
   $scope.logoff = function() {
     $scope.sharedCtrl.goToLogOff();
+  };
+
+  $scope.conectar = function() {
+    maxikioscosService.connect();
   };
 
   // Perform the login action when the user submits the login form

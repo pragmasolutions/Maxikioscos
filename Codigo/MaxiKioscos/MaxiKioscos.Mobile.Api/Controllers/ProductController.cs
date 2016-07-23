@@ -12,7 +12,7 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    
+
     public class ProductController : ApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
@@ -51,12 +51,13 @@ namespace MaxiKioscos.Mobile.Api.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw new ApplicationException(string.Format("Se produjo el siguiente error: {0}", ex.Message));
+                    throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Se produjo el siguiente error: {0}", ex.Message)));
                 }
-                
+
             }
 
-            throw new ApplicationException(string.Format("No se encontró producto para el código: {0}", request.Code));
+            throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound,
+                string.Format("No se encontró producto para el código: {0}", request.Code)));
         }
     }
 }

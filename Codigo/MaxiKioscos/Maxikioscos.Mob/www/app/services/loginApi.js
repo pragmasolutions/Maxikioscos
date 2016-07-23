@@ -3,7 +3,7 @@
 
     angular.module('maxikioscosApp').service('loginApi', loginApi);
 
-    loginApi.$inject = ['httpService', 'SERVICE_CONSTANTS', 'maxikioscosService', '$rootScope', 'EVENTS_CONSTANTS', 'localStorageService'];
+    loginApi.$inject = ['httpService', 'SERVICE_CONSTANTS', 'maxikioscosService', '$rootScope', 'EVENTS_CONSTANTS', 'localStorageService',];
 
     function loginApi(httpService, SERVICE_CONSTANTS, maxikioscosService, $rootScope, EVENTS_CONSTANTS, localStorageService) {
         var srv = this;
@@ -29,13 +29,19 @@
             }
         };
 
+        function removeAuthData() {
+            localStorageService.remove('authorizationData');
+
+            _authentication.isAuth = false;
+            _authentication.userName = "";
+            _authentication.userId = null;
+        }
+
         function logOut() {
 
             return httpService.doPost(SERVICE_CONSTANTS.LOGOFF).then(function() {
-                localStorageService.remove('authorizationData');
-                _authentication.isAuth = false;
-                _authentication.userName = "";
-                _authentication.userId = null;
+                removeAuthData();
+                maxikioscosService.removeConnectionData();
             })
         };
 
