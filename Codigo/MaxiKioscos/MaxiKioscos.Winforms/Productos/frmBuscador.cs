@@ -121,7 +121,7 @@ namespace MaxiKioscos.Winforms.Productos
             }
             if (dgvListado.Rows.Count == 0)
             {
-                ProductoSeleccionado = Productos.FirstOrDefault(p => p.Codigo.Split(',').Any(c => c.ToLower() == codigo));
+                ProductoSeleccionado = Productos.FirstOrDefault(p => !string.IsNullOrEmpty(p.Codigo) && p.Codigo.Split(',').Any(c => c.ToLower() == codigo));
                 if (ProductoSeleccionado != null)
                 {
                     CambioEvent(ProductoSeleccionado);

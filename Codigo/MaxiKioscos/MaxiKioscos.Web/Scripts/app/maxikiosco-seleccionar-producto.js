@@ -136,6 +136,7 @@
             var $nextRow = $currentRow.next('tr');
             if ($nextRow.length > 0) {
                 $currentRow = $nextRow;
+                scrollToCurrentRow();
             }
 
             $currentRow.toggleClass('highlight');
@@ -154,8 +155,32 @@
             var $prevRow = $currentRow.prev('tr');
             if ($prevRow.length > 0) {
                 $currentRow = $prevRow;
+                scrollToCurrentRow();
             }
             $currentRow.toggleClass('highlight');
+        },
+        scrollToCurrentRow = function () {
+            if (!inViewport($currentRow)) {
+
+                $modal.animate({
+                    scrollTop: $currentRow.position().top - ($modal.height() / 2)
+                }, 0);
+            }
+        },
+        inViewport = function (el) {
+
+            if (typeof jQuery === "function" && el instanceof jQuery) {
+                el = el[0];
+            }
+
+            var rect = el.getBoundingClientRect();
+
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+            );
         },
         seleccionarPrimeraFila = function () {
             //Seleccionamos la primer fila.
