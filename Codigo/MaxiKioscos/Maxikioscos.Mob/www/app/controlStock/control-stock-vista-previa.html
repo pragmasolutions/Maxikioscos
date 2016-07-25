@@ -1,48 +1,29 @@
 <ion-view view-title="Vista Previa de Planilla" ng-controller="ControlStockVistaPreviaCtrl as vm">
-
-<ion-content>
-<ul class="list">
-     <label class="item item-input">
-        <span class="input-label">Desde Fila</span>
-        <input type="number" ng-model="vm.criterios.LowerLimit" ng-change="vm.filtrarProductos(vm.criterios.LowerLimit, vm.criterios.hastaFila)">
-    </label>
-
-    <label class="item item-input">
-        <span class="input-label">Hasta Fila</span>
-        <input type="number" ng-model="vm.criterios.UpperLimit" ng-change="vm.filtrarProductos(vm.criterios.LowerLimit, vm.criterios.UpperLimit)">
-    </label>
-    
-    <li class="item" ng-repeat="producto in vm.productosFiltrados">
-
-        <div class="row">
-            <div class="col-75" style="white-space: normal">
-                <strong class="bold">{{producto.Fila}}.</strong>
-                <span>{{producto.Producto}}</span>
-            </div>
-            <div class="col-25">
-                <span class="label" style="font-weight: bold;">Cant.:</span>
-                <span class="right">{{producto.Cantidad}}</span>
-            </div>
+    <ion-content>
+        <ul class="list">
+            <label class="item item-input">
+                <span class="input-label">Desde Fila</span>
+                <input type="number" ng-model="vm.criterios.LowerLimit" ng-change="vm.filtrarProductos(vm.criterios.LowerLimit, vm.criterios.hastaFila)">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Hasta Fila</span>
+                <input type="number" ng-model="vm.criterios.UpperLimit" ng-change="vm.filtrarProductos(vm.criterios.LowerLimit, vm.criterios.UpperLimit)">
+            </label>
+            <li class="item" ng-repeat="producto in vm.productosFiltrados">
+                <div class="row">
+                    <div class="col-75" style="white-space: normal">
+                        <strong class="bold">{{producto.Fila}}.</strong>
+                        <span>{{producto.Producto}}</span>
+                    </div>
+                    <div class="col-25">
+                        <span class="label" style="font-weight: bold;">Cant.:</span>
+                        <span class="right">{{producto.Cantidad}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="row" style="padding: 0 6px;">
+            <button class="button button-calm button-full" ng-click="vm.aceptarClick()">Aceptar</button>
         </div>
-
-    </li>
-</ul>
-
-<div class="row" style="padding: 0 6px;">
-    <button class="button button-calm button-full" ng-click="vm.aceptarClick()">Aceptar</button>
-</div>
-
-
-</ion-content>
+    </ion-content>
 </ion-view>
-
-<!-- <div class="col-15">                
-                    <span ng-if="producto.Diferencia > 0" class="badge badge-assertive">{{producto.Diferencia}}</span>
-                    <span ng-if="producto == vm.selectedProduct" class="ion-eye"></span>
-                    <span ng-if="producto.Diferencia == 0" class="ion-checkmark-circled" style="color:green; display: flex;
-                        font-size: 25px;
-                        position: absolute;
-                        top: 16px;
-                        right: 32px;">
-                    </span>
-                </div>  -->  

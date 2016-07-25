@@ -5,9 +5,7 @@
 		var protocolService = "http://";
 		var api= "/api/";
 		var port= ":8080";
-		var urlMasterService = 'http://localhost:51557/';
-		//var urlMasterService = 'http://192.168.0.11:51557/';
-		//var urlMasterService = 'http://192.168.0.7:51557/';
+		var urlMasterService = 'http://ganciokioscos-001-site6.htempurl.com/';
 		
 		return {
 			URL_MASTER_SERVICE: urlMasterService,

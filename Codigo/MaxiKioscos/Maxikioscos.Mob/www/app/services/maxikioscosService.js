@@ -14,9 +14,7 @@
             machineName: '',
             isWebOnline: false,
             isLocalServiceOnline: false,
-            //urlLocalService: 'http://localhost:8080'
-            //urlLocalService: 'http://192.168.0.7:8080'
-            urlLocalService: 'http://localhost:8080'
+            urlLocalService: 'http://192.168.0.10:8080'
         }
 
         var _connection = {
@@ -29,15 +27,10 @@
         srv.validateMaxikioscoAccess = validateMaxikioscoAccess;
         srv.validateWebMasterAccess = validateWebMasterAccess;
         srv.getMaxikioscos = getMaxikioscos;
-        srv.urlLocalService = urlLocalService;
+        
         srv.connect = connect;
         srv.fillConnectionData = fillConnectionData;
-
-        function urlLocalService(maxikiosco) {
-            srv.maxiKioscoStatus.maxikioscoId = maxikiosco.Identifier;
-            srv.maxiKioscoStatus.machineName = maxikiosco.MachineName;
-            //srv.maxiKioscoStatus.urlLocalService = SERVICE_CONSTANTS.PROTOCOL_SERVICE + srv.maxiKioscoStatus.machineName + SERVICE_CONSTANTS.PORT;
-        }
+        srv.removeConnectionData = removeConnectionData;
 
         function getMaxikioscos() {
             return httpService.doGet(SERVICE_CONSTANTS.MAXIKIOSCOS)
@@ -73,6 +66,11 @@
             }
         };
 
+        function removeConnectionData(){
+            localStorageService.remove('connectionData');
+            fillConnectionData();
+        }
+
         function validateWebMasterAccess() {
             httpService.doPing(SERVICE_CONSTANTS.URL_MASTER_SERVICE + 'MaxiKioscosService.svc', function(response) {
                 srv.maxiKioscoStatus.isWebOnline = response;
@@ -91,8 +89,6 @@
                         });
 
                         fillConnectionData();
-
-                        vm.getControlStockResume();
                     } else {
                         localStorageService.remove('connectionData');
                         fillConnectionData()
