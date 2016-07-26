@@ -484,6 +484,7 @@
     <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\maxikioscos %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\maxikioscos %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\maxikioscos.pubxml" />
     <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <Content Include="Reportes\DineroEnCajasPorMaxikiosco.rdl">
