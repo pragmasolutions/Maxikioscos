@@ -1,8 +1,4 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Factura_ObtenerAbiertasPorUsuario]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Factura_ObtenerAbiertasPorUsuario]
-GO
-
-CREATE PROCEDURE [dbo].[Factura_ObtenerAbiertasPorUsuario]
+ALTER PROCEDURE [dbo].[Factura_ObtenerAbiertasPorUsuario]
 	@UsuarioId int,
 	@MaxiKioscoId int
 AS
@@ -37,7 +33,3 @@ BEGIN
 		)
 		AND F.MaxiKioscoId = @MaxiKioscoId
 END
-
-GO
-
-

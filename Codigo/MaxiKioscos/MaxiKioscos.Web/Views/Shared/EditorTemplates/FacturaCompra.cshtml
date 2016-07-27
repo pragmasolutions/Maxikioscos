@@ -8,7 +8,8 @@
     var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
     var selectList = uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.UsuarioCreador)
                                .Where(f => f.MaxiKiosco.CuentaId == UsuarioActual.CuentaId
-                                      && !f.Compras.Any())
+                                      && !f.Compras.Any()
+                                      && !f.Finalizada)
                                .OrderByDescending(f => f.Fecha)
                                .ToSelectListItem(Model, f => f.FacturaId,
                                f => f.NombreCompleto,

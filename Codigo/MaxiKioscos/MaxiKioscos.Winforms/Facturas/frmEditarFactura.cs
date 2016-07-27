@@ -172,7 +172,7 @@ namespace MaxiKioscos.Winforms.Facturas
                     }
                     else
                     {
-                        Factura.FacturaNro = FacturaNro;
+                        Factura.FacturaNro = FacturaNro.TrimStart(new Char[] { '0' });
                         Factura.ImporteTotal = ImporteTotal;
                         Factura.ProveedorId = ProveedorId;
                         //Factura.UsuarioId = UsuarioActual.UsuarioId;
@@ -196,7 +196,7 @@ namespace MaxiKioscos.Winforms.Facturas
                         {
                             CierreCajaId = UsuarioActual.CierreCajaIdActual,
                             Identifier = Guid.NewGuid(),
-                            FacturaNro = FacturaNro,
+                            FacturaNro = FacturaNro.TrimStart(new Char[] { '0' }),
                             ImporteTotal = ImporteTotal,
                             ProveedorId = ProveedorId,
                             MaxiKioscoId = AppSettings.MaxiKioscoId,

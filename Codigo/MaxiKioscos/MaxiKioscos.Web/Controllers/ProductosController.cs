@@ -110,7 +110,7 @@ namespace MaxiKioscos.Web.Controllers
             else
                 productos = productos.OrderBy(p => p.CodigosProductos.Select(c => c.Codigo).FirstOrDefault());
 
-            productos = productos.Take(10);
+            productos = productos.Take(20);
 
             ViewBag.MostrarStockMaxikioscoId = productoSeleccionarModel.MostrarStockMaxikioscoId;
 

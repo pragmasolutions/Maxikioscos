@@ -15,6 +15,6 @@ namespace MaxiKioscos.Entidades
     {
         public string Descripcion { get; set; }
         public Nullable<decimal> CantidadVendida { get; set; }
-        public Nullable<decimal> CantidadRecomendada { get; set; }
+        public string CantidadRecomendada { get; set; }
     }
 }

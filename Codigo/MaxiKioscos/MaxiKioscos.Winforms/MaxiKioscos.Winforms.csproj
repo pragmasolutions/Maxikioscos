@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://ganciokioscos-001-site5.htempurl.com/</InstallUrl>
     <UpdateUrl>http://ganciokioscos-001-site5.htempurl.com/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.67</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.78</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>68</ApplicationRevision>
+    <ApplicationRevision>79</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -786,6 +786,10 @@
     <Content Include="SqlScripts\165-Promocion_Listado.sql" />
     <Content Include="SqlScripts\166-Exportacion_NuevoXmlKiosco.sql" />
     <Content Include="SqlScripts\177-Create_ControlStock_ObtenerDetalles.sql" />
+    <Content Include="SqlScripts\180-FacturasTrimCeros.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlScripts\179-Factura_ObtenerAbiertasPorUsuario.sql" />
     <Content Include="SqlScripts\178-Create_sp_Producto_PorCodigo.sql" />
     <Content Include="SqlScripts\167-Factura_Agregar_Col_Finalizada.sql" />
     <Content Include="SqlScripts\176-Sync_Productos.sql" />
@@ -1551,6 +1555,56 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.Common">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.DataVisualization">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.WinForms">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.SqlServer.Types">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
     <PublishFile Include="Microsoft.Web.Infrastructure">
       <Visible>False</Visible>
       <Group>
@@ -1597,7 +1651,7 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
+      <PublishState>Exclude</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
@@ -1607,7 +1661,7 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
+      <PublishState>Exclude</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
@@ -1617,7 +1671,7 @@
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
+      <PublishState>Exclude</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>

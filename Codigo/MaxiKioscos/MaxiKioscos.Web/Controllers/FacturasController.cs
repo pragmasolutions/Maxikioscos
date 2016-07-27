@@ -36,18 +36,13 @@ namespace MaxiKioscos.Web.Controllers
                 TieneCompra = model.TieneCompra
             };
 
-            List<Factura> facturas = Uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.Compras)
+            var facturas = Uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.Compras)
                 .Where(f => f.MaxiKiosco.CuentaId == UsuarioActual.CuentaId)
                 .Where(model.Filtros.GetFilterExpression())
-                .OrderByDescending(f => f.Fecha)
-                .ToList();
-
-            facturas =
-                facturas.Where(
-                    f =>
-                        string.IsNullOrEmpty(model.Filtros.FacturaNro) ||
-                        (f.NroFormateado.StartsWith(model.Filtros.FacturaNro) ||
-                         f.AutoNumero.StartsWith(model.Filtros.FacturaNro))).ToList();
+                .Where(f => string.IsNullOrEmpty(model.Filtros.FacturaNro) ||
+                            (f.FacturaNro.StartsWith(model.Filtros.FacturaNro) ||
+                             f.AutoNumero.StartsWith(model.Filtros.FacturaNro)))
+                .OrderByDescending(f => f.Fecha);
             var pageNumber = page ?? 1;
             var pageSize = AppSettings.DefaultPageSize;
             IPagedList<Factura> lista = facturas.ToPagedList(pageNumber, pageSize);
@@ -64,15 +59,11 @@ namespace MaxiKioscos.Web.Controllers
         {
             var facturas = Uow.Facturas.Listado(f => f.Proveedor, f => f.MaxiKiosco, f => f.Compras)
                 .Where(f => f.MaxiKiosco.CuentaId == UsuarioActual.CuentaId)
-                .Where(filtros.GetFilterExpression()).ToList();
-
-            facturas =
-               facturas.Where(
-                   f =>
-                       string.IsNullOrEmpty(filtros.FacturaNro) ||
-                       (f.NroFormateado.StartsWith(filtros.FacturaNro) ||
-                        f.AutoNumero.StartsWith(filtros.FacturaNro)))
-                .OrderByDescending(f => f.Fecha).ToList();
+                .Where(filtros.GetFilterExpression())
+                .Where(f => string.IsNullOrEmpty(filtros.FacturaNro) ||
+                            (f.FacturaNro.StartsWith(filtros.FacturaNro) ||
+                             f.AutoNumero.StartsWith(filtros.FacturaNro)))
+                .OrderByDescending(f => f.Fecha);
 
 
             var lista = facturas.ToPagedList(page ?? 1, AppSettings.DefaultPageSize);
@@ -126,6 +117,7 @@ namespace MaxiKioscos.Web.Controllers
             factura.Identifier = Guid.NewGuid();
             factura.UsuarioId = UsuarioActual.Usuario.UsuarioId;
             factura.FechaCreacion = DateTime.UtcNow;
+            factura.FacturaNro = factura.FacturaNro.TrimStart(new Char[] { '0' } );
 
             var maxikiosco = Uow.MaxiKioscos.Obtener(factura.MaxiKioscoId);
             var fact = Uow.Facturas.Listado(f => f.MaxiKiosco).Where(f => f.MaxiKioscoId == factura.MaxiKioscoId && f.AutoNumero.StartsWith("WEB_")).OrderBy(f => f.FacturaId).ToList();
@@ -165,6 +157,7 @@ namespace MaxiKioscos.Web.Controllers
                 return PartialView(factura);
             }
 
+            factura.FacturaNro = factura.FacturaNro.TrimStart(new Char[] { '0' });
             Uow.Facturas.Modificar(factura);
             Uow.Commit();
 
