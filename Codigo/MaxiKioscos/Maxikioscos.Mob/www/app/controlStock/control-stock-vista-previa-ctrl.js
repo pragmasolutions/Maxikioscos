@@ -8,8 +8,7 @@
         var vm = this;
         
         vm.productosFiltrados = [];
-        vm.criterios = $rootScope.criterios || {};
-
+        
         vm.initialize = initialize;
         vm.getVistaPrevia = getVistaPrevia;        
         vm.filtrarProductos = filtrarProductos;     
@@ -105,6 +104,9 @@
             vm.productosFiltrados = vm.productos.filter(function (x) { return (!desde || x.Fila >= desde) && (!hasta || x.Fila <= hasta) });
         }    
 
-        vm.initialize();
+        $scope.$on('$ionicView.enter', function(event, data) {
+            vm.criterios = $rootScope.criterios || {};
+            vm.initialize();
+        });
     };
 })();
