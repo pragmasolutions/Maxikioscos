@@ -11,7 +11,7 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
     [EnableCors("*", "*", "*")]
-    public class StockControlController : ApiController
+    public class StockControlController : BaseApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
 

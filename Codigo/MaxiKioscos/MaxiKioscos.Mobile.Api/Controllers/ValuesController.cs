@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
     [System.Web.Mvc.Authorize]
-    public class ValuesController : ApiController
+    public class ValuesController : BaseApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

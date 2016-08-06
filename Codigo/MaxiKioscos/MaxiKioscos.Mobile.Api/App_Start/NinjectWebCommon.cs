@@ -2,6 +2,7 @@ using System.Web.Http;
 using MaxiKioscos.Datos;
 using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Interfaces;
+using MaxiKioscos.Mobile.Api.IoC;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MaxiKioscos.Mobile.Api.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MaxiKioscos.Mobile.Api.App_Start.NinjectWebCommon), "Stop")]
@@ -54,6 +55,9 @@ namespace MaxiKioscos.Mobile.Api.App_Start
                 kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
                 kernel.Bind<IMaxiKioscosUow>().To<MaxiKioscosUow>().InRequestScope();
                 RegisterServices(kernel);
+
+                IocContainer.Initialize(new NinjectIocContainer(kernel));
+
                 return kernel;
             }
             catch
