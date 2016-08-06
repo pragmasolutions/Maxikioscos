@@ -14,7 +14,7 @@
             machineName: '',
             isWebOnline: false,
             isLocalServiceOnline: false,
-            urlLocalService: 'http://192.168.0.13:8080'
+            urlLocalService: 'http://192.168.1.130:8080'
         }
 
         var _connection = {
