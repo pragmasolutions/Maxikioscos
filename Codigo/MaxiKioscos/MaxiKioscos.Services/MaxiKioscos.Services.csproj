@@ -209,6 +209,7 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Juan Pablo.pubxml" />
     <None Include="Properties\PublishProfiles\Maxikioscos.Service.pubxml" />
+    <None Include="Properties\PublishProfiles\maxikioscosservice azure.pubxml" />
     <None Include="Properties\PublishProfiles\maxikioscosservice.pubxml" />
     <None Include="Properties\PublishProfiles\Servicios.pubxml" />
     <None Include="Properties\PublishProfiles\Tromps.pubxml" />
