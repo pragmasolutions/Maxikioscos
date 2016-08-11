@@ -5402,6 +5402,7 @@
           <Property Type="Decimal" Name="Ganancia" Nullable="true" Precision="38" Scale="6" />
           <Property Type="Decimal" Name="PrecioTotal" Nullable="true" Precision="38" Scale="6" />
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="101" />
+          <Property Type="Decimal" Name="CostoPorUsuario" Nullable="true" Precision="19" />
         </ComplexType>
         <EntityType Name="Reporte">
           <Key>
@@ -6862,6 +6863,7 @@
                 <ScalarProperty Name="Ganancia" ColumnName="Ganancia" />
                 <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="CostoPorUsuario" ColumnName="CostoPorUsuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

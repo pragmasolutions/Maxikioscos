@@ -69,6 +69,10 @@
           <DataField>Usuario</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CostoPorUsuario">
+          <DataField>CostoPorUsuario</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -1297,6 +1301,11 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>VentasNegativasPorTicketDataSet</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!CostoPorUsuario.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>2.46803cm</Top>
             <Left>0.11853cm</Left>
             <Height>4.97417cm</Height>

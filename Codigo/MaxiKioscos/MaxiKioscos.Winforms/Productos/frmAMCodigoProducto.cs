@@ -66,11 +66,12 @@ namespace MaxiKioscos.Winforms.Productos
                     CargarCodigo();
                     repo.Modificar(codProducto);
                 }
-                if (repo.Commit())
+                try
                 {
+                    repo.Commit();
                     Mensajes.Guardar(true);
                 }
-                else
+                catch (Exception)
                 {
                     Mensajes.Guardar(false);
                 }

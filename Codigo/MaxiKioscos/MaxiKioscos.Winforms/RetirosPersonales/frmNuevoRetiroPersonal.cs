@@ -463,13 +463,15 @@ namespace MaxiKioscos.Winforms.RetirosPersonales
                         }
 
                         Repository.Agregar(retiroPersonal);
-                        if (Repository.Commit())
+
+                        try
                         {
+                            Repository.Commit();
                             Limpiar();
                         }
-                        else
+                        catch (Exception)
                         {
-                            Mensajes.Guardar(false, "Ha ocurrido un error al registrar la retiroPersonal. Por favor intente nuevamente");
+                            Mensajes.Guardar(false, "Ha ocurrido un error al registrar la retiro personal. Por favor intente nuevamente");
                         }
                         this.Close();
                     }

@@ -82,11 +82,12 @@ namespace MaxiKioscos.Winforms.Excepciones
                     CargarExcepcion();
                     Repository.Modificar(Excepcion);
                 }
-                if (Repository.Commit())
+                try
                 {
+                    Repository.Commit();
                     Mensajes.Guardar(true);
                 }
-                else
+                catch (Exception)
                 {
                     Mensajes.Guardar(false);
                 }

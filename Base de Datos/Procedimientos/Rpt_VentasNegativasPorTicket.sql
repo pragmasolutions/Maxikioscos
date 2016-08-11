@@ -53,7 +53,8 @@ BEGIN
 		    CostoTotal = VP.Costo * VP.Cantidad,
 		    Ganancia = (VP.Precio - VP.Costo) * VP.Cantidad	,
 		    PrecioTotal = VP.Precio * VP.Cantidad,
-		    Usuario = U.Nombre + ' ' + U.Apellido
+		    Usuario = U.Nombre + ' ' + U.Apellido,
+		    CostoPorUsuario = T.CostoTotal
 	FROM VentaProducto VP
 		INNER JOIN  Venta V
 			ON VP.VentaId = V.VentaId

@@ -15,6 +15,8 @@ using MaxiKioscos.Winforms.Productos.Modulos;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using log4net;
+using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Winforms.Principal;
 using MaxiKioscos.Winforms.Transferencias.Modulos;
 using MaxiKioscos.Winforms.UserControls;
@@ -417,106 +419,113 @@ namespace MaxiKioscos.Winforms.Transferencias
             }   
             else
             {
-                if (dgvListado.Rows.Count > 0)
+                try
                 {
-                    ConfirmacionAbierta = true;
-                    var frmConfirmar = new ConfirmationForm("Está seguro que desea guardar la transferencia?", "Si", "No");
-                    if (frmConfirmar.ShowDialog() == DialogResult.OK)
+                    if (dgvListado.Rows.Count > 0)
                     {
-                        var lineas = new List<TransferenciaProducto>();
-                        for (int i = 0; i <= dgvListado.Rows.Count - 1; i++)
+                        ConfirmacionAbierta = true;
+                        var frmConfirmar = new ConfirmationForm("Está seguro que desea guardar la transferencia?", "Si", "No");
+                        if (frmConfirmar.ShowDialog() == DialogResult.OK)
                         {
-                            var linea = new TransferenciaProducto();
-
-                            linea.Cantidad = int.Parse(dgvListado.Rows[i].Cells["Cantidad"].Value.ToString());
-                            linea.Eliminado = false;
-                            linea.Identifier = Guid.NewGuid();
-                            linea.PrecioVenta = Convert.ToDecimal(dgvListado.Rows[i].Cells["Unitario"].Value.ToString().Replace("$", ""));
-                            linea.ProductoId = (int)dgvListado.Rows[i].Cells["productoId"].Value;
-                            linea.Costo = dgvListado.Rows[i].Cells["Costo"].Value == null
-                                                    ? 0
-                                                    : Convert.ToDecimal(dgvListado.Rows[i].Cells["Costo"].Value.ToString().Replace("$", ""));
-                            linea.FechaUltimaModificacion = DateTime.Now;
-                            linea.Orden = i + 1;
-                            linea.Desincronizado = true;
-                            linea.StockDestino = Convert.ToDecimal(dgvListado.Rows[i].Cells["StockActual"].Value.ToString());
-                            linea.Identifier = Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
-                            linea.TransferenciaProductoId = Convert.ToInt32(dgvListado.Rows[i].Cells["TransferenciaProductoId"].Value.ToString());
-                            linea.Identifier = Guid.NewGuid();
-                            lineas.Add(linea);
-                        }
-
-                        if (_operacion == "Crear")
-                        {
-                            var transferencia = new Transferencia
+                            var lineas = new List<TransferenciaProducto>();
+                            for (int i = 0; i <= dgvListado.Rows.Count - 1; i++)
                             {
-                                FechaCreacion = DateTime.Now,
-                                Identifier = Guid.NewGuid(),
-                                Eliminado = false,
-                                TransferenciaProductos = lineas,
-                                AutoNumero = _autoNumero,
-                                Desincronizado = true,
-                                DestinoId = AppSettings.MaxiKioscoId,
-                                FechaAprobacion = null,
-                                OrigenId = Origen.MaxiKioscoId,
-                                UsuarioId = UsuarioActual.UsuarioId
-                            };
+                                var linea = new TransferenciaProducto();
 
-                            Repository.Agregar(transferencia);
-                        }
-                        else
-                        {
-                            //Transferencia.TransferenciaProductos = lineas;
-                            var trans = Repository.Obtener(t => t.TransferenciaId == Transferencia.TransferenciaId,
-                                                    t => t.TransferenciaProductos);
-                            var originales = trans.TransferenciaProductos.Where(tp => !tp.Eliminado);
+                                linea.Cantidad = int.Parse(dgvListado.Rows[i].Cells["Cantidad"].Value.ToString());
+                                linea.Eliminado = false;
+                                linea.Identifier = Guid.NewGuid();
+                                linea.PrecioVenta = Convert.ToDecimal(dgvListado.Rows[i].Cells["Unitario"].Value.ToString().Replace("$", ""));
+                                linea.ProductoId = (int)dgvListado.Rows[i].Cells["productoId"].Value;
+                                linea.Costo = dgvListado.Rows[i].Cells["Costo"].Value == null
+                                                        ? 0
+                                                        : Convert.ToDecimal(dgvListado.Rows[i].Cells["Costo"].Value.ToString().Replace("$", ""));
+                                linea.FechaUltimaModificacion = DateTime.Now;
+                                linea.Orden = i + 1;
+                                linea.Desincronizado = true;
+                                linea.StockDestino = Convert.ToDecimal(dgvListado.Rows[i].Cells["StockActual"].Value.ToString());
+                                linea.Identifier = Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
+                                linea.TransferenciaProductoId = Convert.ToInt32(dgvListado.Rows[i].Cells["TransferenciaProductoId"].Value.ToString());
+                                linea.Identifier = Guid.NewGuid();
+                                lineas.Add(linea);
+                            }
 
-                            var paraEliminar = originales.Select(o => o.TransferenciaProductoId).ToList();
-
-                            var i = 1;
-                            foreach (var tp in lineas)
+                            if (_operacion == "Crear")
                             {
-                                tp.Orden = i;
-                                if (tp.TransferenciaProductoId == 0)
+                                var transferencia = new Transferencia
                                 {
-                                    tp.TransferenciaId = Transferencia.TransferenciaId;
-                                    TransferenciaProductoRepository.Agregar(tp);
-                                }
-                                else
+                                    FechaCreacion = DateTime.Now,
+                                    Identifier = Guid.NewGuid(),
+                                    Eliminado = false,
+                                    TransferenciaProductos = lineas,
+                                    AutoNumero = _autoNumero,
+                                    Desincronizado = true,
+                                    DestinoId = AppSettings.MaxiKioscoId,
+                                    FechaAprobacion = null,
+                                    OrigenId = Origen.MaxiKioscoId,
+                                    UsuarioId = UsuarioActual.UsuarioId
+                                };
+
+                                LogManager.GetLogger("errors").Error("agregando");
+                                Repository.Agregar(transferencia);
+                            }
+                            else
+                            {
+                                //Transferencia.TransferenciaProductos = lineas;
+                                var trans = Repository.Obtener(t => t.TransferenciaId == Transferencia.TransferenciaId,
+                                                        t => t.TransferenciaProductos);
+                                var originales = trans.TransferenciaProductos.Where(tp => !tp.Eliminado);
+
+                                var paraEliminar = originales.Select(o => o.TransferenciaProductoId).ToList();
+
+                                var i = 1;
+                                foreach (var tp in lineas)
                                 {
-                                    var original = originales.FirstOrDefault(o => tp.TransferenciaProductoId == o.TransferenciaProductoId);
-                                    if (original != null)
+                                    tp.Orden = i;
+                                    if (tp.TransferenciaProductoId == 0)
                                     {
-                                        original.Cantidad = tp.Cantidad;
-                                        original.PrecioVenta = tp.PrecioVenta;
-                                        original.ProductoId = tp.ProductoId;
-                                        original.StockDestino = tp.StockDestino;
-                                        original.StockOrigen = tp.StockOrigen;
-                                        TransferenciaProductoRepository.Modificar(original);
-                                        paraEliminar.Remove(original.TransferenciaProductoId);
+                                        tp.TransferenciaId = Transferencia.TransferenciaId;
+                                        TransferenciaProductoRepository.Agregar(tp);
                                     }
+                                    else
+                                    {
+                                        var original = originales.FirstOrDefault(o => tp.TransferenciaProductoId == o.TransferenciaProductoId);
+                                        if (original != null)
+                                        {
+                                            original.Cantidad = tp.Cantidad;
+                                            original.PrecioVenta = tp.PrecioVenta;
+                                            original.ProductoId = tp.ProductoId;
+                                            original.StockDestino = tp.StockDestino;
+                                            original.StockOrigen = tp.StockOrigen;
+                                            TransferenciaProductoRepository.Modificar(original);
+                                            paraEliminar.Remove(original.TransferenciaProductoId);
+                                        }
+                                    }
+                                    i++;
                                 }
-                                i++;
+
+                                foreach (var id in paraEliminar)
+                                {
+                                    TransferenciaProductoRepository.Eliminar(id);
+                                }
+
+                                trans.OrigenId = Transferencia.OrigenId;
+                                trans.DestinoId = Transferencia.DestinoId;
+
+
+                                trans.FechaUltimaModificacion = DateTime.Now;
+                                trans.Desincronizado = true;
                             }
-
-                            foreach (var id in paraEliminar)
-                            {
-                                TransferenciaProductoRepository.Eliminar(id);
-                            }
-
-                            trans.OrigenId = Transferencia.OrigenId;
-                            trans.DestinoId = Transferencia.DestinoId;
-
-
-                            trans.FechaUltimaModificacion = DateTime.Now;
-                            trans.Desincronizado = true;
+                            Repository.Commit();
+                            this.Close();
                         }
-                        Repository.Commit();
-
-                        this.Close();
                     }
                 }
-                
+                catch (Exception ex)
+                {
+                    LogManager.GetLogger("errors").Error(ExceptionHelper.GetInnerException(ex).Message);
+                    throw;
+                }
             }
         }
         
