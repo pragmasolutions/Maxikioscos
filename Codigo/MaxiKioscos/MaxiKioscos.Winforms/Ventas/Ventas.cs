@@ -445,11 +445,12 @@ namespace MaxiKioscos.Winforms.Ventas
                             stockTransaccionRepository.Commit();
 
                         Repository.Agregar(venta);
-                        if (Repository.Commit())
+                        try
                         {
+                            Repository.Commit();
                             Limpiar();
                         }
-                        else
+                        catch (Exception)
                         {
                             Mensajes.Guardar(false, "Ha ocurrido un error al registrar la venta. Por favor intente nuevamente");
                         }

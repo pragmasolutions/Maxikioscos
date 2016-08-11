@@ -31,8 +31,7 @@ namespace MaxiKioscos.Entidades
         {
             get
             {
-                string stock;
-                stock = (StockActual % 1) == 0
+                string stock = (StockActual % 1) == 0
                                 ? StockActual.GetValueOrDefault().ToString().Replace(",00000", "").Replace(",0000", "").Replace(".00", "").Replace(",00", "")
                                 : StockActual.GetValueOrDefault().ToString("N2");
                 return stock;
@@ -43,8 +42,7 @@ namespace MaxiKioscos.Entidades
         {
             get
             {
-                string precio;
-                precio = (Precio % 1) == 0
+                string precio = (Precio % 1) == 0
                                 ? Precio.ToString().Replace(",00000", "").Replace(",0000", "").Replace(".00", "").Replace(",00", "")
                                 : Precio.ToString("N2");
                 return String.Format("${0}", precio);
@@ -64,7 +62,7 @@ namespace MaxiKioscos.Entidades
 
         public int CompareTo(object obj)
         {
-            var other = (ProductoHorario) obj;
+            var other = (ProductoTransferenciaDesktop)obj;
             if (other == null)
                 return 1;
 

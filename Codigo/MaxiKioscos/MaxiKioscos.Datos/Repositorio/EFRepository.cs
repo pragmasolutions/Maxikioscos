@@ -123,18 +123,9 @@ namespace MaxiKioscos.Datos.Sync
         //}
 
 
-        public bool Commit()
+        public void Commit()
         {
-            try
-            {
-                DbContext.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
+            DbContext.SaveChanges();
         }
     }
 }

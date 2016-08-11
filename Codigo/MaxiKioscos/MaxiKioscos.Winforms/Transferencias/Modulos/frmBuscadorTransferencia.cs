@@ -168,9 +168,9 @@ namespace MaxiKioscos.Winforms.Transferencias.Modulos
             }
             else
             {
-                foreach (var ProductoTransferenciaDesktop in lista)
+                foreach (var productoTransferenciaDesktop in lista)
                 {
-                    ProductoTransferenciaDesktop.Filter = text.ToLower();
+                    productoTransferenciaDesktop.Filter = text.ToLower();
                 }
                 var array = new ArrayList(lista);
 

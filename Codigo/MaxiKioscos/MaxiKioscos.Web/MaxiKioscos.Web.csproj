@@ -480,11 +480,10 @@
     <Content Include="Content\admin\scss\_spinning.scss" />
     <Content Include="Content\admin\scss\_stacked.scss" />
     <Content Include="Content\admin\scss\_variables.scss" />
-    <Content Include="Apks\20160723-maxikioscos.apk" />
+    <Content Include="Apks\maxikioscos.apk" />
     <None Include="Properties\PublishProfiles\DEV.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\maxikioscos %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\maxikioscos %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\maxikioscos.pubxml" />
     <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <Content Include="Reportes\DineroEnCajasPorMaxikiosco.rdl">
