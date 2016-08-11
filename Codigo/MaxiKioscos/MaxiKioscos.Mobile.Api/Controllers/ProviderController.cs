@@ -12,8 +12,8 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    
-    public class ProviderController : ApiController
+
+    public class ProviderController : BaseApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
 

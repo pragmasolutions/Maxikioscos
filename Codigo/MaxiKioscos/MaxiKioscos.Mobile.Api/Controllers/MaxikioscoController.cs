@@ -24,10 +24,10 @@ namespace MaxiKioscos.Mobile.Api.Controllers
 
         public MaxikioscoResponse GetIdentifier()
         {
-            var config = _uow.MaxiKioscos.Listado().FirstOrDefault();
+            var config = _uow.DbContext.ConfiguracionesLocales.FirstOrDefault();
             if (config != null)
             {
-                return new MaxikioscoResponse {Identifier = config.Identifier};
+                return new MaxikioscoResponse {Identifier = config.MaxikioscoIdentifier};
             }
             else
             {

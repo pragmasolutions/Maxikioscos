@@ -34,6 +34,10 @@ angular.module('maxikioscosApp', [
     maxikioscosService.fillConnectionData();
 }])
 
+.config(function($httpProvider) {
+    $httpProvider.interceptors.push('maxikioscoIdentifierInterceptorService');
+})
+
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $stateProvider

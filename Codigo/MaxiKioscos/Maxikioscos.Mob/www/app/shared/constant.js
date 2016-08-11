@@ -5,7 +5,7 @@
 		var protocolService = "http://";
 		var api= "/api/";
 		var port= ":8080";
-		var urlMasterService = 'http://ganciokioscos-001-site6.htempurl.com/';
+		var urlMasterService = 'http://maxikioscosservice.azurewebsites.net/';
 		
 		return {
 			URL_MASTER_SERVICE: urlMasterService,

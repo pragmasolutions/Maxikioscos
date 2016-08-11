@@ -13,8 +13,8 @@ using MaxiKioscos.Mobile.Api.Models.Response;
 
 namespace MaxiKioscos.Mobile.Api.Controllers
 {
-    
-    public class MotivoController : ApiController
+
+    public class MotivoController : BaseApiController
     {
         protected IMaxiKioscosUow _uow { get; set; }
 
