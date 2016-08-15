@@ -466,7 +466,6 @@ namespace MaxiKioscos.Winforms.Transferencias
                                     UsuarioId = UsuarioActual.UsuarioId
                                 };
 
-                                LogManager.GetLogger("errors").Error("agregando");
                                 Repository.Agregar(transferencia);
                             }
                             else
