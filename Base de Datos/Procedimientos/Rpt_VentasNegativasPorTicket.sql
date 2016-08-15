@@ -1,3 +1,4 @@
+/****** Object:  StoredProcedure [dbo].[Rpt_VentasNegativasPorTicket]    Script Date: 08/15/2016 11:23:22 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasNegativasPorTicket]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasNegativasPorTicket]
 GO
@@ -38,12 +39,7 @@ BEGIN
 			AND VP.Cantidad < 0
 		GROUP BY U.UsuarioId
 	)
-	INSERT INTO @Temp
-	SELECT UsuarioId,
-		CostoTotal,
-		ROW_NUMBER() OVER(ORDER BY CostoTotal)   
-	FROM CTE
-
+	
 	SELECT V.VentaId Ticket,
 			V.FechaVenta,
 			P.Descripcion Producto,
@@ -64,16 +60,17 @@ BEGIN
 			ON V.CierreCajaId = CC.CierreCajaId
 		INNER JOIN Usuario U
 			ON CC.UsuarioId = U.UsuarioId
-		INNER JOIN @Temp T
+		INNER JOIN CTE T
 			ON U.UsuarioId = T.UsuarioId
 	WHERE (@UsuarioId IS NULL OR CC.UsuarioId = @UsuarioId)
 		AND (@Desde IS NULL OR @Desde < V.FechaVenta)
 		AND (@Hasta IS NULL OR @Hasta > V.FechaVenta)
 		AND V.Eliminado = 0
 		AND VP.Cantidad < 0
-	ORDER BY T.Orden
+	ORDER BY T.CostoTotal
 	
 END
+
 
 
 GO

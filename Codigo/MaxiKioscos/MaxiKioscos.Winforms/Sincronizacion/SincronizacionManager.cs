@@ -17,6 +17,7 @@ using MaxiKioscos.Winforms.SincronizationService;
 using MaxiKioscos.Winforms.UserControls;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
+using log4net;
 using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Sync;
@@ -152,6 +153,10 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     worker.RunWorkerAsync();
                 }
             }
+            else if (TssProgreso.Text == "Sincronización finalizada con errores")
+            {
+                TssProgreso.Text = string.Empty;
+            }
         }
         delegate void ActualizarMensajeDelegate(string mensaje);
         public void ActualizarMensaje(string mensaje)
@@ -197,7 +202,9 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                     if (!actualizarResponse.Exito)
                     {
                         AppSettings.RefreshSettings();
+                        LogManager.GetLogger("errors").Error(actualizarResponse.MensageError);
                         _huboError = true;
+
                         if (actualizarResponse.MensageError == "SECUENCIA DESFASADA")
                         {
                             _secuenciaDesfasada = true;
@@ -248,6 +255,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
                             request.UltimaSecuenciaExportacion++;
                             if (!result)
                             {
+                                LogManager.GetLogger("errors").Error("ME CAGO EN LA CONCHA DE MI VIEJA");
                                 _huboError = true;
                                 AppSettings.RefreshSettings();
                                 return;
@@ -273,7 +281,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(Maxikioscos.Comun.Helpers.ExceptionHelper.GetInnerException(ex).Message);
+                LogManager.GetLogger("errors").Error(ExceptionHelper.GetInnerException(ex).Message);
                 _huboError = true;
                 AppSettings.RefreshSettings();
             }
