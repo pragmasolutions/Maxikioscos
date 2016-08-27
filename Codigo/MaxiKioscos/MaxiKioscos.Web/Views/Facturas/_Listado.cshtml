@@ -3,16 +3,10 @@
 @using PagedList
 @using PagedList.Mvc
 @model MaxiKioscos.Web.Models.FacturasListadoModel
-@helper  GetTieneCompraClass(Factura factura)
-{
-    if (factura.TieneCompra)
-    {
-    @:class="factura-tiene-compra"
-    }
-}
+
 @helper  FacturaFinalizada(Factura factura)
 {
-    if (factura.Finalizada)
+    if (factura.Finalizada || factura.TieneCompra)
     {
         @:class="factura-finalizada"
     }
@@ -44,7 +38,7 @@
                     <td>@(factura.TieneCompra ? "SI" : "NO")</td>
                     <td class="text-center">
                         <a class="btn btn-default btn-factura-detalle" href="@Url.Action("Detalle", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-list"></span></a>
-                        @if (!factura.Finalizada)
+                        @if (!factura.Finalizada && !factura.TieneCompra)
                         {
                             <a class="btn btn-default btn-factura-finalizar" href="@Url.Action("Finalizar", new { id = factura.FacturaId })" data-toggle="tooltip" title="Finalizar Factura"><span class="glyphicon glyphicon-check"></span></a>
                             <a class="btn btn-default btn-factura-editar" href="@Url.Action("Editar", new { id = factura.FacturaId })"><span class="glyphicon glyphicon-edit"></span></a>
