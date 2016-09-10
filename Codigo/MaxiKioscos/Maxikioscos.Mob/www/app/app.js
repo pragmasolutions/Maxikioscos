@@ -103,6 +103,15 @@ angular.module('maxikioscosApp', [
         }
     })
 
+    .state('app.settings', {
+        url: '/settings',
+        views: {
+            'mainContent': {
+                templateUrl: 'app/settings/settings.html'
+            }
+        }
+    })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
 });
