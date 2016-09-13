@@ -227,8 +227,12 @@ namespace Util.Controles
                     }
                     else
                     {
-                        e.Handled = true;
+                        e.Handled = !(aceptaNegativos && e.KeyChar == char.Parse("-"));
                     }
+                    //else
+                    //{
+                    //    e.Handled = true;
+                    //}
                 }
                 else
                 {
