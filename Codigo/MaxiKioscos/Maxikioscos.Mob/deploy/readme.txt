@@ -1,6 +1,6 @@
 1.Change the urlLocalService addrees in /www/app/services/maxikioscosService.js to: 192.168.1.130:8080
 
-2.Change the urlMasterService address in /www/app/shared/constant.js to: http://maxikioscosservice.azurewebsites.net
+2.Change the urlMasterService address in /www/app/shared/constant.js to: http://ganciokioscos-001-site6.ctempurl.com
 
 3.Generate the apk running the command: 
 cordova build --release android

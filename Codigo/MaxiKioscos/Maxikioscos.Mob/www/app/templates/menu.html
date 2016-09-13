@@ -35,6 +35,9 @@
         <ion-item menu-close ng-click="conectar()" ng-disabled="!sharedCtrl.authentication.isAuth">         
             Conectar
         </ion-item>
+        <ion-item menu-close href="#/app/settings" ng-disabled="!sharedCtrl.authentication.isAuth">         
+            Configuración
+        </ion-item>
         <ion-item menu-close ng-click="logoff()" ng-disabled="!sharedCtrl.authentication.isAuth">         
             Log off
         </ion-item>
