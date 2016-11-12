@@ -260,7 +260,7 @@ namespace MaxiKioscos.Winforms.Transferencias
         #region Botonera
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            Aceptar();
+            Aceptar(true);
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -407,13 +407,13 @@ namespace MaxiKioscos.Winforms.Transferencias
             return String.Format("${0}", precio);
         }
 
-        private void Aceptar()
+        private void Aceptar(bool sobrescribir = false)
         {
-            if (PopupAbierto)
+            if (PopupAbierto && !sobrescribir)
                 PopupAbierto = false;
-            else if (MensajeErrorAbierto)
+            else if (MensajeErrorAbierto && !sobrescribir)
                 MensajeErrorAbierto = false;
-            else if (ConfirmacionAbierta)
+            else if (ConfirmacionAbierta && !sobrescribir)
             {
                 ConfirmacionAbierta = false;
             }   
@@ -434,7 +434,6 @@ namespace MaxiKioscos.Winforms.Transferencias
 
                                 linea.Cantidad = int.Parse(dgvListado.Rows[i].Cells["Cantidad"].Value.ToString());
                                 linea.Eliminado = false;
-                                linea.Identifier = Guid.NewGuid();
                                 linea.PrecioVenta = Convert.ToDecimal(dgvListado.Rows[i].Cells["Unitario"].Value.ToString().Replace("$", ""));
                                 linea.ProductoId = (int)dgvListado.Rows[i].Cells["productoId"].Value;
                                 linea.Costo = dgvListado.Rows[i].Cells["Costo"].Value == null
@@ -444,9 +443,10 @@ namespace MaxiKioscos.Winforms.Transferencias
                                 linea.Orden = i + 1;
                                 linea.Desincronizado = true;
                                 linea.StockDestino = Convert.ToDecimal(dgvListado.Rows[i].Cells["StockActual"].Value.ToString());
-                                linea.Identifier = Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
+                                linea.Identifier = _operacion == "Crear"
+                                                        ? Guid.NewGuid()
+                                                        : Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
                                 linea.TransferenciaProductoId = Convert.ToInt32(dgvListado.Rows[i].Cells["TransferenciaProductoId"].Value.ToString());
-                                linea.Identifier = Guid.NewGuid();
                                 lineas.Add(linea);
                             }
 

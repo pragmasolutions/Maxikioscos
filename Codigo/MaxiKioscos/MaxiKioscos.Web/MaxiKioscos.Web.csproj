@@ -554,6 +554,9 @@
     <Content Include="Reportes\SugerenciaComprasPorProveedor.rdl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reportes\ProductosEnDeposito.rdl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\app\maxikiosco-maxikioscos.js" />
     <Content Include="Scripts\app\maxikiosco-proveedores.js" />
@@ -1062,6 +1065,8 @@
     <Content Include="Views\Reportes\VentasPorProveedor.cshtml" />
     <Content Include="Views\Reportes\ComprasDetalladasPorProveedor.cshtml" />
     <Content Include="Views\Reportes\SugerenciaComprasPorProveedor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DisponibleEnDeposito.cshtml" />
+    <Content Include="Views\Reportes\ProductosEnDeposito.cshtml" />
     <None Include="Web.ConnectionStrings.config">
       <SubType>Designer</SubType>
     </None>

@@ -1206,5 +1206,14 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoSugerenciaCompra>("ProductoSugerenciaCompras", proveedorIdParameter, cantidadDiasParameter, maxiKioscoIdParameter);
         }
+    
+        public virtual ObjectResult<RptProductosEnDeposito> RptProductosEnDeposito(Nullable<int> rubroId)
+        {
+            var rubroIdParameter = rubroId.HasValue ?
+                new ObjectParameter("RubroId", rubroId) :
+                new ObjectParameter("RubroId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptProductosEnDeposito>("RptProductosEnDeposito", rubroIdParameter);
+        }
     }
 }

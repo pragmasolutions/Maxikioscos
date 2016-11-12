@@ -51,7 +51,7 @@ namespace MaxiKioscos.Web.Models
                         && (!this.UsuarioId.HasValue 
                                 || (c.CierreCaja != null && c.CierreCaja.UsuarioId == this.UsuarioId)
                                 || c.UsuarioId == this.UsuarioId)
-                        && (!this.MaxiKioscoId.HasValue || this.MaxiKioscoId == c.CierreCaja.MaxiKioskoId)
+                        && (!this.MaxiKioscoId.HasValue || (this.MaxiKioscoId == c.CierreCaja.MaxiKioskoId || this.MaxiKioscoId == c.MaxikioscoId))
                         && (!this.CategoriaCostoId.HasValue || this.CategoriaCostoId == c.CategoriaCostoId)
                         && (string.IsNullOrEmpty(this.NroComprobante) || c.NroComprobante.ToLower().StartsWith(this.NroComprobante.ToLower()))
                         && (!SoloGastosGenerales || (SoloGastosGenerales && c.CierreCajaId == null && c.MaxikioscoId == null))

@@ -21,5 +21,7 @@ namespace MaxiKioscos.Entidades
         public decimal? StockActual { get; set; }
         
         public DateTime? FechaUltimaModificacion { get; set; }
+
+        public bool DisponibleEnDeposito { get; set; }
     }
 }

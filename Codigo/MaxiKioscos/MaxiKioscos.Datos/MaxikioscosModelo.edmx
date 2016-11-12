@@ -1967,6 +1967,9 @@
           <Parameter Name="CategoriaCostoId" Type="int" Mode="In" />
           <Parameter Name="SubCategoriaCostoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_ProductosEnDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_ReponerStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProductoId" Type="int" Mode="In" />
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
@@ -3238,6 +3241,9 @@
             <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
             <Parameter Name="CantidadDias" Mode="In" Type="Int32" />
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RptProductosEnDeposito" ReturnType="Collection(MaxiKioscosModel.RptProductosEnDeposito)">
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
@@ -5631,6 +5637,12 @@
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="101" />
           <Property Type="Decimal" Name="CostoPorUsuario" Nullable="true" Precision="19" />
         </ComplexType>
+        <ComplexType Name="RptProductosEnDeposito">
+          <Property Type="String" Name="Codigo" Nullable="true" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Marca" Nullable="false" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7075,6 +7087,16 @@
                 <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptProductosEnDeposito" FunctionName="MaxiKioscosModel.Store.Rpt_ProductosEnDeposito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptProductosEnDeposito">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

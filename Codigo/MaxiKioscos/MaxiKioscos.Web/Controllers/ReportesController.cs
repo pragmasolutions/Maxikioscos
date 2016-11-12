@@ -64,6 +64,11 @@ namespace MaxiKioscos.Web.Controllers
             return PartialOrView(model);
         }
 
+        public ActionResult ProductosEnDeposito(ReporteVentasFiltrosModel reporteVentasFiltrosModel)
+        {
+            return PartialOrView(reporteVentasFiltrosModel);
+        }
+
         public ActionResult ComprasDetalladasPorProveedor(ReporteVentasProveedorFiltrosModel model)
         {
             return PartialOrView(model);
@@ -1080,6 +1085,32 @@ namespace MaxiKioscos.Web.Controllers
                 }
             }
             return null;
+        }
+
+        public ActionResult GenerarProductosEnDeposito(ReporteVentasFiltrosModel model)
+        {
+            var reporteFactory = new ReporteFactory();
+
+            var rubro = Uow.Rubros.Obtener(r => r.RubroId == model.RubroId);
+            var rubroDescripcion = rubro != null ? rubro.Descripcion : TodosText;
+
+            var rubroId = model.RubroId.HasValue
+                ? model.RubroId.Value.ToString()
+                : null;
+
+            reporteFactory
+                .SetParametro("RubroId", rubroId)
+                .SetParametro("RubroDescripcion", rubroDescripcion);
+        
+            var dataset = Uow.Reportes.ProductosEnDesposito(model.RubroId);
+
+                reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/ProductosEnDeposito.rdl"))
+                    .SetDataSource("ProductosEnDepositoDataSet", dataset);
+            
+
+            byte[] archivo = reporteFactory.Renderizar(model.ReporteTipo);
+
+            return File(archivo, reporteFactory.MimeType);
         }
 
         #region AUTOMATIZACIONES

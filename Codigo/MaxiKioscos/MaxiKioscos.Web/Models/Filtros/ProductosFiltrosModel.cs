@@ -33,8 +33,9 @@ namespace MaxiKioscos.Web.Models
         [Display(Name = "Stock reposicion")]
         public int? StockReposicion { get; set; }
 
-        //[Display(Name = "Acepta Stock decimal")]
-        //public bool? AceptaCantidadesDecimales { get; set; }
+        [Display(Name = "Disponible en Depósito")]
+        [UIHint("DisponibleEnDeposito")]
+        public bool? DisponibleEnDeposito { get; set; }
 
         [Display(Name = "Código")]
         public string Codigo { get; set; }
@@ -49,6 +50,7 @@ namespace MaxiKioscos.Web.Models
                         && (!this.MarcaId.HasValue || this.MarcaId.Value == p.MarcaId)
                         && (string.IsNullOrEmpty(this.Descripcion) || p.Descripcion.Contains(this.Descripcion))
                         && (!this.Precio.HasValue || this.Precio.Value == p.PrecioConIVA)
+                        && (!this.DisponibleEnDeposito.HasValue || this.DisponibleEnDeposito.Value == p.DisponibleEnDeposito)
                         && (!this.StockReposicion.HasValue || this.StockReposicion.Value == p.StockReposicion)
                         && (string.IsNullOrEmpty(this.Codigo) || p.CodigosProductos.Any(c => !c.Eliminado && c.Codigo.StartsWith(this.Codigo)))
                         && (!this.ProveedorId.HasValue || p.ProveedorProductos.Any(pp => !pp.Eliminado && pp.ProveedorId == this.ProveedorId));
@@ -59,6 +61,7 @@ namespace MaxiKioscos.Web.Models
             var routeValues = base.GetRouteValues(page);
             routeValues.Add("RubroId", this.RubroId);
             routeValues.Add("MarcaId", this.MarcaId);
+            routeValues.Add("DisponibleEnDeposito", this.DisponibleEnDeposito);
             routeValues.Add("Descripcion", this.Descripcion);
             routeValues.Add("Precio", this.Precio);
             routeValues.Add("StockReposicion", this.StockReposicion);

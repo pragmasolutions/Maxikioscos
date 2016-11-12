@@ -27,7 +27,10 @@
             $.ajax({
                 type: "POST",
                 url: url,
-                data: data
+                data: data,
+                error: function (request, status, error) {
+                    alert('El gasto no puede eliminarse porque ya se encuentra aprobado');
+                }
             }).done(submitExito);
             
             return false;

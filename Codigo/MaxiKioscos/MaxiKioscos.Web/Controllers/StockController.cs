@@ -31,7 +31,7 @@ namespace MaxiKioscos.Web.Controllers
         public ActionResult Index(StockFiltrosModel filtros)
         {
             var stocks = StockNegocio.Listado(UsuarioActual.CuentaId, filtros.MaxiKioscoId, filtros.NecesitaReposicion,
-                                            filtros.ProductoDescripcion, filtros.ProveedorId, filtros.Page);
+                                            filtros.ProductoDescripcion, filtros.ProveedorId, filtros.DisponibleEnDeposito, filtros.Page);
 
             var pageNumber = filtros.Page ?? 1;
 

@@ -347,6 +347,9 @@
     <Compile Include="RptGastosPorCategoriaTotalGeneral.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="RptProductosEnDeposito.cs">
+      <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="RptRetirosPersonalesPorTicketRow.cs">
       <DependentUpon>MaxikioscosModelo.tt</DependentUpon>
     </Compile>

@@ -17,6 +17,8 @@ namespace MaxiKioscos.Datos.Interfaces
 
         IQueryable<RptVentasPorProductoTotalGeneral> VentasPorProductoTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? cuentaId);
 
+        IQueryable<RptProductosEnDeposito> ProductosEnDesposito(int? rubroId);
+
         IQueryable<RptVentasPorProveedor> VentasPorProveedor(DateTime? desde, DateTime? hasta, int? rubroId, int? maxikioscoId, int? proveedorId, int? cuentaId);
 
         IQueryable<RptVentasPorProveedorTotalGeneral> VentasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedor, int? cuentaId);

@@ -29,6 +29,10 @@ namespace MaxiKioscos.Web.Models
         [UIHint("Proveedor")]
         public int? ProveedorId { get; set; }
 
+        [Display(Name = "Disponible en Depósito")]
+        [UIHint("DisponibleEnDeposito")]
+        public bool? DisponibleEnDeposito { get; set; }
+
         
         public override Expression<Func<Stock, bool>> GetFilterExpression()
         {
@@ -42,6 +46,7 @@ namespace MaxiKioscos.Web.Models
             routeValues.Add("ProductoDescripcion", this.ProductoDescripcion);
             routeValues.Add("NecesitaReposicion", this.NecesitaReposicion);
             routeValues.Add("ProveedorId", this.ProveedorId);
+            routeValues.Add("DisponibleEnDeposito", this.DisponibleEnDeposito);
             return routeValues;
         }
     }

@@ -196,7 +196,7 @@ namespace MaxiKioscos.Negocio
         }
 
         public IQueryable<StockDto> Listado(int cuentaId, int? maxiKioscoId, bool? necesitaReposicion,
-            string productoDescripcion, int? proveedorId, int? page)
+            string productoDescripcion, int? proveedorId, bool? disponibleEnDeposito, int? page)
         {
 
             var productos = Uow.Productos.Listado()
@@ -229,7 +229,8 @@ namespace MaxiKioscos.Negocio
                           pm.Producto.ProductoId,
                           ProductoDescripcion = pm.Producto.Descripcion,
                           pm.Producto.StockReposicion,
-                          Cantidad = (decimal?)strang.Cantidad
+                          Cantidad = (decimal?)strang.Cantidad,
+                          DisponibleEnDeposito = pm.Producto.DisponibleEnDeposito
                       });
 
             //Agrupamos por maxikiosco y producto y definimos cantidades
@@ -241,7 +242,8 @@ namespace MaxiKioscos.Negocio
                           stra.MaxiKioscoNombre,
                           stra.ProductoId,
                           stra.ProductoDescripcion,
-                          stra.StockReposicion
+                          stra.StockReposicion,
+                          stra.DisponibleEnDeposito
                       }
                           into strag
                           select new StockDto()
@@ -250,6 +252,7 @@ namespace MaxiKioscos.Negocio
                               MaxiKioscoNombre = strag.Key.MaxiKioscoNombre,
                               ProductoId = strag.Key.ProductoId,
                               ProductoDescripcion = strag.Key.ProductoDescripcion,
+                              DisponibleEnDeposito = strag.Key.DisponibleEnDeposito,
                               StockReposicion = strag.Key.StockReposicion,
                               StockActual = strag.Select(x => x.Cantidad)
                               .DefaultIfEmpty(0)
@@ -263,6 +266,10 @@ namespace MaxiKioscos.Negocio
             ////Filtramos por productos que necesitan reposicion.
             if (necesitaReposicion.HasValue)
                 q3 = q3.Where(s => s.StockReposicion > s.StockActual);
+
+            ////Filtramos por productos en deposito
+            if (disponibleEnDeposito.HasValue)
+                q3 = q3.Where(s => s.DisponibleEnDeposito == disponibleEnDeposito);
 
             ////Filtramos por descripcion de producto
             if (!string.IsNullOrEmpty(productoDescripcion))

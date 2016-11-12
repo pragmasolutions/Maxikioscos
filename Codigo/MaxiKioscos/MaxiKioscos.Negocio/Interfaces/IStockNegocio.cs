@@ -14,6 +14,6 @@ namespace MaxiKioscos.Negocio
         void TransferirStock(Stock stockOrigen, int unidades, int destinoId);
         
         IQueryable<StockDto> Listado(int cuentaId, int? maxiKioscoId, bool? necesitaReposicion,
-                                     string productoDescripcion, int? proveedorId, int? page);
+                                     string productoDescripcion, int? proveedorId, bool? disponibleEnDeposito, int? page);
     }
 }

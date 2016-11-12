@@ -84,7 +84,7 @@ namespace MaxiKioscos.Winforms.Transferencias
 
             dgvListado.AutoGenerateColumns = false;
             dgvListado.Columns[3].DefaultCellStyle.Format = AppSettings.CurrencyColumnFormat;
-            dgvListado.DataSource = Transferencia.TransferenciaProductos.Select(x => new
+            dgvListado.DataSource = Transferencia.TransferenciaProductos.Where(x => !x.Eliminado).Select(x => new
             {
                 x.Cantidad,
                 Codigo = x.Producto.CodigosListado,

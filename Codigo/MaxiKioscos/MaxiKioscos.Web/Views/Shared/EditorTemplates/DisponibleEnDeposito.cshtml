@@ -1,0 +1,18 @@
+﻿@using Dely.Core.Web.Utils
+@using MaxiKioscos.Datos.Interfaces
+@using MaxiKioscos.Web.Configuration
+@using MaxiKioscos.Web.Ioc
+@using Ninject
+@model bool?
+@{
+    var value = (Model != null ? Model.ToString().ToLower() : "");
+    var uow = NinjectServiceHelper.Kernel.Get<IMaxiKioscosUow>();
+    var lista = new List<SelectListItem>
+    {
+        new SelectListItem() {Value = "true", Text = "Disponibles"},
+        new SelectListItem() {Value = "false", Text = "No disponibles"}
+    };
+    var selectList = new SelectList(lista, "Value", "Text", value);
+}
+
+@Html.DropDownList("", selectList, "Disponible en depósito", new { @class = "form-control" })

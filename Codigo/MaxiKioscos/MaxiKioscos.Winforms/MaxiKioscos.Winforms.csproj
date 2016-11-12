@@ -28,7 +28,7 @@
     <UpdateUrl>http://ganciokioscos-001-site5.htempurl.com/</UpdateUrl>
     <MinimumRequiredVersion>1.1.0.87</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>88</ApplicationRevision>
+    <ApplicationRevision>90</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

@@ -170,7 +170,7 @@ namespace MaxiKioscos.Winforms.Ventas
         #region Botonera
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            Aceptar();
+            Aceptar(true);
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -322,13 +322,13 @@ namespace MaxiKioscos.Winforms.Ventas
             return String.Format("${0}", precio);
         }
 
-        private void Aceptar()
+        private void Aceptar(bool sobrescribir = false)
         {
-            if (PopupAbierto)
+            if (PopupAbierto && !sobrescribir)
                 PopupAbierto = false;
-            else if (MensajeErrorAbierto)
+            else if (MensajeErrorAbierto && !sobrescribir)
                 MensajeErrorAbierto = false;
-            else if (ConfirmacionAbierta)
+            else if (ConfirmacionAbierta && !sobrescribir)
             {
                 ConfirmacionAbierta = false;
             }   
