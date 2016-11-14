@@ -3243,7 +3243,7 @@
             <Parameter Name="MaxiKioscoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RptProductosEnDeposito" ReturnType="Collection(MaxiKioscosModel.RptProductosEnDeposito)">
-            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+          <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
