@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Entidades;
 
+
 namespace MaxiKioscos.Datos.Sync
 {
     /// <summary>

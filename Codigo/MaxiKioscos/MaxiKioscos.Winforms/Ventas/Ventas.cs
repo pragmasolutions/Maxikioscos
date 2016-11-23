@@ -964,6 +964,11 @@ namespace MaxiKioscos.Winforms.Ventas
             BuscarPorCodigo(ProductoCriterioBusqueda.Marca);
             txtCodigo.Select(0, txtCodigo.Text.Length);
         }
-       
+
+
+        private void Imprimir()
+        {
+            
+        }
     }
 }

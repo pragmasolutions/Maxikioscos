@@ -430,6 +430,7 @@
           <Property Name="EsPromocion" Type="bit" Nullable="false" />
           <Property Name="DisponibleEnDeposito" Type="bit" Nullable="false" />
           <Property Name="FactorAgrupamiento" Type="int" />
+          <Property Name="Facturado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductoPromocion">
           <Key>
@@ -3485,6 +3486,7 @@
           <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
           <Property Name="DisponibleEnDeposito" Type="Boolean" Nullable="false" />
           <Property Name="FactorAgrupamiento" Type="Int32" />
+          <Property Name="Facturado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -5820,6 +5822,7 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Facturado" ColumnName="Facturado" />
                 <ScalarProperty Name="FactorAgrupamiento" ColumnName="FactorAgrupamiento" />
                 <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
                 <ScalarProperty Name="EsPromocion" ColumnName="EsPromocion" />

@@ -31,6 +31,7 @@ BEGIN
 		EsPromocion bit,
 		FactorAgrupamiento int,
 		DisponibleEnDeposito bit,
+		Facturado bit,
 		RubroIdentifier uniqueidentifier, 
 		MarcaIdentifier uniqueidentifier,
 		CuentaIdentifier uniqueidentifier
@@ -39,7 +40,7 @@ BEGIN
 	WITH ProductoCTE (ProductoId, Identifier, Descripcion, PrecioSinIVA, PrecioConIVA,
 			StockReposicion, Desincronizado,FechaUltimaModificacion, Eliminado, 
 			AceptaCantidadesDecimales, EsPromocion, FactorAgrupamiento, DisponibleEnDeposito, 
-			RubroIdentifier, MarcaIdentifier, CuentaIdentifier)
+			Facturado, RubroIdentifier, MarcaIdentifier, CuentaIdentifier)
 	AS (
 		SELECT    *
 		FROM       OPENXML (@idoc, '/Exportacion/Productos/Producto',1) 
@@ -56,6 +57,7 @@ BEGIN
 					   EsPromocion bit 'EsPromocion',
 					   FactorAgrupamiento int 'FactorAgrupamiento',
 					   DisponibleEnDeposito bit 'DisponibleEnDeposito',
+					   Facturado bit 'Facturado',
 					   RubroIdentifier UNIQUEIDENTIFIER 'RubroIdentifier',
 					   MarcaIdentifier UNIQUEIDENTIFIER 'MarcaIdentifier',
 					   CuentaIdentifier UNIQUEIDENTIFIER 'CuentaIdentifier')
@@ -79,7 +81,8 @@ BEGIN
 		AceptaCantidadesDecimales = CTE.AceptaCantidadesDecimales,
 		EsPromocion = ISNULL(CTE.EsPromocion, 0),
 		FactorAgrupamiento = CTE.FactorAgrupamiento,
-		DisponibleEnDeposito = ISNULL(CTE.DisponibleEnDeposito, 0)
+		DisponibleEnDeposito = ISNULL(CTE.DisponibleEnDeposito, 0),
+		Facturado = ISNULL(CTE.Facturado, 0)
 	FROM @Temp CTE
 		INNER JOIN Producto P
 			ON CTE.Identifier = P.Identifier
@@ -89,7 +92,8 @@ BEGIN
 			
 	INSERT INTO Producto (Identifier, RubroId, MarcaId, CuentaId, Descripcion, 
 			PrecioSinIVA, PrecioConIVA, StockReposicion, Desincronizado,FechaUltimaModificacion, Eliminado, 
-			AceptaCantidadesDecimales, EsPromocion, FactorAgrupamiento, DisponibleEnDeposito)
+			AceptaCantidadesDecimales, EsPromocion, FactorAgrupamiento, DisponibleEnDeposito,
+			Facturado)
 	SELECT Identifier, 
 			(SELECT TOP 1 RubroId FROM Rubro WHERE Identifier = CTE.RubroIdentifier), 
 			(SELECT TOP 1 MarcaId FROM Marca WHERE Identifier = CTE.MarcaIdentifier),
@@ -104,7 +108,8 @@ BEGIN
 			AceptaCantidadesDecimales,
 			ISNULL(EsPromocion, 0),
 			FactorAgrupamiento		,
-			ISNULL(DisponibleEnDeposito, 0)			
+			ISNULL(DisponibleEnDeposito, 0),
+			ISNULL(Facturado, 0)		
 	FROM @Temp CTE
 	WHERE CTE.Identifier NOT IN (SELECT Identifier FROM Producto)
 	
