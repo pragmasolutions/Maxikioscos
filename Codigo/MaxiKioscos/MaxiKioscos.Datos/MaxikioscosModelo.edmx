@@ -430,7 +430,6 @@
           <Property Name="EsPromocion" Type="bit" Nullable="false" />
           <Property Name="DisponibleEnDeposito" Type="bit" Nullable="false" />
           <Property Name="FactorAgrupamiento" Type="int" />
-          <Property Name="Facturado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductoPromocion">
           <Key>
@@ -730,6 +729,7 @@
           <Property Name="Eliminado" Type="bit" Nullable="false" />
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
+          <Property Name="Facturada" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -3486,7 +3486,6 @@
           <NavigationProperty Name="RetiroPersonalProductoes" Relationship="MaxiKioscosModel.FK_RetiroPersonalProducto_Producto" FromRole="Producto" ToRole="RetiroPersonalProducto" />
           <Property Name="DisponibleEnDeposito" Type="Boolean" Nullable="false" />
           <Property Name="FactorAgrupamiento" Type="Int32" />
-          <Property Name="Facturado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -3602,6 +3601,7 @@
           <NavigationProperty Name="VentaProductos" Relationship="MaxiKioscosModel.FK_VentaProducto_Venta" FromRole="Venta" ToRole="VentaProducto" />
           <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Venta_CierreCaja" FromRole="Venta" ToRole="CierreCaja" />
           <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Facturada" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -5822,7 +5822,6 @@
           <EntitySetMapping Name="Productoes">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="Facturado" ColumnName="Facturado" />
                 <ScalarProperty Name="FactorAgrupamiento" ColumnName="FactorAgrupamiento" />
                 <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
                 <ScalarProperty Name="EsPromocion" ColumnName="EsPromocion" />
@@ -5923,6 +5922,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="Facturada" ColumnName="Facturada" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="VentaId" ColumnName="VentaId" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
