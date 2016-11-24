@@ -170,7 +170,7 @@ namespace MaxiKioscos.Winforms.Ventas
         #region Botonera
         private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            Aceptar(true);
+            Aceptar(true, false);
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -322,7 +322,7 @@ namespace MaxiKioscos.Winforms.Ventas
             return String.Format("${0}", precio);
         }
 
-        private void Aceptar(bool sobrescribir = false)
+        private void Aceptar(bool sobrescribir, bool imprimir)
         {
             if (PopupAbierto && !sobrescribir)
                 PopupAbierto = false;
@@ -379,7 +379,8 @@ namespace MaxiKioscos.Winforms.Ventas
                             Eliminado = false,
                             CierreCajaId = UsuarioActual.CierreCajaIdActual,
                             FechaVenta = DateTime.Now,
-                            VentaProductos = lineas
+                            VentaProductos = lineas,
+                            Facturada = imprimir
                         };
                         venta.CierreCajaId = UsuarioActual.CierreCajaIdActual;
                         var stockRepository = new StockRepository();
@@ -898,7 +899,7 @@ namespace MaxiKioscos.Winforms.Ventas
             }
             else
             {
-                Aceptar();
+                Aceptar(false, false);
             }
         }
 
@@ -965,10 +966,10 @@ namespace MaxiKioscos.Winforms.Ventas
             txtCodigo.Select(0, txtCodigo.Text.Length);
         }
 
-
-        private void Imprimir()
+        
+        private void btnImprimir_Click(object sender, EventArgs e)
         {
-            
+            Aceptar(true, true);
         }
     }
 }

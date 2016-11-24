@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://ganciokioscos-001-site5.htempurl.com/</InstallUrl>
     <UpdateUrl>http://ganciokioscos-001-site5.htempurl.com/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.90</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.92</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>91</ApplicationRevision>
+    <ApplicationRevision>93</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -594,6 +594,7 @@
     <Compile Include="Ventas\Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
+    <Content Include="Resources\printer.png" />
     <Content Include="Resources\transfer.png" />
     <Content Include="SqlScripts\112-Costo.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -790,6 +791,9 @@
     <Content Include="SqlScripts\165-Promocion_Listado.sql" />
     <Content Include="SqlScripts\166-Exportacion_NuevoXmlKiosco.sql" />
     <Content Include="SqlScripts\177-Create_ControlStock_ObtenerDetalles.sql" />
+    <Content Include="SqlScripts\185-ControlStock_VistaPrevia.sql" />
+    <Content Include="SqlScripts\187-ControlStock_Crear.sql" />
+    <Content Include="SqlScripts\186-ControlStock_ObtenerDetalles.sql" />
     <Content Include="SqlScripts\185-Sync_Ventas.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1554,6 +1558,16 @@
     <WCFMetadataStorage Include="Service References\SincronizationService\" />
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="EpsonStatusAPI">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
     <PublishFile Include="MaxiKioscos.Winforms.pdb">
       <Visible>False</Visible>
       <Group>

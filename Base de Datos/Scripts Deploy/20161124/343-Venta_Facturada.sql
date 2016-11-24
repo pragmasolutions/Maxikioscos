@@ -1,0 +1,2 @@
+ALTER TABLE Venta
+ADD Facturada bit NOT NULL DEFAULT 0

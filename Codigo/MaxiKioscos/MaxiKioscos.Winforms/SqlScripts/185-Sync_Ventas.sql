@@ -51,7 +51,7 @@ BEGIN
 	    CostoTotal = CTE.CostoTotal,
 		ImporteTotal = CTE.ImporteTotal,
 		FechaVenta = CTE.FechaVenta,
-		Facturada = CTE.Facturada,
+		Facturada = ISNULL(CTE.Facturada, 0),
 		Eliminado = CTE.Eliminado,
 		Desincronizado = CTE.Desincronizado,
 		FechaUltimaModificacion = CTE.FechaUltimaModificacion
@@ -75,7 +75,7 @@ BEGIN
 			CostoTotal, 
 			ImporteTotal, 
 			FechaVenta, 
-			Facturada,
+			ISNULL(Facturada, 0),
 			Eliminado, 
 			Desincronizado, 
 			FechaUltimaModificacion,
@@ -103,4 +103,3 @@ BEGIN
 		
 	
 END
-

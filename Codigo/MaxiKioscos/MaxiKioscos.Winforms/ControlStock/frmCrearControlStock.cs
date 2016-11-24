@@ -223,7 +223,7 @@ namespace MaxiKioscos.Winforms.ControlStock
                 if (ProveedorId != null)
                 {
                     //Verifico si tiene facturas sin compras asociadas
-                    var facturasIds = FacturasRepository.Listado().Where(f => f.ProveedorId == ProveedorId).Select(f => f.FacturaId).ToList();
+                    var facturasIds = FacturasRepository.Listado().Where(f => f.ProveedorId == ProveedorId && !f.Finalizada).Select(f => f.FacturaId).ToList();
                     var compras = ComprasRepository.Listado().Where(c => facturasIds.Contains(c.FacturaId)).Count();
                     if (facturasIds.Count() != compras)
                     {

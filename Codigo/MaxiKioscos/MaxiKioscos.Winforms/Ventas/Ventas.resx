@@ -167,6 +167,18 @@
   <metadata name="EsPromocion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="btnImprimir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAADdcAAA3XAHLx6S5AAAAGHRF
+        WHRTb2Z0d2FyZQBwYWludC5uZXQgNC4wLjlsM35OAAAA/klEQVRIS+3UMUsCYRjA8SvRocUapUkwEYRo
+        KHXrO7S7iO5tibs6OLkUzRptoks4CkFBi25i0AdIdAlBUMj+D3fbvd77OAr94cc9yz1wx73n/GfrAAnk
+        LDI4gaoI2miibFHBC65hrYC8O6o6Qtcdg6sj6Y7qOt41MFl85o7qrItjeMMHBjv4xh1CMNbHDCX8QN73
+        GhulInwdQpYu8YQVWviFaYnJPXzJ4jlMN2g9wNf+LZZj/IkpvvCuNMIQsrgKYzdYYIxjXFicIw1ZOsEp
+        thaFnP9LPOI5QANXkK8hDGs97yrfsZzEbbJIebOqV9wq1aBeLI8nv0KtOPY6x/kD4AWRwNv68IYAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
   <data name="btnCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
