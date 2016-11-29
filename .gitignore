@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 /Codigo/MaxiKioscos/MaxiKioscos.Services/logs
 /Codigo/MaxiKioscos/MaxiKioscos.Mobile/lib
+/Codigo/MaxiKioscos/MaxiKioscos.Database
