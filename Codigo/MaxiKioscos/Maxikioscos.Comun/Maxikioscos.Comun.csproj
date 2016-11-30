@@ -61,6 +61,7 @@
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\RawPrinterHelper.cs" />
     <Compile Include="Logger\EventLogger.cs" />
     <Compile Include="Logger\TextLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

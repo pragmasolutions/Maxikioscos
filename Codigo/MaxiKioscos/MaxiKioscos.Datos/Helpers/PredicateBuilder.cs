@@ -1,7 +1,8 @@
 using System;
-using System.Data.Objects.DataClasses;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Linq.Expressions;
+using MaxiKioscos.Datos.Interfaces;
 
 namespace MaxiKioscos.Datos.Helpers
 {
@@ -14,7 +15,7 @@ namespace MaxiKioscos.Datos.Helpers
         /// <param name="id">The int value of the id of the desired entity.</param>
         /// <returns>An predicate expression suitable for a LINQ "Where" or "First" clause.</returns>
         /// <remarks>
-        /// See <see cref="Model.IRepository{T}.GetById"/> for usage.
+        /// See <see cref="IRepository{T}.GetById"/> for usage.
         /// </remarks>
         /// <Example>
         /// If T is a Foo and Foo.Id is of type int, then

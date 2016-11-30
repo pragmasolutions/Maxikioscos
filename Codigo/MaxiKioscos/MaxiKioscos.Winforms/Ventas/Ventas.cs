@@ -16,6 +16,8 @@ using MaxiKioscos.Winforms.Productos.Modulos;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
+using Maxikioscos.Comun.Helpers;
 using Telerik.WinControls.UI;
 
 namespace MaxiKioscos.Winforms.Ventas
@@ -446,6 +448,7 @@ namespace MaxiKioscos.Winforms.Ventas
                             stockTransaccionRepository.Commit();
 
                         Repository.Agregar(venta);
+
                         try
                         {
                             Repository.Commit();
@@ -460,7 +463,6 @@ namespace MaxiKioscos.Winforms.Ventas
                 }
             }
         }
-
         
 
         private void Cancelar()
@@ -781,7 +783,7 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void TratarTextoVacio(Keys keyCode)
         {
-            var especiales = new[] { Keys.F5, Keys.F6, Keys.Delete, Keys.Escape, Keys.Enter, Keys.Down, Keys.Up };
+            var especiales = new[] { Keys.F5, Keys.F6, Keys.F11, Keys.Delete, Keys.Escape, Keys.Enter, Keys.Down, Keys.Up };
             if (especiales.Contains(keyCode))
             {
                 switch (keyCode)
@@ -795,6 +797,9 @@ namespace MaxiKioscos.Winforms.Ventas
                         txtCodigo.Text = _ultimaBusqueda;
                         AbrirBuscador(ProductoCriterioBusqueda.Descripcion);
                         txtCodigo.Select(0, txtCodigo.Text.Length);
+                        break;
+                    case Keys.F11:
+                        //Aceptar(true, true);
                         break;
                     case Keys.Delete:
                         SuprimirFila();
@@ -969,7 +974,7 @@ namespace MaxiKioscos.Winforms.Ventas
         
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            Aceptar(true, true);
+            //Aceptar(true, true);
         }
     }
 }

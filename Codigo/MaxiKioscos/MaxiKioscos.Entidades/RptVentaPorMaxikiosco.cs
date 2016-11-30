@@ -15,8 +15,9 @@ namespace MaxiKioscos.Entidades
     {
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public Nullable<decimal> ImporteTotal { get; set; }
         public Nullable<decimal> CostoTotal { get; set; }
         public Nullable<decimal> GananciaNeta { get; set; }
+        public Nullable<decimal> ImporteTotalA { get; set; }
+        public Nullable<decimal> ImporteTotalB { get; set; }
     }
 }

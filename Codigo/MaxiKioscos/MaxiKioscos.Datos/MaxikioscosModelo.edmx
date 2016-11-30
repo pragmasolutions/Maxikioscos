@@ -4099,9 +4099,10 @@
         <ComplexType Name="RptVentaPorMaxikiosco">
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Direccion" Nullable="false" MaxLength="200" />
-          <Property Type="Decimal" Name="ImporteTotal" Nullable="true" Precision="19" />
           <Property Type="Decimal" Name="CostoTotal" Nullable="true" Precision="19" />
           <Property Type="Decimal" Name="GananciaNeta" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="ImporteTotalA" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="ImporteTotalB" Nullable="true" Precision="19" />
         </ComplexType>
         <ComplexType Name="RptVentaPorProducto">
           <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
@@ -6065,9 +6066,10 @@
               <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentaPorMaxikiosco">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
+                <ScalarProperty Name="ImporteTotalA" ColumnName="ImporteTotalA" />
+                <ScalarProperty Name="ImporteTotalB" ColumnName="ImporteTotalB" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
