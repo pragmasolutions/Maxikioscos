@@ -51,13 +51,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvListado = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBuscarPorMarca = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnBottomUnidades = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnBottomBuscar = new System.Windows.Forms.Button();
             this.productoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +63,14 @@
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Recargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsPromocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnBuscarPorMarca = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnBottomUnidades = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnBottomBuscar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
@@ -86,9 +87,9 @@
             this.groupBox1.Controls.Add(this.lblProducto);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(939, 154);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -100,7 +101,7 @@
             this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(121, 96);
-            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(626, 29);
             this.txtCodigo.TabIndex = 9;
@@ -112,7 +113,7 @@
             // txtFecha
             // 
             this.txtFecha.Location = new System.Drawing.Point(121, 36);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtFecha.Margin = new System.Windows.Forms.Padding(5);
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Size = new System.Drawing.Size(271, 32);
             this.txtFecha.TabIndex = 8;
@@ -132,7 +133,7 @@
             // txtNroVenta
             // 
             this.txtNroVenta.Location = new System.Drawing.Point(633, 36);
-            this.txtNroVenta.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtNroVenta.Margin = new System.Windows.Forms.Padding(5);
             this.txtNroVenta.Name = "txtNroVenta";
             this.txtNroVenta.Size = new System.Drawing.Size(271, 32);
             this.txtNroVenta.TabIndex = 6;
@@ -142,7 +143,7 @@
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
             this.btnBuscar.Location = new System.Drawing.Point(756, 95);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(148, 32);
             this.btnBuscar.TabIndex = 2;
@@ -179,9 +180,9 @@
             this.groupBox2.Controls.Add(this.lblTotal);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(976, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(329, 154);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
@@ -253,7 +254,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvListado.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvListado.Location = new System.Drawing.Point(16, 192);
-            this.dgvListado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvListado.Margin = new System.Windows.Forms.Padding(4);
             this.dgvListado.MultiSelect = false;
             this.dgvListado.Name = "dgvListado";
             this.dgvListado.ReadOnly = true;
@@ -274,126 +275,6 @@
             this.dgvListado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_CellContentClick);
             this.dgvListado.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListado_CellPainting_1);
             this.dgvListado.Click += new System.EventHandler(this.dgvListado_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnBuscarPorMarca);
-            this.panel1.Controls.Add(this.btnEliminar);
-            this.panel1.Controls.Add(this.btnCancelar);
-            this.panel1.Controls.Add(this.btnBottomUnidades);
-            this.panel1.Controls.Add(this.btnAceptar);
-            this.panel1.Controls.Add(this.btnBottomBuscar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 493);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1336, 106);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnBuscarPorMarca
-            // 
-            this.btnBuscarPorMarca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBuscarPorMarca.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnBuscarPorMarca.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBuscarPorMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarPorMarca.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscarPorMarca.Location = new System.Drawing.Point(229, 62);
-            this.btnBuscarPorMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnBuscarPorMarca.Name = "btnBuscarPorMarca";
-            this.btnBuscarPorMarca.Size = new System.Drawing.Size(205, 41);
-            this.btnBuscarPorMarca.TabIndex = 5;
-            this.btnBuscarPorMarca.Text = "Buscar por Marca (F5)";
-            this.btnBuscarPorMarca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscarPorMarca.UseVisualStyleBackColor = false;
-            this.btnBuscarPorMarca.Click += new System.EventHandler(this.btnBuscarPorMarca_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnEliminar.Enabled = false;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.Location = new System.Drawing.Point(573, 62);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(176, 41);
-            this.btnEliminar.TabIndex = 4;
-            this.btnEliminar.Text = "Eliminar Fila (Supr)";
-            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnSuprimirFila_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancelar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancelar.Location = new System.Drawing.Point(209, 14);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(173, 41);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
-            // 
-            // btnBottomUnidades
-            // 
-            this.btnBottomUnidades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBottomUnidades.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnBottomUnidades.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBottomUnidades.Enabled = false;
-            this.btnBottomUnidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBottomUnidades.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBottomUnidades.Location = new System.Drawing.Point(447, 62);
-            this.btnBottomUnidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnBottomUnidades.Name = "btnBottomUnidades";
-            this.btnBottomUnidades.Size = new System.Drawing.Size(119, 41);
-            this.btnBottomUnidades.TabIndex = 3;
-            this.btnBottomUnidades.Text = "Unidades (*)";
-            this.btnBottomUnidades.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBottomUnidades.UseVisualStyleBackColor = false;
-            this.btnBottomUnidades.Click += new System.EventHandler(this.btnModificarCantidad_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAceptar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.Location = new System.Drawing.Point(16, 14);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(185, 41);
-            this.btnAceptar.TabIndex = 0;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
-            // 
-            // btnBottomBuscar
-            // 
-            this.btnBottomBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBottomBuscar.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnBottomBuscar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBottomBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBottomBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBottomBuscar.Location = new System.Drawing.Point(16, 62);
-            this.btnBottomBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnBottomBuscar.Name = "btnBottomBuscar";
-            this.btnBottomBuscar.Size = new System.Drawing.Size(205, 41);
-            this.btnBottomBuscar.TabIndex = 2;
-            this.btnBottomBuscar.Text = "Buscar por Nombre (F6)";
-            this.btnBottomBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBottomBuscar.UseVisualStyleBackColor = false;
-            this.btnBottomBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // productoId
             // 
@@ -497,6 +378,145 @@
             this.EsPromocion.ReadOnly = true;
             this.EsPromocion.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnImprimir);
+            this.panel1.Controls.Add(this.btnBuscarPorMarca);
+            this.panel1.Controls.Add(this.btnEliminar);
+            this.panel1.Controls.Add(this.btnCancelar);
+            this.panel1.Controls.Add(this.btnBottomUnidades);
+            this.panel1.Controls.Add(this.btnAceptar);
+            this.panel1.Controls.Add(this.btnBottomBuscar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 493);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1336, 106);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnImprimir.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.Location = new System.Drawing.Point(421, 14);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(308, 41);
+            this.btnImprimir.TabIndex = 2;
+            this.btnImprimir.Text = "Aceptar e Imprimir (F11)";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Visible = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // btnBuscarPorMarca
+            // 
+            this.btnBuscarPorMarca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBuscarPorMarca.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnBuscarPorMarca.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnBuscarPorMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPorMarca.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscarPorMarca.Location = new System.Drawing.Point(229, 62);
+            this.btnBuscarPorMarca.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarPorMarca.Name = "btnBuscarPorMarca";
+            this.btnBuscarPorMarca.Size = new System.Drawing.Size(205, 41);
+            this.btnBuscarPorMarca.TabIndex = 4;
+            this.btnBuscarPorMarca.Text = "Buscar por Marca (F5)";
+            this.btnBuscarPorMarca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscarPorMarca.UseVisualStyleBackColor = false;
+            this.btnBuscarPorMarca.Click += new System.EventHandler(this.btnBuscarPorMarca_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEliminar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnEliminar.Enabled = false;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.Location = new System.Drawing.Point(573, 62);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(176, 41);
+            this.btnEliminar.TabIndex = 6;
+            this.btnEliminar.Text = "Eliminar Fila (Supr)";
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnSuprimirFila_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.Location = new System.Drawing.Point(209, 14);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(173, 41);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
+            // 
+            // btnBottomUnidades
+            // 
+            this.btnBottomUnidades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBottomUnidades.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnBottomUnidades.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnBottomUnidades.Enabled = false;
+            this.btnBottomUnidades.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBottomUnidades.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBottomUnidades.Location = new System.Drawing.Point(447, 62);
+            this.btnBottomUnidades.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBottomUnidades.Name = "btnBottomUnidades";
+            this.btnBottomUnidades.Size = new System.Drawing.Size(119, 41);
+            this.btnBottomUnidades.TabIndex = 5;
+            this.btnBottomUnidades.Text = "Unidades (*)";
+            this.btnBottomUnidades.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBottomUnidades.UseVisualStyleBackColor = false;
+            this.btnBottomUnidades.Click += new System.EventHandler(this.btnModificarCantidad_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAceptar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.Location = new System.Drawing.Point(16, 14);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(185, 41);
+            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+            // 
+            // btnBottomBuscar
+            // 
+            this.btnBottomBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBottomBuscar.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnBottomBuscar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnBottomBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBottomBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBottomBuscar.Location = new System.Drawing.Point(16, 62);
+            this.btnBottomBuscar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBottomBuscar.Name = "btnBottomBuscar";
+            this.btnBottomBuscar.Size = new System.Drawing.Size(205, 41);
+            this.btnBottomBuscar.TabIndex = 3;
+            this.btnBottomBuscar.Text = "Buscar por Nombre (F6)";
+            this.btnBottomBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBottomBuscar.UseVisualStyleBackColor = false;
+            this.btnBottomBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -507,7 +527,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Ventas";
             this.Text = "Ventas";
             this.Load += new System.EventHandler(this.Ventas_Load);
@@ -555,5 +575,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Recargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn EsPromocion;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }

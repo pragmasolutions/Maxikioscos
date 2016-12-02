@@ -14,6 +14,7 @@ using MaxiKioscos.Datos;
 using MaxiKioscos.Datos.Interfaces;
 using MaxiKioscos.Datos.Sync.Repositorio;
 using MaxiKioscos.Entidades;
+using System.Data.Entity.Infrastructure;
 
 
 namespace MaxiKioscos.Negocio
@@ -83,12 +84,13 @@ namespace MaxiKioscos.Negocio
 
         public bool ActualizarPrincipal(string archivo, Guid maxiKioscoIdentifier, int secuencia, string nombreArchivo)
         {
-            using (var dbContextTransaction = Uow.DbContext.Database.BeginTransaction())
+            try
             {
-                try
-                {
-                    Uow.Exportaciones.ActualizarPrincipal(archivo, maxiKioscoIdentifier, secuencia, nombreArchivo);
+                Uow.DbContext.Configuration.EnsureTransactionsForFunctionsAndCommands = false;
 
+                var result = Uow.Exportaciones.ActualizarPrincipal(archivo, maxiKioscoIdentifier, secuencia, nombreArchivo);
+                if (result)
+                {
                     var repo = new SyncSimpleRepository<SyncMaxiKiosco>();
 
                     var maxi = repo.Obtener(m => m.Identifier == maxiKioscoIdentifier);
@@ -97,18 +99,17 @@ namespace MaxiKioscos.Negocio
 
                     repo.Commit();
 
-                    dbContextTransaction.Commit();
-
                     return true;
                 }
-                catch (Exception ex)
-                {
-                    dbContextTransaction.Rollback();
+                _logger.Info(String.Format("identifier: {0}, secuencia: {1}", maxiKioscoIdentifier, secuencia));
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                _logger.Info(String.Format("identifier: {0}, secuencia: {1}", maxiKioscoIdentifier, secuencia));
 
-                    _logger.Error(ex);
-
-                    return false;
-                }
+                return false;
             }
         }
     }
