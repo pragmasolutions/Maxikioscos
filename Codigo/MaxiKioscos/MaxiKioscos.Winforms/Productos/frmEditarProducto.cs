@@ -110,7 +110,7 @@ namespace MaxiKioscos.Winforms.Productos
             txtPrecio.Valor = Producto.PrecioConIVA;
             txtPrecioSinIva.Valor = Producto.PrecioSinIVA;
             txtStockReposicion.Valor = Producto.StockReposicion == null
-                                           ? (string) null
+                                           ? string.Empty
                                            : Producto.StockReposicion.ToString();
             ddlMarca.SelectedValue = Producto.MarcaId;
             ddlRubro.SelectedValue  = Producto.RubroId;

@@ -167,6 +167,16 @@
   <metadata name="EsPromocion.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="axPrinterFiscal.OcxState" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACFTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAgQAAAAIB
+        AAAAAQAAAAAAAAAAAAAAAGwAAACTsgAAbAAAAAMACAAL8ldHIAAAAF8AZQB4AHQAZQBuAHQAeABPAwAA
+        AwAIAAryV0cgAAAAXwBlAHgAdABlAG4AdAB5AE8DAAACAAoALPlBEcD///9wAG8AcgB0AG4AdQBtAGIA
+        ZQByAAMAAAAL
+</value>
+  </data>
   <data name="btnImprimir.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -53,6 +54,9 @@ namespace MaxiKioscos.Winforms
 
         private static void StartApp()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-AR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-AR");
+
             CompositionRoot.Wire(new ApplicationModule());
             
             Application.EnableVisualStyles();
