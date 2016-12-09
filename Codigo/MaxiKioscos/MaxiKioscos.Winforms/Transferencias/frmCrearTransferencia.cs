@@ -516,6 +516,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                                 trans.Desincronizado = true;
                             }
                             Repository.Commit();
+                            Repository.MaxiKioscosEntities.TransferenciaEliminarDuplicados();
                             this.Close();
                         }
                     }
@@ -605,6 +606,8 @@ namespace MaxiKioscos.Winforms.Transferencias
                         dgvListado.ClearSelection();
                         dgvListado.Rows[index + 1].Selected = true;
                     }
+
+                    dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.SelectedRows[0].Index;
                 }
             }
         }
@@ -622,6 +625,8 @@ namespace MaxiKioscos.Winforms.Transferencias
                         dgvListado.ClearSelection();
                         dgvListado.Rows[index - 1].Selected = true;
                     }
+
+                    dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.SelectedRows[0].Index;
                 }
             }
         }
@@ -926,6 +931,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                 txtCodigo.Clear();
                 txtCodigo.Focus();
                 SeleccionarUltimaFila();
+                ScrollearHastaElFinal();
             }
             else
             {
@@ -935,7 +941,9 @@ namespace MaxiKioscos.Winforms.Transferencias
 
         private void ScrollearHastaElFinal()
         {
-            dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.RowCount - 1;
+            int rowCount = dgvListado.Rows.Count;
+            if (rowCount > 0)
+                dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.RowCount - 1;
         }
 
         private void BuscadorSubir()

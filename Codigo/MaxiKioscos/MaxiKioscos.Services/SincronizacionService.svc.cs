@@ -73,15 +73,6 @@ namespace MaxiKioscos.Services
                     var ultimaAcusada = maxi.UltimaSecuenciaAcusada.GetValueOrDefault();
                     if (secuenciaActual > ultimaAcusada)
                     {
-                        if (secuenciaActual - ultimaAcusada > 1)
-                        {
-                            return new ActualizarDatosResponse()
-                            {
-                                Exito = false,
-                                MensageError = "SECUENCIA DESFASADA"
-                            };
-                        }
-
                         actualizo = _sincronizacionNegocio.ActualizarPrincipal(request.Exportacion.Archivo, request.MaxiKioscoIdentifier, request.Exportacion.Secuencia, null);
                     }
                 }

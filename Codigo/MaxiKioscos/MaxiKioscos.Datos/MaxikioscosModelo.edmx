@@ -2102,6 +2102,7 @@
         <Function Name="Transferencia_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TransferenciaId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Transferencia_EliminarDuplicados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Usuario_CambiarPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
@@ -3246,6 +3247,7 @@
           <FunctionImport Name="RptProductosEnDeposito" ReturnType="Collection(MaxiKioscosModel.RptProductosEnDeposito)">
           <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="TransferenciaEliminarDuplicados" />
         </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -7105,6 +7107,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TransferenciaEliminarDuplicados" FunctionName="MaxiKioscosModel.Store.Transferencia_EliminarDuplicados" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
