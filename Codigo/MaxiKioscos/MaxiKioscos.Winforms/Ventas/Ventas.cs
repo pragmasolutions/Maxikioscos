@@ -853,7 +853,7 @@ namespace MaxiKioscos.Winforms.Ventas
                         txtCodigo.Select(0, txtCodigo.Text.Length);
                         break;
                     case Keys.F11:
-                        //Aceptar(true, true);
+                        Aceptar(true, true);
                         break;
                     case Keys.Delete:
                         SuprimirFila();
