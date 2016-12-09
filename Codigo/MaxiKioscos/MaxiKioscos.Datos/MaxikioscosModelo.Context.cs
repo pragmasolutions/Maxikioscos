@@ -1215,5 +1215,10 @@ namespace MaxiKioscos.Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RptProductosEnDeposito>("RptProductosEnDeposito", rubroIdParameter);
         }
+    
+        public virtual int TransferenciaEliminarDuplicados()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TransferenciaEliminarDuplicados");
+        }
     }
 }

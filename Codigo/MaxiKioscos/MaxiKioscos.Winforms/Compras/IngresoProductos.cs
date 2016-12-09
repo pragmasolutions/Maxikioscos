@@ -565,7 +565,11 @@ namespace MaxiKioscos.Winforms.Compras
                 _ultimaBusqueda = buscador.RecordarBusqueda
                                             ? txtCodigo.Text
                                             : null;
-                AgregarProductoAColeccion(producto);
+                if (producto != null)
+                {
+                    AgregarProductoAColeccion(producto);
+                }
+                
                 buscador.Close();
                 _ultimoCriterio = ProductoCriterioBusqueda.Codigo;
                 txtCodigo.Clear();
@@ -733,6 +737,8 @@ namespace MaxiKioscos.Winforms.Compras
                         dvgCompraProducto.ClearSelection();
                         dvgCompraProducto.Rows[index + 1].Selected = true;
                     }
+
+                    dvgCompraProducto.FirstDisplayedScrollingRowIndex = dvgCompraProducto.SelectedRows[0].Index;
                 }
             }
         }
@@ -750,6 +756,8 @@ namespace MaxiKioscos.Winforms.Compras
                         dvgCompraProducto.ClearSelection();
                         dvgCompraProducto.Rows[index - 1].Selected = true;
                     }
+
+                    dvgCompraProducto.FirstDisplayedScrollingRowIndex = dvgCompraProducto.SelectedRows[0].Index;
                 }
             }
         }

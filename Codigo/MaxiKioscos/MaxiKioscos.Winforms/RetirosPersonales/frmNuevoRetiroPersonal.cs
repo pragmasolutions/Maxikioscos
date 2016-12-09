@@ -569,6 +569,7 @@ namespace MaxiKioscos.Winforms.RetirosPersonales
                         dgvListado.ClearSelection();
                         dgvListado.Rows[index + 1].Selected = true;
                     }
+                    dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.SelectedRows[0].Index;
                 }
             }
         }
@@ -586,6 +587,7 @@ namespace MaxiKioscos.Winforms.RetirosPersonales
                         dgvListado.ClearSelection();
                         dgvListado.Rows[index - 1].Selected = true;
                     }
+                    dgvListado.FirstDisplayedScrollingRowIndex = dgvListado.SelectedRows[0].Index;
                 }
             }
         }
