@@ -443,9 +443,10 @@ namespace MaxiKioscos.Winforms.Transferencias
                                 linea.Orden = i + 1;
                                 linea.Desincronizado = true;
                                 linea.StockDestino = Convert.ToDecimal(dgvListado.Rows[i].Cells["StockActual"].Value.ToString());
+                                var identifier = Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
                                 linea.Identifier = _operacion == "Crear"
                                                         ? Guid.NewGuid()
-                                                        : Guid.Parse(dgvListado.Rows[i].Cells["Identifier"].Value.ToString());
+                                                        : (identifier == Guid.Empty ? Guid.NewGuid() : identifier);
                                 linea.TransferenciaProductoId = Convert.ToInt32(dgvListado.Rows[i].Cells["TransferenciaProductoId"].Value.ToString());
                                 lineas.Add(linea);
                             }
@@ -516,7 +517,6 @@ namespace MaxiKioscos.Winforms.Transferencias
                                 trans.Desincronizado = true;
                             }
                             Repository.Commit();
-                            Repository.MaxiKioscosEntities.TransferenciaEliminarDuplicados();
                             this.Close();
                         }
                     }
