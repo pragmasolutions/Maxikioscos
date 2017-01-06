@@ -84,6 +84,16 @@ namespace MaxiKioscos.Winforms.Configuracion
             get { return ConfigurationManager.AppSettings["CurrencyColumnFormat"]; }
         }
 
+        public static short PrinterComPort
+        {
+            get { return Convert.ToInt16(ConfigurationManager.AppSettings["PrinterComPort"]); }
+        }
+
+        public static string PrinterBaudRate
+        {
+            get { return ConfigurationManager.AppSettings["PrinterBaudRate"]; }
+        }
+        
         public static string PercentageColumnFormat
         {
             get { return ConfigurationManager.AppSettings["PercentageColumnFormat"]; }

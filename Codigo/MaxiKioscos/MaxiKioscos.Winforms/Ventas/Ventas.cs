@@ -17,12 +17,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Printing;
+using System.Globalization;
 using Maxikioscos.Comun.Helpers;
 using Telerik.WinControls.UI;
 
 namespace MaxiKioscos.Winforms.Ventas
 {
-    
+
     public partial class Ventas : Form
     {
         #region Repositorios
@@ -45,7 +46,7 @@ namespace MaxiKioscos.Winforms.Ventas
             get { return _productoPromocionRepository ?? (_productoPromocionRepository = new EFRepository<ProductoPromocion>()); }
         }
 
-        public EFRepository<ExcepcionRubro>  ExcepcionRubroRepository
+        public EFRepository<ExcepcionRubro> ExcepcionRubroRepository
         {
             get { return new EFRepository<ExcepcionRubro>(); }
         }
@@ -119,7 +120,7 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
-            var timer = (Timer) sender;
+            var timer = (Timer)sender;
             timer.Stop();
             ProductosDatasource = ProductoRepository.ListadoProductoHorario(AppSettings.MaxiKioscoId)
                                     .Where(x => !x.EsPromocion || (x.EsPromocion && x.StockActual > 0)).ToList();
@@ -165,7 +166,7 @@ namespace MaxiKioscos.Winforms.Ventas
             else
                 _nroVenta++;
             txtNroVenta.Texto = _nroVenta.ToString();
-            
+
             txtCodigo.Focus();
         }
 
@@ -205,7 +206,7 @@ namespace MaxiKioscos.Winforms.Ventas
         }
 
         #endregion
-        
+
         #region Metodos Privados
         private void SuprimirFila()
         {
@@ -221,7 +222,7 @@ namespace MaxiKioscos.Winforms.Ventas
 
                 dgvListado.Rows.RemoveAt(indice);
                 CalcularTotal();
-                
+
 
                 if (indice > 0)
                 {
@@ -305,7 +306,7 @@ namespace MaxiKioscos.Winforms.Ventas
         private void SetCantidad(decimal cantidad)
         {
             dgvListado.SelectedRows[0].Cells["Cantidad"].Value = cantidad;
-            dgvListado.SelectedRows[0].Cells["Total"].Value = cantidad*Convert.ToDecimal(dgvListado.SelectedRows[0].Cells["Unitario"].Value.ToString().Replace("$", ""));
+            dgvListado.SelectedRows[0].Cells["Total"].Value = cantidad * Convert.ToDecimal(dgvListado.SelectedRows[0].Cells["Unitario"].Value.ToString().Replace("$", ""));
             dgvListado.SelectedRows[0].Cells["TotalFormateado"].Value = StringPrice(cantidad * Convert.ToDecimal(dgvListado.SelectedRows[0].Cells["Unitario"].Value.ToString().Replace("$", "")));
             CalcularTotal();
         }
@@ -333,7 +334,7 @@ namespace MaxiKioscos.Winforms.Ventas
             else if (ConfirmacionAbierta && !sobrescribir)
             {
                 ConfirmacionAbierta = false;
-            }   
+            }
             else
             {
                 if (dgvListado.Rows.Count > 0)
@@ -345,6 +346,7 @@ namespace MaxiKioscos.Winforms.Ventas
                     {
                         var linea = new VentaProducto();
 
+                        linea.ProductoDescripcion = dgvListado.Rows[i].Cells["Descripcion"].Value.ToString();
                         linea.Cantidad = decimal.Parse(dgvListado.Rows[i].Cells["Cantidad"].Value.ToString());
                         linea.Eliminado = false;
                         linea.Identifier = Guid.NewGuid();
@@ -397,10 +399,10 @@ namespace MaxiKioscos.Winforms.Ventas
                         {
                             var productos = ProductoPromocionRepository.Listado().Where(p => p.PadreId == linea.ProductoId && !p.Eliminado).ToList();
                             secundarias.AddRange(productos.Select(p => new VentaProducto()
-                                                                       {
-                                                                           Cantidad = p.Unidades * linea.Cantidad,
-                                                                           ProductoId = p.HijoId
-                                                                       }));
+                            {
+                                Cantidad = p.Unidades * linea.Cantidad,
+                                ProductoId = p.HijoId
+                            }));
                         }
 
                         lineas.AddRange(secundarias);
@@ -458,18 +460,66 @@ namespace MaxiKioscos.Winforms.Ventas
                         {
                             Mensajes.Guardar(false, "Ha ocurrido un error al registrar la venta. Por favor intente nuevamente");
                         }
+
+                        if (imprimir)
+                        {
+                            ImprimirTicketFiscal(venta);
+                        }
+
                         ReiniciarVenta();
                     }
                 }
             }
         }
-        
+
+        private void ImprimirTicketFiscal(Venta venta)
+        {
+            try
+            {
+                axPrinterFiscal.PortNumber = AppSettings.PrinterComPort;
+
+                axPrinterFiscal.BaudRate = AppSettings.PrinterBaudRate;
+
+                axPrinterFiscal.OpenTicket();
+
+                foreach (var ventaProducto in venta.VentaProductos)
+                {
+                    var producto = ventaProducto.ProductoDescripcion;
+                    var cantidad = (ventaProducto.Cantidad * 1000).ToString("F0");
+                    var precio = (ventaProducto.Precio.GetValueOrDefault() * 100).ToString("F0");
+                    var iva = "2100";
+                    var vta = "M";
+                    var bultos = "0";
+                    var impuestoInterno = "0";
+
+                    axPrinterFiscal.SendTicketItem(ref producto, ref cantidad,
+                        ref precio, ref iva, ref vta, ref bultos, ref impuestoInterno);
+                }
+
+                var printer = "P";
+                var subtotal = "SUB";
+                var pago = "Efectivo";
+                var monto = (venta.ImporteTotal * 100).ToString("F0");
+                var descripcion = "T";
+
+                axPrinterFiscal.GetInvoiceSubtotal(ref printer, ref subtotal);
+
+                axPrinterFiscal.SendTicketPayment(ref pago, ref monto, ref descripcion);
+
+                axPrinterFiscal.CloseTicket();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         private void Cancelar()
         {
             this.Close();
         }
-        
+
 
         private void SeleccionarUltimaFila()
         {
@@ -713,7 +763,7 @@ namespace MaxiKioscos.Winforms.Ventas
             var texto = txtCodigo.Text;
             if ((key >= Keys.A && key <= Keys.Z) || (key >= Keys.D0 && key <= Keys.D9) || (key >= Keys.NumPad0 && key <= Keys.NumPad9) || key == Keys.Multiply)
                 texto += key.ToString();
-            
+
             if (string.IsNullOrEmpty(texto))
             {
                 TratarTextoVacio(e.KeyCode);
@@ -744,7 +794,7 @@ namespace MaxiKioscos.Winforms.Ventas
                     }
                     break;
             }
-            
+
         }
 
         private void txtCodigo_KeyUp(object sender, KeyEventArgs e)
@@ -803,7 +853,7 @@ namespace MaxiKioscos.Winforms.Ventas
                         txtCodigo.Select(0, txtCodigo.Text.Length);
                         break;
                     case Keys.F11:
-                        //Aceptar(true, true);
+                        Aceptar(true, true);
                         break;
                     case Keys.Delete:
                         SuprimirFila();
@@ -866,8 +916,8 @@ namespace MaxiKioscos.Winforms.Ventas
                 }
                 var buscador = this.OwnedForms.First() as frmBuscador;
 
-                
-                _ultimaBusqueda = buscador.RecordarBusqueda 
+
+                _ultimaBusqueda = buscador.RecordarBusqueda
                                             ? txtCodigo.Text
                                             : null;
                 buscador.Aceptar(txtCodigo.Text);
@@ -881,7 +931,7 @@ namespace MaxiKioscos.Winforms.Ventas
                 {
 
                     var prod = ProductosDatasource.FirstOrDefault(p => p.ProductoId == buscador.ProductoSeleccionado.ProductoId);
-                    
+
                     if (prod.EsPromocion)
                     {
                         if (prod.StockActual == 0)
@@ -922,15 +972,15 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void BuscadorSubir()
         {
- 	        if (this.OwnedForms.Any())
+            if (this.OwnedForms.Any())
             {
                 var buscador = this.OwnedForms.First() as frmBuscador;
                 buscador.Subir();
             }
- 	        else
- 	        {
- 	            Subir();
- 	        }
+            else
+            {
+                Subir();
+            }
         }
 
         private void BuscadorBajar()
@@ -954,7 +1004,7 @@ namespace MaxiKioscos.Winforms.Ventas
         private IEnumerable<int> ObtenerProductosVendidosIds()
         {
             var list = new List<int>();
-            
+
             for (var i = 0; i <= dgvListado.Rows.Count - 1; i++)
             {
                 var productoId = (int)dgvListado.Rows[i].Cells["productoId"].Value;
@@ -975,7 +1025,7 @@ namespace MaxiKioscos.Winforms.Ventas
             txtCodigo.Select(0, txtCodigo.Text.Length);
         }
 
-        
+
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             //Aceptar(true, true);

@@ -18,6 +18,9 @@ namespace MaxiKioscos.Entidades
         }
 
         public bool EsPromocion { get; set; }
+
+        public string ProductoDescripcion { get; set; }
+
     }
 
     public class VentaProductoMetadata
