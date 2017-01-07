@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaxiKioscos.Datos.Helpers;
 using MaxiKioscos.Datos.Sync;
 using MaxiKioscos.Entidades;
 using MaxiKioscos.Winforms.CierreCajas;
-using MaxiKioscos.Winforms.Clases;
 using MaxiKioscos.Winforms.Compras;
 using MaxiKioscos.Winforms.Configuracion;
 using MaxiKioscos.Winforms.ControlStock;
 using MaxiKioscos.Winforms.CorreccionesStock;
 using MaxiKioscos.Winforms.Excepciones;
-using MaxiKioscos.Winforms.Exportacion;
 using MaxiKioscos.Winforms.Helpers;
 using MaxiKioscos.Winforms.IoC;
 using MaxiKioscos.Winforms.Login;
@@ -28,15 +20,12 @@ using MaxiKioscos.Winforms.Proveedores;
 using MaxiKioscos.Winforms.ReportarError;
 using MaxiKioscos.Winforms.Reportes;
 using MaxiKioscos.Winforms.Sincronizacion;
-using MaxiKioscos.Winforms.SincronizationService;
 using MaxiKioscos.Winforms.UserControls;
 using MaxiKioscos.Winforms.Usuarios;
-using MaxiKioscos.Winforms.Ventas;
 using MaxiKioscos.Winforms.Marcas;
 using MaxiKioscos.Winforms.Rubros;
 using MaxiKioscos.Winforms.Facturas;
 using System.IO;
-using Maxikioscos.Comun.Helpers;
 using MaxiKioscos.Winforms.Gastos;
 using MaxiKioscos.Winforms.RetirosPersonales;
 using MaxiKioscos.Winforms.Transferencias;
@@ -85,7 +74,7 @@ namespace MaxiKioscos.Winforms.Principal
         private void IniciarTimerExportacion()
         {
             ExportTimer = new Timer();
-            ExportTimer.Interval = 15*60*1000;
+            ExportTimer.Interval = 15 * 60 * 1000;
             ExportTimer.Tick += ExportTimer_Tick;
             ExportTimer.Start();
         }
@@ -115,7 +104,7 @@ namespace MaxiKioscos.Winforms.Principal
                                                         date.GetValueOrDefault().ToShortTimeString());
         }
 
-        
+
 
         private bool ActualizarEsquema()
         {
@@ -156,7 +145,7 @@ namespace MaxiKioscos.Winforms.Principal
                     {
                         ToggleEstadoOnline();
                     }
-                    
+
 
                     CheckUltimaCajaCerrada();
                 }
@@ -300,13 +289,13 @@ namespace MaxiKioscos.Winforms.Principal
             else
             {
                 var cierre = new CierreCaja
-                                 {
-                                     CajaInicial = cajaFinalAnterior.GetValueOrDefault(),
-                                     FechaInicio = DateTime.Now,
-                                     Identifier = Guid.NewGuid(),
-                                     MaxiKioskoId = AppSettings.MaxiKioscoId,
-                                     UsuarioId = UsuarioActual.UsuarioId
-                                 };
+                {
+                    CajaInicial = cajaFinalAnterior.GetValueOrDefault(),
+                    FechaInicio = DateTime.Now,
+                    Identifier = Guid.NewGuid(),
+                    MaxiKioskoId = AppSettings.MaxiKioscoId,
+                    UsuarioId = UsuarioActual.UsuarioId
+                };
                 CierreCajaRepository.Agregar(cierre);
                 CierreCajaRepository.Commit();
                 EventosFlags.CierreCajaEstado = CierreCajaEstadoEnum.Abierto;
@@ -516,7 +505,7 @@ namespace MaxiKioscos.Winforms.Principal
         }
 
         #region Sincronizacion
-        
+
         private void actualizarDesdeArchivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _sincronizacionManager.ActualizarKioscoDesdeArchivo(openFileDialogSincronizacion);
@@ -748,6 +737,50 @@ namespace MaxiKioscos.Winforms.Principal
         private void txtSugerenciaCompras_Click(object sender, EventArgs e)
         {
             AbrirTab(new frmSugerenciaCompras());
+        }
+
+        private void tsmCierreZ_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                printer.PortNumber = AppSettings.PrinterComPort;
+                printer.BaudRate = AppSettings.PrinterBaudRate;
+
+                var closeType = "Z";
+
+                printer.CloseJournal(ref closeType);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void cierreXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                printer.PortNumber = AppSettings.PrinterComPort;
+                printer.BaudRate = AppSettings.PrinterBaudRate;
+
+                var closeType = "X";
+                var imprimir = "P";
+                var noImprimir = "N";
+
+                var confirmation = new ConfirmationForm("Desea Imprimir el Cierre X?",
+                                     Resources.TextoAceptar, Resources.TextoCancelar);
+
+                if (confirmation.ShowDialog() == DialogResult.OK)
+                {
+                    printer.CloseJournal(ref closeType, ref imprimir);
+                }
+                else
+                {
+                    printer.CloseJournal(ref closeType, ref noImprimir);
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
