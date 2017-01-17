@@ -55,7 +55,13 @@ namespace MaxiKioscos.Entidades
         public int? IntervaloSincronizacion { get; set; }
 
         [DisplayName("Límite máximo de retiro de personal")]
+        [UIHint("Currency")]
         [Range(1, int.MaxValue, ErrorMessage = "El límite debe ser mayor o igual a 1")]
         public decimal? LimiteMaximoRetiroPersonal { get; set; }
+
+        [DisplayName("Límite máximo para venta en blanco")]
+        [UIHint("Currency")]
+        [Range(1, int.MaxValue, ErrorMessage = "El límite debe ser mayor o igual a 1")]
+        public decimal? LimiteMaximoVentaEnBlanco { get; set; }
     }
 }

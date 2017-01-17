@@ -42,6 +42,7 @@ namespace MaxiKioscos.Entidades
         public Nullable<bool> SincronizarAutomaticamente { get; set; }
         public Nullable<int> IntervaloSincronizacion { get; set; }
         public Nullable<decimal> LimiteMaximoRetiroPersonal { get; set; }
+        public Nullable<decimal> LimiteMaximoVentaEnBlanco { get; set; }
     
         public virtual ICollection<Marca> Marcas { get; set; }
         public virtual ICollection<MaxiKiosco> MaxiKioscos { get; set; }

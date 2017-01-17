@@ -71,6 +71,7 @@ namespace MaxiKioscos.Winforms.Ventas
         private string _ultimaBusqueda { get; set; }
         private int? _nroVenta;
         private static List<Timer> _timers;
+        private decimal? _total;
 
         public Ventas()
         {
@@ -374,6 +375,12 @@ namespace MaxiKioscos.Winforms.Ventas
                     var frmConfirmar = new frmConfirmarVenta(total);
                     if (frmConfirmar.ShowDialog() == DialogResult.OK)
                     {
+                        if (imprimir && UsuarioActual.Cuenta.LimiteMaximoVentaEnBlanco != null && _total >= UsuarioActual.Cuenta.LimiteMaximoVentaEnBlanco)
+                        {
+                            MessageBox.Show("No puede generarse la venta ya que se ha superado el límite máximo para ventas facturadas");
+                            return;
+                        }
+
                         ConfirmacionAbierta = false;
                         var venta = new Venta
                         {
@@ -570,14 +577,15 @@ namespace MaxiKioscos.Winforms.Ventas
             }
         }
 
+        
         private void CalcularTotal()
         {
-            decimal total = 0;
+            _total = 0;
             for (int i = 0; i <= dgvListado.Rows.Count - 1; i++)
             {
-                total += Convert.ToDecimal(dgvListado.Rows[i].Cells["Total"].Value.ToString().Replace("$", ""));
+                _total += Convert.ToDecimal(dgvListado.Rows[i].Cells["Total"].Value.ToString().Replace("$", ""));
             }
-            lblTotal.Text = String.Format("${0}", total.ToString("N2"));
+            lblTotal.Text = String.Format("${0}", _total.GetValueOrDefault().ToString("N2"));
         }
 
         private void Limpiar()
@@ -586,6 +594,7 @@ namespace MaxiKioscos.Winforms.Ventas
             {
                 dgvListado.Rows.RemoveAt(0);
             }
+            _total = 0;
             lblTotal.Text = "$0";
             txtCodigo.Text = string.Empty;
             txtCodigo.Focus();
@@ -1028,7 +1037,7 @@ namespace MaxiKioscos.Winforms.Ventas
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //Aceptar(true, true);
+            Aceptar(true, true);
         }
     }
 }

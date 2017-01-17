@@ -198,6 +198,7 @@
           <Property Name="SincronizarAutomaticamente" Type="bit" />
           <Property Name="IntervaloSincronizacion" Type="int" />
           <Property Name="LimiteMaximoRetiroPersonal" Type="money" />
+          <Property Name="LimiteMaximoVentaEnBlanco" Type="money" />
         </EntityType>
         <EntityType Name="EstadoTicket">
           <Key>
@@ -730,7 +731,6 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Facturada" Type="bit" Nullable="false" />
-          <Property Name="NroComprobante" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -3319,6 +3319,7 @@
           <Property Name="SincronizarAutomaticamente" Type="Boolean" />
           <Property Name="IntervaloSincronizacion" Type="Int32" />
           <Property Name="LimiteMaximoRetiroPersonal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LimiteMaximoVentaEnBlanco" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="ExcepcionRubro">
           <Key>
@@ -3605,7 +3606,6 @@
           <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Venta_CierreCaja" FromRole="Venta" ToRole="CierreCaja" />
           <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Facturada" Type="Boolean" Nullable="false" />
-          <Property Name="NroComprobante" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -5691,6 +5691,7 @@
           <EntitySetMapping Name="Cuentas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="LimiteMaximoVentaEnBlanco" ColumnName="LimiteMaximoVentaEnBlanco" />
                 <ScalarProperty Name="LimiteMaximoRetiroPersonal" ColumnName="LimiteMaximoRetiroPersonal" />
                 <ScalarProperty Name="IntervaloSincronizacion" ColumnName="IntervaloSincronizacion" />
                 <ScalarProperty Name="SincronizarAutomaticamente" ColumnName="SincronizarAutomaticamente" />
@@ -5927,7 +5928,6 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
-                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
                 <ScalarProperty Name="Facturada" ColumnName="Facturada" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="VentaId" ColumnName="VentaId" />

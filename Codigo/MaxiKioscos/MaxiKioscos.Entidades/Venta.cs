@@ -29,7 +29,6 @@ namespace MaxiKioscos.Entidades
         public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
         public decimal CostoTotal { get; set; }
         public bool Facturada { get; set; }
-        public string NroComprobante { get; set; }
     
         public virtual ICollection<VentaProducto> VentaProductos { get; set; }
         public virtual CierreCaja CierreCaja { get; set; }

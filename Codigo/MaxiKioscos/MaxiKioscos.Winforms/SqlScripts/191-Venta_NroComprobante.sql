@@ -1,2 +1,0 @@
-ALTER TABLE Venta
-ADD NroComprobante VARCHAR(30) NULL

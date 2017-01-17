@@ -25,14 +25,13 @@ BEGIN
 		ImporteTotal money,
 		FechaVenta datetime,
 		Facturada bit,
-		NroComprobante varchar(30),
 		Eliminado bit,
 		Desincronizado bit,
 		FechaUltimaModificacion datetime2(7),
 		CierreCajaIdentifier uniqueidentifier
 	);
 	
-	WITH VentaCTE (VentaId, Identifier, CostoTotal, ImporteTotal, FechaVenta, Facturada, NroComprobante,
+	WITH VentaCTE (VentaId, Identifier, CostoTotal, ImporteTotal, FechaVenta, Facturada, 
 					Eliminado, Desincronizado, FechaUltimaModificacion, CierreCajaIdentifier)
 	AS (
 		SELECT    *
@@ -43,7 +42,6 @@ BEGIN
 						ImporteTotal money '../ImporteTotal',
 						FechaVenta datetime '../FechaVenta',
 						Facturada bit '../Facturada',
-						NroComprobante varchar(30) '../NroComprobante',
 						Eliminado bit '../Eliminado',
 						Desincronizado bit '../Desincronizado',
 						FechaUltimaModificacion datetime2(7) '../FechaUltimaModificacion',
@@ -60,7 +58,6 @@ BEGIN
 		ImporteTotal = CTE.ImporteTotal,
 		FechaVenta = CTE.FechaVenta,
 		Facturada = ISNULL(CTE.Facturada, 0),
-		NroComprobante = CTE.NroComprobante,
 		Eliminado = CTE.Eliminado,
 		Desincronizado = CTE.Desincronizado,
 		FechaUltimaModificacion = CTE.FechaUltimaModificacion
@@ -76,7 +73,6 @@ BEGIN
 						ImporteTotal, 
 						FechaVenta, 
 						Facturada,
-						NroComprobante,
 						Eliminado, 
 						Desincronizado, 
 						FechaUltimaModificacion, 
@@ -86,7 +82,6 @@ BEGIN
 			ImporteTotal, 
 			FechaVenta, 
 			ISNULL(Facturada, 0),
-			NroComprobante,
 			Eliminado, 
 			Desincronizado, 
 			FechaUltimaModificacion,
