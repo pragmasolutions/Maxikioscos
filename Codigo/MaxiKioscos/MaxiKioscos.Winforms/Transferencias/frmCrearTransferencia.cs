@@ -485,6 +485,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                                     if (tp.TransferenciaProductoId == 0)
                                     {
                                         tp.TransferenciaId = Transferencia.TransferenciaId;
+                                        tp.Desincronizado = true;
                                         TransferenciaProductoRepository.Agregar(tp);
                                     }
                                     else
@@ -497,6 +498,7 @@ namespace MaxiKioscos.Winforms.Transferencias
                                             original.ProductoId = tp.ProductoId;
                                             original.StockDestino = tp.StockDestino;
                                             original.StockOrigen = tp.StockOrigen;
+                                            original.Desincronizado = true;
                                             TransferenciaProductoRepository.Modificar(original);
                                             paraEliminar.Remove(original.TransferenciaProductoId);
                                         }

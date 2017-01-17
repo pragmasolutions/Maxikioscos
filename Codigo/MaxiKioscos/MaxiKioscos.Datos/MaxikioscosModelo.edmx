@@ -730,6 +730,7 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Facturada" Type="bit" Nullable="false" />
+          <Property Name="NroComprobante" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -3604,6 +3605,7 @@
           <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Venta_CierreCaja" FromRole="Venta" ToRole="CierreCaja" />
           <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Facturada" Type="Boolean" Nullable="false" />
+          <Property Name="NroComprobante" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -5925,6 +5927,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
                 <ScalarProperty Name="Facturada" ColumnName="Facturada" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="VentaId" ColumnName="VentaId" />
