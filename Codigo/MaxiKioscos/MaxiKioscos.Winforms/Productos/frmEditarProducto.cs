@@ -128,7 +128,7 @@ namespace MaxiKioscos.Winforms.Productos
 
             if (costo != null)
             {
-                if (txtUltimoCosto.Valor != null)
+                if (txtUltimoCosto.Valor != null && txtUltimoCosto.Valor != 0)
                 {
                     txtPorcentajeGanancia.Valor = txtPrecio.Valor == null
                                                     ? (int?)null
@@ -302,7 +302,7 @@ namespace MaxiKioscos.Winforms.Productos
                 txtPrecioSinIva.Valor = precioSinIva;
             }
 
-            if (txtUltimoCosto.Valor != null)
+            if (txtUltimoCosto.Valor != null && txtUltimoCosto.Valor != 0)
             {
                 var nuevoPorcentaje = ((txtPrecio.Valor - txtUltimoCosto.Valor)/txtUltimoCosto.Valor)*100m;
                 if (txtPorcentajeGanancia.Valor == null || Math.Abs(nuevoPorcentaje.GetValueOrDefault() - txtPorcentajeGanancia.Valor.GetValueOrDefault()) > 1.2m)

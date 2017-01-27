@@ -1220,5 +1220,15 @@ namespace MaxiKioscos.Entidades
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TransferenciaEliminarDuplicados");
         }
+    
+        public virtual int Exportacion_Resetear()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Exportacion_Resetear");
+        }
+    
+        public virtual ObjectResult<ProductoExportacion> ProductoExportar()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductoExportacion>("ProductoExportar");
+        }
     }
 }

@@ -1113,6 +1113,21 @@ namespace MaxiKioscos.Web.Controllers
             return File(archivo, reporteFactory.MimeType);
         }
 
+        public ActionResult GenerarProductoExportar()
+        {
+            var reporteFactory = new ReporteFactory();
+
+            var dataset = Uow.Reportes.ProductoExportar();
+
+            reporteFactory.SetPathCompleto(Server.MapPath("~/Reportes/ProductoExportar.rdl"))
+                .SetDataSource("DataSet1", dataset);
+
+
+            byte[] archivo = reporteFactory.Renderizar(ReporteTipoEnum.Excel);
+
+            return File(archivo, reporteFactory.MimeType, "Listado de Productos.xls");
+        }
+
         #region AUTOMATIZACIONES
 
         [AllowAnonymous]

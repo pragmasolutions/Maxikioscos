@@ -85,5 +85,7 @@ namespace MaxiKioscos.Datos.Interfaces
         IQueryable<RptComprasDetalladasPorProveedorTotalGeneral> ComprasDetalladasPorProveedorTotalGeneral(DateTime? desde, DateTime? hasta, int? rubroId, int? proveedor, int? cuentaId);
 
         List<ProductoSugerenciaCompra> ProductoSugerenciaCompras(int proveedorId, int dias, int maxiKioscoId);
+
+        List<ProductoExportacion> ProductoExportar();
     }
 }

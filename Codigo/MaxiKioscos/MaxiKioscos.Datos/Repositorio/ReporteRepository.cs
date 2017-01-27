@@ -201,5 +201,10 @@ namespace MaxiKioscos.Datos.Sync
         {
             return MaxiKioscosEntities.ProductoSugerenciaCompras(proveedorId, dias, maxiKioscoId).ToList();
         }
+
+        public List<ProductoExportacion> ProductoExportar()
+        {
+            return MaxiKioscosEntities.ProductoExportar().ToList();
+        }
     }
 }

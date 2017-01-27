@@ -557,6 +557,7 @@
     <Content Include="Reportes\ProductosEnDeposito.rdl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reportes\ProductoExportar.rdl" />
     <None Include="Scripts\lib\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\app\maxikiosco-maxikioscos.js" />
     <Content Include="Scripts\app\maxikiosco-proveedores.js" />

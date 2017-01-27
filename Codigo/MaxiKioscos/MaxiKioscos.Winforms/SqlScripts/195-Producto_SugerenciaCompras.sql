@@ -1,9 +1,4 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Producto_SugerenciaCompras]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Producto_SugerenciaCompras]
-GO
-
-
-CREATE PROCEDURE [dbo].[Producto_SugerenciaCompras]
+ALTER PROCEDURE [dbo].[Producto_SugerenciaCompras]
 	@ProveedorId int,
 	@CantidadDias int,
 	@MaxiKioscoId int
@@ -52,8 +47,3 @@ BEGIN
 			ON T.ProductoId = P.ProductoId
 	ORDER BY P.Descripcion
 END
-
-
-GO
-
-

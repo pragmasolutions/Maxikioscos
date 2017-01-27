@@ -731,6 +731,7 @@
           <Property Name="Desincronizado" Type="bit" Nullable="false" />
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Facturada" Type="bit" Nullable="false" />
+          <Property Name="NroComprobante" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -1854,10 +1855,12 @@
         </Function>
         <Function Name="Exportacion_PuedeExportarKiosco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Exportacion_PuedeExportarPrincipal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Exportacion_Resetear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Factura_ObtenerAbiertasPorUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Producto_Exportar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Producto_ListadoCompleto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaxiKioscoId" Type="int" Mode="In" />
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
@@ -3249,6 +3252,8 @@
           <Parameter Name="RubroId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="TransferenciaEliminarDuplicados" />
+          <FunctionImport Name="Exportacion_Resetear" />
+          <FunctionImport Name="ProductoExportar" ReturnType="Collection(MaxiKioscosModel.ProductoExportacion)" />
         </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -3606,6 +3611,7 @@
           <NavigationProperty Name="CierreCaja" Relationship="MaxiKioscosModel.FK_Venta_CierreCaja" FromRole="Venta" ToRole="CierreCaja" />
           <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Facturada" Type="Boolean" Nullable="false" />
+          <Property Name="NroComprobante" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -5650,6 +5656,17 @@
           <Property Type="String" Name="Producto" Nullable="false" MaxLength="300" />
           <Property Type="String" Name="Marca" Nullable="false" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="ProductoExportacion">
+          <Property Type="String" Name="Codigo" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Rubro" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Costo" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="StockReposicion" Nullable="true" />
+          <Property Type="Decimal" Name="PrecioSinIVA" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="PrecioConIVA" Nullable="false" Precision="19" />
+          <Property Type="String" Name="DisponibleEnDeposito" Nullable="false" MaxLength="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5928,6 +5945,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
                 <ScalarProperty Name="Facturada" ColumnName="Facturada" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
                 <ScalarProperty Name="VentaId" ColumnName="VentaId" />
@@ -7111,6 +7129,22 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TransferenciaEliminarDuplicados" FunctionName="MaxiKioscosModel.Store.Transferencia_EliminarDuplicados" />
+          <FunctionImportMapping FunctionImportName="Exportacion_Resetear" FunctionName="MaxiKioscosModel.Store.Exportacion_Resetear" />
+          <FunctionImportMapping FunctionImportName="ProductoExportar" FunctionName="MaxiKioscosModel.Store.Producto_Exportar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.ProductoExportacion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="StockReposicion" ColumnName="StockReposicion" />
+                <ScalarProperty Name="PrecioSinIVA" ColumnName="PrecioSinIVA" />
+                <ScalarProperty Name="PrecioConIVA" ColumnName="PrecioConIVA" />
+                <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
