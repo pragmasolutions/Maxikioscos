@@ -381,6 +381,12 @@ namespace MaxiKioscos.Winforms.Ventas
                             return;
                         }
 
+                        if (imprimir && lineas.All(x => x.Cantidad <= 0))
+                        {
+                            MessageBox.Show("No puede imprimirse un ticket si no hay al menos un producto con cantidad positiva");
+                            return;
+                        }
+
                         ConfirmacionAbierta = false;
                         var venta = new Venta
                         {
@@ -492,7 +498,7 @@ namespace MaxiKioscos.Winforms.Ventas
                 axPrinterFiscal.OpenTicket(ref type);
 
 
-                foreach (var ventaProducto in venta.VentaProductos)
+                foreach (var ventaProducto in venta.VentaProductos.Where(x => x.Cantidad > 0))
                 {
                     var producto = ventaProducto.ProductoDescripcion;
                     var cantidad = (ventaProducto.Cantidad * 1000).ToString("F0");
