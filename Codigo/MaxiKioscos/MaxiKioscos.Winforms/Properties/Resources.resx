@@ -256,4 +256,7 @@
   <data name="CompraExitosa" xml:space="preserve">
     <value>La compra se ha registrado correctamente</value>
   </data>
+  <data name="ErrorImprimir" xml:space="preserve">
+    <value>Ha ocurrido un error. Intente reiniciar la impresora</value>
+  </data>
 </root>

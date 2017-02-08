@@ -701,7 +701,7 @@
         private System.Windows.Forms.ToolStripMenuItem afipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cierreZToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cierreXToolStripMenuItem;
-        private AxEPSON_Impresora_Fiscal.AxPrinterFiscal printer;
+        public AxEPSON_Impresora_Fiscal.AxPrinterFiscal printer;
     }
 }
 

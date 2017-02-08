@@ -18,7 +18,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Printing;
 using System.Globalization;
+using AxEPSON_Impresora_Fiscal;
 using Maxikioscos.Comun.Helpers;
+using MaxiKioscos.Winforms.Principal;
+using MaxiKioscos.Winforms.Properties;
 using Telerik.WinControls.UI;
 
 namespace MaxiKioscos.Winforms.Ventas
@@ -488,15 +491,41 @@ namespace MaxiKioscos.Winforms.Ventas
             }
         }
 
+        public AxPrinterFiscal AxPrinterFiscal
+        {
+            get
+            {
+                var mdiClient = Parent as MdiClient;
+
+                if (mdiClient != null)
+                {
+
+                    var mdiPrincipal = mdiClient.Parent as mdiPrincipal;
+
+                    if (mdiPrincipal != null)
+                    {
+                        return mdiPrincipal.printer;
+                    }
+                }
+
+                return null;
+            }
+        }
+
         private string ImprimirTicketFiscal(Venta venta)
         {
+            if (AxPrinterFiscal == null)
+            {
+                return string.Empty;
+            }
+
             try
             {
-                axPrinterFiscal.PortNumber = AppSettings.PrinterComPort;
-                axPrinterFiscal.BaudRate = AppSettings.PrinterBaudRate;
+                AxPrinterFiscal.PortNumber = AppSettings.PrinterComPort;
+                AxPrinterFiscal.BaudRate = AppSettings.PrinterBaudRate;
                 var type = "C";
-                axPrinterFiscal.OpenTicket(ref type);
 
+                var respuesta  = AxPrinterFiscal.OpenTicket(ref type);
 
                 foreach (var ventaProducto in venta.VentaProductos.Where(x => x.Cantidad > 0))
                 {
@@ -508,8 +537,7 @@ namespace MaxiKioscos.Winforms.Ventas
                     var bultos = "0";
                     var impuestoInterno = "0";
 
-                    axPrinterFiscal.SendTicketItem(ref producto, ref cantidad,
-                            ref precio, ref iva, ref vta, ref bultos, ref impuestoInterno);
+                    respuesta &= AxPrinterFiscal.SendTicketItem(ref producto, ref cantidad, ref precio, ref iva, ref vta, ref bultos, ref impuestoInterno);
                 }
 
                 var printer = "P";
@@ -518,25 +546,31 @@ namespace MaxiKioscos.Winforms.Ventas
                 var monto = (venta.ImporteTotal * 100).ToString("F0");
                 var descripcion = "T";
 
-                axPrinterFiscal.GetTicketSubtotal(ref printer, ref subtotal);
+                respuesta &= AxPrinterFiscal.GetTicketSubtotal(ref printer, ref subtotal);
 
-                axPrinterFiscal.SendTicketPayment(ref pago, ref monto, ref descripcion);
+                respuesta &= AxPrinterFiscal.SendTicketPayment(ref pago, ref monto, ref descripcion);
+                
+                respuesta &= AxPrinterFiscal.CloseTicket();
 
-                axPrinterFiscal.CloseTicket();
+                respuesta &= AxPrinterFiscal.CutPaper();
 
-                axPrinterFiscal.CutPaper();
                 var statusType = "A";
-                axPrinterFiscal.Status(ref statusType);
 
-                return axPrinterFiscal.AnswerField_4;
+                respuesta &= AxPrinterFiscal.Status(ref statusType);
 
+                if (!respuesta)
+                {
+                    MessageBox.Show(Resources.ErrorImprimir);
+                    return string.Empty;
+                }
+
+                return AxPrinterFiscal.AnswerField_4;
             }
             catch (Exception ex)
             {
                 return string.Empty;
             }
         }
-
 
         private void Cancelar()
         {

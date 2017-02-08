@@ -26,6 +26,7 @@ using MaxiKioscos.Winforms.Marcas;
 using MaxiKioscos.Winforms.Rubros;
 using MaxiKioscos.Winforms.Facturas;
 using System.IO;
+using System.IO.Ports;
 using MaxiKioscos.Winforms.Gastos;
 using MaxiKioscos.Winforms.RetirosPersonales;
 using MaxiKioscos.Winforms.Transferencias;
@@ -747,10 +748,22 @@ namespace MaxiKioscos.Winforms.Principal
                 printer.BaudRate = AppSettings.PrinterBaudRate;
 
                 var closeType = "Z";
+                var imprimir = "P";
+                var noImprimir = "N";
 
-                printer.CloseJournal(ref closeType);
+                var confirmation = new ConfirmationForm("Desea Imprimir el Cierre Z?", Resources.TextoAceptar, Resources.TextoCancelar);
+
+                if (confirmation.ShowDialog() == DialogResult.OK)
+                {
+                    var respuesta = printer.CloseJournal(ref closeType);
+
+                    if (!respuesta)
+                    {
+                        MessageBox.Show(Resources.ErrorImprimir);
+                    }
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
@@ -771,11 +784,12 @@ namespace MaxiKioscos.Winforms.Principal
 
                 if (confirmation.ShowDialog() == DialogResult.OK)
                 {
-                    printer.CloseJournal(ref closeType, ref imprimir);
-                }
-                else
-                {
-                    printer.CloseJournal(ref closeType, ref noImprimir);
+                    var respuesta = printer.CloseJournal(ref closeType, ref imprimir);
+
+                    if (!respuesta)
+                    {
+                        MessageBox.Show(Resources.ErrorImprimir);
+                    }
                 }
             }
             catch (Exception)

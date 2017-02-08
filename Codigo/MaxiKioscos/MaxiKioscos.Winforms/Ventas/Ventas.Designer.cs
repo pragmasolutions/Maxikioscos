@@ -64,7 +64,6 @@
             this.Recargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsPromocion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.axPrinterFiscal = new AxEPSON_Impresora_Fiscal.AxPrinterFiscal();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnBuscarPorMarca = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -76,7 +75,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axPrinterFiscal)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -381,8 +379,7 @@
             this.EsPromocion.Visible = false;
             // 
             // panel1
-            // 
-            this.panel1.Controls.Add(this.axPrinterFiscal);
+            //
             this.panel1.Controls.Add(this.btnImprimir);
             this.panel1.Controls.Add(this.btnBuscarPorMarca);
             this.panel1.Controls.Add(this.btnEliminar);
@@ -396,16 +393,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1336, 106);
             this.panel1.TabIndex = 2;
-            // 
-            // axPrinterFiscal
-            // 
-            this.axPrinterFiscal.Enabled = true;
-            this.axPrinterFiscal.Location = new System.Drawing.Point(613, 20);
-            this.axPrinterFiscal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.axPrinterFiscal.Name = "axPrinterFiscal";
-            this.axPrinterFiscal.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axPrinterFiscal.OcxState")));
-            this.axPrinterFiscal.Size = new System.Drawing.Size(40, 40);
-            this.axPrinterFiscal.TabIndex = 7;
             // 
             // btnImprimir
             // 
@@ -550,7 +537,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axPrinterFiscal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -589,6 +575,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Recargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn EsPromocion;
         private System.Windows.Forms.Button btnImprimir;
-        private AxEPSON_Impresora_Fiscal.AxPrinterFiscal axPrinterFiscal;
     }
 }

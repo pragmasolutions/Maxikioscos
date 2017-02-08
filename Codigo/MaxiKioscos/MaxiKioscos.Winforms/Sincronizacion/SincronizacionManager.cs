@@ -104,9 +104,7 @@ namespace MaxiKioscos.Winforms.Sincronizacion
         {
             new frmSeleccionarMaxikiosco(_sincronizacionService, Uow).ShowDialog();
         }
-
-
-
+        
         public void ExportarDatosDesincronizados()
         {
             var repository = new ExportacionRepository();
