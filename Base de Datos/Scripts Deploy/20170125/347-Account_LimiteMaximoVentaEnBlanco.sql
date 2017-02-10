@@ -1,0 +1,2 @@
+ALTER TABLE Cuenta
+ADD LimiteMaximoVentaEnBlanco money NULL
