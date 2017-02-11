@@ -28,7 +28,7 @@ namespace MaxiKioscos.Entidades
     {
         [Display(Name = "Descripción")]
         [Required(ErrorMessage = "Debe ingresar una descripción")]
-        [Remote("EsDescripcionMarcaUnica", "Marcas", ErrorMessage = "Ya existe una marca con esa descripción.")]
+        [Remote("EsDescripcionMarcaUnica", "Marcas", ErrorMessage = "Ya existe una marca con esa descripción.", AdditionalFields = "MarcaId")]
         public string Descripcion { get; set; }
     }
 }

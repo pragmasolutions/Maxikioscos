@@ -1,5 +1,3 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_GastosPorCategoria]    Script Date: 11/14/2015 12:00:45 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_GastosPorCategoria]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_GastosPorCategoria]
 GO
 
@@ -11,6 +9,13 @@ CREATE PROCEDURE [dbo].[Rpt_GastosPorCategoria]
 	@SubCategoriaCostoId int
 AS
 BEGIN
+
+DECLARE @LocDesde datetime2(7) = @Desde,
+		@LocHasta datetime2(7) = @Hasta,	
+		@LocMaxikioscoId int = @MaxikioscoId,
+		@LocCategoriaCostoId int = @CategoriaCostoId,
+		@LocSubCategoriaCostoId int = @SubCategoriaCostoId
+
 SELECT 
 		Categoria 
 		,SubCategoria
@@ -41,17 +46,14 @@ FROM
 	LEFT OUTER JOIN Maxikiosco M2 
 		ON M2.MaxikioscoId = CR.MaxikioskoId
 	WHERE C.Eliminado = 0
-	    AND (@Desde IS NULL OR C.Fecha >= @Desde)
-		AND (@Hasta IS NULL OR c.Fecha <= @Hasta)		
-		AND (@MaxikioscoId IS NULL OR C.MaxikioscoId = @MaxikioscoId OR @MaxikioscoId = CR.MaxiKioskoId)		
-		AND (@CategoriaCostoId IS NULL OR CC.CategoriaCostoId = @CategoriaCostoId)
-		AND (@SubCategoriaCostoId IS NULL OR SC.CategoriaCostoId = @SubCategoriaCostoId)) T		
+	    AND (@LocDesde IS NULL OR C.Fecha >= @LocDesde)
+		AND (@LocHasta IS NULL OR c.Fecha <= @LocHasta)		
+		AND (@LocMaxikioscoId IS NULL OR C.MaxikioscoId = @LocMaxikioscoId OR @LocMaxikioscoId = CR.MaxiKioskoId)		
+		AND (@LocCategoriaCostoId IS NULL OR CC.CategoriaCostoId = @LocCategoriaCostoId)
+		AND (@LocSubCategoriaCostoId IS NULL OR SC.CategoriaCostoId = @LocSubCategoriaCostoId)) T		
 	GROUP BY Categoria, SubCategoria, MaxiKiosco, Fecha, ImporteTotal, Observaciones, NroComprobante
 	ORDER BY Categoria, SubCategoria, MaxiKiosco, ImporteTotal DESC
 END
-
-
-
 
 
 GO

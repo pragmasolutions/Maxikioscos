@@ -1,5 +1,3 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_Stock]    Script Date: 08/09/2014 15:48:41 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_Stock]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_Stock]
 GO
 
@@ -11,6 +9,11 @@ CREATE PROCEDURE [dbo].[Rpt_Stock]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocMaxiKioscoId int = @MaxiKioscoId,
+			@LocCuentaId int = @CuentaId;
+
 	WITH CTE(MaxiKiosco, Producto, Cantidad, Monto)
 	AS
 	(
@@ -23,19 +26,13 @@ BEGIN
 		FROM CorreccionStock CS
 			INNER JOIN Producto P	
 				ON CS.ProductoId = P.ProductoId
-			--INNER JOIN CierreCaja CC
-			--	ON CS.CierreCajaId = CC.CierreCajaId
 			INNER JOIN MaxiKiosco M
 				ON CS.MaxiKioscoId = M.MaxiKioscoId
 		WHERE 
-			--(@Desde IS NULL OR CC.FechaInicio >= @Desde)
-			--AND (@Hasta IS NULL OR CC.FechaInicio <= @Hasta)
-			--AND (@MaxiKioscoId IS NULL OR CC.MaxiKioskoId = @MaxiKioscoId)
-			--AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)
-			(@Desde IS NULL OR CS.Fecha >= @Desde)
-			AND (@Hasta IS NULL OR CS.Fecha <= @Hasta)
-			AND (@MaxiKioscoId IS NULL OR CS.MaxiKioscoId = @MaxiKioscoId)
-			AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)			
+			(@LocDesde IS NULL OR CS.Fecha >= @LocDesde)
+			AND (@LocHasta IS NULL OR CS.Fecha <= @LocHasta)
+			AND (@LocMaxiKioscoId IS NULL OR CS.MaxiKioscoId = @LocMaxiKioscoId)
+			AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)			
 		
 	)
 	

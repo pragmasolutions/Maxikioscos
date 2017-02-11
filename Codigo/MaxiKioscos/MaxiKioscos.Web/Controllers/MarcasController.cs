@@ -59,7 +59,7 @@ namespace MaxiKioscos.Web.Controllers
         [HttpPost]
         public ActionResult Crear(Marca marca)
         {
-            if (!ModelState.IsValid || !EsDescripcionvalida(marca.Descripcion))
+            if (!ModelState.IsValid || !EsDescripcionvalida(marca.Descripcion, marca.MarcaId))
             {
                 return PartialView(marca);
             }
@@ -112,16 +112,16 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public JsonResult EsDescripcionMarcaUnica(string descripcion)
+        public JsonResult EsDescripcionMarcaUnica(string descripcion, int marcaId)
         {
-            return EsDescripcionvalida(descripcion)
+            return EsDescripcionvalida(descripcion, marcaId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        private bool EsDescripcionvalida(string descripcion)
+        private bool EsDescripcionvalida(string descripcion, int marcaId)
         {
-            return !Uow.Marcas.Listado().Any(m => m.Descripcion == descripcion);
+            return !Uow.Marcas.Listado().Any(m => m.Descripcion == descripcion && m.MarcaId != marcaId);
         }
     }
 }

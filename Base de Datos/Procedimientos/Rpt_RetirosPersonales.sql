@@ -1,5 +1,3 @@
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_RetirosPersonales]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_RetirosPersonales]
 GO
 
@@ -10,6 +8,10 @@ CREATE PROCEDURE [dbo].[Rpt_RetirosPersonales]
 	@UsuarioId int = null
 AS
 BEGIN
+	DECLARE @LocDesde datetime = @Desde,
+			@LocHasta datetime = @Hasta,
+			@LocUsuarioId int = @UsuarioId
+
 	SELECT RP.FechaRetiroPersonal Fecha,
 		U.NombreUsuario,
 		RP.CostoTotal,
@@ -20,11 +22,12 @@ BEGIN
 			ON RP.CierreCajaId = CC.CierreCajaId
 		INNER JOIN Usuario U
 			ON CC.UsuarioId = U.UsuarioId
-	WHERE (@Desde IS NULL OR @Desde < RP.FechaRetiroPersonal)
-		AND (@Hasta IS NULL OR @Hasta > RP.FechaRetiroPersonal)
-		AND (@UsuarioId IS NULL OR @UsuarioId = CC.UsuarioId)
+	WHERE (@LocDesde IS NULL OR @LocDesde < RP.FechaRetiroPersonal)
+		AND (@LocHasta IS NULL OR @LocHasta > RP.FechaRetiroPersonal)
+		AND (@LocUsuarioId IS NULL OR @LocUsuarioId = CC.UsuarioId)
 	ORDER BY RP.FechaRetiroPersonal
 END
+
 
 GO
 

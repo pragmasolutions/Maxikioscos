@@ -1,9 +1,5 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_ReponerStock]    Script Date: 12/03/2014 18:54:45 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_ReponerStock]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_ReponerStock]
 GO
-
 
 CREATE PROCEDURE [dbo].[Rpt_ReponerStock]
 	@ProductoId int = NULL,
@@ -11,6 +7,10 @@ CREATE PROCEDURE [dbo].[Rpt_ReponerStock]
 	@MaxiKioscoId int = NULL
 AS
 BEGIN
+	DECLARE @LocProductoId int = @ProductoId,
+			@LocProveedorId int = @ProveedorId,
+			@LocMaxiKioscoId int = @MaxiKioscoId
+
 	SELECT DISTINCT Maxikiosco = M.Nombre,
 		Producto = P.Descripcion,
 		Proveedor = (SELECT SUBSTRING(
@@ -29,13 +29,15 @@ BEGIN
 				AND M.MaxikioscoId = S.MaxikioscoId
 	WHERE P.StockReposicion IS NOT NULL
 		AND ISNULL(S.StockActual, 0) <= P.StockReposicion
-		AND (@ProductoId IS NULL OR P.ProductoId = @ProductoId)
-		AND (@ProveedorId IS NULL OR @ProveedorId IN (SELECT ProveedorId
+		AND (@LocProductoId IS NULL OR P.ProductoId = @LocProductoId)
+		AND (@LocProveedorId IS NULL OR @LocProveedorId IN (SELECT ProveedorId
 													  FROM ProveedorProducto 
 													  WHERE ProductoId = P.ProductoId))
-		AND (@MaxikioscoId IS NULL OR M.MaxiKioscoId = @MaxikioscoId)
+		AND (@LocMaxikioscoId IS NULL OR M.MaxiKioscoId = @LocMaxikioscoId)
 	ORDER BY M.Nombre, P.Descripcion
 END
+
+
 
 
 

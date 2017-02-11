@@ -26,9 +26,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://ganciokioscos-001-site5.htempurl.com/</InstallUrl>
     <UpdateUrl>http://ganciokioscos-001-site5.htempurl.com/</UpdateUrl>
-    <MinimumRequiredVersion>1.1.0.105</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.1.0.107</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>106</ApplicationRevision>
+    <ApplicationRevision>108</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -618,6 +618,7 @@
     <Content Include="SqlScripts\185-ControlStock_VistaPrevia.sql" />
     <Content Include="SqlScripts\187-ControlStock_Crear.sql" />
     <Content Include="SqlScripts\188-ControlStock_ObtenerDetalles.sql" />
+    <Content Include="SqlScripts\197-Indices.sql" />
     <Content Include="SqlScripts\196-IX_VentaProducto_ProductoId.sql" />
     <Content Include="SqlScripts\195-Producto_SugerenciaCompras.sql" />
     <Content Include="SqlScripts\194-Sync_Ventas.sql" />

@@ -1,12 +1,13 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorTicket]    Script Date: 09/24/2015 17:36:31 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorTicket]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorTicket]
 GO
+
 
 CREATE PROCEDURE [dbo].[Rpt_VentasPorTicket] 
 	@CierreCajaId int
 AS
 BEGIN
+	DECLARE @LocCierreCajaId int = @CierreCajaId
+
 	SELECT V.VentaId Ticket,
 			V.FechaVenta,
 			P.Descripcion Producto,
@@ -21,9 +22,10 @@ BEGIN
 			ON VP.VentaId = V.VentaId
 		INNER JOIN Producto P
 			ON VP.ProductoId = P.ProductoId
-	WHERE V.CierreCajaId = @CierreCajaId
+	WHERE V.CierreCajaId = @LocCierreCajaId
 		AND V.Eliminado = 0
 END
+
 
 GO
 

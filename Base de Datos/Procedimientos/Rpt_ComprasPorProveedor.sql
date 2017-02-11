@@ -1,6 +1,6 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_ComprasPorProveedor]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_ComprasPorProveedor]
 GO
+
 
 CREATE PROCEDURE [dbo].[Rpt_ComprasPorProveedor]
 	@Desde datetime2(7) = NULL,
@@ -9,6 +9,11 @@ CREATE PROCEDURE [dbo].[Rpt_ComprasPorProveedor]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7)= @Hasta,
+			@LocProveedorId int = @ProveedorId,
+			@LocCuentaId int = @CuentaId
+
 	DECLARE @Results TABLE
 	(
 		ProveedorId int,
@@ -40,10 +45,10 @@ BEGIN
 			ON C.FacturaId = F.FacturaId
 		INNER JOIN Proveedor P
 			ON F.ProveedorId = P.ProveedorId
-	WHERE (@Desde IS NULL OR F.Fecha >= @Desde)
-		AND (@Hasta IS NULL OR F.Fecha <= @Hasta)
-		AND (@ProveedorId IS NULL OR P.ProveedorId = @ProveedorId)
-		AND (P.CuentaId = @CuentaId)
+	WHERE (@LocDesde IS NULL OR F.Fecha >= @LocDesde)
+		AND (@LocHasta IS NULL OR F.Fecha <= @LocHasta)
+		AND (@LocProveedorId IS NULL OR P.ProveedorId = @LocProveedorId)
+		AND (P.CuentaId = @LocCuentaId)
 		AND (C.TipoComprobante = 'X')
 	GROUP BY P.ProveedorId, P.Nombre
 	
@@ -55,10 +60,10 @@ BEGIN
 			ON C.FacturaId = F.FacturaId
 		INNER JOIN Proveedor P
 			ON F.ProveedorId = P.ProveedorId
-	WHERE (@Desde IS NULL OR F.Fecha >= @Desde)
-		AND (@Hasta IS NULL OR F.Fecha <= @Hasta)
-		AND (@ProveedorId IS NULL OR P.ProveedorId = @ProveedorId)
-		AND (P.CuentaId = @CuentaId)
+	WHERE (@LocDesde IS NULL OR F.Fecha >= @LocDesde)
+		AND (@LocHasta IS NULL OR F.Fecha <= @LocHasta)
+		AND (@LocProveedorId IS NULL OR P.ProveedorId = @LocProveedorId)
+		AND (P.CuentaId = @LocCuentaId)
 		AND (C.TipoComprobante = 'A')
 	GROUP BY P.ProveedorId, P.Nombre;
 	
@@ -78,13 +83,14 @@ BEGIN
 				ON F.ProveedorId = X.ProveedorId
 			LEFT JOIN @A A
 				ON F.ProveedorId = A.ProveedorId
-		WHERE (@Desde IS NULL OR F.Fecha >= @Desde)
-			AND (@Hasta IS NULL OR F.Fecha <= @Hasta)
-			AND (@ProveedorId IS NULL OR P.ProveedorId = @ProveedorId)
-			AND (P.CuentaId = @CuentaId)			
+		WHERE (@LocDesde IS NULL OR F.Fecha >= @LocDesde)
+			AND (@LocHasta IS NULL OR F.Fecha <= @LocHasta)
+			AND (@LocProveedorId IS NULL OR P.ProveedorId = @LocProveedorId)
+			AND (P.CuentaId = @LocCuentaId)			
 		GROUP BY P.ProveedorId, P.Nombre, A.ImporteTotal, X.ImporteTotal
 	
 END
+
 GO
 
 

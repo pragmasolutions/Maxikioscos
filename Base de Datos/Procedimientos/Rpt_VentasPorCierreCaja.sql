@@ -1,5 +1,3 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorCierreCaja]    Script Date: 01/31/2015 10:38:06 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorCierreCaja]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorCierreCaja]
 GO
 
@@ -8,6 +6,8 @@ CREATE PROCEDURE [dbo].[Rpt_VentasPorCierreCaja]
 	@CierreCajaId int
 AS
 BEGIN
+	DECLARE @LocCierreCajaId int = @CierreCajaId
+
 	SELECT
 	   Rubro = R.Descripcion
 	  ,Producto = P.Descripcion 
@@ -28,10 +28,11 @@ BEGIN
 	  INNER JOIN MaxiKiosco M
 		ON CC.MaxiKioskoId = M.MaxiKioscoId
 	 WHERE 
-		V.CierreCajaId = @CierreCajaId
+		V.CierreCajaId = @LocCierreCajaId
 	 GROUP BY M.Nombre,R.Descripcion,P.Descripcion
 	 ORDER BY VentaTotal DESC
 END
+
 
 
 

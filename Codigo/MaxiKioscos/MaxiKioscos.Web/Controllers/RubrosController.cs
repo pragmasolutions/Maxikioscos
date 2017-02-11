@@ -58,7 +58,7 @@ namespace MaxiKioscos.Web.Controllers
         [HttpPost]
         public ActionResult Crear(Rubro rubro)
         {
-            if (!ModelState.IsValid || !EsDescripcionValida(rubro.Descripcion))
+            if (!ModelState.IsValid || !EsDescripcionValida(rubro.Descripcion, rubro.RubroId))
             {
                 return PartialView(rubro);
             }
@@ -110,16 +110,16 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public JsonResult EsDescripcionRubroUnica(string descripcion)
+        public JsonResult EsDescripcionRubroUnica(string descripcion, int rubroId)
         {
-            return EsDescripcionValida(descripcion)
+            return EsDescripcionValida(descripcion, rubroId)
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        private bool EsDescripcionValida(string descripcion)
+        private bool EsDescripcionValida(string descripcion, int rubroId)
         {
-            return !Uow.Rubros.Listado().Any(m => m.Descripcion == descripcion);
+            return !Uow.Rubros.Listado().Any(r => r.Descripcion == descripcion && r.RubroId != rubroId);
         }
     }
 }

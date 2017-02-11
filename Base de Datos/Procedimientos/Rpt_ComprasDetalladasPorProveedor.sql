@@ -1,6 +1,3 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_ComprasDetalladasPorProveedor]    Script Date: 05/21/2016 10:49:31 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_ComprasDetalladasPorProveedor]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_ComprasDetalladasPorProveedor]
 GO
 
@@ -14,7 +11,13 @@ CREATE PROCEDURE [dbo].[Rpt_ComprasDetalladasPorProveedor]
 	@CuentaId int
 AS
 BEGIN
-	
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocMaxikioscoId int = @MaxikioscoId,
+			@LocProveedorId int = @ProveedorId,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   MaxiKiosco = M.Nombre
 	  ,Rubro = R.Descripcion
@@ -39,13 +42,12 @@ BEGIN
 		ON CP.ProductoId = UC.ProductoId
 	  LEFT JOIN Proveedor PR
 		ON UC.ProveedorId = PR.ProveedorId
-	WHERE 
-	        (@Desde IS NULL OR C.Fecha >= @Desde)
-		AND (@Hasta IS NULL OR C.Fecha <= @Hasta)
-		AND (@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
-		AND (@ProveedorId IS NULL OR PR.ProveedorId = @ProveedorId)
-		AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	WHERE (@LocDesde IS NULL OR C.Fecha >= @LocDesde)
+		AND (@LocHasta IS NULL OR C.Fecha <= @LocHasta)
+		AND (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+		AND (@LocMaxikioscoId IS NULL OR M.MaxikioscoId = @LocMaxikioscoId)
+		AND (@LocProveedorId IS NULL OR PR.ProveedorId = @LocProveedorId)
+		AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	GROUP BY M.Nombre,PR.Nombre, R.Descripcion,P.Descripcion
 	ORDER BY CompraTotal DESC
 END

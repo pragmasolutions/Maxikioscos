@@ -1,9 +1,5 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorProductoRanking]    Script Date: 01/31/2015 10:57:29 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorProductoRanking]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorProductoRanking]
 GO
-
 
 CREATE PROCEDURE [dbo].[Rpt_VentasPorProductoRanking]
 	@Desde datetime2(7) = NULL,
@@ -15,6 +11,13 @@ CREATE PROCEDURE [dbo].[Rpt_VentasPorProductoRanking]
 	WITH RECOMPILE
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocMaxikioscoId int = @MaxikioscoId,
+			@LocCuentaId int = @CuentaId,
+			@LocCierreCajaId int = @CierreCajaId
+
 	SELECT TOP 10
 	   Producto = P.Descripcion 
 	  ,PrecioPromedio = AVG(VP.Precio)
@@ -32,18 +35,19 @@ BEGIN
 		ON V.CierreCajaId = CC.CierreCajaId
 	  INNER JOIN MaxiKiosco M
 		ON CC.MaxiKioskoId = M.MaxiKioscoId
-	WHERE (@CierreCajaId IS NOT NULL AND V.CierreCajaId = @CierreCajaId)
-	    OR (@CierreCajaId IS NULL AND (
-			(@Desde IS NULL OR V.FechaVenta >= @Desde)
-			AND (@Hasta IS NULL OR V.FechaVenta <= @Hasta)
-			AND (@RubroId IS NULL OR P.RubroId = @RubroId)
-			AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
-			AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	WHERE (@LocCierreCajaId IS NOT NULL AND V.CierreCajaId = @LocCierreCajaId)
+	    OR (@LocCierreCajaId IS NULL AND (
+			(@LocDesde IS NULL OR V.FechaVenta >= @LocDesde)
+			AND (@LocHasta IS NULL OR V.FechaVenta <= @LocHasta)
+			AND (@LocRubroId IS NULL OR P.RubroId = @LocRubroId)
+			AND (@LocMaxikioscoId IS NULL OR M.MaxikioscoId = @LocMaxikioscoId)
+			AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	    ))
 	        
 	GROUP BY P.Descripcion
 	ORDER BY VentaTotal DESC
 END
+
 
 GO
 

@@ -1,7 +1,6 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_RetirosPersonalesPorTicket]    Script Date: 09/24/2015 17:36:31 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_RetirosPersonalesPorTicket]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_RetirosPersonalesPorTicket]
 GO
+
 
 CREATE PROCEDURE [dbo].[Rpt_RetirosPersonalesPorTicket] 
 	@UsuarioId int,
@@ -9,6 +8,10 @@ CREATE PROCEDURE [dbo].[Rpt_RetirosPersonalesPorTicket]
 	@Hasta datetime = null
 AS
 BEGIN
+	DECLARE @LocUsuarioId int = @UsuarioId,
+			@LocDesde datetime = @Desde,
+			@LocHasta datetime = @Hasta
+
 	SELECT RP.RetiroPersonalId Ticket,
 			RP.FechaRetiroPersonal,
 			P.Descripcion Producto,
@@ -28,13 +31,14 @@ BEGIN
 			ON RP.CierreCajaId = CC.CierreCajaId
 		INNER JOIN Usuario U
 			ON CC.UsuarioId = U.UsuarioId
-	WHERE (@UsuarioId IS NULL OR CC.UsuarioId = @UsuarioId)
-		AND (@Desde IS NULL OR @Desde < RP.FechaRetiroPersonal)
-		AND (@Hasta IS NULL OR @Hasta > RP.FechaRetiroPersonal)
+	WHERE (@LocUsuarioId IS NULL OR CC.UsuarioId = @LocUsuarioId)
+		AND (@LocDesde IS NULL OR @LocDesde < RP.FechaRetiroPersonal)
+		AND (@LocHasta IS NULL OR @LocHasta > RP.FechaRetiroPersonal)
 		AND RP.Eliminado = 0
 	ORDER BY U.Nombre, U.Apellido, RP.RetiroPersonalId
 	
 END
+
 
 GO
 

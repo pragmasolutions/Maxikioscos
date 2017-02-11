@@ -1,5 +1,3 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_StockValorizadoGeneral]    Script Date: 04/25/2015 20:25:19 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_StockValorizadoGeneral]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_StockValorizadoGeneral]
 GO
 
@@ -7,6 +5,8 @@ CREATE PROCEDURE [dbo].[Rpt_StockValorizadoGeneral]
 	@RubroId int
 AS
 BEGIN
+	DECLARE @LocRubroId int = @RubroId
+
 	DECLARE @Stock TABLE
 	(
 		StockId int, 
@@ -39,7 +39,7 @@ BEGIN
 			INNER JOIN Producto P
 				ON S.ProductoId = P.ProductoId			
 	WHERE CTE.Fila = 1 
-		AND (@RubroId IS NULL OR P.RubroId = @RubroId)
+		AND (@LocRubroId IS NULL OR P.RubroId = @LocRubroId)
 		
 		
 
@@ -55,11 +55,12 @@ BEGIN
 			ON P.RubroId = R.RubroId
 		LEFT JOIN (SELECT * FROM dbo.UltimosCostos()) UC
 			ON P.ProductoId = UC.ProductoId		
-	WHERE (@RubroId IS NULL OR R.RubroId = @RubroId)
+	WHERE (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
 		AND S.StockActual != 0
 	GROUP BY R.Descripcion
 	ORDER BY R.Descripcion
 END
+
 
 
 GO

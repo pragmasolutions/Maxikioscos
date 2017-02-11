@@ -1,9 +1,5 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorMaxikiosco]    Script Date: 08/09/2014 15:48:48 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorMaxikiosco]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorMaxikiosco]
 GO
-
 
 CREATE PROCEDURE [dbo].[Rpt_VentasPorMaxikiosco]
 	@Desde datetime2(7),
@@ -11,6 +7,10 @@ CREATE PROCEDURE [dbo].[Rpt_VentasPorMaxikiosco]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   M.Nombre
 	  ,M.Direccion
@@ -25,12 +25,13 @@ BEGIN
 	  INNER JOIN Venta V
 		ON CC.CierreCajaId = V.CierreCajaId
 	 WHERE 
-	        (@Desde IS NULL OR V.FechaVenta >= @Desde)
-		AND (@Hasta IS NULL OR V.FechaVenta <= @Hasta)
-		AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)
+	        (@LocDesde IS NULL OR V.FechaVenta >= @LocDesde)
+		AND (@LocHasta IS NULL OR V.FechaVenta <= @LocHasta)
+		AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)
 		
 	 GROUP BY M.Nombre,M.Direccion
 END
+
 
 GO
 

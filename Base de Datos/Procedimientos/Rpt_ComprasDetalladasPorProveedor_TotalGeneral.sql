@@ -1,9 +1,5 @@
-
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_ComprasDetalladasPorProveedor_TotalGeneral]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_ComprasDetalladasPorProveedor_TotalGeneral]
 GO
-
-
 
 CREATE PROCEDURE [dbo].[Rpt_ComprasDetalladasPorProveedor_TotalGeneral]
 	@Desde datetime2(7),
@@ -13,6 +9,20 @@ CREATE PROCEDURE [dbo].[Rpt_ComprasDetalladasPorProveedor_TotalGeneral]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocProveedorId int = @ProveedorId,
+			@LocCuentaId int = @CuentaId;
+
+	WITH UltimosCostos (ProductoId, CostoConIVA, ProveedorId)
+	AS
+	(
+		SELECT ProductoId,
+		   CostoConIVA,
+		   ProveedorId
+		FROM dbo.UltimosCostos()
+	)
 	SELECT Proveedor = PR.Nombre
 	  ,Rubro = R.Descripcion
 	  ,Producto = P.Descripcion 
@@ -31,18 +41,19 @@ BEGIN
 		ON CP.CompraId = C.CompraId
 	  INNER JOIN MaxiKiosco M
 		ON C.MaxiKioscoId = M.MaxiKioscoId
-	  LEFT JOIN (SELECT * FROM dbo.UltimosCostos()) UC
+	  LEFT JOIN UltimosCostos UC
 		ON CP.ProductoId = UC.ProductoId
 	  LEFT JOIN Proveedor PR
 		ON UC.ProveedorId = PR.ProveedorId
-	WHERE (@Desde IS NULL OR C.Fecha >= @Desde)
-		AND (@Hasta IS NULL OR C.Fecha <= @Hasta)
-		AND (@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND (@ProveedorId IS NULL OR PR.ProveedorId = @ProveedorId)
-		AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	WHERE (@LocDesde IS NULL OR C.Fecha >= @LocDesde)
+		AND (@LocHasta IS NULL OR C.Fecha <= @LocHasta)
+		AND (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+		AND (@LocProveedorId IS NULL OR PR.ProveedorId = @LocProveedorId)
+		AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	GROUP BY PR.Nombre, R.Descripcion,P.Descripcion
 	ORDER BY CompraTotal DESC
 END
+
 
 
 

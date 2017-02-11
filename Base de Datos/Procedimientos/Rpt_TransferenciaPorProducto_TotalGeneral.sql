@@ -1,4 +1,3 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_TransferenciaPorProducto_TotalGeneral]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_TransferenciaPorProducto_TotalGeneral]
 GO
 
@@ -9,6 +8,11 @@ CREATE PROCEDURE [dbo].[Rpt_TransferenciaPorProducto_TotalGeneral]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   Rubro = R.Descripcion
 	  ,Producto = P.Descripcion 
@@ -29,12 +33,14 @@ BEGIN
 		ON T.OrigenId = MO.MaxiKioscoId
 	  INNER JOIN MaxiKiosco MD
 		ON T.DestinoId = MD.MaxiKioscoId
-	WHERE 
-	        (@Desde IS NULL OR T.FechaCreacion >= @Desde)
-		AND (@Hasta IS NULL OR T.FechaCreacion <= @Hasta)
-		AND (@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	WHERE (@LocDesde IS NULL OR T.FechaCreacion >= @LocDesde)
+		AND (@LocHasta IS NULL OR T.FechaCreacion <= @LocHasta)
+		AND (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+		AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	GROUP BY R.Descripcion,P.Descripcion
 	ORDER BY CantidadTotal DESC
 END
+
 GO
+
+

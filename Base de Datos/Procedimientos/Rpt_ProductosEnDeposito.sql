@@ -1,6 +1,3 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorProducto]    Script Date: 08/09/2014 15:48:51 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_ProductosEnDeposito]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_ProductosEnDeposito]
 GO
 
@@ -9,6 +6,8 @@ CREATE PROCEDURE [dbo].[Rpt_ProductosEnDeposito]
 	@RubroId int
 AS
 BEGIN
+	DECLARE @LocRubroId int = @RubroId
+
 	SELECT
 	   Codigo = (SELECT SUBSTRING(
 					(SELECT ',' + Codigo
@@ -25,11 +24,12 @@ BEGIN
 	  INNER JOIN Marca M
 		ON P.MarcaId = M.MarcaId
 	WHERE 
-		(@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND P.DisponibleEnDeposito = 1
+		(@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
 		AND P.Eliminado = 0
-	ORDER BY P.Descripcion DESC
+		AND P.DisponibleEnDeposito = 1
+	ORDER BY P.Descripcion
 END
+
 
 
 GO

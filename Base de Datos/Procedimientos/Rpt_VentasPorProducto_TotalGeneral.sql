@@ -1,4 +1,3 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorProducto_TotalGeneral]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorProducto_TotalGeneral]
 GO
 
@@ -9,6 +8,11 @@ CREATE PROCEDURE [dbo].[Rpt_VentasPorProducto_TotalGeneral]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   Rubro = R.Descripcion
 	  ,Producto = P.Descripcion 
@@ -28,12 +32,16 @@ BEGIN
 	  INNER JOIN CierreCaja CC
 		ON V.CierreCajaId = CC.CierreCajaId
 	WHERE 
-	        (@Desde IS NULL OR V.FechaVenta >= @Desde)
-		AND (@Hasta IS NULL OR V.FechaVenta <= @Hasta)
-		AND (@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	        (@LocDesde IS NULL OR V.FechaVenta >= @LocDesde)
+		AND (@LocHasta IS NULL OR V.FechaVenta <= @LocHasta)
+		AND (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+		AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	GROUP BY R.Descripcion,P.Descripcion
 	ORDER BY VentaTotal DESC
 END
+
+
+
+GO
 
 

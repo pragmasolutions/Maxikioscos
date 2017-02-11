@@ -1,4 +1,3 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_CierresDeCajaDetalle]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_CierresDeCajaDetalle]
 GO
 
@@ -10,6 +9,12 @@ CREATE PROCEDURE [dbo].[Rpt_CierresDeCajaDetalle]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocMaxiKioscoId int = @MaxiKioscoId,
+			@LocUsuarioId int = @UsuarioId,
+			@LocCuentaId int = @CuentaId
+
 	DECLARE @ReporteCTE TABLE
 	(
 		MaxiKioscoNombre varchar(100), 
@@ -104,11 +109,11 @@ BEGIN
 				   AND RP.Eliminado = 0) RP
 							
 	 WHERE 
-		(@Desde IS NULL OR CC.FechaInicio >= @Desde)
-		AND (@Hasta IS NULL OR CC.FechaInicio <= @Hasta)
-		AND (@MaxiKioscoId IS NULL OR CC.MaxiKioskoId = @MaxiKioscoId)
-		AND (@UsuarioId IS NULL OR CC.UsuarioId = @UsuarioId)
-		AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)
+		(@LocDesde IS NULL OR CC.FechaInicio >= @LocDesde)
+		AND (@LocHasta IS NULL OR CC.FechaInicio <= @LocHasta)
+		AND (@LocMaxiKioscoId IS NULL OR CC.MaxiKioskoId = @LocMaxiKioscoId)
+		AND (@LocUsuarioId IS NULL OR CC.UsuarioId = @LocUsuarioId)
+		AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)
 	 ORDER BY M.Abreviacion, CC.FechaInicio, U.Nombre, U.Apellido
 
 	SELECT CTE.MaxiKioscoNombre, 
@@ -129,6 +134,7 @@ BEGIN
 	FROM @ReporteCTE CTE
 	
 END
+
 
 
 

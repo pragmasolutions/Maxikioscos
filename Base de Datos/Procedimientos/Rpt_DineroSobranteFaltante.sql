@@ -1,8 +1,5 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_DineroSobranteFaltante]    Script Date: 01/24/2015 16:09:02 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_DineroSobranteFaltante]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_DineroSobranteFaltante]
 GO
-
 
 CREATE PROCEDURE [dbo].[Rpt_DineroSobranteFaltante]
 	@Desde datetime2(7),
@@ -11,6 +8,10 @@ CREATE PROCEDURE [dbo].[Rpt_DineroSobranteFaltante]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocMaxiKioscoId int = @MaxiKioscoId,
+			@LocCuentaId int = @CuentaId;
 
 	WITH ReporteCTE (Maxikiosco, Mes, Anio, CajaDiferencia, StockDiferenciaPositiva, 
 					StockDiferenciaNegativa, Diferencia)
@@ -39,10 +40,10 @@ BEGIN
 						INNER JOIN MaxiKiosco M 
 							ON CC.MaxiKioskoId = M.MaxiKioscoId
 				WHERE 
-					(@Desde IS NULL OR CC.FechaInicio >= @Desde)
-					AND (@Hasta IS NULL OR CC.FechaInicio <= @Hasta)
-					AND (@MaxiKioscoId IS NULL OR CC.MaxiKioskoId = @MaxiKioscoId)
-					AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)	
+					(@LocDesde IS NULL OR CC.FechaInicio >= @LocDesde)
+					AND (@LocHasta IS NULL OR CC.FechaInicio <= @LocHasta)
+					AND (@LocMaxiKioscoId IS NULL OR CC.MaxiKioskoId = @LocMaxiKioscoId)
+					AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)	
 					AND CC.CajaFinal - CC.CajaEsperada > 0
 
 				GROUP BY M.Nombre, DATEPART(YEAR, CC.FechaInicio), DATEPART(MONTH, CC.FechaInicio)
@@ -63,11 +64,11 @@ BEGIN
 						ON CSD.ControlStockId = CS.ControlStockId
 					INNER JOIN MaxiKiosco M
 						ON CS.MaxiKioscoId = M.MaxiKioscoId
-				WHERE (@Desde IS NULL OR CS.FechaCreacion >= @Desde) 
-					 AND (@Hasta IS NULL OR CS.FechaCreacion <= @Hasta)  
+				WHERE (@LocDesde IS NULL OR CS.FechaCreacion >= @LocDesde) 
+					 AND (@LocHasta IS NULL OR CS.FechaCreacion <= @LocHasta)  
 					 AND CSD.MotivoCorreccionId = 6 --SIN MOTIVO
-					 AND (@MaxiKioscoId IS NULL OR CS.MaxiKioscoId = @MaxiKioscoId)
-					 AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)	
+					 AND (@LocMaxiKioscoId IS NULL OR CS.MaxiKioscoId = @LocMaxiKioscoId)
+					 AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)	
 				GROUP BY M.Nombre, DATEPART(YEAR, CS.FechaCreacion), DATEPART(MONTH, CS.FechaCreacion)
 			)
 			
@@ -86,11 +87,11 @@ BEGIN
 						ON CSD.ControlStockId = CS.ControlStockId
 					INNER JOIN MaxiKiosco M
 						ON CS.MaxiKioscoId = M.MaxiKioscoId
-				WHERE (@Desde IS NULL OR CS.FechaCreacion >= @Desde) 
-					 AND (@Hasta IS NULL OR CS.FechaCreacion <= @Hasta)  
+				WHERE (@LocDesde IS NULL OR CS.FechaCreacion >= @LocDesde) 
+					 AND (@LocHasta IS NULL OR CS.FechaCreacion <= @LocHasta)  
 					 AND CSD.MotivoCorreccionId = 4 --REPOSICION
-					 AND (@MaxiKioscoId IS NULL OR CS.MaxiKioscoId = @MaxiKioscoId)
-					 AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)	
+					 AND (@LocMaxiKioscoId IS NULL OR CS.MaxiKioscoId = @LocMaxiKioscoId)
+					 AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)	
 				GROUP BY M.Nombre, DATEPART(YEAR, CS.FechaCreacion), DATEPART(MONTH, CS.FechaCreacion)
 			)
 
@@ -109,9 +110,9 @@ BEGIN
 					ON E.CierreCajaId = CC.CierreCajaId
 				INNER JOIN MaxiKiosco M
 					ON CC.MaxiKioskoId = M.MaxiKioscoId
-				WHERE (@Desde IS NULL OR E.FechaCarga >= @Desde) 
-				 AND (@Hasta IS NULL OR E.FechaCarga <= @Hasta)  
-				 AND (@MaxiKioscoId IS NULL OR CC.MaxiKioskoId = @MaxiKioscoId)
+				WHERE (@LocDesde IS NULL OR E.FechaCarga >= @LocDesde) 
+				 AND (@LocHasta IS NULL OR E.FechaCarga <= @LocHasta)  
+				 AND (@LocMaxiKioscoId IS NULL OR CC.MaxiKioskoId = @LocMaxiKioscoId)
 				 GROUP BY M.Nombre, DATEPART(YEAR, E.FechaCarga), DATEPART(MONTH, E.FechaCarga), E.Importe
 			)
 
@@ -123,6 +124,7 @@ BEGIN
 	SELECT *
 	FROM ReporteCTE	
 END
+
 
 
 

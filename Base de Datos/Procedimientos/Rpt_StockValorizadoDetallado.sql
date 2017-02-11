@@ -1,5 +1,3 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_StockValorizadoDetallado]    Script Date: 04/25/2015 20:25:19 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_StockValorizadoDetallado]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_StockValorizadoDetallado]
 GO
 
@@ -8,6 +6,9 @@ CREATE PROCEDURE [dbo].[Rpt_StockValorizadoDetallado]
 	@MaxikioscoId int
 AS
 BEGIN
+	DECLARE @LocRubroId int = @RubroId,
+			@LocMaxikioscoId int = @MaxikioscoId
+
 	DECLARE @Stock TABLE
 	(
 		StockId int, 
@@ -41,10 +42,16 @@ BEGIN
 		INNER JOIN Producto P
 			ON S.ProductoId = P.ProductoId			
 	WHERE CTE.Fila = 1 
-		AND (@RubroId IS NULL OR P.RubroId = @RubroId)
-		AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
+		AND (@LocRubroId IS NULL OR P.RubroId = @LocRubroId)
+		AND (@LocMaxikioscoId IS NULL OR M.MaxikioscoId = @LocMaxikioscoId);
 
 
+	WITH UltimosCostos(ProductoId, CostoConIVA)
+	AS
+	(	
+		SELECT ProductoId, CostoConIVA
+		FROM dbo.UltimosCostos()
+	)
 	SELECT Maxikiosco = M.Nombre,
 		Rubro = R.Descripcion,
 		Producto = P.Descripcion,
@@ -60,13 +67,14 @@ BEGIN
 			ON S.ProductoId = P.ProductoId
 		INNER JOIN Rubro R
 			ON P.RubroId = R.RubroId
-		LEFT JOIN (SELECT * FROM dbo.UltimosCostos()) UC
+		LEFT JOIN UltimosCostos UC
 			ON P.ProductoId = UC.ProductoId		
-	WHERE (@RubroId IS NULL OR R.RubroId = @RubroId)
-			AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
+	WHERE (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+			AND (@LocMaxikioscoId IS NULL OR M.MaxikioscoId = @LocMaxikioscoId)
 			AND S.StockActual != 0
 	ORDER BY P.Descripcion
 END
+
 
 
 GO

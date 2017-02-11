@@ -28,7 +28,7 @@ namespace MaxiKioscos.Entidades
     {
         [DisplayName("Descripción")]
         [Required(ErrorMessage = "Debe ingresar una descripción")]
-        [Remote("EsDescripcionRubroUnica", "Rubros", ErrorMessage = "Ya existe un rubro con esa descripción.")]
+        [Remote("EsDescripcionRubroUnica", "Rubros", ErrorMessage = "Ya existe un rubro con esa descripción.", AdditionalFields = "RubroId")]
         public string Descripcion { get; set; }
 
         [DisplayName("No Facturar")]

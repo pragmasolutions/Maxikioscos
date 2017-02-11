@@ -1,6 +1,3 @@
-
-/****** Object:  StoredProcedure [dbo].[Rpt_VentasPorProducto]    Script Date: 08/09/2014 15:48:51 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_VentasPorProducto]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_VentasPorProducto]
 GO
 
@@ -13,6 +10,12 @@ CREATE PROCEDURE [dbo].[Rpt_VentasPorProducto]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocRubroId int = @RubroId,
+			@LocMaxikioscoId int = @MaxikioscoId,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   MaxiKiosco = M.Nombre
 	  ,Rubro = R.Descripcion
@@ -35,11 +38,11 @@ BEGIN
 	  INNER JOIN MaxiKiosco M
 		ON CC.MaxiKioskoId = M.MaxiKioscoId
 	WHERE 
-	        (@Desde IS NULL OR V.FechaVenta >= @Desde)
-		AND (@Hasta IS NULL OR V.FechaVenta <= @Hasta)
-		AND (@RubroId IS NULL OR R.RubroId = @RubroId)
-		AND (@MaxikioscoId IS NULL OR M.MaxikioscoId = @MaxikioscoId)
-		AND (@CuentaId IS NULL OR P.CuentaId = @CuentaId)
+	        (@LocDesde IS NULL OR V.FechaVenta >= @LocDesde)
+		AND (@LocHasta IS NULL OR V.FechaVenta <= @LocHasta)
+		AND (@LocRubroId IS NULL OR R.RubroId = @LocRubroId)
+		AND (@LocMaxikioscoId IS NULL OR M.MaxikioscoId = @LocMaxikioscoId)
+		AND (@LocCuentaId IS NULL OR P.CuentaId = @LocCuentaId)
 	GROUP BY M.Nombre,R.Descripcion,P.Descripcion
 	ORDER BY VentaTotal DESC
 END

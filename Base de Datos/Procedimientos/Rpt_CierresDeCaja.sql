@@ -1,8 +1,5 @@
-/****** Object:  StoredProcedure [dbo].[Rpt_CierresDeCaja]    Script Date: 08/09/2014 15:48:26 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rpt_CierresDeCaja]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[Rpt_CierresDeCaja]
 GO
-
 
 CREATE PROCEDURE [dbo].[Rpt_CierresDeCaja]
 	@Desde datetime2(7),
@@ -12,6 +9,12 @@ CREATE PROCEDURE [dbo].[Rpt_CierresDeCaja]
 	@CuentaId int
 AS
 BEGIN
+	DECLARE @LocDesde datetime2(7) = @Desde,
+			@LocHasta datetime2(7) = @Hasta,
+			@LocMaxiKioscoId int = @MaxiKioscoId,
+			@LocUsuarioId int = @UsuarioId,
+			@LocCuentaId int = @CuentaId
+
 	SELECT
 	   MaxiKioscoNombre = M.Nombre
 	  ,MaxiKioscoDireccion = M.Direccion
@@ -33,15 +36,16 @@ BEGIN
 		ON CC.UsuarioId = U.UsuarioId
 							
 	 WHERE 
-	        (@Desde IS NULL OR CC.FechaInicio >= @Desde)
-		AND (@Hasta IS NULL OR CC.FechaInicio <= @Hasta)
-		AND (@MaxiKioscoId IS NULL OR CC.MaxiKioskoId = @MaxiKioscoId)
-		AND (@UsuarioId IS NULL OR CC.UsuarioId = @UsuarioId)
-		AND (@CuentaId IS NULL OR M.CuentaId = @CuentaId)
+	        (@LocDesde IS NULL OR CC.FechaInicio >= @LocDesde)
+		AND (@LocHasta IS NULL OR CC.FechaInicio <= @LocHasta)
+		AND (@LocMaxiKioscoId IS NULL OR CC.MaxiKioskoId = @LocMaxiKioscoId)
+		AND (@LocUsuarioId IS NULL OR CC.UsuarioId = @LocUsuarioId)
+		AND (@LocCuentaId IS NULL OR M.CuentaId = @LocCuentaId)
 		
 	 GROUP BY  M.Nombre,M.Direccion,U.Nombre,U.Apellido
 	
 END
+
 
 
 GO
