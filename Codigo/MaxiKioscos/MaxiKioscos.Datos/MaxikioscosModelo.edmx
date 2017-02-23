@@ -2056,6 +2056,13 @@
           <Parameter Name="RubroId" Type="int" Mode="In" />
           <Parameter Name="CuentaId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Rpt_VentasPorProductoCompleto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Desde" Type="datetime2" Mode="In" />
+          <Parameter Name="Hasta" Type="datetime2" Mode="In" />
+          <Parameter Name="RubroId" Type="int" Mode="In" />
+          <Parameter Name="MaxikioscoId" Type="int" Mode="In" />
+          <Parameter Name="CuentaId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Rpt_VentasPorProductoRanking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Desde" Type="datetime2" Mode="In" />
           <Parameter Name="Hasta" Type="datetime2" Mode="In" />
@@ -3254,6 +3261,13 @@
           <FunctionImport Name="TransferenciaEliminarDuplicados" />
           <FunctionImport Name="Exportacion_Resetear" />
           <FunctionImport Name="ProductoExportar" ReturnType="Collection(MaxiKioscosModel.ProductoExportacion)" />
+          <FunctionImport Name="RptVentasPorProductoCompleto" ReturnType="Collection(MaxiKioscosModel.RptVentaPorProducto)">
+            <Parameter Name="Desde" Mode="In" Type="DateTime" />
+            <Parameter Name="Hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="RubroId" Mode="In" Type="Int32" />
+            <Parameter Name="MaxikioscoId" Mode="In" Type="Int32" />
+            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CierreCaja">
           <Key>
@@ -7142,6 +7156,20 @@
                 <ScalarProperty Name="PrecioSinIVA" ColumnName="PrecioSinIVA" />
                 <ScalarProperty Name="PrecioConIVA" ColumnName="PrecioConIVA" />
                 <ScalarProperty Name="DisponibleEnDeposito" ColumnName="DisponibleEnDeposito" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RptVentasPorProductoCompleto" FunctionName="MaxiKioscosModel.Store.Rpt_VentasPorProductoCompleto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaxiKioscosModel.RptVentaPorProducto">
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="PrecioPromedio" ColumnName="PrecioPromedio" />
+                <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+                <ScalarProperty Name="VentaTotal" ColumnName="VentaTotal" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="MaxiKiosco" ColumnName="MaxiKiosco" />
+                <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />
+                <ScalarProperty Name="GananciaNeta" ColumnName="GananciaNeta" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -110,9 +110,13 @@ namespace MaxiKioscos.Web.Controllers
         }
 
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public JsonResult EsDescripcionRubroUnica(string descripcion, int rubroId)
+        public JsonResult EsDescripcionRubroUnica(string descripcion, int? rubroId)
         {
-            return EsDescripcionValida(descripcion, rubroId)
+            if (rubroId == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return EsDescripcionValida(descripcion, rubroId.GetValueOrDefault())
                 ? Json(true, JsonRequestBehavior.AllowGet)
                 : Json(false, JsonRequestBehavior.AllowGet);
         }
