@@ -529,7 +529,9 @@ namespace MaxiKioscos.Winforms.Ventas
 
                 foreach (var ventaProducto in venta.VentaProductos.Where(x => x.Cantidad > 0))
                 {
-                    var producto = ventaProducto.ProductoDescripcion;
+                    var producto = ventaProducto.ProductoDescripcion.Length > 20
+                           ? ventaProducto.ProductoDescripcion.Substring(0, 20)
+                           : ventaProducto.ProductoDescripcion;
                     var cantidad = (ventaProducto.Cantidad * 1000).ToString("F0");
                     var precio = (ventaProducto.Precio.GetValueOrDefault() * 100).ToString("F0");
                     var iva = "2100";
@@ -543,7 +545,7 @@ namespace MaxiKioscos.Winforms.Ventas
                 var printer = "P";
                 var subtotal = "SUB";
                 var pago = "Efectivo";
-                var monto = (venta.ImporteTotal * 100).ToString("F0");
+                var monto = venta.ImporteTotal.ToString("0000000.00", CultureInfo.InvariantCulture).Replace(".", string.Empty);
                 var descripcion = "T";
 
                 respuesta &= AxPrinterFiscal.GetTicketSubtotal(ref printer, ref subtotal);
