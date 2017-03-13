@@ -540,14 +540,14 @@
                                                       <TablixCells>
                                                         <TablixCell>
                                                           <CellContents>
-                                                            <Textbox Name="Textbox8">
+                                                            <Textbox Name="Producto">
                                                               <CanGrow>true</CanGrow>
                                                               <KeepTogether>true</KeepTogether>
                                                               <Paragraphs>
                                                                 <Paragraph>
                                                                   <TextRuns>
                                                                     <TextRun>
-                                                                      <Value />
+                                                                      <Value>=Fields!Producto.Value</Value>
                                                                       <Style>
                                                                         <FontSize>9pt</FontSize>
                                                                       </Style>
@@ -556,7 +556,7 @@
                                                                   <Style />
                                                                 </Paragraph>
                                                               </Paragraphs>
-                                                              <rd:DefaultName>Textbox8</rd:DefaultName>
+                                                              <rd:DefaultName>Producto</rd:DefaultName>
                                                               <Style>
                                                                 <Border>
                                                                   <Color>LightGrey</Color>
@@ -568,6 +568,7 @@
                                                                 <PaddingBottom>2pt</PaddingBottom>
                                                               </Style>
                                                             </Textbox>
+                                                            <rd:Selected>true</rd:Selected>
                                                           </CellContents>
                                                         </TablixCell>
                                                         <TablixCell>
@@ -976,8 +977,8 @@
                                                 </TablixRowHierarchy>
                                                 <DataSetName>dataset</DataSetName>
                                                 <Top>0.74083cm</Top>
-                                                <Height>1.78533cm</Height>
-                                                <Width>17.9578cm</Width>
+                                                <Height>1.78534cm</Height>
+                                                <Width>17.95779cm</Width>
                                                 <ZIndex>1</ZIndex>
                                                 <Style>
                                                   <Border>
