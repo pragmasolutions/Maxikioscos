@@ -37,7 +37,7 @@ namespace MaxiKioscos.Negocio
 
         public void Aprobar(Transferencia transferencia)
         {
-            foreach (TransferenciaProducto transferenciaProd in transferencia.TransferenciaProductos)
+            foreach (TransferenciaProducto transferenciaProd in transferencia.TransferenciaProductos.Where(x => !x.Eliminado).ToList())
             {
                 ProcesarStock(transferenciaProd, true, transferencia.DestinoId);
                 ProcesarStock(transferenciaProd, false, transferencia.OrigenId);
