@@ -732,6 +732,7 @@
           <Property Name="FechaUltimaModificacion" Type="datetime2" Precision="7" />
           <Property Name="Facturada" Type="bit" Nullable="false" />
           <Property Name="NroComprobante" Type="varchar" MaxLength="15" />
+          <Property Name="VentaIdOriginal" Type="int" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -3626,6 +3627,7 @@
           <Property Name="CostoTotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Facturada" Type="Boolean" Nullable="false" />
           <Property Name="NroComprobante" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="VentaIdOriginal" Type="Int32" />
         </EntityType>
         <EntityType Name="VentaProducto">
           <Key>
@@ -5959,6 +5961,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MaxiKioscosModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="VentaIdOriginal" ColumnName="VentaIdOriginal" />
                 <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
                 <ScalarProperty Name="Facturada" ColumnName="Facturada" />
                 <ScalarProperty Name="CostoTotal" ColumnName="CostoTotal" />

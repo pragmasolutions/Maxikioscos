@@ -618,6 +618,8 @@
     <Content Include="SqlScripts\185-ControlStock_VistaPrevia.sql" />
     <Content Include="SqlScripts\187-ControlStock_Crear.sql" />
     <Content Include="SqlScripts\188-ControlStock_ObtenerDetalles.sql" />
+    <Content Include="SqlScripts\199-Sync_Ventas.sql" />
+    <Content Include="SqlScripts\198-VentaIdOriginal.sql" />
     <Content Include="SqlScripts\197-Indices.sql" />
     <Content Include="SqlScripts\196-IX_VentaProducto_ProductoId.sql" />
     <Content Include="SqlScripts\195-Producto_SugerenciaCompras.sql" />

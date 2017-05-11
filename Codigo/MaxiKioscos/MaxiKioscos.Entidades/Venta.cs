@@ -30,6 +30,7 @@ namespace MaxiKioscos.Entidades
         public decimal CostoTotal { get; set; }
         public bool Facturada { get; set; }
         public string NroComprobante { get; set; }
+        public Nullable<int> VentaIdOriginal { get; set; }
     
         public virtual ICollection<VentaProducto> VentaProductos { get; set; }
         public virtual CierreCaja CierreCaja { get; set; }
