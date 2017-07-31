@@ -403,11 +403,9 @@ namespace MaxiKioscos.Winforms.Ventas
                             Facturada = imprimir
                         };
                         venta.CierreCajaId = UsuarioActual.CierreCajaIdActual;
-                        var stockRepository = new StockRepository();
-                        var stockTransaccionRepository = new EFRepository<StockTransaccion>();
 
-                        var seAgregoStock = false;
-                        var seAgregoTransaccion = false;
+                        var stockRepository = new StockRepository(Repository.MaxiKioscosEntities);
+                        var stockTransaccionRepository = new EFRepository<StockTransaccion>(Repository.MaxiKioscosEntities);
 
                         //Agrego primero a la coleccion las lineas secundarias correspondientes a promociones
                         var secundarias = new List<VentaProducto>();
@@ -440,8 +438,6 @@ namespace MaxiKioscos.Winforms.Ventas
                                 stock.StockActual = stock.StockActual - Convert.ToDecimal(line.Cantidad);
                                 stockTransaccionRepository.Agregar(stockSt);
                                 stockRepository.Modificar(stock);
-                                seAgregoTransaccion = true;
-                                seAgregoStock = true;
                             }
                             else
                             {
@@ -456,21 +452,15 @@ namespace MaxiKioscos.Winforms.Ventas
                                     StockTransacciones = new List<StockTransaccion> { stockSt }
                                 };
                                 stockRepository.Agregar(stock);
-                                seAgregoStock = true;
                             }
                         }
 
-                        if (seAgregoStock)
-                            stockRepository.Commit();
-                        if (seAgregoTransaccion)
-                            stockTransaccionRepository.Commit();
 
                         Repository.Agregar(venta);
                         Repository.Commit();
 
                         try
                         {
-                            
                             Limpiar();
                         }
                         catch (Exception)
