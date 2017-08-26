@@ -385,7 +385,7 @@ namespace MaxiKioscos.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ExportacionNuevoXmlKiosco", maxiKioscoIdentifierParameter, usuarioIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<bool>> SincronizacionActualizarKiosco(string xML, Nullable<System.Guid> maxikioscoIdentifier, Nullable<int> secuencia)
+        public virtual int SincronizacionActualizarKiosco(string xML, Nullable<System.Guid> maxikioscoIdentifier, Nullable<int> secuencia)
         {
             var xMLParameter = xML != null ?
                 new ObjectParameter("XML", xML) :
@@ -399,7 +399,7 @@ namespace MaxiKioscos.Entidades
                 new ObjectParameter("Secuencia", secuencia) :
                 new ObjectParameter("Secuencia", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("SincronizacionActualizarKiosco", xMLParameter, maxikioscoIdentifierParameter, secuenciaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SincronizacionActualizarKiosco", xMLParameter, maxikioscoIdentifierParameter, secuenciaParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> StockActualizar(Nullable<System.Guid> maxikioscoIdentifier, Nullable<int> productoId)

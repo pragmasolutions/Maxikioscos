@@ -1,8 +1,4 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Sincronizacion_ActualizarKiosco]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
-GO
-
-CREATE PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
+ALTER PROCEDURE [dbo].[Sincronizacion_ActualizarKiosco]
 	@XML XML,
 	@MaxikioscoIdentifier uniqueidentifier,
 	@Secuencia int
@@ -65,7 +61,4 @@ BEGIN
 	print('Sync_TransferenciasProductos')		
 	EXEC dbo.Sync_TransferenciasProductos @XML, 1
 END
-
-GO
-
 

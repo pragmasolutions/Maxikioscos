@@ -2855,7 +2855,7 @@
             <Parameter Name="MaxiKioscoIdentifier" Mode="In" Type="Guid" />
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SincronizacionActualizarKiosco" ReturnType="Collection(Boolean)">
+          <FunctionImport Name="SincronizacionActualizarKiosco">
             <Parameter Name="XML" Mode="In" Type="String" />
             <Parameter Name="MaxikioscoIdentifier" Mode="In" Type="Guid" />
             <Parameter Name="Secuencia" Mode="In" Type="Int32" />
